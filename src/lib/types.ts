@@ -451,6 +451,241 @@ export interface InventorMobilityTrend {
   domestic_mobility_pct: number;
 }
 
+// Chapter 10: Patent Law types
+export interface HHIBySection {
+  period_start: number;
+  period: string;
+  section: string;
+  total_patents: number;
+  hhi: number;
+}
+
+export interface ApplicationsVsGrants {
+  year: number;
+  applications: number;
+  grants: number;
+  grant_to_application_ratio: number | null;
+}
+
+export interface ConvergenceEntry {
+  era: string;
+  section_row: string;
+  section_col: string;
+  co_occurrence_pct: number;
+  patent_count: number;
+}
+
+// Analysis #2: Portfolio Diversity
+export interface PortfolioDiversity {
+  organization: string;
+  period_start: number;
+  period: string;
+  num_subclasses: number;
+  shannon_entropy: number;
+  active_subclasses: number;
+}
+
+// Analysis #4: Superstar Inventor Concentration
+export interface SuperstarConcentration {
+  year: number;
+  total_patents: number;
+  top1pct_patents: number;
+  top5pct_patents: number;
+  top1pct_share: number;
+  top5pct_share: number;
+  remaining_share: number;
+}
+
+// Analysis #17: Solo Inventors
+export interface SoloInventorTrend {
+  year: number;
+  total_patents: number;
+  solo_patents: number;
+  solo_pct: number;
+}
+
+export interface SoloInventorBySection {
+  section: string;
+  solo_count: number;
+  team_count: number;
+  solo_pct: number;
+}
+
+// Analysis #18: First-Time Inventors
+export interface FirstTimeInventor {
+  year: number;
+  total_patents: number;
+  patents_with_debut: number;
+  debut_pct: number;
+}
+
+// Analysis #8: Citation Lag
+export interface CitationLagBySection {
+  section: string;
+  decade: number;
+  decade_label: string;
+  citation_count: number;
+  avg_lag_days: number;
+  median_lag_days: number;
+  avg_lag_years: number;
+  median_lag_years: number;
+}
+
+export interface CitationLagTrend {
+  year: number;
+  citation_count: number;
+  avg_lag_years: number;
+  median_lag_years: number;
+}
+
+// Analysis #10: Composite Quality Index
+export interface CompositeQualityIndex {
+  year: number;
+  section: string;
+  patent_count: number;
+  avg_z_cites: number;
+  avg_z_claims: number;
+  avg_z_scope: number;
+  avg_z_lag: number;
+  composite_index: number;
+}
+
+// Analysis #1: Friction Maps
+export interface FrictionMapEntry {
+  section: string;
+  period_start: number;
+  period: string;
+  patent_count: number;
+  avg_lag_days: number;
+  median_lag_days: number;
+  avg_lag_years: number;
+  median_lag_years: number;
+}
+
+// Analysis #3: Inventor Mobility
+export interface InventorMobilityCitation {
+  mobility: string;
+  patent_count: number;
+  avg_citations: number;
+  median_citations: number;
+}
+
+export interface InventorMobilityByDecade {
+  decade: number;
+  decade_label: string;
+  total_inventors: number;
+  mobile_inventors: number;
+  mobility_rate: number;
+}
+
+// Analysis #6: Regional Specialization
+export interface RegionalSpecialization {
+  city: string;
+  state: string;
+  total_patents: number;
+  section: string;
+  metro_section_count: number;
+  location_quotient: number;
+}
+
+// Analysis #9: Sleeping Beauty
+export interface SleepingBeauty {
+  patent_id: string;
+  grant_year: number;
+  section: string;
+  cpc_subclass: string;
+  early_cites: number;
+  avg_early_rate: number;
+  burst_citations: number;
+  burst_year_after_grant: number;
+  total_fwd_cites: number;
+}
+
+// Analysis #11: AI Strategies
+export interface AIStrategy {
+  organization: string;
+  subfield: string;
+  patent_count: number;
+}
+
+// Analysis #12: AI as GPT
+export interface AIGPTDiffusion {
+  year: number;
+  section: string;
+  ai_patents_with_section: number;
+  total_ai: number;
+  pct_of_ai: number;
+}
+
+// Analysis #13: Technology Half-Life
+export interface TechnologyHalfLife {
+  section: string;
+  half_life_years: number | null;
+  total_citations: number;
+}
+
+export interface TechnologyDecayCurve {
+  section: string;
+  years_after: number;
+  citations: number;
+  pct_of_total: number;
+}
+
+// Analysis #16: Gender Deep Dive
+export interface GenderByTech {
+  section: string;
+  gender: string;
+  count: number;
+}
+
+export interface GenderTeamQuality {
+  team_gender: string;
+  patent_count: number;
+  avg_citations: number;
+  median_citations: number;
+}
+
+export interface GenderSectionTrend {
+  period_start: number;
+  period: string;
+  section: string;
+  total_inventors: number;
+  female_inventors: number;
+  female_pct: number;
+}
+
+// Analysis #5: Innovation Diffusion
+export interface InnovationDiffusionEntry {
+  tech_area: string;
+  period_start: number;
+  period: string;
+  city: string;
+  state: string;
+  country: string;
+  lat: number;
+  lng: number;
+  patent_count: number;
+}
+
+// Analyses #7, #14: Network Metrics
+export interface NetworkMetricsByDecade {
+  decade: number;
+  decade_label: string;
+  num_nodes: number;
+  num_edges: number;
+  num_patents: number;
+  avg_degree: number;
+  avg_team_size: number;
+}
+
+export interface BridgeInventor {
+  inventor_id: string;
+  first_name: string;
+  last_name: string;
+  num_orgs: number;
+  total_patents: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];
