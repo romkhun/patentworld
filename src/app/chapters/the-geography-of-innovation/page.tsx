@@ -117,7 +117,7 @@ export default function Chapter4() {
         title="US Patent Activity by State"
         caption="Total utility patents by primary inventor state, 1976-2025. Darker shading indicates higher patent counts."
         loading={stL}
-        height={550}
+        height={650}
       >
         <PWChoroplethMap data={statePatentMap} valueLabel="Patents" />
       </ChartContainer>
@@ -136,7 +136,7 @@ export default function Chapter4() {
         title="Top 25 US States by Patent Count"
         caption="Total utility patents by primary inventor state, 1976-2025."
         loading={stL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={topStates}
@@ -155,13 +155,23 @@ export default function Chapter4() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The top five states (California, New York, Texas, New Jersey, Massachusetts) account
+          for more than 50% of all US patents. This extreme concentration reflects the self-
+          reinforcing nature of innovation clusters: skilled workers, venture capital, research
+          universities, and corporate R&D labs co-locate, creating ecosystems that are difficult
+          for other regions to replicate.
+        </p>
+      </KeyInsight>
+
       <SectionDivider label="City Level" />
 
       <ChartContainer
         title="Top 25 US Cities for Patents"
         caption="Total utility patents by primary inventor city, 1976-2025."
         loading={ciL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={topCities}
@@ -170,6 +180,25 @@ export default function Chapter4() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <Narrative>
+        <p>
+          At the city level, the concentration is even more extreme. A handful of tech hubs --
+          San Jose, San Francisco, New York, Los Angeles, and Houston -- dominate patent output.
+          These cities have maintained their positions for decades, suggesting that geographic
+          clustering in innovation is highly persistent.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The persistence of geographic clustering challenges the assumption that digital
+          communication would distribute innovation more evenly. Despite remote work and
+          global connectivity, physical proximity to other innovators, investors, and
+          specialized labor markets continues to provide powerful advantages in the innovation
+          process.
+        </p>
+      </KeyInsight>
 
       <SectionDivider label="International" />
 
@@ -213,7 +242,7 @@ export default function Chapter4() {
           title="State Technology Specialization"
           caption="CPC technology section distribution for the top 20 states by total patents. Each bar totals 100%."
           loading={spL}
-          height={650}
+          height={800}
         >
           <PWBarChart
             data={specByState}

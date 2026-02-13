@@ -171,6 +171,16 @@ export default function Chapter1() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          Patent pendency functions as a hidden tax on innovation. Every additional year of
+          delay extends the period of uncertainty for both the applicant and potential
+          competitors, distorting investment decisions. The pendency spike of the early 2000s
+          coincided with a period of rapid technological change in computing and
+          telecommunications -- precisely when timely patent review mattered most.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         All data comes from PatentsView (patentsview.org), covering granted US patents
         from January 1976 through September 2025.

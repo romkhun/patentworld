@@ -8,16 +8,17 @@ interface ChartContainerProps {
   caption?: string;
   height?: number;
   loading?: boolean;
+  wide?: boolean;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, caption, height = 500, loading, children }: ChartContainerProps) {
+export function ChartContainer({ title, caption, height = 600, loading, wide, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
     <div
       ref={ref}
-      className={`fade-in-section relative my-10 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden ${inView ? 'is-visible' : ''}`}
+      className={`fade-in-section relative my-10 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden ${wide ? '-mx-4 lg:-mx-8' : ''} ${inView ? 'is-visible' : ''}`}
     >
       {/* Colored top-border accent */}
       <div

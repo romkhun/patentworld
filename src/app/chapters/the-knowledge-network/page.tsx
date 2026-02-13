@@ -82,6 +82,17 @@ export default function Chapter6() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The growing gap between mean and median citations is a key structural feature of
+          the knowledge network. While the median patent receives modest citation, a growing
+          tail of highly-cited &quot;landmark&quot; patents drives the mean upward. This
+          increasing skewness suggests that the distribution of inventive value is becoming
+          more unequal over time -- a few breakthrough inventions generate disproportionate
+          downstream impact.
+        </p>
+      </KeyInsight>
+
       <SectionDivider label="Citation Patterns" />
 
       <ChartContainer
@@ -134,11 +145,21 @@ export default function Chapter6() {
         />
       </ChartContainer>
 
+      <Narrative>
+        <p>
+          The Bayh-Dole Act of 1980 fundamentally changed the landscape of government-funded
+          patenting by allowing universities and small businesses to retain rights to inventions
+          developed with federal support. The resulting acceleration in government-acknowledged
+          patents is clearly visible in the data, with recent years showing further growth as
+          federal R&D budgets have expanded.
+        </p>
+      </Narrative>
+
       <ChartContainer
         title="Top Government Funding Agencies"
         caption="Agencies with the most associated patents (all time)."
         loading={agL}
-        height={600}
+        height={750}
       >
         <PWBarChart
           data={topAgencies}

@@ -10,14 +10,14 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
-import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
+import Link from 'next/link';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type {
   TeamSizePerYear, ProlificInventor, InventorEntry,
-  NetworkData, StarInventorImpact, InventorLongevity,
+  StarInventorImpact, InventorLongevity,
 } from '@/lib/types';
 
 interface GenderRow {
@@ -52,7 +52,6 @@ export default function Chapter5() {
   const { data: entry, loading: enL } = useChapterData<InventorEntry[]>('chapter5/inventor_entry.json');
   const { data: starImpact, loading: siL } = useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
   const { data: longevity, loading: lgL } = useChapterData<InventorLongevity[]>('chapter5/inventor_longevity.json');
-  const { data: network, loading: netL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
 
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
 
@@ -179,12 +178,21 @@ export default function Chapter5() {
         />
       </ChartContainer>
 
+      <Narrative>
+        <p>
+          Progress on gender diversity in patenting has been real but slow. Despite decades of
+          initiatives to broaden participation in STEM, the female share of inventors on US
+          patents remains well below parity. At the current rate of change, achieving equal
+          representation would take many more decades.
+        </p>
+      </Narrative>
+
       {genderBySector.length > 0 && (
         <ChartContainer
           title="Female Inventor Share by WIPO Sector"
           caption="Percentage of inventor instances that are female, by technology sector."
           loading={gsL}
-          height={400}
+          height={500}
         >
           <PWBarChart
             data={genderBySector}
@@ -211,7 +219,7 @@ export default function Chapter5() {
         title="Most Prolific Inventors"
         caption="Top 30 inventors by total utility patents granted, 1976-2025."
         loading={prL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={topInventors}
@@ -220,6 +228,15 @@ export default function Chapter5() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <Narrative>
+        <p>
+          The most prolific inventors are overwhelmingly concentrated in electronics and
+          semiconductor fields, where rapid design iteration and modular innovation enable
+          extraordinarily high patent output. Many top inventors are associated with large
+          Japanese and Korean electronics firms that emphasize systematic patent generation.
+        </p>
+      </Narrative>
 
       <ChartContainer
         title="New Inventors Entering the System"
@@ -242,6 +259,16 @@ export default function Chapter5() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The number of new inventors entering the patent system each year has outpaced the
+          growth in patent grants, suggesting that the inventor base is broadening even as
+          individual patent output varies widely. This expanding base of first-time inventors
+          is a healthy sign for the innovation ecosystem, indicating continued inflows of
+          fresh talent and new ideas.
+        </p>
+      </KeyInsight>
+
       {/* ── New deep analyses ── */}
 
       <SectionDivider label="Inventor Impact" />
@@ -258,7 +285,7 @@ export default function Chapter5() {
         title="Star Inventor Impact: Top 30 by Citation Average"
         caption="Average, median, and maximum forward citations per patent for the 30 most prolific inventors. Limited to patents granted through 2020."
         loading={siL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={starData}
@@ -309,30 +336,22 @@ export default function Chapter5() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Collaboration Network" />
-
-      <Narrative>
+      <KeyInsight>
         <p>
-          The most prolific inventors often work together across multiple patents, forming
-          tight-knit <StatCallout value="co-invention clusters" />. The network below shows
-          collaboration ties among the 50 most prolific inventors.
+          The survival curves reveal a bimodal inventor population: a large group of
+          &quot;one-shot&quot; inventors who patent once and never return (the steep initial
+          drop), and a smaller group of persistent innovators who remain active for decades.
+          This pattern is consistent across all entry cohorts, suggesting a fundamental
+          division between occasional and career inventors.
         </p>
-      </Narrative>
+      </KeyInsight>
 
-      <ChartContainer
-        title="Co-Invention Network (All Inventors)"
-        caption="Co-invention network among all inventors with significant collaboration ties. Edges = shared patents (≥200). Node size = total patents. Hover over nodes for details; drag to reposition."
-        loading={netL}
-        height={800}
-      >
-        {network ? (
-          <PWNetworkGraph
-            nodes={network.nodes}
-            edges={network.edges}
-            nodeColor={CHART_COLORS[4]}
-          />
-        ) : <div />}
-      </ChartContainer>
+      <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
+        Inventor collaboration network analysis has moved to its own dedicated chapter.{' '}
+        <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
+          See Chapter 8: Collaboration Networks &rarr;
+        </Link>
+      </div>
 
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.

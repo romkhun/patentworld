@@ -332,6 +332,53 @@ export interface StarInventorImpact {
   max_citations: number;
 }
 
+// Chapter 9: Patent Quality types
+export interface QualityTrend {
+  year: number;
+  avg_claims: number;
+  median_claims: number;
+  avg_backward_cites: number;
+  median_backward_cites: number;
+  avg_forward_cites_5yr: number;
+  median_forward_cites_5yr: number;
+  avg_scope: number;
+  median_scope: number;
+  avg_inventors: number;
+  median_inventors: number;
+  avg_grant_lag_days: number;
+  median_grant_lag_days: number;
+}
+
+export interface OriginalityGenerality {
+  year: number;
+  avg_originality: number;
+  avg_generality: number;
+  median_originality: number;
+  median_generality: number;
+}
+
+export interface SelfCitationRate {
+  year: number;
+  avg_self_cite_rate: number;
+  median_self_cite_rate: number;
+}
+
+export interface QualityBySector {
+  period: string;
+  sector: string;
+  avg_forward_cites: number;
+  avg_claims: number;
+  avg_scope: number;
+  avg_originality: number;
+}
+
+export interface BreakthroughPatent {
+  year: number;
+  total_patents: number;
+  breakthrough_count: number;
+  breakthrough_pct: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

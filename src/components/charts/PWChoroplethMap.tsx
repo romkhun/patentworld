@@ -75,9 +75,10 @@ export function PWChoroplethMap({
   const values = useMemo(() => Object.values(data), [data]);
   const colorScale = useMemo(() => {
     if (values.length === 0) return scaleQuantize<string>().domain([0, 1]).range(COLOR_STEPS);
-    const min = Math.min(...values);
     const max = Math.max(...values);
-    return scaleQuantize<string>().domain([min, max]).range(COLOR_STEPS);
+    const magnitude = Math.pow(10, Math.floor(Math.log10(max)));
+    const niceMax = Math.ceil(max / magnitude) * magnitude;
+    return scaleQuantize<string>().domain([0, niceMax]).range(COLOR_STEPS);
   }, [values]);
 
   const features = useMemo(() => {

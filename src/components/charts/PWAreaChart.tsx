@@ -63,6 +63,8 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
           width={60}
           domain={stackedPercent ? [0, 100] : undefined}
+          allowDataOverflow={stackedPercent || undefined}
+          ticks={stackedPercent ? [0, 20, 40, 60, 80, 100] : undefined}
         >
           {yLabel && (
             <Label

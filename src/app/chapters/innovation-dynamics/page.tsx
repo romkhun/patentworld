@@ -189,6 +189,16 @@ export default function Chapter7() {
         />
       </ChartContainer>
 
+      <Narrative>
+        <p>
+          The growth of international collaboration in patenting reflects the globalization
+          of corporate R&D. Multinational firms increasingly distribute their research
+          activities across multiple countries, leveraging local talent pools and regulatory
+          environments. The result is a growing web of cross-border co-invention that
+          transcends traditional national innovation systems.
+        </p>
+      </Narrative>
+
       <KeyInsight>
         <p>
           International collaboration has grown from under 5% of patents in the 1980s to over 10%
@@ -205,7 +215,7 @@ export default function Chapter7() {
           title="Top 10 Organizations: Technology Portfolio (2001-2025)"
           caption="Distribution of patent grants across CPC technology sections for the top 10 patent holders."
           loading={cpL}
-          height={550}
+          height={650}
         >
           <PWBarChart
             data={corpDivLate}

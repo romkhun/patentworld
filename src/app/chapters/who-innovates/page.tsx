@@ -10,8 +10,8 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
-import { PWBumpChart } from '@/components/charts/PWBumpChart';
-import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
+import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
+import Link from 'next/link';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -19,7 +19,7 @@ import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   AssigneeTypePerYear, TopAssignee, OrgOverTime, DomesticVsForeign, Concentration,
-  NetworkData, FirmCitationImpact, FirmTechEvolution,
+  FirmCitationImpact, FirmTechEvolution,
 } from '@/lib/types';
 
 function pivotByCategory(data: AssigneeTypePerYear[]) {
@@ -47,7 +47,6 @@ export default function Chapter3() {
   const { data: dvf, loading: dvfL } = useChapterData<DomesticVsForeign[]>('chapter3/domestic_vs_foreign.json');
   const { data: conc, loading: concL } = useChapterData<Concentration[]>('chapter3/concentration.json');
   const { data: citImpact, loading: citL } = useChapterData<FirmCitationImpact[]>('chapter3/firm_citation_impact.json');
-  const { data: network, loading: netL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
   const { data: techEvo, loading: tevL } = useChapterData<FirmTechEvolution[]>('chapter3/firm_tech_evolution.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
@@ -132,11 +131,29 @@ export default function Chapter3() {
         />
       </ChartContainer>
 
+      <Narrative>
+        <p>
+          The corporatization of patenting is one of the most striking long-term trends. In the
+          late 1970s, individual inventors and government entities held meaningful shares of
+          patent grants. Today, large corporations dominate overwhelmingly.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The Bayh-Dole Act of 1980 enabled universities and small businesses to patent
+          federally-funded inventions, contributing to a surge in institutional patenting. But
+          the dominant story is the rise of corporate R&D: as patent portfolios became strategic
+          assets for cross-licensing, defensive protection, and competitive signaling, large
+          firms invested heavily in systematic patent generation.
+        </p>
+      </KeyInsight>
+
       <ChartContainer
         title="Top 25 Patent-Holding Organizations"
         caption="Ranked by total utility patents granted, 1976-2025."
         loading={topL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={topOrgs}
@@ -162,14 +179,22 @@ export default function Chapter3() {
         </p>
       </KeyInsight>
 
+      <Narrative>
+        <p>
+          The rank heatmap below reveals distinct eras of organizational dominance. Some firms
+          have maintained top positions for decades, while others have risen rapidly or faded
+          as their core technologies evolved.
+        </p>
+      </Narrative>
+
       {orgsTime && orgsTime.length > 0 && (
         <ChartContainer
           title="Top Organizations: Rank Over Time"
-          caption="Annual ranking of the top patent-holding organizations by yearly grant count. Hover over organization names to highlight individual trajectories."
+          caption="Rank heatmap showing how the top 15 patent-holding organizations have shifted in annual grant rankings. Darker cells = higher rank."
           loading={orgL}
-          height={700}
+          height={850}
         >
-          <PWBumpChart
+          <PWRankHeatmap
             data={orgsTime.filter((d) => d.rank <= 15)}
             nameKey="organization"
             yearKey="year"
@@ -178,6 +203,15 @@ export default function Chapter3() {
           />
         </ChartContainer>
       )}
+
+      <KeyInsight>
+        <p>
+          The heatmap reveals three distinct eras: the GE/IBM dominance of the 1970s-80s, the
+          rise of Japanese electronics firms (Canon, Hitachi, Toshiba) in the 1980s-90s, and
+          the Korean ascendancy (Samsung, LG) since the 2000s. These shifts reflect broader
+          geopolitical changes in technology leadership and R&D investment.
+        </p>
+      </KeyInsight>
 
       <ChartContainer
         title="US vs Foreign Assignees"
@@ -194,6 +228,15 @@ export default function Chapter3() {
           yLabel="Patents"
         />
       </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The foreign share of US patent grants has converged toward parity with domestic
+          filers. This convergence reflects the globalization of R&D: multinational firms
+          file strategically in the US regardless of headquarter location, and the US patent
+          system has become the de facto global standard for protecting high-value inventions.
+        </p>
+      </KeyInsight>
 
       <ChartContainer
         title="Patent Concentration"
@@ -238,7 +281,7 @@ export default function Chapter3() {
         title="Citation Impact: Top 30 Organizations"
         caption="Average and median forward citations per patent for the top 30 patent holders. Limited to patents granted through 2020 for citation accumulation."
         loading={citL}
-        height={700}
+        height={850}
       >
         <PWBarChart
           data={citData}
@@ -252,38 +295,22 @@ export default function Chapter3() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Collaboration Network" />
-
-      <Narrative>
-        <p>
-          Innovation does not happen in isolation. Many patents list multiple assignee organizations,
-          revealing patterns of <StatCallout value="cross-firm collaboration" />. The network below
-          shows which top patent holders frequently co-patent together.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        title="Co-Patenting Network (All Organizations)"
-        caption="Co-patenting network among all organizations with significant collaboration ties. Node size = total patents; edges = shared patents (≥50). Hover over nodes for details; drag to reposition."
-        loading={netL}
-        height={800}
-      >
-        {network ? (
-          <PWNetworkGraph
-            nodes={network.nodes}
-            edges={network.edges}
-            nodeColor={CHART_COLORS[0]}
-          />
-        ) : <div />}
-      </ChartContainer>
-
       <KeyInsight>
         <p>
-          Cross-firm collaboration is concentrated among companies in related technology domains.
-          Electronics giants, pharmaceutical companies, and automotive firms each form distinct
-          clusters within the co-patenting network.
+          The gap between average and median citations is telling: most firms produce patents
+          with modest citation impact, but a few generate highly cited inventions that pull the
+          average upward. Firms with high average-to-median ratios have &quot;hit-driven&quot;
+          portfolios -- a few breakthrough patents amid many routine ones -- while firms with
+          closer average and median values produce more consistently impactful work.
         </p>
       </KeyInsight>
+
+      <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
+        Collaboration network analysis has moved to its own dedicated chapter.{' '}
+        <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
+          See Chapter 8: Collaboration Networks &rarr;
+        </Link>
+      </div>
 
       <SectionDivider label="Technology Portfolios" />
 
@@ -317,7 +344,6 @@ export default function Chapter3() {
         title={`Technology Portfolio: ${activeOrg || 'Loading...'}`}
         caption="CPC technology section shares by 5-year period. Shows how the organization's innovation portfolio has evolved."
         loading={tevL}
-        height={500}
       >
         <PWAreaChart
           data={techEvoPivot}
@@ -330,6 +356,15 @@ export default function Chapter3() {
           stackedPercent
         />
       </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Technology portfolio shifts reveal strategic pivots. When a firm&apos;s patent mix
+          changes rapidly -- as when Samsung shifted from mechanical to electronics patents in
+          the 1990s, or when pharmaceutical firms expanded into biotech -- it signals deliberate
+          reorientation of R&D investment toward emerging market opportunities.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Assignee data uses disambiguated identities from PatentsView. Primary assignee

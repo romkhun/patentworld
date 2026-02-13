@@ -122,7 +122,7 @@ export default function Chapter2() {
         title="CPC Technology Sections: Share Over Time"
         caption="Share of utility patents by CPC section (primary classification). Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity."
         loading={cpcL}
-        height={550}
+        height={650}
       >
         <PWAreaChart
           data={sectionPivot}
@@ -146,12 +146,21 @@ export default function Chapter2() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          Sections G (Physics) and H (Electricity) have grown from roughly 30% of patents in the
+          1970s to nearly 48% today. This structural shift reflects the economy-wide digital
+          transformation: computing, semiconductors, and telecommunications technologies now
+          pervade virtually every industry, from manufacturing to healthcare.
+        </p>
+      </KeyInsight>
+
       {treemap && treemap.length > 0 && (
         <ChartContainer
           title="Technology Landscape: CPC Class Treemap"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle's area represents the number of patents in that class. Colors correspond to CPC sections."
           loading={tmL}
-          height={700}
+          height={850}
         >
           <PWTreemap data={treemap} />
         </ChartContainer>
@@ -173,7 +182,7 @@ export default function Chapter2() {
           title="Fastest Growing and Declining Technology Classes"
           caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Top 15 growing (positive) and declining (negative) CPC classes."
           loading={chgL}
-          height={700}
+          height={850}
         >
           <PWBarChart
             data={changeData}
@@ -184,6 +193,25 @@ export default function Chapter2() {
           />
         </ChartContainer>
       )}
+
+      <Narrative>
+        <p>
+          The magnitude of these structural shifts is striking. The fastest-growing classes
+          show increases of several hundred percent, while declining classes have contracted
+          by similar margins. These are not small adjustments at the margin -- they represent
+          fundamental reorientation of inventive activity.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The growing classes are dominated by digital technologies (data processing, digital
+          communication, image analysis), while declining classes tend to involve analog-era
+          technologies (typewriters, photographic processes, traditional printing). This
+          reflects the creative destruction of the digital revolution: entire categories of
+          invention have been rendered obsolete as their digital replacements surge ahead.
+        </p>
+      </KeyInsight>
 
       <ChartContainer
         title="Technology Diversity Index"

@@ -59,6 +59,27 @@ export const CHAPTERS: ChapterMeta[] = [
     subtitle: 'The tempo and trajectory of invention',
     description: 'Grant lag, cross-domain convergence, global collaboration, and the velocity of innovation.',
   },
+  {
+    number: 8,
+    slug: 'collaboration-networks',
+    title: 'Collaboration Networks',
+    subtitle: 'The web of co-invention and co-patenting',
+    description: 'How do firms and inventors collaborate? Network analysis reveals the hidden structure of innovation.',
+  },
+  {
+    number: 9,
+    slug: 'patent-quality',
+    title: 'Patent Quality',
+    subtitle: 'Measuring the value and impact of inventions',
+    description: 'Forward citations, originality, generality, and other dimensions of patent quality over 50 years.',
+  },
+  {
+    number: 10,
+    slug: 'patent-law',
+    title: 'Patent Law & Policy',
+    subtitle: 'The rules that shape innovation',
+    description: 'Major legislation, Supreme Court decisions, and policy changes that have shaped the US patent system.',
+  },
 ];
 
 export const CPC_SECTION_NAMES: Record<string, string> = {
@@ -78,6 +99,6 @@ export const HERO_STATS = {
   yearsCovered: 50,
   startYear: 1976,
   endYear: 2025,
-  chapters: 7,
-  visualizations: 46,
+  chapters: 10,
+  visualizations: 58,
 };
