@@ -36,7 +36,12 @@ const CPC_SECTIONS = Object.keys(CPC_SECTION_NAMES);
 export default function Chapter14() {
   /* ── Data loading ── */
   const { data: profiles, loading: prL } = useChapterData<CompanyProfile[]>('company/company_profiles.json');
-  const { data: trajectories } = useChapterData<TrajectoryArchetype[]>('company/trajectory_archetypes.json');
+  const { data: trajRaw } = useChapterData<{ companies: TrajectoryArchetype[] } | TrajectoryArchetype[]>('company/trajectory_archetypes.json');
+  const trajectories = useMemo(() => {
+    if (!trajRaw) return null;
+    if (Array.isArray(trajRaw)) return trajRaw;
+    return trajRaw.companies ?? null;
+  }, [trajRaw]);
   const { data: mortality, loading: moL } = useChapterData<CorporateMortality>('company/corporate_mortality.json');
   const { data: diversification, loading: diL } = useChapterData<PortfolioDiversificationB3[]>('company/portfolio_diversification_b3.json');
   const { data: pivots, loading: pvL } = useChapterData<PivotDetection[]>('company/pivot_detection.json');
