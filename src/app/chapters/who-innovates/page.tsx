@@ -57,7 +57,7 @@ export default function Chapter3() {
 
   const topOrgs = useMemo(() => {
     if (!top) return [];
-    return top.slice(0, 25).map((d) => ({
+    return top.map((d) => ({
       ...d,
       label: d.organization.length > 30 ? d.organization.slice(0, 27) + '...' : d.organization,
     }));
@@ -65,14 +65,27 @@ export default function Chapter3() {
 
   const topOrgName = top?.[0]?.organization ?? 'IBM';
 
-  // Citation impact: top 30 by avg
   const citData = useMemo(() => {
     if (!citImpact) return [];
-    return citImpact.slice(0, 30).map((d) => ({
+    return citImpact.map((d) => ({
       ...d,
       label: d.organization.length > 28 ? d.organization.slice(0, 25) + '...' : d.organization,
     }));
   }, [citImpact]);
+
+  // Company output over time line chart
+  const { orgOutputPivot, orgOutputNames } = useMemo(() => {
+    if (!orgsTime) return { orgOutputPivot: [], orgOutputNames: [] };
+    const top10 = [...new Set(orgsTime.filter((d) => d.rank <= 10).map((d) => d.organization))].slice(0, 10);
+    const years = [...new Set(orgsTime.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: any = { year };
+      orgsTime.filter((d) => d.year === year && top10.includes(d.organization))
+        .forEach((d) => { row[d.organization] = d.count; });
+      return row;
+    });
+    return { orgOutputPivot: pivoted, orgOutputNames: top10 };
+  }, [orgsTime]);
 
   // Tech evolution: list of orgs and pivoted data for selected org
   const techOrgList = useMemo(() => {
@@ -150,10 +163,10 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
-        title="Top 25 Patent-Holding Organizations"
+        title="Patent-Holding Organizations"
         caption="Ranked by total utility patents granted, 1976-2025."
         loading={topL}
-        height={850}
+        height={1400}
       >
         <PWBarChart
           data={topOrgs}
@@ -210,6 +223,35 @@ export default function Chapter3() {
           rise of Japanese electronics firms (Canon, Hitachi, Toshiba) in the 1980s-90s, and
           the Korean ascendancy (Samsung, LG) since the 2000s. These shifts reflect broader
           geopolitical changes in technology leadership and R&D investment.
+        </p>
+      </KeyInsight>
+
+      {orgOutputPivot.length > 0 && (
+        <ChartContainer
+          title="Patent Output Trajectories: Top Organizations"
+          caption="Annual patent grants for the 10 historically top-ranked organizations, showing the rise and fall of different firms over five decades."
+          loading={orgL}
+        >
+          <PWLineChart
+            data={orgOutputPivot}
+            xKey="year"
+            lines={orgOutputNames.map((name, i) => ({
+              key: name,
+              name: name.length > 25 ? name.slice(0, 22) + '...' : name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="Patents"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The patent output trajectories of leading organizations reveal striking divergence
+          over time. While IBM maintained consistently high output for decades before declining,
+          Samsung and Canon demonstrated rapid growth trajectories from the 1980s onward. These
+          patterns reflect fundamental differences in corporate R&D strategies, from IBM&apos;s shift
+          toward services to Samsung&apos;s aggressive technology diversification.
         </p>
       </KeyInsight>
 
@@ -278,10 +320,10 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="Citation Impact: Top 30 Organizations"
-        caption="Average and median forward citations per patent for the top 30 patent holders. Limited to patents granted through 2020 for citation accumulation."
+        title="Citation Impact by Organization"
+        caption="Average and median forward citations per patent for major patent holders. Limited to patents granted through 2020 for citation accumulation."
         loading={citL}
-        height={850}
+        height={900}
       >
         <PWBarChart
           data={citData}

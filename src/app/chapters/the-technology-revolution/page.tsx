@@ -39,7 +39,7 @@ function pivotBySection(data: CPCSectionPerYear[]) {
 export default function Chapter2() {
   const { data: sectors, loading: secL } = useChapterData<SectorPerYear[]>('chapter2/wipo_sectors_per_year.json');
   const { data: cpcSections, loading: cpcL } = useChapterData<CPCSectionPerYear[]>('chapter2/cpc_sections_per_year.json');
-  const { data: cpcChange, loading: chgL } = useChapterData<{ growing: CPCClassChange[]; declining: CPCClassChange[] }>('chapter2/cpc_class_change.json');
+  const { data: cpcChange, loading: chgL } = useChapterData<(CPCClassChange & { direction: string })[]>('chapter2/cpc_class_change.json');
   const { data: diversity, loading: divL } = useChapterData<TechDiversity[]>('chapter2/tech_diversity.json');
   const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
 
@@ -55,14 +55,20 @@ export default function Chapter2() {
 
   const changeData = useMemo(() => {
     if (!cpcChange) return [];
-    const growing = (cpcChange.growing || []).slice(0, 15).map((d) => ({
-      label: `${d.cpc_class}: ${d.title?.slice(0, 35)}`,
-      pct_change: d.pct_change,
-    }));
-    const declining = (cpcChange.declining || []).slice(0, 15).map((d) => ({
-      label: `${d.cpc_class}: ${d.title?.slice(0, 35)}`,
-      pct_change: d.pct_change,
-    }));
+    const growing = cpcChange
+      .filter((d) => d.direction === 'growing')
+      .sort((a, b) => b.pct_change - a.pct_change)
+      .map((d) => ({
+        label: `${d.cpc_class}: ${(d.title ?? d.class_name ?? '').slice(0, 35)}`,
+        pct_change: d.pct_change,
+      }));
+    const declining = cpcChange
+      .filter((d) => d.direction === 'declining')
+      .sort((a, b) => a.pct_change - b.pct_change)
+      .map((d) => ({
+        label: `${d.cpc_class}: ${(d.title ?? d.class_name ?? '').slice(0, 35)}`,
+        pct_change: d.pct_change,
+      }));
     return [...growing, ...declining.reverse()];
   }, [cpcChange]);
 
@@ -180,7 +186,7 @@ export default function Chapter2() {
       {changeData.length > 0 && (
         <ChartContainer
           title="Fastest Growing and Declining Technology Classes"
-          caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Top 15 growing (positive) and declining (negative) CPC classes."
+          caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Fastest growing (positive) and declining (negative) CPC classes with at least 100 patents in each period."
           loading={chgL}
           height={850}
         >

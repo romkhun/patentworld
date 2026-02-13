@@ -23,7 +23,7 @@ export default function Chapter6() {
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
-    return agencies.slice(0, 20).map((d) => ({
+    return agencies.map((d) => ({
       ...d,
       label: d.agency.length > 40 ? d.agency.slice(0, 37) + '...' : d.agency,
     }));
@@ -181,10 +181,10 @@ export default function Chapter6() {
 
       <KeyInsight>
         <p>
-          Government-funded patents punch above their weight: they tend to receive more
-          forward citations than privately-funded patents, suggesting that public research
-          investments produce disproportionately influential knowledge that serves as a
-          foundation for downstream commercial innovation.
+          Government-funded patents exhibit disproportionately high citation impact: they
+          tend to receive substantially more forward citations than privately funded patents,
+          suggesting that public research investments generate foundational knowledge that
+          serves as a critical input for downstream commercial innovation.
         </p>
       </KeyInsight>
 

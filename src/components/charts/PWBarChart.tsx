@@ -16,19 +16,33 @@ interface PWBarChartProps {
   xLabel?: string;
   yLabel?: string;
   yFormatter?: (v: number) => string;
+  xDomain?: [number, number];
 }
 
 export function PWBarChart({
-  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, xLabel, yLabel, yFormatter,
+  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, xLabel, yLabel, yFormatter, xDomain,
 }: PWBarChartProps) {
   const isVertical = layout === 'vertical';
+  // Compute left margin for vertical bars based on longest label
+  const labelWidth = isVertical
+    ? Math.min(
+        180,
+        Math.max(
+          110,
+          ...data.map((d) => {
+            const label = String(d[xKey] ?? '');
+            return label.length * 6.5 + 16;
+          })
+        )
+      )
+    : 10;
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
         data={data}
         layout={isVertical ? 'vertical' : 'horizontal'}
-        margin={{ top: 5, right: 10, left: isVertical ? 120 : 10, bottom: 5 }}
+        margin={{ top: 5, right: 10, left: isVertical ? labelWidth + 10 : 10, bottom: 5 }}
         barCategoryGap={isVertical ? '20%' : '15%'}
       >
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -40,6 +54,9 @@ export function PWBarChart({
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
               tickFormatter={yFormatter ?? formatCompact}
+              domain={xDomain}
+              allowDataOverflow={!!xDomain}
+              ticks={xDomain ? [0, 20, 40, 60, 80, 100] : undefined}
             >
               {yLabel && (
                 <Label
@@ -56,7 +73,7 @@ export function PWBarChart({
               tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
-              width={110}
+              width={labelWidth}
             >
               {xLabel && (
                 <Label

@@ -71,7 +71,7 @@ export default function Chapter5() {
 
   const topInventors = useMemo(() => {
     if (!prolific) return [];
-    return prolific.slice(0, 30).map((d) => ({
+    return prolific.map((d) => ({
       ...d,
       label: `${d.first_name} ${d.last_name}`.trim(),
     }));
@@ -81,10 +81,9 @@ export default function Chapter5() {
     ? `${prolific[0].first_name} ${prolific[0].last_name}`.trim()
     : 'Shunpei Yamazaki';
 
-  // Star inventor impact data
   const starData = useMemo(() => {
     if (!starImpact) return [];
-    return starImpact.slice(0, 30).map((d) => ({
+    return starImpact.map((d) => ({
       ...d,
       label: `${d.first_name} ${d.last_name}`.trim(),
     }));
@@ -217,9 +216,9 @@ export default function Chapter5() {
 
       <ChartContainer
         title="Most Prolific Inventors"
-        caption="Top 30 inventors by total utility patents granted, 1976-2025."
+        caption="Inventors ranked by total utility patents granted, 1976-2025."
         loading={prL}
-        height={850}
+        height={2800}
       >
         <PWBarChart
           data={topInventors}
@@ -282,10 +281,10 @@ export default function Chapter5() {
       </Narrative>
 
       <ChartContainer
-        title="Star Inventor Impact: Top 30 by Citation Average"
-        caption="Average, median, and maximum forward citations per patent for the 30 most prolific inventors. Limited to patents granted through 2020."
+        title="Star Inventor Impact by Citation Average"
+        caption="Average, median, and maximum forward citations per patent for prolific inventors. Limited to patents granted through 2020."
         loading={siL}
-        height={850}
+        height={5600}
       >
         <PWBarChart
           data={starData}

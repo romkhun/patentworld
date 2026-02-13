@@ -43,6 +43,10 @@ export function PWNetworkGraph({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const simulationRef = useRef<ReturnType<typeof forceSimulation<SimNode>> | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const panStartRef = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
 
   // Responsive sizing
   useEffect(() => {
@@ -192,20 +196,88 @@ export function PWNetworkGraph({
     return ids;
   }, [hoveredId, edges]);
 
+  // Zoom with mouse wheel
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    setZoom((z) => Math.min(5, Math.max(0.2, z * delta)));
+  }, []);
+
+  // Pan with middle-click or shift+click on background
+  const handleBgMouseDown = useCallback((e: React.MouseEvent) => {
+    if (e.button === 1 || (e.button === 0 && e.shiftKey)) {
+      e.preventDefault();
+      setIsPanning(true);
+      panStartRef.current = { x: e.clientX, y: e.clientY, panX: pan.x, panY: pan.y };
+    }
+  }, [pan]);
+
+  const handlePanMove = useCallback((e: React.MouseEvent) => {
+    if (isPanning) {
+      setPan({
+        x: panStartRef.current.panX + (e.clientX - panStartRef.current.x),
+        y: panStartRef.current.panY + (e.clientY - panStartRef.current.y),
+      });
+    }
+  }, [isPanning]);
+
+  const handlePanEnd = useCallback(() => {
+    setIsPanning(false);
+  }, []);
+
+  const resetView = useCallback(() => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, []);
+
   return (
     <div ref={containerRef} className="relative w-full h-full select-none">
+      {/* Zoom controls */}
+      <div className="absolute top-2 right-2 z-20 flex flex-col gap-1">
+        <button
+          onClick={() => setZoom((z) => Math.min(5, z * 1.3))}
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
+          title="Zoom in"
+        >
+          +
+        </button>
+        <button
+          onClick={() => setZoom((z) => Math.max(0.2, z / 1.3))}
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
+          title="Zoom out"
+        >
+          &minus;
+        </button>
+        <button
+          onClick={resetView}
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-xs"
+          title="Reset view"
+        >
+          1:1
+        </button>
+      </div>
       <svg
         width={dimensions.width}
         height={dimensions.height}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        onWheel={handleWheel}
+        onMouseDown={handleBgMouseDown}
+        onMouseMove={(e) => {
+          handlePanMove(e);
+          handleMouseMove(e);
+        }}
+        onMouseUp={() => {
+          handlePanEnd();
+          handleMouseUp();
+        }}
         onMouseLeave={() => {
+          handlePanEnd();
           handleMouseUp();
           setTooltip(null);
           setHoveredId(null);
         }}
-        style={{ cursor: draggedId ? 'grabbing' : 'default' }}
+        style={{ cursor: isPanning ? 'move' : draggedId ? 'grabbing' : 'default' }}
       >
+        <g transform={`translate(${pan.x + dimensions.width / 2 * (1 - zoom)}, ${pan.y + dimensions.height / 2 * (1 - zoom)}) scale(${zoom})`}>
         {/* Edges */}
         {simLinks.map((link, i) => {
           const s = link.source as SimNode;
@@ -249,8 +321,8 @@ export function PWNetworkGraph({
                   if (!draggedId) {
                     setHoveredId(node.id);
                     setTooltip({
-                      x: (node.x ?? 0) + r + 8,
-                      y: (node.y ?? 0) - 10,
+                      x: (node.x ?? 0) * zoom + pan.x + dimensions.width / 2 * (1 - zoom) + r + 8,
+                      y: (node.y ?? 0) * zoom + pan.y + dimensions.height / 2 * (1 - zoom) - 10,
                       node,
                     });
                   }
@@ -279,6 +351,7 @@ export function PWNetworkGraph({
             </g>
           );
         })}
+        </g>
       </svg>
       {/* Tooltip */}
       {tooltip && (

@@ -88,7 +88,7 @@ export default function HomePage() {
 
       {/* Chapter Cards */}
       <section className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
-        <h2 className="mb-8 font-serif text-2xl font-bold">Chapters</h2>
+        <h2 className="mb-8 font-serif text-2xl font-bold">Explore the Data</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CHAPTERS.map((ch) => (
             <Link
@@ -96,15 +96,12 @@ export default function HomePage() {
               href={`/chapters/${ch.slug}/`}
               className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors"
             >
-              <div className="mb-2 font-mono text-xs text-muted-foreground">
-                Chapter {String(ch.number).padStart(2, '0')}
-              </div>
               <h3 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
                 {ch.title}
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
               <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Read chapter <ArrowRight className="h-3 w-3" />
+                Explore <ArrowRight className="h-3 w-3" />
               </div>
             </Link>
           ))}

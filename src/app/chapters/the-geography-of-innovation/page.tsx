@@ -15,9 +15,9 @@ import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import type { StateSummary, CountryPerYear, TopCity, StateSpecialization } from '@/lib/types';
+import type { StateSummary, CountryPerYear, TopCity, StateSpecialization, StatePerYear, InventorFlow, InventorMobilityTrend } from '@/lib/types';
 
-function pivotCountries(data: CountryPerYear[], topN: number = 8) {
+function pivotCountries(data: CountryPerYear[], topN: number = 15) {
   const totals: Record<string, number> = {};
   data.forEach((d) => { totals[d.country] = (totals[d.country] || 0) + d.count; });
   const topCountries = Object.entries(totals)
@@ -42,10 +42,14 @@ export default function Chapter4() {
   const { data: countries, loading: coL } = useChapterData<CountryPerYear[]>('chapter4/countries_per_year.json');
   const { data: cities, loading: ciL } = useChapterData<TopCity[]>('chapter4/top_cities.json');
   const { data: spec, loading: spL } = useChapterData<StateSpecialization[]>('chapter4/state_specialization.json');
+  const { data: statesPerYear, loading: spyL } = useChapterData<StatePerYear[]>('chapter4/us_states_per_year.json');
+  const { data: stateFlows, loading: sfL } = useChapterData<InventorFlow[]>('chapter4/inventor_state_flows.json');
+  const { data: countryFlows, loading: cfL } = useChapterData<InventorFlow[]>('chapter4/inventor_country_flows.json');
+  const { data: mobilityTrend, loading: mtL } = useChapterData<InventorMobilityTrend[]>('chapter4/inventor_mobility_trend.json');
 
   const topStates = useMemo(() => {
     if (!states) return [];
-    return states.slice(0, 25).map((d) => ({
+    return states.map((d) => ({
       ...d,
       label: d.state,
     }));
@@ -53,7 +57,7 @@ export default function Chapter4() {
 
   const topCities = useMemo(() => {
     if (!cities) return [];
-    return cities.slice(0, 25).map((d) => ({
+    return cities.map((d) => ({
       ...d,
       label: `${d.city}, ${d.state}`,
     }));
@@ -76,7 +80,6 @@ export default function Chapter4() {
     // Convert to percentages for 100% stacked bar
     return Object.values(stateMap)
       .sort((a: any, b: any) => b.total - a.total)
-      .slice(0, 20)
       .map((row: any) => {
         const pctRow: any = { state: row.state };
         sKeys.forEach((key) => {
@@ -92,6 +95,40 @@ export default function Chapter4() {
     states.forEach((d) => { map[d.state] = d.total_patents; });
     return map;
   }, [states]);
+
+  const topStateFlows = useMemo(() => {
+    if (!stateFlows) return [];
+    return stateFlows.slice(0, 30).map((d) => ({
+      ...d,
+      label: `${d.from_state} → ${d.to_state}`,
+    }));
+  }, [stateFlows]);
+
+  const topCountryFlows = useMemo(() => {
+    if (!countryFlows) return [];
+    return countryFlows.slice(0, 30).map((d) => ({
+      ...d,
+      label: `${d.from_country} → ${d.to_country}`,
+    }));
+  }, [countryFlows]);
+
+  const { stateTimePivot, stateTimeNames } = useMemo(() => {
+    if (!statesPerYear) return { stateTimePivot: [], stateTimeNames: [] };
+    const totals: Record<string, number> = {};
+    statesPerYear.forEach((d) => { totals[d.state] = (totals[d.state] || 0) + d.count; });
+    const topStateNames = Object.entries(totals)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([s]) => s);
+    const years = [...new Set(statesPerYear.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: any = { year };
+      statesPerYear.filter((d) => d.year === year && topStateNames.includes(d.state))
+        .forEach((d) => { row[d.state] = d.count; });
+      return row;
+    });
+    return { stateTimePivot: pivoted, stateTimeNames: topStateNames };
+  }, [statesPerYear]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
   const topStateName = states?.[0]?.state ?? 'California';
@@ -133,10 +170,10 @@ export default function Chapter4() {
       <SectionDivider label="State Rankings" />
 
       <ChartContainer
-        title="Top 25 US States by Patent Count"
+        title="US States by Patent Count"
         caption="Total utility patents by primary inventor state, 1976-2025."
         loading={stL}
-        height={850}
+        height={1600}
       >
         <PWBarChart
           data={topStates}
@@ -165,13 +202,43 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
+      {stateTimePivot.length > 0 && (
+        <ChartContainer
+          title="Top States: Patent Output Over Time"
+          caption="Annual patent grants for the 10 leading states by total output, 1976-2025."
+          loading={spyL}
+        >
+          <PWLineChart
+            data={stateTimePivot}
+            xKey="year"
+            lines={stateTimeNames.map((name, i) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="Patents"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The time-series trajectories of state-level patent output reveal divergent growth
+          patterns. California&apos;s patent output has grown at a substantially faster rate
+          than other states since the 1990s, driven by the expansion of Silicon Valley and
+          the broader California technology ecosystem. Texas and Washington have also
+          demonstrated strong growth, reflecting the emergence of new technology clusters
+          in Austin, Dallas, and Seattle.
+        </p>
+      </KeyInsight>
+
       <SectionDivider label="City Level" />
 
       <ChartContainer
-        title="Top 25 US Cities for Patents"
+        title="US Cities by Patent Count"
         caption="Total utility patents by primary inventor city, 1976-2025."
         loading={ciL}
-        height={850}
+        height={1400}
       >
         <PWBarChart
           data={topCities}
@@ -240,9 +307,9 @@ export default function Chapter4() {
       {specByState.length > 0 && (
         <ChartContainer
           title="State Technology Specialization"
-          caption="CPC technology section distribution for the top 20 states by total patents. Each bar totals 100%."
+          caption="CPC technology section distribution for all states by total patents. Each bar totals 100%."
           loading={spL}
-          height={800}
+          height={1600}
         >
           <PWBarChart
             data={specByState}
@@ -255,6 +322,7 @@ export default function Chapter4() {
             layout="vertical"
             stacked
             yFormatter={(v) => `${v}%`}
+            xDomain={[0, 100]}
           />
         </ChartContainer>
       )}
@@ -269,9 +337,94 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Inventor Mobility" />
+
+      <Narrative>
+        <p>
+          Beyond static snapshots of where patents originate, tracking individual inventors
+          across their patent histories reveals patterns of{' '}
+          <StatCallout value="geographic mobility" /> -- how innovators move between states
+          and countries over their careers.
+        </p>
+      </Narrative>
+
+      {mobilityTrend && mobilityTrend.length > 0 && (
+        <ChartContainer
+          title="Inventor Mobility Rate Over Time"
+          caption="Percentage of patents filed by inventors who have moved from a different state or country since their previous patent."
+          loading={mtL}
+        >
+          <PWLineChart
+            data={mobilityTrend}
+            xKey="year"
+            lines={[
+              { key: 'domestic_mobility_pct', name: 'Domestic Mobility (% Interstate)', color: CHART_COLORS[0] },
+              { key: 'intl_mobility_pct', name: 'International Mobility (%)', color: CHART_COLORS[3] },
+            ]}
+            yLabel="Percent"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          Inventor mobility patterns reveal the dynamic nature of innovation geography.
+          While most inventors remain in the same location throughout their patenting
+          careers, a significant minority moves between states or countries, carrying
+          knowledge and professional networks with them. This geographic diffusion of
+          human capital plays a critical role in spreading innovation capabilities
+          beyond established technology hubs.
+        </p>
+      </KeyInsight>
+
+      {topStateFlows.length > 0 && (
+        <ChartContainer
+          title="Interstate Inventor Migration Flows"
+          caption="Most common state-to-state moves by inventors, based on sequential patents filed from different states."
+          loading={sfL}
+          height={900}
+        >
+          <PWBarChart
+            data={topStateFlows}
+            xKey="label"
+            bars={[{ key: 'flow_count', name: 'Moves', color: CHART_COLORS[0] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      {topCountryFlows.length > 0 && (
+        <ChartContainer
+          title="International Inventor Migration Flows"
+          caption="Most common country-to-country moves by inventors, based on sequential patents filed from different countries."
+          loading={cfL}
+          height={900}
+        >
+          <PWBarChart
+            data={topCountryFlows}
+            xKey="label"
+            bars={[{ key: 'flow_count', name: 'Moves', color: CHART_COLORS[3] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The dominant migration corridors reflect the gravitational pull of major
+          technology clusters. California is both the largest source and destination
+          of inventor migration within the United States, while internationally, the
+          United States serves as the primary hub connecting inventors from East Asia,
+          Europe, and other regions.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView
         disambiguated records. Only utility patents with valid location data are included.
+        Inventor mobility is inferred from changes in reported location between sequential
+        patents by the same disambiguated inventor.
       </DataNote>
 
       <ChapterNavigation currentChapter={4} />

@@ -54,10 +54,12 @@ export interface CPCSectionPerYear {
 
 export interface CPCClassChange {
   cpc_class: string;
-  title: string;
+  title?: string;
+  class_name?: string;
   early_count: number;
   late_count: number;
   pct_change: number;
+  direction?: string;
 }
 
 export interface TechDiversity {
@@ -377,6 +379,70 @@ export interface BreakthroughPatent {
   total_patents: number;
   breakthrough_count: number;
   breakthrough_pct: number;
+}
+
+// Chapter 11: AI Patents types
+export interface AIPatentsPerYear {
+  year: number;
+  total_patents: number;
+  ai_patents: number;
+  ai_pct: number;
+}
+
+export interface AIBySubfield {
+  year: number;
+  subfield: string;
+  count: number;
+}
+
+export interface AITopAssignee {
+  organization: string;
+  ai_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+export interface AITopInventor {
+  first_name: string;
+  last_name: string;
+  ai_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+export interface AIGeography {
+  country: string;
+  state: string | null;
+  ai_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+export interface AIQuality {
+  year: number;
+  patent_count: number;
+  avg_claims: number;
+  avg_backward_cites: number;
+  avg_scope: number;
+  avg_team_size: number;
+}
+
+// Inventor movement types
+export interface InventorFlow {
+  from_state?: string;
+  to_state?: string;
+  from_country?: string;
+  to_country?: string;
+  flow_count: number;
+}
+
+export interface InventorMobilityTrend {
+  year: number;
+  total_patents_with_prev: number;
+  intl_moves: number;
+  domestic_moves: number;
+  intl_mobility_pct: number;
+  domestic_mobility_pct: number;
 }
 
 // Generic data wrapper

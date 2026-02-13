@@ -53,6 +53,18 @@ export default function AboutPage() {
           theme support.
         </p>
 
+        <h2 className="font-serif text-2xl font-bold pt-4">AI-Assisted Development</h2>
+        <p>
+          The data analyses, visualizations, and website development for PatentWorld
+          were conducted with the assistance of{' '}
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
+            Claude AI
+          </a>{' '}
+          (Anthropic). Claude was used for data pipeline development, statistical
+          computations, analytical writing, and front-end implementation. All analytical
+          insights and interpretations were reviewed for accuracy and scholarly rigor.
+        </p>
+
         <h2 className="font-serif text-2xl font-bold pt-4">Attribution</h2>
         <p>
           Data attribution: PatentsView (

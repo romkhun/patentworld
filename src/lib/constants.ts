@@ -80,6 +80,13 @@ export const CHAPTERS: ChapterMeta[] = [
     subtitle: 'The rules that shape innovation',
     description: 'Major legislation, Supreme Court decisions, and policy changes that have shaped the US patent system.',
   },
+  {
+    number: 11,
+    slug: 'ai-patents',
+    title: 'Artificial Intelligence',
+    subtitle: 'The rise of AI in the patent system',
+    description: 'How AI patenting has evolved from early expert systems to the deep learning and generative AI era.',
+  },
 ];
 
 export const CPC_SECTION_NAMES: Record<string, string> = {
@@ -99,6 +106,6 @@ export const HERO_STATS = {
   yearsCovered: 50,
   startYear: 1976,
   endYear: 2025,
-  chapters: 10,
-  visualizations: 58,
+  chapters: 11,
+  visualizations: 64,
 };

@@ -50,7 +50,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 1998,
     title: 'State Street Bank v. Signature',
     category: 'Court',
-    description: 'Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." Opened floodgates for software and business method patents.',
+    description: 'Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." Precipitated a substantial increase in software and business method patent filings.',
   },
   {
     year: 1999,
@@ -198,9 +198,10 @@ export default function Chapter10() {
             2000s (Chapter 1).
           </li>
           <li>
-            <strong>State Street Bank (1998):</strong> Opened the door to business method and
-            software patents, visible as the acceleration of Section G (Physics) and H
-            (Electricity) patents in the late 1990s (Chapter 2).
+            <strong>State Street Bank (1998):</strong> Established the patentability of business
+            methods, precipitating a rapid expansion in software patent filings visible as
+            the acceleration of Section G (Physics) and H (Electricity) patents in the late
+            1990s (Chapter 2).
           </li>
           <li>
             <strong>America Invents Act (2011):</strong> Created the PTAB inter partes review
