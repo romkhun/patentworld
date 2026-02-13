@@ -14,6 +14,12 @@ export const PATENT_EVENTS: ReferenceEvent[] = [
   { x: 2020, label: 'COVID-19', color: '#ef4444' },
 ];
 
+export const GREEN_EVENTS: ReferenceEvent[] = [
+  { x: 1997, label: 'Kyoto Protocol', color: '#22c55e' },
+  { x: 2015, label: 'Paris Agreement', color: '#22c55e' },
+  { x: 2022, label: 'Inflation Reduction Act', color: '#6366f1' },
+];
+
 /** Filter events to only those within the data range and relevant to a topic */
 export function filterEvents(
   events: ReferenceEvent[],

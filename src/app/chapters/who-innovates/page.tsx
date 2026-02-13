@@ -18,11 +18,11 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS } from '@/lib/colors';
+import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   AssigneeTypePerYear, TopAssignee, OrgOverTime, DomesticVsForeign, Concentration,
-  FirmCitationImpact, FirmTechEvolution,
+  FirmCitationImpact, FirmTechEvolution, NonUSBySection,
 } from '@/lib/types';
 import type { PortfolioDiversity, NetworkMetricsByDecade, BridgeInventor } from '@/lib/types';
 
@@ -55,6 +55,7 @@ export default function Chapter3() {
   const { data: diversity, loading: divL } = useChapterData<PortfolioDiversity[]>('chapter3/portfolio_diversity.json');
   const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
   const { data: bridgeInventors, loading: biL } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
+  const { data: nonUS, loading: nuL } = useChapterData<NonUSBySection[]>('chapter3/non_us_by_section.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
 
@@ -130,6 +131,28 @@ export default function Chapter3() {
     });
     return { diversityPivot: pivoted, diversityOrgs: orgs };
   }, [diversity]);
+
+  const { nonUSPivot, nonUSCountryAreas } = useMemo(() => {
+    if (!nonUS) return { nonUSPivot: [], nonUSCountryAreas: [] };
+    const countries = [...new Set(nonUS.map(d => d.country))];
+    const years = [...new Set(nonUS.map(d => d.year))].sort();
+    const pivoted = years.map(year => {
+      const row: Record<string, unknown> = { year };
+      nonUS.filter(d => d.year === year).forEach(d => { row[d.country] = (row[d.country] as number || 0) + d.count; });
+      return row;
+    });
+    // Order by total descending
+    const totals = countries.map(c => ({
+      country: c,
+      total: nonUS.filter(d => d.country === c).reduce((s, d) => s + d.count, 0),
+    })).sort((a, b) => b.total - a.total);
+    const areas = totals.map(c => ({
+      key: c.country,
+      name: c.country,
+      color: COUNTRY_COLORS[c.country] ?? '#94a3b8',
+    }));
+    return { nonUSPivot: pivoted, nonUSCountryAreas: areas };
+  }, [nonUS]);
 
   return (
     <div>
@@ -551,6 +574,43 @@ export default function Chapter3() {
           innovation ecosystem. Their movement between firms creates channels for knowledge
           transfer that would not exist through patent citations alone, helping explain why
           geographic and organizational proximity matter so much for innovation.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="The Rise of Non-US Assignees" />
+
+      <Narrative>
+        <p>
+          The national origin of US patent holders has shifted dramatically over 50 years.
+          In the late 1970s, over 60% of US utility patents were granted to domestic assignees.
+          By the 2020s, that share had fallen to roughly half, with the largest gains going to
+          South Korean and Chinese assignees — particularly in electronics and telecommunications.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Patent Grants by Assignee Country/Region"
+        caption="Annual patent grants by primary assignee country/region, 1976–2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World."
+        insight="Japan drove the first wave of non-US patenting in the 1980s–90s, particularly in automotive and electronics. South Korea emerged strongly in the 2000s, while China's presence has grown rapidly since 2010 — primarily in telecommunications and computing."
+        loading={nuL}
+        height={500}
+        wide
+      >
+        <PWAreaChart
+          data={nonUSPivot}
+          xKey="year"
+          areas={nonUSCountryAreas}
+          stacked
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The internationalization of US patents reflects the globalization of R&D.
+          While the US remains the single largest origin country, the combined share of
+          East Asian economies (Japan, South Korea, China) now exceeds the US share in
+          several technology areas. This shift has been most dramatic in semiconductors
+          and display technology, where Korean and Japanese firms dominate.
         </p>
       </KeyInsight>
 

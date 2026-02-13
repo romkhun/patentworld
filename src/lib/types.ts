@@ -686,6 +686,191 @@ export interface BridgeInventor {
   total_patents: number;
 }
 
+// Chapter 12: Topic Modeling types
+export interface TopicDefinition {
+  id: number;
+  name: string;
+  top_words: string[];
+  patent_count: number;
+}
+
+export interface TopicPrevalence {
+  year: number;
+  topic: number;
+  topic_name: string;
+  count: number;
+  share: number;
+}
+
+export interface TopicCPCMatrix {
+  section: string;
+  section_name: string;
+  topic: number;
+  topic_name: string;
+  count: number;
+  share: number;
+}
+
+export interface TopicUMAPPoint {
+  patent_id: string;
+  x: number;
+  y: number;
+  topic: number;
+  topic_name: string;
+  year: number;
+  section: string;
+}
+
+export interface TopicNoveltyTrend {
+  year: number;
+  median_entropy: number;
+  avg_entropy: number;
+  patent_count: number;
+}
+
+export interface TopicNoveltyPatent {
+  patent_id: string;
+  year: number;
+  section: string;
+  topic: number;
+  topic_name: string;
+  entropy: number;
+}
+
+// Green Innovation chapter types
+export interface GreenVolume {
+  year: number;
+  green_count: number;
+  total_patents: number;
+  green_pct: number;
+}
+
+export interface GreenByCategory {
+  year: number;
+  category: string;
+  count: number;
+}
+
+export interface GreenByCountry {
+  year: number;
+  country: string;
+  count: number;
+}
+
+export interface GreenTopCompany {
+  organization: string;
+  total_green: number;
+  category: string;
+  category_count: number;
+}
+
+export interface GreenAITrend {
+  year: number;
+  green_ai_count: number;
+}
+
+export interface GreenAIHeatmap {
+  green_category: string;
+  ai_subfield: string;
+  count: number;
+}
+
+// Addition 2: S-Curves
+export interface TechnologySCurve {
+  section: string;
+  section_name: string;
+  K: number;
+  r: number;
+  t0: number;
+  lifecycle_stage: string;
+  current_pct_of_K: number;
+  current_growth_rate: number;
+  cumulative_total: number;
+  recent_5yr_volume: number;
+  years: number[];
+  actual_cumulative: number[];
+  fitted_cumulative: number[];
+}
+
+// Addition 4: Non-US by CPC section
+export interface NonUSBySection {
+  year: number;
+  section: string;
+  country: string;
+  count: number;
+}
+
+// Addition 5: Inventor segments
+export interface InventorSegment {
+  segment: string;
+  inventor_count: number;
+  total_patents: number;
+  avg_patents: number;
+  patent_share: number;
+  inventor_share: number;
+}
+
+export interface InventorSegmentTrend {
+  year: number;
+  total_inventors: number;
+  one_hit_count: number;
+  one_hit_pct: number;
+}
+
+// Addition 6: US-China co-invention
+export interface CoInventionRate {
+  year: number;
+  partner: string;
+  co_count: number;
+  us_patents: number;
+  co_invention_rate: number;
+}
+
+export interface CoInventionBySection {
+  year: number;
+  section: string;
+  us_cn_count: number;
+}
+
+// Addition 8: Self-citation enhanced
+export interface SelfCitationByAssignee {
+  organization: string;
+  total_citations: number;
+  self_citations: number;
+  self_cite_rate: number;
+}
+
+export interface SelfCitationBySection {
+  decade: number;
+  section: string;
+  total_citations: number;
+  self_citations: number;
+  self_cite_rate: number;
+}
+
+// Addition 9: Quality by country
+export interface QualityByCountry {
+  country: string;
+  decade: number;
+  patent_count: number;
+  avg_claims: number;
+}
+
+// Addition 10: AI team comparison
+export interface AITeamComparison {
+  year: number;
+  category: string;
+  patent_count: number;
+  avg_team_size: number;
+  median_team_size: number;
+}
+
+export interface AIAssigneeType {
+  year: number;
+  assignee_category: string;
+  count: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

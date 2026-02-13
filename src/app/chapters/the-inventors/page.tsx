@@ -25,7 +25,9 @@ import type {
   SuperstarConcentration, SoloInventorTrend, SoloInventorBySection,
   FirstTimeInventor, InventorMobilityCitation, InventorMobilityByDecade,
   GenderByTech, GenderTeamQuality, GenderSectionTrend,
+  InventorSegment, InventorSegmentTrend,
 } from '@/lib/types';
+import { formatCompact } from '@/lib/formatters';
 
 interface GenderRow {
   year: number;
@@ -68,6 +70,8 @@ export default function Chapter4() {
   const { data: genderByTech, loading: gbtL } = useChapterData<GenderByTech[]>('chapter5/gender_by_tech.json');
   const { data: genderTeamQuality, loading: gtqL } = useChapterData<GenderTeamQuality[]>('chapter5/gender_team_quality.json');
   const { data: genderSectionTrend, loading: gstL } = useChapterData<GenderSectionTrend[]>('chapter5/gender_section_trend.json');
+  const { data: segments, loading: segL } = useChapterData<InventorSegment[]>('chapter5/inventor_segments.json');
+  const { data: segTrend, loading: stL } = useChapterData<InventorSegmentTrend[]>('chapter5/inventor_segments_trend.json');
 
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
 
@@ -628,6 +632,91 @@ export default function Chapter4() {
           behind. Gender-diverse teams produce patents with citation impact comparable to
           or exceeding all-male teams, suggesting that diversity in inventor teams is
           not just an equity issue but an innovation imperative.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Serial Inventors vs. One-Hit Wonders" />
+
+      <Narrative>
+        <p>
+          How much of the patent stock is produced by repeat inventors versus one-time filers?
+          Segmenting inventors by their total patent count reveals a highly skewed distribution:
+          most inventors file only a single patent, but a small group of prolific &quot;mega-inventors&quot;
+          accounts for a disproportionate share of total output.
+        </p>
+      </Narrative>
+
+      {segments && (
+        <div className="my-8 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-border text-left text-muted-foreground">
+                <th className="py-2 pr-4 font-medium">Segment</th>
+                <th className="py-2 pr-4 text-right font-medium">Inventors</th>
+                <th className="py-2 pr-4 text-right font-medium">Total Patents</th>
+                <th className="py-2 pr-4 text-right font-medium">Avg Patents</th>
+                <th className="py-2 pr-4 text-right font-medium">Inventor Share</th>
+                <th className="py-2 text-right font-medium">Patent Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              {segments.map((s) => (
+                <tr key={s.segment} className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-medium">{s.segment}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{formatCompact(s.inventor_count)}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{formatCompact(s.total_patents)}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{s.avg_patents.toFixed(1)}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{s.inventor_share.toFixed(1)}%</td>
+                  <td className="py-2 text-right font-mono text-xs">{s.patent_share.toFixed(1)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <figcaption className="mt-3 text-xs text-muted-foreground">
+            Inventors segmented by total career patent count: One-Hit (1), Occasional (2–9), Prolific (10–49), Superstar (50–99), Mega (100+).
+          </figcaption>
+        </div>
+      )}
+
+      <ChartContainer
+        title="Patent Share by Inventor Segment"
+        caption="Share of total patents produced by each inventor segment."
+        insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while the majority of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality in creative work."
+        loading={segL}
+        height={350}
+      >
+        <PWBarChart
+          data={segments ?? []}
+          xKey="segment"
+          bars={[
+            { key: 'patent_share', name: 'Patent Share (%)', color: CHART_COLORS[4] },
+            { key: 'inventor_share', name: 'Inventor Share (%)', color: CHART_COLORS[0] },
+          ]}
+          yFormatter={(v) => `${v.toFixed(0)}%`}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        title="One-Hit Wonder Share Over Time"
+        caption="Percentage of active inventors each year who have filed exactly one patent in the dataset. Declining share suggests increasing professionalization of patenting."
+        insight="The share of one-hit wonder inventors has fluctuated over time but shows a gradual decline, suggesting that patenting is becoming more concentrated among repeat filers as the patent system grows more complex and costly to navigate."
+        loading={stL}
+      >
+        <PWLineChart
+          data={segTrend ?? []}
+          xKey="year"
+          lines={[{ key: 'one_hit_pct', name: 'One-Hit Wonder Share (%)', color: CHART_COLORS[3] }]}
+          yLabel="Percent"
+          yFormatter={(v) => `${v.toFixed(0)}%`}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The skewed distribution of inventive output has important implications for innovation
+          policy. If a small number of prolific inventors drive a disproportionate share of
+          patenting activity, policies that support inventor retention, mobility, and productivity
+          may have outsized effects on the overall innovation system.
         </p>
       </KeyInsight>
 

@@ -10,7 +10,7 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
-import { PWBumpChart } from '@/components/charts/PWBumpChart';
+import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -23,7 +23,7 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type {
   AIPatentsPerYear, AIBySubfield, AITopAssignee,
   AITopInventor, AIGeography, AIQuality, AIOrgOverTime,
-  AIStrategy, AIGPTDiffusion,
+  AIStrategy, AIGPTDiffusion, AITeamComparison, AIAssigneeType,
 } from '@/lib/types';
 
 const SUBFIELD_COLORS: Record<string, string> = {
@@ -50,6 +50,8 @@ export default function Chapter11() {
   const { data: orgOverTime, loading: ootL } = useChapterData<AIOrgOverTime[]>('chapter11/ai_org_over_time.json');
   const { data: aiStrategies, loading: asL } = useChapterData<AIStrategy[]>('chapter11/ai_strategies.json');
   const { data: aiGptDiffusion, loading: agdL } = useChapterData<AIGPTDiffusion[]>('chapter11/ai_gpt_diffusion.json');
+  const { data: aiTeam, loading: atcL } = useChapterData<AITeamComparison[]>('chapter11/ai_team_comparison.json');
+  const { data: aiAssignType, loading: aatL } = useChapterData<AIAssigneeType[]>('chapter11/ai_assignee_type.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -179,6 +181,32 @@ export default function Chapter11() {
     });
     return { gptPivot: pivoted, gptSections: sections };
   }, [aiGptDiffusion]);
+
+  const teamComparisonPivot = useMemo(() => {
+    if (!aiTeam) return [];
+    const years = [...new Set(aiTeam.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: Record<string, unknown> = { year };
+      aiTeam.filter(d => d.year === year).forEach(d => {
+        row[d.category] = d.avg_team_size;
+      });
+      return row;
+    });
+  }, [aiTeam]);
+
+  const { assigneeTypePivot, assigneeTypeNames } = useMemo(() => {
+    if (!aiAssignType) return { assigneeTypePivot: [], assigneeTypeNames: [] };
+    const categories = [...new Set(aiAssignType.map(d => d.assignee_category))];
+    const years = [...new Set(aiAssignType.map(d => d.year))].sort();
+    const pivoted = years.map(year => {
+      const row: Record<string, unknown> = { year };
+      aiAssignType.filter(d => d.year === year).forEach(d => {
+        row[d.assignee_category] = d.count;
+      });
+      return row;
+    });
+    return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
+  }, [aiAssignType]);
 
   return (
     <div>
@@ -326,18 +354,19 @@ export default function Chapter11() {
       {orgRankData.length > 0 && (
         <ChartContainer
           title="Top Organizations: Rank Over Time"
-          caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Hover over any line or label to highlight an organization's trajectory. Lower rank = more AI patents that year."
+          caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Darker cells indicate higher rank (more patents). Hover over a row to highlight."
           insight="The rapid convergence of multiple firms at the top since 2012 reflects the intensifying competitive race in AI capabilities, as the deep learning revolution drew major investment from firms across technology sectors."
           loading={ootL}
-          height={750}
+          height={600}
           wide
         >
-          <PWBumpChart
+          <PWRankHeatmap
             data={orgRankData}
             nameKey="organization"
             yearKey="year"
             rankKey="rank"
             maxRank={15}
+            yearInterval={2}
           />
         </ChartContainer>
       )}
@@ -585,6 +614,64 @@ export default function Chapter11() {
           (H) reflects AI&apos;s integration with hardware and telecommunications. The broad
           upward trend across most sections confirms that AI is no longer a niche computing
           technology but a transformative force across the entire innovation landscape.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="AI's Inventor Problem" />
+
+      <Narrative>
+        <p>
+          AI patents increasingly involve larger teams and corporate assignees, reflecting the
+          capital-intensive nature of modern AI research. The average AI patent lists more
+          inventors than non-AI patents, and the gap has widened over time — raising questions
+          about individual attribution in an era of large-scale collaborative AI development.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Team Size: AI vs. Non-AI Patents"
+        caption="Average number of inventors per patent for AI-related vs. non-AI utility patents, 1976–2025."
+        insight="AI patents consistently have larger teams than non-AI patents, and the gap has widened since 2010. This reflects the increasing complexity of AI systems, which require expertise spanning machine learning, domain knowledge, hardware, and software engineering."
+        loading={atcL}
+      >
+        <PWLineChart
+          data={teamComparisonPivot}
+          xKey="year"
+          lines={[
+            { key: 'AI', name: 'AI Patents', color: CHART_COLORS[0] },
+            { key: 'Non-AI', name: 'Non-AI Patents', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Avg Team Size"
+          yFormatter={(v: number) => v.toFixed(1)}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        title="AI Patent Assignee Types Over Time"
+        caption="Distribution of AI patent assignees by type (corporate, university, government, individual) over time."
+        insight="Corporate assignees have dominated AI patenting throughout its history, but the corporate share has intensified since 2010 as large tech companies built massive AI research divisions. University AI patenting has grown in absolute terms but declined as a share."
+        loading={aatL}
+        height={500}
+      >
+        <PWAreaChart
+          data={assigneeTypePivot}
+          xKey="year"
+          areas={assigneeTypeNames.map((name, i) => ({
+            key: name,
+            name,
+            color: CHART_COLORS[i % CHART_COLORS.length],
+          }))}
+          stacked
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The growing team sizes and corporate dominance in AI patenting predates the DABUS
+          debate about AI-as-inventor, but underscores how individual attribution in AI innovation
+          is becoming more diffuse. As AI systems require increasingly large and multidisciplinary
+          teams, the traditional model of named inventors on patents may struggle to capture the
+          true nature of collaborative AI development.
         </p>
       </KeyInsight>
 

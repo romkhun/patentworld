@@ -20,7 +20,8 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry, TechnologyHalfLife, TechnologyDecayCurve } from '@/lib/types';
+import { formatCompact } from '@/lib/formatters';
+import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry, TechnologyHalfLife, TechnologyDecayCurve, TechnologySCurve } from '@/lib/types';
 
 function pivotBySector(data: SectorPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -48,6 +49,7 @@ export default function Chapter2() {
   const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
   const { data: halfLife, loading: hlL } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
   const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
+  const { data: scurves, loading: scL } = useChapterData<TechnologySCurve[]>('chapter2/technology_scurves.json');
 
   const sectorPivot = useMemo(() => sectors ? pivotBySector(sectors) : [], [sectors]);
   const sectionPivot = useMemo(() => cpcSections ? pivotBySection(cpcSections) : [], [cpcSections]);
@@ -95,6 +97,18 @@ export default function Chapter2() {
     });
     return { decayPivot: pivoted, decaySections: sections };
   }, [decayCurves]);
+
+  const scurveData = useMemo(() => {
+    if (!scurves) return [];
+    return scurves.map(d => ({
+      section: `${d.section}: ${d.section_name}`,
+      lifecycle_stage: d.lifecycle_stage,
+      cumulative_total: d.cumulative_total,
+      current_growth_rate: d.current_growth_rate,
+      recent_5yr_volume: d.recent_5yr_volume,
+      current_pct_of_K: d.current_pct_of_K,
+    }));
+  }, [scurves]);
 
   return (
     <div>
@@ -337,6 +351,70 @@ export default function Chapter2() {
           Human Necessities (A) show the longest half-lives, reflecting the enduring
           relevance of pharmaceutical and chemical innovations that take years to develop
           and often represent fundamental scientific advances with lasting impact.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Technology Life Cycle S-Curves" />
+      <Narrative>
+        <p>
+          Fitting logistic S-curves to cumulative patent counts by CPC section reveals where
+          each technology sits in its innovation lifecycle. Mature technologies like mechanical
+          engineering and chemistry show slowing growth rates, while computing-related sections
+          continue their steep ascent.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Technology Maturity by CPC Section"
+        caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts 1976–2025."
+        insight="Textiles (D) and Fixed Constructions (E) have reached over 70% of their estimated carrying capacity, suggesting maturation. Physics (G) and Electricity (H) — home to computing, AI, and semiconductors — still have significant room to grow."
+        loading={scL}
+        height={400}
+      >
+        <PWBarChart
+          data={scurveData}
+          xKey="section"
+          bars={[{ key: 'current_pct_of_K', name: 'Maturity (% of K)', color: CHART_COLORS[1] }]}
+        />
+      </ChartContainer>
+
+      {scurves && (
+        <div className="my-12 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-border text-left text-muted-foreground">
+                <th className="py-2 pr-4 font-medium">Section</th>
+                <th className="py-2 pr-4 font-medium">Stage</th>
+                <th className="py-2 pr-4 text-right font-medium">Cumulative</th>
+                <th className="py-2 pr-4 text-right font-medium">Recent 5yr</th>
+                <th className="py-2 text-right font-medium">% of K</th>
+              </tr>
+            </thead>
+            <tbody>
+              {scurves.map((d) => (
+                <tr key={d.section} className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-medium">{d.section}: {d.section_name}</td>
+                  <td className="py-2 pr-4">{d.lifecycle_stage}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{formatCompact(d.cumulative_total)}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-xs">{formatCompact(d.recent_5yr_volume)}</td>
+                  <td className="py-2 text-right font-mono text-xs">{d.current_pct_of_K.toFixed(1)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <figcaption className="mt-3 text-xs text-muted-foreground">
+            Logistic S-curve parameters fitted to cumulative patent counts per CPC section (1976–2025). K = carrying capacity, lifecycle stage based on percentage of K reached.
+          </figcaption>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          The S-curve analysis reveals a patent system in transition. Traditional engineering
+          fields are approaching saturation, while computing and electronics continue their
+          exponential expansion. The cross-sectional class Y (which includes green and AI tags)
+          remains in early growth — consistent with these technologies&apos; recent emergence as
+          major patenting categories.
         </p>
       </KeyInsight>
 

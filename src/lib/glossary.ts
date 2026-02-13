@@ -79,4 +79,34 @@ export const GLOSSARY: Record<string, GlossaryTerm> = {
     definition:
       'Alice Corp. v. CLS Bank (2014) — a Supreme Court ruling that significantly restricted patent eligibility for software and business method patents.',
   },
+  'topic modeling': {
+    term: 'topic modeling',
+    definition:
+      'A machine learning technique that discovers abstract "topics" in a collection of documents by identifying clusters of frequently co-occurring words.',
+  },
+  'TF-IDF': {
+    term: 'TF-IDF',
+    definition:
+      'Term Frequency–Inverse Document Frequency — a numerical statistic that reflects how important a word is to a document relative to a larger collection. Common words are down-weighted.',
+  },
+  NMF: {
+    term: 'NMF',
+    definition:
+      'Non-negative Matrix Factorization — a matrix decomposition method used for topic modeling that produces interpretable, additive topic representations.',
+  },
+  UMAP: {
+    term: 'UMAP',
+    definition:
+      'Uniform Manifold Approximation and Projection — a dimensionality reduction technique that preserves both local and global structure, used to visualize high-dimensional data in 2D.',
+  },
+  'Y02': {
+    term: 'Y02',
+    definition:
+      'A CPC classification section for technologies related to climate change mitigation. Sub-categories include renewable energy (Y02E), transportation (Y02T), carbon capture (Y02C), buildings (Y02B), and industrial production (Y02P).',
+  },
+  'green patents': {
+    term: 'green patents',
+    definition:
+      'Patents classified under CPC codes Y02 (climate change mitigation) or Y04S (smart grids), covering technologies from solar and wind energy to electric vehicles and carbon capture.',
+  },
 };

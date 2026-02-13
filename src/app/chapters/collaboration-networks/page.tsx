@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -7,6 +8,8 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -14,12 +17,43 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 
-import { CHART_COLORS } from '@/lib/colors';
-import type { NetworkData } from '@/lib/types';
+import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import type { NetworkData, CoInventionRate, CoInventionBySection } from '@/lib/types';
 
 export default function Chapter6() {
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
   const { data: inventorNetwork, loading: inL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
+  const { data: coInvention, loading: ciL } = useChapterData<CoInventionRate[]>('chapter6/co_invention_rates.json');
+  const { data: coInventionBySec, loading: cisL } = useChapterData<CoInventionBySection[]>('chapter6/co_invention_us_china_by_section.json');
+
+  const { coInventionPivot, coInventionPartners } = useMemo(() => {
+    if (!coInvention) return { coInventionPivot: [], coInventionPartners: [] };
+    const partners = [...new Set(coInvention.map(d => d.partner))];
+    const years = [...new Set(coInvention.map(d => d.year))].sort();
+    const pivoted = years.map(year => {
+      const row: Record<string, unknown> = { year };
+      coInvention.filter(d => d.year === year).forEach(d => {
+        row[d.partner] = d.co_invention_rate;
+      });
+      return row;
+    });
+    return { coInventionPivot: pivoted, coInventionPartners: partners };
+  }, [coInvention]);
+
+  const { usChinaSecPivot, usChinaSections } = useMemo(() => {
+    if (!coInventionBySec) return { usChinaSecPivot: [], usChinaSections: [] };
+    const sections = [...new Set(coInventionBySec.map(d => d.section))].sort();
+    const years = [...new Set(coInventionBySec.map(d => d.year))].sort();
+    const pivoted = years.map(year => {
+      const row: Record<string, unknown> = { year };
+      coInventionBySec.filter(d => d.year === year).forEach(d => {
+        row[d.section] = d.us_cn_count;
+      });
+      return row;
+    });
+    return { usChinaSecPivot: pivoted, usChinaSections: sections };
+  }, [coInventionBySec]);
 
   return (
     <div>
@@ -153,6 +187,66 @@ export default function Chapter6() {
           institutional partnerships than by individual inventor relationships.
         </p>
       </Narrative>
+
+      <SectionDivider label="The US-China Decoupling" />
+
+      <Narrative>
+        <p>
+          International co-invention rates — the share of US patents with inventors from
+          multiple countries — reveal the evolving geography of collaborative innovation.
+          US-China co-invention grew steadily from near zero in the 1990s to a peak around
+          2017–2018, coinciding with trade tensions, entity list restrictions, and
+          tightening export controls. The pattern is sharpest in semiconductors and AI.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="US Co-Invention Rates by Partner Country"
+        caption="Share of US patents co-invented with each partner country, 1976–2025. A co-invented patent has at least one inventor in the US and at least one in the partner country."
+        insight="US-China co-invention grew rapidly after China's WTO entry in 2001 but flattened around 2018, coinciding with trade tensions and technology restrictions. US-India collaboration has emerged as a growing alternative."
+        loading={ciL}
+      >
+        <PWLineChart
+          data={coInventionPivot}
+          xKey="year"
+          lines={coInventionPartners.map((p, i) => ({
+            key: p,
+            name: `US-${p}`,
+            color: BUMP_COLORS[i % BUMP_COLORS.length],
+          }))}
+          yLabel="Co-invention Rate (%)"
+          yFormatter={(v: number) => `${v.toFixed(2)}%`}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        title="US-China Co-Invention by Technology Area"
+        caption="Annual count of US patents co-invented with Chinese inventors, by CPC section."
+        insight="The US-China collaboration pattern varies dramatically by technology. Electricity (H) and Physics (G) — which include semiconductors, AI, and telecommunications — show the most pronounced flattening, consistent with targeted technology restrictions in sensitive areas."
+        loading={cisL}
+        height={500}
+      >
+        <PWAreaChart
+          data={usChinaSecPivot}
+          xKey="year"
+          areas={usChinaSections.map(s => ({
+            key: s,
+            name: `${s}: ${CPC_SECTION_NAMES[s] ?? s}`,
+            color: CPC_SECTION_COLORS[s] ?? CHART_COLORS[0],
+          }))}
+          stacked
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The US-China co-invention data reveals a nuanced picture of technological decoupling.
+          While overall collaboration rates have plateaued, the pattern varies by technology area.
+          Semiconductor and AI collaboration appears most affected by restrictions, while
+          collaboration in life sciences and materials has been more resilient. This selective
+          decoupling may reshape global innovation networks in the coming decade.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Co-patenting identifies patents with 2+ distinct organizational assignees. Co-invention

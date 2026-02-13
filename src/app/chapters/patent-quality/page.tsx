@@ -8,10 +8,12 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { formatCompact } from '@/lib/formatters';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
@@ -21,6 +23,7 @@ import type {
   QualityTrend, OriginalityGenerality, SelfCitationRate,
   QualityBySector, BreakthroughPatent,
   CompositeQualityIndex, SleepingBeauty,
+  QualityByCountry, SelfCitationByAssignee, SelfCitationBySection,
 } from '@/lib/types';
 
 export default function Chapter9() {
@@ -31,6 +34,9 @@ export default function Chapter9() {
   const { data: breakthrough, loading: btL } = useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
   const { data: compositeQuality, loading: cqL } = useChapterData<CompositeQualityIndex[]>('chapter9/composite_quality_index.json');
   const { data: sleepingBeauties, loading: sbL } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
+  const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
+  const { data: selfCiteAssignee, loading: scaL } = useChapterData<SelfCitationByAssignee[]>('chapter9/self_citation_by_assignee.json');
+  const { data: selfCiteSec, loading: scsL } = useChapterData<SelfCitationBySection[]>('chapter9/self_citation_by_section.json');
 
   // Pivot quality by sector for line chart
   const { sectorPivot, sectorNames } = useMemo(() => {
@@ -60,6 +66,15 @@ export default function Chapter9() {
     });
     return { compositeQualityPivot: pivoted, compositeQualitySections: sections };
   }, [compositeQuality]);
+
+  const latestDecadeCountry = useMemo(() => {
+    if (!qualByCountry) return [];
+    const maxDecade = Math.max(...qualByCountry.map(d => d.decade));
+    return qualByCountry
+      .filter(d => d.decade === maxDecade)
+      .sort((a, b) => b.patent_count - a.patent_count)
+      .slice(0, 15);
+  }, [qualByCountry]);
 
   return (
     <div>
@@ -457,6 +472,106 @@ export default function Chapter9() {
           average quality, consistent with concerns about patent thickets in those domains.
           The overall downward trend since the 1990s may reflect the system granting more
           patents of lower individual impact.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Quality vs. Quantity by Country" />
+
+      <Narrative>
+        <p>
+          Do countries that patent more also patent better? Comparing average patent claims
+          — a rough proxy for patent scope — across countries reveals that volume and quality
+          do not always go hand in hand.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Average Claims by Country (Latest Decade)"
+        caption="Average number of claims per patent by primary assignee country, for the most recent decade. Higher claim counts generally indicate broader patent scope."
+        insight="Countries with smaller patent portfolios sometimes achieve higher average claim counts, suggesting a quality-over-quantity approach. The US leads in both volume and average claims, while fast-growing patent origins like China show lower average claims — consistent with research on early-stage patent system development."
+        loading={qcL}
+        height={550}
+      >
+        <PWBarChart
+          data={latestDecadeCountry}
+          xKey="country"
+          bars={[{ key: 'avg_claims', name: 'Avg Claims', color: CHART_COLORS[2] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Self-Citation and Corporate Knowledge Recycling" />
+
+      <Narrative>
+        <p>
+          Self-citations — where a company cites its own earlier patents — reveal the extent
+          to which firms build on their own knowledge base. High self-citation rates can indicate
+          deep, cumulative R&D programs, but may also reflect strategic behavior to build
+          defensive patent thickets.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Self-Citation Rates by Top Assignees"
+        caption="Fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the top 20 most-cited assignees."
+        insight="Companies with deep, cumulative R&D programs — like IBM, Samsung, and semiconductor firms — show the highest self-citation rates, reflecting long-term knowledge building on internal prior art."
+        loading={scaL}
+        height={700}
+      >
+        <PWBarChart
+          data={(selfCiteAssignee ?? []).map(d => ({
+            ...d,
+            label: d.organization.length > 30 ? d.organization.slice(0, 27) + '...' : d.organization,
+            self_cite_pct: d.self_cite_rate * 100,
+          }))}
+          xKey="label"
+          bars={[{ key: 'self_cite_pct', name: 'Self-Citation Rate (%)', color: CHART_COLORS[6] }]}
+          layout="vertical"
+          yFormatter={(v) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      {selfCiteSec && (
+        <div className="my-12 overflow-x-auto">
+          <h3 className="mb-4 font-sans text-base font-semibold tracking-tight text-muted-foreground">
+            Self-Citation Rates by CPC Section and Decade
+          </h3>
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-border text-left text-muted-foreground">
+                <th className="py-2 pr-4 font-medium">Section</th>
+                <th className="py-2 pr-4 font-medium">Decade</th>
+                <th className="py-2 pr-4 text-right font-medium">Total Citations</th>
+                <th className="py-2 pr-4 text-right font-medium">Self-Citations</th>
+                <th className="py-2 text-right font-medium">Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selfCiteSec.map((d, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-1.5 pr-4 font-medium">{d.section}</td>
+                  <td className="py-1.5 pr-4">{d.decade}s</td>
+                  <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.total_citations)}</td>
+                  <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.self_citations)}</td>
+                  <td className="py-1.5 text-right font-mono text-xs">{(d.self_cite_rate * 100).toFixed(1)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <figcaption className="mt-3 text-xs text-muted-foreground">
+            Self-citation rate = (self-citations / total citations) for patents in each CPC section and decade.
+            A self-citation occurs when the citing and cited patents share the same primary assignee.
+          </figcaption>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          Self-citation patterns reveal important differences in how firms and sectors build
+          knowledge. In patent-dense fields like semiconductors and electronics, high self-citation
+          rates may reflect genuine cumulative innovation — each patent builds on the firm&apos;s
+          previous work. But they can also signal strategic behavior, as firms cite their own
+          patents to build defensive thickets that raise barriers to entry for competitors.
         </p>
       </KeyInsight>
 
