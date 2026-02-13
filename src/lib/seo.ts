@@ -60,6 +60,7 @@ export function chapterJsonLd(slug: string): object[] | null {
       author: {
         '@type': 'Person',
         name: 'Saerom (Ronnie) Lee',
+        jobTitle: 'Assistant Professor of Management',
         affiliation: {
           '@type': 'Organization',
           name: 'The Wharton School, University of Pennsylvania',
