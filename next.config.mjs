@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-const basePath = isProd ? '/patentworld' : '';
+const isGHPages = process.env.DEPLOY_TARGET === 'gh-pages';
+const basePath = isGHPages ? '/patentworld' : '';
 const nextConfig = {
   output: 'export',
   basePath,
-  assetPrefix: isProd ? '/patentworld/' : '',
+  assetPrefix: isGHPages ? '/patentworld/' : '',
   images: { unoptimized: true },
   trailingSlash: true,
   env: {
