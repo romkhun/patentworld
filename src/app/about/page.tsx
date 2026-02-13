@@ -90,9 +90,10 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Author</h2>
           <p>
-            <strong>Saerom (Ronnie) Lee</strong> is a researcher at The Wharton School,
-            University of Pennsylvania. Her research focuses on innovation, technology
-            strategy, and the economics of intellectual property. PatentWorld is a data
+            <strong>Saerom (Ronnie) Lee</strong> is an Assistant Professor of Management
+            at the Wharton School. His research focuses on organizational design,
+            organizational structure, human capital, startup scaling, and high-growth
+            entrepreneurship. PatentWorld is a data
             visualization project that makes half a century of US patent data accessible
             to researchers, policymakers, and the public.
           </p>
