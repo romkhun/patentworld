@@ -135,7 +135,7 @@ export default function Chapter5() {
           data={team ?? []}
           xKey="year"
           lines={[
-            { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[0] },
+            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0] },
             { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2] },
             { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3] },
           ]}
@@ -184,7 +184,7 @@ export default function Chapter5() {
           title="Female Inventor Share by WIPO Sector"
           caption="Percentage of inventor instances that are female, by technology sector."
           loading={gsL}
-          height={300}
+          height={400}
         >
           <PWBarChart
             data={genderBySector}
@@ -211,7 +211,7 @@ export default function Chapter5() {
         title="Most Prolific Inventors"
         caption="Top 30 inventors by total utility patents granted, 1976-2025."
         loading={prL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={topInventors}
@@ -258,13 +258,13 @@ export default function Chapter5() {
         title="Star Inventor Impact: Top 30 by Citation Average"
         caption="Average, median, and maximum forward citations per patent for the 30 most prolific inventors. Limited to patents granted through 2020."
         loading={siL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={starData}
           xKey="label"
           bars={[
-            { key: 'avg_citations', name: 'Avg Citations', color: CHART_COLORS[0] },
+            { key: 'avg_citations', name: 'Average Citations', color: CHART_COLORS[0] },
             { key: 'median_citations', name: 'Median Citations', color: CHART_COLORS[2] },
           ]}
           layout="vertical"
@@ -320,10 +320,10 @@ export default function Chapter5() {
       </Narrative>
 
       <ChartContainer
-        title="Co-Invention Network"
-        caption="Co-invention network among the most prolific inventors. Edges = shared patents (≥3). Node size = total patents. Hover over nodes for details; drag to reposition."
+        title="Co-Invention Network (All Inventors)"
+        caption="Co-invention network among all inventors with significant collaboration ties. Edges = shared patents (≥200). Node size = total patents. Hover over nodes for details; drag to reposition."
         loading={netL}
-        height={700}
+        height={800}
       >
         {network ? (
           <PWNetworkGraph

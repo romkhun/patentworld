@@ -13,49 +13,56 @@ OUT = f"{OUTPUT_DIR}/chapter3"
 con = duckdb.connect()
 
 # ── a) Firm collaboration network ────────────────────────────────────────────
-timed_msg("firm_collaboration_network: co-patenting among top 200 orgs")
+timed_msg("firm_collaboration_network: ALL orgs with co-patenting ties")
 
-# Step 1: find top 200 orgs
-top_orgs = con.execute(f"""
-    SELECT disambig_assignee_organization AS org, COUNT(DISTINCT patent_id) AS patents
-    FROM {ASSIGNEE_TSV()}
-    WHERE disambig_assignee_organization IS NOT NULL
-      AND TRIM(disambig_assignee_organization) != ''
-    GROUP BY org
-    ORDER BY patents DESC
-    LIMIT 200
-""").fetchdf()
-print(f"  Top 200 orgs identified, top = {top_orgs.iloc[0]['org']} ({top_orgs.iloc[0]['patents']:,} patents)")
-
-# Step 2: find co-patents (patents with 2+ distinct top orgs as assignees)
-top_list = top_orgs['org'].tolist()
-con.execute("CREATE TEMPORARY TABLE top_orgs AS SELECT unnest($1::VARCHAR[]) AS org", [top_list])
-
+# Find ALL co-patent edges (no top-N limit).
+# Optimization: first identify patents with 2+ distinct org assignees,
+# then self-join only those patents.
+EDGE_THRESHOLD = 50
 edges_df = con.execute(f"""
-    WITH assignee_top AS (
-        SELECT patent_id, disambig_assignee_organization AS org
+    WITH multi_org AS (
+        SELECT patent_id
         FROM {ASSIGNEE_TSV()}
-        WHERE disambig_assignee_organization IN (SELECT org FROM top_orgs)
+        WHERE disambig_assignee_organization IS NOT NULL
+          AND TRIM(disambig_assignee_organization) != ''
+        GROUP BY patent_id
+        HAVING COUNT(DISTINCT disambig_assignee_organization) >= 2
+    ),
+    filtered AS (
+        SELECT a.patent_id, a.disambig_assignee_organization AS org
+        FROM {ASSIGNEE_TSV()} a
+        JOIN multi_org m ON a.patent_id = m.patent_id
+        WHERE a.disambig_assignee_organization IS NOT NULL
+          AND TRIM(a.disambig_assignee_organization) != ''
     )
     SELECT
-        a1.org AS source,
-        a2.org AS target,
-        COUNT(DISTINCT a1.patent_id) AS weight
-    FROM assignee_top a1
-    JOIN assignee_top a2
-      ON a1.patent_id = a2.patent_id AND a1.org < a2.org
+        f1.org AS source,
+        f2.org AS target,
+        COUNT(DISTINCT f1.patent_id) AS weight
+    FROM filtered f1
+    JOIN filtered f2
+      ON f1.patent_id = f2.patent_id AND f1.org < f2.org
     GROUP BY source, target
-    HAVING weight >= 5
+    HAVING weight >= {EDGE_THRESHOLD}
     ORDER BY weight DESC
 """).fetchdf()
-print(f"  Found {len(edges_df)} edges with weight >= 5")
+print(f"  Found {len(edges_df)} edges with weight >= {EDGE_THRESHOLD}")
 
-# Build nodes (only include orgs that appear in at least one edge)
+# Get patent counts for all orgs that appear in edges
 connected_orgs = set(edges_df['source'].tolist() + edges_df['target'].tolist())
+print(f"  {len(connected_orgs)} unique organizations in network")
+
+con.execute("CREATE TEMPORARY TABLE net_orgs AS SELECT unnest($1::VARCHAR[]) AS org", [list(connected_orgs)])
+node_df = con.execute(f"""
+    SELECT disambig_assignee_organization AS org, COUNT(DISTINCT patent_id) AS patents
+    FROM {ASSIGNEE_TSV()}
+    WHERE disambig_assignee_organization IN (SELECT org FROM net_orgs)
+    GROUP BY org
+""").fetchdf()
+
 nodes = [
     {"id": row['org'], "name": row['org'], "patents": int(row['patents'])}
-    for _, row in top_orgs.iterrows()
-    if row['org'] in connected_orgs
+    for _, row in node_df.iterrows()
 ]
 edges = [
     {"source": row['source'], "target": row['target'], "weight": int(row['weight'])}

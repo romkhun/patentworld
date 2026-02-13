@@ -8,7 +8,6 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
-import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
@@ -16,33 +15,11 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type { CitationsPerYear, CitationLag, GovFundedPerYear, GovAgency } from '@/lib/types';
 
-interface CategoryRow {
-  year: number;
-  category: string;
-  count: number;
-}
-
-function pivotByCategory(data: CategoryRow[]) {
-  const years = [...new Set(data.map((d) => d.year))].sort();
-  return years.map((year) => {
-    const row: any = { year };
-    data.filter((d) => d.year === year).forEach((d) => { row[d.category] = d.count; });
-    return row;
-  });
-}
-
 export default function Chapter6() {
   const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
-  const { data: cats, loading: caL } = useChapterData<CategoryRow[]>('chapter6/citation_categories.json');
   const { data: lag, loading: laL } = useChapterData<CitationLag[]>('chapter6/citation_lag.json');
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
   const { data: agencies, loading: agL } = useChapterData<GovAgency[]>('chapter6/gov_agencies.json');
-
-  const catPivot = useMemo(() => cats ? pivotByCategory(cats) : [], [cats]);
-  const catKeys = useMemo(() => {
-    if (!cats) return [];
-    return [...new Set(cats.map((d) => d.category))];
-  }, [cats]);
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
@@ -105,25 +82,6 @@ export default function Chapter6() {
         </p>
       </Narrative>
 
-      {catPivot.length > 0 && (
-        <ChartContainer
-          title="Citation Categories Over Time"
-          caption="Citation counts by category (e.g., cited by examiner, cited by applicant) per year."
-          loading={caL}
-        >
-          <PWAreaChart
-            data={catPivot}
-            xKey="year"
-            areas={catKeys.map((cat, i) => ({
-              key: cat,
-              name: cat,
-              color: CHART_COLORS[i % CHART_COLORS.length],
-            }))}
-            stacked
-          />
-        </ChartContainer>
-      )}
-
       <SectionDivider label="Citation Patterns" />
 
       <ChartContainer
@@ -171,7 +129,7 @@ export default function Chapter6() {
           data={gov ?? []}
           xKey="year"
           lines={[
-            { key: 'count', name: 'Gov-Funded Patents', color: CHART_COLORS[5] },
+            { key: 'count', name: 'Government-Funded Patents', color: CHART_COLORS[5] },
           ]}
         />
       </ChartContainer>
@@ -180,7 +138,7 @@ export default function Chapter6() {
         title="Top Government Funding Agencies"
         caption="Agencies with the most associated patents (all time)."
         loading={agL}
-        height={500}
+        height={600}
       >
         <PWBarChart
           data={topAgencies}

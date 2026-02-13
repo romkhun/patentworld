@@ -14,54 +14,58 @@ OUT = f"{OUTPUT_DIR}/chapter5"
 con = duckdb.connect()
 
 # ── a) Inventor collaboration network ────────────────────────────────────────
-timed_msg("inventor_collaboration_network: co-invention among top 200 prolific inventors")
+timed_msg("inventor_collaboration_network: ALL inventors with co-invention ties")
 
-# Step 1: find top 200 prolific inventors
-top_inv = con.execute(f"""
+# Find ALL co-invention edges (no top-N limit).
+# Optimization: first identify patents with 2+ inventors, then self-join only those.
+EDGE_THRESHOLD = 200
+edges_df = con.execute(f"""
+    WITH multi_inv AS (
+        SELECT patent_id
+        FROM {INVENTOR_TSV()}
+        GROUP BY patent_id
+        HAVING COUNT(DISTINCT inventor_id) >= 2
+    ),
+    filtered AS (
+        SELECT i.patent_id, i.inventor_id
+        FROM {INVENTOR_TSV()} i
+        JOIN multi_inv m ON i.patent_id = m.patent_id
+    )
+    SELECT
+        f1.inventor_id AS source,
+        f2.inventor_id AS target,
+        COUNT(DISTINCT f1.patent_id) AS weight
+    FROM filtered f1
+    JOIN filtered f2
+      ON f1.patent_id = f2.patent_id AND f1.inventor_id < f2.inventor_id
+    GROUP BY source, target
+    HAVING weight >= {EDGE_THRESHOLD}
+    ORDER BY weight DESC
+""").fetchdf()
+print(f"  Found {len(edges_df)} edges with weight >= {EDGE_THRESHOLD}")
+
+# Get names and patent counts for all inventors that appear in edges
+connected_ids = set(edges_df['source'].tolist() + edges_df['target'].tolist())
+print(f"  {len(connected_ids)} unique inventors in network")
+
+con.execute("CREATE TEMPORARY TABLE net_inventors AS SELECT unnest($1::VARCHAR[]) AS inventor_id", [list(connected_ids)])
+node_df = con.execute(f"""
     SELECT
         i.inventor_id,
         MAX(i.disambig_inventor_name_first || ' ' || i.disambig_inventor_name_last) AS name,
         COUNT(DISTINCT p.patent_id) AS patents
     FROM {PATENT_TSV()} p
     JOIN {INVENTOR_TSV()} i ON p.patent_id = i.patent_id
-    WHERE p.patent_type = 'utility'
+    WHERE i.inventor_id IN (SELECT inventor_id FROM net_inventors)
+      AND p.patent_type = 'utility'
       AND p.patent_date IS NOT NULL
       AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1976 AND 2025
     GROUP BY i.inventor_id
-    ORDER BY patents DESC
-    LIMIT 200
 """).fetchdf()
-print(f"  Top 200 inventors identified, top = {top_inv.iloc[0]['name']} ({top_inv.iloc[0]['patents']:,} patents)")
 
-# Step 2: find co-invention edges
-inv_ids = top_inv['inventor_id'].tolist()
-con.execute("CREATE TEMPORARY TABLE top_inventors AS SELECT unnest($1::VARCHAR[]) AS inventor_id", [inv_ids])
-
-edges_df = con.execute(f"""
-    WITH inv_patents AS (
-        SELECT i.patent_id, i.inventor_id
-        FROM {INVENTOR_TSV()} i
-        WHERE i.inventor_id IN (SELECT inventor_id FROM top_inventors)
-    )
-    SELECT
-        a1.inventor_id AS source,
-        a2.inventor_id AS target,
-        COUNT(DISTINCT a1.patent_id) AS weight
-    FROM inv_patents a1
-    JOIN inv_patents a2
-      ON a1.patent_id = a2.patent_id AND a1.inventor_id < a2.inventor_id
-    GROUP BY source, target
-    HAVING weight >= 3
-    ORDER BY weight DESC
-""").fetchdf()
-print(f"  Found {len(edges_df)} edges with weight >= 3")
-
-# Build nodes (only include inventors that appear in at least one edge)
-connected_ids = set(edges_df['source'].tolist() + edges_df['target'].tolist())
 nodes = [
     {"id": row['inventor_id'], "name": row['name'].strip(), "patents": int(row['patents'])}
-    for _, row in top_inv.iterrows()
-    if row['inventor_id'] in connected_ids
+    for _, row in node_df.iterrows()
 ]
 edges = [
     {"source": row['source'], "target": row['target'], "weight": int(row['weight'])}
@@ -128,7 +132,7 @@ query_to_json(con, f"""
           AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1976 AND 2020
         GROUP BY i.inventor_id, p.patent_id
     ),
-    top50 AS (
+    top_inv AS (
         SELECT inventor_id
         FROM inv_patents
         GROUP BY inventor_id
@@ -143,7 +147,7 @@ query_to_json(con, f"""
             ip.patent_id,
             COUNT(c.citation_patent_id) AS fwd_citations
         FROM inv_patents ip
-        JOIN top50 t ON ip.inventor_id = t.inventor_id
+        JOIN top_inv t ON ip.inventor_id = t.inventor_id
         LEFT JOIN {CITATION_TSV()} c ON ip.patent_id = c.citation_patent_id
         GROUP BY ip.inventor_id, ip.patent_id
     )

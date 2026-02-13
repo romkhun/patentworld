@@ -117,7 +117,7 @@ export default function Chapter4() {
         title="US Patent Activity by State"
         caption="Total utility patents by primary inventor state, 1976-2025. Darker shading indicates higher patent counts."
         loading={stL}
-        height={480}
+        height={550}
       >
         <PWChoroplethMap data={statePatentMap} valueLabel="Patents" />
       </ChartContainer>
@@ -136,7 +136,7 @@ export default function Chapter4() {
         title="Top 25 US States by Patent Count"
         caption="Total utility patents by primary inventor state, 1976-2025."
         loading={stL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={topStates}
@@ -161,7 +161,7 @@ export default function Chapter4() {
         title="Top 25 US Cities for Patents"
         caption="Total utility patents by primary inventor city, 1976-2025."
         loading={ciL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={topCities}
@@ -213,7 +213,7 @@ export default function Chapter4() {
           title="State Technology Specialization"
           caption="CPC technology section distribution for the top 20 states by total patents. Each bar totals 100%."
           loading={spL}
-          height={550}
+          height={650}
         >
           <PWBarChart
             data={specByState}

@@ -136,7 +136,7 @@ export default function Chapter3() {
         title="Top 25 Patent-Holding Organizations"
         caption="Ranked by total utility patents granted, 1976-2025."
         loading={topL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={topOrgs}
@@ -167,7 +167,7 @@ export default function Chapter3() {
           title="Top Organizations: Rank Over Time"
           caption="Annual ranking of the top patent-holding organizations by yearly grant count. Hover over organization names to highlight individual trajectories."
           loading={orgL}
-          height={600}
+          height={700}
         >
           <PWBumpChart
             data={orgsTime.filter((d) => d.rank <= 15)}
@@ -238,13 +238,13 @@ export default function Chapter3() {
         title="Citation Impact: Top 30 Organizations"
         caption="Average and median forward citations per patent for the top 30 patent holders. Limited to patents granted through 2020 for citation accumulation."
         loading={citL}
-        height={600}
+        height={700}
       >
         <PWBarChart
           data={citData}
           xKey="label"
           bars={[
-            { key: 'avg_citations_received', name: 'Avg Citations', color: CHART_COLORS[0] },
+            { key: 'avg_citations_received', name: 'Average Citations', color: CHART_COLORS[0] },
             { key: 'median_citations_received', name: 'Median Citations', color: CHART_COLORS[2] },
           ]}
           layout="vertical"
@@ -263,10 +263,10 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="Co-Patenting Network"
-        caption="Co-patenting network among top patent holders. Node size = total patents; edges = shared patents (≥5). Hover over nodes for details; drag to reposition."
+        title="Co-Patenting Network (All Organizations)"
+        caption="Co-patenting network among all organizations with significant collaboration ties. Node size = total patents; edges = shared patents (≥50). Hover over nodes for details; drag to reposition."
         loading={netL}
-        height={700}
+        height={800}
       >
         {network ? (
           <PWNetworkGraph
@@ -317,7 +317,7 @@ export default function Chapter3() {
         title={`Technology Portfolio: ${activeOrg || 'Loading...'}`}
         caption="CPC technology section shares by 5-year period. Shows how the organization's innovation portfolio has evolved."
         loading={tevL}
-        height={400}
+        height={500}
       >
         <PWAreaChart
           data={techEvoPivot}

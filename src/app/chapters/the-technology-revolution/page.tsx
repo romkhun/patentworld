@@ -122,7 +122,7 @@ export default function Chapter2() {
         title="CPC Technology Sections: Share Over Time"
         caption="Share of utility patents by CPC section (primary classification). Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity."
         loading={cpcL}
-        height={450}
+        height={550}
       >
         <PWAreaChart
           data={sectionPivot}
@@ -151,7 +151,7 @@ export default function Chapter2() {
           title="Technology Landscape: CPC Class Treemap"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle's area represents the number of patents in that class. Colors correspond to CPC sections."
           loading={tmL}
-          height={500}
+          height={700}
         >
           <PWTreemap data={treemap} />
         </ChartContainer>
@@ -173,7 +173,7 @@ export default function Chapter2() {
           title="Fastest Growing and Declining Technology Classes"
           caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Top 15 growing (positive) and declining (negative) CPC classes."
           loading={chgL}
-          height={600}
+          height={700}
         >
           <PWBarChart
             data={changeData}

@@ -140,7 +140,7 @@ export default function Chapter7() {
         title="Cross-Domain Innovation: Patents Spanning Multiple Technology Sections"
         caption="Number of patents classified in a single section, two sections, or three or more CPC sections (excluding Y). Stacked from bottom: Single Section, Two Sections, Three+ Sections."
         loading={cdL}
-        height={400}
+        height={500}
       >
         <PWAreaChart
           data={crossDomain ?? []}
@@ -205,7 +205,7 @@ export default function Chapter7() {
           title="Top 10 Organizations: Technology Portfolio (2001-2025)"
           caption="Distribution of patent grants across CPC technology sections for the top 10 patent holders."
           loading={cpL}
-          height={450}
+          height={550}
         >
           <PWBarChart
             data={corpDivLate}
@@ -254,7 +254,7 @@ export default function Chapter7() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
-          yLabel="YoY %"
+          yLabel="Year-over-Year %"
           yFormatter={(v) => `${v > 0 ? '+' : ''}${v.toFixed(0)}%`}
         />
       </ChartContainer>

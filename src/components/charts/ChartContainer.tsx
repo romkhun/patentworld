@@ -11,7 +11,7 @@ interface ChartContainerProps {
   children: ReactNode;
 }
 
-export function ChartContainer({ title, caption, height = 400, loading, children }: ChartContainerProps) {
+export function ChartContainer({ title, caption, height = 500, loading, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
