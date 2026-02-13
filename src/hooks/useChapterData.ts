@@ -24,7 +24,7 @@ export function useChapterData<T>(path: string): {
     setLoading(true);
     setError(null);
 
-    fetch(`/data/${path}`)
+    fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/data/${path}`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
         return res.json();

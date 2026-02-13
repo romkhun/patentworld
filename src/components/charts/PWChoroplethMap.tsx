@@ -67,7 +67,7 @@ export function PWChoroplethMap({
   const [tooltip, setTooltip] = useState<{ x: number; y: number; content: string } | null>(null);
 
   useEffect(() => {
-    fetch('/geo/us-states.json')
+    fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/geo/us-states.json`)
       .then((res) => res.json())
       .then((json) => setTopo(json as Topology));
   }, []);
