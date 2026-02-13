@@ -26,6 +26,11 @@ import type {
   CorpDiversification,
   InnovationVelocity,
   FrictionMapEntry,
+  DesignPatentTrend,
+  DesignTopFiler,
+  ClaimsAnalysis,
+  ClaimsBySection,
+  ClaimMonster,
 } from '@/lib/types';
 
 function pivotGrantLag(data: GrantLagBySector[]) {
@@ -57,6 +62,24 @@ export default function Chapter8() {
   const { data: corpDiv, loading: cpL } = useChapterData<CorpDiversification[]>('chapter7/corp_diversification.json');
   const { data: velocity, loading: vlL } = useChapterData<InnovationVelocity[]>('chapter7/innovation_velocity.json');
   const { data: frictionMap, loading: fmL } = useChapterData<FrictionMapEntry[]>('chapter7/friction_map.json');
+
+  // E1, E2: Design patents and claims
+  const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
+  const { data: claimsData, loading: clL } = useChapterData<{ trends: ClaimsAnalysis[]; by_section: ClaimsBySection[]; claim_monsters: ClaimMonster[] }>('company/claims_analysis.json');
+
+  const claimsSectionPivot = useMemo(() => {
+    if (!claimsData?.by_section) return { data: [] as any[], decades: [] as string[] };
+    const decades = [...new Set(claimsData.by_section.map(d => d.decade))].sort();
+    const sections = [...new Set(claimsData.by_section.map(d => d.section))].sort();
+    const pivoted = decades.map(decade => {
+      const row: Record<string, any> = { decade };
+      claimsData.by_section.filter(d => d.decade === decade).forEach(d => {
+        row[d.section] = d.median_claims;
+      });
+      return row;
+    });
+    return { data: pivoted, decades: sections };
+  }, [claimsData]);
 
   const lagPivot = useMemo(() => grantLag ? pivotGrantLag(grantLag) : [], [grantLag]);
   const sectorNames = useMemo(() => {
@@ -115,6 +138,13 @@ export default function Chapter8() {
         <li>International collaboration on patents has grown steadily, particularly between the US, Europe, and East Asia.</li>
         <li>Innovation velocity — measured by the speed of knowledge diffusion through citations — has accelerated in digital technology fields.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Grant lags peaked above 3.5 years in the early 2000s before USPTO reforms brought them down; electrical engineering and instruments patents consistently face the longest waits. International co-invention grew from under 5% of patents in the 1980s to over 10% today. Cross-domain patents spanning three or more CPC sections have risen steadily, and design patents have grown faster than utility patents since the 2000s, with Apple, Samsung, and Nike among the top filers.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -366,10 +396,146 @@ export default function Chapter8() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Design vs. Utility Patents" />
+
+      <Narrative>
+        <p>
+          While utility patents protect functional inventions, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> protect
+          ornamental appearance. The balance between these two types reveals shifting
+          innovation strategies -- from pure engineering to <StatCallout value="design-driven innovation" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Design vs. Utility Patent Trends"
+        caption="Annual counts of utility and design patents, with design patent share (right axis)."
+        insight="Design patents have grown significantly faster than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion. Apple, Samsung, and Nike are among the largest design patent filers."
+        loading={deL}
+      >
+        {designData?.trends ? (
+          <PWLineChart
+            data={designData.trends}
+            xKey="year"
+            lines={[
+              { key: 'utility_count', name: 'Utility Patents', color: CHART_COLORS[0] },
+              { key: 'design_count', name: 'Design Patents', color: CHART_COLORS[3] },
+              { key: 'design_share', name: 'Design Share (%)', color: CHART_COLORS[4], yAxisId: 'right' },
+            ]}
+            yLabel="Patent Count"
+            rightYLabel="Design Share (%)"
+            rightYFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title="Top Design Patent Filers"
+        caption="Organizations with the most design patents granted (all time)."
+        loading={deL}
+        height={500}
+      >
+        {designData?.top_filers ? (
+          <PWBarChart
+            data={designData.top_filers.slice(0, 20)}
+            xKey="company"
+            bars={[{ key: 'design_patents', name: 'Design Patents', color: CHART_COLORS[3] }]}
+            layout="vertical"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <SectionDivider label="Patent Claims Analysis" />
+
+      <Narrative>
+        <p>
+          The number of claims in a patent defines the scope of legal protection. Trends in
+          claim counts reveal how patent strategy has evolved -- from relatively concise early
+          patents to the <StatCallout value="claim-heavy patents" /> of the modern era.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Claim Count Trends Over Time"
+        caption="Median and 90th percentile claim counts for utility patents by grant year."
+        insight="Both median and 90th percentile claim counts have increased substantially since the 1990s, reflecting more sophisticated patent drafting strategies and broader claim scopes in software and biotech."
+        loading={clL}
+      >
+        {claimsData?.trends ? (
+          <PWLineChart
+            data={claimsData.trends}
+            xKey="year"
+            lines={[
+              { key: 'median_claims', name: 'Median Claims', color: CHART_COLORS[0] },
+              { key: 'p90_claims', name: '90th Percentile', color: CHART_COLORS[3] },
+            ]}
+            yLabel="Number of Claims"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title="Median Claims by Technology Area"
+        caption="Median claim count by CPC section and decade."
+        loading={clL}
+      >
+        {claimsSectionPivot.data.length > 0 ? (
+          <PWLineChart
+            data={claimsSectionPivot.data}
+            xKey="decade"
+            lines={claimsSectionPivot.decades.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="Median Claims"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      {claimsData?.claim_monsters && claimsData.claim_monsters.length > 0 && (
+        <>
+          <Narrative>
+            <p>
+              Some patents push the boundaries with extraordinary claim counts. These &quot;claim monsters&quot;
+              often represent strategic defensive filings or comprehensive platform patents.
+            </p>
+          </Narrative>
+          <div className="my-8 overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border text-left text-muted-foreground">
+                  <th className="py-2 pr-4 font-medium">Patent ID</th>
+                  <th className="py-2 pr-4 font-medium">Year</th>
+                  <th className="py-2 pr-4 text-right font-medium">Claims</th>
+                  <th className="py-2 pr-4 font-medium">Tech Area</th>
+                  <th className="py-2 font-medium">Assignee</th>
+                </tr>
+              </thead>
+              <tbody>
+                {claimsData.claim_monsters.slice(0, 15).map((m) => (
+                  <tr key={m.patent_id} className="border-b border-border/50">
+                    <td className="py-2 pr-4 font-mono text-xs">{m.patent_id}</td>
+                    <td className="py-2 pr-4">{m.year}</td>
+                    <td className="py-2 pr-4 text-right font-mono font-bold">{m.claims.toLocaleString()}</td>
+                    <td className="py-2 pr-4">{m.section}</td>
+                    <td className="py-2 text-xs">{m.assignee?.length > 30 ? m.assignee.slice(0, 28) + '...' : m.assignee}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      <Narrative>
+        Having explored the dynamics of innovation -- its speed, convergence, and collaborative nature -- the next chapter examines how we measure the quality and impact of individual patents.
+        Understanding velocity and scope sets the stage for asking a deeper question: are more patents necessarily better patents?
+      </Narrative>
+
       <DataNote>
         Grant lag uses the difference between patent grant date and application filing date.
         Cross-domain analysis counts distinct CPC sections per patent (excluding section Y).
-        International collaboration identifies patents with inventors in 2+ different countries. Examination duration is measured as the time from application filing date to patent grant date, aggregated by CPC section and 5-year period.
+        International collaboration identifies patents with inventors in 2+ different countries. Examination duration is measured as the time from application filing date to patent grant date, aggregated by CPC section and 5-year period. Design patent analysis includes all patent types. Claims analysis uses the patent_num_claims field from g_patent for utility patents only.
       </DataNote>
 
       <RelatedChapters currentChapter={8} />

@@ -33,7 +33,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Who Innovates?',
     subtitle: 'The organizations driving patent activity',
     description: 'From IBM to Samsung: who holds the patents, and how has that changed?',
-    relatedChapters: [4, 6, 9],
+    relatedChapters: [4, 6, 9, 14],
   },
   {
     number: 4,
@@ -41,7 +41,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Inventors',
     subtitle: 'The people behind the patents',
     description: 'Team sizes, gender trends, and the most prolific inventors.',
-    relatedChapters: [3, 5, 6],
+    relatedChapters: [3, 5, 6, 14],
   },
   {
     number: 5,
@@ -57,7 +57,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Collaboration Networks',
     subtitle: 'The web of co-invention and co-patenting',
     description: 'How do firms and inventors collaborate? Network analysis reveals the hidden structure of innovation.',
-    relatedChapters: [4, 5, 7],
+    relatedChapters: [4, 5, 7, 14],
   },
   {
     number: 7,
@@ -65,7 +65,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Knowledge Network',
     subtitle: 'How ideas build on ideas',
     description: 'Citations, government funding, and the flow of knowledge.',
-    relatedChapters: [2, 9, 10, 12],
+    relatedChapters: [2, 9, 10, 11],
   },
   {
     number: 8,
@@ -89,23 +89,23 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Patent Law & Policy',
     subtitle: 'The rules that shape innovation',
     description: 'Major legislation, Supreme Court decisions, and policy changes that have shaped the US patent system.',
-    relatedChapters: [7, 9, 11],
+    relatedChapters: [7, 9, 12],
   },
   {
     number: 11,
-    slug: 'ai-patents',
-    title: 'Artificial Intelligence',
-    subtitle: 'The rise of AI in the patent system',
-    description: 'How AI patenting has evolved from early expert systems to the deep learning and generative AI era.',
-    relatedChapters: [2, 4, 10, 12],
-  },
-  {
-    number: 12,
     slug: 'green-innovation',
     title: 'The Green Innovation Race',
     subtitle: 'Climate technology patents from niche to mainstream',
     description: 'Green patents grew from a trickle to a torrent. Who leads the race to decarbonize, and where is AI meeting climate?',
-    relatedChapters: [2, 5, 11, 13],
+    relatedChapters: [2, 5, 12, 13],
+  },
+  {
+    number: 12,
+    slug: 'ai-patents',
+    title: 'Artificial Intelligence',
+    subtitle: 'The rise of AI in the patent system',
+    description: 'How AI patenting has evolved from early expert systems to the deep learning and generative AI era.',
+    relatedChapters: [2, 4, 10, 11],
   },
   {
     number: 13,
@@ -113,7 +113,15 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Language of Innovation',
     subtitle: 'What patents talk about and how it has changed',
     description: 'Topic modeling and semantic analysis of 9.36 million patent abstracts reveals emerging themes, technology convergence, and the novelty of invention.',
-    relatedChapters: [2, 7, 12],
+    relatedChapters: [2, 7, 11],
+  },
+  {
+    number: 14,
+    slug: 'company-profiles',
+    title: 'Company Innovation Profiles',
+    subtitle: 'Interactive dashboards for 100 major patent filers',
+    description: 'Deep-dive into the innovation trajectories, portfolio strategies, and competitive positioning of the world\'s most prolific patent filers.',
+    relatedChapters: [3, 4, 6],
   },
 ];
 
@@ -134,6 +142,6 @@ export const HERO_STATS = {
   yearsCovered: 50,
   startYear: 1976,
   endYear: 2025,
-  chapters: 13,
-  visualizations: 64,
+  chapters: 14,
+  visualizations: 120,
 };

@@ -104,6 +104,30 @@ export const COUNTRY_COLORS: Record<string, string> = {
   'Rest of World': '#94a3b8',
 };
 
+// Industry colors for portfolio overlap scatter and company analysis
+export const INDUSTRY_COLORS: Record<string, string> = {
+  'Technology': 'hsl(221, 83%, 53%)',
+  'Pharma / Biotech': 'hsl(142, 71%, 45%)',
+  'Automotive': 'hsl(38, 92%, 50%)',
+  'Electronics': 'hsl(262, 83%, 58%)',
+  'Chemicals / Materials': 'hsl(187, 92%, 41%)',
+  'Industrial / Conglomerate': 'hsl(25, 95%, 53%)',
+  'Telecommunications': 'hsl(340, 82%, 52%)',
+  'Semiconductor': 'hsl(199, 89%, 48%)',
+  'Energy': 'hsl(55, 80%, 44%)',
+  'Other': '#94a3b8',
+};
+
+// Trajectory archetype colors for company innovation profiles
+export const ARCHETYPE_COLORS: Record<string, string> = {
+  'Steady Climber': 'hsl(221, 83%, 53%)',
+  'Boom & Bust': 'hsl(0, 84%, 60%)',
+  'Late Bloomer': 'hsl(142, 71%, 45%)',
+  'Fading Giant': 'hsl(38, 92%, 50%)',
+  'Volatile': 'hsl(262, 83%, 58%)',
+  'Plateau': 'hsl(187, 92%, 41%)',
+};
+
 export const TOOLTIP_STYLE: React.CSSProperties = {
   backgroundColor: 'hsl(var(--card))',
   border: '1px solid hsl(var(--border))',

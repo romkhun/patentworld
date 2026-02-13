@@ -17,6 +17,7 @@ const CHAPTER_KEYWORDS: Record<string, string[]> = {
   'ai-patents': ['AI patents', 'artificial intelligence patents', 'machine learning patents', 'deep learning patents', 'generative AI', 'AI innovation'],
   'green-innovation': ['green patents', 'climate technology patents', 'renewable energy patents', 'carbon capture patents', 'clean technology', 'green AI', 'Y02 CPC codes', 'environmental innovation'],
   'the-language-of-innovation': ['topic modeling patents', 'patent text analysis', 'NLP patents', 'semantic analysis', 'patent abstracts', 'innovation themes', 'patent novelty', 'emerging technologies'],
+  'company-profiles': ['company patent portfolio', 'corporate innovation strategy', 'patent portfolio analysis', 'technology pivot', 'citation network', 'talent flow', 'radar chart', 'company innovation dashboard', 'patent assignee analysis'],
 };
 
 export function chapterMetadata(slug: string): Metadata {
@@ -74,7 +75,7 @@ export function chapterJsonLd(slug: string): object[] | null {
         url: 'https://www.upenn.edu',
       },
       datePublished: '2025-01-01',
-      dateModified: '2025-06-01',
+      dateModified: '2025-12-01',
       mainEntityOfPage: `${BASE_URL}/chapters/${ch.slug}/`,
       keywords: CHAPTER_KEYWORDS[slug]?.join(', '),
       isPartOf: {

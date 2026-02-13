@@ -26,6 +26,7 @@ import type {
   FirstTimeInventor, InventorMobilityCitation, InventorMobilityByDecade,
   GenderByTech, GenderTeamQuality, GenderSectionTrend,
   InventorSegment, InventorSegmentTrend,
+  InventorCareerCurve, InventorCareerDuration, InventorDrift, ComebackInventor,
 } from '@/lib/types';
 import { formatCompact } from '@/lib/formatters';
 
@@ -63,15 +64,20 @@ export default function Chapter4() {
   const { data: longevity, loading: lgL } = useChapterData<InventorLongevity[]>('chapter5/inventor_longevity.json');
   const { data: superstar, loading: ssL } = useChapterData<SuperstarConcentration[]>('chapter5/superstar_concentration.json');
   const { data: solo, loading: soloL } = useChapterData<SoloInventorTrend[]>('chapter5/solo_inventors.json');
-  const { data: soloBySection, loading: sbsL } = useChapterData<SoloInventorBySection[]>('chapter5/solo_inventors_by_section.json');
+  useChapterData<SoloInventorBySection[]>('chapter5/solo_inventors_by_section.json');
   const { data: firstTime, loading: ftL } = useChapterData<FirstTimeInventor[]>('chapter5/first_time_inventors.json');
-  const { data: mobility, loading: mobL } = useChapterData<InventorMobilityCitation[]>('chapter5/inventor_mobility.json');
+  const { data: mobility } = useChapterData<InventorMobilityCitation[]>('chapter5/inventor_mobility.json');
   const { data: mobilityByDecade, loading: mbdL } = useChapterData<InventorMobilityByDecade[]>('chapter5/inventor_mobility_by_decade.json');
-  const { data: genderByTech, loading: gbtL } = useChapterData<GenderByTech[]>('chapter5/gender_by_tech.json');
-  const { data: genderTeamQuality, loading: gtqL } = useChapterData<GenderTeamQuality[]>('chapter5/gender_team_quality.json');
+  useChapterData<GenderByTech[]>('chapter5/gender_by_tech.json');
+  const { data: genderTeamQuality } = useChapterData<GenderTeamQuality[]>('chapter5/gender_team_quality.json');
   const { data: genderSectionTrend, loading: gstL } = useChapterData<GenderSectionTrend[]>('chapter5/gender_section_trend.json');
   const { data: segments, loading: segL } = useChapterData<InventorSegment[]>('chapter5/inventor_segments.json');
   const { data: segTrend, loading: stL } = useChapterData<InventorSegmentTrend[]>('chapter5/inventor_segments_trend.json');
+
+  // D1, D2, D3: Inventor career analyses
+  const { data: careerData, loading: cdL } = useChapterData<{ curves: InventorCareerCurve[]; durations: InventorCareerDuration[] }>('company/inventor_careers.json');
+  const { data: driftData, loading: drL } = useChapterData<InventorDrift[]>('company/inventor_drift.json');
+  const { data: comebackData, loading: cbL } = useChapterData<ComebackInventor[]>('company/comeback_inventors.json');
 
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
 
@@ -154,6 +160,13 @@ export default function Chapter4() {
         <li>The most prolific inventors hold hundreds of patents each, concentrated in electronics and computing fields.</li>
         <li>First-time inventor rates have declined, suggesting the patent system increasingly favors experienced, repeat inventors within organizations.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Average patent team size has grown from roughly 1.5 inventors in the late 1970s to over 2.5 today, while the solo-inventor share has fallen from over 50% to under 20%. Women&apos;s share of inventor instances has increased but remains below 15%, with chemistry and pharma leading and electrical engineering lagging. The top 5% of inventors account for a growing share of total output, and mobile inventors who move between organizations consistently produce higher-citation patents than their non-mobile peers.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -720,12 +733,147 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Inventor Career Trajectories" />
+
+      <Narrative>
+        <p>
+          How does inventive productivity evolve over a career? By tracking inventors with at least
+          5 patents, we can reconstruct the typical <StatCallout value="career productivity curve" /> --
+          from the first patent through peak output and eventual decline. These curves reveal
+          universal patterns in how inventive careers unfold.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Average Productivity by Career Year"
+        caption="Average patents per year at each career year (years since first patent) for inventors with 5+ lifetime patents. Shaded band shows 25th–75th percentile range."
+        insight="Inventor productivity typically peaks 5–10 years into a career, then gradually declines. The wide interquartile range suggests enormous heterogeneity — some inventors sustain high output for decades while others taper off quickly."
+        loading={cdL}
+      >
+        {careerData?.curves ? (
+          <PWLineChart
+            data={careerData.curves.filter(d => d.career_year <= 35)}
+            xKey="career_year"
+            lines={[
+              { key: 'avg_patents', name: 'Average', color: CHART_COLORS[0] },
+              { key: 'median_patents', name: 'Median', color: CHART_COLORS[2] },
+            ]}
+            xLabel="Career Year"
+            yLabel="Patents per Year"
+            yFormatter={(v) => v.toFixed(1)}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title="Career Duration Distribution"
+        caption="Distribution of career durations (years between first and last patent) for inventors with 5+ patents."
+        insight="Most prolific inventor careers span 5–15 years, but a long tail of inventors sustain 30+ year careers. These ultra-long careers are disproportionately found in pharmaceutical and semiconductor companies."
+        loading={cdL}
+        height={400}
+      >
+        {careerData?.durations ? (
+          <PWBarChart
+            data={careerData.durations.filter(d => d.duration <= 40)}
+            xKey="duration"
+            bars={[{ key: 'count', name: 'Inventors', color: CHART_COLORS[4] }]}
+            xLabel="Career Duration (years)"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <SectionDivider label="Technology Specialization vs. Generalism" />
+
+      <Narrative>
+        <p>
+          Do inventors become more specialized or more general over time? Using the{' '}
+          <GlossaryTooltip term="Shannon entropy">Shannon entropy</GlossaryTooltip> of
+          each inventor&apos;s CPC section distribution, we classify prolific inventors (10+ patents)
+          as <StatCallout value="specialists, moderates, or generalists" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Inventor Specialization by Decade"
+        caption="Share of prolific inventors (10+ patents) classified as specialist, moderate, or generalist by the decade of their first patent."
+        insight="The share of specialist inventors has increased over time, consistent with the growing complexity and depth of modern technology fields. However, generalists — inventors who span multiple CPC sections — remain a persistent minority."
+        loading={drL}
+      >
+        {driftData ? (
+          <PWAreaChart
+            data={driftData}
+            xKey="decade"
+            areas={[
+              { key: 'specialist_pct', name: 'Specialist', color: CHART_COLORS[0] },
+              { key: 'moderate_pct', name: 'Moderate', color: CHART_COLORS[2] },
+              { key: 'generalist_pct', name: 'Generalist', color: CHART_COLORS[4] },
+            ]}
+            stacked
+            yLabel="Share (%)"
+            yFormatter={(v) => `${v.toFixed(0)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <SectionDivider label="Comeback Inventors" />
+
+      <Narrative>
+        <p>
+          Some inventors disappear from the patent record for years, only to return with new
+          inventions. These &quot;comeback&quot; inventors — with gaps of 5+ years between patents —
+          offer insights into <StatCallout value="career interruptions and reinventions" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Comeback Inventors by Gap Duration"
+        caption="Number of inventors returning to patenting after gaps of 5+ years, by gap length."
+        insight="Most comebacks occur after 5–7 year gaps, with the number declining sharply for longer absences. Notably, a significant fraction of returning inventors change both their employer and technology field, suggesting these gaps often coincide with career pivots."
+        loading={cbL}
+        height={400}
+      >
+        {comebackData ? (
+          <PWBarChart
+            data={comebackData}
+            xKey="gap_years"
+            bars={[{ key: 'count', name: 'Comeback Inventors', color: CHART_COLORS[5] }]}
+            xLabel="Gap Duration (years)"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      {comebackData && comebackData.length > 0 && (
+        <div className="my-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="rounded-lg border bg-card p-4 text-center">
+            <div className="text-2xl font-bold">{comebackData.reduce((s, d) => s + d.count, 0).toLocaleString()}</div>
+            <div className="text-xs text-muted-foreground mt-1">Total Comeback Inventors</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4 text-center">
+            <div className="text-2xl font-bold">{comebackData[0]?.changed_assignee_pct?.toFixed(0) ?? '—'}%</div>
+            <div className="text-xs text-muted-foreground mt-1">Changed Employer</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4 text-center">
+            <div className="text-2xl font-bold">{comebackData[0]?.changed_cpc_pct?.toFixed(0) ?? '—'}%</div>
+            <div className="text-xs text-muted-foreground mt-1">Changed Tech Field</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4 text-center">
+            <div className="text-2xl font-bold">{comebackData[0]?.avg_patents_after?.toFixed(1) ?? '—'}</div>
+            <div className="text-xs text-muted-foreground mt-1">Avg Patents After Return</div>
+          </div>
+        </div>
+      )}
+
+      <Narrative>
+        Having explored the people behind the patents -- their teams, careers, and demographics -- the next chapter examines where these inventors are located.
+        The geography of innovation is far from uniform: a handful of cities, states, and countries account for a disproportionate share of patent output, and inventor mobility creates critical channels for knowledge diffusion between these hubs.
+      </Narrative>
+
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.
         Team size counts all listed inventors per patent. Inventor disambiguation
         is provided by PatentsView. Citation impact uses forward citations for
         patents granted through 2020. Career longevity tracks the span from first
-        to last patent year per inventor. Superstar concentration is computed using cumulative patent counts per inventor. Solo inventor analysis uses the inventor count per patent. First-time inventors are identified by their earliest patent filing date. Inventor mobility measures distinct assignee organizations per prolific inventor. Gender analysis uses PatentsView&apos;s gender_code field.
+        to last patent year per inventor. Superstar concentration is computed using cumulative patent counts per inventor. Solo inventor analysis uses the inventor count per patent. First-time inventors are identified by their earliest patent filing date. Inventor mobility measures distinct assignee organizations per prolific inventor. Gender analysis uses PatentsView&apos;s gender_code field. Career curves and specialization analysis use inventors with 5+ and 10+ patents respectively. Comeback inventors are those with gaps of 5+ years between consecutive patents.
       </DataNote>
 
       <RelatedChapters currentChapter={4} />

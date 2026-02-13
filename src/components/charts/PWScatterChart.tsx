@@ -4,6 +4,7 @@ import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ZAxis,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
+import { formatCompact } from '@/lib/formatters';
 
 interface PWScatterChartProps {
   data: any[];
@@ -16,11 +17,15 @@ interface PWScatterChartProps {
   tooltipFields?: { key: string; label: string }[];
   xLabel?: string;
   yLabel?: string;
+  xFormatter?: (v: number) => string;
+  yFormatter?: (v: number) => string;
 }
 
 export function PWScatterChart({
-  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel,
+  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter,
 }: PWScatterChartProps) {
+  const fmtX = xFormatter ?? formatCompact;
+  const fmtY = yFormatter ?? formatCompact;
   const colorPalette = colors ?? CHART_COLORS;
 
   const grouped = categories.map((cat, i) => ({
@@ -37,19 +42,23 @@ export function PWScatterChart({
           dataKey={xKey}
           type="number"
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickFormatter={(v) => fmtX(v)}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
           name={xLabel ?? xKey}
+          label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -5, fontSize: 11, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
         />
         <YAxis
           dataKey={yKey}
           type="number"
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickFormatter={(v) => fmtY(v)}
           tickLine={false}
           axisLine={false}
           width={60}
           name={yLabel ?? yKey}
+          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', offset: 10, fontSize: 11, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
         />
         <ZAxis range={[20, 20]} />
@@ -66,14 +75,14 @@ export function PWScatterChart({
                 )}
                 {tooltipFields?.map(({ key, label }) => (
                   <div key={key} className="text-xs text-muted-foreground">
-                    {label}: {d[key]}
+                    {label}: {typeof d[key] === 'number' ? d[key].toLocaleString() : d[key]}
                   </div>
                 ))}
                 {!tooltipFields && (
                   <>
                     <div className="text-xs text-muted-foreground">{colorKey}: {d[colorKey]}</div>
-                    <div className="text-xs text-muted-foreground">{xKey}: {d[xKey]}</div>
-                    <div className="text-xs text-muted-foreground">{yKey}: {d[yKey]}</div>
+                    <div className="text-xs text-muted-foreground">{xLabel ?? xKey}: {typeof d[xKey] === 'number' ? fmtX(d[xKey]) : d[xKey]}</div>
+                    <div className="text-xs text-muted-foreground">{yLabel ?? yKey}: {typeof d[yKey] === 'number' ? fmtY(d[yKey]) : d[yKey]}</div>
                   </>
                 )}
               </div>

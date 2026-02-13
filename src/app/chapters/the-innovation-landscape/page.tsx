@@ -59,6 +59,13 @@ export default function Chapter1() {
         <li>Grant lag — the time from filing to grant — peaked above 3 years in the early 2000s, creating uncertainty during a period of rapid technological change.</li>
       </KeyFindings>
 
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          The USPTO granted 9.36 million patents from 1976 to 2025, with annual output growing roughly fivefold from 70,000 in the late 1970s to over 350,000 in recent years. Utility patents make up over 90% of all grants. Grant pendency peaked above 3 years in the early 2000s, and the widening gap between average and median claims per patent signals a rise in broad, defensive patenting strategies.
+        </p>
+      </aside>
+
       <StatGrid>
         <StatCard value={totalPatents} label="Total Patents" />
         <StatCard value="50" label="Years (1976-2025)" />
@@ -196,6 +203,11 @@ export default function Chapter1() {
           telecommunications -- precisely when timely patent review mattered most.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having explored the overall scale and trajectory of US patent activity over five decades, the next chapter examines which technologies have driven this growth.
+        The fivefold expansion in patent output masks dramatic shifts in the composition of innovation -- from chemistry and mechanical engineering toward computing, semiconductors, and digital communication.
+      </Narrative>
 
       <DataNote>
         All data comes from PatentsView (patentsview.org), covering granted US patents

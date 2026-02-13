@@ -433,6 +433,13 @@ export default function Chapter10() {
         <li>Legislative and judicial changes have measurable effects on patent filing patterns, visible in the data within 1-2 years of major rulings.</li>
       </KeyFindings>
 
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Fifteen landmark legislative and judicial events since 1980 have reshaped US patent law, from the Bayh-Dole Act and creation of the Federal Circuit (1982) to the AIA (2011) and Alice decision (2014). Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold. The G-H (Physics-Electricity) convergence pair dominates cross-section patenting and has intensified dramatically since 2011, reflecting the pervasiveness of digital technology.
+        </p>
+      </aside>
+
       <Narrative>
         <p>
           The patent system does not exist in a vacuum. Over the past half century,{' '}
@@ -634,6 +641,11 @@ export default function Chapter10() {
           in recent years reflects the rise of health technology and biomedical electronics.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having surveyed the legal and policy framework that governs the patent system, the next chapter turns to one of the most consequential applications of that framework: green innovation.
+        The interplay between patent law, government incentives, and climate policy has shaped the trajectory of clean technology patents over the past five decades.
+      </Narrative>
 
       <DataNote>
         Legal information synthesized from primary sources including congressional records,

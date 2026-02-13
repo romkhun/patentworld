@@ -1,0 +1,814 @@
+'use client';
+
+import { useMemo, useState } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { StatCallout } from '@/components/chapter/StatCallout';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWAreaChart } from '@/components/charts/PWAreaChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWScatterChart } from '@/components/charts/PWScatterChart';
+import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
+import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { CHART_COLORS, CPC_SECTION_COLORS, ARCHETYPE_COLORS, BUMP_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { formatCompact } from '@/lib/formatters';
+import type {
+  CompanyProfile,
+  TrajectoryArchetype,
+  CorporateMortality,
+  PortfolioDiversificationB3,
+  PivotDetection,
+  PatentConcentration,
+} from '@/lib/types';
+
+const CPC_SECTIONS = Object.keys(CPC_SECTION_NAMES);
+
+export default function Chapter14() {
+  /* ── Data loading ── */
+  const { data: profiles, loading: prL } = useChapterData<CompanyProfile[]>('company/company_profiles.json');
+  const { data: trajectories } = useChapterData<TrajectoryArchetype[]>('company/trajectory_archetypes.json');
+  const { data: mortality, loading: moL } = useChapterData<CorporateMortality>('company/corporate_mortality.json');
+  const { data: diversification, loading: diL } = useChapterData<PortfolioDiversificationB3[]>('company/portfolio_diversification_b3.json');
+  const { data: pivots, loading: pvL } = useChapterData<PivotDetection[]>('company/pivot_detection.json');
+  const { data: concentration, loading: coL } = useChapterData<PatentConcentration[]>('company/patent_concentration.json');
+
+  /* ── State ── */
+  const [selectedCompany, setSelectedCompany] = useState<string>('');
+  const [archetypeFilter, setArchetypeFilter] = useState<string>('All');
+
+  /* ── A1: Company list and selected profile ── */
+  const companyList = useMemo(() => {
+    if (!profiles) return [];
+    return profiles.map((p) => p.company).sort();
+  }, [profiles]);
+
+  const activeCompany = selectedCompany || companyList[0] || '';
+
+  const companyData = useMemo(() => {
+    if (!profiles || !activeCompany) return null;
+    return profiles.find((p) => p.company === activeCompany) ?? null;
+  }, [profiles, activeCompany]);
+
+  const companySummary = useMemo(() => {
+    if (!companyData) return null;
+    const years = companyData.years;
+    const totalPatents = years.reduce((s, y) => s + y.patent_count, 0);
+    const peakYear = years.reduce((best, y) => (y.patent_count > best.patent_count ? y : best), years[0]);
+    return {
+      totalPatents,
+      activeYears: years.length,
+      peakYear: peakYear.year,
+      peakCount: peakYear.patent_count,
+      firstYear: years[0]?.year,
+      lastYear: years[years.length - 1]?.year,
+    };
+  }, [companyData]);
+
+  /* A1: Annual patent counts */
+  const annualPatentData = useMemo(() => {
+    if (!companyData) return [];
+    return companyData.years.map((y) => ({ year: y.year, patent_count: y.patent_count }));
+  }, [companyData]);
+
+  /* A1: CPC distribution stacked area */
+  const cpcDistributionData = useMemo(() => {
+    if (!companyData) return [];
+    return companyData.years.map((y) => {
+      const row: Record<string, number> = { year: y.year };
+      CPC_SECTIONS.forEach((sec) => {
+        row[sec] = y.cpc_distribution?.[sec] ?? 0;
+      });
+      return row;
+    });
+  }, [companyData]);
+
+  /* A1: Citations over time */
+  const citationsData = useMemo(() => {
+    if (!companyData) return [];
+    return companyData.years.map((y) => ({
+      year: y.year,
+      median_citations_5yr: y.median_citations_5yr,
+    }));
+  }, [companyData]);
+
+  /* A1: Team size + inventor count dual axis */
+  const teamInventorData = useMemo(() => {
+    if (!companyData) return [];
+    return companyData.years.map((y) => ({
+      year: y.year,
+      avg_team_size: y.avg_team_size,
+      inventor_count: y.inventor_count,
+    }));
+  }, [companyData]);
+
+  /* A1: CPC breadth over time */
+  const cpcBreadthData = useMemo(() => {
+    if (!companyData) return [];
+    return companyData.years.map((y) => ({
+      year: y.year,
+      cpc_breadth: y.cpc_breadth,
+    }));
+  }, [companyData]);
+
+  /* ── A2: Trajectory archetypes ── */
+  const archetypeNames = useMemo(() => {
+    if (!trajectories) return [];
+    return [...new Set(trajectories.map((t) => t.archetype))];
+  }, [trajectories]);
+
+  const archetypeGroups = useMemo(() => {
+    if (!trajectories) return [];
+    return archetypeNames.map((name) => {
+      const members = trajectories.filter((t) => t.archetype === name);
+      // Build a representative centroid normalized series
+      const seriesLen = members[0]?.normalized_series?.length ?? 0;
+      const centroid: number[] = [];
+      for (let i = 0; i < seriesLen; i++) {
+        const avg = members.reduce((s, m) => s + (m.normalized_series[i] ?? 0), 0) / members.length;
+        centroid.push(avg);
+      }
+      return { name, count: members.length, centroid, companies: members };
+    });
+  }, [trajectories, archetypeNames]);
+
+  const filteredTrajectories = useMemo(() => {
+    if (!trajectories) return [];
+    if (archetypeFilter === 'All') return trajectories;
+    return trajectories.filter((t) => t.archetype === archetypeFilter);
+  }, [trajectories, archetypeFilter]);
+
+  /* ── A3: Corporate mortality ── */
+  const mortalityHeatmapData = useMemo(() => {
+    if (!mortality) return [];
+    const rows: { company: string; decade: string; rank: number }[] = [];
+    mortality.decades.forEach((dec) => {
+      dec.companies.forEach((c) => {
+        rows.push({ company: c.company, decade: dec.decade, rank: c.rank });
+      });
+    });
+    return rows;
+  }, [mortality]);
+
+  const continuousCount = mortality?.continuous_companies?.length ?? 0;
+
+  /* ── B1: Portfolio diversification ── */
+  const { divPivot, divCompanies } = useMemo(() => {
+    if (!diversification) return { divPivot: [], divCompanies: [] };
+    const companies = [...new Set(diversification.map((d) => d.company))];
+    // Pick top 10 by latest entropy
+    const latestYear = Math.max(...diversification.map((d) => d.year));
+    const topCompanies = companies
+      .map((c) => {
+        const latest = diversification.find((d) => d.company === c && d.year === latestYear);
+        return { company: c, entropy: latest?.shannon_entropy ?? 0 };
+      })
+      .sort((a, b) => b.entropy - a.entropy)
+      .slice(0, 10)
+      .map((d) => d.company);
+
+    const years = [...new Set(diversification.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: Record<string, any> = { year };
+      diversification
+        .filter((d) => d.year === year && topCompanies.includes(d.company))
+        .forEach((d) => { row[d.company] = d.shannon_entropy; });
+      return row;
+    });
+    return { divPivot: pivoted, divCompanies: topCompanies };
+  }, [diversification]);
+
+  const diversityScatterData = useMemo(() => {
+    if (!diversification || !profiles) return [];
+    const latestYear = Math.max(...diversification.map((d) => d.year));
+    return diversification
+      .filter((d) => d.year === latestYear)
+      .map((d) => {
+        const profile = profiles.find((p) => p.company === d.company);
+        const latestMetrics = profile?.years?.[profile.years.length - 1];
+        return {
+          company: d.company,
+          shannon_entropy: d.shannon_entropy,
+          median_citations_5yr: latestMetrics?.median_citations_5yr ?? 0,
+          category: d.shannon_entropy > 2.5 ? 'Diversified' : d.shannon_entropy > 1.5 ? 'Moderate' : 'Focused',
+        };
+      });
+  }, [diversification, profiles]);
+
+  const diversityCategories = useMemo(() => {
+    return [...new Set(diversityScatterData.map((d) => d.category))].sort();
+  }, [diversityScatterData]);
+
+  /* ── B2: Pivot detection ── */
+  const pivotCompanyList = useMemo(() => {
+    if (!pivots) return [];
+    return [...new Set(pivots.map((p) => p.company))].sort();
+  }, [pivots]);
+
+  const activePivotCompany = activeCompany && pivotCompanyList.includes(activeCompany)
+    ? activeCompany
+    : pivotCompanyList[0] ?? '';
+
+  const detectedPivots = useMemo(() => {
+    if (!pivots) return [];
+    return pivots.filter((p) => p.is_pivot).sort((a, b) => b.jsd - a.jsd);
+  }, [pivots]);
+
+  const pivotCompanyData = useMemo(() => {
+    if (!pivots || !activePivotCompany) return [];
+    return pivots
+      .filter((p) => p.company === activePivotCompany)
+      .sort((a, b) => a.window_start - b.window_start);
+  }, [pivots, activePivotCompany]);
+
+  /* ── B3: Concentration index ── */
+  const { concPivot, concSections } = useMemo(() => {
+    if (!concentration) return { concPivot: [], concSections: [] };
+    const sections = [...new Set(concentration.map((d) => d.section))].sort();
+    const years = [...new Set(concentration.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: Record<string, any> = { year };
+      concentration
+        .filter((d) => d.year === year)
+        .forEach((d) => { row[d.section] = d.hhi; });
+      return row;
+    });
+    return { concPivot: pivoted, concSections: sections };
+  }, [concentration]);
+
+  return (
+    <div>
+      <ChapterHeader
+        number={14}
+        title="Company Innovation Profiles"
+        subtitle="Interactive dashboards for 100 major patent filers"
+      />
+
+      <KeyFindings>
+        <li>Corporate patent strategies vary dramatically: some firms maintain broad, diversified portfolios while others concentrate in narrow technology niches.</li>
+        <li>Six distinct trajectory archetypes emerge from patent output histories, from Steady Climbers to Fading Giants, revealing the lifecycle patterns of corporate innovation.</li>
+        <li>Only a small fraction of top patent filers have maintained a continuous top-100 presence across all five decades, highlighting the volatility of innovation leadership.</li>
+        <li>Technology pivots -- sudden shifts in a company&apos;s patent portfolio -- often precede major business transformations and can be detected years in advance through CPC distribution analysis.</li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Interactive profiles of 100 major patent filers reveal six distinct trajectory archetypes -- from Steady Climbers to Fading Giants. Only a handful of companies have maintained a top-100 ranking across all five decades (1970s-2020s). Technology pivots detected via Jensen-Shannon divergence of CPC distributions often precede major strategic shifts by years. Portfolio diversification, measured by Shannon entropy, varies dramatically: conglomerates like Samsung achieve high entropy while pharmaceutical firms stay focused in narrow domains.
+        </p>
+      </aside>
+
+      {/* ── Section A1: Interactive Company Profiles ── */}
+      <SectionDivider label="Interactive Company Profiles" />
+
+      <Narrative>
+        <p>
+          Select a company below to explore its complete innovation profile. Each dashboard
+          shows patent output, technology portfolio evolution, citation impact, team composition,
+          and breadth of innovation over time. These profiles reveal the <StatCallout value="strategic fingerprint" /> of
+          each organization&apos;s R&amp;D investment.
+        </p>
+      </Narrative>
+
+      {companyList.length > 0 && (
+        <div className="my-6 flex items-center gap-3">
+          <span className="text-sm font-medium text-muted-foreground">Company:</span>
+          <PWCompanySelector
+            companies={companyList}
+            selected={activeCompany}
+            onSelect={setSelectedCompany}
+          />
+        </div>
+      )}
+
+      {companySummary && (
+        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Total Patents</div>
+            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.totalPatents)}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Active Years</div>
+            <div className="mt-1 text-2xl font-bold">{companySummary.firstYear}&ndash;{companySummary.lastYear}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Peak Year</div>
+            <div className="mt-1 text-2xl font-bold">{companySummary.peakYear}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Peak Output</div>
+            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.peakCount)}</div>
+          </div>
+        </div>
+      )}
+
+      <ChartContainer
+        title={`Annual Patent Output: ${activeCompany || 'Loading...'}`}
+        caption="Utility patents granted per year for the selected company."
+        insight="Annual patent counts reveal growth phases, strategic shifts, and the impact of economic cycles on corporate R&D output."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWBarChart
+            data={annualPatentData}
+            xKey="year"
+            bars={[{ key: 'patent_count', name: 'Patents', color: CHART_COLORS[0] }]}
+            yLabel="Patents"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Technology Portfolio: ${activeCompany || 'Loading...'}`}
+        caption="CPC section distribution over time showing how the company's technology focus has evolved."
+        insight="Shifts in the CPC distribution signal strategic pivots -- a growing share in section H (Electricity) or G (Physics) often indicates a move toward digital and computing technologies."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWAreaChart
+            data={cpcDistributionData}
+            xKey="year"
+            areas={CPC_SECTIONS.map((sec) => ({
+              key: sec,
+              name: `${sec}: ${CPC_SECTION_NAMES[sec]}`,
+              color: CPC_SECTION_COLORS[sec],
+            }))}
+            stackedPercent
+            yLabel="Share"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Citation Impact: ${activeCompany || 'Loading...'}`}
+        caption="Median 5-year forward citations per patent over time."
+        insight="Citation trends reveal whether a company's patents are becoming more or less influential -- declining citations despite rising volume may signal a shift toward defensive or incremental patenting."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={citationsData}
+            xKey="year"
+            lines={[
+              { key: 'median_citations_5yr', name: 'Median Citations (5yr)', color: CHART_COLORS[0] },
+            ]}
+            yLabel="Citations"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Team Size & Inventor Pool: ${activeCompany || 'Loading...'}`}
+        caption="Average team size (left axis) and total active inventors (right axis) over time."
+        insight="Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with flat inventor counts indicate deepening specialization."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={teamInventorData}
+            xKey="year"
+            lines={[
+              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
+              { key: 'inventor_count', name: 'Inventor Count', color: CHART_COLORS[3], yAxisId: 'right' },
+            ]}
+            yLabel="Team Size"
+            rightYLabel="Inventors"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Technology Breadth: ${activeCompany || 'Loading...'}`}
+        caption="Number of distinct CPC subclasses with patent activity each year."
+        insight="Rising CPC breadth indicates a company is diversifying its innovation portfolio across more technology domains, while declining breadth signals increasing specialization."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={cpcBreadthData}
+            xKey="year"
+            lines={[
+              { key: 'cpc_breadth', name: 'CPC Breadth', color: CHART_COLORS[4] },
+            ]}
+            yLabel="Distinct Subclasses"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Company innovation profiles reveal distinct strategic signatures. Some firms like Samsung
+          show rapid portfolio expansion across many technology domains, while others like pharmaceutical
+          companies maintain deep but narrow portfolios. The relationship between patent volume,
+          citation impact, and technology breadth tells a nuanced story about each firm&apos;s
+          approach to R&amp;D investment.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section A2: Trajectory Archetypes ── */}
+      <SectionDivider label="Innovation Trajectory Archetypes" />
+
+      <Narrative>
+        <p>
+          By analyzing the normalized patent output trajectories of 200 major filers,
+          six distinct <StatCallout value="archetypes" /> emerge. Each archetype captures a
+          characteristic pattern of innovation growth, decline, or stability that reflects
+          the underlying corporate strategy and market dynamics.
+        </p>
+      </Narrative>
+
+      {archetypeGroups.length > 0 && (
+        <div className="my-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {archetypeGroups.map((group) => (
+            <div
+              key={group.name}
+              className="rounded-lg border bg-card p-4"
+              style={{ borderLeftColor: ARCHETYPE_COLORS[group.name] ?? CHART_COLORS[0], borderLeftWidth: 4 }}
+            >
+              <div className="text-sm font-semibold" style={{ color: ARCHETYPE_COLORS[group.name] }}>
+                {group.name}
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground">{group.count} companies</div>
+              <div className="mt-2 h-16">
+                {group.centroid.length > 0 && (
+                  <PWLineChart
+                    data={group.centroid.map((v, i) => ({ idx: i, value: v }))}
+                    xKey="idx"
+                    lines={[{ key: 'value', name: group.name, color: ARCHETYPE_COLORS[group.name] ?? CHART_COLORS[0] }]}
+                  />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <Narrative>
+        <p>
+          The table below lists all companies with their archetype classification. Use the
+          filter to focus on a specific trajectory pattern and explore which firms share
+          similar innovation dynamics.
+        </p>
+      </Narrative>
+
+      {trajectories && trajectories.length > 0 && (
+        <>
+          <div className="my-4">
+            <label htmlFor="archetype-filter" className="mr-2 text-sm font-medium">
+              Filter by archetype:
+            </label>
+            <select
+              id="archetype-filter"
+              value={archetypeFilter}
+              onChange={(e) => setArchetypeFilter(e.target.value)}
+              className="rounded-md border bg-card px-3 py-1.5 text-sm"
+            >
+              <option value="All">All Archetypes</option>
+              {archetypeNames.map((name) => (
+                <option key={name} value={name}>{name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="max-w-4xl mx-auto my-6 overflow-x-auto max-h-96 overflow-y-auto">
+            <table className="w-full text-sm">
+              <thead className="sticky top-0 bg-card">
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-medium text-muted-foreground">Company</th>
+                  <th className="text-left py-2 px-3 font-medium text-muted-foreground">Archetype</th>
+                  <th className="text-right py-2 px-3 font-medium text-muted-foreground">Peak Year</th>
+                  <th className="text-right py-2 px-3 font-medium text-muted-foreground">Peak Count</th>
+                  <th className="text-right py-2 px-3 font-medium text-muted-foreground">Current Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTrajectories.map((t) => (
+                  <tr key={t.company} className="border-b border-border/50">
+                    <td className="py-2 px-3 font-medium">{t.company}</td>
+                    <td className="py-2 px-3">
+                      <span
+                        className="inline-block rounded-full px-2 py-0.5 text-xs font-medium"
+                        style={{
+                          backgroundColor: `${ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0]}20`,
+                          color: ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0],
+                        }}
+                      >
+                        {t.archetype}
+                      </span>
+                    </td>
+                    <td className="text-right py-2 px-3 font-mono">{t.peak_year}</td>
+                    <td className="text-right py-2 px-3 font-mono">{formatCompact(t.peak_count)}</td>
+                    <td className="text-right py-2 px-3 font-mono">{formatCompact(t.current_count)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      <KeyInsight>
+        <p>
+          The trajectory archetypes reveal that corporate innovation rarely follows a simple
+          growth curve. &quot;Steady Climbers&quot; like Samsung show decades of sustained growth,
+          while &quot;Boom &amp; Bust&quot; firms experience dramatic peaks followed by sharp declines --
+          often tied to the rise and fall of specific technology markets. &quot;Late Bloomers&quot;
+          demonstrate that major patent activity can emerge suddenly, even from established firms
+          entering new technology domains.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section A3: Corporate Mortality ── */}
+      <SectionDivider label="Corporate Mortality" />
+
+      <Narrative>
+        <p>
+          Of the companies that ranked among the top patent filers in the 1970s,
+          how many survived to the 2020s? The rank heatmap below tracks corporate
+          presence in the top patent rankings across five decades, revealing the
+          remarkable <StatCallout value="volatility of innovation leadership" />.
+        </p>
+      </Narrative>
+
+      {mortality && (
+        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Continuous Survivors</div>
+            <div className="mt-1 text-2xl font-bold">{continuousCount}</div>
+            <div className="text-xs text-muted-foreground">companies in top 100 every decade</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Decades Tracked</div>
+            <div className="mt-1 text-2xl font-bold">{mortality.decades.length}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Survival Rates</div>
+            <div className="mt-1 space-y-1">
+              {Object.entries(mortality.survival_rates).slice(0, 3).map(([key, rate]) => (
+                <div key={key} className="text-xs">
+                  <span className="text-muted-foreground">{key}:</span>{' '}
+                  <span className="font-mono font-medium">{(rate * 100).toFixed(0)}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <ChartContainer
+        title="Corporate Patent Ranking Over Decades"
+        caption="Rank heatmap showing how top patent-holding companies shifted in ranking across decades. Darker cells indicate higher rank (more patents)."
+        insight="The high turnover in top rankings demonstrates that sustained innovation leadership is exceptionally rare. Most firms that dominated one era were displaced by new entrants in the next."
+        loading={moL}
+        height={900}
+      >
+        {mortalityHeatmapData.length > 0 ? (
+          <PWRankHeatmap
+            data={mortalityHeatmapData}
+            nameKey="company"
+            yearKey="decade"
+            rankKey="rank"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      {mortality && mortality.continuous_companies.length > 0 && (
+        <div className="max-w-2xl mx-auto my-6">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">
+            Companies in the Top 100 Every Decade
+          </h3>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {mortality.continuous_companies.map((c) => (
+              <span key={c} className="rounded-full border bg-card px-3 py-1 text-xs font-medium">
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          Innovation leadership is far more volatile than commonly assumed. Only a handful of
+          companies have maintained a top-100 patent ranking across all five decades. The rest
+          have either risen, fallen, or been replaced entirely -- a pattern that underscores
+          the relentless pace of technological change and the difficulty of sustaining corporate
+          R&amp;D investment over long horizons.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B1: Portfolio Diversification ── */}
+      <SectionDivider label="Portfolio Diversification" />
+
+      <Narrative>
+        <p>
+          How diversified are the patent portfolios of major filers? <GlossaryTooltip term="Shannon entropy">Shannon
+          entropy</GlossaryTooltip> across CPC subclasses measures whether a company spreads its
+          innovation across many technology areas or concentrates in a few domains.
+          Higher entropy indicates a broader, more diversified portfolio.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Portfolio Diversity: Top 10 Companies"
+        caption="Shannon entropy across CPC subclasses over time for the 10 most diversified patent filers."
+        insight="Technology conglomerates like Samsung and Hitachi maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization -- reflecting fundamentally different innovation strategies."
+        loading={diL}
+      >
+        {divPivot.length > 0 ? (
+          <PWLineChart
+            data={divPivot}
+            xKey="year"
+            lines={divCompanies.map((company, i) => ({
+              key: company,
+              name: company.length > 25 ? company.slice(0, 22) + '...' : company,
+              color: BUMP_COLORS[i % BUMP_COLORS.length],
+            }))}
+            yLabel="Shannon Entropy"
+            yFormatter={(v: number) => v.toFixed(1)}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title="Diversification vs. Citation Impact"
+        caption="Shannon entropy (x) vs. median 5-year forward citations (y) for the latest period. Each dot is a company."
+        insight="The scatter reveals no simple trade-off between breadth and quality: some highly diversified firms also achieve strong citation impact, suggesting that diversification and excellence are not mutually exclusive."
+        loading={diL || prL}
+      >
+        {diversityScatterData.length > 0 ? (
+          <PWScatterChart
+            data={diversityScatterData}
+            xKey="shannon_entropy"
+            yKey="median_citations_5yr"
+            colorKey="category"
+            nameKey="company"
+            categories={diversityCategories}
+            xLabel="Shannon Entropy"
+            yLabel="Median Citations (5yr)"
+            tooltipFields={[
+              { key: 'company', label: 'Company' },
+              { key: 'shannon_entropy', label: 'Entropy' },
+              { key: 'median_citations_5yr', label: 'Median Citations' },
+            ]}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Portfolio diversification is not simply a function of company size. Some mid-sized
+          filers achieve remarkably high entropy through deliberate cross-domain R&amp;D strategies,
+          while some of the largest filers maintain focused portfolios. The relationship between
+          diversification and citation impact suggests that breadth and quality can coexist --
+          companies with diverse portfolios are not necessarily sacrificing depth for coverage.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B2: Technology Pivot Detection ── */}
+      <SectionDivider label="Technology Pivot Detection" />
+
+      <Narrative>
+        <p>
+          Technology pivots occur when a company&apos;s patent portfolio shifts significantly
+          between consecutive time windows. Using <GlossaryTooltip term="Jensen-Shannon divergence">Jensen-Shannon
+          divergence</GlossaryTooltip> (JSD) to measure the distance between CPC distributions
+          across windows, we can detect and characterize these pivots -- often years before they
+          become visible in business strategy announcements.
+        </p>
+      </Narrative>
+
+      {pivotCompanyData.length > 0 && (
+        <ChartContainer
+          title={`JSD Score Over Time: ${activePivotCompany}`}
+          caption="Jensen-Shannon divergence between consecutive 5-year windows. Higher values indicate larger shifts in technology portfolio composition."
+          insight="Spikes in JSD pinpoint moments when a company's innovation strategy underwent significant reorientation, often driven by acquisitions, market shifts, or deliberate R&D pivots."
+          loading={pvL}
+        >
+          <PWBarChart
+            data={pivotCompanyData.map((p) => ({
+              window: `${p.window_start}-${p.window_end}`,
+              jsd: p.jsd,
+              is_pivot: p.is_pivot ? 1 : 0,
+            }))}
+            xKey="window"
+            bars={[{ key: 'jsd', name: 'JSD Score', color: CHART_COLORS[4] }]}
+            yLabel="Jensen-Shannon Divergence"
+          />
+        </ChartContainer>
+      )}
+
+      {detectedPivots.length > 0 && (
+        <div className="max-w-4xl mx-auto my-6 overflow-x-auto max-h-96 overflow-y-auto">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">
+            Detected Technology Pivots (All Companies)
+          </h3>
+          <table className="w-full text-sm">
+            <thead className="sticky top-0 bg-card">
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Company</th>
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Window</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">JSD</th>
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Top Gaining CPC</th>
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Top Losing CPC</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detectedPivots.slice(0, 30).map((p, i) => (
+                <tr key={`${p.company}-${p.window_start}-${i}`} className="border-b border-border/50">
+                  <td className="py-2 px-3 font-medium">{p.company}</td>
+                  <td className="py-2 px-3 font-mono text-xs">{p.window_start}&ndash;{p.window_end}</td>
+                  <td className="text-right py-2 px-3 font-mono">{p.jsd.toFixed(3)}</td>
+                  <td className="py-2 px-3 text-xs">{p.top_gaining_cpc}</td>
+                  <td className="py-2 px-3 text-xs">{p.top_losing_cpc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          Technology pivot detection reveals that major corporate transformations often begin
+          in the patent portfolio years before they become visible in product announcements or
+          financial reports. The highest JSD scores correspond to well-known strategic shifts --
+          such as IBM&apos;s move from hardware to services, or Nokia&apos;s pivot from mobile
+          hardware to telecommunications infrastructure. This makes patent portfolio analysis a
+          powerful leading indicator of corporate strategy.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B3: Patent Market Concentration ── */}
+      <SectionDivider label="Patent Market Concentration" />
+
+      <Narrative>
+        <p>
+          How concentrated is patent activity within each technology sector? The <GlossaryTooltip term="HHI">Herfindahl-Hirschman
+          Index</GlossaryTooltip> (HHI) measures the degree to which patenting in a CPC section is
+          dominated by a few large filers versus spread across many organizations. Higher HHI
+          indicates greater concentration.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Patent Concentration (HHI) by CPC Section"
+        caption="Herfindahl-Hirschman Index for each CPC technology section over time. Higher values indicate greater concentration of patent activity among fewer firms."
+        insight="Rising concentration in sections like H (Electricity) and G (Physics) reflects the dominance of a few technology giants, while more applied fields like E (Fixed Constructions) remain fragmented across many smaller filers."
+        loading={coL}
+        wide
+      >
+        {concPivot.length > 0 ? (
+          <PWLineChart
+            data={concPivot}
+            xKey="year"
+            lines={concSections.map((sec) => ({
+              key: sec,
+              name: `${sec}: ${CPC_SECTION_NAMES[sec] ?? sec}`,
+              color: CPC_SECTION_COLORS[sec],
+            }))}
+            yLabel="HHI"
+            yFormatter={(v: number) => v.toFixed(4)}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Patent market concentration varies dramatically across technology sectors and has
+          evolved significantly over time. Sectors dominated by large-scale electronics and
+          computing firms show the highest concentration, while more traditional fields remain
+          comparatively fragmented. The trend toward rising concentration in high-technology
+          sectors raises important questions about competitive dynamics and whether the patent
+          system is reinforcing the market power of dominant firms.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        This concludes PatentWorld&apos;s exploration of 50 years of US patent innovation.
+      </Narrative>
+
+      <DataNote>
+        Company profiles are constructed from PatentsView data for the top 100 patent filers by
+        total utility patent count, 1976-2025. CPC distribution uses the primary CPC classification
+        of each patent. Trajectory archetypes are computed via time-series clustering of
+        normalized annual patent counts. Corporate mortality tracks presence in the top 100 per
+        decade. Shannon entropy is computed across CPC subclasses. Technology pivots use
+        Jensen-Shannon divergence between consecutive 5-year windows of CPC distributions.
+        Patent concentration (HHI) is computed at the CPC section level using assignee patent
+        shares.
+      </DataNote>
+
+      <RelatedChapters currentChapter={14} />
+      <ChapterNavigation currentChapter={14} />
+    </div>
+  );
+}

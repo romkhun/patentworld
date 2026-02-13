@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -12,13 +12,18 @@ import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PWChordDiagram } from '@/components/charts/PWChordDiagram';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import type { CitationsPerYear, CitationLag, GovFundedPerYear, GovAgency, CitationLagTrend, CitationLagBySection } from '@/lib/types';
+import { formatCompact } from '@/lib/formatters';
+import type {
+  CitationsPerYear, CitationLag, GovFundedPerYear, GovAgency, CitationLagTrend, CitationLagBySection,
+  CorporateCitationFlow, TechLeadership, CitationHalfLife,
+} from '@/lib/types';
 
 export default function Chapter7() {
   const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
@@ -27,6 +32,36 @@ export default function Chapter7() {
   const { data: agencies, loading: agL } = useChapterData<GovAgency[]>('chapter6/gov_agencies.json');
   const { data: citeLagTrend, loading: cltL } = useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
   const { data: citeLagBySection, loading: clsL } = useChapterData<CitationLagBySection[]>('chapter6/citation_lag_by_section.json');
+
+  // C1, C2, C3: Corporate citation analyses
+  const { data: citationFlows, loading: cfL } = useChapterData<CorporateCitationFlow[]>('company/corporate_citation_network.json');
+  const { data: techLeadership } = useChapterData<TechLeadership[]>('company/tech_leadership.json');
+  const { data: citationHalfLife, loading: chlL } = useChapterData<CitationHalfLife[]>('company/citation_half_life.json');
+
+  const [selectedDecade, setSelectedDecade] = useState('2016-2025');
+
+  // Build chord diagram data from citation flows
+  const chordData = useMemo(() => {
+    if (!citationFlows) return null;
+    const decadeFlows = citationFlows.filter(f => f.decade === selectedDecade);
+    if (decadeFlows.length === 0) return null;
+    const companies = [...new Set([...decadeFlows.map(f => f.source), ...decadeFlows.map(f => f.target)])];
+    const idxMap: Record<string, number> = {};
+    companies.forEach((c, i) => { idxMap[c] = i; });
+    const matrix = companies.map(() => companies.map(() => 0));
+    decadeFlows.forEach(f => {
+      const si = idxMap[f.source];
+      const ti = idxMap[f.target];
+      if (si !== undefined && ti !== undefined) matrix[si][ti] = f.citation_count;
+    });
+    const nodes = companies.map((c, i) => ({ name: c, color: BUMP_COLORS[i % BUMP_COLORS.length] }));
+    return { nodes, matrix };
+  }, [citationFlows, selectedDecade]);
+
+  const decades = useMemo(() => {
+    if (!citationFlows) return [];
+    return [...new Set(citationFlows.map(f => f.decade))].sort();
+  }, [citationFlows]);
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
@@ -73,6 +108,13 @@ export default function Chapter7() {
         <li>Cross-technology citation flows have intensified, with patents increasingly building on knowledge from distant fields.</li>
         <li>Citation patterns reveal that knowledge diffuses across geographic and organizational boundaries more readily than in earlier decades.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          The average citation lag now reaches back over 10 years, up from roughly 7 years in the 1980s, reflecting an expanding base of relevant prior art. Government-funded patents -- driven by the Bayh-Dole Act of 1980 -- receive substantially more forward citations than privately funded patents, with the Department of Defense, Department of Energy, and NIH as the top funding agencies. Citation lag has generally decreased over time, suggesting faster knowledge diffusion, while corporate citation flows reveal asymmetric knowledge dependencies among the top patent filers.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -285,10 +327,119 @@ export default function Chapter7() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Corporate Citation Flows" />
+
+      <Narrative>
+        <p>
+          How do major companies cite each other&apos;s patents? The{' '}
+          <GlossaryTooltip term="chord diagram">chord diagram</GlossaryTooltip> below maps directed
+          citation flows between the top patent-filing organizations. Wider ribbons indicate more
+          citations flowing from one company to another, revealing{' '}
+          <StatCallout value="knowledge dependencies" /> across the corporate landscape.
+        </p>
+      </Narrative>
+
+      <div className="my-4 flex items-center gap-3">
+        <span className="text-sm text-muted-foreground">Decade:</span>
+        <div className="flex gap-1.5 flex-wrap">
+          {decades.map(d => (
+            <button
+              key={d}
+              onClick={() => setSelectedDecade(d)}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${selectedDecade === d ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+            >
+              {d}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ChartContainer
+        title={`Corporate Citation Network (${selectedDecade})`}
+        caption="Directed citation flows between top patent filers. Arc size = total citations. Ribbon width = flow volume. Hover for details."
+        insight="Citation flows reveal asymmetric knowledge dependencies. Some companies are primarily knowledge producers (heavily cited but cite few peers), while others are integrators (drawing broadly from multiple sources)."
+        loading={cfL}
+        height={700}
+        wide
+      >
+        {chordData ? (
+          <PWChordDiagram
+            nodes={chordData.nodes}
+            matrix={chordData.matrix}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <SectionDivider label="Technology Citation Leaders" />
+
+      <Narrative>
+        <p>
+          Within each technology area, a few companies consistently receive the most citations
+          from peers — these are the <StatCallout value="technology leaders" /> whose patents
+          form the foundation for subsequent innovation.
+        </p>
+      </Narrative>
+
+      {techLeadership && (
+        <div className="my-8 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-border text-left text-muted-foreground">
+                <th className="py-2 pr-4 font-medium">Window</th>
+                <th className="py-2 pr-4 font-medium">Section</th>
+                <th className="py-2 pr-4 font-medium">Rank</th>
+                <th className="py-2 pr-4 font-medium">Company</th>
+                <th className="py-2 text-right font-medium">Citations Received</th>
+              </tr>
+            </thead>
+            <tbody>
+              {techLeadership.filter(t => t.rank <= 3).slice(0, 50).map((t, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 pr-4 text-xs">{t.window}</td>
+                  <td className="py-2 pr-4">{t.section}: {CPC_SECTION_NAMES[t.section] ?? t.section}</td>
+                  <td className="py-2 pr-4 font-mono">#{t.rank}</td>
+                  <td className="py-2 pr-4 font-medium">{t.company}</td>
+                  <td className="py-2 text-right font-mono text-xs">{formatCompact(t.citations_received)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <SectionDivider label="Citation Half-Life" />
+
+      <Narrative>
+        <p>
+          How quickly do a company&apos;s patents accumulate their citations? The{' '}
+          <GlossaryTooltip term="citation half-life">citation half-life</GlossaryTooltip> — the
+          time to accumulate 50% of total citations — distinguishes companies whose patents
+          have <StatCallout value="immediate vs. foundational impact" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Citation Half-Life by Company"
+        caption="Years until a company's patents accumulate 50% of their total forward citations. Only patents 15+ years old are included to ensure a full citation window."
+        insight="Pharmaceutical and chemical companies tend to have longer citation half-lives, reflecting the slow but steady accumulation of citations in science-intensive fields. Electronics and IT companies show shorter half-lives, with citations peaking shortly after grant."
+        loading={chlL}
+        height={600}
+      >
+        {citationHalfLife ? (
+          <PWBarChart
+            data={citationHalfLife.sort((a, b) => b.half_life_years - a.half_life_years).slice(0, 30)}
+            xKey="company"
+            bars={[{ key: 'half_life_years', name: 'Half-Life (years)', color: CHART_COLORS[6] }]}
+            layout="vertical"
+            yLabel="Years"
+          />
+        ) : <div />}
+      </ChartContainer>
+
       <DataNote>
         Citation data from PatentsView includes US patent citations only. Government
         interest is identified through the g_gov_interest table. Citation categories
-        and lag calculations exclude records with missing dates. Citation lag is measured as the time between the cited patent&apos;s grant date and the citing patent&apos;s grant date.
+        and lag calculations exclude records with missing dates. Citation lag is measured as the time between the cited patent&apos;s grant date and the citing patent&apos;s grant date. Corporate citation flows aggregate all citations between pairs of the top 30 assignees per decade. Citation half-life uses patents granted before 2010 to ensure at least 15 years of citation accumulation.
       </DataNote>
 
       <RelatedChapters currentChapter={7} />

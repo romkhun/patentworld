@@ -27,6 +27,14 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Amazonbot',
         allow: '/',
       },
+      {
+        userAgent: 'Bytespider',
+        allow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        allow: '/',
+      },
     ],
     sitemap: 'https://patentworld.vercel.app/sitemap.xml',
   };

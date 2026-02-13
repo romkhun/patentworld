@@ -19,6 +19,7 @@ interface PWNetworkGraphProps {
   nodes: NetworkNode[];
   edges: NetworkEdge[];
   nodeColor?: string;
+  ariaLabel?: string;
 }
 
 interface SimNode extends SimulationNodeDatum, NetworkNode {}
@@ -36,6 +37,7 @@ export function PWNetworkGraph({
   nodes,
   edges,
   nodeColor = CHART_COLORS[0],
+  ariaLabel,
 }: PWNetworkGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 600, height: 400 });
@@ -374,6 +376,8 @@ export function PWNetworkGraph({
       <svg
         width={dimensions.width}
         height={dimensions.height}
+        role="img"
+        aria-label={ariaLabel ?? `Network graph with ${nodes.length} nodes and ${edges.length} connections`}
         onWheel={handleWheel}
         onMouseDown={handleBgMouseDown}
         onMouseMove={(e) => {

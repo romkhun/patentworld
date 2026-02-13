@@ -47,7 +47,7 @@ export default function Chapter2() {
   const { data: cpcChange, loading: chgL } = useChapterData<(CPCClassChange & { direction: string })[]>('chapter2/cpc_class_change.json');
   const { data: diversity, loading: divL } = useChapterData<TechDiversity[]>('chapter2/tech_diversity.json');
   const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
-  const { data: halfLife, loading: hlL } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
+  const { data: halfLife } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
   const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
   const { data: scurves, loading: scL } = useChapterData<TechnologySCurve[]>('chapter2/technology_scurves.json');
 
@@ -124,6 +124,13 @@ export default function Chapter2() {
         <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), while analog-era classes (typewriters, photographic processes) are declining.</li>
         <li>Despite the digital surge, overall technology diversity has remained stable — new fields are growing without fully displacing established ones.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Electrical engineering overtook chemistry as the top patent sector in the early 1990s, and CPC sections G (Physics) and H (Electricity) have grown from 30% of all patents in the 1970s to nearly 48% today. Digital technology classes like data processing and digital communication show growth rates of several hundred percent, while analog-era classes like typewriters and photographic processes have contracted by similar margins. Despite this digital surge, the overall technology diversity index has remained stable -- new fields are expanding without fully displacing established ones.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -417,6 +424,11 @@ export default function Chapter2() {
           major patenting categories.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having explored which technologies have driven the patent explosion, the next chapter asks who is doing the patenting.
+        The shift from chemistry to digital technology has reshaped not just what gets patented but which organizations dominate -- from American industrial conglomerates to Asian electronics giants.
+      </Narrative>
 
       <DataNote>
         Technology classifications use the primary CPC section (sequence 0) for each patent

@@ -48,7 +48,7 @@ export default function Chapter11() {
   const { data: geography, loading: geoL } = useChapterData<AIGeography[]>('chapter11/ai_geography.json');
   const { data: quality, loading: qL } = useChapterData<AIQuality[]>('chapter11/ai_quality.json');
   const { data: orgOverTime, loading: ootL } = useChapterData<AIOrgOverTime[]>('chapter11/ai_org_over_time.json');
-  const { data: aiStrategies, loading: asL } = useChapterData<AIStrategy[]>('chapter11/ai_strategies.json');
+  const { data: aiStrategies } = useChapterData<AIStrategy[]>('chapter11/ai_strategies.json');
   const { data: aiGptDiffusion, loading: agdL } = useChapterData<AIGPTDiffusion[]>('chapter11/ai_gpt_diffusion.json');
   const { data: aiTeam, loading: atcL } = useChapterData<AITeamComparison[]>('chapter11/ai_team_comparison.json');
   const { data: aiAssignType, loading: aatL } = useChapterData<AIAssigneeType[]>('chapter11/ai_assignee_type.json');
@@ -211,7 +211,7 @@ export default function Chapter11() {
   return (
     <div>
       <ChapterHeader
-        number={11}
+        number={12}
         title="Artificial Intelligence"
         subtitle="The rise of AI in the patent system"
       />
@@ -222,6 +222,13 @@ export default function Chapter11() {
         <li>A small number of large technology firms dominate AI patenting, with IBM, Samsung, Google, and Microsoft leading in volume.</li>
         <li>AI patents span multiple technology domains, reflecting AI&apos;s nature as a general-purpose technology with applications across virtually every industry.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          AI patents have grown exponentially since the 2012 deep learning breakthrough, with neural networks and machine learning displacing earlier knowledge-based systems. IBM, Samsung, Google, and Microsoft lead in volume; California dominates among US states. AI patents consistently have larger teams than non-AI patents, and the gap has widened since 2010. Co-occurrence of AI patents with Human Necessities (healthcare) CPC codes has risen dramatically, confirming AI&apos;s status as a general-purpose technology diffusing across every sector.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -675,6 +682,11 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
+      <Narrative>
+        Having charted the rise of artificial intelligence in the patent system, the next chapter shifts from structured classification data to the raw text of patents themselves.
+        By applying natural language processing to millions of patent abstracts, we can uncover the hidden thematic structure of American innovation and trace how the language of invention has evolved over 50 years.
+      </Narrative>
+
       <DataNote>
         AI patents are identified using CPC classifications: G06N (computational models
         including neural networks and machine learning), G06F18 (pattern recognition),
@@ -684,8 +696,8 @@ export default function Chapter11() {
         on more specific CPC group codes within G06N. AI patenting strategies show patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={11} />
-      <ChapterNavigation currentChapter={11} />
+      <RelatedChapters currentChapter={12} />
+      <ChapterNavigation currentChapter={12} />
     </div>
   );
 }

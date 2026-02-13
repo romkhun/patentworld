@@ -137,7 +137,7 @@ export default function Chapter12() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={12}
+        number={11}
         title="The Green Innovation Race"
         subtitle="Climate technology patents from niche to mainstream"
       />
@@ -150,6 +150,13 @@ export default function Chapter12() {
         <li>Japan historically dominated green patenting through Toyota and Honda, but Samsung, Hyundai, and General Electric have closed the gap in recent years.</li>
         <li>AI is increasingly applied to climate problems — patents at the intersection of green technology and artificial intelligence have surged since 2015.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Green patents grew from roughly 3,000 per year in the late 1970s to over 30,000 annually by the early 2020s, now representing about 10% of all utility patents. Samsung and Toyota lead with over 10,000 green patents each; automotive firms (Toyota, GM, Ford, Honda, Hyundai) dominate thanks to vehicle electrification. Green-AI patents -- at the intersection of Y02/Y04S and AI CPC codes -- have surged from near zero before 2010, with machine learning applied to energy optimization, materials discovery, and autonomous EV navigation.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -345,6 +352,11 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
+      <Narrative>
+        Having traced the rise of green innovation from niche to mainstream, the next chapter examines another transformative technology domain: artificial intelligence.
+        Like clean technology, AI has grown explosively in the patent system and is increasingly converging with other fields -- including green technology itself.
+      </Narrative>
+
       <DataNote>
         <p>
           <GlossaryTooltip term="green patents">Green patents</GlossaryTooltip> are identified using
@@ -357,8 +369,8 @@ export default function Chapter12() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={12} />
-      <ChapterNavigation currentChapter={12} />
+      <RelatedChapters currentChapter={11} />
+      <ChapterNavigation currentChapter={11} />
     </div>
   );
 }

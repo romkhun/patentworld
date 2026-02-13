@@ -10,17 +10,18 @@ interface ChartContainerProps {
   height?: number;
   loading?: boolean;
   wide?: boolean;
+  ariaLabel?: string;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, caption, insight, height = 600, loading, wide, children }: ChartContainerProps) {
+export function ChartContainer({ title, caption, insight, height = 600, loading, wide, ariaLabel, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
     <figure
       ref={ref}
       role="figure"
-      aria-label={title}
+      aria-label={ariaLabel ?? title}
       className={`fade-in-section relative my-16 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden ${wide ? '-mx-4 lg:-mx-8' : ''} ${inView ? 'is-visible' : ''}`}
     >
       {/* Colored top-border accent */}

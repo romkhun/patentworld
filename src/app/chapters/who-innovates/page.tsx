@@ -54,7 +54,7 @@ export default function Chapter3() {
   const { data: techEvo, loading: tevL } = useChapterData<FirmTechEvolution[]>('chapter3/firm_tech_evolution.json');
   const { data: diversity, loading: divL } = useChapterData<PortfolioDiversity[]>('chapter3/portfolio_diversity.json');
   const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
-  const { data: bridgeInventors, loading: biL } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
+  const { data: bridgeInventors } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
   const { data: nonUS, loading: nuL } = useChapterData<NonUSBySection[]>('chapter3/non_us_by_section.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
@@ -168,6 +168,13 @@ export default function Chapter3() {
         <li>Patent concentration has been remarkably stable: the top 100 organizations consistently hold roughly a quarter of all corporate patents.</li>
         <li>Foreign <GlossaryTooltip term="assignee">assignees</GlossaryTooltip> have nearly reached parity with US-based assignees in patent grants, driven by multinational R&amp;D strategies.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Corporations dominate US patenting, with individual inventors shrinking to a tiny fraction of grants. Asian electronics firms now account for over half of the top 25 patent holders, and foreign assignees have nearly reached parity with domestic filers. Despite this globalization, patent concentration has been remarkably stable: the top 100 organizations consistently hold roughly a quarter of all corporate patents, and three distinct eras of organizational dominance emerge -- GE/IBM in the 1970s-80s, Japanese electronics in the 1980s-90s, and Korean firms from the 2000s onward.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -613,6 +620,11 @@ export default function Chapter3() {
           and display technology, where Korean and Japanese firms dominate.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having explored the organizations driving patent activity, the next chapter turns to the individual inventors behind these patents.
+        While corporations file the patents, it is the inventors -- their team structures, career trajectories, and demographic composition -- that ultimately determine the direction and quality of innovation.
+      </Narrative>
 
       <DataNote>
         Assignee data uses disambiguated identities from PatentsView. Primary assignee

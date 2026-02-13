@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, technology sectors, inventor demographics, geographic clusters, citation networks, and patent quality indicators.',
   keywords: ['patents', 'innovation', 'USPTO', 'patent data', 'patent analytics', 'technology trends', 'patent visualization', 'PatentsView', 'patent quality', 'patent citations', 'US patents', 'patent statistics'],
-  authors: [{ name: 'PatentWorld' }],
+  authors: [{ name: 'Saerom (Ronnie) Lee', url: 'https://www.saeromlee.com' }],
   openGraph: {
     type: 'website',
     title: 'PatentWorld - 50 Years of Global Innovation',
@@ -73,6 +73,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 name: 'PatentWorld',
                 description: 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.',
                 url: 'https://patentworld.vercel.app',
+                author: {
+                  '@type': 'Person',
+                  name: 'Saerom (Ronnie) Lee',
+                  jobTitle: 'Assistant Professor of Management',
+                  affiliation: {
+                    '@type': 'Organization',
+                    name: 'The Wharton School, University of Pennsylvania',
+                  },
+                  url: 'https://www.saeromlee.com',
+                },
                 about: {
                   '@type': 'Dataset',
                   name: 'US Patent Data (1976-2025)',

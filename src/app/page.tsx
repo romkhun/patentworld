@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
 
 export const metadata: Metadata = {
-  title: 'PatentWorld — 50 Years of Global Innovation in US Patents',
-  description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, technology sectors, inventor demographics, geographic clusters, citation networks, and patent quality indicators.',
+  title: 'PatentWorld: US Patent Trends & Innovation Data',
+  description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, AI patents, technology sectors, inventor demographics, gender gap, geographic clusters, citation networks, grant lag, and patent quality indicators.',
   alternates: {
     canonical: 'https://patentworld.vercel.app',
   },
@@ -51,6 +51,46 @@ const FAQ_JSONLD = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'California dominates US patent output, with Silicon Valley as the leading innovation hub. Internationally, Japan dominated foreign patenting in the 1980s-90s, while South Korea, China, and Taiwan have surged since 2000.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it take to get a US patent?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Average grant lag is approximately 3 years (about 1,100 days), varying by technology area. Electrical and software patents tend to have longer pendency than mechanical inventions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the fastest-growing patent technology areas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Computing, semiconductors, and AI have seen the most dramatic growth. AI patent filings have grown exponentially since 2010, driven by deep learning breakthroughs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is AI patenting growing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, AI-related patent filings have surged, especially since 2012. IBM, Samsung, Google, and Microsoft are among the top AI patent filers. AI now appears across virtually every technology domain.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the gender gap in patenting?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Women represent a growing but still small share of patent inventors. The share of women inventors has increased from under 5% in the 1970s to approximately 15-20% in recent years, with higher representation in chemistry and biotech than electronics.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which countries file the most US patents?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'After the United States, Japan, South Korea, Germany, and China are the top countries of origin for US patent inventors. China\'s share has grown rapidly since 2010.',
       },
     },
   ],

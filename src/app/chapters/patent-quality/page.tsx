@@ -33,10 +33,10 @@ export default function Chapter9() {
   const { data: bySector, loading: bsL } = useChapterData<QualityBySector[]>('chapter9/quality_by_sector.json');
   const { data: breakthrough, loading: btL } = useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
   const { data: compositeQuality, loading: cqL } = useChapterData<CompositeQualityIndex[]>('chapter9/composite_quality_index.json');
-  const { data: sleepingBeauties, loading: sbL } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
+  const { data: sleepingBeauties } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
   const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
   const { data: selfCiteAssignee, loading: scaL } = useChapterData<SelfCitationByAssignee[]>('chapter9/self_citation_by_assignee.json');
-  const { data: selfCiteSec, loading: scsL } = useChapterData<SelfCitationBySection[]>('chapter9/self_citation_by_section.json');
+  const { data: selfCiteSec } = useChapterData<SelfCitationBySection[]>('chapter9/self_citation_by_section.json');
 
   // Pivot quality by sector for line chart
   const { sectorPivot, sectorNames } = useMemo(() => {
@@ -90,6 +90,13 @@ export default function Chapter9() {
         <li>Patent <GlossaryTooltip term="generality">generality</GlossaryTooltip> — how broadly a patent is cited across fields — shows technology-specific patterns, with foundational inventions scoring highest.</li>
         <li>Quality metrics vary substantially across technology sectors, with biotech and pharma patents tending to receive more citations per patent than electronics.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Average claims per patent have roughly doubled since the 1970s, while backward citations grew from under 10 to over 20 per patent. Both originality and generality indices have trended upward, confirming more interdisciplinary innovation. A composite quality index combining citations, claims, scope, and grant speed shows Chemistry and Human Necessities patents maintaining the highest quality, while the explosive growth of Electronics and Physics patenting has been accompanied by declining average quality scores since the 1990s.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -574,6 +581,11 @@ export default function Chapter9() {
           patents to build defensive thickets that raise barriers to entry for competitors.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having examined how we measure patent quality -- from citation impact to originality, generality, and composite indices -- the next chapter turns to the legal and policy framework that shapes the patent system itself.
+        The rules governing what can be patented, how patents are examined, and how they are enforced have profound effects on the quality and quantity of innovation.
+      </Narrative>
 
       <DataNote>
         Quality indicators computed from PatentsView data following the framework of Jaffe &

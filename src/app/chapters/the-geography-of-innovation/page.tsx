@@ -50,8 +50,8 @@ export default function Chapter6() {
   const { data: stateFlows, loading: sfL } = useChapterData<InventorFlow[]>('chapter4/inventor_state_flows.json');
   const { data: countryFlows, loading: cfL } = useChapterData<InventorFlow[]>('chapter4/inventor_country_flows.json');
   const { data: mobilityTrend, loading: mtL } = useChapterData<InventorMobilityTrend[]>('chapter4/inventor_mobility_trend.json');
-  const { data: diffusion, loading: diffL } = useChapterData<InnovationDiffusionEntry[]>('chapter4/innovation_diffusion.json');
-  const { data: regionalSpec, loading: rsL } = useChapterData<RegionalSpecialization[]>('chapter4/regional_specialization.json');
+  const { data: diffusion } = useChapterData<InnovationDiffusionEntry[]>('chapter4/innovation_diffusion.json');
+  const { data: regionalSpec } = useChapterData<RegionalSpecialization[]>('chapter4/regional_specialization.json');
 
   const topStates = useMemo(() => {
     if (!states) return [];
@@ -171,6 +171,13 @@ export default function Chapter6() {
         <li>Geographic concentration of patenting has increased over time, with innovation hubs like Silicon Valley and the Boston-Cambridge corridor pulling further ahead.</li>
         <li>China&apos;s share of US patents has grown rapidly since the 2000s, though it started from a very low base.</li>
       </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          The top 5 US states (California, New York, Texas, New Jersey, Massachusetts) account for over 50% of all patent grants. California alone produces more patents than the bottom 30 states combined. Internationally, Japan, South Korea, and Germany lead foreign filings, while China&apos;s share has surged since the 2000s. At the city level, innovation is even more concentrated: San Jose, San Francisco, and New York dominate, and regional specialization patterns -- like Detroit in mechanical engineering and San Diego in biotech -- have proven remarkably persistent.
+        </p>
+      </aside>
 
       <Narrative>
         <p>
@@ -544,6 +551,11 @@ export default function Chapter6() {
           comparative advantages shaped by local industry, universities, and talent pools.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        Having explored where innovation happens, the next chapter examines how inventors and organizations connect across these geographic boundaries.
+        The collaboration networks that link inventors, firms, and countries are the channels through which knowledge flows -- and their structure reveals whether the innovation ecosystem is becoming more interconnected or more fragmented.
+      </Narrative>
 
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView

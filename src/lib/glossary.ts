@@ -99,6 +99,51 @@ export const GLOSSARY: Record<string, GlossaryTerm> = {
     definition:
       'Uniform Manifold Approximation and Projection — a dimensionality reduction technique that preserves both local and global structure, used to visualize high-dimensional data in 2D.',
   },
+  'Shannon entropy': {
+    term: 'Shannon entropy',
+    definition:
+      'A measure of diversity or uncertainty in a distribution. Higher entropy means a more evenly spread portfolio across technology classes; lower entropy means concentration in fewer areas.',
+  },
+  'Jensen-Shannon divergence': {
+    term: 'Jensen-Shannon divergence',
+    definition:
+      'A symmetric measure of the difference between two probability distributions. Used here to detect technology portfolio pivots by comparing a company\'s CPC distribution across consecutive time windows.',
+  },
+  'cosine similarity': {
+    term: 'cosine similarity',
+    definition:
+      'A measure of similarity between two vectors based on the angle between them. Values range from 0 (completely different) to 1 (identical). Used to compare patent portfolio compositions between companies.',
+  },
+  'citation half-life': {
+    term: 'citation half-life',
+    definition:
+      'The time it takes for a company\'s patents to accumulate half of their total forward citations. Shorter half-lives indicate more immediately impactful inventions; longer half-lives suggest foundational work.',
+  },
+  'talent flow': {
+    term: 'talent flow',
+    definition:
+      'The movement of inventors between organizations, tracked by consecutive patent filings with different assignees. Net talent flow reveals which companies are gaining vs. losing inventive talent.',
+  },
+  'k-means clustering': {
+    term: 'k-means clustering',
+    definition:
+      'An unsupervised machine learning algorithm that partitions data into k groups by minimizing within-cluster distances. Used here to classify company innovation trajectories into archetypes.',
+  },
+  'radar chart': {
+    term: 'radar chart',
+    definition:
+      'A multi-dimensional chart that plots values along multiple axes radiating from a center point. Useful for comparing strategy profiles across several dimensions simultaneously.',
+  },
+  'chord diagram': {
+    term: 'chord diagram',
+    definition:
+      'A circular visualization showing flows or connections between entities. Arcs represent entities; ribbons connecting them represent directed flows (e.g., citation flows between companies).',
+  },
+  'Sankey diagram': {
+    term: 'Sankey diagram',
+    definition:
+      'A flow diagram where the width of links is proportional to the quantity of flow. Used here to visualize inventor talent flows between companies.',
+  },
   'Y02': {
     term: 'Y02',
     definition:

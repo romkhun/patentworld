@@ -9,9 +9,10 @@ const CHAPTER_GRADIENT_COLORS: Record<number, string> = {
   8: 'rgba(14,165,233,0.08)',
   9: 'rgba(234,179,8,0.08)',
   10: 'rgba(107,114,128,0.08)',
-  11: 'rgba(99,102,241,0.08)',
-  12: 'rgba(6,182,212,0.08)',
+  11: 'rgba(6,182,212,0.08)',
+  12: 'rgba(99,102,241,0.08)',
   13: 'rgba(168,162,235,0.08)',
+  14: 'rgba(239,68,68,0.08)',
 };
 
 interface ChapterHeaderProps {

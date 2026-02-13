@@ -108,6 +108,13 @@ export default function Chapter13() {
         <li>The semantic landscape of patents, visualized via <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip>, shows clear clustering by technology area with growing overlap between computational and scientific domains.</li>
       </KeyFindings>
 
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          NMF topic modeling on {formatCompact(totalPatents)} patent abstracts (1976-2025) reveals 25 latent themes; computing and semiconductor topics grew from under 10% to over 30% of all patents. A UMAP projection of 15,000 patents shows clear clustering by technology area with meaningful spatial relationships. Patent novelty -- measured by Shannon entropy of topic distributions -- has risen steadily since the 1990s, with the highest-entropy patents sitting at the intersection of computing, biology, chemistry, and engineering.
+        </p>
+      </aside>
+
       <Narrative>
         <p>
           What do 9.36 million patents actually talk about? By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
@@ -339,6 +346,11 @@ export default function Chapter13() {
           </figcaption>
         </div>
       )}
+
+      <Narrative>
+        Having uncovered the hidden thematic structure of patent language, the final chapter zooms in to the company level -- building interactive innovation profiles for 100 major patent filers.
+        The topics and trends identified here provide the foundation for understanding how individual firms have navigated the evolving technology landscape.
+      </Narrative>
 
       <DataNote>
         <p>

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { CHAPTERS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'About PatentWorld — Data, Methodology & Sources',
@@ -104,6 +106,21 @@ export default function AboutPage() {
             </a>
             {' '}&mdash; feedback, collaboration ideas, and feature requests are welcome.
           </p>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-2xl font-bold pt-4">Explore the Chapters</h2>
+          <p>PatentWorld is organized into {CHAPTERS.length} chapters, each exploring a different dimension of the US patent system:</p>
+          <ol className="list-decimal pl-6 space-y-1 mt-2">
+            {CHAPTERS.map((ch) => (
+              <li key={ch.slug}>
+                <Link href={`/chapters/${ch.slug}`} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                  {ch.title}
+                </Link>
+                {' '}&mdash; {ch.description}
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>

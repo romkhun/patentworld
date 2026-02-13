@@ -20,6 +20,7 @@ export function PWRankHeatmap({
   yearInterval = 5,
 }: PWRankHeatmapProps) {
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<{ org: string; year: number; rank: number; x: number; y: number } | null>(null);
 
   const { years, orgs, matrix } = useMemo(() => {
     const allYears = [...new Set(data.map((d) => d[yearKey]))].sort((a, b) => a - b);
@@ -80,7 +81,17 @@ export function PWRankHeatmap({
   };
 
   return (
-    <div className="w-full h-full overflow-x-auto">
+    <div className="w-full h-full overflow-x-auto relative">
+      {tooltip && (
+        <div
+          className="pointer-events-none absolute z-20 rounded-md border bg-card px-3 py-2 text-xs shadow-md"
+          style={{ left: tooltip.x + 12, top: tooltip.y - 40 }}
+        >
+          <div className="font-semibold text-sm">{tooltip.org}</div>
+          <div className="text-muted-foreground">Year: {tooltip.year}</div>
+          <div className="text-muted-foreground">Rank: #{tooltip.rank}</div>
+        </div>
+      )}
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr>
@@ -118,6 +129,16 @@ export function PWRankHeatmap({
                     <td
                       key={y}
                       className="px-1 py-1.5 text-center border-b"
+                      onMouseEnter={(e) => {
+                        if (rank != null) {
+                          const rect = (e.currentTarget.closest('.overflow-x-auto') as HTMLElement)?.getBoundingClientRect();
+                          const cellRect = e.currentTarget.getBoundingClientRect();
+                          if (rect) {
+                            setTooltip({ org, year: y, rank, x: cellRect.left - rect.left + cellRect.width / 2, y: cellRect.top - rect.top });
+                          }
+                        }
+                      }}
+                      onMouseLeave={() => setTooltip(null)}
                     >
                       <div
                         className="mx-auto flex items-center justify-center rounded-md w-10 h-7 text-xs font-semibold transition-transform"

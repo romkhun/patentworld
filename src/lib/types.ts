@@ -871,6 +871,205 @@ export interface AIAssigneeType {
   count: number;
 }
 
+// Chapter 14: Company Innovation Profiles types
+
+export interface CompanyYearMetrics {
+  year: number;
+  patent_count: number;
+  cpc_breadth: number;
+  inventor_count: number;
+  avg_team_size: number;
+  median_citations_5yr: number;
+  top10_share: number;
+  self_citation_rate: number;
+  avg_claims: number;
+  intl_inventor_share: number;
+  new_inventor_share: number;
+  primary_cpc: string;
+  cpc_distribution: Record<string, number>;
+}
+
+export interface CompanyProfile {
+  company: string;
+  years: CompanyYearMetrics[];
+}
+
+export interface TrajectoryArchetype {
+  company: string;
+  archetype: string;
+  normalized_series: number[];
+  peak_year: number;
+  peak_count: number;
+  current_count: number;
+}
+
+export interface CorporateMortality {
+  decades: { decade: string; companies: { company: string; rank: number }[] }[];
+  survival_rates: Record<string, number>;
+  continuous_companies: string[];
+}
+
+export interface PortfolioDiversificationB3 {
+  company: string;
+  year: number;
+  shannon_entropy: number;
+  num_subclasses: number;
+}
+
+export interface PivotDetection {
+  company: string;
+  window_start: number;
+  window_end: number;
+  jsd: number;
+  is_pivot: boolean;
+  top_gaining_cpc: string;
+  top_losing_cpc: string;
+}
+
+export interface PatentConcentration {
+  year: number;
+  section: string;
+  hhi: number;
+  c4: number;
+}
+
+export interface CorporateCitationFlow {
+  decade: string;
+  source: string;
+  target: string;
+  citation_count: number;
+}
+
+export interface TechLeadership {
+  window: string;
+  section: string;
+  company: string;
+  citations_received: number;
+  rank: number;
+}
+
+export interface CitationHalfLife {
+  company: string;
+  half_life_years: number;
+  total_citations: number;
+  patent_count: number;
+}
+
+export interface InventorCareerCurve {
+  career_year: number;
+  avg_patents: number;
+  median_patents: number;
+  p25_patents: number;
+  p75_patents: number;
+  inventor_count: number;
+}
+
+export interface InventorCareerDuration {
+  duration: number;
+  count: number;
+}
+
+export interface InventorDrift {
+  decade: number;
+  specialist_pct: number;
+  moderate_pct: number;
+  generalist_pct: number;
+  inventor_count: number;
+}
+
+export interface ComebackInventor {
+  gap_years: number;
+  count: number;
+  avg_patents_before: number;
+  avg_patents_after: number;
+  changed_assignee_pct: number;
+  changed_cpc_pct: number;
+}
+
+export interface DesignPatentTrend {
+  year: number;
+  utility_count: number;
+  design_count: number;
+  design_share: number;
+}
+
+export interface DesignTopFiler {
+  company: string;
+  design_patents: number;
+}
+
+export interface ClaimsAnalysis {
+  year: number;
+  median_claims: number;
+  p90_claims: number;
+  avg_claims: number;
+}
+
+export interface ClaimsBySection {
+  decade: string;
+  section: string;
+  median_claims: number;
+  avg_claims: number;
+}
+
+export interface ClaimMonster {
+  patent_id: string;
+  year: number;
+  claims: number;
+  section: string;
+  assignee: string;
+}
+
+export interface TalentFlowNode {
+  name: string;
+  net_flow: number;
+}
+
+export interface TalentFlowLink {
+  source: number;
+  target: number;
+  value: number;
+}
+
+export interface TalentFlowData {
+  nodes: TalentFlowNode[];
+  links: TalentFlowLink[];
+}
+
+export interface PortfolioOverlapPoint {
+  company: string;
+  x: number;
+  y: number;
+  industry: string;
+  decade: string;
+  top_cpc: string;
+}
+
+export interface StrategyDimension {
+  dimension: string;
+  [company: string]: number | string;
+}
+
+export interface StrategyProfile {
+  company: string;
+  breadth: number;
+  depth: number;
+  defensiveness: number;
+  influence: number;
+  science_intensity: number;
+  speed: number;
+  collaboration: number;
+  freshness: number;
+}
+
+export interface CorporateSpeed {
+  company: string;
+  year: number;
+  avg_grant_lag_days: number;
+  median_grant_lag_days: number;
+  patent_count: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];
