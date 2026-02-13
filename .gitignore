@@ -1,0 +1,5 @@
+node_modules/
+data-pipeline/.venv/
+data-pipeline/__pycache__/
+.next/
+out/
