@@ -3,7 +3,7 @@
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
-import { CHART_COLORS } from '@/lib/colors';
+import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 
 interface PWAreaChartProps {
@@ -27,6 +27,17 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart data={processedData} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
+        <defs>
+          {areas.map((area, i) => {
+            const color = area.color ?? CHART_COLORS[i % CHART_COLORS.length];
+            return (
+              <linearGradient key={area.key} id={`gradient-${area.key}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={color} stopOpacity={0.5} />
+                <stop offset="100%" stopColor={color} stopOpacity={0.05} />
+              </linearGradient>
+            );
+          })}
+        </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
         <XAxis
           dataKey={xKey}
@@ -43,12 +54,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           domain={stackedPercent ? [0, 100] : undefined}
         />
         <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            fontSize: '13px',
-          }}
+          contentStyle={TOOLTIP_STYLE}
           formatter={(value: any, name: any) => [
             stackedPercent ? `${Number(value).toFixed(1)}%` : (yFormatter ? yFormatter(Number(value)) : formatCompact(Number(value))),
             name,
@@ -62,9 +68,9 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             dataKey={area.key}
             name={area.name}
             stackId={stacked || stackedPercent ? 'stack' : undefined}
-            fill={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
+            fill={`url(#gradient-${area.key})`}
             stroke={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
-            fillOpacity={0.6}
+            fillOpacity={1}
           />
         ))}
       </AreaChart>

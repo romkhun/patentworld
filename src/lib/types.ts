@@ -233,6 +233,54 @@ export interface WIPOFieldSummary {
   total_patents: number;
 }
 
+// Chapter 7 types
+export interface GrantLagBySector {
+  period: number;
+  sector: string;
+  avg_lag_days: number;
+  median_lag_days: number;
+  count: number;
+}
+
+export interface CrossDomain {
+  year: number;
+  total: number;
+  single_section: number;
+  two_sections: number;
+  three_plus_sections: number;
+  multi_section_pct: number;
+}
+
+export interface IntlCollaboration {
+  year: number;
+  total_patents: number;
+  intl_collab_count: number;
+  intl_collab_pct: number;
+}
+
+export interface CorpDiversification {
+  organization: string;
+  section: string;
+  era: string;
+  count: number;
+}
+
+export interface InnovationVelocity {
+  year: number;
+  sector: string;
+  count: number;
+  prev_count: number | null;
+  yoy_growth_pct: number | null;
+}
+
+// Chapter 2 treemap type
+export interface CPCTreemapEntry {
+  section: string;
+  cpc_class: string;
+  class_name: string;
+  patent_count: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

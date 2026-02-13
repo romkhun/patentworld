@@ -3,7 +3,7 @@
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
-import { CHART_COLORS } from '@/lib/colors';
+import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 
 interface PWLineChartProps {
@@ -34,30 +34,29 @@ export function PWLineChart({ data, xKey, lines, yFormatter }: PWLineChartProps)
           width={60}
         />
         <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            fontSize: '13px',
-          }}
+          contentStyle={TOOLTIP_STYLE}
+          cursor={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1, strokeDasharray: '4 4' }}
           formatter={(value: any, name: any) => [
             yFormatter ? yFormatter(Number(value)) : formatCompact(Number(value)),
             name,
           ]}
         />
         {lines.length > 1 && <Legend />}
-        {lines.map((line, i) => (
-          <Line
-            key={line.key}
-            type="monotone"
-            dataKey={line.key}
-            name={line.name}
-            stroke={line.color ?? CHART_COLORS[i % CHART_COLORS.length]}
-            strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 4 }}
-          />
-        ))}
+        {lines.map((line, i) => {
+          const color = line.color ?? CHART_COLORS[i % CHART_COLORS.length];
+          return (
+            <Line
+              key={line.key}
+              type="monotone"
+              dataKey={line.key}
+              name={line.name}
+              stroke={color}
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
+            />
+          );
+        })}
       </LineChart>
     </ResponsiveContainer>
   );

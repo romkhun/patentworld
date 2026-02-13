@@ -3,7 +3,7 @@
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell,
 } from 'recharts';
-import { CHART_COLORS } from '@/lib/colors';
+import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 
 interface PWBarChartProps {
@@ -27,6 +27,7 @@ export function PWBarChart({
         data={data}
         layout={isVertical ? 'vertical' : 'horizontal'}
         margin={{ top: 5, right: 10, left: isVertical ? 120 : 10, bottom: 5 }}
+        barCategoryGap={isVertical ? '20%' : '15%'}
       >
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
         {isVertical ? (
@@ -65,12 +66,8 @@ export function PWBarChart({
           </>
         )}
         <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            fontSize: '13px',
-          }}
+          contentStyle={TOOLTIP_STYLE}
+          cursor={{ fill: 'hsl(var(--muted-foreground) / 0.08)' }}
           formatter={(value: any, name: any) => [
             yFormatter ? yFormatter(Number(value)) : formatCompact(Number(value)),
             name,
@@ -84,7 +81,7 @@ export function PWBarChart({
             name={bar.name}
             fill={bar.color ?? CHART_COLORS[i % CHART_COLORS.length]}
             stackId={stacked ? 'stack' : undefined}
-            radius={[2, 2, 0, 0]}
+            radius={isVertical ? [0, 4, 4, 0] : [4, 4, 0, 0]}
           >
             {colorByValue && data.map((_, idx) => (
               <Cell key={idx} fill={CHART_COLORS[idx % CHART_COLORS.length]} />

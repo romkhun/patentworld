@@ -52,6 +52,13 @@ export const CHAPTERS: ChapterMeta[] = [
     subtitle: 'How ideas build on ideas',
     description: 'Citations, government funding, and the flow of knowledge.',
   },
+  {
+    number: 7,
+    slug: 'innovation-dynamics',
+    title: 'Innovation Dynamics',
+    subtitle: 'The tempo and trajectory of invention',
+    description: 'Grant lag, cross-domain convergence, global collaboration, and the velocity of innovation.',
+  },
 ];
 
 export const CPC_SECTION_NAMES: Record<string, string> = {
@@ -71,6 +78,6 @@ export const HERO_STATS = {
   yearsCovered: 50,
   startYear: 1976,
   endYear: 2025,
-  chapters: 6,
-  visualizations: 32,
+  chapters: 7,
+  visualizations: 40,
 };

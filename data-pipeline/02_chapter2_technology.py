@@ -148,5 +148,34 @@ query_to_json(con, f"""
     ORDER BY year
 """, f"{OUT}/tech_diversity.json")
 
+# ── f) CPC treemap (section → subclass hierarchy with patent counts) ──────────
+timed_msg("cpc_treemap: section/subclass hierarchy for treemap visualization")
+query_to_json(con, f"""
+    WITH subclass_counts AS (
+        SELECT
+            c.cpc_section AS section,
+            c.cpc_subclass,
+            COUNT(*) AS patent_count
+        FROM {PATENT_TSV()} p
+        JOIN {CPC_CURRENT_TSV()} c ON p.patent_id = c.patent_id AND c.cpc_sequence = 0
+        WHERE p.patent_type = 'utility'
+          AND p.patent_date IS NOT NULL
+          AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1976 AND 2025
+        GROUP BY section, c.cpc_subclass
+        HAVING COUNT(*) >= 500
+    )
+    SELECT
+        sc.section,
+        sc.cpc_subclass AS cpc_class,
+        COALESCE(t.cpc_subclass_title, sc.cpc_subclass) AS class_name,
+        sc.patent_count
+    FROM subclass_counts sc
+    LEFT JOIN (
+        SELECT DISTINCT cpc_subclass, cpc_subclass_title
+        FROM {CPC_TITLE_TSV()}
+    ) t ON sc.cpc_subclass = t.cpc_subclass
+    ORDER BY sc.section, sc.patent_count DESC
+""", f"{OUT}/cpc_treemap.json")
+
 con.close()
 print("\n=== Chapter 2 complete ===\n")

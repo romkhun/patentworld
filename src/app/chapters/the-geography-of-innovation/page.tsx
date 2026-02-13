@@ -10,6 +10,9 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
+import { PWChoroplethMap } from '@/components/charts/PWChoroplethMap';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -75,6 +78,13 @@ export default function Chapter4() {
       .slice(0, 20);
   }, [spec]);
 
+  const statePatentMap = useMemo(() => {
+    if (!states) return {};
+    const map: Record<string, number> = {};
+    states.forEach((d) => { map[d.state] = d.total_patents; });
+    return map;
+  }, [states]);
+
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
   const topStateName = states?.[0]?.state ?? 'California';
 
@@ -94,6 +104,25 @@ export default function Chapter4() {
           have become major sources of US patent filings.
         </p>
       </Narrative>
+
+      <ChartContainer
+        title="US Patent Activity by State"
+        caption="Total utility patents by primary inventor state, 1976-2025. Darker shading indicates higher patent counts."
+        loading={stL}
+        height={480}
+      >
+        <PWChoroplethMap data={statePatentMap} valueLabel="Patents" />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Innovation is heavily concentrated on the coasts. California alone accounts for more
+          patents than the bottom 30 states combined, reflecting Silicon Valley&apos;s outsized role
+          in the US innovation ecosystem.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="State Rankings" />
 
       <ChartContainer
         title="Top 25 US States by Patent Count"
@@ -118,6 +147,8 @@ export default function Chapter4() {
         </p>
       </Narrative>
 
+      <SectionDivider label="City Level" />
+
       <ChartContainer
         title="Top 25 US Cities for Patents"
         caption="Total utility patents by primary inventor city, 1976-2025."
@@ -131,6 +162,8 @@ export default function Chapter4() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <SectionDivider label="International" />
 
       <ChartContainer
         title="Top Countries: Patents Over Time"

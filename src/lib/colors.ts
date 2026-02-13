@@ -41,3 +41,12 @@ export const WIPO_SECTOR_COLORS: Record<string, string> = {
   'Mechanical engineering': CHART_COLORS[5],
   'Other fields': CHART_COLORS[4],
 };
+
+export const TOOLTIP_STYLE: React.CSSProperties = {
+  backgroundColor: 'hsl(var(--card))',
+  border: '1px solid hsl(var(--border))',
+  borderRadius: '8px',
+  fontSize: '14px',
+  padding: '10px 14px',
+  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+};

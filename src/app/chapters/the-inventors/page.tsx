@@ -10,6 +10,8 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type { TeamSizePerYear, ProlificInventor, InventorEntry } from '@/lib/types';
@@ -117,6 +119,16 @@ export default function Chapter5() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The shift from solo to team invention mirrors broader trends in science and engineering.
+          Complex modern technologies increasingly require diverse expertise that no single
+          inventor can provide.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Gender" />
+
       <ChartContainer
         title="Female Inventor Share Over Time"
         caption="Percentage of inventor-patent instances attributed to female inventors."
@@ -148,6 +160,8 @@ export default function Chapter5() {
           />
         </ChartContainer>
       )}
+
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         title="Most Prolific Inventors"

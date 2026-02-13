@@ -10,10 +10,13 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWTreemap } from '@/components/charts/PWTreemap';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity } from '@/lib/types';
+import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry } from '@/lib/types';
 
 function pivotBySector(data: SectorPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -38,6 +41,7 @@ export default function Chapter2() {
   const { data: cpcSections, loading: cpcL } = useChapterData<CPCSectionPerYear[]>('chapter2/cpc_sections_per_year.json');
   const { data: cpcChange, loading: chgL } = useChapterData<{ growing: CPCClassChange[]; declining: CPCClassChange[] }>('chapter2/cpc_class_change.json');
   const { data: diversity, loading: divL } = useChapterData<TechDiversity[]>('chapter2/tech_diversity.json');
+  const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
 
   const sectorPivot = useMemo(() => sectors ? pivotBySector(sectors) : [], [sectors]);
   const sectionPivot = useMemo(() => cpcSections ? pivotBySection(cpcSections) : [], [cpcSections]);
@@ -131,6 +135,28 @@ export default function Chapter2() {
           have seen their share decline.
         </p>
       </Narrative>
+
+      {treemap && treemap.length > 0 && (
+        <ChartContainer
+          title="Technology Landscape: CPC Class Treemap"
+          caption="Proportional breakdown of patents by CPC technology class. Each rectangle's area represents the number of patents in that class. Colors correspond to CPC sections."
+          loading={tmL}
+          height={500}
+        >
+          <PWTreemap data={treemap} />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The treemap reveals that within each CPC section, patent activity is heavily concentrated
+          in a few dominant classes. In Electricity (H), digital communication and computing
+          classes dwarf all others, while in Chemistry (C), pharmaceutical and organic chemistry
+          classes lead.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Structural Change" />
 
       {changeData.length > 0 && (
         <ChartContainer

@@ -2,23 +2,59 @@
 
 import Link from 'next/link';
 import { ArrowRight, BarChart3 } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
 import { CHAPTERS, HERO_STATS } from '@/lib/constants';
+import { useInView } from '@/hooks/useInView';
 
-function AnimatedStat({ value, label }: { value: string; label: string }) {
+function useCountUp(end: number, duration: number, trigger: boolean) {
+  const [value, setValue] = useState(0);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (!trigger) return;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * end));
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      }
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [end, duration, trigger]);
+
+  return value;
+}
+
+function CounterStat({ target, label, suffix, decimals, trigger }: {
+  target: number; label: string; suffix?: string; decimals?: number; trigger: boolean;
+}) {
+  const count = useCountUp(decimals ? target * 100 : target, 1500, trigger);
+  const display = decimals ? (count / 100).toFixed(decimals) : count.toLocaleString();
+
   return (
     <div className="text-center">
-      <div className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">{value}</div>
+      <div className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">
+        {trigger ? display : '0'}{suffix ?? ''}
+      </div>
       <div className="mt-1 text-sm text-muted-foreground">{label}</div>
     </div>
   );
 }
 
 export default function HomePage() {
+  const { ref: statsRef, inView: statsVisible } = useInView({ threshold: 0.2 });
+
   return (
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden border-b">
-        <div className="mx-auto max-w-5xl px-4 py-20 text-center sm:py-32 lg:px-8">
+        <div className="hero-gradient absolute inset-0" />
+        <div className="relative mx-auto max-w-5xl px-4 py-20 text-center sm:py-32 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm text-muted-foreground">
             <BarChart3 className="h-4 w-4" />
             An Interactive Data Exploration
@@ -32,11 +68,11 @@ export default function HomePage() {
             and human ingenuity have shaped the world.
           </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
-            <AnimatedStat value={HERO_STATS.totalPatents} label="Patents" />
-            <AnimatedStat value={`${HERO_STATS.yearsCovered}`} label="Years" />
-            <AnimatedStat value={`${HERO_STATS.chapters}`} label="Chapters" />
-            <AnimatedStat value={`${HERO_STATS.visualizations}`} label="Visualizations" />
+          <div ref={statsRef} className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
+            <CounterStat target={9.36} label="Patents" suffix="M" decimals={2} trigger={statsVisible} />
+            <CounterStat target={HERO_STATS.yearsCovered} label="Years" trigger={statsVisible} />
+            <CounterStat target={HERO_STATS.chapters} label="Chapters" trigger={statsVisible} />
+            <CounterStat target={HERO_STATS.visualizations} label="Visualizations" trigger={statsVisible} />
           </div>
 
           <div className="mt-12">

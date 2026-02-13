@@ -10,6 +10,8 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type { CitationsPerYear, CitationLag, GovFundedPerYear, GovAgency } from '@/lib/types';
@@ -121,6 +123,8 @@ export default function Chapter6() {
         </ChartContainer>
       )}
 
+      <SectionDivider label="Citation Patterns" />
+
       <ChartContainer
         title="Citation Lag"
         caption="Average and median time (in years) between a cited patent's date and the citing patent's grant date."
@@ -144,6 +148,16 @@ export default function Chapter6() {
           patents draw on an increasingly deep well of prior art.
         </p>
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          The growing citation lag suggests that foundational knowledge has an increasingly
+          long useful life. Patents today draw on prior art from an ever-widening time window,
+          reflecting the cumulative nature of technological progress.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Government Funding" />
 
       <ChartContainer
         title="Government-Funded Patents Over Time"

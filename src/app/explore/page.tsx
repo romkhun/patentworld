@@ -1,12 +1,65 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
+import { useState, useMemo, useCallback } from 'react';
+import { Search, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { formatCompact } from '@/lib/formatters';
 import type { ExploreAssignee, ExploreInventor, CPCClassSummary, WIPOFieldSummary } from '@/lib/types';
 
 type TabId = 'organizations' | 'inventors' | 'technologies' | 'wipo';
+type SortDir = 'asc' | 'desc';
+interface SortState { key: string; dir: SortDir; }
+
+function SortIcon({ active, dir }: { active: boolean; dir?: SortDir }) {
+  if (!active) return <ArrowUpDown className="inline h-3 w-3 ml-1 opacity-40" />;
+  return dir === 'asc'
+    ? <ArrowUp className="inline h-3 w-3 ml-1" />
+    : <ArrowDown className="inline h-3 w-3 ml-1" />;
+}
+
+function sortData<T extends Record<string, any>>(data: T[], sort: SortState | null): T[] {
+  if (!sort) return data;
+  return [...data].sort((a, b) => {
+    const av = a[sort.key];
+    const bv = b[sort.key];
+    if (av == null && bv == null) return 0;
+    if (av == null) return 1;
+    if (bv == null) return -1;
+    const cmp = typeof av === 'string' ? av.localeCompare(bv) : av - bv;
+    return sort.dir === 'asc' ? cmp : -cmp;
+  });
+}
+
+function useSort() {
+  const [sort, setSort] = useState<SortState | null>(null);
+  const toggle = useCallback((key: string) => {
+    setSort((prev) => {
+      if (prev?.key === key) {
+        return prev.dir === 'desc' ? { key, dir: 'asc' } : null;
+      }
+      return { key, dir: 'desc' };
+    });
+  }, []);
+  return { sort, toggle };
+}
+
+function SortableHeader({ label, sortKey, sort, onToggle, className = '' }: {
+  label: string;
+  sortKey: string;
+  sort: SortState | null;
+  onToggle: (key: string) => void;
+  className?: string;
+}) {
+  return (
+    <th
+      className={`pb-2 pr-4 font-medium cursor-pointer select-none hover:text-foreground transition-colors ${className}`}
+      onClick={() => onToggle(sortKey)}
+    >
+      {label}
+      <SortIcon active={sort?.key === sortKey} dir={sort?.dir} />
+    </th>
+  );
+}
 
 export default function ExplorePage() {
   const [activeTab, setActiveTab] = useState<TabId>('organizations');
@@ -63,11 +116,13 @@ export default function ExplorePage() {
 
 function OrganizationsTable({ search }: { search: string }) {
   const { data, loading } = useChapterData<ExploreAssignee[]>('explore/top_assignees_all.json');
+  const { sort, toggle } = useSort();
   const filtered = useMemo(() => {
     if (!data) return [];
     const q = search.toLowerCase();
-    return data.filter((d) => !q || d.organization.toLowerCase().includes(q));
-  }, [data, search]);
+    const f = data.filter((d) => !q || d.organization.toLowerCase().includes(q));
+    return sortData(f, sort);
+  }, [data, search, sort]);
 
   if (loading) return <TableSkeleton />;
   return (
@@ -76,10 +131,10 @@ function OrganizationsTable({ search }: { search: string }) {
         <thead>
           <tr className="border-b text-left text-muted-foreground">
             <th className="pb-2 pr-4 font-medium">#</th>
-            <th className="pb-2 pr-4 font-medium">Organization</th>
-            <th className="pb-2 pr-4 font-medium text-right">Patents</th>
-            <th className="pb-2 pr-4 font-medium text-right">First Year</th>
-            <th className="pb-2 font-medium text-right">Last Year</th>
+            <SortableHeader label="Organization" sortKey="organization" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Patents" sortKey="total_patents" sort={sort} onToggle={toggle} className="text-right" />
+            <SortableHeader label="First Year" sortKey="first_year" sort={sort} onToggle={toggle} className="text-right" />
+            <SortableHeader label="Last Year" sortKey="last_year" sort={sort} onToggle={toggle} className="text-right" />
           </tr>
         </thead>
         <tbody>
@@ -103,11 +158,13 @@ function OrganizationsTable({ search }: { search: string }) {
 
 function InventorsTable({ search }: { search: string }) {
   const { data, loading } = useChapterData<ExploreInventor[]>('explore/top_inventors_all.json');
+  const { sort, toggle } = useSort();
   const filtered = useMemo(() => {
     if (!data) return [];
     const q = search.toLowerCase();
-    return data.filter((d) => !q || `${d.first_name} ${d.last_name}`.toLowerCase().includes(q));
-  }, [data, search]);
+    const f = data.filter((d) => !q || `${d.first_name} ${d.last_name}`.toLowerCase().includes(q));
+    return sortData(f, sort);
+  }, [data, search, sort]);
 
   if (loading) return <TableSkeleton />;
   return (
@@ -116,10 +173,10 @@ function InventorsTable({ search }: { search: string }) {
         <thead>
           <tr className="border-b text-left text-muted-foreground">
             <th className="pb-2 pr-4 font-medium">#</th>
-            <th className="pb-2 pr-4 font-medium">Inventor</th>
-            <th className="pb-2 pr-4 font-medium text-right">Patents</th>
-            <th className="pb-2 pr-4 font-medium text-right">Career Span</th>
-            <th className="pb-2 font-medium text-center">Gender</th>
+            <SortableHeader label="Inventor" sortKey="last_name" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Patents" sortKey="total_patents" sort={sort} onToggle={toggle} className="text-right" />
+            <SortableHeader label="First Year" sortKey="first_year" sort={sort} onToggle={toggle} className="text-right" />
+            <SortableHeader label="Gender" sortKey="gender" sort={sort} onToggle={toggle} className="text-center" />
           </tr>
         </thead>
         <tbody>
@@ -140,11 +197,13 @@ function InventorsTable({ search }: { search: string }) {
 
 function CPCTable({ search }: { search: string }) {
   const { data, loading } = useChapterData<CPCClassSummary[]>('explore/cpc_class_summary.json');
+  const { sort, toggle } = useSort();
   const filtered = useMemo(() => {
     if (!data) return [];
     const q = search.toLowerCase();
-    return data.filter((d) => !q || d.cpc_class.toLowerCase().includes(q) || (d.class_name ?? '').toLowerCase().includes(q));
-  }, [data, search]);
+    const f = data.filter((d) => !q || d.cpc_class.toLowerCase().includes(q) || (d.class_name ?? '').toLowerCase().includes(q));
+    return sortData(f, sort);
+  }, [data, search, sort]);
 
   if (loading) return <TableSkeleton />;
   return (
@@ -152,9 +211,9 @@ function CPCTable({ search }: { search: string }) {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
-            <th className="pb-2 pr-4 font-medium">Class</th>
-            <th className="pb-2 pr-4 font-medium">Title</th>
-            <th className="pb-2 font-medium text-right">Patents</th>
+            <SortableHeader label="Class" sortKey="cpc_class" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Title" sortKey="class_name" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Patents" sortKey="total_patents" sort={sort} onToggle={toggle} className="text-right" />
           </tr>
         </thead>
         <tbody>
@@ -173,11 +232,13 @@ function CPCTable({ search }: { search: string }) {
 
 function WIPOTable({ search }: { search: string }) {
   const { data, loading } = useChapterData<WIPOFieldSummary[]>('explore/wipo_field_summary.json');
+  const { sort, toggle } = useSort();
   const filtered = useMemo(() => {
     if (!data) return [];
     const q = search.toLowerCase();
-    return data.filter((d) => !q || d.field.toLowerCase().includes(q) || d.sector.toLowerCase().includes(q));
-  }, [data, search]);
+    const f = data.filter((d) => !q || d.field.toLowerCase().includes(q) || d.sector.toLowerCase().includes(q));
+    return sortData(f, sort);
+  }, [data, search, sort]);
 
   if (loading) return <TableSkeleton />;
   return (
@@ -185,9 +246,9 @@ function WIPOTable({ search }: { search: string }) {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
-            <th className="pb-2 pr-4 font-medium">Sector</th>
-            <th className="pb-2 pr-4 font-medium">Field</th>
-            <th className="pb-2 font-medium text-right">Patents</th>
+            <SortableHeader label="Sector" sortKey="sector" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Field" sortKey="field" sort={sort} onToggle={toggle} />
+            <SortableHeader label="Patents" sortKey="total_patents" sort={sort} onToggle={toggle} className="text-right" />
           </tr>
         </thead>
         <tbody>
