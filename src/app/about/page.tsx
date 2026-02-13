@@ -75,7 +75,7 @@ export default function AboutPage() {
       <h1 className="font-serif text-4xl font-bold tracking-tight">About PatentWorld</h1>
       <p className="mt-3 text-sm text-muted-foreground">
         By{' '}
-        <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
+        <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
           Saerom (Ronnie) Lee
         </a>
         , The Wharton School, University of Pennsylvania
