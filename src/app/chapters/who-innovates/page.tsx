@@ -14,12 +14,17 @@ import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   AssigneeTypePerYear, TopAssignee, OrgOverTime, DomesticVsForeign, Concentration,
   FirmCitationImpact, FirmTechEvolution,
 } from '@/lib/types';
+import type { PortfolioDiversity, NetworkMetricsByDecade, BridgeInventor } from '@/lib/types';
 
 function pivotByCategory(data: AssigneeTypePerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -47,6 +52,9 @@ export default function Chapter3() {
   const { data: conc, loading: concL } = useChapterData<Concentration[]>('chapter3/concentration.json');
   const { data: citImpact, loading: citL } = useChapterData<FirmCitationImpact[]>('chapter3/firm_citation_impact.json');
   const { data: techEvo, loading: tevL } = useChapterData<FirmTechEvolution[]>('chapter3/firm_tech_evolution.json');
+  const { data: diversity, loading: divL } = useChapterData<PortfolioDiversity[]>('chapter3/portfolio_diversity.json');
+  const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
+  const { data: bridgeInventors, loading: biL } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
 
@@ -109,6 +117,20 @@ export default function Chapter3() {
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
 
+  const { diversityPivot, diversityOrgs } = useMemo(() => {
+    if (!diversity) return { diversityPivot: [], diversityOrgs: [] };
+    const orgs = [...new Set(diversity.map(d => d.organization))];
+    const periods = [...new Set(diversity.map(d => d.period))].sort();
+    const pivoted = periods.map(period => {
+      const row: Record<string, any> = { period };
+      diversity.filter(d => d.period === period).forEach(d => {
+        row[d.organization] = d.shannon_entropy;
+      });
+      return row;
+    });
+    return { diversityPivot: pivoted, diversityOrgs: orgs };
+  }, [diversity]);
+
   return (
     <div>
       <ChapterHeader
@@ -116,6 +138,13 @@ export default function Chapter3() {
         title="Who Innovates?"
         subtitle="The organizations driving patent activity"
       />
+
+      <KeyFindings>
+        <li>Corporations hold the overwhelming majority of US patents, with individual inventors shrinking to a tiny fraction of annual grants.</li>
+        <li>Asian electronics firms (Samsung, Canon, LG) now account for over half of the top 25 patent holders, reflecting the globalization of technology leadership.</li>
+        <li>Patent concentration has been remarkably stable: the top 100 organizations consistently hold roughly a quarter of all corporate patents.</li>
+        <li>Foreign <GlossaryTooltip term="assignee">assignees</GlossaryTooltip> have nearly reached parity with US-based assignees in patent grants, driven by multinational R&amp;D strategies.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -129,6 +158,7 @@ export default function Chapter3() {
       <ChartContainer
         title="Assignee Types Over Time"
         caption="Share of utility patents by assignee category (primary assignee)."
+        insight="The Bayh-Dole Act (1980) enabled university patenting, but the dominant trend is the rise of corporate R&D as patent portfolios became strategic assets for licensing and competitive signaling."
         loading={typL}
       >
         <PWAreaChart
@@ -140,6 +170,7 @@ export default function Chapter3() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           stackedPercent
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 1995] })}
         />
       </ChartContainer>
 
@@ -164,6 +195,7 @@ export default function Chapter3() {
       <ChartContainer
         title="Patent-Holding Organizations"
         caption="Ranked by total utility patents granted, 1976-2025."
+        insight="The leaderboard reveals the global nature of US patent activity — Japanese and Korean electronics firms compete directly with American tech giants for the top positions."
         loading={topL}
         height={1400}
       >
@@ -203,6 +235,7 @@ export default function Chapter3() {
         <ChartContainer
           title="Top Organizations: Rank Over Time"
           caption="Rank heatmap showing how the top 15 patent-holding organizations have shifted in annual grant rankings. Darker cells = higher rank."
+          insight="Three distinct eras emerge: GE/IBM dominance (1970s-80s), the rise of Japanese electronics (1980s-90s), and the Korean ascendancy (2000s-present). These shifts mirror broader geopolitical changes in R&D investment."
           loading={orgL}
           height={850}
         >
@@ -229,6 +262,7 @@ export default function Chapter3() {
         <ChartContainer
           title="Patent Output Trajectories: Top Organizations"
           caption="Annual patent grants for the 10 historically top-ranked organizations, showing the rise and fall of different firms over five decades."
+          insight="IBM's gradual decline and Samsung's rapid ascent illustrate how corporate patent strategies diverge — IBM shifted toward services while Samsung invested aggressively in hardware and electronics R&D."
           loading={orgL}
         >
           <PWLineChart
@@ -257,6 +291,7 @@ export default function Chapter3() {
       <ChartContainer
         title="US vs Foreign Assignees"
         caption="Patents by US-based vs foreign-based primary assignees."
+        insight="The convergence toward parity reflects the globalization of R&D. The US patent system serves as the de facto global standard for protecting high-value inventions regardless of assignee nationality."
         loading={dvfL}
       >
         <PWLineChart
@@ -267,6 +302,7 @@ export default function Chapter3() {
             { key: 'Foreign', name: 'Foreign', color: CHART_COLORS[3] },
           ]}
           yLabel="Patents"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 1995, 2008] })}
         />
       </ChartContainer>
 
@@ -282,6 +318,7 @@ export default function Chapter3() {
       <ChartContainer
         title="Patent Concentration"
         caption="Share of all corporate patents held by the top 10, 50, and 100 organizations, by 5-year period."
+        insight="Despite new entrants, the patent landscape remains dominated by large, well-resourced organizations that invest systematically in R&D."
         loading={concL}
       >
         <PWLineChart
@@ -312,8 +349,8 @@ export default function Chapter3() {
 
       <Narrative>
         <p>
-          Patent quantity alone does not capture an organization&apos;s true influence. Forward
-          citations -- how often a firm&apos;s patents are cited by subsequent inventions -- reveal
+          Patent quantity alone does not capture an organization&apos;s true influence. <GlossaryTooltip term="forward citations">Forward
+          citations</GlossaryTooltip> -- how often a firm&apos;s patents are cited by subsequent inventions -- reveal
           the <StatCallout value="impact and influence" /> of their innovations.
         </p>
       </Narrative>
@@ -321,6 +358,7 @@ export default function Chapter3() {
       <ChartContainer
         title="Citation Impact by Organization"
         caption="Average and median forward citations per patent for major patent holders. Limited to patents granted through 2020 for citation accumulation."
+        insight="The gap between average and median citations distinguishes 'hit-driven' portfolios (high average, lower median) from consistently impactful innovators."
         loading={citL}
         height={900}
       >
@@ -377,6 +415,7 @@ export default function Chapter3() {
       <ChartContainer
         title={`Technology Portfolio: ${activeOrg || 'Loading...'}`}
         caption="CPC technology section shares by 5-year period. Shows how the organization's innovation portfolio has evolved."
+        insight="Rapid shifts in a firm's technology mix — like Samsung's pivot from mechanical to electronics — signal deliberate strategic reorientation of R&D investment."
         loading={tevL}
       >
         <PWAreaChart
@@ -400,13 +439,130 @@ export default function Chapter3() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Patent Portfolio Diversity" />
+      <Narrative>
+        <p>
+          Are leading companies broadening or narrowing their innovation focus? We measure
+          each organization&apos;s patent portfolio diversity using Shannon entropy across CPC
+          technology subclasses. Higher entropy indicates a more diverse portfolio spanning
+          many technology areas, while lower entropy signals specialization in a few domains.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Portfolio Diversity (Shannon Entropy) for Top Assignees"
+        caption="Shannon entropy across CPC subclasses per 5-year period. Higher values indicate broader technology portfolios."
+        insight="The general upward trend in portfolio diversity suggests competitive advantage increasingly requires spanning multiple technology domains rather than deep specialization."
+        loading={divL}
+      >
+        <PWLineChart
+          data={diversityPivot}
+          xKey="period"
+          lines={diversityOrgs.slice(0, 10).map((org, i) => ({
+            key: org,
+            name: org.length > 25 ? org.slice(0, 22) + '...' : org,
+            color: BUMP_COLORS[i % BUMP_COLORS.length],
+          }))}
+          yLabel="Shannon Entropy"
+          yFormatter={(v: number) => v.toFixed(1)}
+        />
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Most top patentees have steadily increased their portfolio diversity over time,
+          reflecting a trend toward broader technology strategies. Samsung and IBM show
+          particularly high entropy, consistent with their presence across electronics,
+          software, and hardware. In contrast, pharmaceutical companies tend to maintain
+          more focused portfolios. The general upward trend suggests that competitive
+          advantage increasingly requires spanning multiple technology domains.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Collaboration Network Structure" />
+      <Narrative>
+        <p>
+          How has the structure of innovation collaboration evolved? By analyzing co-inventor
+          relationships as a network, we can measure how connected the innovation ecosystem is.
+          The average degree (number of collaborators per inventor) and network density reveal
+          whether innovation is becoming more or less collaborative over time.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Co-Invention Network Metrics by Decade"
+        caption="Summary statistics of the inventor collaboration network. Average degree measures the typical number of co-inventors per active inventor."
+        insight="Rising average inventor degree reflects both larger team sizes and more extensive cross-organizational collaboration, creating a more interconnected innovation ecosystem."
+        loading={nmL}
+      >
+        {networkMetrics && (
+          <PWLineChart
+            data={networkMetrics}
+            xKey="decade_label"
+            lines={[
+              { key: 'avg_degree', name: 'Avg Co-Inventors (Degree)', color: CHART_COLORS[0] },
+              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
+            ]}
+            yLabel="Count"
+            yFormatter={(v: number) => v.toFixed(1)}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          The innovation network has become dramatically more interconnected. Average inventor
+          degree has risen sharply since the 1980s, reflecting both larger team sizes and more
+          extensive cross-organizational collaboration. This &quot;small world&quot; effect means knowledge
+          can diffuse faster through the network, but also raises questions about whether the
+          era of the lone inventor is truly over.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Bridge Inventors" />
+      <Narrative>
+        <p>
+          Some inventors serve as critical bridges connecting otherwise separate organizations
+          and technology communities. These &quot;bridge inventors&quot; have patented at three or more
+          distinct organizations, potentially transferring knowledge and practices between firms.
+        </p>
+      </Narrative>
+      {bridgeInventors && bridgeInventors.length > 0 && (
+        <div className="max-w-3xl mx-auto my-8 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Inventor</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Organizations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bridgeInventors.slice(0, 15).map((inv, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{inv.first_name} {inv.last_name}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.num_orgs}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.total_patents.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Bridge inventors who span multiple organizations play an outsized role in the
+          innovation ecosystem. Their movement between firms creates channels for knowledge
+          transfer that would not exist through patent citations alone, helping explain why
+          geographic and organizational proximity matter so much for innovation.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Assignee data uses disambiguated identities from PatentsView. Primary assignee
         (sequence 0) is used to avoid double-counting patents with multiple assignees.
         Citation impact uses forward citations for patents granted through 2020.
         Co-patenting identifies patents with 2+ distinct organizational assignees.
+        Portfolio diversity is measured using Shannon entropy across CPC subclasses per 5-year period. Network metrics are computed from co-inventor relationships on shared patents.
       </DataNote>
 
+      <RelatedChapters currentChapter={3} />
       <ChapterNavigation currentChapter={3} />
     </div>
   );

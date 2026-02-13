@@ -14,9 +14,13 @@ import { PWTreemap } from '@/components/charts/PWTreemap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry } from '@/lib/types';
+import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry, TechnologyHalfLife, TechnologyDecayCurve } from '@/lib/types';
 
 function pivotBySector(data: SectorPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -42,6 +46,8 @@ export default function Chapter2() {
   const { data: cpcChange, loading: chgL } = useChapterData<(CPCClassChange & { direction: string })[]>('chapter2/cpc_class_change.json');
   const { data: diversity, loading: divL } = useChapterData<TechDiversity[]>('chapter2/tech_diversity.json');
   const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
+  const { data: halfLife, loading: hlL } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
+  const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
 
   const sectorPivot = useMemo(() => sectors ? pivotBySector(sectors) : [], [sectors]);
   const sectionPivot = useMemo(() => cpcSections ? pivotBySection(cpcSections) : [], [cpcSections]);
@@ -76,6 +82,20 @@ export default function Chapter2() {
     return [...growing, ...declining.reverse()];
   }, [cpcChange]);
 
+  const { decayPivot, decaySections } = useMemo(() => {
+    if (!decayCurves) return { decayPivot: [], decaySections: [] };
+    const sections = [...new Set(decayCurves.map(d => d.section))].sort();
+    const years = [...new Set(decayCurves.map(d => d.years_after))].sort((a, b) => a - b);
+    const pivoted = years.map(yr => {
+      const row: Record<string, any> = { years_after: yr };
+      decayCurves.filter(d => d.years_after === yr).forEach(d => {
+        row[d.section] = d.pct_of_total;
+      });
+      return row;
+    });
+    return { decayPivot: pivoted, decaySections: sections };
+  }, [decayCurves]);
+
   return (
     <div>
       <ChapterHeader
@@ -83,6 +103,13 @@ export default function Chapter2() {
         title="The Technology Revolution"
         subtitle="The shifting frontiers of technology"
       />
+
+      <KeyFindings>
+        <li>Electrical engineering overtook chemistry as the dominant patent sector in the early 1990s, marking the transition from the chemical-pharmaceutical era to the digital era.</li>
+        <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now account for nearly 48% of all patent grants, up from 30% in the 1970s.</li>
+        <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), while analog-era classes (typewriters, photographic processes) are declining.</li>
+        <li>Despite the digital surge, overall technology diversity has remained stable — new fields are growing without fully displacing established ones.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -96,6 +123,7 @@ export default function Chapter2() {
       <ChartContainer
         title="WIPO Technology Sectors Over Time"
         caption="Patent grants by WIPO sector (primary classification), 1976-2025."
+        insight="The 1990s crossover where electrical engineering surpassed chemistry represents one of the most significant structural shifts in the history of patenting, driven by the computing and telecommunications revolutions."
         loading={secL}
       >
         <PWLineChart
@@ -107,6 +135,7 @@ export default function Chapter2() {
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
           yLabel="Patents"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
 
@@ -131,6 +160,7 @@ export default function Chapter2() {
       <ChartContainer
         title="CPC Technology Sections: Share Over Time"
         caption="Share of utility patents by CPC section (primary classification). Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity."
+        insight="The 100% stacked view makes relative shifts visible. Digital technology sections (G, H) have gained nearly 18 percentage points of share over five decades, while chemistry and operations have contracted proportionally."
         loading={cpcL}
         height={650}
       >
@@ -169,6 +199,7 @@ export default function Chapter2() {
         <ChartContainer
           title="Technology Landscape: CPC Class Treemap"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle's area represents the number of patents in that class. Colors correspond to CPC sections."
+          insight="Within each CPC section, patent activity is heavily concentrated in a few dominant classes — digital communication and computing dominate Electricity, while pharmaceutical and organic chemistry lead Chemistry."
           loading={tmL}
           height={850}
         >
@@ -191,6 +222,7 @@ export default function Chapter2() {
         <ChartContainer
           title="Fastest Growing and Declining Technology Classes"
           caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Fastest growing (positive) and declining (negative) CPC classes with at least 100 patents in each period."
+          insight="The creative destruction of the digital revolution is visible here: entire categories of analog-era invention have been rendered obsolete as their digital replacements surge ahead."
           loading={chgL}
           height={900}
         >
@@ -226,6 +258,7 @@ export default function Chapter2() {
       <ChartContainer
         title="Technology Diversity Index"
         caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration. Higher values indicate more diverse technology output."
+        insight="Despite the explosive growth of electrical engineering, the patent system's technology mix has not narrowed dramatically. Innovation continues broadly across established fields."
         loading={divL}
       >
         <PWLineChart
@@ -244,11 +277,75 @@ export default function Chapter2() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="The Half-Life of Technology" />
+      <Narrative>
+        <p>
+          How quickly does a technology become obsolete? By measuring when a patent
+          receives the bulk of its forward citations, we can estimate the &quot;half-life&quot;
+          of knowledge in each technology area — the time it takes for 50% of all
+          citations to accumulate. Shorter half-lives indicate rapidly evolving fields;
+          longer ones suggest foundational knowledge with lasting relevance.
+        </p>
+      </Narrative>
+      {halfLife && halfLife.length > 0 && (
+        <div className="max-w-2xl mx-auto my-8">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Citation Half-Life by Technology Area</h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">CPC Section</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Half-Life (years)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...halfLife].sort((a, b) => (a.half_life_years ?? 0) - (b.half_life_years ?? 0)).map((hl, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{hl.section}: {CPC_SECTION_NAMES[hl.section] ?? hl.section}</td>
+                  <td className="text-right py-2 px-3 font-mono font-semibold">{hl.half_life_years?.toFixed(1) ?? 'N/A'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <ChartContainer
+        title="Citation Decay Curves by Technology Area"
+        caption="Distribution of forward citations by years after grant. Each line shows what percentage of a technology area's total citations arrive in each year."
+        insight="Fast-moving fields like computing (H) and physics (G) have short citation half-lives, meaning knowledge becomes obsolete quickly. Chemistry and pharma innovations remain relevant for much longer."
+        loading={dcL}
+      >
+        {decayPivot.length > 0 && (
+          <PWLineChart
+            data={decayPivot}
+            xKey="years_after"
+            lines={decaySections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            xLabel="Years After Grant"
+            yLabel="% of Total Citations"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Electricity (H) and Physics (G) patents have the shortest half-lives,
+          consistent with the rapid innovation cycles in computing and electronics where
+          today&apos;s breakthrough quickly becomes tomorrow&apos;s baseline. Chemistry (C) and
+          Human Necessities (A) show the longest half-lives, reflecting the enduring
+          relevance of pharmaceutical and chemical innovations that take years to develop
+          and often represent fundamental scientific advances with lasting impact.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Technology classifications use the primary CPC section (sequence 0) for each patent
-        and WIPO technology fields mapped from IPC codes.
+        and WIPO technology fields mapped from IPC codes. Technology half-life is computed as the time until 50% of cumulative forward citations are received, based on patents granted 1976-2010 with citations tracked through 2025.
       </DataNote>
 
+      <RelatedChapters currentChapter={2} />
       <ChapterNavigation currentChapter={2} />
     </div>
   );

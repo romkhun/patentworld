@@ -14,10 +14,16 @@ import { PWBumpChart } from '@/components/charts/PWBumpChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS } from '@/lib/colors';
+import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type {
   AIPatentsPerYear, AIBySubfield, AITopAssignee,
   AITopInventor, AIGeography, AIQuality, AIOrgOverTime,
+  AIStrategy, AIGPTDiffusion,
 } from '@/lib/types';
 
 const SUBFIELD_COLORS: Record<string, string> = {
@@ -42,6 +48,8 @@ export default function Chapter11() {
   const { data: geography, loading: geoL } = useChapterData<AIGeography[]>('chapter11/ai_geography.json');
   const { data: quality, loading: qL } = useChapterData<AIQuality[]>('chapter11/ai_quality.json');
   const { data: orgOverTime, loading: ootL } = useChapterData<AIOrgOverTime[]>('chapter11/ai_org_over_time.json');
+  const { data: aiStrategies, loading: asL } = useChapterData<AIStrategy[]>('chapter11/ai_strategies.json');
+  const { data: aiGptDiffusion, loading: agdL } = useChapterData<AIGPTDiffusion[]>('chapter11/ai_gpt_diffusion.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -145,6 +153,33 @@ export default function Chapter11() {
       .map((d) => ({ state: d.state, ai_patents: d.ai_patents }));
   }, [geography]);
 
+  const strategyOrgs = useMemo(() => {
+    if (!aiStrategies) return [];
+    const orgs = [...new Set(aiStrategies.map(d => d.organization))];
+    return orgs.map(org => ({
+      organization: org,
+      subfields: aiStrategies.filter(d => d.organization === org).sort((a, b) => b.patent_count - a.patent_count),
+    })).sort((a, b) => {
+      const aTotal = a.subfields.reduce((s, d) => s + d.patent_count, 0);
+      const bTotal = b.subfields.reduce((s, d) => s + d.patent_count, 0);
+      return bTotal - aTotal;
+    });
+  }, [aiStrategies]);
+
+  const { gptPivot, gptSections } = useMemo(() => {
+    if (!aiGptDiffusion) return { gptPivot: [], gptSections: [] };
+    const sections = [...new Set(aiGptDiffusion.map(d => d.section))].sort();
+    const years = [...new Set(aiGptDiffusion.map(d => d.year))].sort((a, b) => a - b);
+    const pivoted = years.map(year => {
+      const row: Record<string, any> = { year };
+      aiGptDiffusion.filter(d => d.year === year).forEach(d => {
+        row[d.section] = d.pct_of_ai;
+      });
+      return row;
+    });
+    return { gptPivot: pivoted, gptSections: sections };
+  }, [aiGptDiffusion]);
+
   return (
     <div>
       <ChapterHeader
@@ -152,6 +187,13 @@ export default function Chapter11() {
         title="Artificial Intelligence"
         subtitle="The rise of AI in the patent system"
       />
+
+      <KeyFindings>
+        <li>AI patent filings have grown exponentially since 2010, driven by breakthroughs in deep learning and the expansion of AI applications across industries.</li>
+        <li>The composition of AI patents has shifted from expert systems and rule-based approaches in the 1990s to machine learning, neural networks, and generative AI today.</li>
+        <li>A small number of large technology firms dominate AI patenting, with IBM, Samsung, Google, and Microsoft leading in volume.</li>
+        <li>AI patents span multiple technology domains, reflecting AI&apos;s nature as a general-purpose technology with applications across virtually every industry.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -178,6 +220,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patent Activity Over Time"
         caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025."
+        insight="The exponential growth in AI patents mirrors the broader AI boom, driven by advances in deep learning frameworks, GPU computing, and large-scale data availability."
         loading={pyL}
       >
         <PWLineChart
@@ -187,6 +230,7 @@ export default function Chapter11() {
             { key: 'ai_patents', name: 'AI Patents', color: CHART_COLORS[0] },
           ]}
           yLabel="Patents"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
 
@@ -203,6 +247,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patent Share of Total Patents"
         caption="Percentage of all utility patents classified under AI-related CPC codes."
+        insight="AI's growing share of all patents demonstrates that the AI boom is not merely tracking overall patent growth — it represents a genuine reallocation of inventive effort toward AI technologies."
         loading={pyL}
       >
         <PWLineChart
@@ -213,6 +258,7 @@ export default function Chapter11() {
           ]}
           yLabel="Percent"
           yFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
 
@@ -221,6 +267,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patent Activity by Subfield"
         caption="Patent counts by AI subfield over time, based on CPC classifications. Neural networks/deep learning and machine learning have driven the recent surge."
+        insight="The shift from expert systems to deep learning reflects fundamental changes in AI methodology — from hand-crafted rules to data-driven pattern recognition."
         loading={sfL}
         height={650}
       >
@@ -233,6 +280,7 @@ export default function Chapter11() {
             color: SUBFIELD_COLORS[name] ?? CHART_COLORS[0],
           }))}
           stacked
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
 
@@ -252,6 +300,7 @@ export default function Chapter11() {
       <ChartContainer
         title="Leading Organizations in AI Patenting"
         caption="Organizations ranked by total AI-related patents, 1976-2025."
+        insight="The dominance of large tech firms in AI patenting reflects the resource-intensive nature of AI R&D, which requires massive datasets, computing infrastructure, and specialized talent."
         loading={taL}
         height={1400}
       >
@@ -278,6 +327,7 @@ export default function Chapter11() {
         <ChartContainer
           title="Top Organizations: Rank Over Time"
           caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Hover over any line or label to highlight an organization's trajectory. Lower rank = more AI patents that year."
+          insight="The rapid convergence of multiple firms at the top since 2012 reflects the intensifying competitive race in AI capabilities, as the deep learning revolution drew major investment from firms across technology sectors."
           loading={ootL}
           height={750}
           wide
@@ -309,6 +359,7 @@ export default function Chapter11() {
       <ChartContainer
         title="Most Prolific AI Inventors"
         caption="Primary inventors ranked by total AI-related patents, 1976-2025."
+        insight="The concentration of AI patenting among a small cohort of prolific inventors mirrors the broader 'superstar' pattern in innovation, where a few highly productive individuals account for a disproportionate share of output."
         loading={tiL}
         height={1400}
       >
@@ -336,6 +387,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patents by Country"
         caption="Countries ranked by total AI-related patents based on primary inventor location."
+        insight="The US lead in AI patenting reflects its concentration of major AI research labs and tech firms, but the strong showing of Japan and South Korea highlights Asia's significant investment in AI-driven electronics and consumer technology."
         loading={geoL}
         height={900}
       >
@@ -361,6 +413,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patents by US State"
         caption="US states ranked by total AI-related patents based on primary inventor location."
+        insight="California's dominance in AI patents reflects powerful agglomeration effects — proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         loading={geoL}
         height={900}
       >
@@ -388,6 +441,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patent Quality Over Time"
         caption="Average claims, backward citations, technology scope, and team size for AI-related patents by year."
+        insight="Rising backward citations and technology scope suggest AI patents are becoming more interconnected and interdisciplinary, reflecting AI's expanding role as a general-purpose technology."
         loading={qL}
       >
         <PWLineChart
@@ -400,6 +454,7 @@ export default function Chapter11() {
           ]}
           yLabel="Count"
           yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
 
@@ -408,7 +463,7 @@ export default function Chapter11() {
           AI patents exhibit distinctive quality characteristics relative to the broader
           patent system. The growing number of backward citations reflects the increasingly
           interconnected nature of AI research, while the expanding technology scope indicates
-          that AI inventions are becoming more interdisciplinary -- spanning multiple CPC
+          that AI inventions are becoming more interdisciplinary -- spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>{' '}
           subclasses as AI methods find applications across diverse technology domains.
         </p>
       </KeyInsight>
@@ -416,6 +471,7 @@ export default function Chapter11() {
       <ChartContainer
         title="AI Patent Team Size Over Time"
         caption="Average number of inventors per AI-related patent by year."
+        insight="Growing team sizes reflect the increasing complexity of AI research, which now requires expertise spanning machine learning, domain knowledge, hardware optimization, and software engineering."
         loading={qL}
       >
         <PWLineChart
@@ -426,6 +482,7 @@ export default function Chapter11() {
           ]}
           yLabel="Inventors"
           yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
 
@@ -439,15 +496,108 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="AI Patenting Strategies" />
+      <Narrative>
+        <p>
+          The top AI patent holders pursue very different strategies. Some focus deeply
+          on neural networks and deep learning, while others spread their portfolios across
+          computer vision, NLP, and other sub-areas. Comparing AI sub-field portfolios across
+          major players reveals where each company is placing its bets and where white
+          spaces exist.
+        </p>
+      </Narrative>
+      {strategyOrgs.length > 0 && (
+        <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-2 font-medium text-muted-foreground">Organization</th>
+                <th className="text-left py-2 px-2 font-medium text-muted-foreground">Top Sub-Areas</th>
+                <th className="text-right py-2 px-2 font-medium text-muted-foreground">Total AI Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {strategyOrgs.slice(0, 15).map((org, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-2 font-medium text-sm">{org.organization.length > 30 ? org.organization.slice(0, 27) + '...' : org.organization}</td>
+                  <td className="py-2 px-2">
+                    {org.subfields.slice(0, 3).map((sf, j) => (
+                      <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                      </span>
+                    ))}
+                  </td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          IBM leads in total AI patents but with a portfolio emphasizing knowledge-based
+          systems from its early AI era. Samsung and Google have built massive deep learning
+          portfolios. The most interesting strategic differences emerge in newer sub-areas:
+          NLP and speech recognition are more concentrated among a few players, while
+          computer vision is broadly contested. White spaces in quantum computing suggest
+          potential for early movers.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="AI as a General Purpose Technology" />
+      <Narrative>
+        <p>
+          A hallmark of general purpose technologies (GPTs) is that they diffuse into
+          many sectors of the economy. By tracking how often AI-classified patents also
+          carry CPC codes from non-AI technology areas (excluding Section G which contains
+          AI), we can measure AI&apos;s spread into healthcare, manufacturing, chemistry,
+          and other domains.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="AI Patent Co-Occurrence with Other Technology Areas"
+        caption="Percentage of AI patents that also carry CPC codes from each non-AI section (G excluded). Rising lines indicate AI diffusing into that sector."
+        insight="AI's presence across multiple CPC sections confirms its status as a general-purpose technology, similar to electricity or computing in earlier eras. The rising co-occurrence with healthcare and manufacturing signals AI's expanding real-world impact."
+        loading={agdL}
+      >
+        {gptPivot.length > 0 && (
+          <PWLineChart
+            data={gptPivot}
+            xKey="year"
+            lines={gptSections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="% of AI Patents"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          AI is increasingly behaving like a general purpose technology. The share of AI
+          patents co-classified with Human Necessities (A) — encompassing healthcare and
+          biomedical applications — has risen dramatically, reflecting the AI revolution
+          in medical imaging, drug discovery, and diagnostics. Co-occurrence with Electricity
+          (H) reflects AI&apos;s integration with hardware and telecommunications. The broad
+          upward trend across most sections confirms that AI is no longer a niche computing
+          technology but a transformative force across the entire innovation landscape.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         AI patents are identified using CPC classifications: G06N (computational models
         including neural networks and machine learning), G06F18 (pattern recognition),
         G06V (image/video recognition), G10L15 (speech recognition), and G06F40
         (natural language processing). A patent is classified as AI-related if any of
         its CPC codes fall within these categories. Subfield classifications are based
-        on more specific CPC group codes within G06N.
+        on more specific CPC group codes within G06N. AI patenting strategies show patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
+      <RelatedChapters currentChapter={11} />
       <ChapterNavigation currentChapter={11} />
     </div>
   );

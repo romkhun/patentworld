@@ -14,9 +14,12 @@ import { PWWorldFlowMap } from '@/components/charts/PWWorldFlowMap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import type { StateSummary, CountryPerYear, TopCity, StateSpecialization, StatePerYear, InventorFlow, InventorMobilityTrend } from '@/lib/types';
+import type { StateSummary, CountryPerYear, TopCity, StateSpecialization, StatePerYear, InventorFlow, InventorMobilityTrend, InnovationDiffusionEntry, RegionalSpecialization } from '@/lib/types';
 
 function pivotCountries(data: CountryPerYear[], topN: number = 15) {
   const totals: Record<string, number> = {};
@@ -47,6 +50,8 @@ export default function Chapter6() {
   const { data: stateFlows, loading: sfL } = useChapterData<InventorFlow[]>('chapter4/inventor_state_flows.json');
   const { data: countryFlows, loading: cfL } = useChapterData<InventorFlow[]>('chapter4/inventor_country_flows.json');
   const { data: mobilityTrend, loading: mtL } = useChapterData<InventorMobilityTrend[]>('chapter4/inventor_mobility_trend.json');
+  const { data: diffusion, loading: diffL } = useChapterData<InnovationDiffusionEntry[]>('chapter4/innovation_diffusion.json');
+  const { data: regionalSpec, loading: rsL } = useChapterData<RegionalSpecialization[]>('chapter4/regional_specialization.json');
 
   const topStates = useMemo(() => {
     if (!states) return [];
@@ -123,6 +128,32 @@ export default function Chapter6() {
     return { stateTimePivot: pivoted, stateTimeNames: topStateNames };
   }, [statesPerYear]);
 
+  const diffusionSummary = useMemo(() => {
+    if (!diffusion) return [];
+    // Top cities per tech area per period
+    const periods = [...new Set(diffusion.map(d => d.period))].sort();
+    const techAreas = [...new Set(diffusion.map(d => d.tech_area))].sort();
+    return techAreas.map(tech => ({
+      tech_area: tech,
+      periods: periods.map(period => {
+        const entries = diffusion.filter(d => d.tech_area === tech && d.period === period);
+        return {
+          period,
+          total_cities: entries.length,
+          total_patents: entries.reduce((s, d) => s + d.patent_count, 0),
+        };
+      }),
+    }));
+  }, [diffusion]);
+
+  const topSpecializations = useMemo(() => {
+    if (!regionalSpec) return [];
+    return [...regionalSpec]
+      .filter(d => d.location_quotient >= 1.5)
+      .sort((a, b) => b.location_quotient - a.location_quotient)
+      .slice(0, 30);
+  }, [regionalSpec]);
+
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
   const topStateName = states?.[0]?.state ?? 'California';
 
@@ -133,6 +164,13 @@ export default function Chapter6() {
         title="The Geography of Innovation"
         subtitle="Where patents come from"
       />
+
+      <KeyFindings>
+        <li>Patent activity is heavily concentrated in a few US states — California, Texas, and New York account for a disproportionate share of all grants.</li>
+        <li>Japan, South Korea, and Germany are the leading foreign sources of US patents, reflecting their strong national innovation systems.</li>
+        <li>Geographic concentration of patenting has increased over time, with innovation hubs like Silicon Valley and the Boston-Cambridge corridor pulling further ahead.</li>
+        <li>China&apos;s share of US patents has grown rapidly since the 2000s, though it started from a very low base.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -146,6 +184,7 @@ export default function Chapter6() {
       <ChartContainer
         title="US Patent Activity by State"
         caption="Total utility patents by primary inventor state, 1976-2025. Darker shading indicates higher patent counts."
+        insight="The coastal concentration of patent activity reflects the clustering of technology firms, research universities, and venture capital in a handful of innovation ecosystems."
         loading={stL}
         height={650}
       >
@@ -165,6 +204,7 @@ export default function Chapter6() {
       <ChartContainer
         title="US States by Patent Count"
         caption="Total utility patents by primary inventor state, 1976-2025."
+        insight="California alone accounts for roughly one-fifth of all US patent activity, driven by the Silicon Valley ecosystem of venture capital, universities, and tech firms."
         loading={stL}
         height={1200}
       >
@@ -199,6 +239,7 @@ export default function Chapter6() {
         <ChartContainer
           title="Top States: Patent Output Over Time"
           caption="Annual patent grants for the 10 leading states by total output, 1976-2025."
+          insight="California's accelerating divergence from other states since the 1990s reflects the compounding advantages of Silicon Valley's innovation ecosystem."
           loading={spyL}
         >
           <PWLineChart
@@ -210,6 +251,7 @@ export default function Chapter6() {
               color: CHART_COLORS[i % CHART_COLORS.length],
             }))}
             yLabel="Patents"
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
           />
         </ChartContainer>
       )}
@@ -230,6 +272,7 @@ export default function Chapter6() {
       <ChartContainer
         title="US Cities by Patent Count"
         caption="Total utility patents by primary inventor city, 1976-2025."
+        insight="City-level data reveals even more extreme concentration than state-level figures, with a handful of tech hubs accounting for a vastly disproportionate share of national innovation output."
         loading={ciL}
         height={1400}
       >
@@ -265,6 +308,7 @@ export default function Chapter6() {
       <ChartContainer
         title="Top Countries: Patents Over Time"
         caption="Annual utility patent grants by primary inventor country (top 8 countries by total)."
+        insight="Japan's dominant position reflects decades of corporate R&D investment, while South Korea's rapid rise mirrors Samsung and LG's aggressive patent strategies."
         loading={coL}
       >
         <PWLineChart
@@ -276,6 +320,7 @@ export default function Chapter6() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           yLabel="Patents"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
 
@@ -301,6 +346,7 @@ export default function Chapter6() {
         <ChartContainer
           title="State Technology Specialization"
           caption="CPC technology section distribution for all states by total patents. Each bar totals 100%."
+          insight="The geographic concentration of innovation creates self-reinforcing cycles — talent, capital, and knowledge spillovers cluster in established hubs with distinctive technology specializations."
           loading={spL}
           height={1200}
         >
@@ -345,6 +391,7 @@ export default function Chapter6() {
         <ChartContainer
           title="Inventor Mobility Rate Over Time"
           caption="Percentage of patents filed by inventors who have moved from a different state or country since their previous patent."
+          insight="Inventor mobility is a critical mechanism for knowledge diffusion, carrying tacit knowledge and professional networks from one innovation hub to another."
           loading={mtL}
         >
           <PWLineChart
@@ -356,6 +403,7 @@ export default function Chapter6() {
             ]}
             yLabel="Percent"
             yFormatter={(v) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
           />
         </ChartContainer>
       )}
@@ -375,6 +423,7 @@ export default function Chapter6() {
         <ChartContainer
           title="Interstate Inventor Migration Flows"
           caption="Most common state-to-state moves by inventors, based on sequential patents filed from different states."
+          insight="The dominant migration corridors reveal the gravitational pull of major technology clusters, with California as both the largest source and destination of inventor talent."
           loading={sfL}
           height={900}
         >
@@ -391,6 +440,7 @@ export default function Chapter6() {
         <ChartContainer
           title="International Inventor Migration Flows"
           caption="Global map of inventor migration between countries. Arc width represents volume of moves. Countries colored by total inventor movement. Hover over arcs or countries for details."
+          insight="The United States serves as the primary global hub for inventor migration, connecting East Asian, European, and other innovation ecosystems through flows of talented researchers."
           loading={cfL}
           height={650}
           wide
@@ -409,13 +459,100 @@ export default function Chapter6() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Innovation Diffusion" />
+      <Narrative>
+        <p>
+          How do new technologies spread geographically from early hubs to secondary cities?
+          Tracking patent activity in AI, Biotech &amp; Pharma, and Clean Energy across cities
+          reveals the diffusion pattern: innovations typically emerge in a few pioneering
+          locations before spreading as knowledge and talent disperse.
+        </p>
+      </Narrative>
+      {diffusionSummary.length > 0 && (
+        <div className="max-w-3xl mx-auto my-8">
+          {diffusionSummary.map((tech) => (
+            <div key={tech.tech_area} className="mb-6">
+              <h3 className="text-sm font-semibold mb-2">{tech.tech_area}</h3>
+              <div className="flex gap-4 overflow-x-auto text-xs">
+                {tech.periods.filter(p => p.total_patents > 0).map((p) => (
+                  <div key={p.period} className="flex-shrink-0 text-center px-3 py-2 rounded-lg bg-muted/50">
+                    <div className="font-mono font-medium">{p.period}</div>
+                    <div className="text-muted-foreground">{p.total_cities} cities</div>
+                    <div className="font-semibold">{p.total_patents.toLocaleString()} patents</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          All three technology areas show a clear diffusion pattern: early concentration in
+          a handful of pioneering cities followed by geographic spread. AI patenting was
+          heavily concentrated in Silicon Valley and a few East Coast hubs in the 1990s but
+          has since spread to dozens of cities worldwide. Biotech shows a similar pattern
+          anchored by Boston, San Francisco, and San Diego. Clean energy patenting remains
+          more geographically dispersed, reflecting the diverse nature of renewable
+          technologies.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Regional Specialization" />
+      <Narrative>
+        <p>
+          Which cities punch above their weight in specific technologies? The Location
+          Quotient (LQ) measures a city&apos;s relative specialization: an LQ above 1 means the
+          city has a higher share of that technology than the national average. High LQ
+          values reveal distinctive innovation ecosystems.
+        </p>
+      </Narrative>
+      {topSpecializations.length > 0 && (
+        <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Most Specialized Innovation Hubs (2010-2025, LQ &ge; 1.5)</h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">City</th>
+                <th className="text-center py-2 px-3 font-medium text-muted-foreground">State</th>
+                <th className="text-center py-2 px-3 font-medium text-muted-foreground">Section</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Location Quotient</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {topSpecializations.map((rs, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{rs.city}</td>
+                  <td className="text-center py-2 px-3">{rs.state}</td>
+                  <td className="text-center py-2 px-3">{rs.section}: {CPC_SECTION_NAMES[rs.section] ?? ''}</td>
+                  <td className="text-right py-2 px-3 font-mono font-semibold">{rs.location_quotient.toFixed(2)}</td>
+                  <td className="text-right py-2 px-3 font-mono">{rs.metro_section_count.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Regional specialization reveals the distinctive innovation DNA of American cities.
+          Detroit&apos;s mechanical engineering specialization reflects its automotive heritage.
+          San Diego stands out for Human Necessities (biotech/pharma) alongside its military
+          technology base. Research Triangle cities in North Carolina show strong chemistry
+          specialization. These patterns suggest that innovation ecosystems develop persistent
+          comparative advantages shaped by local industry, universities, and talent pools.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView
         disambiguated records. Only utility patents with valid location data are included.
         Inventor mobility is inferred from changes in reported location between sequential
-        patents by the same disambiguated inventor.
+        patents by the same disambiguated inventor. Innovation diffusion tracks patent activity in AI, Biotech & Pharma, and Clean Energy across cities with 5+ patents per period. Regional specialization uses Location Quotient (LQ) computed for US cities with 500+ patents (2010-2025).
       </DataNote>
 
+      <RelatedChapters currentChapter={5} />
       <ChapterNavigation currentChapter={5} />
     </div>
   );

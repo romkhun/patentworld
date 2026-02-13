@@ -1,10 +1,11 @@
 'use client';
 
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import type { ReferenceEvent } from '@/lib/referenceEvents';
 
 interface LineConfig {
   key: string;
@@ -22,9 +23,10 @@ interface PWLineChartProps {
   yFormatter?: (v: number) => string;
   rightYLabel?: string;
   rightYFormatter?: (v: number) => string;
+  referenceLines?: ReferenceEvent[];
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
 
   return (
@@ -99,6 +101,16 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
           iconType="circle"
           iconSize={8}
         />
+        {referenceLines?.map((ref) => (
+          <ReferenceLine
+            key={ref.x}
+            x={ref.x}
+            yAxisId="left"
+            stroke={ref.color ?? '#9ca3af'}
+            strokeDasharray="4 4"
+            label={{ value: ref.label, position: 'top', fontSize: 10, fill: ref.color ?? '#9ca3af' }}
+          />
+        ))}
         {lines.map((line, i) => {
           const color = line.color ?? CHART_COLORS[i % CHART_COLORS.length];
           return (

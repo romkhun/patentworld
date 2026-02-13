@@ -13,6 +13,10 @@ import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import { CHART_COLORS } from '@/lib/colors';
 import type { PatentsPerYear, ClaimsPerYear, GrantLag, HeroStats } from '@/lib/types';
@@ -48,6 +52,13 @@ export default function Chapter1() {
         subtitle="50 years of global invention in 9.36 million US patents"
       />
 
+      <KeyFindings>
+        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a roughly fivefold increase in annual output over five decades.</li>
+        <li>Utility patents account for over 90% of all grants, with design patents growing as a secondary category.</li>
+        <li>Patent complexity has risen steadily: average claims per patent have increased, indicating broader protection strategies.</li>
+        <li>Grant lag — the time from filing to grant — peaked above 3 years in the early 2000s, creating uncertainty during a period of rapid technological change.</li>
+      </KeyFindings>
+
       <StatGrid>
         <StatCard value={totalPatents} label="Total Patents" />
         <StatCard value="50" label="Years (1976-2025)" />
@@ -67,6 +78,7 @@ export default function Chapter1() {
       <ChartContainer
         title="Patent Grants Over Time"
         caption="Annual patent grants by type, 1976-2025. Utility patents represent inventions; design patents protect ornamental appearance. Source: PatentsView."
+        insight="The fivefold growth in annual patent grants since 1976 reflects both more invention and the growing strategic importance of intellectual property. The 2008 dip and 2020 COVID disruption are visible in the data."
         loading={ppyL}
       >
         <PWAreaChart
@@ -80,13 +92,14 @@ export default function Chapter1() {
           ]}
           stacked
           yLabel="Patents"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
 
       <Narrative>
         <p>
           Patent grants have grown dramatically, from roughly 70,000 per year in the late
-          1970s to over 350,000 per year in recent times. Utility patents -- which protect
+          1970s to over 350,000 per year in recent times. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> -- which protect
           new inventions and processes -- make up over 90% of all grants. Design patents,
           protecting ornamental designs, have also seen steady growth.
         </p>
@@ -109,6 +122,7 @@ export default function Chapter1() {
       <ChartContainer
         title="Patent Complexity: Claims Per Patent"
         caption="Average and median number of claims per utility patent. More claims generally indicate more complex inventions."
+        insight="The widening gap between average and median claims suggests a growing subset of patents with very broad claim sets — a pattern consistent with defensive patenting and patent thicket strategies."
         loading={clL}
       >
         <PWLineChart
@@ -143,6 +157,7 @@ export default function Chapter1() {
       <ChartContainer
         title="Time from Filing to Grant"
         caption="Average and median days between patent application filing and grant, converted to years."
+        insight="Patent pendency functions as a hidden cost of innovation. The 2000s spike coincided with the computing and telecom boom, when timely patent review mattered most for fast-moving industries."
         loading={lagL}
       >
         <PWLineChart
@@ -158,6 +173,7 @@ export default function Chapter1() {
           ]}
           yLabel="Years"
           yFormatter={(v) => `${v.toFixed(1)}y`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2011] })}
         />
       </ChartContainer>
 
@@ -186,6 +202,7 @@ export default function Chapter1() {
         from January 1976 through September 2025.
       </DataNote>
 
+      <RelatedChapters currentChapter={1} />
       <ChapterNavigation currentChapter={1} />
     </div>
   );

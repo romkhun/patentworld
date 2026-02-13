@@ -7,6 +7,7 @@ export interface ChapterMeta {
   title: string;
   subtitle: string;
   description: string;
+  relatedChapters?: number[];
 }
 
 export const CHAPTERS: ChapterMeta[] = [
@@ -16,6 +17,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Innovation Landscape',
     subtitle: '50 years of global invention in 9.36 million US patents',
     description: 'How has the pace and nature of patenting changed since 1976?',
+    relatedChapters: [2, 8, 9],
   },
   {
     number: 2,
@@ -23,6 +25,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Technology Revolution',
     subtitle: 'The shifting frontiers of technology',
     description: 'Which technologies are rising, and which are fading?',
+    relatedChapters: [1, 7, 11],
   },
   {
     number: 3,
@@ -30,6 +33,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Who Innovates?',
     subtitle: 'The organizations driving patent activity',
     description: 'From IBM to Samsung: who holds the patents, and how has that changed?',
+    relatedChapters: [4, 6, 9],
   },
   {
     number: 4,
@@ -37,6 +41,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Inventors',
     subtitle: 'The people behind the patents',
     description: 'Team sizes, gender trends, and the most prolific inventors.',
+    relatedChapters: [3, 5, 6],
   },
   {
     number: 5,
@@ -44,6 +49,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Geography of Innovation',
     subtitle: 'Where ideas are born',
     description: 'Innovation hubs from Silicon Valley to Shenzhen.',
+    relatedChapters: [4, 6, 8],
   },
   {
     number: 6,
@@ -51,6 +57,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Collaboration Networks',
     subtitle: 'The web of co-invention and co-patenting',
     description: 'How do firms and inventors collaborate? Network analysis reveals the hidden structure of innovation.',
+    relatedChapters: [4, 5, 7],
   },
   {
     number: 7,
@@ -58,6 +65,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Knowledge Network',
     subtitle: 'How ideas build on ideas',
     description: 'Citations, government funding, and the flow of knowledge.',
+    relatedChapters: [2, 9, 10],
   },
   {
     number: 8,
@@ -65,6 +73,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Innovation Dynamics',
     subtitle: 'The tempo and trajectory of invention',
     description: 'Grant lag, cross-domain convergence, global collaboration, and the velocity of innovation.',
+    relatedChapters: [1, 5, 9],
   },
   {
     number: 9,
@@ -72,6 +81,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Patent Quality',
     subtitle: 'Measuring the value and impact of inventions',
     description: 'Forward citations, originality, generality, and other dimensions of patent quality over 50 years.',
+    relatedChapters: [1, 7, 10],
   },
   {
     number: 10,
@@ -79,6 +89,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Patent Law & Policy',
     subtitle: 'The rules that shape innovation',
     description: 'Major legislation, Supreme Court decisions, and policy changes that have shaped the US patent system.',
+    relatedChapters: [7, 9, 11],
   },
   {
     number: 11,
@@ -86,6 +97,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Artificial Intelligence',
     subtitle: 'The rise of AI in the patent system',
     description: 'How AI patenting has evolved from early expert systems to the deep learning and generative AI era.',
+    relatedChapters: [2, 4, 10],
   },
 ];
 

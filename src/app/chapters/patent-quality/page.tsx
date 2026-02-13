@@ -11,10 +11,16 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS, WIPO_SECTOR_COLORS } from '@/lib/colors';
+import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type {
   QualityTrend, OriginalityGenerality, SelfCitationRate,
   QualityBySector, BreakthroughPatent,
+  CompositeQualityIndex, SleepingBeauty,
 } from '@/lib/types';
 
 export default function Chapter9() {
@@ -23,6 +29,8 @@ export default function Chapter9() {
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
   const { data: bySector, loading: bsL } = useChapterData<QualityBySector[]>('chapter9/quality_by_sector.json');
   const { data: breakthrough, loading: btL } = useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
+  const { data: compositeQuality, loading: cqL } = useChapterData<CompositeQualityIndex[]>('chapter9/composite_quality_index.json');
+  const { data: sleepingBeauties, loading: sbL } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
 
   // Pivot quality by sector for line chart
   const { sectorPivot, sectorNames } = useMemo(() => {
@@ -39,6 +47,20 @@ export default function Chapter9() {
     return { sectorPivot: pivoted, sectorNames: sectors };
   }, [bySector]);
 
+  const { compositeQualityPivot, compositeQualitySections } = useMemo(() => {
+    if (!compositeQuality) return { compositeQualityPivot: [], compositeQualitySections: [] };
+    const sections = [...new Set(compositeQuality.map(d => d.section))].sort();
+    const years = [...new Set(compositeQuality.map(d => d.year))].sort((a, b) => a - b);
+    const pivoted = years.map(year => {
+      const row: Record<string, any> = { year };
+      compositeQuality.filter(d => d.year === year).forEach(d => {
+        row[d.section] = d.composite_index;
+      });
+      return row;
+    });
+    return { compositeQualityPivot: pivoted, compositeQualitySections: sections };
+  }, [compositeQuality]);
+
   return (
     <div>
       <ChapterHeader
@@ -46,6 +68,13 @@ export default function Chapter9() {
         title="Patent Quality"
         subtitle="Measuring the value and impact of inventions"
       />
+
+      <KeyFindings>
+        <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent have declined over time, partly due to the expanding volume of patents diluting citation counts.</li>
+        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> — how broadly a patent draws on diverse prior art — has increased, suggesting more interdisciplinary innovation.</li>
+        <li>Patent <GlossaryTooltip term="generality">generality</GlossaryTooltip> — how broadly a patent is cited across fields — shows technology-specific patterns, with foundational inventions scoring highest.</li>
+        <li>Quality metrics vary substantially across technology sectors, with biotech and pharma patents tending to receive more citations per patent than electronics.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -74,6 +103,7 @@ export default function Chapter9() {
         title="Claims Per Patent Over Time"
         caption="Average and median number of claims per utility patent, 1976-2025. Claims define the legally protected boundaries of an invention."
         loading={trL}
+        insight="The doubling of average claims since the 1970s reflects both increasing invention complexity and strategic behavior by applicants seeking broader legal protection."
       >
         <PWLineChart
           data={trends ?? []}
@@ -84,6 +114,7 @@ export default function Chapter9() {
           ]}
           yLabel="Claims"
           yFormatter={(v) => v.toFixed(0)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -104,6 +135,7 @@ export default function Chapter9() {
         title="Citation Impact Over Time"
         caption="Average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020)."
         loading={trL}
+        insight="The decline in average citations partly reflects citation dilution — more patents means each individual patent receives a smaller share of total citations."
       >
         <PWLineChart
           data={(trends ?? []).filter((d) => d.year <= 2020)}
@@ -114,6 +146,7 @@ export default function Chapter9() {
           ]}
           yLabel="Citations"
           yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -140,6 +173,7 @@ export default function Chapter9() {
         title="Backward Citations Over Time"
         caption="Average and median backward citations (references to prior art) per utility patent, 1976-2025."
         loading={trL}
+        insight="The growing body of backward citations reflects the expanding universe of prior art and more thorough examination and disclosure requirements over time."
       >
         <PWLineChart
           data={trends ?? []}
@@ -150,6 +184,7 @@ export default function Chapter9() {
           ]}
           yLabel="Citations"
           yFormatter={(v) => v.toFixed(0)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -169,6 +204,7 @@ export default function Chapter9() {
         title="Patent Scope Over Time"
         caption="Average and median number of distinct CPC subclasses per patent, measuring technological breadth."
         loading={trL}
+        insight="Broadening patent scope reflects the convergence of once-separate technology domains, with modern inventions in areas like IoT, biotech, and AI spanning multiple classification categories."
       >
         <PWLineChart
           data={trends ?? []}
@@ -179,6 +215,7 @@ export default function Chapter9() {
           ]}
           yLabel="CPC Subclasses"
           yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -208,6 +245,7 @@ export default function Chapter9() {
         title="Originality and Generality Indices"
         caption="Average originality (1 - HHI of backward citation CPC sections) and generality (1 - HHI of forward citation CPC sections) by year. Higher = more diverse."
         loading={ogL}
+        insight="Rising originality scores indicate that modern inventions increasingly synthesize knowledge from diverse technology fields, consistent with growing interdisciplinary research."
       >
         <PWLineChart
           data={origGen ?? []}
@@ -218,6 +256,7 @@ export default function Chapter9() {
           ]}
           yLabel="Index (0-1)"
           yFormatter={(v) => v.toFixed(2)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -238,6 +277,7 @@ export default function Chapter9() {
         title="Self-Citation Rate Over Time"
         caption="Average self-citation rate per patent (fraction of backward citations to patents held by the same assignee), by year."
         loading={scL}
+        insight="Self-citation patterns reveal knowledge accumulation strategies within firms, with changes over time reflecting shifts between exploration of new domains and exploitation of established competencies."
       >
         <PWLineChart
           data={selfCite ?? []}
@@ -248,6 +288,7 @@ export default function Chapter9() {
           ]}
           yLabel="Rate"
           yFormatter={(v) => `${(v * 100).toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -268,6 +309,7 @@ export default function Chapter9() {
         title="Breakthrough Patent Rate"
         caption="Percentage of patents in the top 1% of forward citations within their year-technology cohort, 1976-2020."
         loading={btL}
+        insight="Variation in the breakthrough rate over time reveals whether the right tail of the citation distribution is shifting, indicating changes in how concentrated inventive impact is among top patents."
       >
         <PWLineChart
           data={breakthrough ?? []}
@@ -277,6 +319,7 @@ export default function Chapter9() {
           ]}
           yLabel="Percent"
           yFormatter={(v) => `${v.toFixed(2)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
       </ChartContainer>
 
@@ -297,6 +340,7 @@ export default function Chapter9() {
         title="Patent Complexity by Technology Sector"
         caption="Average claims per patent by WIPO sector over 5-year periods. Shows how patent complexity varies across technology domains."
         loading={bsL}
+        insight="Biotech and pharma patents tend to have higher citation impact per patent, reflecting the slower but more impactful nature of pharmaceutical innovation."
       >
         <PWLineChart
           data={sectorPivot}
@@ -322,15 +366,110 @@ export default function Chapter9() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Sleeping Beauty Patents" />
+      <Narrative>
+        <p>
+          Some patents receive little attention for years, only to be &quot;rediscovered&quot; when
+          technology catches up. These &quot;sleeping beauties&quot; received fewer than 2 citations
+          per year for their first 10 years, then experienced a burst of 10+ citations
+          in a 3-year window. They represent ideas that were ahead of their time.
+        </p>
+      </Narrative>
+      {sleepingBeauties && sleepingBeauties.length > 0 && (
+        <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Top Sleeping Beauty Patents</h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Patent ID</th>
+                <th className="text-center py-2 px-3 font-medium text-muted-foreground">Year</th>
+                <th className="text-center py-2 px-3 font-medium text-muted-foreground">Section</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Early Cites</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Burst Cites</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Burst Year</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Cites</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sleepingBeauties.slice(0, 20).map((sb, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3 font-mono text-xs">{sb.patent_id}</td>
+                  <td className="text-center py-2 px-3">{sb.grant_year}</td>
+                  <td className="text-center py-2 px-3">{sb.section}</td>
+                  <td className="text-right py-2 px-3 font-mono">{sb.early_cites}</td>
+                  <td className="text-right py-2 px-3 font-mono font-semibold">{sb.burst_citations}</td>
+                  <td className="text-right py-2 px-3">+{sb.burst_year_after_grant}yr</td>
+                  <td className="text-right py-2 px-3 font-mono">{sb.total_fwd_cites.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Sleeping beauty patents span many technology areas but are especially common in
+          Chemistry and Physics, where fundamental discoveries may take decades to find
+          practical applications. The existence of these dormant-then-explosive patents
+          challenges the assumption that citation impact can be assessed within a short
+          window after grant, and suggests that the patent system occasionally captures
+          genuinely visionary inventions.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Composite Quality Index" />
+      <Narrative>
+        <p>
+          Individual quality metrics each capture one dimension of patent value. By combining
+          forward citations, claims count, technology scope, and grant speed into a single
+          Z-score normalized composite index, we can track overall patent quality trends
+          across technology areas. Positive values indicate above-average quality; negative
+          values indicate below-average.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Composite Patent Quality Index by Technology Area"
+        caption="Z-score normalized composite of forward citations (5yr), claims, scope, and grant speed. Values above 0 = above average."
+        loading={cqL}
+        insight="Patents with high generality scores represent foundational innovations that influence many downstream technology areas, while the overall downward trend may reflect the system granting more patents of lower individual impact."
+      >
+        {compositeQualityPivot.length > 0 && (
+          <PWLineChart
+            data={compositeQualityPivot}
+            xKey="year"
+            lines={compositeQualitySections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="Composite Index (Z-score)"
+            yFormatter={(v: number) => v.toFixed(2)}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          The composite quality index reveals diverging trajectories across technology areas.
+          Chemistry and Human Necessities patents have maintained consistently higher composite
+          quality, driven by strong forward citation rates and broad scope. Meanwhile, the
+          explosive growth in Electronics and Physics patenting has been accompanied by declining
+          average quality, consistent with concerns about patent thickets in those domains.
+          The overall downward trend since the 1990s may reflect the system granting more
+          patents of lower individual impact.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Quality indicators computed from PatentsView data following the framework of Jaffe &
         de Rassenfosse (2017). Forward citations use a 5-year window and are limited to
         patents granted through 2020 for citation accumulation. Originality and generality
         use the Herfindahl-based measures of Trajtenberg, Henderson, & Jaffe (1997).
         Breakthrough patents are defined as the top 1% of forward citations within each
-        year-technology cohort.
+        year-technology cohort. The composite quality index combines Z-score normalized forward citations (5-year window), claims count, technology scope, and grant speed (inverted). Sleeping beauty patents are identified as those with fewer than 2 citations per year in their first 10 years followed by a burst of 10+ citations in a 3-year window.
       </DataNote>
 
+      <RelatedChapters currentChapter={9} />
       <ChapterNavigation currentChapter={9} />
     </div>
   );

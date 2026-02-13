@@ -10,6 +10,10 @@ import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+
 import { CHART_COLORS } from '@/lib/colors';
 import type { NetworkData } from '@/lib/types';
 
@@ -25,9 +29,16 @@ export default function Chapter6() {
         subtitle="The web of co-invention and co-patenting"
       />
 
+      <KeyFindings>
+        <li>Cross-organizational co-patenting has increased dramatically, with more patents listing inventors from multiple institutions.</li>
+        <li>International collaboration on patents has grown steadily, particularly between US, European, and East Asian inventors.</li>
+        <li>Inventor migration between organizations creates knowledge transfer channels that citations alone cannot capture.</li>
+        <li>The co-invention network has become increasingly interconnected, enabling faster diffusion of knowledge across the innovation ecosystem.</li>
+      </KeyFindings>
+
       <Narrative>
         <p>
-          Innovation rarely happens in isolation. Patents frequently list multiple assignees or
+          Innovation rarely happens in isolation. Patents frequently list multiple <GlossaryTooltip term="assignee">assignees</GlossaryTooltip> or
           inventors from different organizations, revealing a rich tapestry of{' '}
           <StatCallout value="collaborative relationships" />. Network analysis uncovers the
           hidden structure of these connections -- which organizations co-patent together, which
@@ -60,6 +71,7 @@ export default function Chapter6() {
       <ChartContainer
         title="Co-Patenting Network (All Organizations)"
         caption="Co-patenting network among organizations with significant collaboration ties. Node size = total patents; edge width = shared patents. Hover over nodes for details; drag to reposition."
+        insight="The rise of co-patenting reflects both the growing complexity of innovation and strategic inter-firm collaboration in technology development."
         loading={fnL}
         height={900}
         wide
@@ -108,6 +120,7 @@ export default function Chapter6() {
       <ChartContainer
         title="Co-Invention Network (All Inventors)"
         caption="Co-invention network among inventors with significant collaboration ties. Edges = shared patents. Node size = total patents. Hover over nodes for details; drag to reposition."
+        insight="The increasing connectivity of the co-invention network means knowledge can diffuse faster, but may also create path dependencies in innovation direction."
         loading={inL}
         height={900}
         wide
@@ -148,6 +161,7 @@ export default function Chapter6() {
         clutter.
       </DataNote>
 
+      <RelatedChapters currentChapter={6} />
       <ChapterNavigation currentChapter={6} />
     </div>
   );

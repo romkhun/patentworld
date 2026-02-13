@@ -57,8 +57,21 @@ export function chapterJsonLd(slug: string): object[] | null {
       '@type': 'Article',
       headline: ch.title,
       description: `${ch.subtitle}. ${ch.description}`,
-      author: { '@type': 'Organization', name: 'PatentWorld' },
-      publisher: { '@type': 'Organization', name: 'PatentWorld' },
+      author: {
+        '@type': 'Person',
+        name: 'Saerom (Ronnie) Lee',
+        affiliation: {
+          '@type': 'Organization',
+          name: 'The Wharton School, University of Pennsylvania',
+        },
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'University of Pennsylvania',
+        url: 'https://www.upenn.edu',
+      },
+      datePublished: '2025-01-01',
+      dateModified: '2025-06-01',
       mainEntityOfPage: `${BASE_URL}/chapters/${ch.slug}/`,
       keywords: CHAPTER_KEYWORDS[slug]?.join(', '),
       isPartOf: {

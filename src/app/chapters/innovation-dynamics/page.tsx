@@ -15,12 +15,17 @@ import { PWBarChart } from '@/components/charts/PWBarChart';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type {
   GrantLagBySector,
   CrossDomain,
   IntlCollaboration,
   CorpDiversification,
   InnovationVelocity,
+  FrictionMapEntry,
 } from '@/lib/types';
 
 function pivotGrantLag(data: GrantLagBySector[]) {
@@ -51,6 +56,7 @@ export default function Chapter8() {
   const { data: intlCollab, loading: icL } = useChapterData<IntlCollaboration[]>('chapter7/intl_collaboration.json');
   const { data: corpDiv, loading: cpL } = useChapterData<CorpDiversification[]>('chapter7/corp_diversification.json');
   const { data: velocity, loading: vlL } = useChapterData<InnovationVelocity[]>('chapter7/innovation_velocity.json');
+  const { data: frictionMap, loading: fmL } = useChapterData<FrictionMapEntry[]>('chapter7/friction_map.json');
 
   const lagPivot = useMemo(() => grantLag ? pivotGrantLag(grantLag) : [], [grantLag]);
   const sectorNames = useMemo(() => {
@@ -63,6 +69,20 @@ export default function Chapter8() {
     if (!velocity) return [];
     return [...new Set(velocity.map((d) => d.sector))];
   }, [velocity]);
+
+  const { frictionPivot, frictionSections } = useMemo(() => {
+    if (!frictionMap) return { frictionPivot: [], frictionSections: [] };
+    const sections = [...new Set(frictionMap.map(d => d.section))].sort();
+    const periods = [...new Set(frictionMap.map(d => d.period))].sort();
+    const pivoted = periods.map(period => {
+      const row: Record<string, any> = { period };
+      frictionMap.filter(d => d.period === period).forEach(d => {
+        row[d.section] = d.median_lag_years;
+      });
+      return row;
+    });
+    return { frictionPivot: pivoted, frictionSections: sections };
+  }, [frictionMap]);
 
   const corpDivLate = useMemo(() => {
     if (!corpDiv) return [];
@@ -89,6 +109,13 @@ export default function Chapter8() {
         subtitle="The tempo and trajectory of invention"
       />
 
+      <KeyFindings>
+        <li><GlossaryTooltip term="grant lag">Grant lag</GlossaryTooltip> varies significantly by technology sector — software and electronics patents face longer pendency times than mechanical inventions.</li>
+        <li>Cross-domain innovation has intensified, with patents increasingly spanning multiple technology classifications.</li>
+        <li>International collaboration on patents has grown steadily, particularly between the US, Europe, and East Asia.</li>
+        <li>Innovation velocity — measured by the speed of knowledge diffusion through citations — has accelerated in digital technology fields.</li>
+      </KeyFindings>
+
       <Narrative>
         <p>
           Beyond what is patented and by whom, the <StatCallout value="dynamics of innovation" /> --
@@ -102,6 +129,7 @@ export default function Chapter8() {
         title="Grant Lag by Technology Sector (5-Year Periods)"
         caption="Average days from application filing to patent grant, by WIPO sector."
         loading={glL}
+        insight="Technology-specific backlogs reflect both the complexity of patent examination in certain fields and the USPTO's resource allocation challenges."
       >
         <PWLineChart
           data={lagPivot}
@@ -141,6 +169,7 @@ export default function Chapter8() {
         caption="Number of patents classified in a single section, two sections, or three or more CPC sections (excluding Y). Stacked from bottom: Single Section, Two Sections, Three+ Sections."
         loading={cdL}
         height={500}
+        insight="Rising cross-domain innovation suggests that technological boundaries are blurring, with breakthroughs increasingly occurring at the intersection of multiple fields."
       >
         <PWAreaChart
           data={crossDomain ?? []}
@@ -151,12 +180,13 @@ export default function Chapter8() {
             { key: 'three_plus_sections', name: 'Three+ Sections', color: CHART_COLORS[3] },
           ]}
           stacked
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
       </ChartContainer>
 
       <Narrative>
         <p>
-          The share of patents spanning multiple CPC sections has grown over time, reflecting
+          The share of patents spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections has grown over time, reflecting
           increasing <StatCallout value="technological convergence" />. Modern inventions
           increasingly draw on knowledge from multiple domains -- a hallmark of the digital age
           where software, electronics, and traditional engineering intersect.
@@ -178,6 +208,7 @@ export default function Chapter8() {
         title="International Collaboration in Patenting"
         caption="Patents with inventors from two or more countries: annual count and percentage of all patents."
         loading={icL}
+        insight="The growth of international co-invention reflects both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
         <PWLineChart
           data={intlCollab ?? []}
@@ -189,6 +220,7 @@ export default function Chapter8() {
           yLabel="Patents"
           rightYLabel="Percent"
           rightYFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
       </ChartContainer>
 
@@ -219,6 +251,7 @@ export default function Chapter8() {
           caption="Distribution of patent grants across CPC technology sections for the top 10 patent holders."
           loading={cpL}
           height={650}
+          insight="Portfolio breadth correlates with firm longevity at the top of the patent rankings, as the most persistent leaders maintain diversified technology portfolios."
         >
           <PWBarChart
             data={corpDivLate}
@@ -258,6 +291,7 @@ export default function Chapter8() {
         title="Innovation Velocity: Year-over-Year Growth by Sector"
         caption="Annual percentage change in patent grants by WIPO sector."
         loading={vlL}
+        insight="Faster citation accumulation in digital fields confirms the accelerating pace of knowledge creation and obsolescence in computing and electronics."
       >
         <PWLineChart
           data={velocityPivot}
@@ -269,6 +303,7 @@ export default function Chapter8() {
           }))}
           yLabel="Year-over-Year %"
           yFormatter={(v) => `${v > 0 ? '+' : ''}${v.toFixed(0)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
       </ChartContainer>
 
@@ -289,12 +324,55 @@ export default function Chapter8() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Patent Examination Friction" />
+      <Narrative>
+        <p>
+          Not all technologies move through the patent office at the same speed. The
+          &quot;friction map&quot; reveals which technology areas systematically face longer
+          examination times, measured as the median duration from filing to grant.
+          These differences reflect both the complexity of examination and USPTO resource
+          allocation across technology centers.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Median Examination Duration by Technology Area"
+        caption="Median time from application filing to patent grant, by CPC section and 5-year period."
+        loading={fmL}
+        insight="Examination duration patterns reveal the institutional friction that shapes innovation timelines, with technology-specific backlogs reflecting USPTO resource allocation across its technology centers."
+      >
+        {frictionPivot.length > 0 && (
+          <PWLineChart
+            data={frictionPivot}
+            xKey="period"
+            lines={frictionSections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="Median Years to Grant"
+            yFormatter={(v: number) => v.toFixed(1)}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Examination duration increased dramatically across all technology areas through
+          the 2000s, peaking around 2010-2014 as the USPTO struggled with a massive backlog.
+          The AIA reforms and USPTO hiring initiatives helped reduce pendency in subsequent
+          years. Physics (G) and Electricity (H) patents consistently face the longest
+          examination times, reflecting the complexity and volume of software and electronics
+          applications. The financial crisis of 2008-09 did not reduce filing rates enough to
+          ease the backlog, which continued growing until systemic reforms took effect.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Grant lag uses the difference between patent grant date and application filing date.
         Cross-domain analysis counts distinct CPC sections per patent (excluding section Y).
-        International collaboration identifies patents with inventors in 2+ different countries.
+        International collaboration identifies patents with inventors in 2+ different countries. Examination duration is measured as the time from application filing date to patent grant date, aggregated by CPC section and 5-year period.
       </DataNote>
 
+      <RelatedChapters currentChapter={8} />
       <ChapterNavigation currentChapter={8} />
     </div>
   );

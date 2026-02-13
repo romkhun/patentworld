@@ -13,10 +13,18 @@ import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS } from '@/lib/colors';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   TeamSizePerYear, ProlificInventor, InventorEntry,
   StarInventorImpact, InventorLongevity,
+  SuperstarConcentration, SoloInventorTrend, SoloInventorBySection,
+  FirstTimeInventor, InventorMobilityCitation, InventorMobilityByDecade,
+  GenderByTech, GenderTeamQuality, GenderSectionTrend,
 } from '@/lib/types';
 
 interface GenderRow {
@@ -51,6 +59,15 @@ export default function Chapter4() {
   const { data: entry, loading: enL } = useChapterData<InventorEntry[]>('chapter5/inventor_entry.json');
   const { data: starImpact, loading: siL } = useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
   const { data: longevity, loading: lgL } = useChapterData<InventorLongevity[]>('chapter5/inventor_longevity.json');
+  const { data: superstar, loading: ssL } = useChapterData<SuperstarConcentration[]>('chapter5/superstar_concentration.json');
+  const { data: solo, loading: soloL } = useChapterData<SoloInventorTrend[]>('chapter5/solo_inventors.json');
+  const { data: soloBySection, loading: sbsL } = useChapterData<SoloInventorBySection[]>('chapter5/solo_inventors_by_section.json');
+  const { data: firstTime, loading: ftL } = useChapterData<FirstTimeInventor[]>('chapter5/first_time_inventors.json');
+  const { data: mobility, loading: mobL } = useChapterData<InventorMobilityCitation[]>('chapter5/inventor_mobility.json');
+  const { data: mobilityByDecade, loading: mbdL } = useChapterData<InventorMobilityByDecade[]>('chapter5/inventor_mobility_by_decade.json');
+  const { data: genderByTech, loading: gbtL } = useChapterData<GenderByTech[]>('chapter5/gender_by_tech.json');
+  const { data: genderTeamQuality, loading: gtqL } = useChapterData<GenderTeamQuality[]>('chapter5/gender_team_quality.json');
+  const { data: genderSectionTrend, loading: gstL } = useChapterData<GenderSectionTrend[]>('chapter5/gender_section_trend.json');
 
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
 
@@ -105,6 +122,20 @@ export default function Chapter4() {
     return { data, cohorts };
   }, [longevity]);
 
+  const { genderTrendPivot, genderTrendSections } = useMemo(() => {
+    if (!genderSectionTrend) return { genderTrendPivot: [], genderTrendSections: [] };
+    const sections = [...new Set(genderSectionTrend.map(d => d.section))].sort();
+    const periods = [...new Set(genderSectionTrend.map(d => d.period))].sort();
+    const pivoted = periods.map(period => {
+      const row: Record<string, any> = { period };
+      genderSectionTrend.filter(d => d.period === period).forEach(d => {
+        row[d.section] = d.female_pct;
+      });
+      return row;
+    });
+    return { genderTrendPivot: pivoted, genderTrendSections: sections };
+  }, [genderSectionTrend]);
+
   return (
     <div>
       <ChapterHeader
@@ -112,6 +143,13 @@ export default function Chapter4() {
         title="The Inventors"
         subtitle="The people behind the patents"
       />
+
+      <KeyFindings>
+        <li>Inventor team sizes have grown dramatically — the average patent now lists 2-3 inventors, up from predominantly solo inventions in the 1970s.</li>
+        <li>Women&apos;s share of patents has increased but remains below 15%, indicating a persistent gender gap in patented innovation.</li>
+        <li>The most prolific inventors hold hundreds of patents each, concentrated in electronics and computing fields.</li>
+        <li>First-time inventor rates have declined, suggesting the patent system increasingly favors experienced, repeat inventors within organizations.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -126,6 +164,7 @@ export default function Chapter4() {
       <ChartContainer
         title="Team Size Over Time"
         caption="Average team size, solo-inventor share, and large-team (5+) share. Values share the same y-axis."
+        insight="The shift from solo invention to team-based R&D is one of the defining trends of modern innovation, reflecting the increasing complexity of technology."
         loading={tmL}
       >
         <PWLineChart
@@ -136,6 +175,7 @@ export default function Chapter4() {
             { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2] },
             { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3] },
           ]}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
 
@@ -163,6 +203,7 @@ export default function Chapter4() {
       <ChartContainer
         title="Female Inventor Share Over Time"
         caption="Percentage of inventor-patent instances attributed to female inventors."
+        insight="The persistent gender gap in patenting reflects broader systemic barriers in STEM fields, from educational pipelines to workplace culture."
         loading={gnL}
       >
         <PWLineChart
@@ -173,6 +214,7 @@ export default function Chapter4() {
           ]}
           yLabel="Percent"
           yFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
 
@@ -189,6 +231,7 @@ export default function Chapter4() {
         <ChartContainer
           title="Female Inventor Share by WIPO Sector"
           caption="Percentage of inventor instances that are female, by technology sector."
+          insight="Gender diversity varies significantly across technology sectors, with chemistry and pharmaceuticals leading while electrical and mechanical engineering lag behind."
           loading={gsL}
           height={500}
         >
@@ -216,6 +259,7 @@ export default function Chapter4() {
       <ChartContainer
         title="Most Prolific Inventors"
         caption="Inventors ranked by total utility patents granted, 1976-2025."
+        insight="The concentration of patents among a small number of prolific inventors raises questions about whether the patent system rewards individual genius or institutional resources."
         loading={prL}
         height={1800}
       >
@@ -239,12 +283,14 @@ export default function Chapter4() {
       <ChartContainer
         title="New Inventors Entering the System"
         caption="Number of inventors filing their first US patent each year."
+        insight="The steady inflow of new inventors is a barometer for the health of the innovation ecosystem, indicating continued broadening of the inventor base despite increasing specialization."
         loading={enL}
       >
         <PWAreaChart
           data={entry ?? []}
           xKey="year"
           areas={[{ key: 'new_inventors', name: 'New Inventors', color: CHART_COLORS[1] }]}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
 
@@ -273,7 +319,7 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          Being prolific does not necessarily mean being impactful. Forward citations --
+          Being prolific does not necessarily mean being impactful. <GlossaryTooltip term="forward citations">Forward citations</GlossaryTooltip> --
           how often an inventor&apos;s patents are cited by others -- reveal whether their
           innovations serve as <StatCallout value="building blocks" /> for future inventions.
         </p>
@@ -282,6 +328,7 @@ export default function Chapter4() {
       <ChartContainer
         title="Star Inventor Impact by Citation Average"
         caption="Average and median forward citations per patent for the top 100 prolific inventors. Limited to patents granted through 2020."
+        insight="Prolificacy and impact are distinct dimensions of inventor performance. Some high-volume inventors generate modest citations per patent, while others achieve exceptional influence with fewer patents."
         loading={siL}
         height={1800}
       >
@@ -318,6 +365,7 @@ export default function Chapter4() {
       <ChartContainer
         title="Inventor Career Survival by Entry Cohort"
         caption="Percentage of inventors still active (with at least one patent) at each career length, by 5-year entry cohort."
+        insight="The steep initial drop in survival curves reveals that most inventors patent only once. Those who persist beyond the first few years tend to have long, productive careers."
         loading={lgL}
       >
         <PWLineChart
@@ -344,14 +392,254 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Superstar Inventor Concentration" />
+      <Narrative>
+        <p>
+          What share of all patents comes from the most prolific inventors? Tracking the
+          concentration of patenting activity among the top 1% and top 5% of inventors
+          by cumulative patent count reveals whether innovation is becoming more or less
+          democratized over time.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Share of Patents by Top Inventors"
+        caption="Percentage of patents each year from the top 1% and top 5% of inventors (by cumulative patent count)."
+        insight="Rising concentration of patents among top inventors suggests that innovation is increasingly driven by professional, repeat inventors rather than one-time contributors."
+        loading={ssL}
+      >
+        {superstar && (
+          <PWLineChart
+            data={superstar}
+            xKey="year"
+            lines={[
+              { key: 'top1pct_share', name: 'Top 1% Share', color: CHART_COLORS[0] },
+              { key: 'top5pct_share', name: 'Top 5% Share', color: CHART_COLORS[1] },
+            ]}
+            yLabel="Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Superstar concentration has increased substantially over the decades. The top 5%
+          of inventors now account for a growing share of total patent output, suggesting
+          that patenting is increasingly the province of repeat, professional inventors
+          rather than one-time innovators. This parallels trends in academic publishing
+          and other knowledge-intensive fields.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Solo Inventors: An Endangered Species?" />
+      <Narrative>
+        <p>
+          The lone inventor working in a garage is a powerful cultural archetype. But is
+          solo invention actually disappearing? Tracking the share of patents with a
+          single inventor reveals how the nature of innovation has shifted toward
+          team-based approaches.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Solo Inventor Share Over Time"
+        caption="Percentage of utility patents with a single named inventor."
+        insight="The decline of solo invention underscores how modern technology development increasingly demands diverse, interdisciplinary expertise that no single person can provide."
+        loading={soloL}
+      >
+        {solo && (
+          <PWLineChart
+            data={solo}
+            xKey="year"
+            lines={[
+              { key: 'solo_pct', name: 'Solo Inventor Share (%)', color: CHART_COLORS[3] },
+            ]}
+            yLabel="Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Solo invention has declined dramatically from over half of all patents in the
+          late 1970s to a small minority today. The complexity of modern technology
+          increasingly requires diverse expertise that no single person can master. Yet
+          solo inventors persist, particularly in areas like Textiles and Fixed
+          Constructions where individual craftspeople and architects continue to innovate
+          independently.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="First-Time Inventors" />
+      <Narrative>
+        <p>
+          Is the patent system bringing in fresh talent, or is it increasingly dominated
+          by repeat players? We track the share of patents each year that include at
+          least one inventor filing for the first time.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Share of Patents with First-Time Inventors"
+        caption="Percentage of patents each year with at least one inventor who has never appeared on a prior patent."
+        insight="The declining share of first-time inventors suggests the patent system increasingly favors experienced, repeat inventors, raising questions about barriers to entry for newcomers."
+        loading={ftL}
+      >
+        {firstTime && (
+          <PWLineChart
+            data={firstTime}
+            xKey="year"
+            lines={[
+              { key: 'debut_pct', name: 'Has First-Time Inventor (%)', color: CHART_COLORS[4] },
+            ]}
+            yLabel="Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          Despite the growing dominance of repeat inventors, a substantial share of patents
+          each year still includes at least one newcomer. This pipeline of first-time
+          inventors is critical for the health of the innovation system, ensuring that
+          fresh perspectives and new ideas continue to enter the patent landscape.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Inventor Mobility" />
+      <Narrative>
+        <p>
+          Do inventors who move between organizations produce higher-impact work?
+          Comparing forward citation counts for mobile inventors (those who have patented
+          at multiple organizations) versus non-mobile inventors reveals whether career
+          mobility is associated with innovation quality.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Inventor Mobility Rate by Decade"
+        caption="Percentage of prolific inventors (5+ patents per decade) who patented at multiple organizations."
+        insight="Rising inventor mobility reflects the growing fluidity of the technology labor market, where career moves between organizations serve as channels for knowledge transfer."
+        loading={mbdL}
+      >
+        {mobilityByDecade && (
+          <PWLineChart
+            data={mobilityByDecade}
+            xKey="decade_label"
+            lines={[
+              { key: 'mobility_rate', name: 'Mobility Rate (%)', color: CHART_COLORS[5] },
+            ]}
+            yLabel="Rate (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+          />
+        )}
+      </ChartContainer>
+      {mobility && mobility.length > 0 && (
+        <div className="max-w-2xl mx-auto my-6">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Group</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Patents</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Avg Citations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Median Citations</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mobility.map((row, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3 font-medium">{row.mobility}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.patent_count.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.avg_citations.toFixed(1)}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.median_citations}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Mobile inventors consistently produce patents with higher citation impact than
+          their non-mobile peers. This suggests that exposure to multiple organizational
+          contexts enriches an inventor&apos;s knowledge base and leads to more impactful
+          innovations. The mobility rate has increased over time, driven by the growing
+          fluidity of the technology labor market.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="The Gender Innovation Gap" />
+      <Narrative>
+        <p>
+          Beyond overall gender trends, deeper analysis reveals important differences in
+          where women innovate, how gender-diverse teams perform, and how female
+          participation varies across technology fields.
+        </p>
+      </Narrative>
+      <ChartContainer
+        title="Female Inventor Share by Technology Area"
+        caption="Percentage of inventors who are female, by CPC section, in 5-year periods."
+        insight="The technology-specific gender gap mirrors the composition of STEM degree pipelines. Fields with higher female enrollment — chemistry, life sciences — show higher female inventor representation."
+        loading={gstL}
+      >
+        {genderTrendPivot.length > 0 && (
+          <PWLineChart
+            data={genderTrendPivot}
+            xKey="period"
+            lines={genderTrendSections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="Female Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+          />
+        )}
+      </ChartContainer>
+      {genderTeamQuality && genderTeamQuality.length > 0 && (
+        <div className="max-w-2xl mx-auto my-6">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Patent Quality by Team Gender Composition (2000-2020)</h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Team Composition</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Patents</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Avg Citations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Median Citations</th>
+              </tr>
+            </thead>
+            <tbody>
+              {genderTeamQuality.map((row, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3 font-medium">{row.team_gender}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.patent_count.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.avg_citations.toFixed(1)}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.median_citations}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Female inventor participation has grown across all technology areas, but
+          significant gaps remain. Chemistry &amp; Metallurgy and Human Necessities show the
+          highest female inventor shares, while Electricity and Mechanical Engineering lag
+          behind. Gender-diverse teams produce patents with citation impact comparable to
+          or exceeding all-male teams, suggesting that diversity in inventor teams is
+          not just an equity issue but an innovation imperative.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.
         Team size counts all listed inventors per patent. Inventor disambiguation
         is provided by PatentsView. Citation impact uses forward citations for
         patents granted through 2020. Career longevity tracks the span from first
-        to last patent year per inventor.
+        to last patent year per inventor. Superstar concentration is computed using cumulative patent counts per inventor. Solo inventor analysis uses the inventor count per patent. First-time inventors are identified by their earliest patent filing date. Inventor mobility measures distinct assignee organizations per prolific inventor. Gender analysis uses PatentsView&apos;s gender_code field.
       </DataNote>
 
+      <RelatedChapters currentChapter={4} />
       <ChapterNavigation currentChapter={4} />
     </div>
   );

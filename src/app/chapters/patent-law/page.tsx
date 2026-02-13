@@ -1,13 +1,25 @@
 'use client';
 
+import { useMemo } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWConvergenceMatrix } from '@/components/charts/PWConvergenceMatrix';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { PWTimeline, type TimelineEvent } from '@/components/charts/PWTimeline';
+import { CPC_SECTION_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import type { HHIBySection, ApplicationsVsGrants, ConvergenceEntry } from '@/lib/types';
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   {
@@ -373,6 +385,39 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
 ];
 
 export default function Chapter10() {
+  const { data: hhiData, loading: hhiL } = useChapterData<HHIBySection[]>('chapter10/hhi_by_section.json');
+  const { data: pipelineData, loading: pipL } = useChapterData<ApplicationsVsGrants[]>('chapter10/applications_vs_grants.json');
+  const { data: convergenceData, loading: conL } = useChapterData<ConvergenceEntry[]>('chapter10/convergence_matrix.json');
+
+  // Pivot HHI data: one line per CPC section over time
+  const hhiPivot = useMemo(() => {
+    if (!hhiData) return [];
+    const periods = [...new Set(hhiData.map((d) => d.period))].sort();
+    return periods.map((period) => {
+      const row: Record<string, any> = { period };
+      hhiData.filter((d) => d.period === period).forEach((d) => {
+        row[d.section] = d.hhi;
+      });
+      return row;
+    });
+  }, [hhiData]);
+
+  const hhiSections = useMemo(() => {
+    if (!hhiData) return [];
+    return [...new Set(hhiData.filter((d) => d.section !== 'Overall').map((d) => d.section))].sort();
+  }, [hhiData]);
+
+  // Filter pipeline data to exclude the last partial year (2025 has distorted ratio)
+  const pipelineFiltered = useMemo(() => {
+    if (!pipelineData) return [];
+    return pipelineData.filter((d) => d.year <= 2024);
+  }, [pipelineData]);
+
+  const convergenceEras = useMemo(() => {
+    if (!convergenceData) return [];
+    return [...new Set(convergenceData.map((d) => d.era))].sort();
+  }, [convergenceData]);
+
   return (
     <div>
       <ChapterHeader
@@ -380,6 +425,13 @@ export default function Chapter10() {
         title="Patent Law & Policy"
         subtitle="The rules that shape innovation"
       />
+
+      <KeyFindings>
+        <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
+        <li>The America Invents Act (2011) was the most significant patent reform since 1952, switching the US from first-to-invent to first-inventor-to-file.</li>
+        <li>The <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank decision</GlossaryTooltip> (2014) dramatically curtailed patent eligibility for software and business method patents.</li>
+        <li>Legislative and judicial changes have measurable effects on patent filing patterns, visible in the data within 1-2 years of major rulings.</li>
+      </KeyFindings>
 
       <Narrative>
         <p>
@@ -410,7 +462,7 @@ export default function Chapter10() {
           expansion and strengthening (1982-2000) driven by the Federal Circuit and pro-patent
           legislative reforms, followed by a rebalancing era (2006-present) as the Supreme
           Court stepped in to narrow patent scope, and Congress created administrative
-          alternatives to costly litigation through the AIA.
+          alternatives to costly litigation through the <GlossaryTooltip term="AIA">AIA</GlossaryTooltip>.
         </p>
       </KeyInsight>
 
@@ -462,6 +514,127 @@ export default function Chapter10() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="The Patent Pipeline" />
+
+      <Narrative>
+        <p>
+          How efficiently does the patent system process inventions? By comparing the number of
+          patent applications filed each year against the grants issued, we can track the USPTO&apos;s
+          throughput and the growing gap between filing and granting activity. The ratio of grants
+          to applications reveals how the system&apos;s selectivity and backlog have evolved over time.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Patent Applications vs. Grants Over Time"
+        caption="Annual filings (by filing date) and grants (by grant date) for utility patents, with grant-to-application ratio. Note: Only patents that were eventually granted appear in this dataset."
+        insight="Major legislative changes create visible inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants reflects increasing examination complexity and backlog."
+        loading={pipL}
+      >
+        <PWLineChart
+          data={pipelineFiltered}
+          xKey="year"
+          lines={[
+            { key: 'applications', name: 'Applications (filing date)', color: 'hsl(221, 83%, 53%)' },
+            { key: 'grants', name: 'Grants (grant date)', color: 'hsl(142, 71%, 45%)' },
+            { key: 'grant_to_application_ratio', name: 'Grant/Application Ratio (%)', color: 'hsl(38, 92%, 50%)', yAxisId: 'right' },
+          ]}
+          yLabel="Patent Count"
+          rightYLabel="Ratio (%)"
+          rightYFormatter={(v: number) => `${v.toFixed(0)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS)}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          In the early years, grants and applications tracked closely because the dataset only
+          captures successful filings. The growing divergence from the mid-1990s onward reflects
+          the increasing time lag between filing and grant -- applications filed in a given year
+          may not be granted for 2-4 years. The spike in grants around 2012-2015 coincides with
+          the USPTO clearing a significant backlog, while the America Invents Act&apos;s procedural
+          reforms reshaped the pipeline.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Market Concentration" />
+
+      <Narrative>
+        <p>
+          Are certain technology areas becoming dominated by a few large players? The
+          Herfindahl-Hirschman Index (HHI) measures market concentration by summing the squared
+          market shares of all firms in a sector. On the standard DOJ/FTC scale,{' '}
+          <StatCallout value="below 1,500" /> indicates an unconcentrated market,{' '}
+          <StatCallout value="1,500-2,500" /> is moderately concentrated, and{' '}
+          <StatCallout value="above 2,500" /> is highly concentrated.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="HHI Concentration by CPC Technology Section"
+        caption="Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration."
+        insight="Despite concerns about market power in technology, patent markets remain remarkably unconcentrated across all sectors. Even in areas dominated by large firms, the broad base of innovators keeps concentration well below antitrust thresholds."
+        loading={hhiL}
+      >
+        <PWLineChart
+          data={hhiPivot}
+          xKey="period"
+          lines={hhiSections.map((section) => ({
+            key: section,
+            name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+            color: CPC_SECTION_COLORS[section],
+          }))}
+          yLabel="HHI"
+          yFormatter={(v: number) => v.toLocaleString()}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Patent markets across all technology sectors remain remarkably unconcentrated, with HHI
+          values well below the 1,500 threshold. This reflects the broad base of inventors and
+          organizations participating in the patent system. Even in Electricity (H) and Physics (G) --
+          the sections most associated with large tech companies -- concentration remains low,
+          though some sections show modest increases in recent periods. Textiles &amp; Paper (D) tends
+          to be the most concentrated, consistent with its smaller inventor base and more
+          specialized industrial structure.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Technology Convergence" />
+
+      <Narrative>
+        <p>
+          Are technology boundaries blurring over time? When a single patent spans multiple CPC
+          technology sections, it signals that the invention draws on knowledge from distinct
+          fields. The matrix below shows how often each pair of technology sections co-occurs
+          on the same patent, measured as a percentage of all multi-section patents in each era.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Technology Convergence Matrix"
+        caption="Percentage of multi-section patents that span each pair of CPC sections, by era. Select an era to compare convergence patterns over time."
+        insight="Technology boundaries are blurring over time, with the Physics-Electricity convergence intensifying as digital technology permeates nearly every domain. This increasing cross-pollination has implications for patent scope and examination complexity."
+        loading={conL}
+        height={520}
+      >
+        {convergenceData && convergenceEras.length > 0 && (
+          <PWConvergenceMatrix data={convergenceData} eras={convergenceEras} />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The G-H (Physics-Electricity) pair dominates convergence across all eras, reflecting
+          the deep integration of computing, electronics, and physics. But the pattern has shifted
+          dramatically: in the earliest era, convergence was more evenly distributed across pairs,
+          while in 2011-2025, G-H convergence has intensified as digital technology permeates
+          nearly every domain. The growing overlap between A (Human Necessities) and G (Physics)
+          in recent years reflects the rise of health technology and biomedical electronics.
+        </p>
+      </KeyInsight>
+
       <DataNote>
         Legal information synthesized from primary sources including congressional records,
         Supreme Court opinions, and the USPTO. Event descriptions focus on patent-relevant
@@ -470,9 +643,17 @@ export default function Chapter10() {
         published studies in leading economics and management journals including the
         American Economic Review, Quarterly Journal of Economics, Journal of Political
         Economy, Review of Economic Studies, Management Science, Strategic Management
-        Journal, and Academy of Management Journal.
+        Journal, and Academy of Management Journal. HHI is computed using the standard
+        Herfindahl-Hirschman Index formula (sum of squared percentage market shares) on
+        patent assignees within each CPC section per 5-year period. The convergence matrix
+        counts distinct CPC section co-occurrences across all CPC codes assigned to each
+        patent (not just the primary classification). Applications vs. grants data uses
+        PatentsView, which only includes patents that were eventually granted -- the
+        &quot;applications&quot; count therefore represents successful filings rather than total
+        submissions to the USPTO.
       </DataNote>
 
+      <RelatedChapters currentChapter={10} />
       <ChapterNavigation currentChapter={10} />
     </div>
   );

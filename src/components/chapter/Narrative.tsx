@@ -13,7 +13,7 @@ export function Narrative({ children }: NarrativeProps) {
   return (
     <section
       ref={ref}
-      className={`fade-in-section prose-custom my-8 max-w-prose text-base leading-relaxed text-foreground/90 ${inView ? 'is-visible' : ''}`}
+      className={`fade-in-section prose-custom my-8 max-w-prose text-lg leading-relaxed text-foreground/90 ${inView ? 'is-visible' : ''}`}
     >
       {children}
     </section>

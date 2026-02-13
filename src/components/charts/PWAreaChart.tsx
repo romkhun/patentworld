@@ -2,10 +2,11 @@
 
 import { useMemo } from 'react';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import type { ReferenceEvent } from '@/lib/referenceEvents';
 
 interface PWAreaChartProps {
   data: any[];
@@ -16,9 +17,10 @@ interface PWAreaChartProps {
   xLabel?: string;
   yLabel?: string;
   yFormatter?: (v: number) => string;
+  referenceLines?: ReferenceEvent[];
 }
 
-export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter }: PWAreaChartProps) {
+export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter, referenceLines }: PWAreaChartProps) {
   const processedData = useMemo(() => stackedPercent ? data.map((d) => {
     const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
     if (total === 0) return d;
@@ -89,6 +91,15 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           iconType="circle"
           iconSize={8}
         />
+        {referenceLines?.map((ref) => (
+          <ReferenceLine
+            key={ref.x}
+            x={ref.x}
+            stroke={ref.color ?? '#9ca3af'}
+            strokeDasharray="4 4"
+            label={{ value: ref.label, position: 'top', fontSize: 10, fill: ref.color ?? '#9ca3af' }}
+          />
+        ))}
         {areas.map((area, i) => (
           <Area
             key={area.key}
