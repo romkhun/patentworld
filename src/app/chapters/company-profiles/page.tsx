@@ -165,6 +165,12 @@ export default function Chapter14() {
   }, [mortality]);
 
   const continuousCount = mortality?.continuous_companies?.length ?? 0;
+  const continuousNames = useMemo(() => {
+    if (!mortality?.continuous_companies) return [];
+    return mortality.continuous_companies.map((c: any) =>
+      typeof c === 'string' ? c : c.company ?? String(c)
+    );
+  }, [mortality]);
 
   /* ── B1: Portfolio diversification ── */
   const { divPivot, divCompanies } = useMemo(() => {
@@ -557,10 +563,10 @@ export default function Chapter14() {
           <div className="rounded-lg border bg-card p-4">
             <div className="text-xs text-muted-foreground">Survival Rates</div>
             <div className="mt-1 space-y-1">
-              {Object.entries(mortality.survival_rates).slice(0, 3).map(([key, rate]) => (
-                <div key={key} className="text-xs">
-                  <span className="text-muted-foreground">{key}:</span>{' '}
-                  <span className="font-mono font-medium">{(rate * 100).toFixed(0)}%</span>
+              {(Array.isArray(mortality.survival_rates) ? mortality.survival_rates : []).slice(0, 3).map((sr: any, i: number) => (
+                <div key={i} className="text-xs">
+                  <span className="text-muted-foreground">{sr.from_decade}&rarr;{sr.to_decade}:</span>{' '}
+                  <span className="font-mono font-medium">{sr.survival_rate?.toFixed(0) ?? '?'}%</span>
                 </div>
               ))}
             </div>
@@ -585,15 +591,15 @@ export default function Chapter14() {
         ) : <div />}
       </ChartContainer>
 
-      {mortality && mortality.continuous_companies.length > 0 && (
+      {continuousNames.length > 0 && (
         <div className="max-w-2xl mx-auto my-6">
           <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">
             Companies in the Top 100 Every Decade
           </h3>
           <div className="flex flex-wrap gap-2 justify-center">
-            {mortality.continuous_companies.map((c) => (
-              <span key={c} className="rounded-full border bg-card px-3 py-1 text-xs font-medium">
-                {c}
+            {continuousNames.map((name: string) => (
+              <span key={name} className="rounded-full border bg-card px-3 py-1 text-xs font-medium">
+                {name}
               </span>
             ))}
           </div>
