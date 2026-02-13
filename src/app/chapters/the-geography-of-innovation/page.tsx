@@ -9,7 +9,6 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
-import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWChoroplethMap } from '@/components/charts/PWChoroplethMap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
@@ -67,15 +66,24 @@ export default function Chapter4() {
 
   const specByState = useMemo(() => {
     if (!spec) return [];
+    const sKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
     const stateMap: Record<string, any> = {};
     spec.forEach((d) => {
       if (!stateMap[d.state]) stateMap[d.state] = { state: d.state, total: 0 };
       stateMap[d.state][d.section] = d.count;
       stateMap[d.state].total += d.count;
     });
+    // Convert to percentages for 100% stacked bar
     return Object.values(stateMap)
       .sort((a: any, b: any) => b.total - a.total)
-      .slice(0, 20);
+      .slice(0, 20)
+      .map((row: any) => {
+        const pctRow: any = { state: row.state };
+        sKeys.forEach((key) => {
+          pctRow[key] = row.total > 0 ? +((100 * (row[key] || 0)) / row.total).toFixed(1) : 0;
+        });
+        return pctRow;
+      });
   }, [spec]);
 
   const statePatentMap = useMemo(() => {
@@ -191,25 +199,46 @@ export default function Chapter4() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The US patent system has become a truly global institution. Japan dominated foreign filings
+          through the 1990s, but South Korea and China have emerged as major forces in the 2000s
+          and 2010s respectively. China&apos;s rapid rise in particular signals a fundamental
+          shift in global innovation capacity.
+        </p>
+      </KeyInsight>
+
       {specByState.length > 0 && (
         <ChartContainer
           title="State Technology Specialization"
-          caption="CPC technology section distribution for the top 20 states by total patents."
+          caption="CPC technology section distribution for the top 20 states by total patents. Each bar totals 100%."
           loading={spL}
-          height={500}
+          height={550}
         >
-          <PWAreaChart
+          <PWBarChart
             data={specByState}
             xKey="state"
-            areas={sectionKeys.map((key) => ({
+            bars={sectionKeys.map((key) => ({
               key,
               name: `${key}: ${CPC_SECTION_NAMES[key]}`,
               color: CPC_SECTION_COLORS[key],
             }))}
-            stackedPercent
+            layout="vertical"
+            stacked
+            yFormatter={(v) => `${v}%`}
           />
         </ChartContainer>
       )}
+
+      <KeyInsight>
+        <p>
+          State technology specialization reflects regional industrial strengths. States with
+          major pharmaceutical hubs (New Jersey, Connecticut) show higher Chemistry shares,
+          while traditional manufacturing states lean toward Mechanical Engineering. California
+          and Washington show strong Electricity and Physics concentrations, reflecting
+          Silicon Valley and the Pacific Northwest tech corridor.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView

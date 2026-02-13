@@ -13,30 +13,29 @@ OUT = f"{OUTPUT_DIR}/chapter3"
 con = duckdb.connect()
 
 # ── a) Firm collaboration network ────────────────────────────────────────────
-timed_msg("firm_collaboration_network: co-patenting among top 50 orgs")
+timed_msg("firm_collaboration_network: co-patenting among top 200 orgs")
 
-# Step 1: find top 50 orgs
-top50 = con.execute(f"""
+# Step 1: find top 200 orgs
+top_orgs = con.execute(f"""
     SELECT disambig_assignee_organization AS org, COUNT(DISTINCT patent_id) AS patents
     FROM {ASSIGNEE_TSV()}
     WHERE disambig_assignee_organization IS NOT NULL
       AND TRIM(disambig_assignee_organization) != ''
     GROUP BY org
     ORDER BY patents DESC
-    LIMIT 50
+    LIMIT 200
 """).fetchdf()
-print(f"  Top 50 orgs identified, top = {top50.iloc[0]['org']} ({top50.iloc[0]['patents']:,} patents)")
+print(f"  Top 200 orgs identified, top = {top_orgs.iloc[0]['org']} ({top_orgs.iloc[0]['patents']:,} patents)")
 
-# Step 2: find co-patents (patents with 2+ distinct top-50 orgs as assignees)
-top50_list = top50['org'].tolist()
-# Register as a temp table for use in SQL
-con.execute("CREATE TEMPORARY TABLE top50_orgs AS SELECT unnest($1::VARCHAR[]) AS org", [top50_list])
+# Step 2: find co-patents (patents with 2+ distinct top orgs as assignees)
+top_list = top_orgs['org'].tolist()
+con.execute("CREATE TEMPORARY TABLE top_orgs AS SELECT unnest($1::VARCHAR[]) AS org", [top_list])
 
 edges_df = con.execute(f"""
     WITH assignee_top AS (
         SELECT patent_id, disambig_assignee_organization AS org
         FROM {ASSIGNEE_TSV()}
-        WHERE disambig_assignee_organization IN (SELECT org FROM top50_orgs)
+        WHERE disambig_assignee_organization IN (SELECT org FROM top_orgs)
     )
     SELECT
         a1.org AS source,
@@ -55,7 +54,7 @@ print(f"  Found {len(edges_df)} edges with weight >= 5")
 connected_orgs = set(edges_df['source'].tolist() + edges_df['target'].tolist())
 nodes = [
     {"id": row['org'], "name": row['org'], "patents": int(row['patents'])}
-    for _, row in top50.iterrows()
+    for _, row in top_orgs.iterrows()
     if row['org'] in connected_orgs
 ]
 edges = [

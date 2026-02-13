@@ -14,10 +14,10 @@ OUT = f"{OUTPUT_DIR}/chapter5"
 con = duckdb.connect()
 
 # ── a) Inventor collaboration network ────────────────────────────────────────
-timed_msg("inventor_collaboration_network: co-invention among top 50 prolific inventors")
+timed_msg("inventor_collaboration_network: co-invention among top 200 prolific inventors")
 
-# Step 1: find top 50 prolific inventors
-top50 = con.execute(f"""
+# Step 1: find top 200 prolific inventors
+top_inv = con.execute(f"""
     SELECT
         i.inventor_id,
         MAX(i.disambig_inventor_name_first || ' ' || i.disambig_inventor_name_last) AS name,
@@ -29,19 +29,19 @@ top50 = con.execute(f"""
       AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1976 AND 2025
     GROUP BY i.inventor_id
     ORDER BY patents DESC
-    LIMIT 50
+    LIMIT 200
 """).fetchdf()
-print(f"  Top 50 inventors identified, top = {top50.iloc[0]['name']} ({top50.iloc[0]['patents']:,} patents)")
+print(f"  Top 200 inventors identified, top = {top_inv.iloc[0]['name']} ({top_inv.iloc[0]['patents']:,} patents)")
 
 # Step 2: find co-invention edges
-inv_ids = top50['inventor_id'].tolist()
-con.execute("CREATE TEMPORARY TABLE top50_inventors AS SELECT unnest($1::VARCHAR[]) AS inventor_id", [inv_ids])
+inv_ids = top_inv['inventor_id'].tolist()
+con.execute("CREATE TEMPORARY TABLE top_inventors AS SELECT unnest($1::VARCHAR[]) AS inventor_id", [inv_ids])
 
 edges_df = con.execute(f"""
     WITH inv_patents AS (
         SELECT i.patent_id, i.inventor_id
         FROM {INVENTOR_TSV()} i
-        WHERE i.inventor_id IN (SELECT inventor_id FROM top50_inventors)
+        WHERE i.inventor_id IN (SELECT inventor_id FROM top_inventors)
     )
     SELECT
         a1.inventor_id AS source,
@@ -60,7 +60,7 @@ print(f"  Found {len(edges_df)} edges with weight >= 3")
 connected_ids = set(edges_df['source'].tolist() + edges_df['target'].tolist())
 nodes = [
     {"id": row['inventor_id'], "name": row['name'].strip(), "patents": int(row['patents'])}
-    for _, row in top50.iterrows()
+    for _, row in top_inv.iterrows()
     if row['inventor_id'] in connected_ids
 ]
 edges = [
@@ -113,7 +113,7 @@ save_json(cohort_records, f"{OUT}/inventor_longevity.json")
 print(f"  {len(cohort_records)} rows")
 
 # ── c) Star inventor impact ──────────────────────────────────────────────────
-timed_msg("star_inventor_impact: forward citations for top 50 prolific inventors")
+timed_msg("star_inventor_impact: forward citations for top 200 prolific inventors")
 query_to_json(con, f"""
     WITH inv_patents AS (
         SELECT
@@ -133,7 +133,7 @@ query_to_json(con, f"""
         FROM inv_patents
         GROUP BY inventor_id
         ORDER BY COUNT(*) DESC
-        LIMIT 50
+        LIMIT 200
     ),
     with_cites AS (
         SELECT

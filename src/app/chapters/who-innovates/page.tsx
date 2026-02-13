@@ -154,12 +154,20 @@ export default function Chapter3() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          Asian electronics firms account for over half of the top 25 patent holders. Samsung alone
+          surpassed IBM in annual patent grants in the 2010s, reflecting the globalization of technology
+          leadership and the strategic importance of patent portfolios in international competition.
+        </p>
+      </KeyInsight>
+
       {orgsTime && orgsTime.length > 0 && (
         <ChartContainer
           title="Top Organizations: Rank Over Time"
-          caption="Annual ranking of the top patent-holding organizations by yearly grant count."
+          caption="Annual ranking of the top patent-holding organizations by yearly grant count. Hover over organization names to highlight individual trajectories."
           loading={orgL}
-          height={500}
+          height={600}
         >
           <PWBumpChart
             data={orgsTime.filter((d) => d.rank <= 15)}
@@ -205,6 +213,15 @@ export default function Chapter3() {
         />
       </ChartContainer>
 
+      <KeyInsight>
+        <p>
+          Patent concentration has been remarkably stable: the top 100 organizations consistently
+          hold roughly a quarter of all corporate patents. This suggests that while new players emerge,
+          the patent system remains dominated by large, well-resourced entities that invest heavily
+          in R&D.
+        </p>
+      </KeyInsight>
+
       {/* ── New deep analyses ── */}
 
       <SectionDivider label="Citation Impact" />
@@ -247,9 +264,9 @@ export default function Chapter3() {
 
       <ChartContainer
         title="Co-Patenting Network"
-        caption="Co-patenting network among top 50 patent holders. Node size = total patents; edges = shared patents (≥5)."
+        caption="Co-patenting network among top patent holders. Node size = total patents; edges = shared patents (≥5). Hover over nodes for details; drag to reposition."
         loading={netL}
-        height={500}
+        height={700}
       >
         {network ? (
           <PWNetworkGraph

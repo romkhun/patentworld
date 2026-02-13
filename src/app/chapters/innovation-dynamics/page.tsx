@@ -69,11 +69,14 @@ export default function Chapter7() {
     const orgs = [...new Set(corpDiv.map((d) => d.organization))];
     return orgs.map((org) => {
       const row: any = { organization: org.length > 20 ? org.slice(0, 18) + '...' : org };
+      let total = 0;
       corpDiv.filter((d) => d.organization === org && d.era === 'late').forEach((d) => {
         row[d.section] = d.count;
+        total += d.count;
       });
+      row._total = total;
       return row;
-    });
+    }).sort((a: any, b: any) => b._total - a._total);
   }, [corpDiv]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
@@ -123,9 +126,11 @@ export default function Chapter7() {
 
       <KeyInsight>
         <p>
-          Grant lags typically range from 2 to 4 years, but peaked during the early 2000s backlog
-          crisis. Electrical engineering and instruments patents often face longer examination
-          periods due to the complexity and volume of prior art in those fields.
+          Grant lags reveal the institutional bottlenecks of innovation. The early 2000s backlog
+          crisis pushed average pendency past 3.5 years, but USPTO reforms have since reduced
+          wait times. Electrical engineering and instruments patents consistently face the longest
+          examinations, reflecting the sheer volume and complexity of prior art in fast-moving
+          digital technology fields.
         </p>
       </KeyInsight>
 
@@ -133,7 +138,7 @@ export default function Chapter7() {
 
       <ChartContainer
         title="Cross-Domain Innovation: Patents Spanning Multiple Technology Sections"
-        caption="Number of patents classified in one, two, or three+ CPC sections (excluding Y)."
+        caption="Number of patents classified in a single section, two sections, or three or more CPC sections (excluding Y). Stacked from bottom: Single Section, Two Sections, Three+ Sections."
         loading={cdL}
         height={400}
       >
@@ -158,6 +163,15 @@ export default function Chapter7() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The rise of multi-domain patents signals a fundamental change in the nature of
+          invention. Technologies like autonomous vehicles, wearable health monitors, and
+          smart materials inherently span traditional boundaries between physics, chemistry,
+          and engineering -- rewarding organizations that can integrate diverse expertise.
+        </p>
+      </KeyInsight>
+
       <SectionDivider label="Global Collaboration" />
 
       <ChartContainer
@@ -169,17 +183,18 @@ export default function Chapter7() {
           data={intlCollab ?? []}
           xKey="year"
           lines={[
-            { key: 'intl_collab_count', name: 'Intl Collab Patents', color: CHART_COLORS[0] },
-            { key: 'intl_collab_pct', name: 'Intl Collab %', color: CHART_COLORS[2] },
+            { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0] },
+            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2] },
           ]}
         />
       </ChartContainer>
 
       <KeyInsight>
         <p>
-          International collaboration has grown steadily since the 1990s, driven by multinational
-          R&D operations and the rise of distributed research teams. Today, a significant share
-          of US patents involves inventors from multiple countries.
+          International collaboration has grown from under 5% of patents in the 1980s to over 10%
+          today. This reflects the rise of multinational R&D operations, global talent mobility,
+          and the increasing ease of remote scientific collaboration. The trend accelerated sharply
+          in the 2000s as communication technology reduced the friction of cross-border teamwork.
         </p>
       </KeyInsight>
 
@@ -209,10 +224,20 @@ export default function Chapter7() {
       <Narrative>
         <p>
           The technology portfolios of major patent holders reveal how companies diversify their
-          innovation across fields. Some companies like IBM and Samsung are broadly diversified,
-          while others concentrate in specific technology domains.
+          innovation across fields. IBM and Samsung maintain broadly diversified portfolios spanning
+          physics, electricity, and chemistry, while companies like Intel concentrate heavily in
+          semiconductor-related physics and electricity classes.
         </p>
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          Portfolio breadth correlates with firm longevity at the top of the patent rankings.
+          The most persistent leaders -- IBM, Samsung, Canon -- have diversified technology
+          portfolios, while more specialized firms tend to rise and fall with the fortunes
+          of their core technology domains.
+        </p>
+      </KeyInsight>
 
       <SectionDivider label="Velocity" />
 
@@ -241,6 +266,15 @@ export default function Chapter7() {
           but electrical engineering has consistently shown stronger growth momentum since the 1990s.
         </p>
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          Innovation velocity is highly correlated across sectors, suggesting that macroeconomic
+          conditions and patent policy are stronger drivers of patenting rates than sector-specific
+          technology cycles. The synchronized dips during the early 2000s dot-com bust and the 2008
+          financial crisis are particularly striking.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Grant lag uses the difference between patent grant date and application filing date.

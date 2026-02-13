@@ -11,6 +11,7 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { formatCompact } from '@/lib/formatters';
 import { CHART_COLORS } from '@/lib/colors';
@@ -97,6 +98,14 @@ export default function Chapter1() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          The patent system has expanded roughly fivefold in half a century. This reflects not just more
+          invention but a fundamental shift in how firms compete -- intellectual property has become a
+          central strategic asset across virtually every industry.
+        </p>
+      </KeyInsight>
+
       <ChartContainer
         title="Patent Complexity: Claims Per Patent"
         caption="Average and median number of claims per utility patent. More claims generally indicate more complex inventions."
@@ -122,6 +131,14 @@ export default function Chapter1() {
           defines a specific aspect of the invention that is legally protected.
         </p>
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          The widening gap between average and median claims reveals a skewed distribution: a growing
+          number of patents contain very large claim sets, suggesting that some applicants pursue
+          deliberately broad protection strategies to build patent thickets.
+        </p>
+      </KeyInsight>
 
       <ChartContainer
         title="Time from Filing to Grant"

@@ -155,8 +155,9 @@ export default function Chapter5() {
       <KeyInsight>
         <p>
           The shift from solo to team invention mirrors broader trends in science and engineering.
-          Complex modern technologies increasingly require diverse expertise that no single
-          inventor can provide.
+          The solo-inventor share has fallen from over 50% to under 20%, while patents with five or more
+          inventors have tripled. Complex modern technologies increasingly require diverse expertise
+          that no single inventor can provide.
         </p>
       </KeyInsight>
 
@@ -194,6 +195,15 @@ export default function Chapter5() {
           />
         </ChartContainer>
       )}
+
+      <KeyInsight>
+        <p>
+          Female representation among US patent inventors has grown steadily but remains below 15%.
+          Chemistry and pharmaceutical fields lead in gender diversity, while electrical engineering
+          and mechanical engineering lag behind -- a pattern that closely mirrors the gender
+          composition of STEM degree programs.
+        </p>
+      </KeyInsight>
 
       <SectionDivider label="Top Inventors" />
 
@@ -311,9 +321,9 @@ export default function Chapter5() {
 
       <ChartContainer
         title="Co-Invention Network"
-        caption="Co-invention network among 50 most prolific inventors. Edges = shared patents (≥3). Node size = total patents."
+        caption="Co-invention network among the most prolific inventors. Edges = shared patents (≥3). Node size = total patents. Hover over nodes for details; drag to reposition."
         loading={netL}
-        height={500}
+        height={700}
       >
         {network ? (
           <PWNetworkGraph

@@ -10,6 +10,25 @@ export const CHART_COLORS = [
   'hsl(199, 89%, 48%)',   // Sky
 ];
 
+// 15 maximally distinct colors for bump charts and other multi-line displays
+export const BUMP_COLORS = [
+  'hsl(221, 83%, 53%)',   // Blue
+  'hsl(0, 84%, 60%)',     // Red
+  'hsl(142, 71%, 45%)',   // Green
+  'hsl(38, 92%, 50%)',    // Amber
+  'hsl(262, 83%, 58%)',   // Purple
+  'hsl(187, 92%, 41%)',   // Teal
+  'hsl(340, 82%, 52%)',   // Pink
+  'hsl(25, 95%, 53%)',    // Orange
+  'hsl(165, 70%, 36%)',   // Dark Cyan
+  'hsl(300, 55%, 50%)',   // Magenta
+  'hsl(55, 80%, 44%)',    // Olive
+  'hsl(199, 89%, 48%)',   // Sky
+  'hsl(15, 70%, 45%)',    // Brown
+  'hsl(280, 50%, 65%)',   // Lavender
+  'hsl(100, 60%, 40%)',   // Forest
+];
+
 export const CHART_COLORS_DARK = [
   'hsl(217, 91%, 60%)',
   'hsl(142, 76%, 50%)',

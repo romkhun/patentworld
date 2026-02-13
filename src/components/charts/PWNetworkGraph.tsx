@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import {
   forceSimulation,
   forceLink,
@@ -58,17 +58,32 @@ export function PWNetworkGraph({
     return () => ro.disconnect();
   }, []);
 
-  // Scales
+  // Adaptive scales based on network size
+  const nodeCount = nodes.length;
   const maxPatents = Math.max(...nodes.map((n) => n.patents), 1);
   const maxWeight = Math.max(...edges.map((e) => e.weight), 1);
 
-  const radiusScale = (patents: number) => {
-    return 4 + 26 * Math.sqrt(patents / maxPatents);
-  };
+  // Scale node radii: smaller for large networks
+  const radiusScale = useCallback((patents: number) => {
+    const maxR = nodeCount > 100 ? 20 : nodeCount > 50 ? 24 : 30;
+    const minR = nodeCount > 100 ? 2 : 3;
+    return minR + (maxR - minR) * Math.sqrt(patents / maxPatents);
+  }, [nodeCount, maxPatents]);
+
   const widthScale = (weight: number) => {
-    return 0.5 + 2.5 * (weight / maxWeight);
+    return 0.3 + 2.5 * (weight / maxWeight);
   };
-  const labelThreshold = radiusScale(maxPatents * 0.08);
+  const labelThreshold = radiusScale(maxPatents * (nodeCount > 100 ? 0.15 : 0.06));
+
+  // Connection counts
+  const connectionCount = useMemo(() => {
+    const counts: Record<string, number> = {};
+    edges.forEach((e) => {
+      counts[e.source] = (counts[e.source] || 0) + 1;
+      counts[e.target] = (counts[e.target] || 0) + 1;
+    });
+    return counts;
+  }, [edges]);
 
   // Build and run simulation
   useEffect(() => {
@@ -81,22 +96,25 @@ export function PWNetworkGraph({
       weight: e.weight,
     }));
 
+    // Adaptive force parameters
+    const chargeStrength = nodeCount > 100 ? -120 : nodeCount > 50 ? -180 : -200;
+    const linkDistance = nodeCount > 100 ? 60 : nodeCount > 50 ? 80 : 100;
+
     const sim = forceSimulation<SimNode>(simN)
       .force(
         'link',
         forceLink<SimNode, SimLink>(simL)
           .id((d) => d.id)
-          .distance(100)
+          .distance(linkDistance)
           .strength((d) => 0.3 + 0.7 * (d.weight / maxWeight))
       )
-      .force('charge', forceManyBody().strength(-200))
+      .force('charge', forceManyBody().strength(chargeStrength))
       .force('center', forceCenter(dimensions.width / 2, dimensions.height / 2))
-      .force('collide', forceCollide<SimNode>().radius((d) => radiusScale(d.patents) + 2))
-      .alphaDecay(0.02);
+      .force('collide', forceCollide<SimNode>().radius((d) => radiusScale(d.patents) + 1))
+      .alphaDecay(0.015);
 
     simulationRef.current = sim;
 
-    // Throttled update at ~15fps
     let lastUpdate = 0;
     sim.on('tick', () => {
       const now = performance.now();
@@ -162,20 +180,17 @@ export function PWNetworkGraph({
   }, [draggedId]);
 
   // Connected set for hover highlighting
-  const connectedIds = new Set<string>();
-  if (hoveredId) {
-    connectedIds.add(hoveredId);
-    edges.forEach((e) => {
-      if (e.source === hoveredId) connectedIds.add(e.target);
-      if (e.target === hoveredId) connectedIds.add(e.source);
-    });
-  }
-
-  const connectionCount: Record<string, number> = {};
-  edges.forEach((e) => {
-    connectionCount[e.source] = (connectionCount[e.source] || 0) + 1;
-    connectionCount[e.target] = (connectionCount[e.target] || 0) + 1;
-  });
+  const connectedIds = useMemo(() => {
+    const ids = new Set<string>();
+    if (hoveredId) {
+      ids.add(hoveredId);
+      edges.forEach((e) => {
+        if (e.source === hoveredId) ids.add(e.target);
+        if (e.target === hoveredId) ids.add(e.source);
+      });
+    }
+    return ids;
+  }, [hoveredId, edges]);
 
   return (
     <div ref={containerRef} className="relative w-full h-full select-none">
@@ -208,7 +223,7 @@ export function PWNetworkGraph({
               y2={t.y}
               stroke="hsl(var(--muted-foreground))"
               strokeWidth={widthScale(link.weight)}
-              strokeOpacity={isConnected ? 0.4 : 0.06}
+              strokeOpacity={isConnected ? 0.35 : 0.04}
             />
           );
         })}
@@ -216,6 +231,7 @@ export function PWNetworkGraph({
         {simNodes.map((node) => {
           const r = radiusScale(node.patents);
           const isConnected = !hoveredId || connectedIds.has(node.id);
+          const isHovered = hoveredId === node.id;
           return (
             <g key={node.id}>
               <circle
@@ -223,10 +239,10 @@ export function PWNetworkGraph({
                 cy={node.y ?? 0}
                 r={r}
                 fill={nodeColor}
-                fillOpacity={isConnected ? 0.8 : 0.12}
-                stroke={hoveredId === node.id ? '#fff' : nodeColor}
-                strokeWidth={hoveredId === node.id ? 2 : 1}
-                strokeOpacity={isConnected ? 1 : 0.2}
+                fillOpacity={isConnected ? 0.8 : 0.08}
+                stroke={isHovered ? '#fff' : nodeColor}
+                strokeWidth={isHovered ? 2.5 : 1}
+                strokeOpacity={isConnected ? 1 : 0.15}
                 style={{ cursor: 'grab' }}
                 onMouseDown={(e) => handleMouseDown(e, node)}
                 onMouseEnter={() => {
@@ -246,17 +262,18 @@ export function PWNetworkGraph({
                   }
                 }}
               />
-              {r > labelThreshold && (
+              {(r > labelThreshold || (hoveredId && connectedIds.has(node.id))) && (
                 <text
                   x={node.x ?? 0}
-                  y={(node.y ?? 0) + r + 12}
+                  y={(node.y ?? 0) + r + 11}
                   textAnchor="middle"
-                  fontSize={9}
+                  fontSize={isHovered ? 10 : 8}
+                  fontWeight={isHovered ? 600 : 400}
                   fill="hsl(var(--muted-foreground))"
-                  fillOpacity={isConnected ? 0.9 : 0.15}
+                  fillOpacity={isConnected ? 0.9 : 0.12}
                   pointerEvents="none"
                 >
-                  {node.name.length > 18 ? node.name.slice(0, 16) + '...' : node.name}
+                  {node.name.length > 20 ? node.name.slice(0, 18) + '...' : node.name}
                 </text>
               )}
             </g>
@@ -268,9 +285,9 @@ export function PWNetworkGraph({
         <div
           className="absolute pointer-events-none z-10 rounded-lg border bg-card px-3 py-2 text-sm shadow-md"
           style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            maxWidth: 220,
+            left: Math.min(tooltip.x, dimensions.width - 230),
+            top: Math.max(tooltip.y, 10),
+            maxWidth: 240,
           }}
         >
           <div className="font-semibold">{tooltip.node.name}</div>

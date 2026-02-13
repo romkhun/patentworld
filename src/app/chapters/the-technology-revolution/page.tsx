@@ -109,6 +109,15 @@ export default function Chapter2() {
         </p>
       </Narrative>
 
+      <KeyInsight>
+        <p>
+          Electrical engineering overtook chemistry as the dominant patent sector in the early 1990s
+          and has accelerated since. This crossover marks the transition from the chemical-pharmaceutical
+          era of innovation to the digital era -- one of the most significant structural shifts in
+          the history of patenting.
+        </p>
+      </KeyInsight>
+
       <ChartContainer
         title="CPC Technology Sections: Share Over Time"
         caption="Share of utility patents by CPC section (primary classification). Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity."
@@ -188,6 +197,14 @@ export default function Chapter2() {
           yFormatter={(v) => v.toFixed(3)}
         />
       </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Despite the explosive growth of electrical engineering, overall technology diversity has
+          remained relatively stable. Innovation is not narrowing to a single domain -- rather,
+          established fields continue to produce patents even as new digital technologies surge ahead.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Technology classifications use the primary CPC section (sequence 0) for each patent

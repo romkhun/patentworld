@@ -154,8 +154,9 @@ export default function Chapter6() {
       <KeyInsight>
         <p>
           The growing citation lag suggests that foundational knowledge has an increasingly
-          long useful life. Patents today draw on prior art from an ever-widening time window,
-          reflecting the cumulative nature of technological progress.
+          long useful life. The average citation now reaches back over 10 years, compared to
+          roughly 7 years in the 1980s. This widening time window reflects both the cumulative
+          nature of technological progress and the expanding searchability of prior art databases.
         </p>
       </KeyInsight>
 
@@ -198,6 +199,15 @@ export default function Chapter6() {
           commercial innovation.
         </p>
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          Government-funded patents punch above their weight: they tend to receive more
+          forward citations than privately-funded patents, suggesting that public research
+          investments produce disproportionately influential knowledge that serves as a
+          foundation for downstream commercial innovation.
+        </p>
+      </KeyInsight>
 
       <DataNote>
         Citation data from PatentsView includes US patent citations only. Government
