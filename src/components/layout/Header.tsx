@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { BarChart3 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
-import { CHAPTERS } from '@/lib/constants';
 
 export function Header() {
   return (
@@ -14,21 +13,18 @@ export function Header() {
           PatentWorld
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {CHAPTERS.map((ch) => (
-            <Link
-              key={ch.slug}
-              href={`/chapters/${ch.slug}/`}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-            >
-              {ch.number}. {ch.title}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-4 md:flex">
           <Link
             href="/explore/"
             className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
           >
             Explore
+          </Link>
+          <Link
+            href="/about/"
+            className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+          >
+            About
           </Link>
         </nav>
 

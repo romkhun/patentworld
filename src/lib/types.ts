@@ -418,6 +418,12 @@ export interface AIGeography {
   last_year: number;
 }
 
+export interface AIOrgOverTime {
+  year: number;
+  organization: string;
+  count: number;
+}
+
 export interface AIQuality {
   year: number;
   patent_count: number;

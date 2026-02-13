@@ -6,19 +6,30 @@ import {
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 
+interface LineConfig {
+  key: string;
+  name: string;
+  color?: string;
+  yAxisId?: 'left' | 'right';
+}
+
 interface PWLineChartProps {
   data: any[];
   xKey: string;
-  lines: { key: string; name: string; color?: string }[];
+  lines: LineConfig[];
   xLabel?: string;
   yLabel?: string;
   yFormatter?: (v: number) => string;
+  rightYLabel?: string;
+  rightYFormatter?: (v: number) => string;
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter }: PWLineChartProps) {
+  const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
+      <LineChart data={data} margin={{ top: 5, right: hasRightAxis ? 10 : 10, left: 10, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
         <XAxis
           dataKey={xKey}
@@ -36,6 +47,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter }: P
           )}
         </XAxis>
         <YAxis
+          yAxisId="left"
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
@@ -52,13 +64,35 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter }: P
             />
           )}
         </YAxis>
+        {hasRightAxis && (
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+            tickLine={false}
+            axisLine={false}
+            tickFormatter={rightYFormatter ?? formatCompact}
+            width={60}
+          >
+            {rightYLabel && (
+              <Label
+                value={rightYLabel}
+                angle={90}
+                position="insideRight"
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                offset={-5}
+              />
+            )}
+          </YAxis>
+        )}
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
           cursor={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1, strokeDasharray: '4 4' }}
-          formatter={(value: any, name: any) => [
-            yFormatter ? yFormatter(Number(value)) : formatCompact(Number(value)),
-            name,
-          ]}
+          formatter={(value: any, name: any) => {
+            const line = lines.find((l) => l.name === name);
+            const fmt = line?.yAxisId === 'right' ? (rightYFormatter ?? formatCompact) : (yFormatter ?? formatCompact);
+            return [fmt(Number(value)), name];
+          }}
         />
         <Legend
           wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
@@ -77,6 +111,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter }: P
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
+              yAxisId={line.yAxisId ?? 'left'}
             />
           );
         })}

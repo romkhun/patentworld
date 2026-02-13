@@ -280,5 +280,43 @@ query_to_json(con, f"""
     ORDER BY ab.year
 """, f"{OUT}/ai_quality.json")
 
+# ── g) AI org output over time ─────────────────────────────────────────────
+timed_msg("ai_org_over_time: top AI org patent counts by year")
+
+query_to_json(con, f"""
+    WITH ai_patents AS (
+        SELECT DISTINCT patent_id
+        FROM {CPC_CURRENT_TSV()}
+        WHERE {AI_CLASSES_SQL}
+    ),
+    patent_year AS (
+        SELECT patent_id, YEAR(CAST(patent_date AS DATE)) AS year
+        FROM {PATENT_TSV()}
+        WHERE patent_type = 'utility'
+          AND patent_date IS NOT NULL
+          AND YEAR(CAST(patent_date AS DATE)) BETWEEN 1976 AND 2025
+    ),
+    top_orgs AS (
+        SELECT a.disambig_assignee_organization AS organization, COUNT(DISTINCT ap.patent_id) AS total
+        FROM ai_patents ap
+        JOIN {ASSIGNEE_TSV()} a ON ap.patent_id = a.patent_id AND a.assignee_sequence = 0
+        WHERE a.disambig_assignee_organization IS NOT NULL
+          AND a.disambig_assignee_organization != ''
+        GROUP BY a.disambig_assignee_organization
+        ORDER BY total DESC
+        LIMIT 15
+    )
+    SELECT
+        py.year,
+        a.disambig_assignee_organization AS organization,
+        COUNT(DISTINCT ap.patent_id) AS count
+    FROM ai_patents ap
+    JOIN patent_year py ON ap.patent_id = py.patent_id
+    JOIN {ASSIGNEE_TSV()} a ON ap.patent_id = a.patent_id AND a.assignee_sequence = 0
+    WHERE a.disambig_assignee_organization IN (SELECT organization FROM top_orgs)
+    GROUP BY py.year, a.disambig_assignee_organization
+    ORDER BY py.year, a.disambig_assignee_organization
+""", f"{OUT}/ai_org_over_time.json")
+
 con.close()
 print("\n=== Chapter 11: AI Patents complete ===\n")
