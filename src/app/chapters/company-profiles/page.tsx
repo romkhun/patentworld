@@ -155,10 +155,11 @@ export default function Chapter14() {
   /* ── A3: Corporate mortality ── */
   const mortalityHeatmapData = useMemo(() => {
     if (!mortality) return [];
-    const rows: { company: string; decade: string; rank: number }[] = [];
-    mortality.decades.forEach((dec) => {
-      dec.companies.forEach((c) => {
-        rows.push({ company: c.company, decade: dec.decade, rank: c.rank });
+    const rows: { company: string; year: number; rank: number }[] = [];
+    mortality.decades.forEach((dec: any) => {
+      const yr = typeof dec.start_year === 'number' ? dec.start_year : parseInt(dec.decade, 10);
+      dec.companies.forEach((c: any) => {
+        rows.push({ company: c.company, year: yr, rank: c.rank });
       });
     });
     return rows;
@@ -585,8 +586,10 @@ export default function Chapter14() {
           <PWRankHeatmap
             data={mortalityHeatmapData}
             nameKey="company"
-            yearKey="decade"
+            yearKey="year"
             rankKey="rank"
+            maxRank={50}
+            yearInterval={10}
           />
         ) : <div />}
       </ChartContainer>
