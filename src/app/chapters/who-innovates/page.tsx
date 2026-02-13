@@ -11,7 +11,6 @@ import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
-import Link from 'next/link';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -346,13 +345,6 @@ export default function Chapter3() {
           closer average and median values produce more consistently impactful work.
         </p>
       </KeyInsight>
-
-      <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-        Collaboration network analysis has moved to its own dedicated chapter.{' '}
-        <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
-          See Chapter 6: Collaboration Networks &rarr;
-        </Link>
-      </div>
 
       <SectionDivider label="Technology Portfolios" />
 

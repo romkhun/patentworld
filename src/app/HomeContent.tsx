@@ -62,7 +62,14 @@ export default function HomePage() {
           <h1 className="font-serif text-5xl font-bold tracking-tight sm:text-7xl">
             Patent<span className="text-chart-1">World</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-4 text-sm text-muted-foreground">
+            By{' '}
+            <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Saerom (Ronnie) Lee
+            </a>
+            , The Wharton School, University of Pennsylvania
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Explore 50 years of global innovation through {HERO_STATS.totalPatents} US patents.
             From the microchip revolution to the AI era, discover how technology, geography,
             and human ingenuity have shaped the world.

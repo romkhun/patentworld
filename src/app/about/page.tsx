@@ -19,6 +19,13 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 lg:px-8">
       <h1 className="font-serif text-4xl font-bold tracking-tight">About PatentWorld</h1>
+      <p className="mt-3 text-sm text-muted-foreground">
+        By{' '}
+        <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          Saerom (Ronnie) Lee
+        </a>
+        , The Wharton School, University of Pennsylvania
+      </p>
 
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
         <p>

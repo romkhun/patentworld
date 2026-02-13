@@ -124,21 +124,6 @@ export default function Chapter11() {
     return ranked;
   }, [orgOverTime, orgNameMap]);
 
-  // Pivot org-over-time data for line chart
-  const { orgTimePivot, orgTimeNames } = useMemo(() => {
-    if (!orgOverTime) return { orgTimePivot: [], orgTimeNames: [] };
-    const orgNames = [...new Set(orgOverTime.map((d) => d.organization))];
-    const years = [...new Set(orgOverTime.map((d) => d.year))].sort();
-    const pivoted = years.map((year) => {
-      const row: any = { year };
-      orgOverTime.filter((d) => d.year === year).forEach((d) => {
-        row[orgNameMap[d.organization] ?? d.organization] = d.count;
-      });
-      return row;
-    });
-    return { orgTimePivot: pivoted, orgTimeNames: orgNames.map((o) => orgNameMap[o] ?? o) };
-  }, [orgOverTime, orgNameMap]);
-
   const geoCountry = useMemo(() => {
     if (!geography) return [];
     const countryMap: Record<string, number> = {};
@@ -291,7 +276,7 @@ export default function Chapter11() {
 
       {orgRankData.length > 0 && (
         <ChartContainer
-          title="AI Patent Rank Race: Organizations Over Time"
+          title="Top Organizations: Rank Over Time"
           caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Hover over any line or label to highlight an organization's trajectory. Lower rank = more AI patents that year."
           loading={ootL}
           height={750}
@@ -311,39 +296,11 @@ export default function Chapter11() {
         <p>
           The rank race reveals dramatic shifts in organizational dominance. IBM held the
           top position unchallenged for decades, but the 2010s saw a rapid convergence as
-          Google, Samsung, Microsoft, and Amazon scaled their AI research operations.
-          The emergence of non-traditional technology firms like Capital One in the rankings
-          signals the expanding application of AI beyond core technology sectors.
-        </p>
-      </KeyInsight>
-
-      {orgTimePivot.length > 0 && (
-        <ChartContainer
-          title="AI Patent Output Trajectories by Organization"
-          caption="Annual AI-related patent grants for the 15 leading organizations. Shows the rise of different firms in the AI patent landscape over five decades."
-          loading={ootL}
-        >
-          <PWLineChart
-            data={orgTimePivot}
-            xKey="year"
-            lines={orgTimeNames.map((name, i) => ({
-              key: name,
-              name,
-              color: CHART_COLORS[i % CHART_COLORS.length],
-            }))}
-            yLabel="AI Patents"
-          />
-        </ChartContainer>
-      )}
-
-      <KeyInsight>
-        <p>
-          The trajectory of AI patenting by organization reveals distinct strategic eras. IBM
-          dominated AI-related patenting for decades through its research laboratories, but the
-          landscape shifted dramatically in the 2010s as Google, Amazon, Microsoft, and Apple
-          scaled their AI investments in response to the deep learning revolution. The convergence
-          of multiple firms at high patent volumes in recent years signals an intensifying
-          competitive race in AI capabilities.
+          Google, Samsung, Microsoft, Amazon, and Apple scaled their AI research operations
+          in response to the deep learning revolution. The emergence of non-traditional
+          technology firms like Capital One signals the expanding application of AI beyond
+          core technology sectors, while the convergence of multiple firms at the top
+          reflects an intensifying competitive race in AI capabilities.
         </p>
       </KeyInsight>
 

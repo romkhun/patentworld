@@ -87,8 +87,8 @@ export function PWChoroplethMap({
     return topojson.feature(topo, geom).features;
   }, [topo]);
 
-  const projection = geoAlbersUsa().scale(1100).translate([480, 300]);
-  const pathGen = geoPath().projection(projection);
+  const projection = useMemo(() => geoAlbersUsa().scale(1100).translate([480, 300]), []);
+  const pathGen = useMemo(() => geoPath().projection(projection), [projection]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent, abbrev: string, value: number | undefined) => {
     const svg = svgRef.current;

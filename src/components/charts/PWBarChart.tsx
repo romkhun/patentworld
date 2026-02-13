@@ -27,12 +27,12 @@ export function PWBarChart({
   // Compute left margin for vertical bars based on longest label
   const labelWidth = useMemo(() => isVertical
     ? Math.min(
-        180,
+        260,
         Math.max(
           110,
           ...data.map((d) => {
             const label = String(d[xKey] ?? '');
-            return label.length * 6.5 + 16;
+            return label.length * 6.8 + 16;
           })
         )
       )
@@ -71,7 +71,7 @@ export function PWBarChart({
             <YAxis
               type="category"
               dataKey={xKey}
-              tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: 11.5, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
               width={labelWidth}

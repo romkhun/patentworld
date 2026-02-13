@@ -10,7 +10,6 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
-import Link from 'next/link';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -344,13 +343,6 @@ export default function Chapter4() {
           division between occasional and career inventors.
         </p>
       </KeyInsight>
-
-      <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-        Inventor collaboration network analysis has moved to its own dedicated chapter.{' '}
-        <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
-          See Chapter 6: Collaboration Networks &rarr;
-        </Link>
-      </div>
 
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.

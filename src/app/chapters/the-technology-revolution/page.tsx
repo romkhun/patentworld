@@ -55,18 +55,22 @@ export default function Chapter2() {
 
   const changeData = useMemo(() => {
     if (!cpcChange) return [];
+    const fmtLabel = (d: CPCClassChange & { direction: string }) => {
+      const title = (d.title ?? d.class_name ?? '').slice(0, 42);
+      return `${d.cpc_class} \u2013 ${title}`;
+    };
     const growing = cpcChange
       .filter((d) => d.direction === 'growing')
       .sort((a, b) => b.pct_change - a.pct_change)
       .map((d) => ({
-        label: `${d.cpc_class}: ${(d.title ?? d.class_name ?? '').slice(0, 35)}`,
+        label: fmtLabel(d),
         pct_change: d.pct_change,
       }));
     const declining = cpcChange
       .filter((d) => d.direction === 'declining')
       .sort((a, b) => a.pct_change - b.pct_change)
       .map((d) => ({
-        label: `${d.cpc_class}: ${(d.title ?? d.class_name ?? '').slice(0, 35)}`,
+        label: fmtLabel(d),
         pct_change: d.pct_change,
       }));
     return [...growing, ...declining.reverse()];
@@ -188,7 +192,7 @@ export default function Chapter2() {
           title="Fastest Growing and Declining Technology Classes"
           caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Fastest growing (positive) and declining (negative) CPC classes with at least 100 patents in each period."
           loading={chgL}
-          height={850}
+          height={900}
         >
           <PWBarChart
             data={changeData}
