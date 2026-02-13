@@ -10,11 +10,15 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
-import type { TeamSizePerYear, ProlificInventor, InventorEntry } from '@/lib/types';
+import type {
+  TeamSizePerYear, ProlificInventor, InventorEntry,
+  NetworkData, StarInventorImpact, InventorLongevity,
+} from '@/lib/types';
 
 interface GenderRow {
   year: number;
@@ -46,6 +50,9 @@ export default function Chapter5() {
   const { data: genderSector, loading: gsL } = useChapterData<GenderSectorRow[]>('chapter5/gender_by_sector.json');
   const { data: prolific, loading: prL } = useChapterData<ProlificInventor[]>('chapter5/prolific_inventors.json');
   const { data: entry, loading: enL } = useChapterData<InventorEntry[]>('chapter5/inventor_entry.json');
+  const { data: starImpact, loading: siL } = useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
+  const { data: longevity, loading: lgL } = useChapterData<InventorLongevity[]>('chapter5/inventor_longevity.json');
+  const { data: network, loading: netL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
 
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
 
@@ -75,6 +82,32 @@ export default function Chapter5() {
     ? `${prolific[0].first_name} ${prolific[0].last_name}`.trim()
     : 'Shunpei Yamazaki';
 
+  // Star inventor impact data
+  const starData = useMemo(() => {
+    if (!starImpact) return [];
+    return starImpact.slice(0, 30).map((d) => ({
+      ...d,
+      label: `${d.first_name} ${d.last_name}`.trim(),
+    }));
+  }, [starImpact]);
+
+  // Longevity: pivot to line chart format
+  const longevityCohorts = useMemo(() => {
+    if (!longevity) return { data: [], cohorts: [] };
+    const cohorts = [...new Set(longevity.map((d) => d.cohort))].sort();
+    const maxLen = Math.max(...longevity.map((d) => d.career_length));
+    const data = [];
+    for (let cl = 0; cl <= maxLen; cl++) {
+      const row: any = { career_length: cl };
+      cohorts.forEach((cohort) => {
+        const entry = longevity.find((d) => d.cohort === cohort && d.career_length === cl);
+        if (entry) row[cohort] = entry.survival_pct;
+      });
+      data.push(row);
+    }
+    return { data, cohorts };
+  }, [longevity]);
+
   return (
     <div>
       <ChapterHeader
@@ -95,7 +128,7 @@ export default function Chapter5() {
 
       <ChartContainer
         title="Team Size Over Time"
-        caption="Average inventor team size and percentage of solo vs. large (5+) team patents."
+        caption="Average team size, solo-inventor share, and large-team (5+) share. Values share the same y-axis."
         loading={tmL}
       >
         <PWLineChart
@@ -140,6 +173,7 @@ export default function Chapter5() {
           lines={[
             { key: 'female_pct', name: 'Female %', color: CHART_COLORS[4] },
           ]}
+          yLabel="Percent"
           yFormatter={(v) => `${v.toFixed(1)}%`}
         />
       </ChartContainer>
@@ -198,10 +232,104 @@ export default function Chapter5() {
         </p>
       </Narrative>
 
+      {/* ── New deep analyses ── */}
+
+      <SectionDivider label="Inventor Impact" />
+
+      <Narrative>
+        <p>
+          Being prolific does not necessarily mean being impactful. Forward citations --
+          how often an inventor&apos;s patents are cited by others -- reveal whether their
+          innovations serve as <StatCallout value="building blocks" /> for future inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Star Inventor Impact: Top 30 by Citation Average"
+        caption="Average, median, and maximum forward citations per patent for the 30 most prolific inventors. Limited to patents granted through 2020."
+        loading={siL}
+        height={600}
+      >
+        <PWBarChart
+          data={starData}
+          xKey="label"
+          bars={[
+            { key: 'avg_citations', name: 'Avg Citations', color: CHART_COLORS[0] },
+            { key: 'median_citations', name: 'Median Citations', color: CHART_COLORS[2] },
+          ]}
+          layout="vertical"
+          yLabel="Citations"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Being prolific and being impactful are not the same thing. Some inventors with
+          fewer total patents generate significantly higher citation impact per patent,
+          suggesting deeper influence on their fields.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Career Longevity" />
+
+      <Narrative>
+        <p>
+          How long do inventors remain active in the patent system? Career survival curves
+          show what fraction of inventors who entered in each 5-year cohort continue
+          patenting over time -- revealing patterns of <StatCallout value="persistence and attrition" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Inventor Career Survival by Entry Cohort"
+        caption="Percentage of inventors still active (with at least one patent) at each career length, by 5-year entry cohort."
+        loading={lgL}
+      >
+        <PWLineChart
+          data={longevityCohorts.data}
+          xKey="career_length"
+          lines={longevityCohorts.cohorts.map((cohort, i) => ({
+            key: cohort,
+            name: cohort,
+            color: CHART_COLORS[i % CHART_COLORS.length],
+          }))}
+          xLabel="Career Length (Years)"
+          yLabel="Survival %"
+          yFormatter={(v) => `${v.toFixed(0)}%`}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Collaboration Network" />
+
+      <Narrative>
+        <p>
+          The most prolific inventors often work together across multiple patents, forming
+          tight-knit <StatCallout value="co-invention clusters" />. The network below shows
+          collaboration ties among the 50 most prolific inventors.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Co-Invention Network"
+        caption="Co-invention network among 50 most prolific inventors. Edges = shared patents (≥3). Node size = total patents."
+        loading={netL}
+        height={500}
+      >
+        {network ? (
+          <PWNetworkGraph
+            nodes={network.nodes}
+            edges={network.edges}
+            nodeColor={CHART_COLORS[4]}
+          />
+        ) : <div />}
+      </ChartContainer>
+
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.
         Team size counts all listed inventors per patent. Inventor disambiguation
-        is provided by PatentsView.
+        is provided by PatentsView. Citation impact uses forward citations for
+        patents granted through 2020. Career longevity tracks the span from first
+        to last patent year per inventor.
       </DataNote>
 
       <ChapterNavigation currentChapter={5} />

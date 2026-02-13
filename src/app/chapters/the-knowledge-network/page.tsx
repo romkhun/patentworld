@@ -91,6 +91,7 @@ export default function Chapter6() {
             { key: 'avg_citations', name: 'Average', color: CHART_COLORS[0] },
             { key: 'median_citations', name: 'Median', color: CHART_COLORS[2] },
           ]}
+          yLabel="Citations"
           yFormatter={(v) => v.toFixed(1)}
         />
       </ChartContainer>
@@ -137,6 +138,7 @@ export default function Chapter6() {
             { key: 'avg_lag_years', name: 'Average Lag', color: CHART_COLORS[0] },
             { key: 'median_lag_years', name: 'Median Lag', color: CHART_COLORS[2] },
           ]}
+          yLabel="Years"
           yFormatter={(v) => `${v.toFixed(1)}y`}
         />
       </ChartContainer>

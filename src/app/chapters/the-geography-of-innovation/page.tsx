@@ -178,6 +178,7 @@ export default function Chapter4() {
             name,
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
+          yLabel="Patents"
         />
       </ChartContainer>
 

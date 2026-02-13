@@ -65,7 +65,7 @@ export default function Chapter1() {
 
       <ChartContainer
         title="Patent Grants Over Time"
-        caption="Annual patent grants by type, 1976-2025. Source: PatentsView."
+        caption="Annual patent grants by type, 1976-2025. Utility patents represent inventions; design patents protect ornamental appearance. Source: PatentsView."
         loading={ppyL}
       >
         <PWAreaChart
@@ -78,6 +78,7 @@ export default function Chapter1() {
             { key: 'reissue', name: 'Reissue', color: CHART_COLORS[3] },
           ]}
           stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -108,6 +109,7 @@ export default function Chapter1() {
             { key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[0] },
             { key: 'median_claims', name: 'Median Claims', color: CHART_COLORS[2] },
           ]}
+          yLabel="Claims"
           yFormatter={(v) => v.toFixed(0)}
         />
       </ChartContainer>
@@ -137,6 +139,7 @@ export default function Chapter1() {
             { key: 'avg_lag_years', name: 'Average', color: CHART_COLORS[0] },
             { key: 'median_lag_years', name: 'Median', color: CHART_COLORS[2] },
           ]}
+          yLabel="Years"
           yFormatter={(v) => `${v.toFixed(1)}y`}
         />
       </ChartContainer>

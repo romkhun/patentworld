@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -12,10 +12,12 @@ interface PWAreaChartProps {
   areas: { key: string; name: string; color?: string }[];
   stacked?: boolean;
   stackedPercent?: boolean;
+  xLabel?: string;
+  yLabel?: string;
   yFormatter?: (v: number) => string;
 }
 
-export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, yFormatter }: PWAreaChartProps) {
+export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter }: PWAreaChartProps) {
   const processedData = stackedPercent ? data.map((d) => {
     const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
     if (total === 0) return d;
@@ -44,7 +46,16 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
-        />
+        >
+          {xLabel && (
+            <Label
+              value={xLabel}
+              position="insideBottom"
+              offset={-2}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+            />
+          )}
+        </XAxis>
         <YAxis
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
@@ -52,7 +63,17 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
           width={60}
           domain={stackedPercent ? [0, 100] : undefined}
-        />
+        >
+          {yLabel && (
+            <Label
+              value={yLabel}
+              angle={-90}
+              position="insideLeft"
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+              offset={-5}
+            />
+          )}
+        </YAxis>
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
           formatter={(value: any, name: any) => [
@@ -60,7 +81,11 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             name,
           ]}
         />
-        <Legend />
+        <Legend
+          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          iconType="circle"
+          iconSize={8}
+        />
         {areas.map((area, i) => (
           <Area
             key={area.key}

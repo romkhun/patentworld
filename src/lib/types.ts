@@ -281,6 +281,57 @@ export interface CPCTreemapEntry {
   patent_count: number;
 }
 
+// Network types (shared by firm & inventor networks)
+export interface NetworkNode {
+  id: string;
+  name: string;
+  patents: number;
+}
+
+export interface NetworkEdge {
+  source: string;
+  target: string;
+  weight: number;
+}
+
+export interface NetworkData {
+  nodes: NetworkNode[];
+  edges: NetworkEdge[];
+}
+
+// Chapter 3 deep analysis types
+export interface FirmCitationImpact {
+  organization: string;
+  total_patents: number;
+  avg_citations_received: number;
+  median_citations_received: number;
+  p90_citations_received: number;
+}
+
+export interface FirmTechEvolution {
+  organization: string;
+  period: string;
+  section: string;
+  count: number;
+}
+
+// Chapter 5 deep analysis types
+export interface InventorLongevity {
+  cohort: string;
+  career_length: number;
+  survival_pct: number;
+}
+
+export interface StarInventorImpact {
+  inventor_id: string;
+  first_name: string;
+  last_name: string;
+  total_patents: number;
+  avg_citations: number;
+  median_citations: number;
+  max_citations: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

@@ -96,6 +96,7 @@ export default function Chapter2() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
+          yLabel="Patents"
         />
       </ChartContainer>
 

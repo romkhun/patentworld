@@ -38,7 +38,7 @@ export function ChartContainer({ title, caption, height = 400, loading, children
         </div>
       )}
       {caption && (
-        <p className="mt-3 text-xs text-muted-foreground">{caption}</p>
+        <p className="mt-4 text-sm text-muted-foreground/80">{caption}</p>
       )}
     </div>
   );

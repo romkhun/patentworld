@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell, Label,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -13,11 +13,13 @@ interface PWBarChartProps {
   layout?: 'vertical' | 'horizontal';
   stacked?: boolean;
   colorByValue?: boolean;
+  xLabel?: string;
+  yLabel?: string;
   yFormatter?: (v: number) => string;
 }
 
 export function PWBarChart({
-  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, yFormatter,
+  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, xLabel, yLabel, yFormatter,
 }: PWBarChartProps) {
   const isVertical = layout === 'vertical';
 
@@ -38,7 +40,16 @@ export function PWBarChart({
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
               tickFormatter={yFormatter ?? formatCompact}
-            />
+            >
+              {yLabel && (
+                <Label
+                  value={yLabel}
+                  position="insideBottom"
+                  offset={-2}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                />
+              )}
+            </XAxis>
             <YAxis
               type="category"
               dataKey={xKey}
@@ -46,7 +57,17 @@ export function PWBarChart({
               tickLine={false}
               axisLine={false}
               width={110}
-            />
+            >
+              {xLabel && (
+                <Label
+                  value={xLabel}
+                  angle={-90}
+                  position="insideLeft"
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  offset={-5}
+                />
+              )}
+            </YAxis>
           </>
         ) : (
           <>
@@ -55,14 +76,33 @@ export function PWBarChart({
               tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
-            />
+            >
+              {xLabel && (
+                <Label
+                  value={xLabel}
+                  position="insideBottom"
+                  offset={-2}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                />
+              )}
+            </XAxis>
             <YAxis
               tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
               tickFormatter={yFormatter ?? formatCompact}
               width={60}
-            />
+            >
+              {yLabel && (
+                <Label
+                  value={yLabel}
+                  angle={-90}
+                  position="insideLeft"
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  offset={-5}
+                />
+              )}
+            </YAxis>
           </>
         )}
         <Tooltip
@@ -73,7 +113,11 @@ export function PWBarChart({
             name,
           ]}
         />
-        {bars.length > 1 && <Legend />}
+        <Legend
+          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          iconType="circle"
+          iconSize={8}
+        />
         {bars.map((bar, i) => (
           <Bar
             key={bar.key}

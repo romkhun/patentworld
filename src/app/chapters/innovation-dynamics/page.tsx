@@ -108,6 +108,7 @@ export default function Chapter7() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
+          yLabel="Days"
           yFormatter={(v) => `${Math.round(v / 365.25 * 10) / 10}y`}
         />
       </ChartContainer>
@@ -228,6 +229,7 @@ export default function Chapter7() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
+          yLabel="YoY %"
           yFormatter={(v) => `${v > 0 ? '+' : ''}${v.toFixed(0)}%`}
         />
       </ChartContainer>
