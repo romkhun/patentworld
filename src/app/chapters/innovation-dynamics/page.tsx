@@ -45,7 +45,7 @@ function pivotVelocity(data: InnovationVelocity[]) {
   });
 }
 
-export default function Chapter7() {
+export default function Chapter8() {
   const { data: grantLag, loading: glL } = useChapterData<GrantLagBySector[]>('chapter7/grant_lag_by_sector.json');
   const { data: crossDomain, loading: cdL } = useChapterData<CrossDomain[]>('chapter7/cross_domain.json');
   const { data: intlCollab, loading: icL } = useChapterData<IntlCollaboration[]>('chapter7/intl_collaboration.json');
@@ -84,7 +84,7 @@ export default function Chapter7() {
   return (
     <div>
       <ChapterHeader
-        number={7}
+        number={8}
         title="Innovation Dynamics"
         subtitle="The tempo and trajectory of invention"
       />
@@ -183,9 +183,12 @@ export default function Chapter7() {
           data={intlCollab ?? []}
           xKey="year"
           lines={[
-            { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0] },
-            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2] },
+            { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0], yAxisId: 'left' },
+            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2], yAxisId: 'right' },
           ]}
+          yLabel="Patents"
+          rightYLabel="Percent"
+          rightYFormatter={(v) => `${v.toFixed(1)}%`}
         />
       </ChartContainer>
 
@@ -292,7 +295,7 @@ export default function Chapter7() {
         International collaboration identifies patents with inventors in 2+ different countries.
       </DataNote>
 
-      <ChapterNavigation currentChapter={7} />
+      <ChapterNavigation currentChapter={8} />
     </div>
   );
 }

@@ -350,7 +350,7 @@ export default function Chapter3() {
       <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
         Collaboration network analysis has moved to its own dedicated chapter.{' '}
         <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
-          See Chapter 8: Collaboration Networks &rarr;
+          See Chapter 6: Collaboration Networks &rarr;
         </Link>
       </div>
 

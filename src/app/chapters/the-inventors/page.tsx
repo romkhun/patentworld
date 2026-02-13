@@ -44,7 +44,7 @@ function pivotGender(data: GenderRow[]) {
   });
 }
 
-export default function Chapter5() {
+export default function Chapter4() {
   const { data: team, loading: tmL } = useChapterData<TeamSizePerYear[]>('chapter5/team_size_per_year.json');
   const { data: gender, loading: gnL } = useChapterData<GenderRow[]>('chapter5/gender_per_year.json');
   const { data: genderSector, loading: gsL } = useChapterData<GenderSectorRow[]>('chapter5/gender_by_sector.json');
@@ -83,7 +83,7 @@ export default function Chapter5() {
 
   const starData = useMemo(() => {
     if (!starImpact) return [];
-    return starImpact.map((d) => ({
+    return starImpact.slice(0, 100).map((d) => ({
       ...d,
       label: `${d.first_name} ${d.last_name}`.trim(),
     }));
@@ -109,7 +109,7 @@ export default function Chapter5() {
   return (
     <div>
       <ChapterHeader
-        number={5}
+        number={4}
         title="The Inventors"
         subtitle="The people behind the patents"
       />
@@ -218,7 +218,7 @@ export default function Chapter5() {
         title="Most Prolific Inventors"
         caption="Inventors ranked by total utility patents granted, 1976-2025."
         loading={prL}
-        height={2800}
+        height={1800}
       >
         <PWBarChart
           data={topInventors}
@@ -282,9 +282,9 @@ export default function Chapter5() {
 
       <ChartContainer
         title="Star Inventor Impact by Citation Average"
-        caption="Average, median, and maximum forward citations per patent for prolific inventors. Limited to patents granted through 2020."
+        caption="Average and median forward citations per patent for the top 100 prolific inventors. Limited to patents granted through 2020."
         loading={siL}
-        height={5600}
+        height={1800}
       >
         <PWBarChart
           data={starData}
@@ -348,7 +348,7 @@ export default function Chapter5() {
       <div className="my-8 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
         Inventor collaboration network analysis has moved to its own dedicated chapter.{' '}
         <Link href="/chapters/collaboration-networks/" className="text-primary underline underline-offset-2 hover:text-primary/80">
-          See Chapter 8: Collaboration Networks &rarr;
+          See Chapter 6: Collaboration Networks &rarr;
         </Link>
       </div>
 
@@ -360,7 +360,7 @@ export default function Chapter5() {
         to last patent year per inventor.
       </DataNote>
 
-      <ChapterNavigation currentChapter={5} />
+      <ChapterNavigation currentChapter={4} />
     </div>
   );
 }

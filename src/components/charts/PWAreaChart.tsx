@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label,
 } from 'recharts';
@@ -18,13 +19,13 @@ interface PWAreaChartProps {
 }
 
 export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter }: PWAreaChartProps) {
-  const processedData = stackedPercent ? data.map((d) => {
+  const processedData = useMemo(() => stackedPercent ? data.map((d) => {
     const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
     if (total === 0) return d;
-    const row: any = { [xKey]: d[xKey] };
+    const row: Record<string, unknown> = { [xKey]: d[xKey] };
     areas.forEach((a) => { row[a.key] = ((Number(d[a.key]) || 0) / total) * 100; });
     return row;
-  }) : data;
+  }) : data, [data, xKey, areas, stackedPercent]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

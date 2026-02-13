@@ -29,17 +29,6 @@ export const BUMP_COLORS = [
   'hsl(100, 60%, 40%)',   // Forest
 ];
 
-export const CHART_COLORS_DARK = [
-  'hsl(217, 91%, 60%)',
-  'hsl(142, 76%, 50%)',
-  'hsl(45, 93%, 58%)',
-  'hsl(0, 91%, 65%)',
-  'hsl(262, 88%, 65%)',
-  'hsl(187, 95%, 48%)',
-  'hsl(25, 97%, 58%)',
-  'hsl(340, 85%, 58%)',
-  'hsl(199, 92%, 55%)',
-];
 
 export const CPC_SECTION_COLORS: Record<string, string> = {
   A: CHART_COLORS[0],

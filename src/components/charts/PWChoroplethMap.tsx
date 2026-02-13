@@ -108,8 +108,8 @@ export function PWChoroplethMap({
   const [minVal, maxVal] = colorScale.domain();
 
   return (
-    <div className="relative w-full h-full">
-      <svg ref={svgRef} viewBox="0 0 960 600" className="w-full h-full">
+    <div className="relative w-full h-full flex flex-col">
+      <svg ref={svgRef} viewBox="0 0 960 600" className="w-full flex-1">
         {features.map((feature) => {
           const fips = String(feature.id).padStart(2, '0');
           const abbrev = FIPS_TO_ABBREV[fips];
@@ -138,7 +138,7 @@ export function PWChoroplethMap({
         </div>
       )}
       {/* Legend */}
-      <div className="flex items-center justify-center gap-1 mt-2">
+      <div className="flex items-center justify-center gap-1 mt-2 mb-4 shrink-0">
         <span className="text-xs text-muted-foreground">{valueFormatter(minVal)}</span>
         {COLOR_STEPS.map((color, i) => (
           <div key={i} className="w-8 h-3 rounded-sm" style={{ backgroundColor: color }} />

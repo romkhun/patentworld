@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { HERO_STATS } from '@/lib/constants';
 
 export function Footer() {
   return (
@@ -15,7 +16,7 @@ export function Footer() {
             >
               PatentsView
             </a>
-            {' '}(USPTO). 9.36 million US patents, 1976-2025.
+            {' '}(USPTO). {HERO_STATS.totalPatents} US patents, {HERO_STATS.startYear}-{HERO_STATS.endYear}.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link href="/about/" className="hover:text-foreground">About</Link>

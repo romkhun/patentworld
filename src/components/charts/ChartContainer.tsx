@@ -16,18 +16,21 @@ export function ChartContainer({ title, caption, height = 600, loading, wide, ch
   const { ref, inView } = useInView({ threshold: 0.1 });
 
   return (
-    <div
+    <figure
       ref={ref}
+      role="figure"
+      aria-label={title}
       className={`fade-in-section relative my-10 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden ${wide ? '-mx-4 lg:-mx-8' : ''} ${inView ? 'is-visible' : ''}`}
     >
       {/* Colored top-border accent */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px]"
         style={{ background: 'linear-gradient(90deg, hsl(var(--chart-1)), hsl(var(--chart-5)))' }}
+        aria-hidden="true"
       />
       <h3 className="mb-4 text-lg font-semibold tracking-tight">{title}</h3>
       {loading ? (
-        <div className="flex flex-col gap-3 justify-center" style={{ height }}>
+        <div className="flex flex-col gap-3 justify-center" aria-label="Loading chart" style={{ height }}>
           <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
           <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />
           <div className="h-4 w-5/6 animate-pulse rounded bg-muted" />
@@ -39,8 +42,8 @@ export function ChartContainer({ title, caption, height = 600, loading, wide, ch
         </div>
       )}
       {caption && (
-        <p className="mt-4 text-sm text-muted-foreground/80">{caption}</p>
+        <figcaption className="mt-6 text-sm text-muted-foreground/80">{caption}</figcaption>
       )}
-    </div>
+    </figure>
   );
 }

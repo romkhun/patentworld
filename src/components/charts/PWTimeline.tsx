@@ -2,11 +2,17 @@
 
 import { useState } from 'react';
 
+export interface ResearchCitation {
+  citation: string;
+  summary: string;
+}
+
 export interface TimelineEvent {
   year: number;
   title: string;
   category: 'Legislation' | 'Court' | 'Policy' | 'International';
   description: string;
+  research?: ResearchCitation[];
 }
 
 interface PWTimelineProps {
@@ -82,6 +88,8 @@ export function PWTimeline({ events }: PWTimelineProps) {
               {/* Event card */}
               <button
                 onClick={() => setExpandedIndex(isExpanded ? null : i)}
+                aria-expanded={isExpanded}
+                aria-controls={`timeline-event-${i}`}
                 className={`w-full text-left rounded-lg border p-3 sm:p-4 transition-all ${colors.border} ${isExpanded ? colors.bg : 'hover:bg-accent/50'}`}
               >
                 <div className="flex items-start justify-between gap-2">
@@ -93,9 +101,22 @@ export function PWTimeline({ events }: PWTimelineProps) {
                       <h4 className="text-sm font-semibold">{event.title}</h4>
                     </div>
                     {isExpanded && (
-                      <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-                        {event.description}
-                      </p>
+                      <div id={`timeline-event-${i}`}>
+                        <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+                          {event.description}
+                        </p>
+                        {event.research && event.research.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-border/50 space-y-3">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Research</p>
+                            {event.research.map((r, ri) => (
+                              <div key={ri} className="text-sm">
+                                <p className="leading-relaxed text-foreground/80">{r.summary}</p>
+                                <p className="mt-1 text-xs text-muted-foreground italic">{r.citation}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
                   <div className="shrink-0 text-muted-foreground text-xs mt-0.5">

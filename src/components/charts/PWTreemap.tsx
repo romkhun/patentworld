@@ -17,10 +17,19 @@ interface TreeNode {
   [key: string]: any;
 }
 
-function CustomContent(props: any) {
-  const { x, y, width, height, name, section } = props;
+interface TreemapContentProps {
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  name?: string;
+  section?: string;
+}
+
+function CustomContent(props: TreemapContentProps) {
+  const { x = 0, y = 0, width = 0, height = 0, name, section } = props;
   if (width < 30 || height < 20) return null;
-  const fill = CPC_SECTION_COLORS[section] ?? '#888';
+  const fill = (section && CPC_SECTION_COLORS[section]) ?? '#888';
   const maxChars = Math.floor(width / 7);
   const label = name && name.length > maxChars ? name.slice(0, maxChars - 1) + '\u2026' : name;
   return (
@@ -35,14 +44,15 @@ function CustomContent(props: any) {
   );
 }
 
-function CustomTooltip({ active, payload }: any) {
+function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payload: { fullName?: string; name?: string; section?: string; size?: number } }[] }) {
   if (!active || !payload?.[0]) return null;
   const item = payload[0].payload;
+  const sectionLabel = item.section ? (CPC_SECTION_NAMES[item.section] ?? item.section) : '';
   return (
     <div style={TOOLTIP_STYLE}>
       <div className="font-medium">{item.fullName ?? item.name}</div>
       <div className="text-muted-foreground text-xs mt-0.5">
-        {CPC_SECTION_NAMES[item.section] ?? item.section} &middot; {formatCompact(item.size)} patents
+        {sectionLabel} &middot; {formatCompact(item.size ?? 0)} patents
       </div>
     </div>
   );

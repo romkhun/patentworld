@@ -15,7 +15,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type { CitationsPerYear, CitationLag, GovFundedPerYear, GovAgency } from '@/lib/types';
 
-export default function Chapter6() {
+export default function Chapter7() {
   const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
   const { data: lag, loading: laL } = useChapterData<CitationLag[]>('chapter6/citation_lag.json');
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
@@ -41,7 +41,7 @@ export default function Chapter6() {
   return (
     <div>
       <ChapterHeader
-        number={6}
+        number={7}
         title="The Knowledge Network"
         subtitle="How patents build on prior knowledge"
       />
@@ -194,7 +194,7 @@ export default function Chapter6() {
         and lag calculations exclude records with missing dates.
       </DataNote>
 
-      <ChapterNavigation currentChapter={6} />
+      <ChapterNavigation currentChapter={7} />
     </div>
   );
 }

@@ -22,7 +22,7 @@ export function ChapterHeader({ number, title, subtitle }: ChapterHeaderProps) {
   const gradientColor = CHAPTER_GRADIENT_COLORS[number] ?? 'rgba(59,130,246,0.08)';
 
   return (
-    <div
+    <header
       className="relative mb-10 -mx-4 px-4 py-8 sm:-mx-6 sm:px-6 rounded-lg overflow-hidden"
       style={{
         background: `radial-gradient(ellipse at top left, ${gradientColor} 0%, transparent 70%)`,
@@ -35,7 +35,7 @@ export function ChapterHeader({ number, title, subtitle }: ChapterHeaderProps) {
         {title}
       </h1>
       <p className="mt-3 text-lg text-muted-foreground">{subtitle}</p>
-      <div className="mt-4 h-0.5 w-16 rounded-full bg-primary/40" />
-    </div>
+      <div className="mt-4 h-0.5 w-16 rounded-full bg-primary/40" aria-hidden="true" />
+    </header>
   );
 }

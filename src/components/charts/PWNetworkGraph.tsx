@@ -7,6 +7,8 @@ import {
   forceManyBody,
   forceCenter,
   forceCollide,
+  forceX,
+  forceY,
   SimulationNodeDatum,
   SimulationLinkDatum,
 } from 'd3-force';
@@ -47,6 +49,8 @@ export function PWNetworkGraph({
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [isPanning, setIsPanning] = useState(false);
   const panStartRef = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
+  const [simulationDone, setSimulationDone] = useState(false);
+  const hasAutoFitted = useRef(false);
 
   // Responsive sizing
   useEffect(() => {
@@ -67,17 +71,16 @@ export function PWNetworkGraph({
   const maxPatents = Math.max(...nodes.map((n) => n.patents), 1);
   const maxWeight = Math.max(...edges.map((e) => e.weight), 1);
 
-  // Scale node radii: smaller for large networks
+  // Scale node radii
   const radiusScale = useCallback((patents: number) => {
-    const maxR = nodeCount > 100 ? 20 : nodeCount > 50 ? 24 : 30;
-    const minR = nodeCount > 100 ? 2 : 3;
+    const maxR = nodeCount > 100 ? 18 : nodeCount > 50 ? 22 : 28;
+    const minR = nodeCount > 100 ? 1.5 : 2.5;
     return minR + (maxR - minR) * Math.sqrt(patents / maxPatents);
   }, [nodeCount, maxPatents]);
 
-  const widthScale = (weight: number) => {
-    return 0.3 + 2.5 * (weight / maxWeight);
-  };
-  const labelThreshold = radiusScale(maxPatents * (nodeCount > 100 ? 0.15 : 0.06));
+  const widthScale = useCallback((weight: number) => {
+    return 0.15 + 1.8 * Math.sqrt(weight / maxWeight);
+  }, [maxWeight]);
 
   // Connection counts
   const connectionCount = useMemo(() => {
@@ -89,33 +92,104 @@ export function PWNetworkGraph({
     return counts;
   }, [edges]);
 
+  // Max connections for color intensity
+  const maxConnections = useMemo(() => {
+    const vals = Object.values(connectionCount);
+    return Math.max(...vals, 1);
+  }, [connectionCount]);
+
+  // Node opacity based on degree (more connections = more prominent)
+  const nodeOpacity = useCallback((nodeId: string) => {
+    const conn = connectionCount[nodeId] ?? 0;
+    return 0.4 + 0.6 * Math.sqrt(conn / maxConnections);
+  }, [connectionCount, maxConnections]);
+
+  // Label threshold: show labels for top nodes by degree
+  const labelThreshold = useMemo(() => {
+    const sorted = Object.values(connectionCount).sort((a, b) => b - a);
+    // Show labels for top ~5% or at least top 10 nodes
+    const idx = Math.min(Math.max(10, Math.floor(sorted.length * 0.05)), sorted.length - 1);
+    return sorted[idx] ?? 1;
+  }, [connectionCount]);
+
+  // Auto-fit: compute zoom/pan to show all nodes
+  const fitToView = useCallback(() => {
+    if (simNodes.length === 0) return;
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    simNodes.forEach((n) => {
+      const r = radiusScale(n.patents);
+      const x = n.x ?? 0;
+      const y = n.y ?? 0;
+      minX = Math.min(minX, x - r);
+      maxX = Math.max(maxX, x + r);
+      minY = Math.min(minY, y - r);
+      maxY = Math.max(maxY, y + r);
+    });
+
+    const bboxW = maxX - minX;
+    const bboxH = maxY - minY;
+    if (bboxW <= 0 || bboxH <= 0) return;
+
+    const padding = 40;
+    const availW = dimensions.width - padding * 2;
+    const availH = dimensions.height - padding * 2;
+    const newZoom = Math.min(availW / bboxW, availH / bboxH, 2);
+
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    const newPanX = dimensions.width / 2 - centerX * newZoom;
+    const newPanY = dimensions.height / 2 - centerY * newZoom;
+
+    setZoom(newZoom);
+    setPan({ x: newPanX, y: newPanY });
+  }, [simNodes, dimensions, radiusScale]);
+
+  // Auto-fit when simulation completes
+  useEffect(() => {
+    if (simulationDone && !hasAutoFitted.current && simNodes.length > 0) {
+      hasAutoFitted.current = true;
+      fitToView();
+    }
+  }, [simulationDone, simNodes, fitToView]);
+
   // Build and run simulation
   useEffect(() => {
     if (nodes.length === 0) return;
 
-    const simN: SimNode[] = nodes.map((n) => ({ ...n }));
-    const simL: SimLink[] = edges.map((e) => ({
-      source: e.source,
-      target: e.target,
-      weight: e.weight,
-    }));
+    setSimulationDone(false);
+    hasAutoFitted.current = false;
 
-    // Adaptive force parameters
-    const chargeStrength = nodeCount > 100 ? -120 : nodeCount > 50 ? -180 : -200;
-    const linkDistance = nodeCount > 100 ? 60 : nodeCount > 50 ? 80 : 100;
+    const simN: SimNode[] = nodes.map((n) => ({ ...n }));
+    const nodeIds = new Set(simN.map((n) => n.id));
+    const simL: SimLink[] = edges
+      .filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target))
+      .map((e) => ({
+        source: e.source,
+        target: e.target,
+        weight: e.weight,
+      }));
+
+    // Tighter force parameters: clusters close together but no overlap
+    const chargeStrength = nodeCount > 100 ? -60 : nodeCount > 50 ? -100 : -150;
+    const linkDist = nodeCount > 100 ? 30 : nodeCount > 50 ? 45 : 60;
+    const gravityStrength = nodeCount > 100 ? 0.08 : 0.06;
 
     const sim = forceSimulation<SimNode>(simN)
       .force(
         'link',
         forceLink<SimNode, SimLink>(simL)
           .id((d) => d.id)
-          .distance(linkDistance)
-          .strength((d) => 0.3 + 0.7 * (d.weight / maxWeight))
+          .distance(linkDist)
+          .strength((d) => 0.4 + 0.6 * (d.weight / maxWeight))
       )
-      .force('charge', forceManyBody().strength(chargeStrength))
-      .force('center', forceCenter(dimensions.width / 2, dimensions.height / 2))
-      .force('collide', forceCollide<SimNode>().radius((d) => radiusScale(d.patents) + 1))
-      .alphaDecay(0.015);
+      .force('charge', forceManyBody().strength(chargeStrength).distanceMax(300))
+      .force('center', forceCenter(0, 0).strength(0.5))
+      .force('x', forceX<SimNode>(0).strength(gravityStrength))
+      .force('y', forceY<SimNode>(0).strength(gravityStrength))
+      .force('collide', forceCollide<SimNode>().radius((d) => radiusScale(d.patents) + 0.5).strength(0.7))
+      .alphaDecay(0.02)
+      .velocityDecay(0.4);
 
     simulationRef.current = sim;
 
@@ -132,18 +206,20 @@ export function PWNetworkGraph({
     sim.on('end', () => {
       setSimNodes([...simN]);
       setSimLinks([...simL]);
+      setSimulationDone(true);
     });
 
     return () => {
       sim.stop();
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nodes, edges, dimensions.width, dimensions.height]);
+  }, [nodes, edges]);
 
-  // Drag handlers
+  // Drag handlers — convert screen coords to graph coords
   const handleMouseDown = useCallback(
     (e: React.MouseEvent, node: SimNode) => {
       e.preventDefault();
+      e.stopPropagation();
       setDraggedId(node.id);
       const sim = simulationRef.current;
       if (sim) {
@@ -163,15 +239,18 @@ export function PWNetworkGraph({
       const svg = (e.target as Element).closest('svg');
       if (!svg) return;
       const rect = svg.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const screenX = e.clientX - rect.left;
+      const screenY = e.clientY - rect.top;
+      // Convert screen coordinates to graph coordinates
+      const graphX = (screenX - pan.x) / zoom;
+      const graphY = (screenY - pan.y) / zoom;
       const node = simNodes.find((n) => n.id === draggedId);
       if (node) {
-        node.fx = x;
-        node.fy = y;
+        node.fx = graphX;
+        node.fy = graphY;
       }
     },
-    [draggedId, simNodes]
+    [draggedId, simNodes, zoom, pan]
   );
 
   const handleMouseUp = useCallback(() => {
@@ -179,9 +258,14 @@ export function PWNetworkGraph({
     const sim = simulationRef.current;
     if (sim) {
       sim.alphaTarget(0);
+      const node = simNodes.find((n) => n.id === draggedId);
+      if (node) {
+        node.fx = null;
+        node.fy = null;
+      }
     }
     setDraggedId(null);
-  }, [draggedId]);
+  }, [draggedId, simNodes]);
 
   // Connected set for hover highlighting
   const connectedIds = useMemo(() => {
@@ -196,16 +280,45 @@ export function PWNetworkGraph({
     return ids;
   }, [hoveredId, edges]);
 
+  // Connected edges for hover highlighting
+  const connectedEdges = useMemo(() => {
+    const edgeSet = new Set<string>();
+    if (hoveredId) {
+      edges.forEach((e) => {
+        if (e.source === hoveredId || e.target === hoveredId) {
+          edgeSet.add(`${e.source}-${e.target}`);
+        }
+      });
+    }
+    return edgeSet;
+  }, [hoveredId, edges]);
+
   // Zoom with mouse wheel
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
+    const svg = (e.target as Element).closest('svg');
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
     const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    setZoom((z) => Math.min(5, Math.max(0.2, z * delta)));
+    setZoom((prevZoom) => {
+      const newZoom = Math.min(8, Math.max(0.05, prevZoom * delta));
+      // Zoom toward mouse position
+      setPan((prevPan) => ({
+        x: mouseX - (mouseX - prevPan.x) * (newZoom / prevZoom),
+        y: mouseY - (mouseY - prevPan.y) * (newZoom / prevZoom),
+      }));
+      return newZoom;
+    });
   }, []);
 
-  // Pan with middle-click or shift+click on background
+  // Pan with any click on background or shift+click
   const handleBgMouseDown = useCallback((e: React.MouseEvent) => {
-    if (e.button === 1 || (e.button === 0 && e.shiftKey)) {
+    // Only start panning if clicking on background (not a node)
+    if ((e.target as Element).closest('circle')) return;
+    if (e.button === 0 || e.button === 1) {
       e.preventDefault();
       setIsPanning(true);
       panStartRef.current = { x: e.clientX, y: e.clientY, panX: pan.x, panY: pan.y };
@@ -225,35 +338,37 @@ export function PWNetworkGraph({
     setIsPanning(false);
   }, []);
 
-  const resetView = useCallback(() => {
-    setZoom(1);
-    setPan({ x: 0, y: 0 });
-  }, []);
-
   return (
     <div ref={containerRef} className="relative w-full h-full select-none">
       {/* Zoom controls */}
       <div className="absolute top-2 right-2 z-20 flex flex-col gap-1">
         <button
-          onClick={() => setZoom((z) => Math.min(5, z * 1.3))}
+          onClick={() => {
+            setZoom((z) => Math.min(8, z * 1.3));
+          }}
           className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
           title="Zoom in"
+          aria-label="Zoom in"
         >
           +
         </button>
         <button
-          onClick={() => setZoom((z) => Math.max(0.2, z / 1.3))}
+          onClick={() => {
+            setZoom((z) => Math.max(0.05, z / 1.3));
+          }}
           className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
           title="Zoom out"
+          aria-label="Zoom out"
         >
           &minus;
         </button>
         <button
-          onClick={resetView}
+          onClick={fitToView}
           className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-xs"
-          title="Reset view"
+          title="Fit to view"
+          aria-label="Fit to view"
         >
-          1:1
+          Fit
         </button>
       </div>
       <svg
@@ -275,17 +390,17 @@ export function PWNetworkGraph({
           setTooltip(null);
           setHoveredId(null);
         }}
-        style={{ cursor: isPanning ? 'move' : draggedId ? 'grabbing' : 'default' }}
+        style={{ cursor: isPanning ? 'move' : draggedId ? 'grabbing' : 'grab' }}
       >
-        <g transform={`translate(${pan.x + dimensions.width / 2 * (1 - zoom)}, ${pan.y + dimensions.height / 2 * (1 - zoom)}) scale(${zoom})`}>
+        <g transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`}>
         {/* Edges */}
         {simLinks.map((link, i) => {
           const s = link.source as SimNode;
           const t = link.target as SimNode;
-          if (!s.x || !t.x) return null;
-          const isConnected =
-            !hoveredId ||
-            (connectedIds.has(s.id) && connectedIds.has(t.id));
+          if (s.x == null || t.x == null || s.y == null || t.y == null) return null;
+          const edgeKey = `${s.id}-${t.id}`;
+          const isHighlighted = hoveredId ? connectedEdges.has(edgeKey) : false;
+          const isDimmed = hoveredId && !isHighlighted;
           return (
             <line
               key={`edge-${i}`}
@@ -293,9 +408,9 @@ export function PWNetworkGraph({
               y1={s.y}
               x2={t.x}
               y2={t.y}
-              stroke="hsl(var(--muted-foreground))"
-              strokeWidth={widthScale(link.weight)}
-              strokeOpacity={isConnected ? 0.35 : 0.04}
+              stroke={isHighlighted ? nodeColor : 'hsl(var(--muted-foreground))'}
+              strokeWidth={isHighlighted ? widthScale(link.weight) * 1.5 : widthScale(link.weight)}
+              strokeOpacity={isDimmed ? 0.03 : isHighlighted ? 0.6 : 0.15}
             />
           );
         })}
@@ -304,25 +419,38 @@ export function PWNetworkGraph({
           const r = radiusScale(node.patents);
           const isConnected = !hoveredId || connectedIds.has(node.id);
           const isHovered = hoveredId === node.id;
+          const degree = connectionCount[node.id] ?? 0;
+          const showLabel = degree >= labelThreshold || isHovered || (hoveredId && connectedIds.has(node.id));
           return (
             <g key={node.id}>
+              {/* Glow ring on hover */}
+              {isHovered && (
+                <circle
+                  cx={node.x ?? 0}
+                  cy={node.y ?? 0}
+                  r={r + 4}
+                  fill="none"
+                  stroke={nodeColor}
+                  strokeWidth={2}
+                  strokeOpacity={0.4}
+                />
+              )}
               <circle
                 cx={node.x ?? 0}
                 cy={node.y ?? 0}
                 r={r}
                 fill={nodeColor}
-                fillOpacity={isConnected ? 0.8 : 0.08}
-                stroke={isHovered ? '#fff' : nodeColor}
-                strokeWidth={isHovered ? 2.5 : 1}
-                strokeOpacity={isConnected ? 1 : 0.15}
+                fillOpacity={isConnected ? nodeOpacity(node.id) : 0.04}
+                stroke={isHovered ? '#fff' : 'none'}
+                strokeWidth={isHovered ? 1.5 : 0}
                 style={{ cursor: 'grab' }}
                 onMouseDown={(e) => handleMouseDown(e, node)}
                 onMouseEnter={() => {
                   if (!draggedId) {
                     setHoveredId(node.id);
                     setTooltip({
-                      x: (node.x ?? 0) * zoom + pan.x + dimensions.width / 2 * (1 - zoom) + r + 8,
-                      y: (node.y ?? 0) * zoom + pan.y + dimensions.height / 2 * (1 - zoom) - 10,
+                      x: (node.x ?? 0) * zoom + pan.x + r * zoom + 10,
+                      y: (node.y ?? 0) * zoom + pan.y - 10,
                       node,
                     });
                   }
@@ -334,18 +462,19 @@ export function PWNetworkGraph({
                   }
                 }}
               />
-              {(r > labelThreshold || (hoveredId && connectedIds.has(node.id))) && (
+              {showLabel && (
                 <text
                   x={node.x ?? 0}
-                  y={(node.y ?? 0) + r + 11}
+                  y={(node.y ?? 0) + r + (isHovered ? 12 : 10)}
                   textAnchor="middle"
-                  fontSize={isHovered ? 10 : 8}
+                  fontSize={isHovered ? 10 : 7}
                   fontWeight={isHovered ? 600 : 400}
-                  fill="hsl(var(--muted-foreground))"
-                  fillOpacity={isConnected ? 0.9 : 0.12}
+                  fill="hsl(var(--foreground))"
+                  fillOpacity={isConnected ? (isHovered ? 1 : 0.7) : 0.08}
                   pointerEvents="none"
+                  style={{ textShadow: '0 0 3px hsl(var(--background)), 0 0 3px hsl(var(--background))' }}
                 >
-                  {node.name.length > 20 ? node.name.slice(0, 18) + '...' : node.name}
+                  {node.name.length > 24 ? node.name.slice(0, 22) + '...' : node.name}
                 </text>
               )}
             </g>
@@ -358,9 +487,9 @@ export function PWNetworkGraph({
         <div
           className="absolute pointer-events-none z-10 rounded-lg border bg-card px-3 py-2 text-sm shadow-md"
           style={{
-            left: Math.min(tooltip.x, dimensions.width - 230),
+            left: Math.min(tooltip.x, dimensions.width - 250),
             top: Math.max(tooltip.y, 10),
-            maxWidth: 240,
+            maxWidth: 260,
           }}
         >
           <div className="font-semibold">{tooltip.node.name}</div>

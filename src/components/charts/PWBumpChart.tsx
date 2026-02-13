@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, Text,
 } from 'recharts';
@@ -12,14 +12,14 @@ interface BumpChartEntry {
 }
 
 interface PWBumpChartProps {
-  data: any[];
+  data: Record<string, string | number>[];
   nameKey: string;
   yearKey: string;
   rankKey: string;
   maxRank?: number;
 }
 
-function EndLabel({ viewBox, value, color, highlighted, onEnter, onLeave }: any) {
+function EndLabel({ viewBox, value, color, highlighted, onEnter, onLeave }: { viewBox?: { x?: number; y?: number }; value?: string; color: string; highlighted: boolean; onEnter: () => void; onLeave: () => void }) {
   if (!viewBox || viewBox.y == null) return null;
   return (
     <Text
@@ -43,17 +43,17 @@ export function PWBumpChart({ data, nameKey, yearKey, rankKey, maxRank = 15 }: P
   const [highlightedName, setHighlightedName] = useState<string | null>(null);
 
   // Pivot data: each year becomes a row, each org gets a column with rank value
-  const names = [...new Set(data.map((d) => d[nameKey]))];
-  const years = [...new Set(data.map((d) => d[yearKey]))].sort((a, b) => a - b);
+  const names = useMemo(() => [...new Set(data.map((d) => String(d[nameKey])))], [data, nameKey]);
+  const years = useMemo(() => [...new Set(data.map((d) => Number(d[yearKey])))].sort((a, b) => a - b), [data, yearKey]);
 
-  const pivoted: BumpChartEntry[] = years.map((year) => {
-    const row: any = { year };
+  const pivoted: BumpChartEntry[] = useMemo(() => years.map((year) => {
+    const row: Record<string, number | null> = { year };
     names.forEach((name) => {
       const entry = data.find((d) => d[yearKey] === year && d[nameKey] === name);
-      row[name] = entry ? entry[rankKey] : null;
+      row[name] = entry ? Number(entry[rankKey]) : null;
     });
-    return row;
-  });
+    return row as BumpChartEntry;
+  }), [data, years, names, yearKey, nameKey, rankKey]);
 
   const truncate = (s: string) => s.length > 28 ? s.slice(0, 25) + '...' : s;
 

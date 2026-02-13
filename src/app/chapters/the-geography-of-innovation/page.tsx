@@ -10,6 +10,7 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWChoroplethMap } from '@/components/charts/PWChoroplethMap';
+import { PWWorldFlowMap } from '@/components/charts/PWWorldFlowMap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -37,7 +38,7 @@ function pivotCountries(data: CountryPerYear[], topN: number = 15) {
   };
 }
 
-export default function Chapter4() {
+export default function Chapter6() {
   const { data: states, loading: stL } = useChapterData<StateSummary[]>('chapter4/us_states_summary.json');
   const { data: countries, loading: coL } = useChapterData<CountryPerYear[]>('chapter4/countries_per_year.json');
   const { data: cities, loading: ciL } = useChapterData<TopCity[]>('chapter4/top_cities.json');
@@ -104,14 +105,6 @@ export default function Chapter4() {
     }));
   }, [stateFlows]);
 
-  const topCountryFlows = useMemo(() => {
-    if (!countryFlows) return [];
-    return countryFlows.slice(0, 30).map((d) => ({
-      ...d,
-      label: `${d.from_country} → ${d.to_country}`,
-    }));
-  }, [countryFlows]);
-
   const { stateTimePivot, stateTimeNames } = useMemo(() => {
     if (!statesPerYear) return { stateTimePivot: [], stateTimeNames: [] };
     const totals: Record<string, number> = {};
@@ -136,7 +129,7 @@ export default function Chapter4() {
   return (
     <div>
       <ChapterHeader
-        number={4}
+        number={5}
         title="The Geography of Innovation"
         subtitle="Where patents come from"
       />
@@ -173,7 +166,7 @@ export default function Chapter4() {
         title="US States by Patent Count"
         caption="Total utility patents by primary inventor state, 1976-2025."
         loading={stL}
-        height={1600}
+        height={1200}
       >
         <PWBarChart
           data={topStates}
@@ -309,7 +302,7 @@ export default function Chapter4() {
           title="State Technology Specialization"
           caption="CPC technology section distribution for all states by total patents. Each bar totals 100%."
           loading={spL}
-          height={1600}
+          height={1200}
         >
           <PWBarChart
             data={specByState}
@@ -394,19 +387,15 @@ export default function Chapter4() {
         </ChartContainer>
       )}
 
-      {topCountryFlows.length > 0 && (
+      {countryFlows && countryFlows.length > 0 && (
         <ChartContainer
           title="International Inventor Migration Flows"
-          caption="Most common country-to-country moves by inventors, based on sequential patents filed from different countries."
+          caption="Global map of inventor migration between countries. Arc width represents volume of moves. Countries colored by total inventor movement. Hover over arcs or countries for details."
           loading={cfL}
-          height={900}
+          height={650}
+          wide
         >
-          <PWBarChart
-            data={topCountryFlows}
-            xKey="label"
-            bars={[{ key: 'flow_count', name: 'Moves', color: CHART_COLORS[3] }]}
-            layout="vertical"
-          />
+          <PWWorldFlowMap data={countryFlows} maxFlows={25} />
         </ChartContainer>
       )}
 
@@ -427,7 +416,7 @@ export default function Chapter4() {
         patents by the same disambiguated inventor.
       </DataNote>
 
-      <ChapterNavigation currentChapter={4} />
+      <ChapterNavigation currentChapter={5} />
     </div>
   );
 }

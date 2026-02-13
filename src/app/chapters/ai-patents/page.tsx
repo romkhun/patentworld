@@ -10,13 +10,14 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWBumpChart } from '@/components/charts/PWBumpChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type {
   AIPatentsPerYear, AIBySubfield, AITopAssignee,
-  AITopInventor, AIGeography, AIQuality,
+  AITopInventor, AIGeography, AIQuality, AIOrgOverTime,
 } from '@/lib/types';
 
 const SUBFIELD_COLORS: Record<string, string> = {
@@ -40,6 +41,7 @@ export default function Chapter11() {
   const { data: topInventors, loading: tiL } = useChapterData<AITopInventor[]>('chapter11/ai_top_inventors.json');
   const { data: geography, loading: geoL } = useChapterData<AIGeography[]>('chapter11/ai_geography.json');
   const { data: quality, loading: qL } = useChapterData<AIQuality[]>('chapter11/ai_quality.json');
+  const { data: orgOverTime, loading: ootL } = useChapterData<AIOrgOverTime[]>('chapter11/ai_org_over_time.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -71,6 +73,71 @@ export default function Chapter11() {
       label: `${d.first_name} ${d.last_name}`.trim(),
     }));
   }, [topInventors]);
+
+  // Shared short display names for organizations
+  const orgNameMap = useMemo(() => {
+    if (!orgOverTime) return {};
+    const map: Record<string, string> = {};
+    const orgNames = [...new Set(orgOverTime.map((d) => d.organization))];
+    orgNames.forEach((org) => {
+      let short = org;
+      if (org === 'International Business Machines Corporation') short = 'IBM';
+      else if (org === 'SAMSUNG ELECTRONICS CO., LTD.') short = 'Samsung';
+      else if (org === 'FUJITSU LIMITED') short = 'Fujitsu';
+      else if (org === 'SONY GROUP CORPORATION') short = 'Sony';
+      else if (org === 'Canon Kabushiki Kaisha') short = 'Canon';
+      else if (org === 'Kabushiki Kaisha Toshiba') short = 'Toshiba';
+      else if (org === 'NEC CORPORATION') short = 'NEC';
+      else if (org === 'Intel Corporation') short = 'Intel';
+      else if (org === 'Microsoft Corporation') short = 'Microsoft (Corp)';
+      else if (org === 'MICROSOFT TECHNOLOGY LICENSING, LLC') short = 'Microsoft (Licensing)';
+      else if (org === 'AMAZON TECHNOLOGIES, INC.') short = 'Amazon';
+      else if (org === 'CAPITAL ONE SERVICES, LLC') short = 'Capital One';
+      else if (org === 'Google LLC') short = 'Google';
+      else if (org === 'Apple Inc.') short = 'Apple';
+      else if (org === 'Adobe Inc.') short = 'Adobe';
+      else if (org.length > 20) short = org.slice(0, 18) + '...';
+      map[org] = short;
+    });
+    return map;
+  }, [orgOverTime]);
+
+  // Compute rank data for bump chart (from 2000 onward, where AI activity is meaningful)
+  const orgRankData = useMemo(() => {
+    if (!orgOverTime) return [];
+    const years = [...new Set(orgOverTime.map((d) => d.year))].sort().filter((y) => y >= 2000);
+    const ranked: { organization: string; year: number; rank: number }[] = [];
+    years.forEach((year) => {
+      const yearData = orgOverTime
+        .filter((d) => d.year === year && d.count > 0)
+        .sort((a, b) => b.count - a.count);
+      yearData.forEach((d, i) => {
+        if (i < 15) {
+          ranked.push({
+            organization: orgNameMap[d.organization] ?? d.organization,
+            year,
+            rank: i + 1,
+          });
+        }
+      });
+    });
+    return ranked;
+  }, [orgOverTime, orgNameMap]);
+
+  // Pivot org-over-time data for line chart
+  const { orgTimePivot, orgTimeNames } = useMemo(() => {
+    if (!orgOverTime) return { orgTimePivot: [], orgTimeNames: [] };
+    const orgNames = [...new Set(orgOverTime.map((d) => d.organization))];
+    const years = [...new Set(orgOverTime.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: any = { year };
+      orgOverTime.filter((d) => d.year === year).forEach((d) => {
+        row[orgNameMap[d.organization] ?? d.organization] = d.count;
+      });
+      return row;
+    });
+    return { orgTimePivot: pivoted, orgTimeNames: orgNames.map((o) => orgNameMap[o] ?? o) };
+  }, [orgOverTime, orgNameMap]);
 
   const geoCountry = useMemo(() => {
     if (!geography) return [];
@@ -219,6 +286,64 @@ export default function Chapter11() {
           conglomerates (Samsung, LG, Sony) reveals the global nature of the AI patent race.
           The organizational landscape also reflects the significant role of corporate research
           laboratories in advancing fundamental AI capabilities.
+        </p>
+      </KeyInsight>
+
+      {orgRankData.length > 0 && (
+        <ChartContainer
+          title="AI Patent Rank Race: Organizations Over Time"
+          caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Hover over any line or label to highlight an organization's trajectory. Lower rank = more AI patents that year."
+          loading={ootL}
+          height={750}
+          wide
+        >
+          <PWBumpChart
+            data={orgRankData}
+            nameKey="organization"
+            yearKey="year"
+            rankKey="rank"
+            maxRank={15}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The rank race reveals dramatic shifts in organizational dominance. IBM held the
+          top position unchallenged for decades, but the 2010s saw a rapid convergence as
+          Google, Samsung, Microsoft, and Amazon scaled their AI research operations.
+          The emergence of non-traditional technology firms like Capital One in the rankings
+          signals the expanding application of AI beyond core technology sectors.
+        </p>
+      </KeyInsight>
+
+      {orgTimePivot.length > 0 && (
+        <ChartContainer
+          title="AI Patent Output Trajectories by Organization"
+          caption="Annual AI-related patent grants for the 15 leading organizations. Shows the rise of different firms in the AI patent landscape over five decades."
+          loading={ootL}
+        >
+          <PWLineChart
+            data={orgTimePivot}
+            xKey="year"
+            lines={orgTimeNames.map((name, i) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="AI Patents"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The trajectory of AI patenting by organization reveals distinct strategic eras. IBM
+          dominated AI-related patenting for decades through its research laboratories, but the
+          landscape shifted dramatically in the 2010s as Google, Amazon, Microsoft, and Apple
+          scaled their AI investments in response to the deep learning revolution. The convergence
+          of multiple firms at high patent volumes in recent years signals an intensifying
+          competitive race in AI capabilities.
         </p>
       </KeyInsight>
 

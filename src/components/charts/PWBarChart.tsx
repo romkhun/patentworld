@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell, Label,
 } from 'recharts';
@@ -24,7 +25,7 @@ export function PWBarChart({
 }: PWBarChartProps) {
   const isVertical = layout === 'vertical';
   // Compute left margin for vertical bars based on longest label
-  const labelWidth = isVertical
+  const labelWidth = useMemo(() => isVertical
     ? Math.min(
         180,
         Math.max(
@@ -35,7 +36,7 @@ export function PWBarChart({
           })
         )
       )
-    : 10;
+    : 10, [isVertical, data, xKey]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

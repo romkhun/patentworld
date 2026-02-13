@@ -13,14 +13,14 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS } from '@/lib/colors';
 import type { NetworkData } from '@/lib/types';
 
-export default function Chapter8() {
+export default function Chapter5() {
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
   const { data: inventorNetwork, loading: inL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
 
   return (
     <div>
       <ChapterHeader
-        number={8}
+        number={6}
         title="Collaboration Networks"
         subtitle="The web of co-invention and co-patenting"
       />
@@ -148,7 +148,7 @@ export default function Chapter8() {
         clutter.
       </DataNote>
 
-      <ChapterNavigation currentChapter={8} />
+      <ChapterNavigation currentChapter={6} />
     </div>
   );
 }

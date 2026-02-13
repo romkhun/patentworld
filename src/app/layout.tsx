@@ -3,6 +3,7 @@ import { Playfair_Display, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/g
 import { ThemeProvider } from 'next-themes';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CHAPTERS } from '@/lib/constants';
 import './globals.css';
 
 const playfair = Playfair_Display({
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
     title: 'PatentWorld - 50 Years of Global Innovation',
     description: 'Explore 9.36 million US patents from 1976 to 2025 through interactive data visualizations covering technology trends, inventor demographics, geographic clusters, and patent quality.',
     siteName: 'PatentWorld',
+    url: 'https://patentworld.vercel.app',
   },
   twitter: {
     card: 'summary_large_image',
@@ -45,6 +47,15 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+    },
+  },
+  alternates: {
+    canonical: 'https://patentworld.vercel.app',
   },
 };
 
@@ -55,28 +66,44 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: 'PatentWorld',
-              description: 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.',
-              url: 'https://patentworld.vercel.app',
-              about: {
-                '@type': 'Dataset',
-                name: 'US Patent Data (1976-2025)',
-                description: 'Comprehensive analysis of 9.36 million US utility patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
-                creator: { '@type': 'Organization', name: 'USPTO / PatentsView' },
-                temporalCoverage: '1976/2025',
-                spatialCoverage: 'Global',
-                variableMeasured: [
-                  'Patent grants per year',
-                  'Technology classifications (CPC)',
-                  'Inventor demographics and collaboration',
-                  'Geographic distribution',
-                  'Citation networks and patent quality',
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'PatentWorld',
+                description: 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.',
+                url: 'https://patentworld.vercel.app',
+                about: {
+                  '@type': 'Dataset',
+                  name: 'US Patent Data (1976-2025)',
+                  description: 'Comprehensive analysis of 9.36 million US utility patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
+                  creator: { '@type': 'Organization', name: 'USPTO / PatentsView' },
+                  temporalCoverage: '1976/2025',
+                  spatialCoverage: 'Global',
+                  variableMeasured: [
+                    'Patent grants per year',
+                    'Technology classifications (CPC)',
+                    'Inventor demographics and collaboration',
+                    'Geographic distribution',
+                    'Citation networks and patent quality',
+                  ],
+                },
+                hasPart: CHAPTERS.map((ch) => ({
+                  '@type': 'Article',
+                  name: ch.title,
+                  description: ch.description,
+                  url: `https://patentworld.vercel.app/chapters/${ch.slug}/`,
+                  position: ch.number,
+                })),
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://patentworld.vercel.app' },
                 ],
               },
-            }),
+            ]),
           }}
         />
       </head>

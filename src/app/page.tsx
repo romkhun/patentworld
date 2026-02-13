@@ -1,135 +1,69 @@
-'use client';
+import type { Metadata } from 'next';
+import HomeContent from './HomeContent';
 
-import Link from 'next/link';
-import { ArrowRight, BarChart3 } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
-import { CHAPTERS, HERO_STATS } from '@/lib/constants';
-import { useInView } from '@/hooks/useInView';
+export const metadata: Metadata = {
+  title: 'PatentWorld — 50 Years of Global Innovation in US Patents',
+  description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, technology sectors, inventor demographics, geographic clusters, citation networks, and patent quality indicators.',
+  alternates: {
+    canonical: 'https://patentworld.vercel.app',
+  },
+};
 
-function useCountUp(end: number, duration: number, trigger: boolean) {
-  const [value, setValue] = useState(0);
-  const rafRef = useRef<number>(0);
+const FAQ_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How many US patents have been granted since 1976?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The USPTO has granted approximately 9.36 million utility patents from 1976 to 2025, growing from about 70,000 per year to over 350,000 per year.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which technology sectors have the most US patents?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Electricity (CPC Section H) and Physics (Section G) dominate modern patenting, reflecting the digital transformation. Together they account for over 50% of recent grants, driven by software, semiconductors, and telecommunications innovations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who holds the most US patents?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'IBM has historically led US patent grants for decades. Samsung, Canon, Intel, and other technology firms are also among the top holders. The landscape has shifted significantly with the rise of Asian firms.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is PatentsView?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'PatentsView is a patent data platform supported by the United States Patent and Trademark Office (USPTO) that provides disambiguated and linked patent data covering inventors, assignees, classifications, locations, and citations.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How has the geography of US patent innovation changed?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'California dominates US patent output, with Silicon Valley as the leading innovation hub. Internationally, Japan dominated foreign patenting in the 1980s-90s, while South Korea, China, and Taiwan have surged since 2000.',
+      },
+    },
+  ],
+};
 
-  useEffect(() => {
-    if (!trigger) return;
-    const startTime = performance.now();
-    const step = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(eased * end));
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(step);
-      }
-    };
-    rafRef.current = requestAnimationFrame(step);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [end, duration, trigger]);
-
-  return value;
-}
-
-function CounterStat({ target, label, suffix, decimals, trigger }: {
-  target: number; label: string; suffix?: string; decimals?: number; trigger: boolean;
-}) {
-  const count = useCountUp(decimals ? target * 100 : target, 1500, trigger);
-  const display = decimals ? (count / 100).toFixed(decimals) : count.toLocaleString();
-
+export default function Page() {
   return (
-    <div className="text-center">
-      <div className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">
-        {trigger ? display : '0'}{suffix ?? ''}
-      </div>
-      <div className="mt-1 text-sm text-muted-foreground">{label}</div>
-    </div>
-  );
-}
-
-export default function HomePage() {
-  const { ref: statsRef, inView: statsVisible } = useInView({ threshold: 0.2 });
-
-  return (
-    <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b">
-        <div className="hero-gradient absolute inset-0" />
-        <div className="relative mx-auto max-w-5xl px-4 py-20 text-center sm:py-32 lg:px-8">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm text-muted-foreground">
-            <BarChart3 className="h-4 w-4" />
-            An Interactive Data Exploration
-          </div>
-          <h1 className="font-serif text-5xl font-bold tracking-tight sm:text-7xl">
-            Patent<span className="text-chart-1">World</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Explore 50 years of global innovation through {HERO_STATS.totalPatents} US patents.
-            From the microchip revolution to the AI era, discover how technology, geography,
-            and human ingenuity have shaped the world.
-          </p>
-
-          <div ref={statsRef} className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
-            <CounterStat target={9.36} label="Patents" suffix="M" decimals={2} trigger={statsVisible} />
-            <CounterStat target={HERO_STATS.yearsCovered} label="Years" trigger={statsVisible} />
-            <CounterStat target={HERO_STATS.chapters} label="Chapters" trigger={statsVisible} />
-            <CounterStat target={HERO_STATS.visualizations} label="Visualizations" trigger={statsVisible} />
-          </div>
-
-          <div className="mt-12">
-            <Link
-              href={`/chapters/${CHAPTERS[0].slug}/`}
-              className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
-            >
-              Start Reading <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Chapter Cards */}
-      <section className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
-        <h2 className="mb-8 font-serif text-2xl font-bold">Explore the Data</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CHAPTERS.map((ch) => (
-            <Link
-              key={ch.slug}
-              href={`/chapters/${ch.slug}/`}
-              className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors"
-            >
-              <h3 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
-                {ch.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
-              <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Explore <ArrowRight className="h-3 w-3" />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Data Overview */}
-      <section className="border-t">
-        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
-          <h2 className="mb-4 font-serif text-2xl font-bold">About the Data</h2>
-          <p className="max-w-prose text-muted-foreground">
-            PatentWorld analyzes every patent granted by the United States Patent and Trademark
-            Office (USPTO) from 1976 to 2025. The data comes from{' '}
-            <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
-              PatentsView
-            </a>
-            , a platform supported by the USPTO that disambiguates and links patent data.
-            Our analysis covers 9.36 million US patents, their inventors, assignees, technology
-            classifications, geographic origins, and citation networks.
-          </p>
-          <Link
-            href="/about/"
-            className="mt-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-          >
-            Learn more about our methodology <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </section>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+      />
+      <HomeContent />
+    </>
   );
 }

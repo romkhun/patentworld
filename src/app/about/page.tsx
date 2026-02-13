@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About PatentWorld — Data, Methodology & Sources',
+  description: 'Learn about PatentWorld\'s data sources, methodology, and technology. Built on 9.36 million US patents from PatentsView / USPTO, covering 1976 to 2025.',
+  openGraph: {
+    type: 'website',
+    title: 'About PatentWorld',
+    description: 'Data sources, methodology, and technology behind the interactive patent data exploration.',
+    url: 'https://patentworld.vercel.app/about/',
+    siteName: 'PatentWorld',
+  },
+  alternates: {
+    canonical: 'https://patentworld.vercel.app/about/',
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 lg:px-8">
