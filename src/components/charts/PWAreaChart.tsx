@@ -1,0 +1,73 @@
+'use client';
+
+import {
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+} from 'recharts';
+import { CHART_COLORS } from '@/lib/colors';
+import { formatCompact } from '@/lib/formatters';
+
+interface PWAreaChartProps {
+  data: any[];
+  xKey: string;
+  areas: { key: string; name: string; color?: string }[];
+  stacked?: boolean;
+  stackedPercent?: boolean;
+  yFormatter?: (v: number) => string;
+}
+
+export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, yFormatter }: PWAreaChartProps) {
+  const processedData = stackedPercent ? data.map((d) => {
+    const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
+    if (total === 0) return d;
+    const row: any = { [xKey]: d[xKey] };
+    areas.forEach((a) => { row[a.key] = ((Number(d[a.key]) || 0) / total) * 100; });
+    return row;
+  }) : data;
+
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart data={processedData} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <XAxis
+          dataKey={xKey}
+          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickLine={false}
+          axisLine={{ stroke: 'hsl(var(--border))' }}
+        />
+        <YAxis
+          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
+          width={60}
+          domain={stackedPercent ? [0, 100] : undefined}
+        />
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'hsl(var(--card))',
+            border: '1px solid hsl(var(--border))',
+            borderRadius: '8px',
+            fontSize: '13px',
+          }}
+          formatter={(value: any, name: any) => [
+            stackedPercent ? `${Number(value).toFixed(1)}%` : (yFormatter ? yFormatter(Number(value)) : formatCompact(Number(value))),
+            name,
+          ]}
+        />
+        <Legend />
+        {areas.map((area, i) => (
+          <Area
+            key={area.key}
+            type="monotone"
+            dataKey={area.key}
+            name={area.name}
+            stackId={stacked || stackedPercent ? 'stack' : undefined}
+            fill={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
+            stroke={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
+            fillOpacity={0.6}
+          />
+        ))}
+      </AreaChart>
+    </ResponsiveContainer>
+  );
+}

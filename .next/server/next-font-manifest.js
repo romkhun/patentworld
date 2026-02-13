@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/saerom/projects/patentworld/src/app/layout":["static/media/bb3ef058b751a6ad-s.p.woff2","static/media/eaead17c7dbfcd5d-s.p.woff2","static/media/636a5ac981f94f8b-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
