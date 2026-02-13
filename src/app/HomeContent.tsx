@@ -64,7 +64,7 @@ export default function HomePage() {
           </h1>
           <p className="mx-auto mt-4 text-sm text-muted-foreground">
             By{' '}
-            <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
+            <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
               Saerom (Ronnie) Lee
             </a>
             , The Wharton School, University of Pennsylvania

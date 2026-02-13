@@ -91,7 +91,7 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Author</h2>
           <p>
-            <strong>Saerom (Ronnie) Lee</strong> is an Assistant Professor of Management
+            <strong><a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">Saerom (Ronnie) Lee</a></strong> is an Assistant Professor of Management
             at the Wharton School. His research focuses on organizational design,
             organizational structure, human capital, startup scaling, and high-growth
             entrepreneurship. PatentWorld is a data
