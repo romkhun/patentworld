@@ -63,7 +63,7 @@ export default function HomePage() {
             Patent<span className="text-chart-1">World</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Explore 50 years of American innovation through {HERO_STATS.totalPatents} patents.
+            Explore 50 years of global innovation through {HERO_STATS.totalPatents} US patents.
             From the microchip revolution to the AI era, discover how technology, geography,
             and human ingenuity have shaped the world.
           </p>
@@ -122,7 +122,7 @@ export default function HomePage() {
               PatentsView
             </a>
             , a platform supported by the USPTO that disambiguates and links patent data.
-            Our analysis covers 9.36 million patents, their inventors, assignees, technology
+            Our analysis covers 9.36 million US patents, their inventors, assignees, technology
             classifications, geographic origins, and citation networks.
           </p>
           <Link

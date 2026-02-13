@@ -6,7 +6,7 @@ export default function AboutPage() {
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
         <p>
           PatentWorld is an interactive data exploration project that visualizes 50 years
-          of American innovation through patent data. Our goal is to make the rich,
+          of global innovation through US patent data. Our goal is to make the rich,
           complex world of patents accessible and engaging through data-driven storytelling.
         </p>
 

@@ -1,5 +1,5 @@
 export const SITE_NAME = 'PatentWorld';
-export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents spanning 50 years of American innovation.';
+export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.';
 
 export interface ChapterMeta {
   number: number;
@@ -14,7 +14,7 @@ export const CHAPTERS: ChapterMeta[] = [
     number: 1,
     slug: 'the-innovation-landscape',
     title: 'The Innovation Landscape',
-    subtitle: '50 years of American invention in 9.36 million patents',
+    subtitle: '50 years of global invention in 9.36 million US patents',
     description: 'How has the pace and nature of patenting changed since 1976?',
   },
   {

@@ -24,8 +24,8 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PatentWorld - 50 Years of American Innovation',
-  description: 'An interactive exploration of 9.36 million US patents spanning 50 years of American innovation.',
+  title: 'PatentWorld - 50 Years of Global Innovation',
+  description: 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

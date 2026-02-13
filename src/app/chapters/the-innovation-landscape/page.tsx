@@ -45,7 +45,7 @@ export default function Chapter1() {
       <ChapterHeader
         number={1}
         title="The Innovation Landscape"
-        subtitle="50 years of American invention in 9.36 million patents"
+        subtitle="50 years of global invention in 9.36 million US patents"
       />
 
       <StatGrid>
