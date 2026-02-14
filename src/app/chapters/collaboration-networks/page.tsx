@@ -143,7 +143,7 @@ export default function Chapter6() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in Chapter 7, while radar-chart strategy profiles show that individual firms occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
+          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in The Knowledge Network, while radar-chart strategy profiles show that individual firms occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
         </p>
       </aside>
 
@@ -526,7 +526,7 @@ export default function Chapter6() {
       </ChartContainer>
 
       <Narrative>
-        The preceding analysis demonstrates how inventors and organizations collaborate; the subsequent chapter traces the knowledge flows that these connections enable.
+        The preceding chapters mapped where innovation occurs and how its participants collaborate. The analysis now shifts from the structure of the innovation system to its mechanics: how knowledge flows through citations, how patent output accelerates and converges, and how patent quality is measured.
         Patent citations -- the formal references linking new inventions to prior art -- reveal the underlying structure of how knowledge accumulates, diffuses, and shapes the direction of technological progress.
       </Narrative>
 

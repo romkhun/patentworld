@@ -125,6 +125,21 @@ export const CHAPTERS: ChapterMeta[] = [
   },
 ];
 
+export interface ActGrouping {
+  act: number;
+  title: string;
+  subtitle: string;
+  chapters: number[];
+}
+
+export const ACT_GROUPINGS: ActGrouping[] = [
+  { act: 1, title: 'The System', subtitle: 'How the patent landscape took shape', chapters: [1, 2] },
+  { act: 2, title: 'The Actors', subtitle: 'Organizations and inventors driving innovation', chapters: [3, 4] },
+  { act: 3, title: 'The Structure', subtitle: 'Where innovation happens and how it connects', chapters: [5, 6] },
+  { act: 4, title: 'The Mechanics', subtitle: 'Knowledge flows, dynamics, and quality', chapters: [7, 8, 9] },
+  { act: 5, title: 'Context & Deep Dives', subtitle: 'Policy, emerging fields, and company profiles', chapters: [10, 11, 12, 13, 14] },
+];
+
 export const CPC_SECTION_NAMES: Record<string, string> = {
   A: 'Human Necessities',
   B: 'Operations & Transport',
@@ -143,5 +158,5 @@ export const HERO_STATS = {
   startYear: 1976,
   endYear: 2025,
   chapters: 14,
-  visualizations: 128,
+  visualizations: 127,
 };

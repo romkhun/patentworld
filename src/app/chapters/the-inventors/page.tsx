@@ -22,7 +22,7 @@ import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   TeamSizePerYear, ProlificInventor, InventorEntry,
   StarInventorImpact, InventorLongevity,
-  SuperstarConcentration, SoloInventorTrend, SoloInventorBySection,
+  SuperstarConcentration, SoloInventorBySection,
   FirstTimeInventor, InventorMobilityCitation, InventorMobilityByDecade,
   GenderByTech, GenderTeamQuality, GenderSectionTrend,
   InventorSegment, InventorSegmentTrend,
@@ -63,7 +63,6 @@ export default function Chapter4() {
   const { data: starImpact, loading: siL } = useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
   const { data: longevity, loading: lgL } = useChapterData<InventorLongevity[]>('chapter5/inventor_longevity.json');
   const { data: superstar, loading: ssL } = useChapterData<SuperstarConcentration[]>('chapter5/superstar_concentration.json');
-  const { data: solo, loading: soloL } = useChapterData<SoloInventorTrend[]>('chapter5/solo_inventors.json');
   useChapterData<SoloInventorBySection[]>('chapter5/solo_inventors_by_section.json');
   const { data: firstTime, loading: ftL } = useChapterData<FirstTimeInventor[]>('chapter5/first_time_inventors.json');
   const { data: mobility } = useChapterData<InventorMobilityCitation[]>('chapter5/inventor_mobility.json');
@@ -164,7 +163,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Behind the corporate assignees profiled in Chapter 3 stands a workforce of named inventors whose demographic composition and career patterns have transformed over five decades. The most consequential structural shift has been the transition from solo to team-based invention, reflecting the growing interdisciplinarity of technologies such as semiconductors, software, and biotechnology. This collaborative turn has coincided with an increasing concentration of output among a small cadre of prolific, repeat inventors, many affiliated with the East Asian electronics firms that now lead global patenting. At the same time, progress on gender diversity has been measurable but slow, with female representation varying widely across technology fields in patterns that mirror the composition of STEM educational pipelines. The declining prevalence of first-time inventors on patent filings raises important questions about barriers to entry, a theme that connects to the geographic concentration examined in Chapter 5.
+          Behind the corporate assignees profiled in Who Innovates? stands a workforce of named inventors whose demographic composition and career patterns have transformed over five decades. The most consequential structural shift has been the transition from solo to team-based invention, reflecting the growing interdisciplinarity of technologies such as semiconductors, software, and biotechnology. This collaborative turn has coincided with an increasing concentration of output among a small cadre of prolific, repeat inventors, many affiliated with the East Asian electronics firms that now lead global patenting. At the same time, progress on gender diversity has been measurable but slow, with female representation varying widely across technology fields in patterns that mirror the composition of STEM educational pipelines. The declining prevalence of first-time inventors on patent filings raises important questions about barriers to entry, a theme that connects to the geographic concentration examined in The Geography of Innovation.
         </p>
       </aside>
 
@@ -458,46 +457,6 @@ export default function Chapter4() {
           that patenting is increasingly the domain of repeat, professional inventors
           rather than occasional contributors. This pattern parallels analogous trends in academic publishing
           and other knowledge-intensive fields.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="The Decline of Solo Invention" />
-      <Narrative>
-        <p>
-          The lone inventor working independently remains a prominent cultural archetype. The data, however,
-          reveal a sustained structural shift in the nature of innovation toward
-          team-based approaches.
-        </p>
-      </Narrative>
-      <ChartContainer
-        id="fig-inventors-solo-decline"
-        title="Solo-Inventor Patents Declined from Over 50% to Under 25% of All Grants, 1976–2025"
-        subtitle="Percentage of utility patents listing a single named inventor, measuring the structural shift toward collaborative invention, 1976–2025"
-        caption="This chart displays the percentage of utility patents listing a single named inventor. The persistent downward trend from above 50% in the late 1970s to under 25% by 2025 demonstrates the structural shift toward collaborative invention."
-        insight="The decline of solo invention underscores the extent to which modern technology development demands diverse, interdisciplinary expertise that exceeds the capacity of any single individual."
-        loading={soloL}
-      >
-        {solo && (
-          <PWLineChart
-            data={solo}
-            xKey="year"
-            lines={[
-              { key: 'solo_pct', name: 'Solo Inventor Share (%)', color: CHART_COLORS[3] },
-            ]}
-            yLabel="Share (%)"
-            yFormatter={(v: number) => `${v.toFixed(0)}%`}
-            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
-          />
-        )}
-      </ChartContainer>
-      <KeyInsight>
-        <p>
-          Solo invention declined from over half of all patents in the
-          late 1970s to a distinct minority by 2025. The complexity of modern technology
-          increasingly requires diverse expertise that exceeds the scope of individual mastery. Nevertheless,
-          solo inventors persist in certain fields, particularly in areas such as Textiles and Fixed
-          Constructions, where individual practitioners and architects continue to innovate
-          independently.
         </p>
       </KeyInsight>
 
@@ -881,8 +840,8 @@ export default function Chapter4() {
       })()}
 
       <Narrative>
-        Having examined the demographic composition, career trajectories, and productivity patterns of patent inventors, the subsequent chapter addresses the geography of innovation.
-        The spatial distribution of patent activity is markedly uneven: a small number of cities, states, and countries account for a disproportionate share of output, and inventor mobility creates important channels for knowledge diffusion between these hubs.
+        Having profiled the organizations and inventors who drive patent activity, the analysis now turns to the structural dimensions of the innovation system: where it happens and how its participants connect.
+        The spatial distribution of patent activity is markedly uneven: a small number of cities, states, and countries account for a disproportionate share of output. The following chapter maps this geography, and the chapter after it traces the collaboration networks that link inventors and organizations across these locations.
       </Narrative>
 
       <DataNote>

@@ -105,7 +105,7 @@ export default function Chapter9() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Multiple quality dimensions have moved in distinct directions since the 1970s: average claims per patent rose roughly 76% (from approximately 9.5 to 17), backward citations quadrupled, and the originality index climbed from 0.09 to 0.25 -- yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. A composite Z-score index aggregating citations, claims, scope, and grant speed shows Chemistry and Human Necessities patents consistently scoring highest, while Electronics and Physics patents have risen from negative to positive composite territory since the 1990s, a trajectory consistent with the accelerating innovation velocity documented in Chapter 8. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment and reinforcing the sector-specific quality patterns that pervade the data.
+          Multiple quality dimensions have moved in distinct directions since the 1970s: average claims per patent rose roughly 76% (from approximately 9.5 to 17), backward citations quadrupled, and the originality index climbed from 0.09 to 0.25 -- yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. A composite Z-score index aggregating citations, claims, scope, and grant speed shows Chemistry and Human Necessities patents consistently scoring highest, while Electronics and Physics patents have risen from negative to positive composite territory since the 1990s, a trajectory consistent with the accelerating innovation velocity documented in Innovation Dynamics. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment and reinforcing the sector-specific quality patterns that pervade the data.
         </p>
       </aside>
 
@@ -578,8 +578,8 @@ export default function Chapter9() {
       </ChartContainer>
 
       <Narrative>
-        Having examined the measurement of patent quality -- from citation impact to originality, generality, and composite indices -- the subsequent chapter addresses the legal and policy framework that shapes the patent system itself.
-        The rules governing what can be patented, how patents are examined, and how they are enforced exert substantial influence on both the quality and quantity of innovation.
+        The preceding chapters examined the mechanics of innovation: knowledge flows through citations, the tempo and convergence of patent activity, and the measurement of patent quality. The remaining chapters provide context and deep dives into specific domains.
+        The analysis begins with the legal and policy framework that shapes the patent system itself, where rules governing patentability, examination, and enforcement exert substantial influence on both the quality and quantity of innovation.
       </Narrative>
 
       <DataNote>

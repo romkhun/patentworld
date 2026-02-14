@@ -452,7 +452,7 @@ export default function Chapter10() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in Chapters 1 through 5 -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: filing surges after the 1998 State Street decision, pendency declines after AIA-era reforms, and a slowdown in software-related grants after the 2014 eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the innovation landscape that earlier chapters have charted.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in the preceding chapters -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: filing surges after the 1998 State Street decision, pendency declines after AIA-era reforms, and a slowdown in software-related grants after the 2014 eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the innovation landscape that earlier chapters have charted.
         </p>
       </aside>
 
@@ -499,19 +499,19 @@ export default function Chapter10() {
         <ul className="list-disc pl-5 space-y-2 mt-2">
           <li>
             <strong>Bayh-Dole Act (1980):</strong> Precipitated a substantial increase in university patenting.
-            Government-funded patents (Chapter 7) began rising in the 1980s as universities
+            Government-funded patents (The Knowledge Network) began rising in the 1980s as universities
             established technology transfer offices.
           </li>
           <li>
             <strong>Court of Appeals for the Federal Circuit (1982):</strong> Unified and strengthened patent rights,
             contributing to the overall upward trend in patent grants through the 1990s and
-            2000s (Chapter 1).
+            2000s (The Innovation Landscape).
           </li>
           <li>
             <strong>State Street Bank v. Signature Financial Group (1998):</strong> Established the patentability of business
             methods, precipitating a rapid expansion in software patent filings observable as
             the acceleration of Section G (Physics) and H (Electricity) patents in the late
-            1990s (Chapter 2).
+            1990s (The Technology Revolution).
           </li>
           <li>
             <strong>America Invents Act (2011):</strong> Created the PTAB inter partes review

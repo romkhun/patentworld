@@ -176,3 +176,48 @@ Chapters were processed in three parallel batches:
 ---
 
 *Reorganization completed 2026-02-13. Chapters reordered, section ordering audited, transitions updated, TL;DR labels fixed. Executive Summary deduplication completed 2026-02-14.*
+
+---
+
+## Session 3 Additions (2026-02-14): Stream 5 — Act Groupings, Figure Audit, Cross-References
+
+### Act Groupings (5.1)
+
+Added `ActGrouping` interface and `ACT_GROUPINGS` constant to `src/lib/constants.ts`. Updated three UI surfaces to render chapters grouped by act:
+
+| Component | Change |
+|-----------|--------|
+| `HomeContent.tsx` | Replaced flat chapter grid with act-grouped sections: act label + title + subtitle above each group's chapter cards |
+| `ChapterSidebar.tsx` | Added small uppercase "Act N — Title" labels above each group of chapter links |
+| `MobileNav.tsx` | Same act-grouped pattern as sidebar |
+
+### Figure Order Audit (5.2/5.3)
+
+All 14 chapter pages audited for broad-to-detailed figure ordering. All chapters follow acceptable ordering. No figures required reordering.
+
+### Figures Removed (5.4)
+
+| Chapter | Figure ID | Reason | Disposition |
+|---------|-----------|--------|-------------|
+| 4 (The Inventors) | `fig-inventors-solo-decline` | Redundant: solo-inventor share already displayed as a line in `fig-inventors-team-size`; the KeyInsight after that chart already states the finding | No narrative lost; `HERO_STATS.visualizations` updated 128 → 127 |
+
+No other figures met removal criteria.
+
+### Cross-Reference Enhancements (5.5)
+
+**Act-boundary transitions strengthened:**
+- Ch 2→3: Notes shift "from the system itself to the actors within it"
+- Ch 4→5: Notes shift to "structural dimensions of the innovation system"
+- Ch 6→7: Notes shift "from the structure of the innovation system to its mechanics"
+- Ch 9→10: Frames remaining chapters as "context and deep dives into specific domains"
+
+**"Chapter N" → title replacements (16 instances across 11 files):**
+All bare numeric chapter references replaced with chapter titles for reader-friendly navigation.
+
+### Build Verification
+
+```
+npm run build -> Compiled successfully
+All 22 routes prerendered as static content
+Zero TypeScript errors
+```

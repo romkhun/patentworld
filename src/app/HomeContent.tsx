@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight, BarChart3 } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
-import { CHAPTERS, HERO_STATS } from '@/lib/constants';
+import { CHAPTERS, HERO_STATS, ACT_GROUPINGS } from '@/lib/constants';
 import { useInView } from '@/hooks/useInView';
 
 function useCountUp(end: number, duration: number, trigger: boolean) {
@@ -97,22 +97,40 @@ export default function HomePage() {
       {/* Chapter Cards */}
       <section className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
         <h2 className="mb-8 font-serif text-2xl font-bold">Explore the Data</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CHAPTERS.map((ch) => (
-            <Link
-              key={ch.slug}
-              href={`/chapters/${ch.slug}/`}
-              className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors"
-            >
-              <h3 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
-                {ch.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
-              <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Explore <ArrowRight className="h-3 w-3" />
+        <div className="space-y-12">
+          {ACT_GROUPINGS.map((act) => {
+            const actChapters = act.chapters.map(
+              (n) => CHAPTERS.find((c) => c.number === n)!
+            );
+            return (
+              <div key={act.act}>
+                <div className="mb-4">
+                  <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Act {act.act}
+                  </h3>
+                  <h4 className="font-serif text-xl font-semibold">{act.title}</h4>
+                  <p className="text-sm text-muted-foreground">{act.subtitle}</p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {actChapters.map((ch) => (
+                    <Link
+                      key={ch.slug}
+                      href={`/chapters/${ch.slug}/`}
+                      className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors"
+                    >
+                      <h3 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
+                        {ch.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
+                      <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                        Explore <ArrowRight className="h-3 w-3" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       </section>
 
