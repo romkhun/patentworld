@@ -112,7 +112,7 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          NMF topic modeling applied to {formatCompact(totalPatents)} patent abstracts (1976-2025) reveals 25 latent themes; computing and semiconductor topics grew from approximately 12% to over 33% of all patents. A UMAP projection of 5,000 patents exhibits clear clustering by technology area with meaningful spatial relationships. Patent novelty, measured by Shannon entropy of topic distributions, has risen steadily since the 1990s, with the highest-entropy patents situated at the intersection of computing, biology, chemistry, and engineering.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward digital and computational domains -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the steady rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in Chapters 11 and 12 are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
@@ -209,7 +209,7 @@ export default function Chapter13() {
       </Narrative>
 
       <ChartContainer
-        title="UMAP Projection Reveals Distinct Technology Clusters With Meaningful Spatial Relationships"
+        title="UMAP Projection of 5,000 Patents Reveals 25 Distinct Technology Clusters With Meaningful Spatial Relationships"
         caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. The projection reveals clear clustering by technology area, with computing and electronics topics grouped together and chemistry and biotechnology forming a separate cluster."
         insight="The UMAP projection reveals clear topic clusters with meaningful spatial relationships: computing and electronics topics cluster together, while chemistry and biotechnology form a distinct neighborhood. Patents bridging clusters often represent the most novel cross-domain inventions."
         loading={umapL || defL}
@@ -257,7 +257,7 @@ export default function Chapter13() {
       </Narrative>
 
       <ChartContainer
-        title="Computing-Related Topics Appear Across Nearly All CPC Sections, Confirming Their General-Purpose Nature"
+        title="Computing-Related Topics Appear Across All 8 CPC Sections, Confirming Their General-Purpose Nature"
         caption="Share (%) of patents in each CPC section belonging to each of the top 8 topics, ordered A through H. The most notable pattern is that computing and data-processing topics appear across nearly all sections, suggesting that digital technology has become a general-purpose innovation platform."
         insight="Topics related to computing and data processing appear across nearly all CPC sections, consistent with the characterization of digital technology as a general-purpose innovation platform that pervades virtually every industry."
         loading={cpcL || defL}
@@ -286,7 +286,7 @@ export default function Chapter13() {
       </Narrative>
 
       <ChartContainer
-        title="Patent Novelty Has Risen Steadily Since the 1990s, Suggesting Growing Interdisciplinary Combination"
+        title="Patent Novelty Rose 6.4% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With Steady Gains Since the 1990s"
         caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the 1990s suggests that modern inventions increasingly combine ideas from multiple technology domains, with acceleration during the 2010s."
         insight="Patent novelty has risen steadily since the 1990s, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the 2010s, coinciding with the rise of AI and other general-purpose technologies."
         loading={novTL}

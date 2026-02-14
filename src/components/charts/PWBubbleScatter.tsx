@@ -48,7 +48,7 @@ export function PWBubbleScatter({
     () => sections.map((section) => ({
       section,
       data: data.filter((d) => d.section === section),
-      color: CPC_SECTION_COLORS[section] ?? '#94a3b8',
+      color: CPC_SECTION_COLORS[section] ?? '#999999',
     })),
     [data, sections]
   );
@@ -59,7 +59,7 @@ export function PWBubbleScatter({
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart margin={{ top: 20, right: 20, left: 10, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
         <XAxis
           dataKey="x"
           type="number"
@@ -134,6 +134,7 @@ export function PWBubbleScatter({
             data={group.data}
             fill={group.color}
             fillOpacity={0.7}
+            isAnimationActive={false}
           />
         ))}
       </ScatterChart>

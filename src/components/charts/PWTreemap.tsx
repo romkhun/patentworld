@@ -83,6 +83,7 @@ export function PWTreemap({ data }: PWTreemapProps) {
         aspectRatio={4 / 3}
         stroke="hsl(var(--background))"
         content={<CustomContent />}
+        isAnimationActive={false}
       >
         <Tooltip content={<CustomTooltip />} />
       </Treemap>

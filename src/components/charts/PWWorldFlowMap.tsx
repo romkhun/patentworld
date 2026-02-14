@@ -74,18 +74,18 @@ const REGION_MAP: Record<string, string> = {
 };
 
 const REGION_COLORS: Record<string, string> = {
-  'Americas': 'hsl(210, 75%, 50%)',
-  'Europe': 'hsl(145, 60%, 42%)',
-  'East Asia': 'hsl(25, 85%, 52%)',
-  'South Asia': 'hsl(280, 60%, 55%)',
-  'Oceania': 'hsl(340, 65%, 52%)',
-  'Middle East': 'hsl(50, 75%, 45%)',
-  'Africa': 'hsl(175, 60%, 42%)',
+  'Americas': '#0072B2',
+  'Europe': '#009E73',
+  'East Asia': '#E69F00',
+  'South Asia': '#332288',
+  'Oceania': '#CC79A7',
+  'Middle East': '#D55E00',
+  'Africa': '#44AA99',
 };
 
 function getRegionColor(countryCode: string): string {
   const region = REGION_MAP[countryCode];
-  return region ? (REGION_COLORS[region] ?? 'hsl(0, 0%, 55%)') : 'hsl(0, 0%, 55%)';
+  return region ? (REGION_COLORS[region] ?? '#999999') : '#999999';
 }
 
 interface FlowEntry {
@@ -100,12 +100,12 @@ interface PWWorldFlowMapProps {
 }
 
 const COLOR_STEPS = [
-  'hsl(221, 60%, 94%)',
-  'hsl(221, 65%, 84%)',
-  'hsl(221, 68%, 74%)',
-  'hsl(221, 70%, 62%)',
-  'hsl(221, 72%, 50%)',
-  'hsl(221, 75%, 38%)',
+  'hsl(202, 70%, 94%)',
+  'hsl(202, 70%, 84%)',
+  'hsl(202, 70%, 74%)',
+  'hsl(202, 70%, 62%)',
+  'hsl(202, 70%, 50%)',
+  'hsl(202, 70%, 38%)',
 ];
 
 export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
@@ -319,7 +319,7 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
               markerHeight="4"
               orient="auto-start-reverse"
             >
-              <path d="M 0 2 L 8 5 L 0 8 Z" fill="hsl(0, 0%, 55%)" fillOpacity={0.8} />
+              <path d="M 0 2 L 8 5 L 0 8 Z" fill="#999999" fillOpacity={0.8} />
             </marker>
             {/* Glow filter for highlighted arcs */}
             <filter id="arc-glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -402,7 +402,7 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
                 cx={projected[0]}
                 cy={projected[1]}
                 r={isHovered ? r * 1.4 : r}
-                fill="hsl(221, 70%, 50%)"
+                fill="#0072B2"
                 fillOpacity={dimmed ? 0.2 : 0.85}
                 stroke="hsl(var(--background))"
                 strokeWidth={isHovered ? 1.5 : 0.8}

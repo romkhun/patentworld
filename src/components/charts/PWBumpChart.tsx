@@ -65,7 +65,7 @@ export function PWBumpChart({ data, nameKey, yearKey, rankKey, maxRank = 15 }: P
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={pivoted} margin={{ top: 5, right: 160, left: 10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey="year"
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
@@ -103,6 +103,7 @@ export function PWBumpChart({ data, nameKey, yearKey, rankKey, maxRank = 15 }: P
               dot={false}
               connectNulls={false}
               activeDot={isDimmed ? false : { r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
+              isAnimationActive={false}
             >
               {lastEntry && (
                 <Label

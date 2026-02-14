@@ -36,13 +36,13 @@ const STATE_NAMES: Record<string, string> = {
 };
 
 const COLOR_STEPS = [
-  'hsl(221, 70%, 94%)',
-  'hsl(221, 70%, 84%)',
-  'hsl(221, 70%, 74%)',
-  'hsl(221, 70%, 64%)',
-  'hsl(221, 70%, 54%)',
-  'hsl(221, 70%, 44%)',
-  'hsl(221, 70%, 34%)',
+  'hsl(202, 70%, 94%)',
+  'hsl(202, 70%, 84%)',
+  'hsl(202, 70%, 74%)',
+  'hsl(202, 70%, 64%)',
+  'hsl(202, 70%, 54%)',
+  'hsl(202, 70%, 44%)',
+  'hsl(202, 70%, 34%)',
 ];
 
 interface PWChoroplethMapProps {

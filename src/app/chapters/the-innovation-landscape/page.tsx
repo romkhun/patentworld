@@ -62,7 +62,7 @@ export default function Chapter1() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The USPTO granted over 9.3 million patents from 1976 to 2025, with annual output growing roughly fivefold from 65,000–70,000 in the late 1970s to over 350,000 in recent years. Utility patents constitute over 90% of all grants. Grant pendency peaked near four years around 2010, and the shifting relationship between average and median claims per patent — with the median surpassing the average by the mid-2010s — indicates evolving patent drafting strategies.
+          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants in the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in Chapter 2. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers.
         </p>
       </aside>
 
@@ -83,7 +83,7 @@ export default function Chapter1() {
       </Narrative>
 
       <ChartContainer
-        title="Annual Patent Grants Increased Five-Fold, 1976–2025"
+        title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
         insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Notable disruptions include the 2008 financial crisis and the 2020 COVID-19 pandemic."
         loading={ppyL}
@@ -129,7 +129,7 @@ export default function Chapter1() {
       </KeyInsight>
 
       <ChartContainer
-        title="Patent Claim Counts Rose Substantially from the 1970s Through the Mid-2000s Before Leveling Off"
+        title="Average Claims per Patent Doubled from 9.4 in 1976 to a Peak of 18.9 in 2005"
         caption="Average and median number of claims per utility patent, 1976–2025. The relationship between mean and median has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
         insight="The relationship between average and median claims per patent has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
         loading={clL}
@@ -162,7 +162,7 @@ export default function Chapter1() {
       </KeyInsight>
 
       <ChartContainer
-        title="Grant Pendency Peaked Near Four Years Around 2010"
+        title="Grant Pendency Peaked at 3.8 Years in 2010, Up from 1.2 Years in 1976"
         caption="Average and median grant lag (time from application filing to patent issuance), 1976–2025, expressed in years. The late-2000s peak coincided with a surge in computing and telecommunications filings."
         insight="Grant pendency represents a significant cost of the patent system. Extended review periods create prolonged uncertainty for both applicants and potential competitors, distorting investment and commercialization decisions."
         loading={lagL}

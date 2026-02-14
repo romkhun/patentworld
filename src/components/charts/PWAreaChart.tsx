@@ -43,7 +43,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             );
           })}
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
@@ -97,7 +97,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             x={ref.x}
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 12, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: 11, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {areas.map((area, i) => (
@@ -110,6 +110,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             fill={`url(#gradient-${area.key})`}
             stroke={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
             fillOpacity={1}
+            isAnimationActive={false}
           />
         ))}
       </AreaChart>

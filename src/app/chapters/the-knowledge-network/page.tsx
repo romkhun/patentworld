@@ -112,7 +112,7 @@ export default function Chapter7() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period, reflecting the expanding body of relevant prior art that newer patents must reference. Government-funded patents -- facilitated by the Bayh-Dole Act of 1980 -- receive substantially more forward citations than privately funded patents, with the Department of Health and Human Services/NIH, Department of Defense, and Department of Energy constituting the leading funding agencies. The lengthening citation lag suggests that the growing cumulative stock of prior art requires newer patents to reach further back in time, and corporate citation flows reveal asymmetric knowledge dependencies among the most prolific patent filers.
+          Over five decades the temporal reach of patent citations has stretched dramatically -- from a median lag of roughly 3 years in the early 1980s to over 16 years by 2025 -- indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. Public funding channels, catalyzed by the Bayh-Dole Act of 1980 and led by HHS/NIH, the Department of Defense, and the Department of Energy, account for a disproportionate share of high-impact foundational knowledge, complementing the collaboration networks documented in Chapter 6. At the corporate level, directed citation flows among the top 30 assignees reveal asymmetric knowledge dependencies: certain firms function primarily as knowledge producers while others operate as integrators drawing broadly from multiple sources, a structural pattern that parallels the talent-flow asymmetries observed in the preceding chapter.
         </p>
       </aside>
 
@@ -127,7 +127,7 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
-        title="Average Backward Citations Per Patent Have Increased Steadily Since the 1970s"
+        title="Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023"
         caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
         loading={ciL}
         insight="The growth in backward citations reflects both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
@@ -168,7 +168,7 @@ export default function Chapter7() {
       <SectionDivider label="Citation Patterns" />
 
       <ChartContainer
-        title="Citation Lag Has Lengthened as Patents Reference Increasingly Older Prior Art"
+        title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
         caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
         loading={laL}
         insight="The lengthening citation lag indicates that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
@@ -206,7 +206,7 @@ export default function Chapter7() {
       <SectionDivider label="Government Funding" />
 
       <ChartContainer
-        title="Government-Funded Patent Counts Rose Sharply Following the 1980 Bayh-Dole Act"
+        title="Government-Funded Patents Rose From 1,294 in 1980 to 8,359 in 2019 After the Bayh-Dole Act"
         caption="Number of utility patents acknowledging government funding interest, by year. A marked increase is evident after the 1980 Bayh-Dole Act, which permitted universities and small businesses to retain patent rights on federally funded inventions."
         loading={goL}
         insight="Government-funded patents consistently exhibit higher citation impact than privately funded patents, supporting the role of public R&D investment in generating foundational innovations."
@@ -232,7 +232,7 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
-        title="NIH, Department of Defense, and DOE Lead Federal Patent-Generating Agencies"
+        title="HHS/NIH Leads With 55,587 Patents, Followed by Defense (43,736) and Energy (33,994)"
         caption="Federal agencies ranked by total number of associated patents (all time). The Department of Health and Human Services/NIH, Department of Defense, and Department of Energy account for the largest share of government-interest patents."
         loading={agL}
         height={750}
@@ -267,7 +267,7 @@ export default function Chapter7() {
 
       <SectionDivider label="Citation Lag by Technology Area" />
       <ChartContainer
-        title="Physics and Electricity Exhibit Shorter Citation Lags Than Chemistry and Life Sciences"
+        title="Physics and Electricity Show 11-Year Median Lag in the 2020s vs. 17 Years for Chemistry"
         caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."
         loading={clsL}
         insight="The increasing density of the citation network indicates that modern inventions build on a broader base of prior knowledge, which appears to accelerate the pace of cumulative innovation."
@@ -326,7 +326,7 @@ export default function Chapter7() {
       </div>
 
       <ChartContainer
-        title={`Corporate Citation Flows Reveal Asymmetric Knowledge Dependencies (${selectedDecade})`}
+        title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies (${selectedDecade})`}
         caption="Directed citation flows between the most prolific patent filers. Arc size represents total citations; ribbon width indicates flow volume. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others serve as integrators (drawing broadly from multiple sources)."
         insight="Citation flows reveal asymmetric knowledge dependencies. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others operate as integrators (drawing broadly from multiple sources)."
         loading={cfL}
@@ -390,7 +390,7 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
-        title="Pharmaceutical Firms Exhibit Longer Citation Half-Lives Than Electronics Companies"
+        title="Citation Half-Lives Range From 6.3 Years (Huawei) to 14.3 Years (US Air Force)"
         caption="Years until a firm's patents accumulate 50% of their total forward citations. Only patents 15 or more years old are included to ensure a complete citation window. Pharmaceutical and chemical firms demonstrate longer half-lives, whereas electronics and IT firms exhibit shorter ones."
         insight="Pharmaceutical and chemical firms tend to exhibit longer citation half-lives, reflecting the gradual accumulation of citations in science-intensive fields. Electronics and IT firms demonstrate shorter half-lives, with citations peaking shortly after grant."
         loading={chlL}

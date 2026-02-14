@@ -131,7 +131,7 @@ export default function Chapter6() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cross-organizational co-patenting has increased markedly, with distinct industry clusters evident in the network: electronics firms, pharmaceutical companies, and automotive manufacturers each form dense collaborative communities. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025, though certain technology areas such as chemistry have experienced recent declines. Inventor mobility between major firms creates knowledge transfer channels that extend beyond formal citations, and individual companies exhibit distinctive innovation strategy profiles across dimensions such as breadth, speed, and collaboration intensity.
+          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in Chapter 7, while radar-chart strategy profiles show that individual firms occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
         </p>
       </aside>
 
@@ -168,7 +168,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Cross-Organizational Co-Patenting Forms Distinct Industry Clusters"
+        title="618 Organizations Form Distinct Industry Clusters in the Co-Patenting Network"
         caption="Co-patenting network among organizations with significant collaboration ties. Node size represents total patent count; edge width indicates the number of shared patents. The network exhibits dense intra-industry clustering with sparse inter-industry connections."
         insight="The prevalence of co-patenting is consistent with both the growing complexity of innovation and the strategic importance of inter-firm collaboration in technology development."
         loading={fnL}
@@ -217,7 +217,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Inventor Co-Invention Networks Exhibit Fragmented, Team-Based Clustering"
+        title="632 Prolific Inventors Form 1,236 Co-Invention Ties in Fragmented Team Clusters"
         caption="Co-invention network among inventors with significant collaboration ties. Edges represent shared patents; node size indicates total patent count. The network is more fragmented than the organizational co-patenting network, with many small, tightly connected teams."
         insight="The increasing connectivity of the co-invention network suggests that knowledge may diffuse more rapidly, though it may simultaneously create path dependencies in innovation direction."
         loading={inL}
@@ -286,7 +286,7 @@ export default function Chapter6() {
       </ChartContainer>
 
       <ChartContainer
-        title="US-China Co-Invention Has Grown Across Most Technology Sectors"
+        title="US-China Co-Invention Grew from 77 Patents in 2000 to 2,749 in 2024, Led by Electricity (H) and Physics (G)"
         caption="Annual count of US patents co-invented with Chinese inventors, disaggregated by CPC section. All CPC sections have grown over time, though growth rates moderated across some technology areas in recent years."
         insight="US-China collaboration has grown across most CPC technology sections. While growth rates moderated in some areas in recent years, most sections continued to expand, though chemistry (C) experienced a decline of approximately 33% between 2020 and 2023, reflecting evolving US-China research dynamics."
         loading={cisL}
@@ -328,7 +328,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Large Technology Firms Are Predominantly Net Talent Importers"
+        title="143,524 Inventor Movements Flow Among 50 Major Patent-Filing Organizations"
         caption="Movement of inventors between top patent-filing organizations, based on consecutive patents with different assignees (gap of 5 years or fewer). Blue nodes indicate net talent importers; red nodes indicate net exporters. The bidirectional nature of many flows suggests active talent cycling within industry clusters."
         insight="Large technology companies tend to be net talent importers, drawing inventors from smaller firms and universities. The bidirectional nature of many flows is consistent with active talent cycling within industry clusters."
         loading={tfL}
@@ -356,7 +356,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Patent Portfolio Similarity Reveals Industry Clustering with Blurred Boundaries"
+        title="248 Companies Cluster into 8 Industries by Patent Portfolio Similarity"
         caption="Each point represents a company; proximity reflects similarity in CPC subclass distributions, and color indicates industry cluster. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
         insight="Companies cluster by industry, though the boundaries are increasingly blurred. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
         loading={poL}
@@ -369,7 +369,7 @@ export default function Chapter6() {
             colorKey="industry"
             nameKey="company"
             categories={overlapIndustries}
-            colors={overlapIndustries.map(i => INDUSTRY_COLORS[i] ?? '#94a3b8')}
+            colors={overlapIndustries.map(i => INDUSTRY_COLORS[i] ?? '#999999')}
             tooltipFields={[
               { key: 'company', label: 'Company' },
               { key: 'industry', label: 'Industry' },
@@ -420,7 +420,7 @@ export default function Chapter6() {
       )}
 
       <ChartContainer
-        title="Corporate Innovation Strategies Diverge Across Eight Normalized Dimensions"
+        title="Corporate Innovation Strategies Diverge Across Eight Normalized Dimensions for 30 Top Assignees, with Scores Spanning 0 to 100"
         caption="Eight-dimensional strategy profile comparing selected companies, with all dimensions normalized to a 0-100 scale across the top 30 assignees. Divergent profiles indicate distinct strategic orientations between diversified conglomerates and focused technology leaders."
         insight="Companies exhibit distinctive strategy profiles. Some emphasize breadth and collaboration (diversified conglomerates), while others optimize for depth and defensiveness (focused technology leaders)."
         loading={spL}
@@ -446,7 +446,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Grant Lag Varies Substantially Across Top Patent Filers by Technology Mix"
+        title="Grant Lag Spans 439 to 1,482 Days Across Top 8 Patent Filers"
         caption="Median number of days from application filing to patent grant for the top patent filers, by year. Software and electronics-focused firms tend to exhibit longer pendency periods, while companies filing primarily in mechanical and design categories demonstrate shorter grant lags."
         insight="Grant lag patterns reflect both the technology composition of a company's portfolio and its patent prosecution efficiency. Companies filing primarily in software and electronics tend to face longer pendency, whereas mechanical and design patents tend to proceed more rapidly."
         loading={csL}

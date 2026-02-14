@@ -152,14 +152,14 @@ export default function Chapter6() {
       <KeyFindings>
         <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for approximately 46% of all grants.</li>
         <li>Japan, Germany, and South Korea constitute the leading foreign sources of US patents, reflecting their established national innovation systems.</li>
-        <li>Geographic concentration of patenting has intensified over time, with innovation hubs such as Silicon Valley and the Boston-Cambridge corridor demonstrating accelerating divergence from other regions.</li>
+        <li>Geographic concentration of patenting has intensified over time, with regions with high patent concentration, such as the San Francisco Bay Area and the Boston-Cambridge corridor demonstrating accelerating divergence from other regions.</li>
         <li>China&apos;s share of US patents has increased substantially since the 2000s, though from a comparatively low initial base.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The top five US states (California, Texas, New York, Massachusetts, and Michigan) account for approximately 46% of all patent grants. California alone produces more patents than the bottom 30 states combined. Internationally, Japan, Germany, and South Korea lead foreign filings, while China&apos;s share has risen substantially since the 2000s. At the city level, concentration is more pronounced still: San Jose, San Diego, Austin, San Francisco, and Houston account for the largest shares of output, and regional specialization patterns -- such as Detroit in mechanical engineering and San Diego in semiconductor and wireless technology -- appear notably persistent in the available data.
+          The organizational and inventor-level concentration documented in Chapters 3 and 4 has a pronounced spatial dimension: inventive activity clusters in a small number of self-reinforcing ecosystems where skilled labor, venture capital, research universities, and corporate laboratories co-locate. Within the United States, a handful of coastal states generate a disproportionate share of all output, with California alone exceeding the combined total of the bottom thirty states, a gap that has widened rather than narrowed over the digital era. Internationally, the same globalization of assignee origin observed in Chapter 3 manifests geographically, as successive waves of filings from Japan, South Korea, and more recently China have transformed the US patent system into a de facto global institution. City-level analysis reveals that this concentration is even more extreme at finer geographic scales, with distinctive regional specializations, from Detroit in automotive-related mechanical engineering to San Diego in wireless and semiconductor technology, exhibiting strong path dependence that digital connectivity has done little to erode.
         </p>
       </aside>
 
@@ -173,7 +173,7 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
-        title="Patent Activity Concentrates on the Coasts, with California Producing More Than the Bottom 30 States Combined"
+        title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States Combined (314,664)"
         caption="This choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
         insight="The coastal concentration of patent activity reflects the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
         loading={stL}
@@ -212,7 +212,7 @@ export default function Chapter6() {
           California, home to Silicon Valley, accounts for more US patents than
           any other state, followed by Texas, New York, Massachusetts, and
           Michigan. This concentration reflects the
-          co-location of technology companies and research universities in established innovation hubs.
+          co-location of technology companies and research universities in regions of concentrated inventive activity.
         </p>
       </Narrative>
 
@@ -228,7 +228,7 @@ export default function Chapter6() {
 
       {stateTimePivot.length > 0 && (
         <ChartContainer
-          title="California's Patent Output Has Diverged Sharply from Other Leading States Since the 1990s"
+          title="California's Patent Output Has Diverged Sharply from Other Leading States, Reaching 4.0x Texas by 2024"
           caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the early 1990s, with the gap widening in each subsequent decade."
           insight="California's accelerating divergence from other states since the 1990s is consistent with the compounding advantages characteristic of self-reinforcing innovation ecosystems."
           loading={spyL}
@@ -261,7 +261,7 @@ export default function Chapter6() {
       <SectionDivider label="City Level" />
 
       <ChartContainer
-        title="San Jose, San Diego, and Austin Lead All US Cities in Total Patent Output"
+        title="San Jose (96,068), San Diego (70,186), and Austin (53,595) Lead All US Cities in Total Patent Output"
         caption="This chart ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
         insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national innovation output."
         loading={ciL}
@@ -297,7 +297,7 @@ export default function Chapter6() {
       <SectionDivider label="International" />
 
       <ChartContainer
-        title="Japan Leads Foreign Patent Filings, While South Korea and China Have Risen Substantially Since the 2000s"
+        title="Japan Leads Foreign Patent Filings with 1.45 Million, While China Surged from 299 (2000) to 30,695 (2024)"
         caption="This chart displays annual utility patent grants by primary inventor country for the top 8 countries by total output. Japan maintained the largest foreign share through the 1990s, while South Korea and China have demonstrated the most pronounced growth in the 2000s and 2010s respectively."
         insight="Japan's leading position among foreign filers reflects decades of sustained corporate research and development investment, while South Korea's rise is consistent with the expansion of firms such as Samsung and LG into global patent markets."
         loading={coL}
@@ -329,13 +329,13 @@ export default function Chapter6() {
           The US patent system has evolved into a global institution. Japan dominated foreign filings
           through the 1990s, and Germany held the second position among foreign filers through the 2000s before being surpassed by South Korea (2015) and China (2020). South Korea and China have emerged as significant contributors in the 2000s
           and 2010s respectively. China&apos;s sustained growth in US patent filings is indicative of a fundamental
-          shift in global innovation capacity.
+          shift in inventive activity as reflected in US patent filings.
         </p>
       </KeyInsight>
 
       {specByState.length > 0 && (
         <ChartContainer
-          title="States Exhibit Distinctive Technology Specialization Profiles Aligned with Regional Industry"
+          title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering vs. California's 65.1% in Physics and Electricity"
           caption="This chart displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
           insight="Geographic concentration of innovation creates self-reinforcing cycles, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
           loading={spL}
@@ -380,9 +380,9 @@ export default function Chapter6() {
 
       {mobilityTrend && mobilityTrend.length > 0 && (
         <ChartContainer
-          title="Both Domestic and International Inventor Mobility Rates Have Increased Over Time"
+          title="International Inventor Mobility Rose from 1.3% (1980) to 5.1% (2024), Surpassing Domestic Rates of 3.5%"
           caption="This chart displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
-          insight="Inventor mobility constitutes an important mechanism for knowledge diffusion, as mobile inventors carry tacit knowledge and professional networks from one innovation hub to another."
+          insight="Inventor mobility constitutes an important mechanism for knowledge diffusion, as mobile inventors carry tacit knowledge and professional networks from one region of concentrated inventive activity to another."
           loading={mtL}
         >
           <PWLineChart
@@ -412,7 +412,7 @@ export default function Chapter6() {
 
       {topStateFlows.length > 0 && (
         <ChartContainer
-          title="California Serves as Both the Largest Source and Destination of Interstate Inventor Migration"
+          title="California Accounts for 54.9% of All Interstate Inventor Migration, with 127,466 Inflows and 118,630 Outflows"
           caption="This chart displays the most common state-to-state inventor moves, based on sequential patents filed from different states. California-linked corridors dominate, reflecting the state's role as the primary hub for inventor talent flows."
           insight="The dominant migration corridors reveal the gravitational pull of major technology clusters, with California functioning as both the largest source and destination of inventor talent."
           loading={sfL}
@@ -429,7 +429,7 @@ export default function Chapter6() {
 
       {countryFlows && countryFlows.length > 0 && (
         <ChartContainer
-          title="The United States Functions as the Primary Global Hub for International Inventor Migration"
+          title="The United States Is Involved in 77.6% of All International Inventor Migration Flows (509,639 of 656,397 Moves)"
           caption="This map displays global inventor migration flows between countries, with arc width representing the volume of moves and country shading indicating total inventor movement. The United States emerges as the central node, connecting East Asian, European, and other innovation ecosystems."
           insight="The United States functions as the primary global hub for inventor migration, connecting East Asian, European, and other innovation ecosystems through flows of researchers and engineers."
           loading={cfL}
@@ -498,7 +498,7 @@ export default function Chapter6() {
       </Narrative>
       {topSpecializations.length > 0 && (
         <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
-          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Most Specialized Innovation Hubs (2010-2025, LQ &ge; 1.5)</h3>
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Regions with High Patent Concentration (2010-2025, LQ &ge; 1.5)</h3>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">

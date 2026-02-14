@@ -88,7 +88,7 @@ function DatasetJsonLd() {
     '@type': 'Dataset',
     name: 'PatentWorld — US Patent Data (1976–2025)',
     description:
-      'Interactive analysis of 9.36 million US utility patents covering 50 years of global innovation, with data on inventors, assignees, technology classifications, citations, and geography.',
+      'Interactive analysis of 9.36 million US utility patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
     url: 'https://patentworld.vercel.app/about/',
     license: 'https://creativecommons.org/licenses/by/4.0/',
     temporalCoverage: '1976/2025',

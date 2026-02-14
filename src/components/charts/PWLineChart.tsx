@@ -1,11 +1,13 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import type { ReferenceEvent } from '@/lib/referenceEvents';
+import { timeAnnotations, type TimeEventKey } from './TimeAnnotations';
 
 interface LineConfig {
   key: string;
@@ -24,15 +26,24 @@ interface PWLineChartProps {
   rightYLabel?: string;
   rightYFormatter?: (v: number) => string;
   referenceLines?: ReferenceEvent[];
+  annotations?: TimeEventKey[];
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines, annotations }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
+  const [hoveredLine, setHoveredLine] = useState<string | null>(null);
+
+  const handleLegendEnter = useCallback((o: any) => {
+    setHoveredLine(o.dataKey ?? o.value);
+  }, []);
+  const handleLegendLeave = useCallback(() => {
+    setHoveredLine(null);
+  }, []);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data} margin={{ top: 5, right: hasRightAxis ? 10 : 10, left: 10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
@@ -100,7 +111,10 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
           wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
           iconType="circle"
           iconSize={8}
+          onMouseEnter={handleLegendEnter}
+          onMouseLeave={handleLegendLeave}
         />
+        {annotations && timeAnnotations(annotations)}
         {referenceLines?.map((ref) => (
           <ReferenceLine
             key={ref.x}
@@ -108,11 +122,13 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
             yAxisId="left"
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 12, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: 11, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {lines.map((line, i) => {
           const color = line.color ?? CHART_COLORS[i % CHART_COLORS.length];
+          const isHovered = hoveredLine === line.key || hoveredLine === line.name;
+          const isDimmed = hoveredLine !== null && !isHovered;
           return (
             <Line
               key={line.key}
@@ -120,10 +136,12 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               dataKey={line.key}
               name={line.name}
               stroke={color}
-              strokeWidth={2}
+              strokeWidth={isHovered ? 3 : 2}
+              strokeOpacity={isDimmed ? 0.2 : 1}
               dot={false}
-              activeDot={{ r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
+              activeDot={isDimmed ? false : { r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
               yAxisId={line.yAxisId ?? 'left'}
+              isAnimationActive={false}
             />
           );
         })}

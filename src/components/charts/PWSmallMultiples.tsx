@@ -34,8 +34,8 @@ export function PWSmallMultiples({
 
   return (
     <div
-      className="grid gap-3"
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+      className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      style={columns > 4 ? { gridTemplateColumns: undefined } : undefined}
     >
       {panels.map((panel) => (
         <div key={panel.name} className="rounded-lg border bg-card/50 p-3">
@@ -45,7 +45,7 @@ export function PWSmallMultiples({
           <div className="h-[120px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={panel.data} margin={{ top: 2, right: 4, left: 0, bottom: 2 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.5} />
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
                 <XAxis
                   dataKey="x"
                   tick={{ fontSize: 9, fill: 'hsl(var(--muted-foreground))' }}
@@ -84,6 +84,7 @@ export function PWSmallMultiples({
                     strokeWidth={1}
                     dot={false}
                     legendType="none"
+                    isAnimationActive={false}
                   />
                 )}
                 <Line
@@ -93,6 +94,7 @@ export function PWSmallMultiples({
                   strokeWidth={2}
                   dot={false}
                   activeDot={{ r: 3 }}
+                  isAnimationActive={false}
                 />
               </LineChart>
             </ResponsiveContainer>

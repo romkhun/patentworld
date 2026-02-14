@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'PatentWorld',
-                description: 'An interactive exploration of 9.36 million US patents spanning 50 years of global innovation.',
+                description: 'An interactive exploration of 9.36 million US patents spanning 50 years of US patent data.',
                 url: 'https://patentworld.vercel.app',
                 author: {
                   '@type': 'Person',

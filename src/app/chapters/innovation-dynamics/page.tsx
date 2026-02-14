@@ -201,7 +201,7 @@ export default function Chapter8() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Grant lags peaked above 3.5 years in the late 2000s before USPTO reforms reduced them; chemistry and electrical engineering patents consistently exhibit the longest pendency periods. International co-invention increased from approximately 2% of patents in the 1980s to over 10% in recent years. Cross-domain patents spanning three or more CPC sections have risen steadily, and design patents have grown at a higher rate than utility patents since the 2000s, with Samsung, Nike, and LG Electronics among the leading filers.
+          The tempo and trajectory of innovation have shifted in tandem: examination backlogs that pushed average pendency beyond 3.5 years in the late 2000s were subsequently reduced by USPTO hiring initiatives and the AIA reforms discussed in Chapter 10, yet technology-specific friction persists, with chemistry patents routinely requiring the longest examination durations. Simultaneously, the share of patents spanning three or more CPC sections rose from 21% to 41% of all grants between 1976 and 2020, and the proportion listing inventors from multiple countries climbed from roughly 2% to over 10%, together signaling that innovation is becoming both more interdisciplinary and more geographically distributed. Design patents have outpaced utility patent growth since the 2000s -- led by Samsung, Nike, and LG Electronics -- while an exploration/exploitation analysis reveals that most large filers devote fewer than 5% of their patents to genuinely new technology domains, underscoring the tension between incremental deepening and frontier search that the quality metrics in Chapter 9 will further illuminate.
         </p>
       </aside>
 
@@ -255,7 +255,7 @@ export default function Chapter8() {
       <SectionDivider label="Convergence" />
 
       <ChartContainer
-        title="Multi-Section Patents Have Risen Steadily, Indicating Increasing Technological Convergence"
+        title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2020), Indicating Increasing Technological Convergence"
         caption="This chart presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
@@ -337,7 +337,7 @@ export default function Chapter8() {
 
       {corpDivLate.length > 0 && (
         <ChartContainer
-          title="IBM and Samsung Maintain the Most Diversified Technology Portfolios Among the Top Ten Patent Holders (2001-2025)"
+          title="IBM (88,600 G-Section Patents) and Samsung (79,400 H-Section Patents) Maintain the Most Diversified Technology Portfolios Among the Top Ten Patent Holders (2001-2025)"
           caption="This chart displays the distribution of patent grants across CPC technology sections for the ten largest patent holders in the 2001-2025 period. IBM and Samsung exhibit the broadest portfolio diversification, spanning physics, electricity, and chemistry, whereas firms such as Intel concentrate in semiconductor-related classifications."
           loading={cpL}
           height={650}
@@ -378,7 +378,7 @@ export default function Chapter8() {
       <SectionDivider label="Velocity" />
 
       <ChartContainer
-        title="Patenting Growth Rates Are Highly Correlated Across Sectors, with Synchronized Declines During the 2001 and 2008 Downturns"
+        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines of 7-18% During the 2001 and 2008 Downturns"
         caption="This chart presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors suggests that macroeconomic conditions and patent policy exert stronger influence on patenting rates than sector-specific technology cycles."
@@ -425,7 +425,7 @@ export default function Chapter8() {
         </p>
       </Narrative>
       <ChartContainer
-        title="Chemistry (C) Patents Consistently Exhibit the Longest Examination Durations, Peaking in the 2010-2014 Period"
+        title="Chemistry (C) Patents Consistently Exhibit the Longest Examination Durations, with a Median of 1,278 Days in the 2010-2014 Period"
         caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Chemistry and Human Necessities patents consistently exhibit the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns reveal the institutional constraints that shape innovation timelines, with technology-specific backlogs reflecting the USPTO's resource allocation across its technology centers."
@@ -467,7 +467,7 @@ export default function Chapter8() {
       </Narrative>
 
       <ChartContainer
-        title="Design Patents Have Grown at a Higher Rate Than Utility Patents Since the 2000s"
+        title="Design Patent Share Grew from 6% in the Early 1980s to 13% by 2024, Outpacing Utility Patent Growth"
         caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion industries."
         insight="The increasing share of design patents suggests a structural shift in corporate innovation strategy toward design-driven product differentiation, with Samsung, Nike, and LG Electronics among the leading filers."
         loading={deL}
@@ -489,7 +489,7 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title="Consumer Electronics and Automotive Firms Dominate Design Patent Filings"
+        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Automotive Firms"
         caption="This chart displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
         loading={deL}
         height={500}
@@ -515,7 +515,7 @@ export default function Chapter8() {
       </Narrative>
 
       <ChartContainer
-        title="Median Claim Counts Have Increased Since the 1990s While the 90th Percentile Has Declined from Its 2005 Peak"
+        title="Median Claims Doubled from 8 to 18 (1976-2025) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025"
         caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The widening gap between median and 90th percentile values indicates that claim inflation is concentrated in the upper tail of the distribution, particularly in software and biotechnology patents."
         insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
         loading={clL}
@@ -534,7 +534,7 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title="Claim Counts Have Converged Across Technology Areas, with Physics and Electricity Leading"
+        title="Claim Counts Have Converged Across Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
         caption="This chart displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with convergence in recent decades suggesting a broad trend toward more detailed patent drafting regardless of field."
         loading={clL}
       >
@@ -576,7 +576,7 @@ export default function Chapter8() {
       </div>
 
       <ChartContainer
-        title={`${selectedExplFirm}: Exploration Score and Composition Over Time`}
+        title={`${selectedExplFirm}'s Exploration Score Averages ${selectedExplData.length > 0 ? (selectedExplData.reduce((s, d) => s + d.mean_exploration, 0) / selectedExplData.length).toFixed(2) : '—'} Across ${selectedExplData.length} Years of Patenting`}
         caption={`Mean exploration score and its three component indicators for ${selectedExplFirm} by year. The composite score (blue) averages technology newness, citation newness, and external knowledge sourcing (1 - self-citation rate). Higher values indicate more exploratory behavior.`}
         insight="Decomposing the composite score into its three indicators reveals which dimension of exploration is driving changes over time — whether the firm is entering new technology areas, citing unfamiliar prior art, or drawing on external knowledge."
         loading={feL}
@@ -600,7 +600,7 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title={`${selectedExplFirm}: Exploration vs. Exploitation Share Over Time`}
+        title={`${selectedExplFirm} Devotes ${selectedExplData.length > 0 ? (selectedExplData[selectedExplData.length - 1].exploitation_share * 100).toFixed(0) : '—'}% of Recent Patents to Exploitation Over Exploration`}
         caption={`Share of ${selectedExplFirm}'s annual patents classified as exploratory (score > 0.6), exploitative (score < 0.4), or ambidextrous (0.4–0.6). Dashed gray = system-wide mean exploration score.`}
         loading={feL}
         height={300}
@@ -627,7 +627,7 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title="Exploration Share Trajectories Across Major Patent Filers"
+        title="11 of 20 Major Filers Keep Exploration Below 5%, with a Median Share of 3.3%"
         caption="Each panel shows one firm's exploration share (% of patents classified as exploratory) over time. Firms are sorted by most recent exploration share, descending. Exploration is defined as a composite score above 0.6 based on technology newness, citation newness, and external knowledge sourcing."
         insight="Most large patent filers maintain exploration shares below 5%, indicating that the vast majority of their patenting activity deepens established technology domains rather than entering new ones."
         loading={etL}
@@ -643,7 +643,7 @@ export default function Chapter8() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Does Exploration Pay Off?" />
+      <SectionDivider label="Returns to Technological Exploration" />
 
       <Narrative>
         <p>
@@ -656,7 +656,7 @@ export default function Chapter8() {
       </Narrative>
 
       <ChartContainer
-        title="Exploration Share vs. Quality Premium (2010–2019)"
+        title="Only 4 of 49 Top Filers Show a Positive Exploration Quality Premium (2010–2019)"
         caption="Each bubble represents one top-50 assignee. X-axis: share of patents classified as exploratory. Y-axis: exploration quality premium (median citations of exploratory patents minus median citations of exploitative patents). Bubble size: total patents. Color: primary CPC section. Only firms with ≥20 exploratory and ≥20 exploitative patents shown."
         loading={esL}
         height={450}
@@ -685,7 +685,7 @@ export default function Chapter8() {
       </Narrative>
 
       <ChartContainer
-        title="Exploration-to-Exploitation Transition by Firm"
+        title="New-Subclass Exploration Scores Decay from 1.0 to 0.087 Within 5 Years of Entry"
         caption="Each panel shows one firm's average exploration score by years since entry into a new CPC subclass. Dashed gray = system-wide average. The typical firm's exploration score falls sharply within 5 years, but the rate of decay varies considerably across organizations."
         insight="On average, a firm's exploration score in a newly entered technology subclass declines from 1.0 at entry to below 0.1 within 5 years. Some firms maintain higher exploration scores for longer periods, suggesting a more sustained period of search and experimentation."
         loading={lcL}
@@ -715,7 +715,7 @@ export default function Chapter8() {
       </Narrative>
 
       <ChartContainer
-        title="Ambidexterity vs. Blockbuster Rate by Firm-Period"
+        title="Balanced Firms Average a 2.51% Blockbuster Rate, 2.3x Higher Than Specialized Firms"
         caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980–2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year × CPC cohort). Only firm-periods with ≥50 patents shown."
         loading={amL}
         height={400}

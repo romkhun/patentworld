@@ -82,8 +82,8 @@ export function PWSankeyDiagram({
 
   const nodeColor = (index: number) => {
     const nf = netFlow[index] ?? 0;
-    if (nf > 0) return 'hsl(221, 83%, 53%)'; // net importer — blue
-    if (nf < 0) return 'hsl(0, 84%, 60%)'; // net exporter — red
+    if (nf > 0) return '#0072B2'; // net importer — blue
+    if (nf < 0) return '#D55E00'; // net exporter — red-orange
     return 'hsl(var(--muted-foreground))';
   };
 

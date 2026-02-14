@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell, Label,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell, Label, ReferenceLine,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -18,12 +18,15 @@ interface PWBarChartProps {
   yLabel?: string;
   yFormatter?: (v: number) => string;
   xDomain?: [number, number];
+  showAvgLine?: boolean;
 }
 
 export function PWBarChart({
-  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, xLabel, yLabel, yFormatter, xDomain,
+  data, xKey, bars, layout = 'horizontal', stacked = false, colorByValue = false, xLabel, yLabel, yFormatter, xDomain, showAvgLine = false,
 }: PWBarChartProps) {
   const isVertical = layout === 'vertical';
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
   // Compute left margin for vertical bars based on longest label
   const labelWidth = useMemo(() => isVertical
     ? Math.min(
@@ -38,6 +41,17 @@ export function PWBarChart({
       )
     : 10, [isVertical, data, xKey]);
 
+  // Compute average for reference line
+  const avgValue = useMemo(() => {
+    if (!showAvgLine || bars.length === 0) return undefined;
+    const key = bars[0].key;
+    const vals = data.map((d) => Number(d[key]) || 0);
+    return vals.reduce((a, b) => a + b, 0) / vals.length;
+  }, [showAvgLine, data, bars]);
+
+  const handleBarEnter = useCallback((_: any, idx: number) => setHoveredIdx(idx), []);
+  const handleBarLeave = useCallback(() => setHoveredIdx(null), []);
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
@@ -46,7 +60,7 @@ export function PWBarChart({
         margin={{ top: 5, right: 10, left: isVertical ? labelWidth + 10 : 10, bottom: 5 }}
         barCategoryGap={isVertical ? '20%' : '15%'}
       >
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} horizontal={!isVertical} vertical={isVertical} />
         {isVertical ? (
           <>
             <XAxis
@@ -86,6 +100,9 @@ export function PWBarChart({
                 />
               )}
             </YAxis>
+            {avgValue !== undefined && (
+              <ReferenceLine x={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Avg', position: 'top', fontSize: 11, fill: '#9ca3af' }} />
+            )}
           </>
         ) : (
           <>
@@ -121,6 +138,9 @@ export function PWBarChart({
                 />
               )}
             </YAxis>
+            {avgValue !== undefined && (
+              <ReferenceLine y={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Avg', position: 'right', fontSize: 11, fill: '#9ca3af' }} />
+            )}
           </>
         )}
         <Tooltip
@@ -144,9 +164,22 @@ export function PWBarChart({
             fill={bar.color ?? CHART_COLORS[i % CHART_COLORS.length]}
             stackId={stacked ? 'stack' : undefined}
             radius={isVertical ? [0, 4, 4, 0] : [4, 4, 0, 0]}
+            isAnimationActive={false}
+            onMouseEnter={handleBarEnter}
+            onMouseLeave={handleBarLeave}
           >
             {colorByValue && data.map((_, idx) => (
-              <Cell key={idx} fill={CHART_COLORS[idx % CHART_COLORS.length]} />
+              <Cell
+                key={idx}
+                fill={CHART_COLORS[idx % CHART_COLORS.length]}
+                fillOpacity={hoveredIdx !== null && hoveredIdx !== idx ? 0.5 : 1}
+              />
+            ))}
+            {!colorByValue && data.map((_, idx) => (
+              <Cell
+                key={idx}
+                fillOpacity={hoveredIdx !== null && hoveredIdx !== idx ? 0.7 : 1}
+              />
             ))}
           </Bar>
         ))}

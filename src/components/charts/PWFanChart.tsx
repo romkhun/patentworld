@@ -58,7 +58,7 @@ export function PWFanChart({
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey="year"
           tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
@@ -108,6 +108,7 @@ export function PWFanChart({
           fill="transparent"
           stroke="transparent"
           legendType="none"
+          isAnimationActive={false}
         />
 
         {/* P10-P25 band (lightest) */}
@@ -120,6 +121,7 @@ export function PWFanChart({
             fillOpacity={0.08}
             stroke="transparent"
             name="P10–P90"
+          isAnimationActive={false}
           />
         )}
 
@@ -132,6 +134,7 @@ export function PWFanChart({
           fillOpacity={showP10P90 ? 0.2 : 0.15}
           stroke="transparent"
           name="P25–P75"
+          isAnimationActive={false}
         />
 
         {/* P50-P75 band */}
@@ -143,6 +146,7 @@ export function PWFanChart({
           fillOpacity={showP10P90 ? 0.2 : 0.15}
           stroke="transparent"
           legendType="none"
+          isAnimationActive={false}
         />
 
         {/* P75-P90 band (lightest) */}
@@ -166,6 +170,7 @@ export function PWFanChart({
           strokeWidth={2.5}
           dot={false}
           name="Median"
+          isAnimationActive={false}
         />
 
         {/* Mean line */}
@@ -178,6 +183,7 @@ export function PWFanChart({
             strokeDasharray="4 4"
             dot={false}
             name="Mean"
+            isAnimationActive={false}
           />
         )}
 
@@ -191,6 +197,7 @@ export function PWFanChart({
             strokeDasharray="6 3"
             dot={false}
             name="System Median"
+            isAnimationActive={false}
           />
         )}
       </AreaChart>

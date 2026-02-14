@@ -452,7 +452,7 @@ export default function Chapter10() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Twenty-one landmark legislative and judicial events since 1980 have reshaped United States patent law, from the Bayh-Dole Act and the creation of the Court of Appeals for the Federal Circuit (1982) to the America Invents Act (2011) and the Supreme Court&apos;s holding in Alice Corp. v. CLS Bank International (2014). Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold. The G-H (Physics-Electricity) convergence pair dominates cross-section patenting in recent decades and has intensified substantially since 2011, reflecting the pervasiveness of digital technology.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in Chapters 1 through 5 -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: filing surges after the 1998 State Street decision, pendency declines after AIA-era reforms, and a slowdown in software-related grants after the 2014 eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the innovation landscape that earlier chapters have charted.
         </p>
       </aside>
 
@@ -549,7 +549,7 @@ export default function Chapter10() {
       </Narrative>
 
       <ChartContainer
-        title="The Growing Divergence Between Applications and Grants Since the Mid-1990s Reflects Increasing Examination Lag"
+        title="Applications Grew from 66,000 to 349,000 (1976-2019) While the Grant-to-Application Ratio Fell from 100% to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="This chart displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
@@ -558,9 +558,9 @@ export default function Chapter10() {
           data={pipelineFiltered}
           xKey="year"
           lines={[
-            { key: 'applications', name: 'Applications (filing date)', color: 'hsl(221, 83%, 53%)' },
-            { key: 'grants', name: 'Grants (grant date)', color: 'hsl(142, 71%, 45%)' },
-            { key: 'grant_to_application_ratio', name: 'Grant/Application Ratio (%)', color: 'hsl(38, 92%, 50%)', yAxisId: 'right' },
+            { key: 'applications', name: 'Applications (filing date)', color: '#0072B2' },
+            { key: 'grants', name: 'Grants (grant date)', color: '#009E73' },
+            { key: 'grant_to_application_ratio', name: 'Grant/Application Ratio (%)', color: '#E69F00', yAxisId: 'right' },
           ]}
           yLabel="Patent Count"
           rightYLabel="Ratio (%)"
@@ -636,7 +636,7 @@ export default function Chapter10() {
       </Narrative>
 
       <ChartContainer
-        title="The G-H (Physics-Electricity) Convergence Pair Dominates and Has Intensified Substantially Since 2011"
+        title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976-1995 and 2011-2025"
         caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
         insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}

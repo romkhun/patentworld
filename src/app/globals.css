@@ -85,10 +85,11 @@
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Recharts overrides */
+/* Recharts overrides — data-ink ratio: faint grids, clear text */
 .recharts-cartesian-grid-horizontal line,
 .recharts-cartesian-grid-vertical line {
   stroke: hsl(var(--border));
+  stroke-opacity: 0.4;
 }
 .recharts-text {
   fill: hsl(var(--muted-foreground));
@@ -96,6 +97,39 @@
 }
 .recharts-tooltip-wrapper {
   outline: none;
+  z-index: 10;
+}
+/* Legend below chart, never inside data area */
+.recharts-legend-wrapper {
+  padding-top: 12px !important;
+}
+/* Consistent chart text contrast — minimum #4A4A4A on white */
+.recharts-cartesian-axis-tick-value {
+  fill: #4A4A4A;
+}
+.dark .recharts-cartesian-axis-tick-value {
+  fill: hsl(var(--muted-foreground));
+}
+
+/* Chart container responsive heights */
+.chart-container-inner {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .chart-container-inner {
+    min-height: 250px !important;
+    max-height: 400px;
+  }
+  /* Reduce legend item size on mobile */
+  .recharts-legend-item {
+    font-size: 11px !important;
+  }
+  /* Ensure touch targets >= 44px */
+  .recharts-legend-item,
+  .recharts-tooltip-wrapper button {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* Hero gradient background */

@@ -1,7 +1,8 @@
 'use client';
 
+import { useMemo } from 'react';
 import {
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ZAxis,
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ZAxis, ReferenceLine,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -19,10 +20,11 @@ interface PWScatterChartProps {
   yLabel?: string;
   xFormatter?: (v: number) => string;
   yFormatter?: (v: number) => string;
+  showMeanLines?: boolean;
 }
 
 export function PWScatterChart({
-  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter,
+  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter, showMeanLines = false,
 }: PWScatterChartProps) {
   const fmtX = xFormatter ?? formatCompact;
   const fmtY = yFormatter ?? formatCompact;
@@ -34,10 +36,21 @@ export function PWScatterChart({
     color: colorPalette[i % colorPalette.length],
   }));
 
+  // Compute mean values for crosshair reference lines
+  const means = useMemo(() => {
+    if (!showMeanLines || data.length === 0) return null;
+    const xVals = data.map((d) => Number(d[xKey]) || 0);
+    const yVals = data.map((d) => Number(d[yKey]) || 0);
+    return {
+      x: xVals.reduce((a, b) => a + b, 0) / xVals.length,
+      y: yVals.reduce((a, b) => a + b, 0) / yVals.length,
+    };
+  }, [showMeanLines, data, xKey, yKey]);
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
         <XAxis
           dataKey={xKey}
           type="number"
@@ -62,6 +75,12 @@ export function PWScatterChart({
           domain={['auto', 'auto']}
         />
         <ZAxis range={[20, 20]} />
+        {means && (
+          <>
+            <ReferenceLine x={means.x} stroke="#9ca3af" strokeDasharray="4 4" strokeWidth={1} />
+            <ReferenceLine y={means.y} stroke="#9ca3af" strokeDasharray="4 4" strokeWidth={1} />
+          </>
+        )}
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
           content={({ active, payload }) => {
@@ -100,7 +119,8 @@ export function PWScatterChart({
             name={group.name}
             data={group.data}
             fill={group.color}
-            fillOpacity={0.7}
+            fillOpacity={data.length > 200 ? 0.4 : 0.7}
+            isAnimationActive={false}
           />
         ))}
       </ScatterChart>

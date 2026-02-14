@@ -62,6 +62,7 @@ export function PWRadarChart({
             fillOpacity={0.15}
             strokeWidth={2}
             dot={{ r: 3, fillOpacity: 0.8 }}
+            isAnimationActive={false}
           />
         ))}
       </RadarChart>

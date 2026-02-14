@@ -157,7 +157,7 @@ export default function Chapter3() {
     const areas = totals.map(c => ({
       key: c.country,
       name: c.country,
-      color: COUNTRY_COLORS[c.country] ?? '#94a3b8',
+      color: COUNTRY_COLORS[c.country] ?? '#999999',
     }));
     return { nonUSPivot: pivoted, nonUSCountryAreas: areas };
   }, [nonUS]);
@@ -187,14 +187,14 @@ export default function Chapter3() {
       <KeyFindings>
         <li>Corporations hold the substantial majority of US patents, with individual inventors comprising a diminishing fraction of annual grants.</li>
         <li>Asian firms (Samsung, Canon, LG) now account for over half of the top 25 patent holders, reflecting the globalization of technology leadership.</li>
-        <li>Patent concentration has remained notably stable: the top 100 organizations consistently hold roughly a third of all corporate patents.</li>
+        <li>Patent concentration has remained relatively stable: the top 100 organizations consistently hold roughly a third of all corporate patents.</li>
         <li>Foreign <GlossaryTooltip term="assignee">assignees</GlossaryTooltip> surpassed US-based assignees around 2007 and now account for the majority of patent grants, driven by multinational R&amp;D strategies.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Corporations dominate US patenting, with individual inventors comprising a diminishing fraction of grants. Asian firms now account for over half of the top 25 patent holders, and foreign assignees surpassed US-based assignees around 2007 and now account for the majority of grants, with foreign assignees averaging approximately 53% in the 2020s. Despite this globalization, patent concentration has remained notably stable: the top 100 organizations consistently hold roughly a third of all corporate patents. Three distinct eras of organizational dominance are evident: GE in the 1970s-80s, Japanese electronics firms in the 1980s-90s, and Korean firms from the 2000s onward.
+          The digital transformation described in Chapter 2 has reshaped not only which technologies are patented but also which organizations produce them. Over five decades, individual inventors have given way to large corporate assignees whose patent portfolios serve as strategic instruments for cross-licensing, defensive protection, and competitive signaling. The organizational leadership of the patent system has passed through three distinct eras, from American industrial conglomerates such as General Electric, through Japanese electronics firms including Canon and Hitachi, to the present dominance of Korean multinationals, a succession that mirrors broader geopolitical shifts in research and development investment. Notably, while the national origin of leading assignees has shifted decisively toward East Asia, the structural concentration of patenting among elite organizations has remained remarkably stable across the entire period, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography. These patterns set the stage for Chapter 4, which examines the individual inventors behind these organizational outputs.
         </p>
       </aside>
 
@@ -208,7 +208,7 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="Corporate Assignees Have Steadily Increased Their Share of US Patent Grants Since the 1970s"
+        title="Corporate Assignees Grew From 94% to 99% of US Patent Grants Between 1976 and 2024"
         caption="Share of utility patents by assignee category (primary assignee), 1976-2025. Corporate entities have progressively expanded their share, while individual inventors and government entities have declined proportionally."
         insight="The Bayh-Dole Act (1980) enabled university patenting, but the predominant trend is the rise of corporate R&amp;D as patent portfolios became strategic assets for cross-licensing and competitive signaling."
         loading={typL}
@@ -245,7 +245,7 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
-        title="Asian Firms Account for Over Half of the Top 25 Patent Holders by Cumulative Grants"
+        title="IBM Leads With 161,888 Cumulative Grants, but Samsung Trails by Fewer Than 4,000 Patents"
         caption="Organizations ranked by total utility patents granted, 1976-2025. Japanese and Korean firms occupy a majority of the top positions alongside American technology firms."
         insight="The ranking demonstrates the global nature of US patent activity. Japanese and Korean firms compete directly with American technology firms for the leading positions, reflecting the internationalization of technology-intensive industries."
         loading={topL}
@@ -285,7 +285,7 @@ export default function Chapter3() {
 
       {orgsTime && orgsTime.length > 0 && (
         <ChartContainer
-          title="Three Distinct Eras of Organizational Dominance Emerge From Patent Ranking Data, 1976-2025"
+          title="GE Held Rank 1 for 6 Consecutive Years (1980-1985) Before Japanese and Korean Firms Rose to Dominance"
           caption="Rank heatmap depicting the annual grant rankings of the top 15 patent-holding organizations over time. Darker cells indicate higher rank. The visualization reveals sequential transitions in organizational leadership from American to Japanese to Korean firms."
           insight="Three distinct eras are evident: GE dominance (1970s-80s), the rise of Japanese electronics firms (1980s-90s), and the ascendancy of Korean firms (2000s-present). These shifts correspond to broader geopolitical changes in R&amp;D investment patterns."
           loading={orgL}
@@ -312,7 +312,7 @@ export default function Chapter3() {
 
       {orgOutputPivot.length > 0 && (
         <ChartContainer
-          title="IBM's Output Declined While Samsung's Rose to Dominance Over Three Decades"
+          title="Samsung Peaked at 9,716 Annual Grants in 2024, Overtaking IBM Which Peaked at 9,257 in 2019"
           caption="Annual patent grants for the 10 historically top-ranked organizations, 1976-2025. The data reveal divergent trajectories, with certain firms exhibiting sustained growth and others demonstrating gradual decline over the five-decade period."
           insight="The divergence between IBM's declining trajectory and Samsung's sustained ascent illustrates how corporate patent strategies differ. IBM shifted toward services while Samsung invested extensively in hardware and electronics R&amp;D."
           loading={orgL}
@@ -341,7 +341,7 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
-        title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Now Account for the Majority of Grants"
+        title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
         caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for approximately 51-56% of grants in the 2020s."
         insight="The shift to a foreign-majority patent system reflects the globalization of R&amp;D. The US patent system functions as the de facto global standard for protecting high-value inventions regardless of assignee nationality."
         loading={dvfL}
@@ -368,7 +368,7 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
-        title="The Top 100 Organizations Have Consistently Held Roughly a Third of All Corporate Patents"
+        title="The Top 100 Organizations Hold 32-39% of Corporate Patents, a Share That Has Narrowed Since the 2010s"
         caption="Share of all corporate patents held by the top 10, 50, and 100 organizations, by 5-year period. The relative stability of these concentration ratios across decades suggests persistent structural features of the patent system."
         insight="Despite the entry of new organizations, the patent landscape remains dominated by large, well-resourced entities that invest systematically in R&amp;D. The stability of concentration ratios is consistent with the presence of substantial barriers to large-scale patenting."
         loading={concL}
@@ -388,7 +388,7 @@ export default function Chapter3() {
 
       <KeyInsight>
         <p>
-          Patent concentration has remained notably stable: the top 100 organizations consistently
+          Patent concentration has remained relatively stable: the top 100 organizations consistently
           hold roughly a third of all corporate patents. This pattern suggests that while new entrants emerge,
           the patent system remains dominated by large, well-resourced entities that invest substantially
           in R&amp;D.
@@ -408,7 +408,7 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="The Gap Between Average and Median Citations Distinguishes Skewed From Uniformly Impactful Portfolios"
+        title="Microsoft Leads in Average Citations (30.7) While IBM's 5.6x Average-to-Median Ratio Reveals a Highly Skewed Portfolio"
         caption="Average and median forward citations per patent for major patent holders, limited to patents granted through 2020 to allow for citation accumulation. Organizations with large average-to-median ratios exhibit skewed citation distributions indicative of a small number of highly cited patents."
         insight="The divergence between average and median citations distinguishes portfolios characterized by a few highly cited patents (high average, lower median) from those with more uniformly impactful output."
         loading={citL}
@@ -465,7 +465,7 @@ export default function Chapter3() {
       )}
 
       <ChartContainer
-        title={`Technology Portfolio Composition Over Time: ${activeOrg || 'Loading...'}`}
+        title={`${activeOrg || 'Loading...'}: Technology Portfolio Composition Across 8 CPC Sections by 5-Year Period (1976-2025)`}
         caption="CPC technology section shares by 5-year period. The chart illustrates how the selected organization's innovation portfolio has evolved across technology domains."
         insight="Substantial shifts in a firm's technology composition, such as Samsung's expansion of its already electronics-dominated portfolio into new technology areas, indicate deliberate strategic reorientation of R&amp;D investment."
         loading={tevL}
@@ -501,7 +501,7 @@ export default function Chapter3() {
         </p>
       </Narrative>
       <ChartContainer
-        title="Most Leading Patent Holders Have Increased Portfolio Diversity Over Five Decades"
+        title="Portfolio Diversity Rose Across Leading Firms, With Mitsubishi Electric Reaching a Peak Entropy of 4.9"
         caption="Shannon entropy across CPC subclasses per 5-year period for leading assignees. Higher values indicate broader technology portfolios. The general upward trajectory across most organizations suggests a trend toward greater technological breadth."
         insight="The upward trend in portfolio diversity suggests that competitive advantage may increasingly require spanning multiple technology domains rather than maintaining deep specialization in a single area."
         loading={divL}
@@ -539,7 +539,7 @@ export default function Chapter3() {
         </p>
       </Narrative>
       <ChartContainer
-        title="Average Inventor Degree and Team Size Have Increased Steadily Across Decades"
+        title="Average Inventor Degree Rose 2.5x, From 2.7 in the 1980s to 6.8 in the 2020s"
         caption="Summary statistics of the inventor collaboration network by decade. Average degree measures the typical number of co-inventors per active inventor. Both metrics exhibit sustained increases, indicating a progressively more collaborative innovation ecosystem."
         insight="Rising average inventor degree reflects both larger team sizes and more extensive cross-organizational collaboration, resulting in a more interconnected innovation network over time."
         loading={nmL}
@@ -618,7 +618,7 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="Japan Led the First Wave of Non-US Patenting, Followed by South Korea and China in Subsequent Decades"
+        title="Japan Accounts for 1.4 Million US Patents Since 1976, With South Korea (359K) and China (222K) Rising Rapidly"
         caption="Annual patent grants by primary assignee country/region, 1976-2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World. The stacked area chart reveals sequential waves of international entry into the US patent system."
         insight="Japan drove the first wave of non-US patenting in the 1980s-90s, particularly in automotive and electronics. South Korea emerged as a major presence in the 2000s, while China's share has grown rapidly since 2010, concentrated primarily in telecommunications and computing."
         loading={nuL}
@@ -665,7 +665,7 @@ export default function Chapter3() {
       </div>
 
       <ChartContainer
-        title={`${selectedQualityFirm}: Forward Citation Distribution Over Time`}
+        title={`${selectedQualityFirm}: 35 of 48 Top Firms Saw Median Forward Citations Fall to Zero by 2019`}
         caption={`5-year forward citation percentiles for ${selectedQualityFirm} patents by grant year (1976–2019). Bands show P25–P75 (dark) and P10–P90 (light). Solid line = median; dashed gray = system-wide median. Only years with ≥10 patents shown.`}
         insight="The width of the fan reveals the dispersion of quality within the firm's portfolio. A widening gap between the median and upper percentiles indicates increasing reliance on a small fraction of high-impact patents."
         loading={fqL}
@@ -680,7 +680,7 @@ export default function Chapter3() {
       </ChartContainer>
 
       <ChartContainer
-        title={`${selectedQualityFirm}: Blockbuster and Dud Rates Over Time`}
+        title={`${selectedQualityFirm}: Blockbuster Rate (Top 1% Patents) and Dud Rate (Zero Citations) Over Time`}
         caption={`Annual blockbuster rate (patents in top 1% of year × CPC section cohort, blue) and dud rate (zero 5-year forward citations, red) for ${selectedQualityFirm}. Dashed line at 1% marks the expected blockbuster rate under uniform quality.`}
         loading={fqL}
         height={300}
@@ -705,7 +705,7 @@ export default function Chapter3() {
       </ChartContainer>
 
       <ChartContainer
-        title={`${selectedQualityFirm}: Claims Distribution Over Time`}
+        title={`${selectedQualityFirm}: Claim Count Distribution by Grant Year (1976-2025)`}
         caption={`Claim count percentiles for ${selectedQualityFirm} patents by grant year. Bands show P25–P75 (dark). Dashed gray = system-wide median claims.`}
         loading={fcmL}
         height={350}
@@ -732,7 +732,7 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
-        title="Innovation Strategy at a Glance: Blockbuster Rate vs. Dud Rate (2010–2019)"
+        title="Amazon's 6.7% Blockbuster Rate Dwarfs the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
         caption="Each bubble represents one of the top 50 assignees in the decade 2010–2019. X-axis: share of patents in the top 1% of their year × CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
         insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several Japanese electronics firms cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}
@@ -757,7 +757,7 @@ export default function Chapter3() {
       <KeyInsight>
         <p>
           The quality typology scatter reveals that technology sector alone does not determine innovation strategy.
-          Within the same CPC section, firms exhibit dramatically different blockbuster-to-dud ratios,
+          Within the same CPC section, firms exhibit substantially different blockbuster-to-dud ratios,
           suggesting that organizational factors — R&amp;D investment concentration, inventor incentive
           structures, and portfolio management decisions — play a significant role in shaping the quality
           distribution of a firm&apos;s patent output.
