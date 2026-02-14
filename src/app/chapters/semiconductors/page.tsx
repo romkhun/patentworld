@@ -180,6 +180,56 @@ export default function Chapter21() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [semiAssignType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -704,6 +754,58 @@ export default function Chapter21() {
           economy.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-semi-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in semiconductor patenting."
+        title="Top-4 Concentration in Semiconductor Patents Rose From 11.3% in 1977 to 32.6% in 2023, a Sustained Consolidation Trend"
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total semiconductor patents. Unlike most ACT 5 domains where concentration declined, semiconductors show sustained consolidation, driven by Samsung, TSMC, and other East Asian firms scaling patent portfolios."
+        insight="The rising concentration in semiconductors is unique among ACT 5 domains and is consistent with the industry's increasing capital intensity: fabrication facilities now cost $10-20 billion, creating structural barriers that concentrate innovative activity among a diminishing number of firms capable of leading-edge manufacturing."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-semi-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across semiconductor subfields."
+        title="Semiconductor Subfield Diversity Has Remained High and Stable at 0.79-0.95, Reflecting the Industry's Mature Technical Breadth"
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The consistently high values indicate that semiconductor innovation has been broadly distributed across manufacturing processes, device architectures, packaging, organic semiconductors, and testing throughout the study period."
+        insight="The stability of semiconductor subfield diversity at high entropy levels is consistent with a mature industry where innovation occurs simultaneously across all technical dimensions, from lithographic processes to packaging and interconnect technologies."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-semi-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a semiconductor patent."
+        title="Semiconductor Patenting Velocity Peaked for 1990s Entrants at 197 Patents per Year, Reflecting the Golden Age of East Asian Fab Investment"
+        caption="Mean patents per active year for top semiconductor organizations grouped by entry decade. The 1990s cohort's peak velocity reflects the rapid scaling of Samsung, TSMC, and other East Asian firms that entered semiconductor patenting during the DRAM and foundry expansion era."
+        insight="The plateau of velocity at approximately 197 patents per year for both 1990s and 2010s entrants suggests a structural ceiling on organizational patenting capacity in semiconductors, possibly reflecting the finite number of novel process and device innovations achievable per year."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <Narrative>
         Having documented the landscape of semiconductor patenting, the analysis

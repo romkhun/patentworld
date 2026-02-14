@@ -179,6 +179,56 @@ export default function Chapter22() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -732,6 +782,58 @@ export default function Chapter22() {
           which the private sector increasingly leads technology development.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-space-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in space technology patenting."
+        title="Top-4 Concentration in Space Technology Patents Fluctuated Between 4.9% and 36.7%, Reflecting the Sector's Transition From Government to Commercial Innovation"
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total space patents. The wide fluctuation reflects structural shifts: early government-funded concentration, a fragmented middle period, and recent reconsolidation as SpaceX, Boeing, and satellite communication firms scaled patent portfolios."
+        insight="The space sector's concentration dynamics are unique among ACT 5 domains, reflecting the fundamental tension between government-funded basic research (distributed across contractors) and commercial space ventures (consolidated among a few well-funded firms)."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-space-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across space technology subfields."
+        title="Space Technology Subfield Diversity Fluctuated Between 0.69 and 0.93, With Recent Decline Suggesting Increasing Specialization"
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The fluctuation reflects shifting emphasis: early diversity across communications, propulsion, and guidance gave way to increasing specialization, with satellite communications dominating recent patenting."
+        insight="The recent entropy decline contrasts with most ACT 5 domains where diversity increased, suggesting that space technology is concentrating around satellite communications and LEO constellation systems at the expense of traditional propulsion and guidance subfields."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-space-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a space technology patent."
+        title="Space Technology Patenting Velocity Has Remained Relatively Stable Across Entry Cohorts, Averaging 4-8 Patents per Year"
+        caption="Mean patents per active year for top space organizations grouped by entry decade. Unlike domains where velocity increased dramatically for later entrants, space technology shows relatively stable per-year patenting rates, reflecting the domain's high technical barriers and long development cycles."
+        insight="The stable velocity across cohorts distinguishes space from most other ACT 5 domains and is consistent with the fundamental physics constraints on spacecraft innovation, where development cycles of 5-10 years limit the rate at which any organization can patent productively."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       {/* ── Section 11: Conclusion ────────────────────────────────────────── */}
       <Narrative>

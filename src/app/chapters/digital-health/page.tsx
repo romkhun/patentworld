@@ -179,6 +179,56 @@ export default function Chapter18() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -741,6 +791,58 @@ export default function Chapter18() {
           </Link>. The next chapter examines <Link href="/chapters/agricultural-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link>, a domain where the integration of sensors, data analytics, and biological innovation parallels the convergence observed in digital health.
         </p>
       </Narrative>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-digihealth-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in digital health patenting."
+        title="Top-4 Concentration in Digital Health Patents Peaked at 12.0% in 2009 Before Declining to 6.8% by 2025"
+        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total digital health patents. The moderate peak reflects Philips and Medtronic&apos;s early dominance, while the decline coincides with technology firms entering the medical device space after the HITECH Act."
+        insight="Digital health&apos;s low concentration is consistent with the sector&apos;s fragmented competitive landscape, where medical device incumbents, technology firms, and academic medical centers each contribute significant but non-dominant patent volumes."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-digihealth-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across digital health subfields."
+        title="Digital Health Subfield Diversity Rose From 0.49 in 1976 to 0.92 by 2025, Reflecting the Convergence of Medical and Computing Domains"
+        caption="Normalized Shannon entropy of digital health subfield patent distributions. The increase from 0.49 to 0.92 reflects the evolution from narrow patient monitoring devices to a broad ecosystem spanning surgical robotics, health informatics, telemedicine, wearable diagnostics, and AI-assisted imaging."
+        insight="The diversification trajectory is consistent with digital health&apos;s transition from standalone medical devices to integrated systems requiring expertise across electronics, software, biomaterials, and clinical science."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-digihealth-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a digital health patent."
+        title="Later Digital Health Entrants Patent at Substantially Higher Velocity: 2010s Cohort Averages 77.5 Patents per Year Versus 22.5 for 1970s Entrants"
+        caption="Mean patents per active year for top digital health organizations grouped by entry decade. The 3.4x increase from 1970s to 2010s cohorts reflects the acceleration of digital health patenting driven by the HITECH Act, smartphone proliferation, and COVID-19."
+        insight="The sharp velocity increase for 2010s entrants coincides with the convergence of consumer electronics and medical devices, where technology firms like Apple and Google brought aggressive patent strategies to the health domain."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <DataNote>
         Digital health patents are identified using CPC classifications spanning patient

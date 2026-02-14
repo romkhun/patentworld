@@ -179,6 +179,56 @@ export default function Chapter11() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -723,6 +773,58 @@ export default function Chapter11() {
           manufacturing R&amp;D capabilities to bear on additive manufacturing.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-3dprint-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in 3D printing patenting."
+        title="Top-4 Concentration in 3D Printing Patents Peaked at 36% in 2005 Before Declining to 11% by 2024"
+        caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2005 peak reflects Micron Technology's dominance during its semiconductor-adjacent AM activity. Post-2009, the domain fragmented as FDM patent expirations enabled widespread entry."
+        insight="The declining concentration ratio suggests that 3D printing patenting has become increasingly accessible, with the top 4 organizations accounting for a diminishing share of total activity despite their absolute patent counts increasing."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-3dprint-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across 3D printing subfields."
+        title="3D Printing Subfield Diversity Remained High Throughout Its History, Ranging From 0.80 to 0.95"
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). Values consistently above 0.85 indicate that AM innovation has been broadly distributed across equipment, processes, materials, products, and data handling subfields, with a brief dip to 0.80 in 2014 as polymer AM surged."
+        insight="Unlike domains such as AI, which diversified dramatically from a narrow base, 3D printing has maintained broad subfield diversity throughout its history, suggesting that the technology has always required simultaneous advances across multiple technical dimensions."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-3dprint-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a 3D printing patent."
+        title="Later Entrants to 3D Printing Patent at Higher Annual Velocity: 2010s Cohort Averages 11.2 Patents per Year Versus 8.3 for 1990s Entrants"
+        caption="Patenting velocity is computed as total domain patents divided by active career span (last year minus first year plus one) for each organization, then averaged by entry decade cohort. Only cohorts with three or more organizations are shown. The increasing velocity suggests that later entrants are more productive per year of activity."
+        insight="The rising velocity across entry cohorts is consistent with the technology maturing and becoming more accessible: later entrants can build on established knowledge and standardized processes rather than investing in foundational R&amp;D."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <Narrative>
         Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.

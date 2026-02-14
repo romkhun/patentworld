@@ -182,6 +182,56 @@ export default function Chapter12() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -749,6 +799,58 @@ export default function Chapter12() {
           conditions.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-agtech-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in agricultural technology patenting."
+        title="Top-4 Concentration in Agricultural Technology Patents Peaked at 46.7% in 2014 Before Declining to 32.8% by 2025"
+        caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2014 peak reflects the dominance of large agricultural conglomerates. Concentration has decreased modestly as biotechnology and precision agriculture attracted new entrants."
+        insight="Agricultural technology exhibits the highest peak organizational concentration among ACT 5 domains, consistent with the capital-intensive nature of agricultural R&amp;D and the dominance of vertically integrated seed and agrochemical firms."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-agtech-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across agricultural technology subfields."
+        title="Agricultural Technology Subfield Diversity Increased From 0.73 in 1976 to 0.92 by 2025, Reflecting Broadening Innovation"
+        caption="Normalized Shannon entropy of subfield patent distributions. The steady increase from 0.73 to above 0.90 indicates that agricultural patenting has diversified from a narrow base of plant genetics into precision agriculture, soil science, and agricultural biotechnology."
+        insight="The diversification trajectory is consistent with the agricultural sector's transition from chemical-intensive to data-driven farming, with new subfields emerging around sensors, automation, and genetic engineering."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-agtech-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed an agricultural technology patent."
+        title="Later Entrants to Agricultural Technology Patent at Higher Annual Velocity: 2000s Cohort Averages 32.9 Patents per Year Versus 7.4 for 1970s Entrants"
+        caption="Mean patents per active year for top organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 4.1x velocity increase from 1970s to 2000s entrants suggests the domain has become significantly more accessible to productive patenting."
+        insight="The rising velocity across cohorts is consistent with agricultural technology maturing as a patenting domain, with standardized CPC classifications and established prior art facilitating faster patent prosecution for later entrants."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       {/* ── Section 11: Closing Narrative ── */}
       <Narrative>

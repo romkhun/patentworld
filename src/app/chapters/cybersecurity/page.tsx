@@ -181,6 +181,56 @@ export default function Chapter17() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [cyberAssignType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -736,6 +786,58 @@ export default function Chapter17() {
       <Narrative>
         Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
       </Narrative>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-cyber-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in cybersecurity patenting."
+        title="Top-4 Concentration in Cybersecurity Patents Declined From 32.4% in 1980 to 9.4% by 2025, Reflecting the Sector&apos;s Expansion"
+        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total cybersecurity patents. The early high concentration reflects IBM&apos;s pioneering role in cryptographic research (including DES). The steady decline mirrors the expansion of cybersecurity into network security, cloud security, and endpoint protection."
+        insight="The concentration trajectory is consistent with cybersecurity&apos;s evolution from a specialized cryptographic discipline dominated by a few research labs to a broad security sector where threat diversity ensures no single organization can dominate."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-cyber-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across cybersecurity subfields."
+        title="Cybersecurity Subfield Diversity Increased From 0.83 in 1978 to 0.94 by 2025, Reflecting Broadening Threat Landscapes"
+        caption="Normalized Shannon entropy of cybersecurity subfield patent distributions. The increase from 0.83 to 0.94 reflects the transition from cryptography-dominated patenting to a balanced distribution across network security, data protection, authentication, and access control."
+        insight="The high starting entropy of 0.83 suggests cybersecurity was already relatively diversified by the late 1970s, unlike AI or biotechnology which started from narrow bases. The further increase reflects the proliferation of new attack vectors and corresponding defensive innovations."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-cyber-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a cybersecurity patent."
+        title="Later Cybersecurity Entrants Patent at Modestly Higher Velocity: 2010s Cohort Averages 105.8 Patents per Year Versus 77.9 for 1970s Entrants"
+        caption="Mean patents per active year for top cybersecurity organizations grouped by entry decade. The 1.7x increase from 1970s to 2020s entrants is moderate, reflecting the domain&apos;s sustained high barriers to entry due to the specialized expertise required for security research."
+        insight="The velocity dip for 1980s entrants (44.1/yr) is notable, suggesting that mid-period entrants during the personal computing era patented less intensively than both early cryptographic pioneers and later cloud-security specialists."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <DataNote>
         Cybersecurity patents are identified using CPC classifications related to

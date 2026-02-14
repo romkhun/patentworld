@@ -181,6 +181,56 @@ export default function Chapter20() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -718,6 +768,58 @@ export default function Chapter20() {
           reached the diffusion levels of more mature domains.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-quantum-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in quantum computing patenting."
+        title="Top-4 Concentration in Quantum Computing Patents Declined From 76.9% in 2003 to 28.4% by 2025"
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025, while still the highest among mature ACT 5 domains, indicates broadening participation."
+        insight="Quantum computing's high residual concentration (28%) is consistent with the enormous capital requirements for quantum hardware research, which limit participation to well-funded organizations with access to cryogenic facilities and specialized fabrication capabilities."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-quantum-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across quantum computing subfields."
+        title="Quantum Computing Subfield Diversity Increased From 0.78 in 2006 to 0.95 by 2025, Reflecting the Field's Broadening Technical Scope"
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The increase from 0.78 to 0.95 indicates a shift from predominantly physical realizations to a balanced distribution across quantum algorithms, error correction, quantum networking, and hybrid classical-quantum systems."
+        insight="The high entropy by 2025 suggests that quantum computing has matured beyond the hardware-only phase into a multi-layered technology stack, with significant inventive activity at the algorithm, software, and application layers."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-quantum-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a quantum computing patent."
+        title="Quantum Computing Shows a Unique Pattern: 1990s Entrants Average 11.0 Patents per Year Versus 6.0 for 2020s Entrants"
+        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Unlike most ACT 5 domains where later entrants patent at higher velocity, quantum computing's early entrants were more productive per year, reflecting the small number of pioneering organizations (D-Wave, IBM) that scaled quickly."
+        insight="The declining velocity for later cohorts suggests that quantum computing remains a difficult domain to patent productively, with many new entrants filing exploratory patents at low volume rather than building large portfolios."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <Narrative>
         Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter. The next chapter examines <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link>, a domain where quantum computing poses both a fundamental threat to existing cryptographic systems and a potential source of new post-quantum security methods.

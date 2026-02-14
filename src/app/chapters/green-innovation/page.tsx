@@ -25,7 +25,7 @@ import { cleanOrgName } from '@/lib/orgNames';
 import type {
   GreenVolume, GreenByCategory, GreenByCountry,
   GreenTopCompany, GreenAITrend, GreenAIHeatmap,
-  DomainTopInventor, DomainOrgOverTime, DomainQuality,
+  DomainTopAssignee, DomainTopInventor, DomainOrgOverTime, DomainQuality,
   DomainTeamComparison, DomainAssigneeType, DomainStrategy,
   DomainDiffusion,
 } from '@/lib/types';
@@ -39,6 +39,7 @@ export default function Chapter19() {
   const { data: aiHeatmap, loading: aiHL } = useChapterData<GreenAIHeatmap[]>('green/green_ai_heatmap.json');
 
   // New harmonized analyses
+  const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('green/green_top_assignees.json');
   const { data: topInventors, loading: tiL } = useChapterData<DomainTopInventor[]>('green/green_top_inventors.json');
   const { data: orgOverTime, loading: ootL } = useChapterData<DomainOrgOverTime[]>('green/green_org_over_time.json');
   const { data: quality, loading: qL } = useChapterData<DomainQuality[]>('green/green_quality.json');
@@ -203,6 +204,56 @@ export default function Chapter19() {
     });
     return { assigneeTypePivot: pivoted, assigneeTypeNames: names };
   }, [assigneeType]);
+
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !volume) return [];
+    const pyMap = Object.fromEntries(volume.map(d => [d.year, d.green_count]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, volume]);
+
+  const entropyData = useMemo(() => {
+    if (!byCategory) return [];
+    const years = [...new Set(byCategory.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = byCategory.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [byCategory]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
 
   // Summary stats
   const peakYear = volume ? volume.reduce((best, d) => d.green_count > best.green_count ? d : best, volume[0]) : null;
@@ -662,6 +713,58 @@ export default function Chapter19() {
           advance and climate policy imperatives intensify.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-green-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in green patenting."
+        title="Top-4 Concentration in Green Patents Peaked at 10.7% in 2011 Before Declining to 5.7% by 2025"
+        caption="CR4 computed as the sum of the top 4 organizations' annual green patent counts divided by total green patents. The low peak concentration of 10.7% reflects the broad competitive landscape spanning automotive, energy, electronics, and chemical firms."
+        insight="Green innovation exhibits among the lowest organizational concentration of any ACT 5 domain, consistent with its status as a policy-driven technology area where government incentives and regulatory mandates encourage broad participation rather than concentration."
+        loading={ootL || volL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-green-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across green technology subfields."
+        title="Green Innovation Subfield Diversity Has Remained Remarkably Stable at 0.87-0.90 Throughout Its 50-Year History"
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The high and stable entropy (ranging from 0.86 to 0.90) indicates that green innovation has always been distributed across battery, solar, wind, EV, and energy efficiency subfields without significant concentration shifts."
+        insight="The stability of green subfield diversity contrasts with domains like AI and biotechnology, which diversified dramatically from narrow bases. Green innovation appears to have emerged as an inherently multi-technology domain from its inception."
+        loading={catL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-green-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a green patent."
+        title="Green Innovation Entrants Show the Largest Velocity Increase Among ACT 5 Domains: 2020s Cohort at 375 Patents per Year Versus 68 for 1970s Entrants"
+        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 5.5x velocity increase reflects the dramatic acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
+        insight="The 5.5x velocity ratio is the highest among all ACT 5 domains, suggesting that green innovation has become dramatically more accessible to productive patenting, consistent with the proliferation of standardized clean energy technologies and supportive policy frameworks."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <Narrative>
         This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents a significant frontier of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.

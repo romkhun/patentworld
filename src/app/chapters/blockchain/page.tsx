@@ -179,6 +179,56 @@ export default function Chapter16() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.domain_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.domain_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -727,6 +777,58 @@ export default function Chapter16() {
         Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         The next chapter turns to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, the largest technology domain by patent volume in this study, where the growth trajectory has proven more durable than blockchain&apos;s and where cross-domain diffusion reaches into nearly every other field examined in ACT 5.
       </Narrative>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-blockchain-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in blockchain patenting."
+        title="Top-4 Concentration in Blockchain Patents Rose to 26.3% During the 2018 Boom Before Declining to 14.0% by 2024"
+        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. The concentration spike during 2018-2020 reflects aggressive patenting by IBM, Alibaba-affiliated entities, and financial services firms during the cryptocurrency boom."
+        insight="The hype-cycle pattern in blockchain concentration mirrors the domain&apos;s broader patent trajectory: rapid consolidation during speculative enthusiasm followed by fragmentation as the market corrected and enterprise blockchain applications diversified the competitive landscape."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-blockchain-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across blockchain subfields."
+        title="Blockchain Subfield Diversity Remains Constrained by the Domain&apos;s Narrow CPC Classification, With Entropy Reaching 0.65 Across 2 Subfields"
+        caption="Normalized Shannon entropy of blockchain subfield distributions. Unlike domains such as AI (10 subfields) or semiconductors (7 subfields), blockchain is classified under only 2 CPC subfields (distributed ledger and cryptocurrency), limiting the diversity index&apos;s range. The 0.65 value indicates moderate but not extreme concentration."
+        insight="The narrow subfield structure distinguishes blockchain from other ACT 5 domains and may reflect the CPC system&apos;s lag in creating detailed classifications for emerging technologies, rather than an inherent lack of technological diversity within blockchain systems."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-blockchain-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a blockchain patent."
+        title="Recent Blockchain Entrants Patent at Higher Velocity: 2020s Cohort Averages 9.4 Patents per Year Versus 4.7 for 2000s Entrants"
+        caption="Mean patents per active year for top blockchain organizations grouped by entry decade. The 2.0x increase reflects the maturation of enterprise blockchain platforms and the growing sophistication of DeFi and smart contract patent strategies."
+        insight="The 2010s cohort&apos;s lower velocity (3.8/yr) relative to both earlier and later cohorts reflects the many speculative entrants during the initial cryptocurrency boom who filed few patents before exiting the space."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <DataNote>
         Blockchain patents are identified using CPC classifications for distributed ledger

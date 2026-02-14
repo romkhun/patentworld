@@ -227,5 +227,5 @@ export const HERO_STATS = {
   startYear: 1976,
   endYear: 2025,
   chapters: 22,
-  visualizations: 540,
+  visualizations: 576,
 };

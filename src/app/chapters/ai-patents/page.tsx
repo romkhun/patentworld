@@ -194,6 +194,56 @@ export default function Chapter13() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [aiAssignType]);
 
+  // ── Analytical Deep Dive computations ──────────────────────────────
+  const cr4Data = useMemo(() => {
+    if (!orgOverTime || !perYear) return [];
+    const pyMap = Object.fromEntries(perYear.map(d => [d.year, d.ai_patents]));
+    const years = [...new Set(orgOverTime.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearOrgs = orgOverTime.filter(d => d.year === year).sort((a, b) => b.count - a.count);
+      const top4 = yearOrgs.slice(0, 4).reduce((s, d) => s + d.count, 0);
+      const total = pyMap[year] || 1;
+      return { year, cr4: +(top4 / total * 100).toFixed(1) };
+    }).filter(d => d.cr4 > 0);
+  }, [orgOverTime, perYear]);
+
+  const entropyData = useMemo(() => {
+    if (!bySubfield) return [];
+    const years = [...new Set(bySubfield.map(d => d.year))].sort();
+    return years.map(year => {
+      const yearData = bySubfield.filter(d => d.year === year && d.count > 0);
+      const total = yearData.reduce((s, d) => s + d.count, 0);
+      const N = yearData.length;
+      if (total === 0 || N <= 1) return { year, entropy: 0 };
+      const H = -yearData.reduce((s, d) => {
+        const p = d.count / total;
+        return s + p * Math.log(p);
+      }, 0);
+      return { year, entropy: +(H / Math.log(N)).toFixed(3) };
+    }).filter(d => d.entropy > 0);
+  }, [bySubfield]);
+
+  const velocityData = useMemo(() => {
+    if (!topAssignees) return [];
+    const cohorts: Record<string, { count: number; totalPat: number; totalSpan: number }> = {};
+    topAssignees.forEach(d => {
+      const decStart = Math.floor(d.first_year / 10) * 10;
+      const label = `${decStart}s`;
+      if (!(label in cohorts)) cohorts[label] = { count: 0, totalPat: 0, totalSpan: 0 };
+      cohorts[label].count++;
+      cohorts[label].totalPat += d.ai_patents;
+      cohorts[label].totalSpan += Math.max(1, d.last_year - d.first_year + 1);
+    });
+    return Object.entries(cohorts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .filter(([, d]) => d.count >= 3)
+      .map(([decade, d]) => ({
+        decade,
+        velocity: +(d.totalPat / d.totalSpan).toFixed(1),
+        count: d.count,
+      }));
+  }, [topAssignees]);
+
   return (
     <div>
       <ChapterHeader
@@ -716,6 +766,58 @@ export default function Chapter13() {
           modern AI development.
         </p>
       </KeyInsight>
+
+      {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
+      <SectionDivider label="Analytical Deep Dives" />
+
+      <ChartContainer
+        id="fig-ai-cr4"
+        subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in AI patenting."
+        title="Top-4 Concentration in AI Patents Declined Steadily From 25.2% in 1984 to 10.9% by 2025, Reflecting Democratization"
+        caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual AI patent counts divided by total AI patents. The steady decline from 25% to 11% reflects the democratization of AI research, with an accelerating drop after 2015 as cloud computing and open-source frameworks lowered barriers to AI innovation."
+        insight="AI exhibits the most pronounced concentration decline among ACT 5 domains, consistent with the technology's transition from specialized research labs to a general-purpose capability accessible to organizations across all sectors."
+        loading={ootL || pyL}
+      >
+        <PWLineChart
+          data={cr4Data}
+          xKey="year"
+          lines={[{ key: 'cr4', name: 'Top-4 Share (%)', color: CHART_COLORS[0] }]}
+          yLabel="CR4 (%)"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-ai-entropy"
+        subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across AI subfields."
+        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, the Most Dramatic Diversification Among ACT 5 Domains"
+        caption="Normalized Shannon entropy of AI subfield patent distributions. The dramatic increase from 0.40 (highly concentrated in symbolic AI) to 0.84 (broadly distributed across machine learning, computer vision, NLP, robotics, and other subfields) represents the most striking diversification trajectory among all technology domains studied."
+        insight="The entropy trajectory mirrors AI's intellectual evolution: from narrow expert systems in the 1970s-80s through the statistical learning revolution of the 2000s to the current era of deep learning, generative AI, and domain-specific applications spanning virtually every CPC section."
+        loading={sfL}
+      >
+        <PWLineChart
+          data={entropyData}
+          xKey="year"
+          lines={[{ key: 'entropy', name: 'Diversity Index', color: CHART_COLORS[2] }]}
+          yLabel="Normalized Entropy"
+          yDomain={[0, 1]}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-ai-velocity"
+        subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed an AI patent."
+        title="2010s AI Entrants Patent at 134 Patents per Year, Nearly Double the 68 per Year of 1970s Entrants"
+        caption="Mean patents per active year for top AI organizations grouped by entry decade. The 2.0x velocity increase from 1970s to 2010s cohorts reflects the acceleration of AI patenting enabled by cloud infrastructure, pre-trained models, and large-scale data availability."
+        insight="The velocity acceleration is concentrated in the 2000s and 2010s cohorts, coinciding with the deep learning revolution and the entry of technology firms that rapidly scaled AI patent portfolios from near-zero to thousands of annual filings."
+        loading={taL}
+      >
+        <PWBarChart
+          data={velocityData}
+          xKey="decade"
+          bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
+          yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
 
       <Narrative>
         Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 5 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
