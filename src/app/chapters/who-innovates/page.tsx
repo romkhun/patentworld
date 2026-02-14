@@ -20,6 +20,8 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import Link from 'next/link';
 import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, COUNTRY_COLORS } from '@/lib/colors';
@@ -204,7 +206,7 @@ export default function Chapter3() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The digital transformation described in The Technology Revolution has reshaped not only which technologies are patented but also which organizations produce them. Over five decades, individual inventors have given way to large corporate assignees whose patent portfolios serve as strategic instruments for cross-licensing, defensive protection, and competitive signaling. The organizational leadership of the patent system has passed through three distinct eras, from American industrial conglomerates such as General Electric, through Japanese electronics firms including Canon and Hitachi, to the present dominance of Korean multinationals, a succession that mirrors broader geopolitical shifts in research and development investment. Notably, while the national origin of leading assignees has shifted decisively toward East Asia, the structural concentration of patenting among elite organizations has remained remarkably stable across the entire period, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography. These patterns set the stage for The Inventors, which examines the individual inventors behind these organizational outputs.
+          The digital transformation described in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link> has reshaped not only which technologies are patented but also which organizations produce them. Over five decades, individual inventors have given way to large corporate assignees whose patent portfolios serve as strategic instruments for cross-licensing, defensive protection, and competitive signaling. The organizational leadership of the patent system has passed through three distinct eras, from American industrial conglomerates such as General Electric, through Japanese electronics firms including Canon and Hitachi, to the present dominance of Korean multinationals, a succession that mirrors broader geopolitical shifts in research and development investment. Notably, while the national origin of leading assignees has shifted decisively toward East Asia, the structural concentration of patenting among elite organizations has remained remarkably stable across the entire period, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography. These patterns set the stage for <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link>, which examines the individual inventors behind these organizational outputs.
         </p>
       </aside>
 
@@ -272,6 +274,13 @@ export default function Chapter3() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <RankingTable
+        title="View top assignees as a data table"
+        headers={['Organization', 'Total Patents']}
+        rows={(top ?? []).slice(0, 15).map(d => [d.organization, d.total_patents])}
+        caption="Top 15 organizations by cumulative utility patent grants, 1976–2025. Source: PatentsView."
+      />
 
       <Narrative>
         <p>
@@ -839,8 +848,8 @@ export default function Chapter3() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the organizations driving patent activity, the following chapter turns to the individual inventors behind these patents.
-        While corporations file the patents, it is the inventors, through their team structures, career trajectories, and demographic composition, who ultimately shape the direction and quality of innovation.
+        Having examined the organizations driving patent activity, the following chapter turns to <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the individual inventors</Link> behind these patents.
+        While corporations file the patents, it is the inventors, through their team structures, career trajectories, and demographic composition, who ultimately shape the direction and quality of innovation. The geographic patterns of where these inventors work are explored in <Link href="/chapters/the-geography-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Geography of Innovation</Link>.
       </Narrative>
 
       <DataNote>

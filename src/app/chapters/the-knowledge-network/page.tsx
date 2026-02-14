@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -17,7 +18,8 @@ import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
-import { PWChordDiagram } from '@/components/charts/PWChordDiagram';
+import dynamic from 'next/dynamic';
+const PWChordDiagram = dynamic(() => import('@/components/charts/PWChordDiagram').then(m => ({ default: m.PWChordDiagram })), { ssr: false });
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import type {
@@ -112,7 +114,7 @@ export default function Chapter7() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Over five decades the temporal reach of patent citations has stretched dramatically -- from a median lag of roughly 3 years in the early 1980s to over 16 years by 2025 -- indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. Public funding channels, catalyzed by the Bayh-Dole Act of 1980 and led by HHS/NIH, the Department of Defense, and the Department of Energy, account for a disproportionate share of high-impact foundational knowledge, complementing the collaboration networks documented in Collaboration Networks. At the corporate level, directed citation flows among the top 30 assignees reveal asymmetric knowledge dependencies: certain firms function primarily as knowledge producers while others operate as integrators drawing broadly from multiple sources, a structural pattern that parallels the talent-flow asymmetries observed in the preceding chapter.
+          Over five decades the temporal reach of patent citations has stretched dramatically -- from a median lag of roughly 3 years in the early 1980s to over 16 years by 2025 -- indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. Public funding channels, catalyzed by the Bayh-Dole Act of 1980 and led by HHS/NIH, the Department of Defense, and the Department of Energy, account for a disproportionate share of high-impact foundational knowledge, complementing the collaboration networks documented in <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Collaboration Networks</Link>. At the corporate level, directed citation flows among the top 30 assignees reveal asymmetric knowledge dependencies: certain firms function primarily as knowledge producers while others operate as integrators drawing broadly from multiple sources, a structural pattern that parallels the talent-flow asymmetries observed in the preceding chapter.
         </p>
       </aside>
 
@@ -302,7 +304,7 @@ export default function Chapter7() {
           prior art that newer patents must reference. The growth in lag has been most pronounced
           since the 2000s, as the cumulative stock of patented knowledge has grown substantially.
           Technology areas such as Physics and Electricity tend to exhibit shorter citation lags,
-          consistent with rapid innovation cycles in computing and electronics, whereas
+          consistent with rapid innovation cycles in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">computing and electronics</Link>, whereas
           Chemistry and Human Necessities (including pharmaceuticals) demonstrate longer lags,
           reflecting the extended development timelines characteristic of those fields.
         </p>
@@ -422,7 +424,7 @@ export default function Chapter7() {
       </ChartContainer>
 
       <Narrative>
-        The knowledge network reveals the underlying structure of cumulative innovation. Citation patterns, government funding pathways, and technology leadership transitions collectively demonstrate that innovation is an inherently social and cumulative process. The following chapter examines the dynamics of the innovation process itself, including the tempo of patent examination, cross-domain convergence, and the velocity of technological change.
+        The knowledge network reveals the underlying structure of cumulative innovation. Citation patterns, government funding pathways, and technology leadership transitions collectively demonstrate that innovation is an inherently social and cumulative process. The <Link href="/chapters/innovation-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> examines the dynamics of the innovation process itself, including the tempo of patent examination, cross-domain convergence, and the velocity of technological change.
       </Narrative>
 
       <DataNote>

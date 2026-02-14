@@ -1,13 +1,15 @@
 'use client';
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
-import { PWNetworkGraph } from '@/components/charts/PWNetworkGraph';
+import dynamic from 'next/dynamic';
+const PWNetworkGraph = dynamic(() => import('@/components/charts/PWNetworkGraph').then(m => ({ default: m.PWNetworkGraph })), { ssr: false });
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
@@ -20,7 +22,7 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, INDUSTRY_COLORS } from '@/lib/colors';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-import { PWSankeyDiagram } from '@/components/charts/PWSankeyDiagram';
+const PWSankeyDiagram = dynamic(() => import('@/components/charts/PWSankeyDiagram').then(m => ({ default: m.PWSankeyDiagram })), { ssr: false });
 import { PWRadarChart } from '@/components/charts/PWRadarChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
@@ -143,7 +145,7 @@ export default function Chapter6() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in The Knowledge Network, while radar-chart strategy profiles show that individual firms occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
+          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Knowledge Network</Link>, while radar-chart strategy profiles show that <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">individual firms</Link> occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
         </p>
       </aside>
 
@@ -527,7 +529,7 @@ export default function Chapter6() {
 
       <Narrative>
         The preceding chapters mapped where innovation occurs and how its participants collaborate. The analysis now shifts from the structure of the innovation system to its mechanics: how knowledge flows through citations, how patent output accelerates and converges, and how patent quality is measured.
-        Patent citations -- the formal references linking new inventions to prior art -- reveal the underlying structure of how knowledge accumulates, diffuses, and shapes the direction of technological progress.
+        <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent citations</Link> -- the formal references linking new inventions to prior art -- reveal the underlying structure of how knowledge accumulates, diffuses, and shapes the direction of technological progress.
       </Narrative>
 
       <DataNote>

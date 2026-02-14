@@ -14,7 +14,7 @@
 | Home | PatentWorld — 50 Years of US Patent Data Visualized | 52 |
 | About | About PatentWorld — Data, Methodology & Sources | 48 |
 | FAQ | Frequently Asked Questions | 26 |
-| Explore | Explore | (uses template) |
+| Explore | Explore Patent Data — Search Assignees, Inventors & Technologies | 62 |
 | Ch 1 | US Patent Grants Grew 5x Since 1976 | 36 |
 | Ch 2 | Computing Rose From 10% to 55% of Patents | 42 |
 | Ch 3 | Top 100 Firms Hold 30% of All US Patents | 41 |
@@ -151,10 +151,10 @@ Additionally, the About page contains a separate FAQ section with 10 questions a
 |-------------|--------|----------------|
 | TL;DR blocks on every chapter | ✅ | All 14 chapters have TL;DR blocks with 2-3 specific sentences |
 | `<figcaption>` on every chart | ✅ | All 128 `ChartContainer` instances include `<figcaption>` with key findings |
-| Rankings as HTML `<ol>` / `<table>` | ✅ | Key Findings rendered as ordered lists; data tables in explore page |
+| Rankings as HTML `<ol>` / `<table>` | ✅ | Key Findings as ordered lists; `RankingTable` component on 5 chapters (who-innovates, geography, ai-patents, the-inventors, company-profiles); data tables on explore page |
 | Consistent entity naming | ✅ | "US patents" throughout; consistent company names from PatentsView |
 | Heading hierarchy (h1 → h2 → h3) | ✅ | One `<h1>` per page, proper nesting verified |
-| Internal cross-references | ✅ | 2-3 cross-chapter references per chapter with descriptive anchor text |
+| Internal cross-references | ✅ | 2-3 cross-chapter `<Link>` references per chapter with descriptive anchor text (all 14 chapters) |
 | Insight-oriented chart titles | ✅ | All 128 titles are declarative sentences with specific numbers |
 | Academic register throughout | ✅ | No informal language, contractions, or rhetorical questions in body text |
 
@@ -175,6 +175,17 @@ Three fonts loaded via `next/font/google` with `display: 'swap'`:
 - Playfair Display (serif headings)
 - Plus Jakarta Sans (body text)
 - JetBrains Mono (code/data)
+
+### Code Splitting
+
+Heavy D3-based chart components use `next/dynamic` with `ssr: false` for code splitting:
+- `PWWorldFlowMap` (d3-geo, d3-scale) — dynamic in `the-geography-of-innovation`
+- `PWChoroplethMap` (d3-geo, d3-scale) — dynamic in `the-geography-of-innovation`
+- `PWNetworkGraph` (d3-force) — dynamic in `collaboration-networks`
+- `PWSankeyDiagram` (d3-sankey) — dynamic in `collaboration-networks`
+- `PWChordDiagram` (d3-geo) — dynamic in `the-knowledge-network`
+
+Recharts-based components remain statically imported (smaller, widely shared).
 
 ### Code Architecture
 
@@ -197,6 +208,14 @@ Zero TypeScript errors
 Zero ESLint warnings
 ```
 
+### Data File Optimization
+
+| File | Original | Optimized | Reduction | Method |
+|------|----------|-----------|-----------|--------|
+| `cpc_class_summary.json` | 43.6 MB | 26.2 MB | 40% | Truncated class names to 120 chars |
+| `innovation_diffusion.json` | 3.8 MB | 3.7 MB | 2% | Trimmed lat/lng to 2 decimal places |
+| `company_profiles.json` | 1.2 MB | 1.2 MB | <1% | Trimmed floats to 2 decimal places |
+
 ### Lighthouse Scores
 
 Cannot be measured in CLI environment. Architectural measures in place:
@@ -204,7 +223,7 @@ Cannot be measured in CLI environment. Architectural measures in place:
 - Font swap display strategy
 - Skeleton loading states
 - Fixed chart dimensions (CLS prevention)
-- Code splitting by chart component
+- Code splitting via `next/dynamic` for heavy D3 charts
 
 ---
 
@@ -232,5 +251,17 @@ Chapter-specific keywords defined in `src/lib/seo.ts` (`CHAPTER_KEYWORDS`):
 Global keywords: patents, innovation, USPTO, patent data, patent analytics, technology trends, patent visualization, PatentsView, patent quality, patent citations, US patents, patent statistics
 
 ---
+
+## Stream 7 Changes Applied
+
+| Change | Files |
+|--------|-------|
+| Explore page metadata (title, description, OG, Twitter, canonical) | `src/app/explore/layout.tsx` (new) |
+| RankingTable component for GenAI crawlers | `src/components/chapter/RankingTable.tsx` (new) |
+| Ranking tables on 5 chapters | who-innovates, geography, ai-patents, the-inventors, company-profiles |
+| Cross-chapter inline `<Link>` on all 14 chapters | All `src/app/chapters/*/page.tsx` |
+| Dynamic imports for D3 charts | geography, collaboration-networks, knowledge-network |
+| Data file optimization (class name truncation) | `public/data/explore/cpc_class_summary.json` |
+| Float precision trimming | `public/data/chapter4/innovation_diffusion.json`, `public/data/company/company_profiles.json` |
 
 *SEO & Performance audit completed 2026-02-14. All meta tags, structured data, sitemap, robots, FAQ, and GenAI optimizations verified and in place.*

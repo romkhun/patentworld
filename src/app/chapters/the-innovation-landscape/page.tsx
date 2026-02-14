@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -62,7 +63,7 @@ export default function Chapter1() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants in the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in The Technology Revolution. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers.
+          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants in the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers.
         </p>
       </aside>
 
@@ -116,7 +117,7 @@ export default function Chapter1() {
           This expansion has not been monotonic. The 2008 financial crisis produced a
           visible contraction, and patent office backlogs have introduced year-to-year
           volatility. Nevertheless, the long-term trajectory indicates that an increasing
-          number of individuals and organizations are seeking patent protection as
+          number of individuals and <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
           intellectual property assumes greater strategic importance.
         </p>
       </Narrative>
@@ -213,7 +214,7 @@ export default function Chapter1() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the overall scale and trajectory of US patent activity over five decades, the next chapter identifies which technologies have driven this growth.
+        Having examined the overall scale and trajectory of US patent activity over five decades, the next chapter identifies which <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technologies have driven this growth</Link>.
         The fivefold expansion in patent output masks substantial shifts in the composition of innovation, from chemistry and mechanical engineering toward computing, semiconductors, and digital communication.
       </Narrative>
 

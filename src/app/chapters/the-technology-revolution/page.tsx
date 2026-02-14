@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -137,7 +138,7 @@ export default function Chapter2() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The fivefold expansion in patent output documented in The Innovation Landscape masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at an unprecedented pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio, a structural shift that also shapes the organizational landscape examined in Who Innovates?
+          The fivefold expansion in patent output documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at an unprecedented pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio, a structural shift that also shapes the organizational landscape examined in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link>
         </p>
       </aside>
 
@@ -468,7 +469,7 @@ export default function Chapter2() {
 
       <Narrative>
         The first two chapters established how the patent system grew and which technologies fueled that expansion. The analysis now shifts from the system itself to the actors within it: the organizations and individual inventors who produce patents.
-        The shift from chemistry to digital technology has reshaped not only the composition of patent grants but also the organizational landscape of innovation, from American industrial conglomerates to Asian electronics firms. The following chapter investigates who these organizations are and how their dominance has evolved.
+        The shift from chemistry to digital technology has reshaped not only the composition of patent grants but also the organizational landscape of innovation, from American industrial conglomerates to Asian electronics firms. The <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates who these organizations are and how their dominance has evolved.
       </Narrative>
 
       <DataNote>

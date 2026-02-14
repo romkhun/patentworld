@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -154,7 +155,7 @@ export default function Chapter12() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Most consequentially, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on AI patents, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
+          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement and the broader <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> reshaping patenting activity. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Most consequentially, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link>, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
         </p>
       </aside>
 
@@ -367,7 +368,7 @@ export default function Chapter12() {
       </KeyInsight>
 
       <Narrative>
-        Having traced the evolution of green innovation from a specialized domain to a mainstream category of patenting activity, the following chapter shifts from structured classification data to the text of patents themselves. By applying natural language processing to millions of patent abstracts, the analysis identifies the latent thematic structure of US patenting and examines how the language of invention has evolved over five decades.
+        Having traced the evolution of green innovation from a specialized domain to a mainstream category of patenting activity, the <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> shifts from structured classification data to the text of patents themselves. By applying natural language processing to millions of patent abstracts, the analysis identifies the latent thematic structure of US patenting and examines how the language of invention has evolved over five decades.
       </Narrative>
 
       <DataNote>

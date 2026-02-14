@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -201,7 +202,7 @@ export default function Chapter8() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The tempo and trajectory of innovation have shifted in tandem: examination backlogs that pushed average pendency beyond 3.5 years in the late 2000s were subsequently reduced by USPTO hiring initiatives and the AIA reforms discussed in Patent Law &amp; Policy, yet technology-specific friction persists, with chemistry patents routinely requiring the longest examination durations. Simultaneously, the share of patents spanning three or more CPC sections rose from 21% to 41% of all grants between 1976 and 2020, and the proportion listing inventors from multiple countries climbed from roughly 2% to over 10%, together signaling that innovation is becoming both more interdisciplinary and more geographically distributed. Design patents have outpaced utility patent growth since the 2000s -- led by Samsung, Nike, and LG Electronics -- while an exploration/exploitation analysis reveals that most large filers devote fewer than 5% of their patents to genuinely new technology domains, underscoring the tension between incremental deepening and frontier search that the quality metrics in Patent Quality will further illuminate.
+          The tempo and trajectory of innovation have shifted in tandem: examination backlogs that pushed average pendency beyond 3.5 years in the late 2000s were subsequently reduced by USPTO hiring initiatives and the AIA reforms discussed in <Link href="/chapters/patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Law &amp; Policy</Link>, yet technology-specific friction persists, with chemistry patents routinely requiring the longest examination durations. Simultaneously, the share of patents spanning three or more CPC sections rose from 21% to 41% of all grants between 1976 and 2020, and the proportion listing inventors from multiple countries climbed from roughly 2% to over 10%, together signaling that innovation is becoming both more interdisciplinary and more geographically distributed. Design patents have outpaced utility patent growth since the 2000s -- led by Samsung, Nike, and LG Electronics -- while an exploration/exploitation analysis reveals that most large filers devote fewer than 5% of their patents to genuinely new technology domains, underscoring the tension between incremental deepening and frontier search that the quality metrics in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> will further illuminate.
         </p>
       </aside>
 
@@ -776,7 +777,7 @@ export default function Chapter8() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the dynamics of innovation -- its speed, convergence, collaborative nature, and the balance between exploration and exploitation -- the subsequent chapter addresses the measurement of patent quality and impact.
+        Having examined the dynamics of innovation -- its speed, convergence, collaborative nature, and the balance between exploration and exploitation -- the subsequent chapter addresses the measurement of <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and impact</Link>.
         Understanding velocity, scope, and strategic orientation establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.
       </Narrative>
 

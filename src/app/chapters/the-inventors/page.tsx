@@ -28,6 +28,8 @@ import type {
   InventorSegment, InventorSegmentTrend,
   InventorCareerCurve, InventorCareerDuration, InventorDrift, ComebackInventor,
 } from '@/lib/types';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import Link from 'next/link';
 import { formatCompact } from '@/lib/formatters';
 
 interface GenderRow {
@@ -163,7 +165,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Behind the corporate assignees profiled in Who Innovates? stands a workforce of named inventors whose demographic composition and career patterns have transformed over five decades. The most consequential structural shift has been the transition from solo to team-based invention, reflecting the growing interdisciplinarity of technologies such as semiconductors, software, and biotechnology. This collaborative turn has coincided with an increasing concentration of output among a small cadre of prolific, repeat inventors, many affiliated with the East Asian electronics firms that now lead global patenting. At the same time, progress on gender diversity has been measurable but slow, with female representation varying widely across technology fields in patterns that mirror the composition of STEM educational pipelines. The declining prevalence of first-time inventors on patent filings raises important questions about barriers to entry, a theme that connects to the geographic concentration examined in The Geography of Innovation.
+          Behind the corporate assignees profiled in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> stands a workforce of named inventors whose demographic composition and career patterns have transformed over five decades. The most consequential structural shift has been the transition from solo to team-based invention, reflecting the growing interdisciplinarity of technologies such as semiconductors, software, and biotechnology. This collaborative turn has coincided with an increasing concentration of output among a small cadre of prolific, repeat inventors, many affiliated with the East Asian electronics firms that now lead global patenting. At the same time, progress on gender diversity has been measurable but slow, with female representation varying widely across technology fields in patterns that mirror the composition of STEM educational pipelines. The declining prevalence of first-time inventors on patent filings raises important questions about barriers to entry, a theme that connects to the geographic concentration examined in <Link href="/chapters/the-geography-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Geography of Innovation</Link>.
         </p>
       </aside>
 
@@ -294,6 +296,13 @@ export default function Chapter4() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <RankingTable
+        title="View top inventors as a data table"
+        headers={['Inventor', 'Total Patents']}
+        rows={(prolific ?? []).slice(0, 15).map(d => [`${d.first_name} ${d.last_name}`.trim(), d.total_patents])}
+        caption="Top 15 inventors by cumulative utility patent grants, 1976–2025. Source: PatentsView."
+      />
 
       <Narrative>
         <p>
@@ -841,7 +850,7 @@ export default function Chapter4() {
 
       <Narrative>
         Having profiled the organizations and inventors who drive patent activity, the analysis now turns to the structural dimensions of the innovation system: where it happens and how its participants connect.
-        The spatial distribution of patent activity is markedly uneven: a small number of cities, states, and countries account for a disproportionate share of output. The following chapter maps this geography, and the chapter after it traces the collaboration networks that link inventors and organizations across these locations.
+        The spatial distribution of patent activity is markedly uneven, as documented in <Link href="/chapters/the-geography-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Geography of Innovation</Link>, and the <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Collaboration Networks</Link> that link inventors and organizations across these locations reveal how knowledge flows through the system.
       </Narrative>
 
       <DataNote>

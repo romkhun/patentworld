@@ -23,6 +23,8 @@ import { CHART_COLORS, CPC_SECTION_COLORS, ARCHETYPE_COLORS, BUMP_COLORS } from 
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import Link from 'next/link';
 import type {
   CompanyProfile,
   TrajectoryArchetype,
@@ -276,7 +278,7 @@ export default function Chapter14() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          When the aggregate trends examined in preceding chapters -- the rise of AI, the expansion of green technology, the growing interdisciplinarity of patent language -- are disaggregated to the firm level, a striking picture of strategic heterogeneity emerges. The 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches: some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise, with no clear penalty in citation impact for either strategy. The ability to detect strategic reorientation through shifts in patent portfolio composition -- often years before such changes become apparent in product markets -- suggests that the patent record functions as an early-warning system for corporate transformation, connecting the macro-level patterns of earlier chapters to the micro-level decisions of individual firms.
+          When the aggregate trends examined in preceding chapters -- the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">rise of AI</Link>, the expansion of <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green technology</Link>, the growing interdisciplinarity of <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent language</Link> -- are disaggregated to the firm level, a striking picture of strategic heterogeneity emerges. The 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches: some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise, with no clear penalty in citation impact for either strategy. The ability to detect strategic reorientation through shifts in patent portfolio composition -- often years before such changes become apparent in product markets -- suggests that the patent record functions as an early-warning system for corporate transformation, connecting the macro-level patterns of earlier chapters to the micro-level decisions of individual firms.
         </p>
       </aside>
 
@@ -352,6 +354,21 @@ export default function Chapter14() {
           </div>
         </div>
       )}
+
+      <RankingTable
+        title="View top companies by total patents as a data table"
+        headers={['Company', 'Total Patents', 'Peak Year']}
+        rows={(profiles ?? [])
+          .map(p => ({
+            company: p.company,
+            total: p.years.reduce((s, y) => s + y.patent_count, 0),
+            peak: p.years.reduce((best, y) => y.patent_count > best.patent_count ? y : best, p.years[0])?.year ?? 0,
+          }))
+          .sort((a, b) => b.total - a.total)
+          .slice(0, 15)
+          .map(d => [d.company, d.total, d.peak])}
+        caption="Top 15 companies by total utility patents from company profiles dataset. Source: PatentsView."
+      />
 
       <KeyInsight>
         <p>
@@ -831,7 +848,7 @@ export default function Chapter14() {
       </KeyInsight>
 
       <Narrative>
-        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation.
+        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. For broader context on the trends analyzed here, see <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> and <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link>.
       </Narrative>
 
       <DataNote>

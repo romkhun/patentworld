@@ -9,8 +9,9 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
-import { PWChoroplethMap } from '@/components/charts/PWChoroplethMap';
-import { PWWorldFlowMap } from '@/components/charts/PWWorldFlowMap';
+import dynamic from 'next/dynamic';
+const PWChoroplethMap = dynamic(() => import('@/components/charts/PWChoroplethMap').then(m => ({ default: m.PWChoroplethMap })), { ssr: false });
+const PWWorldFlowMap = dynamic(() => import('@/components/charts/PWWorldFlowMap').then(m => ({ default: m.PWWorldFlowMap })), { ssr: false });
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -20,6 +21,8 @@ import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import Link from 'next/link';
 import type { StateSummary, CountryPerYear, TopCity, StateSpecialization, StatePerYear, InventorFlow, InventorMobilityTrend, RegionalSpecialization } from '@/lib/types';
 
 function pivotCountries(data: CountryPerYear[], topN: number = 15) {
@@ -166,7 +169,7 @@ export default function Chapter6() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The organizational and inventor-level concentration documented in Who Innovates? and The Inventors has a pronounced spatial dimension: inventive activity clusters in a small number of self-reinforcing ecosystems where skilled labor, venture capital, research universities, and corporate laboratories co-locate. Within the United States, a handful of coastal states generate a disproportionate share of all output, with California alone exceeding the combined total of the bottom thirty states, a gap that has widened rather than narrowed over the digital era. Internationally, the same globalization of assignee origin observed in Who Innovates? manifests geographically, as successive waves of filings from Japan, South Korea, and more recently China have transformed the US patent system into a de facto global institution. City-level analysis reveals that this concentration is even more extreme at finer geographic scales, with distinctive regional specializations, from Detroit in automotive-related mechanical engineering to San Diego in wireless and semiconductor technology, exhibiting strong path dependence that digital connectivity has done little to erode.
+          The organizational and inventor-level concentration documented in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> and <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link> has a pronounced spatial dimension: inventive activity clusters in a small number of self-reinforcing ecosystems where skilled labor, venture capital, research universities, and corporate laboratories co-locate. Within the United States, a handful of coastal states generate a disproportionate share of all output, with California alone exceeding the combined total of the bottom thirty states, a gap that has widened rather than narrowed over the digital era. Internationally, the same globalization of assignee origin observed in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> manifests geographically, as successive waves of filings from Japan, South Korea, and more recently China have transformed the US patent system into a de facto global institution. City-level analysis reveals that this concentration is even more extreme at finer geographic scales, with distinctive regional specializations, from Detroit in automotive-related mechanical engineering to San Diego in wireless and semiconductor technology, exhibiting strong path dependence that digital connectivity has done little to erode.
         </p>
       </aside>
 
@@ -217,6 +220,13 @@ export default function Chapter6() {
           layout="vertical"
         />
       </ChartContainer>
+
+      <RankingTable
+        title="View top states as a data table"
+        headers={['State', 'Total Patents']}
+        rows={(states ?? []).slice(0, 15).map(d => [d.state, d.total_patents])}
+        caption="Top 15 US states by total utility patents, 1976–2025. Source: PatentsView."
+      />
 
       <Narrative>
         <p>
@@ -573,8 +583,8 @@ export default function Chapter6() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the spatial distribution of innovation, the subsequent chapter investigates how inventors and organizations connect across these geographic boundaries.
-        The collaboration networks that link inventors, firms, and countries constitute the channels through which knowledge flows, and their structure indicates whether the innovation ecosystem is becoming more interconnected or more fragmented over time.
+        Having examined the spatial distribution of innovation, the subsequent chapter investigates how inventors and organizations connect across these geographic boundaries through <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Collaboration Networks</Link>.
+        These networks constitute the channels through which knowledge flows, and their structure, explored further in <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Knowledge Network</Link>, indicates whether the innovation ecosystem is becoming more interconnected or more fragmented over time.
       </Narrative>
 
       <DataNote>

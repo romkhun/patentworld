@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -174,7 +175,7 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward digital and computational domains -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the steady rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in Chapters 11 and 12 are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the steady rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in Chapters 11 and 12 are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
@@ -420,7 +421,7 @@ export default function Chapter13() {
         <p>
           Rising entropy suggests that the boundaries between technology domains are becoming
           more porous. The most novel patents, those scoring highest on entropy, tend to
-          be situated at the intersection of multiple topics, combining language from computing,
+          be situated at the intersection of multiple topics, combining language from computing -- including the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> vocabulary that has become increasingly prevalent --
           biology, chemistry, and engineering in ways that were uncommon just a few decades ago.
         </p>
       </KeyInsight>
@@ -463,7 +464,7 @@ export default function Chapter13() {
       )}
 
       <Narrative>
-        Having uncovered the latent thematic structure of patent language, the final chapter shifts focus to the company level, constructing interactive innovation profiles for 100 major patent filers.
+        Having uncovered the latent thematic structure of patent language, the final chapter shifts focus to the company level, constructing interactive <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation profiles for 100 major patent filers</Link>.
         The topics and trends identified in this chapter provide the foundation for understanding how individual firms have navigated the evolving technology landscape.
       </Narrative>
 
