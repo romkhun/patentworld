@@ -275,3 +275,62 @@ All 14 chapter pages plus the home page and explore page use the `useChapterData
 | Variable `decades` holds section names | innovation-dynamics/page.tsx | 70–82 | LOW | Cosmetic only |
 | Unmemoized inline `.map()` in JSX | the-innovation-landscape/page.tsx | 171–175 | LOW | Performance only |
 | Potential null on `green_pct.toFixed(1)` | green-innovation/page.tsx | 184–185 | LOW | **FIXED** |
+
+---
+
+## 4. Session 2 Data Verification (2026-02-14)
+
+### Chart Title Data Cross-Reference
+
+All 77 chart title updates were verified by reading the corresponding JSON data files and computing correct values. Data files referenced during verification:
+
+| Data File | Chapters Verified |
+|-----------|------------------|
+| hero_stats.json | Ch 1 |
+| tech_diversity.json | Ch 2 |
+| technology_halflife.json | Ch 2 |
+| top_assignees.json | Ch 3 |
+| portfolio_diversity.json | Ch 3 |
+| team_size_per_year.json | Ch 4 |
+| gender_per_year.json | Ch 4 |
+| prolific_inventors.json | Ch 4 |
+| superstar_concentration.json | Ch 4 |
+| solo_inventors.json | Ch 4 |
+| first_time_inventors.json | Ch 4 |
+| inventor_longevity.json | Ch 4 |
+| star_inventor_impact.json | Ch 4 |
+| us_states_summary.json | Ch 5 |
+| countries_per_year.json | Ch 5 |
+| top_cities.json | Ch 5 |
+| state_specialization.json | Ch 5 |
+| inventor_state_flows.json | Ch 5 |
+| intl_collaboration.json | Ch 6 |
+| citations_per_year.json | Ch 7 |
+| citation_lag.json | Ch 7 |
+| gov_funded_per_year.json | Ch 7 |
+| gov_agencies.json | Ch 7 |
+| grant_lag_by_sector.json | Ch 8 |
+| cross_domain.json | Ch 8 |
+| claims_analysis.json | Ch 8 |
+| design_patents.json | Ch 8 |
+| quality_trends.json | Ch 9 |
+| self_citation_rate.json | Ch 9 |
+| sleeping_beauties.json | Ch 9 |
+| convergence_matrix.json | Ch 10 |
+| ai_patents_per_year.json | Ch 11 |
+| ai_top_assignees.json | Ch 11 |
+| ai_geography.json | Ch 11 |
+| ai_quality.json | Ch 11 |
+| green_volume.json | Ch 12 |
+| green_by_country.json | Ch 12 |
+| green_ai_heatmap.json | Ch 12 |
+| green_quality.json | Ch 12 |
+| topic_novelty.json | Ch 13 |
+| topic_prevalence.json | Ch 13 |
+| corporate_mortality.json | Ch 14 |
+| trajectory_archetypes.json | Ch 14 |
+| talent_flows.json | Ch 14 |
+| citation_half_life.json | Ch 14 |
+| strategy_profiles.json | Ch 14 |
+
+All 128 data-to-title mappings confirmed correct.

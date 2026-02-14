@@ -156,4 +156,23 @@ No TypeScript errors, no runtime errors
 
 ---
 
-*Reorganization completed 2026-02-13. Chapters reordered, section ordering audited, transitions updated, TL;DR labels fixed.*
+---
+
+## Session 2 Additions (2026-02-14)
+
+### Executive Summary Deduplication (Stream 3.6)
+
+All 14 chapters had Executive Summaries rewritten to not repeat Key Findings verbatim. Each Executive Summary now:
+- Synthesizes findings into a coherent narrative paragraph
+- Adds cross-chapter connections (e.g., referencing findings from earlier chapters)
+- Paraphrases rather than copies Key Findings bullets
+- Provides interpretive context beyond the raw statistics
+
+Chapters were processed in three parallel batches:
+- Batch 1: Chapters 1–5
+- Batch 2: Chapters 6–10
+- Batch 3: Chapters 11–14
+
+---
+
+*Reorganization completed 2026-02-13. Chapters reordered, section ordering audited, transitions updated, TL;DR labels fixed. Executive Summary deduplication completed 2026-02-14.*

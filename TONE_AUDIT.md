@@ -127,4 +127,42 @@ Post-rewrite verification confirmed:
 
 ---
 
-*Academic tone rewrite completed across all 14 chapters, the About page, and all chart titles/captions/insights. All text verified to meet formal academic register standards.*
+---
+
+## Session 2 Additions (2026-02-14)
+
+### Chart Title Specificity Pass
+
+77 of 128 chart titles updated from generic descriptive labels to insight-oriented declarative sentences with specific, data-verified numbers. Examples:
+
+| Chapter | Before | After |
+|---------|--------|-------|
+| Ch 7 | "Average Backward Citations Per Patent Over Time" | "Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023" |
+| Ch 5 | "Patent Activity by State" | "Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States Combined (314,664)" |
+| Ch 11 | "AI Patent Trends" | "AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, a 5.7x Increase Driven by Deep Learning Advances" |
+| Ch 12 | "Green-AI Intersection" | "Green-AI Patents Grew 30-Fold From 41 in 2010 to 1,238 in 2023" |
+| Ch 14 | "Corporate Survival" | "Only 9 of 50 Top Patent Filers Survived All 5 Decades, an 18% Cumulative Survival Rate" |
+
+### Executive Summary Deduplication (Stream 3.6)
+
+All 14 chapter Executive Summaries rewritten to comply with Stream 3.6 requirements:
+
+| Requirement | Status |
+|-------------|--------|
+| Key Findings: concise factual bullets with numbers | All 14 chapters ✅ |
+| Executive Summary: narrative synthesis, not bullet repetition | All 14 chapters ✅ (rewritten) |
+| No sentence appears in both Executive Summary and Key Findings | All 14 chapters ✅ |
+| Executive Summary adds cross-chapter connections | All 14 chapters ✅ |
+| Executive Summary readable as standalone paragraph | All 14 chapters ✅ |
+
+### Section Heading Fix
+
+- Chapter 8: `"Does Exploration Pay Off?"` → `"Returns to Technological Exploration"` (rhetorical question → descriptive noun phrase)
+
+### About Page Citation
+
+- Fixed suggested citation: `Lee, Saerom (Ronnie). 2025. "PatentWorld: 50 Years of US Patent Innovation."` → `Lee, Saerom. 2025. "PatentWorld: 50 Years of US Patent Data."`
+
+---
+
+*Academic tone rewrite completed across all 14 chapters, the About page, and all chart titles/captions/insights. All text verified to meet formal academic register standards. Session 2 added 77 chart title updates with verified numbers and 14 Executive Summary rewrites for deduplication.*

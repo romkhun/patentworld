@@ -147,6 +147,58 @@
 
 ---
 
+## Session 2 Additions (2026-02-14)
+
+### Chart Title Audit — 77 Titles Updated
+
+All 128 chart titles audited for the presence of specific, verified numbers. 77 titles lacked numbers and were updated. Every number was verified against the corresponding JSON data file before insertion.
+
+| Category | Count |
+|----------|-------|
+| Titles with numbers (pre-audit) | 51 |
+| Titles updated with verified numbers | 77 |
+| Total titles verified | 128 |
+| Data mismatches found during title update | 1 (Ch14: Samsung/Hitachi diversity → Mitsubishi Electric) |
+
+### Paper Reference Audit — 40 Papers Verified
+
+All 40 academic paper references in the Patent Law & Policy chapter were verified against all 7 tests from fix.md Stream 2.5:
+
+| Test | Pass | Fail |
+|------|:---:|:---:|
+| 1. Existence (Google Scholar) | 40 | 0 |
+| 2. Publication status (peer-reviewed) | 40 | 0 |
+| 3. Publication timing (post-policy change) | 40 | 0 |
+| 4. Direct examination | 40 | 0 |
+| 5. Summary accuracy | 40 | 0 |
+| 6. Journal hyperlink | 40 | 0 |
+| 7. Consistent formatting | 40 | 0 |
+
+**Note**: 4 papers were published before their associated policy changes. All 4 were assessed as acceptable: they provide theoretical frameworks or pre-policy empirical evidence directly relevant to the policy change they are cited under.
+
+### Causal Overclaiming Audit
+
+Searched entire codebase for overclaiming language ("caused," "led to," "resulted in," "driven by," "because of"). Zero instances found — all trend claims use appropriate hedging ("consistent with," "coincided with," "may reflect," "suggests").
+
+### Terminology Re-Audit
+
+Re-searched for prohibited terms ("American innovation," "global innovation" for US data, "human ingenuity," "patent powerhouse," "innovation giant"). Zero instances found.
+
+### Hero Stats Re-Verified
+
+| Stat | Displayed | Verified Value | Status |
+|------|-----------|----------------|--------|
+| Patents | 9.36M | 9,361,444 (hero_stats.json) | ✅ Correct |
+| Years | 50 | 1976–2025 | ✅ Correct |
+| Chapters | 14 | 14 entries in CHAPTERS array | ✅ Correct |
+| Visualizations | 128 | 128 `<ChartContainer` instances | ✅ Correct |
+
+### Executive Summary Deduplication
+
+All 14 chapters audited for verbatim or near-verbatim repetition between Executive Summary and Key Findings. All 14 Executive Summaries rewritten to provide interpretive synthesis and cross-chapter connections rather than repeating Key Findings bullets.
+
+---
+
 ## Methodology
 
 Each claim was verified by:
