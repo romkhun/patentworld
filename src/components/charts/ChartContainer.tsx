@@ -15,10 +15,11 @@ interface ChartContainerProps {
   id?: string;
   interactive?: boolean;
   statusText?: string;
+  flexHeight?: boolean;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, children }: ChartContainerProps) {
+export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
 
   return (
@@ -43,7 +44,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <div
           className="chart-container-inner flex flex-col gap-3 justify-center"
           aria-label="Loading chart"
-          style={{ height, minHeight: 250 }}
+          style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
         >
           <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
           <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />
@@ -53,7 +54,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
       ) : (
         <div
           className="chart-container-inner w-full"
-          style={{ height, minHeight: 250 }}
+          style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
           role={interactive ? 'group' : 'img'}
           aria-label={ariaLabel ?? title}
         >

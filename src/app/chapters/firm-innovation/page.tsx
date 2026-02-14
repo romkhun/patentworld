@@ -1892,7 +1892,8 @@ export default function FirmInnovation() {
         caption="Each panel shows one firm's exploration share (% of patents classified as exploratory) over time. Firms are sorted by most recent exploration share, descending. Exploration is defined as a composite score above 0.6 based on technology newness, citation newness, and external knowledge sourcing."
         insight="Most large patent filers maintain exploration shares below 5%, indicating that the vast majority of their patenting activity deepens established technology domains rather than entering new ones."
         loading={etL}
-        height={1050}
+        height={900}
+        flexHeight
         wide
       >
         <PWSmallMultiples
@@ -1950,7 +1951,8 @@ export default function FirmInnovation() {
         caption="Each panel shows one firm's average exploration score by years since entry into a new CPC subclass. Dashed gray = system-wide average. The typical firm's exploration score falls sharply within 5 years, but the rate of decay varies considerably across organizations."
         insight="On average, a firm's exploration score in a newly entered technology subclass declines from 1.0 at entry to below 0.1 within 5 years. Some firms maintain higher exploration scores for longer periods, suggesting a more sustained period of search and experimentation."
         loading={lcL}
-        height={1050}
+        height={550}
+        flexHeight
         wide
       >
         <PWSmallMultiples
@@ -2056,7 +2058,8 @@ export default function FirmInnovation() {
         caption="Each panel shows one firm's citation Gini coefficient by year (top 20 firms by recent Gini). Higher values indicate more concentrated citation impact within the firm's patent portfolio."
         insight="Most large patent filers exhibit Gini coefficients between 0.6 and 0.9, indicating that a small fraction of each firm's patents accounts for the majority of citation impact. Several firms show rising Gini trajectories, consistent with increasing reliance on blockbuster inventions."
         loading={fgL}
-        height={1050}
+        height={900}
+        flexHeight
         wide
       >
         <PWSmallMultiples
