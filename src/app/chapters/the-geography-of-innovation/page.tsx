@@ -264,7 +264,7 @@ export default function Chapter6() {
               name,
               color: CHART_COLORS[i % CHART_COLORS.length],
             }))}
-            yLabel="Patents"
+            yLabel="Number of Patents"
             referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
           />
         </ChartContainer>
@@ -351,7 +351,7 @@ export default function Chapter6() {
               name,
               color: CHART_COLORS[topCountryNames.indexOf(name) % CHART_COLORS.length],
             }))}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -394,6 +394,7 @@ export default function Chapter6() {
             }))}
             layout="vertical"
             stacked
+            yLabel="Share (%)"
             yFormatter={(v) => `${v}%`}
             xDomain={[0, 100]}
           />
@@ -437,7 +438,7 @@ export default function Chapter6() {
               { key: 'domestic_mobility_pct', name: 'Domestic Mobility (% Interstate)', color: CHART_COLORS[0] },
               { key: 'intl_mobility_pct', name: 'International Mobility (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
             ]}
-            yLabel="Percent"
+            yLabel="Mobility Rate (%)"
             yFormatter={(v) => `${v.toFixed(1)}%`}
             referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
           />

@@ -167,7 +167,7 @@ export default function Chapter2() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -227,6 +227,7 @@ export default function Chapter2() {
           })), { key: 'Other', name: 'Other (D, Y)', color: '#9ca3af' }]}
           stacked={!cpcStackedPercent}
           stackedPercent={cpcStackedPercent}
+          yLabel={cpcStackedPercent ? 'Share (%)' : 'Number of Patents'}
         />
       </ChartContainer>
 
@@ -326,6 +327,7 @@ export default function Chapter2() {
           data={diversity ?? []}
           xKey="year"
           lines={[{ key: 'diversity_index', name: 'Diversity Index', color: CHART_COLORS[0] }]}
+          yLabel="Diversity Index"
           yFormatter={(v) => v.toFixed(3)}
         />
       </ChartContainer>
@@ -425,6 +427,7 @@ export default function Chapter2() {
           data={scurveData}
           xKey="section"
           bars={[{ key: 'current_pct_of_K', name: 'Maturity (% of K)', color: CHART_COLORS[1] }]}
+          yLabel="Carrying Capacity (%)"
         />
       </ChartContainer>
 

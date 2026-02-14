@@ -245,11 +245,14 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
       for (let i = 1; i < points.length; i++) {
         d += ` L${points[i][0]},${points[i][1]}`;
       }
-      const width = 1 + (flow.flow_count / maxFlow) * 5;
-      const opacity = 0.3 + (flow.flow_count / maxFlow) * 0.5;
+      const ratio = flow.flow_count / maxFlow;
+      const sqrtRatio = Math.sqrt(ratio);
+      const width = 1.2 + sqrtRatio * 6;
+      const opacity = 0.25 + sqrtRatio * 0.65;
       const color = getRegionColor(flow.from_country);
-      return { d, width, opacity, flow, from_country: flow.from_country, to_country: flow.to_country, color };
-    }).filter(Boolean) as { d: string; width: number; opacity: number; flow: FlowEntry; from_country: string; to_country: string; color: string }[];
+      const destColor = getRegionColor(flow.to_country);
+      return { d, width, opacity, flow, from_country: flow.from_country, to_country: flow.to_country, color, destColor };
+    }).filter(Boolean) as { d: string; width: number; opacity: number; flow: FlowEntry; from_country: string; to_country: string; color: string; destColor: string }[];
   }, [topFlows, maxFlow, projection, pairDirections]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent, abbrev: string) => {
@@ -326,6 +329,26 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
               <feGaussianBlur stdDeviation="2" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
+            {/* Per-arc gradients from source to destination region color */}
+            {arcPaths.map((arc, i) => {
+              const fromPt = COUNTRY_CENTROIDS[arc.from_country];
+              const toPt = COUNTRY_CENTROIDS[arc.to_country];
+              if (!fromPt || !toPt) return null;
+              const p1 = projection(fromPt);
+              const p2 = projection(toPt);
+              if (!p1 || !p2) return null;
+              return (
+                <linearGradient
+                  key={`grad-${i}`}
+                  id={`arc-grad-${i}`}
+                  x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0%" stopColor={arc.color} />
+                  <stop offset="100%" stopColor={arc.destColor} />
+                </linearGradient>
+              );
+            })}
           </defs>
 
           {/* Country fills */}
@@ -356,19 +379,23 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
             );
           })}
 
-          {/* Flow arcs */}
-          {arcPaths.map((arc, i) => {
+          {/* Flow arcs - sorted so largest flows render on top */}
+          {[...arcPaths]
+            .map((arc, origIdx) => ({ arc, origIdx }))
+            .sort((a, b) => a.arc.flow.flow_count - b.arc.flow.flow_count)
+            .map(({ arc, origIdx }) => {
             const connected = hoveredCountry &&
               (arc.from_country === hoveredCountry || arc.to_country === hoveredCountry);
             const dimmed = hoveredCountry && !connected;
             const region = REGION_MAP[arc.from_country] ?? 'default';
             const markerId = `arrow-${region.replace(/\s/g, '-')}`;
+            const useGradient = arc.color !== arc.destColor;
             return (
               <path
-                key={i}
+                key={origIdx}
                 d={arc.d}
                 fill="none"
-                stroke={arc.color}
+                stroke={useGradient ? `url(#arc-grad-${origIdx})` : arc.color}
                 strokeWidth={connected ? arc.width * 1.5 : arc.width}
                 strokeOpacity={dimmed ? 0.08 : arc.opacity}
                 strokeLinecap="round"

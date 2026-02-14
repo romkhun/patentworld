@@ -26,6 +26,7 @@ import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { cleanOrgName } from '@/lib/orgNames';
 import type {
   AssigneeTypePerYear, TopAssignee, OrgOverTime, DomesticVsForeign, Concentration,
   FirmCitationImpact, FirmTechEvolution, NonUSBySection,
@@ -80,36 +81,45 @@ export default function Chapter3() {
     if (!top) return [];
     return top.map((d) => ({
       ...d,
-      label: d.organization.length > 30 ? d.organization.slice(0, 27) + '...' : d.organization,
+      label: cleanOrgName(d.organization),
     }));
   }, [top]);
 
-  const topOrgName = top?.[0]?.organization ?? 'IBM';
+  const topOrgName = top?.[0]?.organization ? cleanOrgName(top[0].organization) : 'IBM';
 
   const citData = useMemo(() => {
     if (!citImpact) return [];
     return citImpact.map((d) => ({
       ...d,
-      label: d.organization.length > 28 ? d.organization.slice(0, 25) + '...' : d.organization,
+      label: cleanOrgName(d.organization),
     }));
   }, [citImpact]);
 
   // Company output over time line chart
   const { orgOutputPivot, orgOutputNames } = useMemo(() => {
     if (!orgsTime) return { orgOutputPivot: [], orgOutputNames: [] };
-    const top10 = [...new Set(orgsTime.filter((d) => d.rank <= 10).map((d) => d.organization))].slice(0, 10);
+    // Select top 10 organizations by total patent count (not by insertion order)
+    const totals = new Map<string, number>();
+    orgsTime.forEach((d) => {
+      totals.set(d.organization, (totals.get(d.organization) ?? 0) + d.count);
+    });
+    const top10 = [...totals.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([org]) => org);
+    const top10Clean = top10.map((org) => cleanOrgName(org));
     const years = [...new Set(orgsTime.map((d) => d.year))].sort();
     const pivoted = years.map((year) => {
       const row: any = { year };
       orgsTime.filter((d) => d.year === year && top10.includes(d.organization))
-        .forEach((d) => { row[d.organization] = d.count; });
+        .forEach((d) => { row[cleanOrgName(d.organization)] = d.count; });
       return row;
     });
     // Initialize series selector on first load
-    if (top10.length > 0 && selectedOrgSeries.size === 0) {
-      setTimeout(() => setSelectedOrgSeries(new Set(top10.slice(0, 5))), 0);
+    if (top10Clean.length > 0 && selectedOrgSeries.size === 0) {
+      setTimeout(() => setSelectedOrgSeries(new Set(top10Clean.slice(0, 5))), 0);
     }
-    return { orgOutputPivot: pivoted, orgOutputNames: top10 };
+    return { orgOutputPivot: pivoted, orgOutputNames: top10Clean };
   }, [orgsTime]);
 
   // Tech evolution: list of orgs and pivoted data for selected org
@@ -125,7 +135,9 @@ export default function Chapter3() {
     const orgData = techEvo.filter((d) => d.organization === activeOrg);
     const periods = [...new Set(orgData.map((d) => d.period))].sort();
     return periods.map((period) => {
-      const row: any = { period };
+      // Clean period labels: "1976.0-1980.0" -> "1976-1980"
+      const cleanPeriod = String(period).replace(/\.0/g, '');
+      const row: any = { period: cleanPeriod };
       orgData.filter((d) => d.period === period).forEach((d) => {
         row[d.section] = d.count;
       });
@@ -137,12 +149,12 @@ export default function Chapter3() {
 
   const { diversityPivot, diversityOrgs } = useMemo(() => {
     if (!diversity) return { diversityPivot: [], diversityOrgs: [] };
-    const orgs = [...new Set(diversity.map(d => d.organization))];
+    const orgs = [...new Set(diversity.map(d => cleanOrgName(d.organization)))];
     const periods = [...new Set(diversity.map(d => d.period))].sort();
     const pivoted = periods.map(period => {
       const row: Record<string, any> = { period };
       diversity.filter(d => d.period === period).forEach(d => {
-        row[d.organization] = d.shannon_entropy;
+        row[cleanOrgName(d.organization)] = d.shannon_entropy;
       });
       return row;
     });
@@ -236,6 +248,7 @@ export default function Chapter3() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           stackedPercent
+          yLabel="Share of Patents (%)"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 1995] })}
         />
       </ChartContainer>
@@ -278,7 +291,7 @@ export default function Chapter3() {
       <RankingTable
         title="View top assignees as a data table"
         headers={['Organization', 'Total Patents']}
-        rows={(top ?? []).slice(0, 15).map(d => [d.organization, d.total_patents])}
+        rows={(top ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.total_patents])}
         caption="Top 15 organizations by cumulative utility patent grants, 1976–2025. Source: PatentsView."
       />
 
@@ -317,7 +330,7 @@ export default function Chapter3() {
           height={850}
         >
           <PWRankHeatmap
-            data={orgsTime.filter((d) => d.rank <= 15)}
+            data={orgsTime.filter((d) => d.rank <= 15).map((d) => ({ ...d, organization: cleanOrgName(d.organization) }))}
             nameKey="organization"
             yearKey="year"
             rankKey="rank"
@@ -367,7 +380,7 @@ export default function Chapter3() {
                   name: name.length > 25 ? name.slice(0, 22) + '...' : name,
                   color: CHART_COLORS[orgOutputNames.indexOf(name) % CHART_COLORS.length],
                 }))}
-              yLabel="Patents"
+              yLabel="Number of Patents"
             />
           </ChartContainer>
         </>
@@ -398,7 +411,7 @@ export default function Chapter3() {
             { key: 'US', name: 'US', color: CHART_COLORS[0] },
             { key: 'Foreign', name: 'Foreign', color: CHART_COLORS[3], dashPattern: '8 4' },
           ]}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 1995, 2008] })}
         />
       </ChartContainer>
@@ -428,7 +441,7 @@ export default function Chapter3() {
             { key: 'top50_share', name: 'Top 50', color: CHART_COLORS[1], dashPattern: '8 4' },
             { key: 'top100_share', name: 'Top 100', color: CHART_COLORS[2], dashPattern: '2 4' },
           ]}
-          yLabel="Share %"
+          yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
         />
       </ChartContainer>
@@ -507,7 +520,7 @@ export default function Chapter3() {
             className="rounded-md border bg-card px-3 py-1.5 text-sm"
           >
             {techOrgList.map((org) => (
-              <option key={org} value={org}>{org}</option>
+              <option key={org} value={org}>{cleanOrgName(org)}</option>
             ))}
           </select>
         </div>
@@ -515,7 +528,7 @@ export default function Chapter3() {
 
       <ChartContainer
         id="fig-who-innovates-tech-evolution"
-        title={`${activeOrg || 'Loading...'}: Technology Portfolio Composition Across 8 CPC Sections by 5-Year Period (1976-2025)`}
+        title={`${activeOrg ? cleanOrgName(activeOrg) : 'Loading...'}: Technology Portfolio Composition Across 8 CPC Sections by 5-Year Period (1976-2025)`}
         subtitle="CPC section share of patents by 5-year period for the selected organization, showing technology portfolio evolution"
         caption="CPC technology section shares by 5-year period. The chart illustrates how the selected organization's innovation portfolio has evolved across technology domains."
         insight="Substantial shifts in a firm's technology composition, such as Samsung's expansion of its already electronics-dominated portfolio into new technology areas, indicate deliberate strategic reorientation of R&amp;D investment."
@@ -531,6 +544,8 @@ export default function Chapter3() {
             color: CPC_SECTION_COLORS[key],
           }))}
           stackedPercent
+          xLabel="Period"
+          yLabel="Share (%)"
         />
       </ChartContainer>
 
@@ -555,7 +570,7 @@ export default function Chapter3() {
       <PWSeriesSelector
         items={diversityOrgs.slice(0, 10).map((org, i) => ({
           key: org,
-          name: org.length > 25 ? org.slice(0, 22) + '...' : org,
+          name: org,
           color: BUMP_COLORS[i % BUMP_COLORS.length],
         }))}
         selected={selectedDivSeries}
@@ -579,7 +594,7 @@ export default function Chapter3() {
             .filter((org) => selectedDivSeries.has(org))
             .map((org) => ({
               key: org,
-              name: org.length > 25 ? org.slice(0, 22) + '...' : org,
+              name: org,
               color: BUMP_COLORS[diversityOrgs.indexOf(org) % BUMP_COLORS.length],
             }))}
           yLabel="Shannon Entropy"
@@ -619,10 +634,10 @@ export default function Chapter3() {
             data={networkMetrics}
             xKey="decade_label"
             lines={[
-              { key: 'avg_degree', name: 'Avg Co-Inventors (Degree)', color: CHART_COLORS[0] },
-              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1], dashPattern: '8 4' },
+              { key: 'avg_degree', name: 'Average Co-Inventors (Degree)', color: CHART_COLORS[0] },
+              { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[1], dashPattern: '8 4' },
             ]}
-            yLabel="Count"
+            yLabel="Average per Inventor"
             yFormatter={(v: number) => v.toFixed(1)}
           />
         )}
@@ -702,6 +717,7 @@ export default function Chapter3() {
           xKey="year"
           areas={nonUSCountryAreas}
           stacked
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 
@@ -834,6 +850,7 @@ export default function Chapter3() {
             { position: 'top-left', label: 'Underperformers' },
             { position: 'bottom-left', label: 'Steady Contributors' },
           ]}
+          labeledPoints={['Amazon', 'Apple', 'Google', 'Cisco', 'AT&T', 'TSMC', 'Ford', 'Microsoft']}
         />
       </ChartContainer>
 

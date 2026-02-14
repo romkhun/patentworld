@@ -21,6 +21,7 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { cleanOrgName } from '@/lib/orgNames';
 import type {
   QualityTrend, OriginalityGenerality, SelfCitationRate,
   QualityBySector, BreakthroughPatent,
@@ -76,7 +77,7 @@ export default function Chapter9() {
     const maxDecade = Math.max(...qualByCountry.map(d => d.decade));
     return qualByCountry
       .filter(d => d.decade === maxDecade)
-      .sort((a, b) => b.patent_count - a.patent_count)
+      .sort((a, b) => b.avg_claims - a.avg_claims)
       .slice(0, 15);
   }, [qualByCountry]);
 
@@ -297,7 +298,7 @@ export default function Chapter9() {
             { key: 'avg_self_cite_rate', name: 'Average Self-Citation Rate', color: CHART_COLORS[5] },
             { key: 'median_self_cite_rate', name: 'Median Self-Citation Rate', color: CHART_COLORS[6] },
           ]}
-          yLabel="Rate"
+          yLabel="Self-Citation Rate"
           yFormatter={(v) => `${(v * 100).toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
         />
@@ -332,7 +333,7 @@ export default function Chapter9() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
-          yLabel="Avg Claims Per Patent"
+          yLabel="Average Claims Per Patent"
           yFormatter={(v) => v.toFixed(1)}
         />
       </ChartContainer>
@@ -366,10 +367,10 @@ export default function Chapter9() {
                 <th className="text-left py-2 px-3 font-medium text-muted-foreground">Patent ID</th>
                 <th className="text-center py-2 px-3 font-medium text-muted-foreground">Year</th>
                 <th className="text-center py-2 px-3 font-medium text-muted-foreground">Section</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Early Cites</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Burst Cites</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Early Citations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Burst Citations</th>
                 <th className="text-right py-2 px-3 font-medium text-muted-foreground">Burst Year</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Cites</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Citations</th>
               </tr>
             </thead>
             <tbody>
@@ -380,7 +381,7 @@ export default function Chapter9() {
                   <td className="text-center py-2 px-3">{sb.section}</td>
                   <td className="text-right py-2 px-3 font-mono">{sb.early_cites}</td>
                   <td className="text-right py-2 px-3 font-mono font-semibold">{sb.burst_citations}</td>
-                  <td className="text-right py-2 px-3">+{sb.burst_year_after_grant}yr</td>
+                  <td className="text-right py-2 px-3">+{sb.burst_year_after_grant} years</td>
                   <td className="text-right py-2 px-3 font-mono">{sb.total_fwd_cites.toLocaleString()}</td>
                 </tr>
               ))}
@@ -464,7 +465,7 @@ export default function Chapter9() {
         <PWBarChart
           data={latestDecadeCountry}
           xKey="country"
-          bars={[{ key: 'avg_claims', name: 'Avg Claims', color: CHART_COLORS[2] }]}
+          bars={[{ key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[2] }]}
           layout="vertical"
         />
       </ChartContainer>
@@ -492,7 +493,7 @@ export default function Chapter9() {
         <PWBarChart
           data={(selfCiteAssignee ?? []).map(d => ({
             ...d,
-            label: d.organization.length > 30 ? d.organization.slice(0, 27) + '...' : d.organization,
+            label: cleanOrgName(d.organization),
             self_cite_pct: d.self_cite_rate * 100,
           }))}
           xKey="label"
@@ -565,7 +566,7 @@ export default function Chapter9() {
         caption="Each panel shows one firm's citation Gini coefficient by year (top 20 firms by recent Gini). Higher values indicate more concentrated citation impact within the firm's patent portfolio."
         insight="Most large patent filers exhibit Gini coefficients between 0.6 and 0.9, indicating that a small fraction of each firm's patents accounts for the majority of citation impact. Several firms show rising Gini trajectories, consistent with increasing reliance on blockbuster inventions."
         loading={fgL}
-        height={600}
+        height={850}
         wide
       >
         <PWSmallMultiples

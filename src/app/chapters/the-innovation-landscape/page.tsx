@@ -101,7 +101,7 @@ export default function Chapter1() {
             { key: 'reissue', name: 'Reissue', color: CHART_COLORS[3] },
           ]}
           stacked
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>

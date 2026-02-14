@@ -19,6 +19,7 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { GREEN_EVENTS } from '@/lib/referenceEvents';
 import { CHART_COLORS, GREEN_CATEGORY_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import { cleanOrgName } from '@/lib/orgNames';
 import type {
   GreenVolume, GreenByCategory, GreenByCountry,
   GreenTopCompany, GreenAITrend, GreenAIHeatmap,
@@ -83,29 +84,7 @@ export default function Chapter12() {
     const orgMap = new Map<string, { organization: string; total_green: number; label: string }>();
     topCompanies.forEach((d) => {
       if (!orgMap.has(d.organization)) {
-        let label = d.organization;
-        if (label === 'TOYOTA JIDOSHA KABUSHIKI KAISHA') label = 'Toyota';
-        else if (label === 'SAMSUNG ELECTRONICS CO., LTD.') label = 'Samsung';
-        else if (label === 'General Electric Company') label = 'General Electric';
-        else if (label === 'Ford Global Technologies, LLC') label = 'Ford';
-        else if (label === 'GM GLOBAL TECHNOLOGY OPERATIONS LLC') label = 'General Motors';
-        else if (label === 'HONDA MOTOR CO., LTD.') label = 'Honda';
-        else if (label === 'Intel Corporation') label = 'Intel';
-        else if (label === 'International Business Machines Corporation') label = 'IBM';
-        else if (label === 'HYUNDAI MOTOR COMPANY') label = 'Hyundai';
-        else if (label === 'HITACHI, LTD.') label = 'Hitachi';
-        else if (label === 'QUALCOMM Incorporated') label = 'Qualcomm';
-        else if (label === 'Mitsubishi Electric Corporation') label = 'Mitsubishi Electric';
-        else if (label === 'LG CHEM, LTD.') label = 'LG Chem';
-        else if (label === 'LG ELECTRONICS INC.') label = 'LG Electronics';
-        else if (label === 'Nissan Motor Co., Ltd.') label = 'Nissan';
-        else if (label === 'Robert Bosch GmbH') label = 'Bosch';
-        else if (label === 'Kabushiki Kaisha Toshiba') label = 'Toshiba';
-        else if (label === 'Siemens Aktiengesellschaft') label = 'Siemens';
-        else if (label === 'UNITED TECHNOLOGIES CORPORATION') label = 'United Technologies';
-        else if (label === 'The Boeing Company') label = 'Boeing';
-        else if (label.length > 25) label = label.slice(0, 22) + '...';
-        orgMap.set(d.organization, { organization: d.organization, total_green: d.total_green, label });
+        orgMap.set(d.organization, { organization: d.organization, total_green: d.total_green, label: cleanOrgName(d.organization) });
       }
     });
     return [...orgMap.values()].sort((a, b) => b.total_green - a.total_green);
@@ -196,7 +175,7 @@ export default function Chapter12() {
             { key: 'green_count', name: 'Green Patents', color: CHART_COLORS[1] },
             { key: 'green_pct', name: 'Green Share (%)', color: CHART_COLORS[3], yAxisId: 'right' },
           ]}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           rightYLabel="Share (%)"
           rightYFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={GREEN_EVENTS}
@@ -230,6 +209,7 @@ export default function Chapter12() {
           xKey="year"
           areas={categoryAreas}
           stacked
+          yLabel="Number of Patents"
           referenceLines={GREEN_EVENTS}
         />
       </ChartContainer>
@@ -271,6 +251,7 @@ export default function Chapter12() {
           xKey="year"
           areas={countryAreas}
           stacked
+          yLabel="Number of Patents"
           referenceLines={GREEN_EVENTS}
         />
       </ChartContainer>
@@ -329,7 +310,7 @@ export default function Chapter12() {
           lines={[
             { key: 'green_ai_count', name: 'Green AI Patents', color: CHART_COLORS[1] },
           ]}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={GREEN_EVENTS}
         />
       </ChartContainer>
@@ -353,6 +334,7 @@ export default function Chapter12() {
           }))}
           stacked
           layout="vertical"
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 

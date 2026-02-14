@@ -19,6 +19,7 @@ import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { cleanOrgName } from '@/lib/orgNames';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
@@ -129,7 +130,7 @@ export default function Chapter8() {
     if (!corpDiv) return [];
     const orgs = [...new Set(corpDiv.map((d) => d.organization))];
     return orgs.map((org) => {
-      const row: any = { organization: org.length > 20 ? org.slice(0, 18) + '...' : org };
+      const row: any = { organization: cleanOrgName(org) };
       let total = 0;
       corpDiv.filter((d) => d.organization === org && d.era === 'late').forEach((d) => {
         row[d.section] = d.count;
@@ -232,8 +233,8 @@ export default function Chapter8() {
             name,
             color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
           }))}
-          yLabel="Days"
-          yFormatter={(v) => `${Math.round(v / 365.25 * 10) / 10}y`}
+          yLabel="Years"
+          yFormatter={(v) => `${Math.round(v / 365.25 * 10) / 10}`}
         />
       </ChartContainer>
 
@@ -274,6 +275,7 @@ export default function Chapter8() {
             { key: 'two_sections', name: 'Two Sections', color: CHART_COLORS[2] },
             { key: 'three_plus_sections', name: 'Three+ Sections', color: CHART_COLORS[3] },
           ]}
+          yLabel="Share of Patents (%)"
           stacked
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
@@ -314,8 +316,8 @@ export default function Chapter8() {
             { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0], yAxisId: 'left' },
             { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2], yAxisId: 'right' },
           ]}
-          yLabel="Patents"
-          rightYLabel="Percent"
+          yLabel="Number of Patents"
+          rightYLabel="Share (%)"
           rightYFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
@@ -362,6 +364,7 @@ export default function Chapter8() {
             }))}
             layout="vertical"
             stacked
+            yLabel="Number of Patents"
           />
         </ChartContainer>
       )}
@@ -453,7 +456,8 @@ export default function Chapter8() {
               color: CPC_SECTION_COLORS[section],
             }))}
             yLabel="Median Years to Grant"
-            yFormatter={(v: number) => v.toFixed(1)}
+            yDomain={[0, 4]}
+            yFormatter={(v: number) => v.toFixed(0)}
           />
         )}
       </ChartContainer>
@@ -496,7 +500,7 @@ export default function Chapter8() {
               { key: 'design_count', name: 'Design Patents', color: CHART_COLORS[3] },
               { key: 'design_share', name: 'Design Share (%)', color: CHART_COLORS[4], yAxisId: 'right' },
             ]}
-            yLabel="Patent Count"
+            yLabel="Number of Patents"
             rightYLabel="Design Share (%)"
             rightYFormatter={(v) => `${v.toFixed(1)}%`}
           />
@@ -658,7 +662,7 @@ export default function Chapter8() {
         caption="Each panel shows one firm's exploration share (% of patents classified as exploratory) over time. Firms are sorted by most recent exploration share, descending. Exploration is defined as a composite score above 0.6 based on technology newness, citation newness, and external knowledge sourcing."
         insight="Most large patent filers maintain exploration shares below 5%, indicating that the vast majority of their patenting activity deepens established technology domains rather than entering new ones."
         loading={etL}
-        height={500}
+        height={850}
         wide
       >
         <PWSmallMultiples
@@ -720,7 +724,7 @@ export default function Chapter8() {
         caption="Each panel shows one firm's average exploration score by years since entry into a new CPC subclass. Dashed gray = system-wide average. The typical firm's exploration score falls sharply within 5 years, but the rate of decay varies considerably across organizations."
         insight="On average, a firm's exploration score in a newly entered technology subclass declines from 1.0 at entry to below 0.1 within 5 years. Some firms maintain higher exploration scores for longer periods, suggesting a more sustained period of search and experimentation."
         loading={lcL}
-        height={500}
+        height={850}
         wide
       >
         <PWSmallMultiples

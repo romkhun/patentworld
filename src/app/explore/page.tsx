@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { Search, ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { formatCompact } from '@/lib/formatters';
+import { cleanOrgName } from '@/lib/orgNames';
 import type { ExploreAssignee, ExploreInventor, CPCClassSummary, WIPOFieldSummary } from '@/lib/types';
 
 type TabId = 'organizations' | 'inventors' | 'technologies' | 'wipo';
@@ -120,7 +121,7 @@ function OrganizationsTable({ search }: { search: string }) {
   const filtered = useMemo(() => {
     if (!data) return [];
     const q = search.toLowerCase();
-    const f = data.filter((d) => !q || d.organization.toLowerCase().includes(q));
+    const f = data.filter((d) => !q || d.organization.toLowerCase().includes(q) || cleanOrgName(d.organization).toLowerCase().includes(q));
     return sortData(f, sort);
   }, [data, search, sort]);
 
@@ -141,7 +142,7 @@ function OrganizationsTable({ search }: { search: string }) {
           {filtered.slice(0, 100).map((d, i) => (
             <tr key={i} className="border-b border-border/50 hover:bg-accent/50">
               <td className="py-2 pr-4 font-mono text-xs text-muted-foreground">{i + 1}</td>
-              <td className="py-2 pr-4 font-medium">{d.organization}</td>
+              <td className="py-2 pr-4 font-medium">{cleanOrgName(d.organization)}</td>
               <td className="py-2 pr-4 text-right font-mono">{formatCompact(d.total_patents)}</td>
               <td className="py-2 pr-4 text-right font-mono">{d.first_year}</td>
               <td className="py-2 text-right font-mono">{d.last_year}</td>

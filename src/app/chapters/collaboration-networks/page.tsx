@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
@@ -9,7 +9,7 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import dynamic from 'next/dynamic';
-const PWNetworkGraph = dynamic(() => import('@/components/charts/PWNetworkGraph').then(m => ({ default: m.PWNetworkGraph })), { ssr: false });
+const PWNetworkGraph = dynamic(() => import('@/components/charts/PWNetworkGraph').then(m => ({ default: m.PWNetworkGraph })), { ssr: false, loading: () => <div /> });
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
@@ -22,7 +22,8 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, INDUSTRY_COLORS } from '@/lib/colors';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
-const PWSankeyDiagram = dynamic(() => import('@/components/charts/PWSankeyDiagram').then(m => ({ default: m.PWSankeyDiagram })), { ssr: false });
+import { cleanOrgName } from '@/lib/orgNames';
+const PWSankeyDiagram = dynamic(() => import('@/components/charts/PWSankeyDiagram').then(m => ({ default: m.PWSankeyDiagram })), { ssr: false, loading: () => <div /> });
 import { PWRadarChart } from '@/components/charts/PWRadarChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
@@ -191,9 +192,9 @@ export default function Chapter6() {
         height={900}
         wide
       >
-        {firmNetwork ? (
+        {firmNetwork?.nodes && firmNetwork?.edges ? (
           <PWNetworkGraph
-            nodes={firmNetwork.nodes}
+            nodes={firmNetwork.nodes.map((n: any) => ({ ...n, name: cleanOrgName(n.name) }))}
             edges={firmNetwork.edges}
             nodeColor={CHART_COLORS[0]}
           />
@@ -242,7 +243,7 @@ export default function Chapter6() {
         height={900}
         wide
       >
-        {inventorNetwork ? (
+        {inventorNetwork?.nodes && inventorNetwork?.edges ? (
           <PWNetworkGraph
             nodes={inventorNetwork.nodes}
             edges={inventorNetwork.edges}
@@ -323,6 +324,7 @@ export default function Chapter6() {
             color: CPC_SECTION_COLORS[s] ?? CHART_COLORS[0],
           }))}
           stacked
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
         />
       </ChartContainer>
@@ -359,7 +361,7 @@ export default function Chapter6() {
         height={700}
         wide
       >
-        {talentFlows ? (
+        {talentFlows?.nodes && talentFlows?.links ? (
           <PWSankeyDiagram
             nodes={talentFlows.nodes}
             links={talentFlows.links}

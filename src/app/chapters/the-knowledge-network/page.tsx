@@ -19,7 +19,7 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import dynamic from 'next/dynamic';
-const PWChordDiagram = dynamic(() => import('@/components/charts/PWChordDiagram').then(m => ({ default: m.PWChordDiagram })), { ssr: false });
+const PWChordDiagram = dynamic(() => import('@/components/charts/PWChordDiagram').then(m => ({ default: m.PWChordDiagram })), { ssr: false, loading: () => <div /> });
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import type {
@@ -40,12 +40,21 @@ export default function Chapter7() {
   const { data: techLeadership } = useChapterData<TechLeadership[]>('company/tech_leadership.json');
   const { data: citationHalfLife, loading: chlL } = useChapterData<CitationHalfLife[]>('company/citation_half_life.json');
 
-  const [selectedDecade, setSelectedDecade] = useState('2016-2025');
+  const [selectedDecade, setSelectedDecade] = useState<string | number | null>(null);
+
+  // Build sorted list of decades from data
+  const decades = useMemo(() => {
+    if (!citationFlows) return [];
+    return [...new Set(citationFlows.map(f => f.decade))].sort();
+  }, [citationFlows]);
+
+  // Initialize selectedDecade to the latest decade once data loads
+  const effectiveDecade = selectedDecade ?? (decades.length > 0 ? decades[decades.length - 1] : null);
 
   // Build chord diagram data from citation flows
   const chordData = useMemo(() => {
-    if (!citationFlows) return null;
-    const decadeFlows = citationFlows.filter(f => f.decade === selectedDecade);
+    if (!citationFlows || effectiveDecade == null) return null;
+    const decadeFlows = citationFlows.filter(f => String(f.decade) === String(effectiveDecade));
     if (decadeFlows.length === 0) return null;
     const companies = [...new Set([...decadeFlows.map(f => f.source), ...decadeFlows.map(f => f.target)])];
     const idxMap: Record<string, number> = {};
@@ -58,12 +67,7 @@ export default function Chapter7() {
     });
     const nodes = companies.map((c, i) => ({ name: c, color: BUMP_COLORS[i % BUMP_COLORS.length] }));
     return { nodes, matrix };
-  }, [citationFlows, selectedDecade]);
-
-  const decades = useMemo(() => {
-    if (!citationFlows) return [];
-    return [...new Set(citationFlows.map(f => f.decade))].sort();
-  }, [citationFlows]);
+  }, [citationFlows, effectiveDecade]);
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
@@ -225,6 +229,7 @@ export default function Chapter7() {
           lines={[
             { key: 'count', name: 'Government-Funded Patents', color: CHART_COLORS[5] },
           ]}
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 2001, 2008] })}
         />
       </ChartContainer>
@@ -327,11 +332,11 @@ export default function Chapter7() {
         <div className="flex gap-1.5 flex-wrap">
           {decades.map(d => (
             <button
-              key={d}
+              key={String(d)}
               onClick={() => setSelectedDecade(d)}
-              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${selectedDecade === d ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${String(effectiveDecade) === String(d) ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
             >
-              {d}
+              {String(d)}s
             </button>
           ))}
         </div>
@@ -340,7 +345,7 @@ export default function Chapter7() {
       <ChartContainer
         id="fig-knowledge-network-corporate-citation-flows"
         subtitle="Directed citation flows among the top 30 patent filers shown as a chord diagram, with ribbon width proportional to citation volume."
-        title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies (${selectedDecade})`}
+        title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies (${effectiveDecade ?? ''}s)`}
         caption="Directed citation flows between the most prolific patent filers. Arc size represents total citations; ribbon width indicates flow volume. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others serve as integrators (drawing broadly from multiple sources)."
         insight="Citation flows reveal asymmetric knowledge dependencies. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others operate as integrators (drawing broadly from multiple sources)."
         loading={cfL}

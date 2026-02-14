@@ -10,7 +10,6 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
-import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
 import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
@@ -136,8 +135,12 @@ export default function Chapter14() {
 
   const archetypeGroups = useMemo(() => {
     if (!trajectories) return [];
-    return archetypeNames.map((name) => {
-      const members = trajectories.filter((t) => t.archetype === name);
+    // Group archetype variants by base name (e.g. "Late Bloomer (3)" -> "Late Bloomer")
+    const baseNameOf = (n: string) => n.replace(/\s*\(\d+\)$/, '');
+    const baseNames = [...new Set(archetypeNames.map(baseNameOf))];
+    return baseNames.map((baseName) => {
+      const variantNames = archetypeNames.filter((n) => baseNameOf(n) === baseName);
+      const members = trajectories.filter((t) => variantNames.includes(t.archetype));
       // Build a representative centroid normalized series
       const seriesLen = members[0]?.normalized_series?.length ?? 0;
       const centroid: number[] = [];
@@ -145,14 +148,15 @@ export default function Chapter14() {
         const avg = members.reduce((s, m) => s + (m.normalized_series[i] ?? 0), 0) / members.length;
         centroid.push(avg);
       }
-      return { name, count: members.length, centroid, companies: members };
+      return { name: baseName, count: members.length, classCount: variantNames.length, centroid, companies: members };
     });
   }, [trajectories, archetypeNames]);
 
   const filteredTrajectories = useMemo(() => {
     if (!trajectories) return [];
     if (archetypeFilter === 'All') return trajectories;
-    return trajectories.filter((t) => t.archetype === archetypeFilter);
+    const baseNameOf = (n: string) => n.replace(/\s*\(\d+\)$/, '');
+    return trajectories.filter((t) => baseNameOf(t.archetype) === archetypeFilter);
   }, [trajectories, archetypeFilter]);
 
   /* ── A3: Corporate mortality ── */
@@ -202,26 +206,6 @@ export default function Chapter14() {
     return { divPivot: pivoted, divCompanies: topCompanies };
   }, [diversification]);
 
-  const diversityScatterData = useMemo(() => {
-    if (!diversification || !profiles) return [];
-    const latestYear = Math.max(...diversification.map((d) => d.year));
-    return diversification
-      .filter((d) => d.year === latestYear)
-      .map((d) => {
-        const profile = profiles.find((p) => p.company === d.company);
-        const latestMetrics = profile?.years?.[profile.years.length - 1];
-        return {
-          company: d.company,
-          shannon_entropy: d.shannon_entropy,
-          median_citations_5yr: latestMetrics?.median_citations_5yr ?? 0,
-          category: d.shannon_entropy > 2.5 ? 'Diversified' : d.shannon_entropy > 1.5 ? 'Moderate' : 'Focused',
-        };
-      });
-  }, [diversification, profiles]);
-
-  const diversityCategories = useMemo(() => {
-    return [...new Set(diversityScatterData.map((d) => d.category))].sort();
-  }, [diversityScatterData]);
 
   /* ── B2: Pivot detection ── */
   const pivotCompanyList = useMemo(() => {
@@ -403,7 +387,7 @@ export default function Chapter14() {
               <div className="text-sm font-semibold" style={{ color: ARCHETYPE_COLORS[group.name] }}>
                 {group.name}
               </div>
-              <div className="mt-1 text-xs text-muted-foreground">{group.count} companies</div>
+              <div className="mt-1 text-xs text-muted-foreground">{group.count} companies &middot; {group.classCount} {group.classCount === 1 ? 'class' : 'classes'}</div>
               <div className="mt-2 h-16">
                 {group.centroid.length > 0 && (
                   <PWLineChart
@@ -439,8 +423,8 @@ export default function Chapter14() {
               className="rounded-md border bg-card px-3 py-1.5 text-sm"
             >
               <option value="All">All Archetypes</option>
-              {archetypeNames.map((name) => (
-                <option key={name} value={name}>{name}</option>
+              {archetypeGroups.map((group) => (
+                <option key={group.name} value={group.name}>{group.name}</option>
               ))}
             </select>
           </div>
@@ -460,15 +444,20 @@ export default function Chapter14() {
                   <tr key={t.company} className="border-b border-border/50">
                     <td className="py-2 px-3 font-medium">{t.company}</td>
                     <td className="py-2 px-3">
-                      <span
-                        className="inline-block rounded-full px-2 py-0.5 text-xs font-medium"
-                        style={{
-                          backgroundColor: `${ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0]}20`,
-                          color: ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0],
-                        }}
-                      >
-                        {t.archetype}
-                      </span>
+                      {(() => {
+                        const baseName = t.archetype.replace(/\s*\(\d+\)$/, '');
+                        return (
+                          <span
+                            className="inline-block rounded-full px-2 py-0.5 text-xs font-medium"
+                            style={{
+                              backgroundColor: `${ARCHETYPE_COLORS[baseName] ?? ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0]}20`,
+                              color: ARCHETYPE_COLORS[baseName] ?? ARCHETYPE_COLORS[t.archetype] ?? CHART_COLORS[0],
+                            }}
+                          >
+                            {baseName}
+                          </span>
+                        );
+                      })()}
                     </td>
                     <td className="text-right py-2 px-3 font-mono">{t.peak_year}</td>
                     <td className="text-right py-2 px-3 font-mono">{formatCompact(t.peak_count)}</td>
@@ -527,33 +516,6 @@ export default function Chapter14() {
         ) : <div />}
       </ChartContainer>
 
-      <ChartContainer
-        id="fig-company-profiles-diversity-vs-citations"
-        subtitle="Shannon entropy (portfolio breadth) vs. median 5-year forward citations for each company, testing the trade-off between diversification and quality."
-        title="Across 47 Companies, Entropy Ranges From 3.1 to 6.7 With No Clear Citation Trade-Off"
-        caption="Shannon entropy (x-axis) vs. median 5-year forward citations (y-axis) for the latest period. Each point represents a company. The scatter indicates no simple trade-off between breadth and quality, as some highly diversified firms also achieve strong citation impact."
-        insight="The scatter plot reveals no simple trade-off between breadth and quality: some highly diversified firms also achieve strong citation impact, suggesting that diversification and research excellence are not mutually exclusive."
-        loading={diL || prL}
-      >
-        {diversityScatterData.length > 0 ? (
-          <PWScatterChart
-            data={diversityScatterData}
-            xKey="shannon_entropy"
-            yKey="median_citations_5yr"
-            colorKey="category"
-            nameKey="company"
-            categories={diversityCategories}
-            xLabel="Shannon Entropy"
-            yLabel="Median Citations (5yr)"
-            tooltipFields={[
-              { key: 'company', label: 'Company' },
-              { key: 'shannon_entropy', label: 'Entropy' },
-              { key: 'median_citations_5yr', label: 'Median Citations' },
-            ]}
-          />
-        ) : <div />}
-      </ChartContainer>
-
       <KeyInsight>
         <p>
           Portfolio diversification is not simply a function of company size. Some mid-sized
@@ -595,7 +557,8 @@ export default function Chapter14() {
               color: CPC_SECTION_COLORS[sec],
             }))}
             yLabel="HHI"
-            yFormatter={(v: number) => v.toFixed(4)}
+            yDomain={[0, 300]}
+            yFormatter={(v: number) => v.toFixed(0)}
             referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2011] })}
           />
         ) : <div />}
@@ -745,7 +708,7 @@ export default function Chapter14() {
             data={annualPatentData}
             xKey="year"
             bars={[{ key: 'patent_count', name: 'Patents', color: CHART_COLORS[0] }]}
-            yLabel="Patents"
+            yLabel="Number of Patents"
           />
         ) : <div />}
       </ChartContainer>
@@ -768,7 +731,7 @@ export default function Chapter14() {
               color: CPC_SECTION_COLORS[sec],
             }))}
             stackedPercent
-            yLabel="Share"
+            yLabel="Share (%)"
           />
         ) : <div />}
       </ChartContainer>
@@ -807,11 +770,11 @@ export default function Chapter14() {
             data={teamInventorData}
             xKey="year"
             lines={[
-              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
+              { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[1] },
               { key: 'inventor_count', name: 'Inventor Count', color: CHART_COLORS[3], yAxisId: 'right' },
             ]}
             yLabel="Team Size"
-            rightYLabel="Inventors"
+            rightYLabel="Number of Inventors"
           />
         ) : <div />}
       </ChartContainer>

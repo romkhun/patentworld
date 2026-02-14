@@ -18,10 +18,11 @@ interface PWAreaChartProps {
   xLabel?: string;
   yLabel?: string;
   yFormatter?: (v: number) => string;
+  yDomain?: [number, number];
   referenceLines?: ReferenceEvent[];
 }
 
-export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter, referenceLines }: PWAreaChartProps) {
+export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter, yDomain, referenceLines }: PWAreaChartProps) {
   const processedData = useMemo(() => stackedPercent ? data.map((d) => {
     const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
     if (total === 0) return d;
@@ -36,8 +37,9 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
         <defs>
           {areas.map((area, i) => {
             const color = area.color ?? CHART_COLORS[i % CHART_COLORS.length];
+            const safeKey = area.key.replace(/[^a-zA-Z0-9]/g, '_');
             return (
-              <linearGradient key={area.key} id={`gradient-${area.key}`} x1="0" y1="0" x2="0" y2="1">
+              <linearGradient key={area.key} id={`gradient-${safeKey}`} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={color} stopOpacity={0.5} />
                 <stop offset="100%" stopColor={color} stopOpacity={0.05} />
               </linearGradient>
@@ -66,8 +68,8 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           axisLine={false}
           tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
           width={60}
-          domain={stackedPercent ? [0, 100] : undefined}
-          allowDataOverflow={stackedPercent || undefined}
+          domain={stackedPercent ? [0, 100] : (yDomain ?? undefined)}
+          allowDataOverflow={stackedPercent || yDomain ? true : undefined}
           ticks={stackedPercent ? [0, 20, 40, 60, 80, 100] : undefined}
         >
           {yLabel && (
@@ -108,7 +110,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             dataKey={area.key}
             name={area.name}
             stackId={stacked || stackedPercent ? 'stack' : undefined}
-            fill={`url(#gradient-${area.key})`}
+            fill={`url(#gradient-${area.key.replace(/[^a-zA-Z0-9]/g, '_')})`}
             stroke={area.color ?? CHART_COLORS[i % CHART_COLORS.length]}
             fillOpacity={1}
             isAnimationActive={false}

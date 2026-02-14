@@ -235,6 +235,7 @@ export default function Chapter13() {
             xKey="year"
             areas={topicAreas}
             stackedPercent
+            yLabel="Share (%)"
             referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008] })}
           />
         ) : (

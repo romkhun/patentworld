@@ -565,7 +565,7 @@ export default function Chapter10() {
             { key: 'grants', name: 'Grants (grant date)', color: '#009E73' },
             { key: 'grant_to_application_ratio', name: 'Grant/Application Ratio (%)', color: '#E69F00', yAxisId: 'right' },
           ]}
-          yLabel="Patent Count"
+          yLabel="Number of Patents"
           rightYLabel="Ratio (%)"
           rightYFormatter={(v: number) => `${v.toFixed(0)}%`}
           referenceLines={filterEvents(PATENT_EVENTS)}
@@ -647,7 +647,7 @@ export default function Chapter10() {
         caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
         insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}
-        height={520}
+        height={700}
       >
         {convergenceData && convergenceEras.length > 0 && (
           <PWConvergenceMatrix data={convergenceData} eras={convergenceEras} />

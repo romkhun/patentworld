@@ -102,7 +102,7 @@ export function PWBarChart({
               )}
             </YAxis>
             {avgValue !== undefined && (
-              <ReferenceLine x={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Avg', position: 'top', fontSize: 11, fill: '#9ca3af' }} />
+              <ReferenceLine x={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'top', fontSize: 11, fill: '#9ca3af' }} />
             )}
           </>
         ) : (
@@ -140,7 +140,7 @@ export function PWBarChart({
               )}
             </YAxis>
             {avgValue !== undefined && (
-              <ReferenceLine y={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Avg', position: 'right', fontSize: 11, fill: '#9ca3af' }} />
+              <ReferenceLine y={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'right', fontSize: 11, fill: '#9ca3af' }} />
             )}
           </>
         )}

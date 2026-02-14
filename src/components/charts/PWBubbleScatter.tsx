@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis,
-  ReferenceLine, Label,
+  ReferenceLine, Label, Customized,
 } from 'recharts';
 import { CPC_SECTION_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -31,6 +31,7 @@ interface PWBubbleScatterProps {
   xMidline?: number;
   yMidline?: number;
   quadrants?: QuadrantLabel[];
+  labeledPoints?: string[];
 }
 
 export function PWBubbleScatter({
@@ -42,6 +43,7 @@ export function PWBubbleScatter({
   xMidline,
   yMidline,
   quadrants: _quadrants,
+  labeledPoints,
 }: PWBubbleScatterProps) {
   const sections = useMemo(() => [...new Set(data.map((d) => d.section))].sort(), [data]);
 
@@ -138,6 +140,40 @@ export function PWBubbleScatter({
             isAnimationActive={false}
           />
         ))}
+
+        {labeledPoints && labeledPoints.length > 0 && (
+          <Customized
+            component={(props: any) => {
+              const xAxis = props.xAxisMap?.[0] ?? Object.values(props.xAxisMap ?? {})[0];
+              const yAxis = props.yAxisMap?.[0] ?? Object.values(props.yAxisMap ?? {})[0];
+              if (!xAxis?.scale || !yAxis?.scale) return null;
+              const labelSet = new Set(labeledPoints);
+              return (
+                <g>
+                  {data
+                    .filter((d) => labelSet.has(d.company))
+                    .map((d) => {
+                      const cx = xAxis.scale(d.x);
+                      const cy = yAxis.scale(d.y);
+                      if (cx == null || cy == null || isNaN(cx) || isNaN(cy)) return null;
+                      return (
+                        <text
+                          key={d.company}
+                          x={cx + 10}
+                          y={cy - 8}
+                          fontSize={11}
+                          fill="hsl(var(--foreground))"
+                          pointerEvents="none"
+                        >
+                          {d.company}
+                        </text>
+                      );
+                    })}
+                </g>
+              );
+            }}
+          />
+        )}
       </ScatterChart>
     </ResponsiveContainer>
   );

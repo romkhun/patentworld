@@ -25,6 +25,7 @@ interface PWLineChartProps {
   xLabel?: string;
   yLabel?: string;
   yFormatter?: (v: number) => string;
+  yDomain?: [number, number];
   rightYLabel?: string;
   rightYFormatter?: (v: number) => string;
   referenceLines?: ReferenceEvent[];
@@ -32,7 +33,7 @@ interface PWLineChartProps {
   showEndLabels?: boolean;
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
   const [hoveredLine, setHoveredLine] = useState<string | null>(null);
 
@@ -66,6 +67,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
         </XAxis>
         <YAxis
           yAxisId="left"
+          domain={yDomain}
           tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}

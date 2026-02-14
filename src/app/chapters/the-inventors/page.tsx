@@ -191,10 +191,11 @@ export default function Chapter4() {
           data={team ?? []}
           xKey="year"
           lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0] },
             { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2] },
             { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3] },
+            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0] },
           ]}
+          yLabel="Percentage / Team Size"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -234,7 +235,7 @@ export default function Chapter4() {
           lines={[
             { key: 'female_pct', name: 'Female %', color: CHART_COLORS[4] },
           ]}
-          yLabel="Percent"
+          yLabel="Female Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
@@ -325,6 +326,7 @@ export default function Chapter4() {
           data={entry ?? []}
           xKey="year"
           areas={[{ key: 'new_inventors', name: 'New Inventors', color: CHART_COLORS[1] }]}
+          yLabel="Number of Inventors"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -361,7 +363,7 @@ export default function Chapter4() {
 
       <ChartContainer
         id="fig-inventors-citation-impact"
-        title="Citation Impact Ranges from 1 to 965 Avg Citations Among the 100 Most Prolific Inventors"
+        title="Citation Impact Ranges from 1 to 965 Average Citations Among the 100 Most Prolific Inventors"
         subtitle="Average and median forward citations per patent for the top 100 most prolific inventors, based on patents granted through 2020"
         caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
@@ -414,7 +416,7 @@ export default function Chapter4() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           xLabel="Career Length (Years)"
-          yLabel="Survival %"
+          yLabel="Survival Rate (%)"
           yFormatter={(v) => `${v.toFixed(0)}%`}
         />
       </ChartContainer>
@@ -530,7 +532,7 @@ export default function Chapter4() {
             lines={[
               { key: 'mobility_rate', name: 'Mobility Rate (%)', color: CHART_COLORS[5] },
             ]}
-            yLabel="Rate (%)"
+            yLabel="Mobility Rate (%)"
             yFormatter={(v: number) => `${v.toFixed(0)}%`}
           />
         )}
@@ -542,7 +544,7 @@ export default function Chapter4() {
               <tr className="border-b border-border">
                 <th className="text-left py-2 px-3 font-medium text-muted-foreground">Group</th>
                 <th className="text-right py-2 px-3 font-medium text-muted-foreground">Patents</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Avg Citations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Average Citations</th>
                 <th className="text-right py-2 px-3 font-medium text-muted-foreground">Median Citations</th>
               </tr>
             </thead>
@@ -607,7 +609,7 @@ export default function Chapter4() {
               <tr className="border-b border-border">
                 <th className="text-left py-2 px-3 font-medium text-muted-foreground">Team Composition</th>
                 <th className="text-right py-2 px-3 font-medium text-muted-foreground">Patents</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Avg Citations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Average Citations</th>
                 <th className="text-right py-2 px-3 font-medium text-muted-foreground">Median Citations</th>
               </tr>
             </thead>
@@ -653,7 +655,7 @@ export default function Chapter4() {
                 <th className="py-2 pr-4 font-medium">Segment</th>
                 <th className="py-2 pr-4 text-right font-medium">Inventors</th>
                 <th className="py-2 pr-4 text-right font-medium">Total Patents</th>
-                <th className="py-2 pr-4 text-right font-medium">Avg Patents</th>
+                <th className="py-2 pr-4 text-right font-medium">Average Patents</th>
                 <th className="py-2 pr-4 text-right font-medium">Inventor Share</th>
                 <th className="py-2 text-right font-medium">Patent Share</th>
               </tr>
@@ -693,6 +695,7 @@ export default function Chapter4() {
             { key: 'patent_share', name: 'Patent Share (%)', color: CHART_COLORS[4] },
             { key: 'inventor_share', name: 'Inventor Share (%)', color: CHART_COLORS[0] },
           ]}
+          yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(0)}%`}
         />
       </ChartContainer>
@@ -709,7 +712,7 @@ export default function Chapter4() {
           data={segTrend ?? []}
           xKey="year"
           lines={[{ key: 'one_hit_pct', name: 'Single-Patent Inventor Share (%)', color: CHART_COLORS[3] }]}
-          yLabel="Percent"
+          yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(0)}%`}
         />
       </ChartContainer>
@@ -772,6 +775,7 @@ export default function Chapter4() {
             xKey="duration"
             bars={[{ key: 'count', name: 'Inventors', color: CHART_COLORS[4] }]}
             xLabel="Career Duration (years)"
+            yLabel="Number of Inventors"
           />
         ) : <div />}
       </ChartContainer>
@@ -806,7 +810,8 @@ export default function Chapter4() {
             ]}
             stacked
             yLabel="Share (%)"
-            yFormatter={(v) => `${v.toFixed(0)}%`}
+            yFormatter={(v) => `${v}%`}
+            yDomain={[0, 100]}
           />
         ) : <div />}
       </ChartContainer>
@@ -838,11 +843,11 @@ export default function Chapter4() {
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
             <div className="text-2xl font-bold">{wtdCpc.toFixed(0)}%</div>
-            <div className="text-xs text-muted-foreground mt-1">Changed Tech Field</div>
+            <div className="text-xs text-muted-foreground mt-1">Changed Technology Field</div>
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
             <div className="text-2xl font-bold">{wtdPatents.toFixed(1)}</div>
-            <div className="text-xs text-muted-foreground mt-1">Avg Patents After Return</div>
+            <div className="text-xs text-muted-foreground mt-1">Average Patents After Return</div>
           </div>
         </div>
         );

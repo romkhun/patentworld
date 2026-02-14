@@ -21,6 +21,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import type {
   AIPatentsPerYear, AIBySubfield, AITopAssignee,
@@ -74,7 +75,7 @@ export default function Chapter11() {
     if (!topAssignees) return [];
     return topAssignees.map((d) => ({
       ...d,
-      label: d.organization.length > 30 ? d.organization.slice(0, 27) + '...' : d.organization,
+      label: cleanOrgName(d.organization),
     }));
   }, [topAssignees]);
 
@@ -86,30 +87,13 @@ export default function Chapter11() {
     }));
   }, [topInventors]);
 
-  // Shared short display names for organizations
+  // Shared short display names for organizations (using centralized cleanOrgName)
   const orgNameMap = useMemo(() => {
     if (!orgOverTime) return {};
     const map: Record<string, string> = {};
     const orgNames = [...new Set(orgOverTime.map((d) => d.organization))];
     orgNames.forEach((org) => {
-      let short = org;
-      if (org === 'International Business Machines Corporation') short = 'IBM';
-      else if (org === 'SAMSUNG ELECTRONICS CO., LTD.') short = 'Samsung';
-      else if (org === 'FUJITSU LIMITED') short = 'Fujitsu';
-      else if (org === 'SONY GROUP CORPORATION') short = 'Sony';
-      else if (org === 'Canon Kabushiki Kaisha') short = 'Canon';
-      else if (org === 'Kabushiki Kaisha Toshiba') short = 'Toshiba';
-      else if (org === 'NEC CORPORATION') short = 'NEC';
-      else if (org === 'Intel Corporation') short = 'Intel';
-      else if (org === 'Microsoft Corporation') short = 'Microsoft (Corp)';
-      else if (org === 'MICROSOFT TECHNOLOGY LICENSING, LLC') short = 'Microsoft (Licensing)';
-      else if (org === 'AMAZON TECHNOLOGIES, INC.') short = 'Amazon';
-      else if (org === 'CAPITAL ONE SERVICES, LLC') short = 'Capital One';
-      else if (org === 'Google LLC') short = 'Google';
-      else if (org === 'Apple Inc.') short = 'Apple';
-      else if (org === 'Adobe Inc.') short = 'Adobe';
-      else if (org.length > 20) short = org.slice(0, 18) + '...';
-      map[org] = short;
+      map[org] = cleanOrgName(org);
     });
     return map;
   }, [orgOverTime]);
@@ -268,7 +252,7 @@ export default function Chapter11() {
           lines={[
             { key: 'ai_patents', name: 'AI Patents', color: CHART_COLORS[0] },
           ]}
-          yLabel="Patents"
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
@@ -297,7 +281,7 @@ export default function Chapter11() {
           lines={[
             { key: 'ai_pct', name: 'AI Share (%)', color: CHART_COLORS[3] },
           ]}
-          yLabel="Percent"
+          yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
@@ -323,6 +307,7 @@ export default function Chapter11() {
             color: SUBFIELD_COLORS[name] ?? CHART_COLORS[0],
           }))}
           stacked
+          yLabel="Number of Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
       </ChartContainer>
@@ -361,7 +346,7 @@ export default function Chapter11() {
       <RankingTable
         title="View top AI patent holders as a data table"
         headers={['Organization', 'AI Patents']}
-        rows={(topAssignees ?? []).slice(0, 15).map(d => [d.organization, d.ai_patents])}
+        rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.ai_patents])}
         caption="Top 15 organizations by AI-related patent count, 1976–2025. Source: PatentsView."
       />
 
@@ -513,11 +498,11 @@ export default function Chapter11() {
           data={quality ?? []}
           xKey="year"
           lines={[
-            { key: 'avg_claims', name: 'Avg Claims', color: CHART_COLORS[0] },
-            { key: 'avg_backward_cites', name: 'Avg Backward Citations', color: CHART_COLORS[2] },
-            { key: 'avg_scope', name: 'Avg Scope (CPC Subclasses)', color: CHART_COLORS[4] },
+            { key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[0] },
+            { key: 'avg_backward_cites', name: 'Average Backward Citations', color: CHART_COLORS[2] },
+            { key: 'avg_scope', name: 'Average Scope (CPC Subclasses)', color: CHART_COLORS[4] },
           ]}
-          yLabel="Count"
+          yLabel="Average per Patent"
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
@@ -547,7 +532,7 @@ export default function Chapter11() {
           lines={[
             { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
           ]}
-          yLabel="Inventors"
+          yLabel="Average Team Size"
           yFormatter={(v) => v.toFixed(1)}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
         />
@@ -587,7 +572,7 @@ export default function Chapter11() {
             <tbody>
               {strategyOrgs.slice(0, 15).map((org, i) => (
                 <tr key={i} className="border-b border-border/50">
-                  <td className="py-2 px-2 font-medium text-sm">{org.organization.length > 30 ? org.organization.slice(0, 27) + '...' : org.organization}</td>
+                  <td className="py-2 px-2 font-medium text-sm">{cleanOrgName(org.organization)}</td>
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
@@ -687,7 +672,7 @@ export default function Chapter11() {
             { key: 'AI', name: 'AI Patents', color: CHART_COLORS[0] },
             { key: 'Non-AI', name: 'Non-AI Patents', color: CHART_COLORS[3] },
           ]}
-          yLabel="Avg Team Size"
+          yLabel="Average Team Size"
           yFormatter={(v: number) => v.toFixed(1)}
         />
       </ChartContainer>
@@ -710,6 +695,7 @@ export default function Chapter11() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           stacked
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 
