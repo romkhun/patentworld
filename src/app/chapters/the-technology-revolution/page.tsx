@@ -171,19 +171,19 @@ export default function Chapter2() {
       />
 
       <KeyFindings>
-        <li>Electrical engineering rose from one of the smaller sectors to surpass first chemistry (1994) and then mechanical engineering (1995), becoming the dominant patent sector and marking the transition to the digital era.</li>
+        <li>Electrical engineering rose from the third-largest sector to surpass first chemistry (1994) and then mechanical engineering (1995), becoming the dominant patent sector and marking the transition to the digital era.</li>
         <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now constitute over 57% of all patent grants, an increase from about 27% in the 1970s.</li>
         <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), with growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by nearly 84%.</li>
         <li>Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.</li>
         <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
         <li>Despite concentration in digital fields, patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold.</li>
-        <li>Citation half-lives vary by more than five years across technology fields, with Electricity (H) at 10.7 years and Human Necessities (A) at 15.6 years, revealing substantially different rates of knowledge obsolescence.</li>
+        <li>Citation half-lives vary by nearly five years across technology fields, with Electricity (H) at 10.7 years and Human Necessities (A) at 15.6 years, revealing substantially different rates of knowledge obsolescence.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The fivefold expansion in patent output documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at an unprecedented pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio. At the same time, traditional technology boundaries have become increasingly permeable, with the Physics-Electricity convergence pair now accounting for over a third of all cross-section patents. Yet patent markets remain unconcentrated across all technology sectors, and field-specific metrics such as citation half-lives and grant lags reveal markedly different innovation dynamics across domains. These structural shifts also shape the organizational landscape examined in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          The fivefold expansion in patent output documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at a rapid pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio. At the same time, traditional technology boundaries have become increasingly permeable, with the Physics-Electricity convergence pair now accounting for over a third of all cross-section patents. Yet patent markets remain unconcentrated across all technology sectors, and field-specific metrics such as citation half-lives and grant lags reveal markedly different innovation dynamics across domains. These structural shifts also shape the organizational landscape examined in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -202,8 +202,8 @@ export default function Chapter2() {
 
       <ChartContainer
         id="fig-technology-revolution-wipo-sectors"
-        title="Electrical Engineering Grew 14-Fold from 10,404 Patents in 1976 to 150,702 in 2024"
-        subtitle="Annual patent grants by WIPO technology sector, showing the structural crossover from chemistry to electrical engineering, 1976–2025"
+        title="Electrical Engineering Grew Nearly 15-Fold from 10,404 Patents in 1976 to 150,702 in 2024"
+        subtitle="Annual patent grants by WIPO technology sector, showing the structural crossover from chemistry and mechanical engineering to electrical engineering, 1976–2025"
         caption="Patent grants by WIPO sector (primary classification), 1976-2025. The data reveal a structural crossover around the mid-1990s, with electrical engineering overtaking first chemistry (1994) and then mechanical engineering (1995) to become the leading sector."
         insight="The mid-1990s crossover in which electrical engineering surpassed first chemistry and then mechanical engineering constitutes one of the most significant structural shifts in the history of patenting, driven by advances in computing and telecommunications."
         loading={secL}
@@ -285,7 +285,7 @@ export default function Chapter2() {
           The proportional view reveals relative shifts with greater clarity. Section H
           (Electricity) and G (Physics), which encompass computing, semiconductors, optics,
           and measurement, have grown from about 27% of patents in the 1970s to over
-          57% in recent years. By contrast, traditional sections such as C (Chemistry) and B (Operations)
+          57% by the 2020s. By contrast, traditional sections such as C (Chemistry) and B (Operations)
           have experienced a proportional decline in share.
         </p>
       </Narrative>
@@ -293,7 +293,7 @@ export default function Chapter2() {
       <KeyInsight>
         <p>
           Sections G (Physics) and H (Electricity) have grown from about 27% of patents in the
-          1970s to over 57% in recent years. This structural shift reflects the economy-wide digital
+          1970s to over 57% by the 2020s. This structural shift reflects the economy-wide digital
           transformation: computing, semiconductors, and telecommunications technologies now
           pervade virtually every industry, from manufacturing to healthcare.
         </p>
@@ -304,7 +304,7 @@ export default function Chapter2() {
           id="fig-technology-revolution-cpc-treemap"
           title="The Top 3 CPC Classes Account for 15-42% of Patents Across Sections, Revealing Concentrated Innovation"
           subtitle="Proportional treemap of patent volume by CPC technology class, sized by total grants and colored by CPC section"
-          caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while pharmaceutical and organic chemistry lead section C (Chemistry)."
+          caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while organic chemistry classes lead section C (Chemistry)."
           insight="Within each CPC section, patent activity is concentrated in a small number of dominant classes. This concentration pattern suggests that a limited set of technology subfields drives the majority of inventive output within each broader domain."
           loading={tmL}
           height={850}
@@ -317,7 +317,7 @@ export default function Chapter2() {
         <p>
           The treemap demonstrates that within each CPC section, patent activity is concentrated
           in a small number of dominant classes. In Electricity (H), digital communication and computing
-          classes account for the largest share, while in Chemistry (C), pharmaceutical and organic chemistry
+          classes account for the largest share, while in Chemistry (C), organic chemistry
           classes constitute the leading subfields.
         </p>
       </KeyInsight>
@@ -330,7 +330,7 @@ export default function Chapter2() {
         <p>
           The overview of technology fields reveals a system transformed by the digital transition. This
           section examines the dynamics of that transformation in greater detail: which specific technology
-          classes have grown or declined most dramatically, how overall diversity has responded to the
+          classes have grown or declined most substantially, how overall diversity has responded to the
           concentration of activity in digital fields, and where each technology domain stands within its
           innovation lifecycle.
         </p>
@@ -389,7 +389,7 @@ export default function Chapter2() {
           xKey="year"
           lines={[{ key: 'diversity_index', name: 'Diversity Index', color: CHART_COLORS[0] }]}
           yLabel="Diversity Index"
-          yFormatter={(v) => v.toFixed(3)}
+          yFormatter={(v) => v.toFixed(2)}
         />
       </ChartContainer>
 
@@ -414,7 +414,7 @@ export default function Chapter2() {
         title="Textiles Has Reached Over 97% of Estimated Carrying Capacity While Computing Sections Continue to Grow"
         subtitle="Percentage of estimated logistic carrying capacity reached by each CPC section, measuring technology lifecycle maturity, 1976–2025"
         caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts, 1976-2025. Higher values indicate greater technological maturity as measured by proximity to the estimated saturation point."
-        insight="Textiles (D) has reached over 97% of estimated carrying capacity, while Fixed Constructions (E) is approaching 60%, suggesting maturation. Physics (G) and Electricity (H), which encompass computing, AI, and semiconductors, appear to retain substantial growth potential."
+        insight="Textiles (D) has reached over 97% of estimated carrying capacity, while Fixed Constructions (E) is at nearly 60%, suggesting maturation. Physics (G) and Electricity (H), which encompass computing, AI, and semiconductors, appear to retain substantial growth potential."
         loading={scL}
         height={400}
       >
@@ -495,11 +495,11 @@ export default function Chapter2() {
 
       <KeyInsight>
         <p>
-          The G-H (Physics-Electricity) pair has dominated convergence since the mid-1990s, reflecting
+          The G-H (Physics-Electricity) pair has dominated convergence from the late 1990s onward, reflecting
           the deep integration of computing, electronics, and physics. In the earliest era (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
           substantially: in 2011-2025, G-H convergence has intensified as digital technology permeates
           an increasing number of domains. The growing overlap between A (Human Necessities) and G (Physics)
-          in recent years is consistent with the rise of health technology and biomedical electronics.
+          in the 2011-2025 period is consistent with the rise of health technology and biomedical electronics.
         </p>
       </KeyInsight>
 
@@ -519,7 +519,7 @@ export default function Chapter2() {
         id="fig-technology-revolution-hhi-by-section"
         subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
         title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below the 1,500 Threshold"
-        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values in recent decades."
+        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values since 2010."
         insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
         loading={hhiL}
       >
@@ -542,8 +542,7 @@ export default function Chapter2() {
           values well below the 1,500 threshold. This pattern reflects the broad base of inventors and
           organizations participating in the patent system. Even in Electricity (H) and Physics (G) --
           the sections most associated with large technology firms -- concentration remains low,
-          though certain sections exhibit modest increases in recent periods. Textiles and Paper (D) tends
-          to be the most concentrated, consistent with its smaller inventor base and more
+          though certain sections exhibit modest increases since 2010. In that period, Textiles and Paper (D) has exhibited the highest concentration, consistent with its smaller inventor base and more
           specialized industrial structure.
         </p>
       </KeyInsight>
@@ -629,7 +628,7 @@ export default function Chapter2() {
       <ChartContainer
         id="fig-technology-revolution-grant-lag-by-sector"
         subtitle="Average days from application filing to patent grant by WIPO technology sector across 5-year periods."
-        title="Chemistry and Electrical Engineering Patents Exhibit the Longest Grant Lags, Exceeding 3.5 Years in the Late 2000s"
+        title="Chemistry, Electrical Engineering, and Instruments Patents Exhibit Among the Longest Grant Lags, Exceeding 3.5 Years in the Late 2000s"
         caption="This chart displays the average number of days from application filing to patent grant, disaggregated by WIPO technology sector across 5-year periods. Chemistry and electrical engineering patents exhibit the longest pendency in the late 2000s, with both peaking above 1,300 days."
         loading={glL}
         insight="Technology-specific backlogs appear to reflect both the complexity of patent examination in certain fields and the USPTO's resource allocation decisions."
@@ -658,7 +657,7 @@ export default function Chapter2() {
       <KeyInsight>
         <p>
           Grant lags reveal the institutional constraints on innovation. The late 2000s backlog
-          elevated average pendency beyond 3.5 years; subsequent USPTO reforms reduced
+          elevated pendency beyond 3.5 years for leading sectors; subsequent USPTO reforms reduced
           these durations. Chemistry and electrical engineering patents exhibit the longest
           examination periods in the late 2000s, a pattern consistent with the substantial volume and complexity of prior art in
           these fields.

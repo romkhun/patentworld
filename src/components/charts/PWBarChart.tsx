@@ -50,6 +50,20 @@ export function PWBarChart({
     return vals.reduce((a, b) => a + b, 0) / vals.length;
   }, [showAvgLine, data, bars]);
 
+  // For stacked bar charts, reverse legend order so it matches visual stacking (top of stack = top of legend)
+  const reversedLegendPayload = useMemo(() => {
+    if (!stacked) return undefined;
+    return [...bars].reverse().map((bar, i) => {
+      const origIdx = bars.length - 1 - i;
+      return {
+        value: bar.name,
+        type: 'circle' as const,
+        id: bar.key,
+        color: bar.color ?? CHART_COLORS[origIdx % CHART_COLORS.length],
+      };
+    });
+  }, [bars, stacked]);
+
   const handleBarEnter = useCallback((_: any, idx: number) => setHoveredIdx(idx), []);
   const handleBarLeave = useCallback(() => setHoveredIdx(null), []);
 
@@ -66,7 +80,7 @@ export function PWBarChart({
           <>
             <XAxis
               type="number"
-              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
               tickFormatter={yFormatter ?? formatCompact}
@@ -79,14 +93,14 @@ export function PWBarChart({
                   value={yLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
                 />
               )}
             </XAxis>
             <YAxis
               type="category"
               dataKey={xKey}
-              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
               tickLine={false}
               axisLine={false}
               width={labelWidth}
@@ -96,7 +110,7 @@ export function PWBarChart({
                   value={xLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
                   offset={-5}
                 />
               )}
@@ -109,7 +123,7 @@ export function PWBarChart({
           <>
             <XAxis
               dataKey={xKey}
-              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
             >
@@ -118,12 +132,12 @@ export function PWBarChart({
                   value={xLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
                 />
               )}
             </XAxis>
             <YAxis
-              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
               tickLine={false}
               axisLine={false}
               tickFormatter={yFormatter ?? formatCompact}
@@ -134,7 +148,7 @@ export function PWBarChart({
                   value={yLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
                   offset={-5}
                 />
               )}
@@ -153,9 +167,10 @@ export function PWBarChart({
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
+          {...(reversedLegendPayload ? { payload: reversedLegendPayload as any } : {})}
         />
         {bars.map((bar, i) => (
           <Bar

@@ -191,8 +191,8 @@ export default function Chapter17() {
 
       <KeyFindings>
         <li>Autonomous vehicle patent filings surged in the 2010s, driven by competition between established automakers and technology companies entering the transportation sector.</li>
-        <li>Vehicle control (G05D1) constitutes the largest AV subfield, reflecting the central engineering challenge of translating sensor data into safe driving decisions.</li>
-        <li>The competitive landscape spans traditional automakers (Toyota, Ford, GM), technology firms (Google/Waymo), and ride-hailing companies (Uber), each pursuing distinct technical strategies.</li>
+        <li>Navigation and path planning constitutes the largest AV subfield, reflecting the central engineering challenge of route optimization and real-time autonomous decision-making.</li>
+        <li>The competitive landscape spans traditional automakers (Toyota, Honda, Ford, GM), technology firms (Google/Waymo), and other technology companies, each pursuing distinct technical strategies.</li>
         <li>Scene understanding -- computer vision applied to driving environments -- has emerged as one of the fastest-growing subfields, fueled by advances in deep learning and sensor fusion.</li>
       </KeyFindings>
 
@@ -285,9 +285,9 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-av-subfields"
         subtitle="Patent counts by AV subfield (vehicle control, navigation, scene understanding, etc.) over time, based on specific CPC group codes."
-        title="Vehicle Control (G05D1) Dominates AV Patenting, While Scene Understanding Has Emerged as the Fastest-Growing Subfield"
-        caption="Patent counts by AV subfield over time, based on CPC classifications. Vehicle control has consistently been the largest subfield, reflecting the central engineering challenge of autonomous driving. Scene understanding -- encompassing computer vision applied to driving environments -- has grown rapidly since 2015 as deep learning methods improved object detection and semantic segmentation."
-        insight="The dominance of vehicle control patents reflects the fundamental challenge of autonomous driving: translating sensor data into safe real-time decisions. The rapid growth of scene understanding patents signals increasing sophistication in how AV systems perceive their environment."
+        title="Navigation and Path Planning Dominates AV Patenting, While Scene Understanding Has Emerged as the Fastest-Growing Subfield"
+        caption="Patent counts by AV subfield over time, based on CPC classifications. Navigation and path planning has consistently been the largest subfield, reflecting the central engineering challenge of route optimization and real-time decision-making. Scene understanding -- encompassing computer vision applied to driving environments -- has grown rapidly since 2015 as deep learning methods improved object detection and semantic segmentation."
+        insight="The dominance of navigation and path planning patents reflects the fundamental challenge of autonomous driving: route optimization and real-time decision-making. The rapid growth of scene understanding patents signals increasing sophistication in how AV systems perceive their environment."
         loading={sfL}
         height={650}
       >
@@ -308,9 +308,9 @@ export default function Chapter17() {
       <KeyInsight>
         <p>
           The composition of AV patents reveals the multidisciplinary nature of autonomous
-          driving. Vehicle control (G05D1) -- encompassing steering, braking, and acceleration
-          algorithms -- constitutes the largest subfield. Navigation and path planning addresses
-          route optimization and real-time decision-making. Scene understanding, which applies
+          driving. Navigation and path planning constitutes the largest subfield, addressing
+          route optimization and real-time decision-making. Vehicle control -- encompassing
+          steering, braking, and acceleration algorithms -- represents another major category. Scene understanding, which applies
           computer vision and deep learning to interpret driving environments, has been the
           fastest-growing subfield since 2015, reflecting advances in object detection,
           semantic segmentation, and sensor fusion that underpin modern ADAS and autonomous
@@ -324,7 +324,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-av-top-assignees"
         subtitle="Organizations ranked by total AV-related patent count, showing concentration among automakers and technology firms."
-        title="Toyota, Ford, GM, Waymo, and Uber Lead in AV Patent Volume, Reflecting the Dual Nature of the Autonomous Vehicle Race"
+        title="Toyota, Honda, Ford, Waymo, and GM Lead in AV Patent Volume, Reflecting the Dual Nature of the Autonomous Vehicle Race"
         caption="Organizations ranked by total AV-related patents, 1976-2025. The data indicate a distinctive competitive landscape where traditional automakers and technology companies compete directly, each leveraging distinct capabilities in vehicle engineering and artificial intelligence."
         insight="The AV patent landscape uniquely bridges two industries: traditional automakers bring decades of vehicle engineering expertise while technology firms contribute AI, sensor fusion, and software capabilities -- creating a competitive dynamic unlike any other technology domain."
         loading={taL}
@@ -350,7 +350,7 @@ export default function Chapter17() {
           The organizational landscape of AV patenting reflects the convergence of two
           historically distinct industries. Traditional automakers -- Toyota, Ford, GM, Honda,
           and Hyundai -- leverage their expertise in vehicle dynamics, safety systems, and
-          manufacturing scale. Technology companies -- Google/Waymo, Uber, and Apple -- bring
+          manufacturing scale. Technology companies -- Google/Waymo, Amazon/Zoox, and LG Electronics -- bring
           capabilities in artificial intelligence, computer vision, and high-definition mapping.
           The presence of both types of organizations among the top patent holders underscores
           the multidisciplinary nature of autonomous driving, requiring the integration of
@@ -386,7 +386,7 @@ export default function Chapter17() {
         <p>
           The ranking data reveal a structural shift in AV patent leadership. Through the
           2000s, traditional automakers such as Toyota and GM held the top positions largely
-          unchallenged. The 2010s exhibited rapid convergence as Google/Waymo, Uber, and other
+          unchallenged. The 2010s exhibited rapid convergence as Google/Waymo, Zoox, Amazon, and other
           technology firms scaled their autonomous driving programs. This intensifying
           competition is consistent with the characterization of autonomous driving as a
           technology domain where incumbency in automotive manufacturing does not guarantee
@@ -515,10 +515,10 @@ export default function Chapter17() {
 
       <KeyInsight>
         <p>
-          AV patents exhibit distinctive quality characteristics. The growing number of backward
-          citations reflects the increasingly interconnected nature of autonomous driving
-          research, which draws on prior art spanning robotics, computer vision, automotive
-          engineering, and telecommunications. The expanding technology scope indicates that AV
+          AV patents exhibit distinctive quality characteristics. Average backward citations
+          peaked around 2013 and have declined substantially since, a pattern consistent with
+          the broader shift toward more narrowly targeted prior art searches as the field has
+          matured. The expanding technology scope indicates that AV
           inventions are inherently interdisciplinary, spanning multiple{' '}
           <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses as autonomous systems
           require the integration of diverse technical capabilities.
@@ -588,14 +588,16 @@ export default function Chapter17() {
       <KeyInsight>
         <p>
           The strategic differences among leading AV patent holders reflect fundamentally
-          different technical philosophies. Traditional automakers such as Toyota and Ford
-          concentrate on vehicle control and navigation, leveraging their engineering heritage
-          in vehicle dynamics and safety systems. Technology firms such as Waymo and Uber have
-          built portfolios emphasizing scene understanding and autonomous driving systems,
-          reflecting their strengths in AI and software. The relative balance between these
-          subfields within each organization&apos;s portfolio reveals whether its approach to
-          autonomous driving is rooted in automotive engineering or computer science -- a
-          distinction that may ultimately determine competitive outcomes as the industry matures.
+          different technical philosophies, though all top organizations focus primarily on
+          navigation and path planning. Traditional automakers such as Toyota and Ford
+          complement their navigation portfolios with vehicle control patents, leveraging
+          their engineering heritage in vehicle dynamics and safety systems. Technology firms
+          such as Waymo have built portfolios emphasizing scene understanding and autonomous
+          driving systems alongside navigation, reflecting their strengths in AI and software.
+          The relative balance between these subfields within each organization&apos;s portfolio
+          reveals whether its approach to autonomous driving is rooted in automotive engineering
+          or computer science -- a distinction that may ultimately determine competitive
+          outcomes as the industry matures.
         </p>
       </KeyInsight>
 
@@ -652,20 +654,20 @@ export default function Chapter17() {
 
       <Narrative>
         <p>
-          Autonomous vehicle patents involve notably larger inventor teams than non-AV patents,
-          reflecting the systems-engineering complexity of self-driving technology. The average
-          AV patent lists more inventors than the typical utility patent, and this disparity has
-          widened over time as autonomous systems have grown more sophisticated, integrating
-          perception, planning, and control into increasingly complex architectures.
+          Autonomous vehicle patent team sizes were generally smaller than non-AV patents
+          through the 2010s but have converged in recent years, reaching essentially equal
+          levels by 2025. This convergence reflects the maturation of AV technology, as
+          autonomous systems have grown more sophisticated and attracted larger multidisciplinary
+          teams integrating perception, planning, and control expertise.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-av-team-comparison"
-        subtitle="Average inventors per patent for AV vs. non-AV utility patents by year, showing the widening complexity gap."
-        title="AV Patents Consistently Involve Larger Teams Than Non-AV Patents, Reflecting Systems-Level Complexity"
-        caption="Average number of inventors per patent for AV-related vs. non-AV utility patents, 1976-2025. The data indicate that AV patents consistently involve larger teams, and the gap has widened in recent years, consistent with the growing systems-engineering complexity of autonomous driving."
-        insight="AV patents consistently involve larger teams than non-AV patents, and the gap has widened in recent years. This pattern reflects the systems-engineering nature of autonomous driving, which requires the integration of AI, sensors, vehicle dynamics, and safety validation."
+        subtitle="Average inventors per patent for AV vs. non-AV utility patents by year, showing convergence in recent years."
+        title="AV Patent Team Sizes Have Converged With Non-AV Teams in Recent Years"
+        caption="Average number of inventors per patent for AV-related vs. non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching essentially equal levels by 2025."
+        insight="AV patent team sizes were historically smaller than non-AV patents but have converged in recent years, reaching parity by 2025 as autonomous driving systems have matured and attracted larger multidisciplinary teams."
         loading={atcL}
       >
         <PWLineChart
@@ -685,7 +687,7 @@ export default function Chapter17() {
         subtitle="Distribution of AV patents by assignee type (corporate, university, government, individual) over time."
         title="Corporate Assignees Dominate AV Patenting, With Technology Firms Driving Recent Growth"
         caption="Distribution of AV patent assignees by type (corporate, university, government, individual) over time. The data reveal overwhelming corporate dominance, reflecting the capital-intensive nature of autonomous vehicle R&D, which requires extensive testing infrastructure, sensor hardware, and large engineering teams."
-        insight="Corporate assignees dominate AV patenting to an even greater degree than in most technology domains, reflecting the extraordinary capital requirements of autonomous vehicle development -- from testing fleets to simulation infrastructure to regulatory compliance."
+        insight="Corporate assignees dominate AV patenting to an even greater degree than in most technology domains, reflecting the substantial capital requirements of autonomous vehicle development -- from testing fleets to simulation infrastructure to regulatory compliance."
         loading={aatL}
         height={500}
       >
@@ -705,7 +707,7 @@ export default function Chapter17() {
       <KeyInsight>
         <p>
           The growth in team sizes and corporate dominance in AV patenting reflects the
-          extraordinary resource requirements of autonomous vehicle development. Unlike many
+          substantial resource requirements of autonomous vehicle development. Unlike many
           software-driven technology domains, autonomous driving demands physical testing
           infrastructure, specialized sensor hardware, regulatory engagement, and large
           multidisciplinary teams spanning mechanical engineering, electrical engineering,

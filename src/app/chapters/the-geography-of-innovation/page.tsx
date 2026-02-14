@@ -261,7 +261,7 @@ export default function Chapter7() {
           id="fig-geography-state-trends"
           subtitle="Annual patent grants for the top 10 states by total output, showing diverging trajectories over time."
           title="California's Patent Output Has Diverged Sharply from Other Leading States, Reaching 4.0x Texas by 2024"
-          caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the early 1990s, with the gap widening in each subsequent decade."
+          caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the mid-1990s, with the gap widening in each subsequent decade."
           insight="California's accelerating divergence from other states since the 1990s is consistent with the compounding advantages characteristic of self-reinforcing innovation ecosystems."
           loading={spyL}
         >
@@ -320,7 +320,7 @@ export default function Chapter7() {
       <KeyInsight>
         <p>
           State technology specialization reflects regional industrial strengths. States with
-          major pharmaceutical hubs (New Jersey, Connecticut) exhibit higher Chemistry shares,
+          major pharmaceutical hubs (particularly New Jersey and Delaware) exhibit higher Chemistry shares,
           while traditional manufacturing states demonstrate stronger Mechanical Engineering concentrations. California
           and Washington show elevated Electricity and Physics shares, reflecting
           the influence of Silicon Valley and the Pacific Northwest technology corridor.
@@ -445,8 +445,8 @@ export default function Chapter7() {
       <KeyInsight>
         <p>
           Regional specialization reveals the distinctive innovation profiles of American cities.
-          Detroit&apos;s mechanical engineering concentration reflects its automotive heritage.
-          San Diego exhibits a pronounced concentration in Electricity, reflecting its semiconductor and wireless technology base. Research Triangle cities in North Carolina demonstrate strong chemistry
+          Detroit&apos;s automotive-related technologies concentration reflects its automotive heritage.
+          San Diego exhibits a pronounced concentration in Electricity, reflecting its semiconductor and wireless technology base. Durham and Chapel Hill demonstrate strong chemistry
           specialization. These patterns suggest that innovation ecosystems develop persistent
           comparative advantages shaped by local industry, universities, and talent pools.
         </p>
@@ -550,8 +550,8 @@ export default function Chapter7() {
       <ChartContainer
         id="fig-geography-country-trends"
         subtitle="Annual US patent grants by primary inventor country for the top 15 countries, showing the evolving international composition of filings."
-        title="Japan Leads Foreign Patent Filings with 1.45 Million, While China Surged from 299 (2000) to 30,695 (2024)"
-        caption="This chart displays annual utility patent grants by primary inventor country for the top 8 countries by total output. Japan maintained the largest foreign share through the 1990s, while South Korea and China have demonstrated the most pronounced growth in the 2000s and 2010s respectively."
+        title="Japan Leads Foreign Patent Filings with 1.45 Million, While China Grew from 299 (2000) to 30,695 (2024)"
+        caption="This chart displays annual utility patent grants by primary inventor country for the top 15 countries by total output. Japan maintained the largest foreign share through the 1990s, while South Korea and China have demonstrated the most pronounced growth in the 2000s and 2010s respectively."
         insight="Japan's leading position among foreign filers reflects decades of sustained corporate research and development investment, while South Korea's rise is consistent with the expansion of firms such as Samsung and LG into global patent markets."
         loading={coL}
         interactive
@@ -576,7 +576,7 @@ export default function Chapter7() {
         <p>
           The share of domestically originated patents in the United States has declined over the decades
           as inventors from Japan, Germany, South Korea, and China have substantially
-          increased their filings. By the 2010s, foreign-origin inventors accounted
+          increased their filings. By the late 2000s, foreign-origin inventors accounted
           for more than half of all US patent grants.
         </p>
       </Narrative>

@@ -14,8 +14,7 @@ import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
-import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
@@ -85,7 +84,7 @@ export default function PatentQuality() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Multiple dimensions of patent quality have moved in distinct directions since the 1970s. Average forward citations per patent rose from 2.5 to 6.4 within 5-year windows, yet the median remained at 2, revealing a highly skewed distribution in which a small fraction of patents captures a disproportionate share of total citations. Citation lag -- the temporal distance over which patents reference prior art -- expanded from approximately 3 years in the early 1980s to over 16 years by 2025, indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. The originality index climbed from 0.09 to 0.25, indicating more interdisciplinary innovation, yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. Patent scope broadened as average CPC subclasses per patent grew from 1.8 to nearly 2.5, and multi-section patents rose from 21% to 41% of all grants, consistent with the convergence of once-separate technology domains. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment.
+          Multiple dimensions of patent quality have moved in distinct directions since the 1970s. Average forward citations per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution in which a small fraction of patents captures a disproportionate share of total citations. Citation lag -- the temporal distance over which patents reference prior art -- expanded from approximately 3 years in the early 1980s to over 16 years by 2025, indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. The originality index climbed from 0.09 to 0.25, indicating more interdisciplinary innovation, yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. Patent scope broadened as average CPC subclasses per patent grew from 1.8 to nearly 2.5, and multi-section patents rose from 21% to 41% of all grants, consistent with the convergence of once-separate technology domains. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment.
         </p>
       </aside>
 
@@ -119,7 +118,7 @@ export default function PatentQuality() {
       <ChartContainer
         id="fig-patent-quality-forward-citations"
         subtitle="Average and median forward citations received within 5 years of grant, by grant year. The gap between the two measures reveals the skewness of the citation distribution."
-        title="Average Forward Citations per Patent Rose from 2.5 to 6.4 While the Median Remained at 2, Revealing Growing Skewness"
+        title="Average Forward Citations per Patent Rose from 2.5 to a Peak of 6.4 in 2019 While the Median Oscillated Between 2 and 3, Revealing Growing Skewness"
         caption="This chart displays average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020). The persistent gap between average and median reveals a highly skewed distribution, with most patents receiving modest citations whereas a small fraction becomes heavily cited."
         loading={trL}
         insight="The increase in average citations alongside flat median citations indicates growing skewness: a small fraction of patents captures a disproportionate share of total citations."
@@ -188,7 +187,7 @@ export default function PatentQuality() {
           The average number of backward citations per patent has grown substantially over the
           decades, reflecting the expanding body of prior art that new inventions must
           acknowledge. Patents increasingly build on larger bodies of prior art, with the average rising
-          from approximately 5 in the 1970s to around 21 in recent years. The gap between average and median
+          from approximately 5 in the 1970s to around 19-21 in recent years. The gap between average and median
           suggests a long tail of heavily-cited patents, a pattern consistent with both the expanding universe of
           prior art and more thorough examination and disclosure requirements.
         </p>
@@ -267,7 +266,7 @@ export default function PatentQuality() {
         id="fig-patent-quality-claims-trends"
         subtitle="Median and 90th percentile claim counts for utility patents by grant year, measuring the evolution of patent scope over time."
         title="Median Claims Doubled from 8 to 18 (1976-2025) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025"
-        caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The widening gap between median and 90th percentile values indicates that claim inflation is concentrated in the upper tail of the distribution, particularly in software and biotechnology patents."
+        caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The gap between median and 90th percentile widened through the mid-2000s (peak gap of 19 in 2005) but has since narrowed substantially to 3 by 2025, indicating that the most extreme claim inflation has moderated."
         insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
         loading={clL}
       >
@@ -338,7 +337,7 @@ export default function PatentQuality() {
       <ChartContainer
         id="fig-patent-quality-cross-domain"
         subtitle="Annual patent counts by number of CPC sections spanned (1, 2, or 3+), shown as a stacked area to illustrate growing cross-domain convergence."
-        title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2020), Indicating Increasing Technological Convergence"
+        title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2025), Indicating Increasing Technological Convergence"
         caption="This chart presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
@@ -433,7 +432,7 @@ export default function PatentQuality() {
       <ChartContainer
         id="fig-patent-quality-self-citation-rate"
         subtitle="Average and median self-citation rate per patent (fraction of backward citations to the same assignee's earlier patents), by year."
-        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13-15% in the 2020s"
+        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13-16% in the 2020s"
         caption="This chart displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
         loading={scL}
         insight="Self-citation patterns indicate knowledge accumulation strategies within firms, with temporal changes potentially reflecting shifts between exploration of new domains and exploitation of established competencies."

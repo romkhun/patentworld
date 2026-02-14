@@ -259,6 +259,7 @@ export const TOOLTIP_STYLE: React.CSSProperties = {
   border: '1px solid hsl(var(--border))',
   borderRadius: '8px',
   fontSize: '14px',
+  fontFamily: 'var(--font-jakarta)',
   padding: '10px 14px',
   boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
 };

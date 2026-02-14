@@ -152,17 +152,17 @@ export default function SectorDynamics() {
       />
 
       <KeyFindings>
-        <li>Citation lag varies by technology: Physics/Electricity show 11-year median lag vs. 17 years for Chemistry in the 2020s.</li>
+        <li>Citation lag varies by technology: Physics/Electricity exhibit 11-year median lag vs. 17 years for Chemistry in the 2020s.</li>
         <li>Innovation velocity is correlated across sectors, with synchronized declines during economic downturns.</li>
-        <li>Chemistry patents consistently exhibit the longest examination durations.</li>
-        <li>Composite quality index shows Chemistry and Human Necessities maintaining the highest scores.</li>
-        <li>Claims have converged across technology areas in recent decades.</li>
+        <li>Since the mid-2000s, Chemistry patents have exhibited the longest examination durations.</li>
+        <li>Composite quality index indicates Chemistry maintaining the highest scores, with Human Necessities rising to second in recent years.</li>
+        <li>Claims have increased across all technology areas in recent decades.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Innovation metrics vary substantially across technology fields, revealing distinct dynamics for each sector. Citation lag, examination friction, and quality indicators all show technology-specific patterns that reflect the underlying nature of innovation in different domains. Physics and Electricity patents exhibit shorter citation lags and faster examination times, consistent with rapid innovation cycles in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">computing and electronics</Link>, whereas Chemistry and Human Necessities demonstrate longer lags and extended pendency, reflecting the complex development timelines characteristic of those fields. A composite Z-score index aggregating citations, claims, scope, and grant speed shows Chemistry and Human Necessities patents consistently scoring highest, while Electronics and Physics patents have risen from negative to positive composite territory since the 1990s, a trajectory consistent with the accelerating innovation velocity documented across all sectors.
+          Innovation metrics vary substantially across technology fields, revealing distinct dynamics for each sector. Citation lag, examination friction, and quality indicators all exhibit technology-specific patterns that reflect the underlying nature of innovation in different domains. Physics and Electricity patents exhibit shorter citation lags and faster examination times, consistent with rapid innovation cycles in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">computing and electronics</Link>, whereas Chemistry and Human Necessities demonstrate longer lags and extended pendency, reflecting the complex development timelines characteristic of those fields. A composite Z-score index aggregating citations, claims, scope, and grant speed indicates Chemistry patents consistently scoring highest, with Human Necessities rising to second in recent years, while Electronics and Physics patents have risen from negative to positive composite territory since the 1990s, a trajectory consistent with the accelerating innovation velocity documented across all sectors.
         </p>
       </aside>
 
@@ -230,7 +230,7 @@ export default function SectorDynamics() {
       <ChartContainer
         id="fig-sector-dynamics-velocity"
         subtitle="Year-over-year percentage change in patent grants by WIPO technology sector, revealing synchronized cyclical patterns."
-        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines of 7-18% During the 2001 and 2008 Downturns"
+        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Dot-Com Bust (2004-2005) and Financial Crisis (2007)"
         caption="This chart presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors suggests that macroeconomic conditions and patent policy exert stronger influence on patenting rates than sector-specific technology cycles."
@@ -274,8 +274,8 @@ export default function SectorDynamics() {
       <ChartContainer
         id="fig-sector-dynamics-friction-map"
         subtitle="Median time from application filing to patent grant by CPC section and 5-year period, measuring technology-specific examination friction."
-        title="Chemistry (C) Patents Consistently Exhibit the Longest Examination Durations, with a Median of 1,293 Days in the 2010-2014 Period"
-        caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Chemistry and Human Necessities patents consistently exhibit the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
+        title="Since the Mid-2000s, Chemistry (C) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,293 Days in the 2010-2014 Period"
+        caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns reveal the institutional constraints that shape innovation timelines, with technology-specific backlogs reflecting the USPTO's resource allocation across its technology centers."
       >
@@ -300,7 +300,7 @@ export default function SectorDynamics() {
           Examination duration increased substantially across all technology areas through
           the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog.
           The AIA reforms and USPTO hiring initiatives contributed to reduced pendency in subsequent
-          years. Chemistry (C) patents consistently exhibit the longest
+          years. Since the mid-2000s, Chemistry (C) patents have exhibited the longest
           examination durations, a pattern consistent with the complexity of chemical and biomedical
           examination. The financial crisis of 2008-2009 did not reduce filing rates sufficiently to
           alleviate the backlog, which continued growing until systemic reforms took effect.
@@ -314,16 +314,16 @@ export default function SectorDynamics() {
         <p>
           The number of claims in a patent defines the scope of legal protection. Trends in
           claim counts by technology area reveal how patent strategy has evolved across fields,
-          with convergence in recent decades suggesting a broad trend toward more detailed patent
+          with increases across all technology areas reflecting a broad trend toward more detailed patent
           drafting regardless of domain.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-sector-dynamics-claims-by-section"
-        subtitle="Median claim count by CPC technology section and decade, showing convergence in patent drafting practices across fields."
-        title="Claim Counts Have Converged Across Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="This chart displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with convergence in recent decades suggesting a broad trend toward more detailed patent drafting regardless of field."
+        subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
+        title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
+        caption="This chart displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the range widening from 1 to 4 across decades, reflecting diverging patent drafting complexity across fields."
         loading={clL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -345,9 +345,9 @@ export default function SectorDynamics() {
           Patent complexity, as measured by average claims per patent, varies considerably
           across technology sectors. Electrical engineering and instruments patents tend to have the most
           claims in recent decades, reflecting the detailed and layered claim structures characteristic of
-          software and electronics inventions. The convergence of claim counts across sectors in recent decades
-          suggests a broad trend toward more complex patent drafting strategies irrespective
-          of technology domain.
+          software and electronics inventions. The increase in claim counts across all sectors in recent decades
+          reflects a broad trend toward more complex patent drafting strategies, though the range
+          across sectors has widened rather than narrowed.
         </p>
       </KeyInsight>
 
@@ -356,11 +356,11 @@ export default function SectorDynamics() {
 
       <ChartContainer
         id="fig-sector-dynamics-quality-by-sector"
-        subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to show cross-sector convergence trends."
-        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Driving Cross-Sector Convergence"
-        caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. The convergence of claim counts across sectors suggests a broad trend toward more detailed patent drafting."
+        subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to illustrate cross-sector trends."
+        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Reflecting Broad Increases Across Sectors"
+        caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
-        insight="Biotechnology and pharmaceutical patents tend to exhibit higher citation impact per patent, a pattern consistent with the slower but more impactful nature of pharmaceutical innovation."
+        insight="Electrical engineering patents tend to exhibit higher citation impact per patent than Chemistry patents, a pattern consistent with the rapid innovation cycles and dense citation networks in computing and electronics."
       >
         <PWLineChart
           data={sectorPivot}
@@ -377,8 +377,8 @@ export default function SectorDynamics() {
 
       <KeyInsight>
         <p>
-          Quality metrics vary substantially across technology sectors; biotechnology and
-          pharmaceutical patents tend to receive more citations per patent than electronics patents.
+          Quality metrics vary substantially across technology sectors; electrical engineering
+          patents tend to receive more citations per patent than Chemistry patents (e.g., 2016-2020: Electrical=5.20 vs. Chemistry=4.37).
           Patent complexity, as measured by average claims per patent, varies considerably
           across WIPO technology sectors, with instruments and electrical engineering patents
           exhibiting the highest claim counts in recent periods.
@@ -401,10 +401,10 @@ export default function SectorDynamics() {
       <ChartContainer
         id="fig-sector-dynamics-composite-index"
         subtitle="Z-score normalized composite of forward citations, claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality."
-        title="Chemistry (C) and Human Necessities (A) Patents Maintain the Highest Composite Quality Scores, While Electronics (H) and Physics (G) Rose from Negative to Positive Z-Scores Since the 1990s"
-        caption="This chart displays a Z-score normalized composite index of forward citations (5-year window), claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality. Chemistry (C) and Human Necessities (A) patents consistently score highest, whereas Electronics (H) and Physics (G) have improved from negative to positive composite scores since the 1990s."
+        title="Chemistry (C) Patents Maintain the Highest Composite Quality Scores, with Human Necessities (A) Rising to Second in Recent Years, While Electronics (H) and Physics (G) Rose from Negative to Positive Z-Scores Since the 1990s"
+        caption="This chart displays a Z-score normalized composite index of forward citations (5-year window), claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality. Chemistry (C) patents consistently score highest, with Human Necessities (A) rising to second in recent years, whereas Electronics (H) and Physics (G) have improved from negative to positive composite scores since the 1990s."
         loading={cqL}
-        insight="Composite quality has improved across most technology areas since the 1990s, with Chemistry and Human Necessities maintaining the highest scores throughout."
+        insight="Composite quality has improved across most technology areas since the 1990s, with Chemistry maintaining the highest scores throughout and Human Necessities rising to second in recent years."
       >
         {compositeQualityPivot.length > 0 && (
           <PWLineChart
@@ -425,8 +425,8 @@ export default function SectorDynamics() {
       <KeyInsight>
         <p>
           The composite quality index reveals diverging trajectories across technology areas.
-          Chemistry and Human Necessities patents have maintained consistently higher composite
-          quality, driven by strong forward citation rates and broad scope. Electronics and
+          Chemistry patents have maintained consistently the highest composite
+          quality, driven by strong forward citation rates and broad scope, with Human Necessities rising to second in recent years. Electronics and
           Physics patenting has exhibited improving average quality since the 1990s, with composite
           scores rising from negative to positive territory. The overall upward trend since
           the 1990s suggests that patent quality has improved alongside growing volume.
@@ -467,7 +467,7 @@ export default function SectorDynamics() {
                   <td className="py-1.5 pr-4">{d.decade}s</td>
                   <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.total_citations)}</td>
                   <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.self_citations)}</td>
-                  <td className="py-1.5 text-right font-mono text-xs">{(d.self_cite_rate * 100).toFixed(1)}%</td>
+                  <td className="py-1.5 text-right font-mono text-xs">{d.self_cite_rate.toFixed(1)}%</td>
                 </tr>
               ))}
             </tbody>

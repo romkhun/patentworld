@@ -18,7 +18,7 @@ const FAQ_JSONLD = {
       name: 'How many US patents have been granted since 1976?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The USPTO has granted approximately 9.36 million utility patents from 1976 to 2025, growing from about 70,000 per year to over 350,000 per year.',
+        text: 'The USPTO has granted approximately 9.36 million utility patents from 1976 to 2025, growing from approximately 70,000 per year to over 350,000 per year.',
       },
     },
     {
@@ -26,15 +26,15 @@ const FAQ_JSONLD = {
       name: 'Which technology sectors have the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Electricity (CPC Section H) and Physics (Section G) dominate modern patenting, reflecting the digital transformation. Together they account for over 50% of recent grants, driven by software, semiconductors, and telecommunications innovations.',
+        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, reflecting the digital transformation. Together they account for over 50% of recent grants, propelled by software, semiconductors, and telecommunications innovations.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Who holds the most US patents?',
+      name: 'Which company holds the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'IBM has historically led US patent grants for decades. Samsung, Canon, Intel, and other technology firms are also among the top holders. The landscape has shifted significantly with the rise of Asian firms.',
+        text: 'IBM has historically led US patent grants for decades. Samsung, Canon, Intel, and other technology firms are also among the top holders. The landscape has shifted markedly with the rise of Asian firms.',
       },
     },
     {
@@ -55,10 +55,10 @@ const FAQ_JSONLD = {
     },
     {
       '@type': 'Question',
-      name: 'How long does it take to get a US patent?',
+      name: 'How long does it take to obtain a US patent?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Average grant lag is approximately 3 years (about 1,100 days), varying by technology area. Electrical and software patents tend to have longer pendency than mechanical inventions.',
+        text: 'Average grant lag is approximately 3 years (approximately 1,100 days), with considerable variation by technology area. Electrical and software patents tend to exhibit longer pendency than mechanical inventions.',
       },
     },
     {
@@ -66,7 +66,7 @@ const FAQ_JSONLD = {
       name: 'What are the fastest-growing patent technology areas?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent filings have increased approximately six-fold since 2010, driven by advances in deep learning.',
+        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent filings have increased approximately six-fold since 2010, propelled by advances in deep learning.',
       },
     },
     {
@@ -74,7 +74,7 @@ const FAQ_JSONLD = {
       name: 'Is AI patenting growing?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'AI-related patent filings have grown substantially, particularly since 2012. IBM, Samsung, Google, and Microsoft are among the leading AI patent filers. AI-related claims now appear across virtually every technology domain.',
+        text: 'AI-related patent filings have grown substantially, particularly since 2012. IBM, Samsung, Google, and Microsoft are among the leading AI patent filers. AI-related claims are now present across virtually every technology domain.',
       },
     },
     {

@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     description: 'Data sources, methodology, and technology behind the interactive patent data exploration.',
     url: 'https://patentworld.vercel.app/about/',
     siteName: 'PatentWorld',
+    images: [{ url: 'https://patentworld.vercel.app/og/home.png', width: 1200, height: 630, alt: 'About PatentWorld' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About PatentWorld | PatentWorld',
+    description: 'Data sources, methodology, and analytical approach for PatentWorld. Built on 9.36M US patents.',
+    images: ['https://patentworld.vercel.app/og/home.png'],
   },
   alternates: {
     canonical: 'https://patentworld.vercel.app/about/',
@@ -44,7 +51,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Which countries file the most US patents?',
-    answer: 'The United States accounts for the largest share of US patent grants, followed by Japan, South Korea, China, and Germany. Foreign-origin patents now constitute over 50% of all US grants, reflecting the global nature of innovation. China has been the fastest-growing source of US patents since 2010.',
+    answer: 'The United States accounts for the largest share of US patent grants, followed by Japan, South Korea, China, and Germany. Foreign-origin patents now constitute over 50% of all US grants, reflecting the global nature of innovation. China has been the most rapidly growing source of US patents since 2010.',
   },
   {
     question: 'How has patent quality changed over time?',
@@ -52,7 +59,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What was the impact of the America Invents Act?',
-    answer: 'The America Invents Act (AIA) of 2011 was the most significant US patent reform in decades. It shifted the US from a first-to-invent to a first-to-file system, created new post-grant review proceedings, and expanded prior art definitions. Inter partes review has since become a major mechanism for challenging patent validity.',
+    answer: 'The America Invents Act (AIA) of 2011 was the most consequential US patent reform since the 1952 Patent Act. It shifted the US from a first-to-invent to a first-to-file system, created new post-grant review proceedings, and expanded prior art definitions. Inter partes review has since become a major mechanism for challenging patent validity.',
   },
   {
     question: 'How many patents does the average inventor hold?',
@@ -160,12 +167,12 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">About the Author</h2>
           <p>
-            <strong><a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">Saerom (Ronnie) Lee</a></strong> is an Assistant Professor of Management
+            <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2 hover:text-foreground transition-colors">Saerom (Ronnie) Lee</a> is an Assistant Professor of Management
             at The Wharton School, University of Pennsylvania. His research examines
-            organizational design, human capital allocation, and the scaling of high-growth
-            ventures. Additional information is available on his{' '}
+            organizational design, human capital acquisition, startup scaling, and
+            high-growth entrepreneurship. Additional information is available on his{' '}
             <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-              faculty page
+              personal website
             </a>. PatentWorld was developed to provide a rigorous, interactive platform
             for examining half a century of US patent data.
           </p>

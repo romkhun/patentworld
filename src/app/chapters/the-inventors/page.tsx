@@ -159,7 +159,7 @@ export default function Chapter6() {
         <li>The female share of inventor instances has risen steadily but remains below 15%, with substantial variation across technology fields that mirrors the composition of STEM educational pipelines.</li>
         <li>The share of patents including first-time inventors has declined from 71% to 26%, suggesting the patent system increasingly favors experienced, repeat inventors.</li>
         <li>Average patent team size increased from about 1.7 inventors in the late 1970s to over 3 by 2025, and the top 5% of inventors account for a growing share of total output.</li>
-        <li>Inventor mobility has risen over time, and mobile inventors consistently produce higher-impact patents, while career productivity peaks early and then plateaus rather than declining.</li>
+        <li>Inventor mobility rose from 50% in the 1980s to 60% in the 2000s before declining to 51% in the 2020s, and mobile inventors consistently produce higher-impact patents, while career productivity peaks early and then plateaus rather than declining.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -218,7 +218,7 @@ export default function Chapter6() {
           id="fig-inventors-gender-by-sector"
           title="Chemistry Leads Female Inventor Representation at 14.6%; Mechanical Engineering Lowest at 5.4%"
           subtitle="Female inventor share by WIPO technology sector, showing cross-sector variation in gender representation"
-          caption="This chart displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while electrical and mechanical engineering demonstrate the lowest shares."
+          caption="This chart displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while mechanical engineering and other fields demonstrate the lowest shares."
           insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, suggesting that educational pipeline differences constitute a primary driver of the gender gap in patenting."
           loading={gsL}
           height={500}
@@ -236,8 +236,8 @@ export default function Chapter6() {
       <KeyInsight>
         <p>
           Female representation among US patent inventors has increased steadily but remains below 15%.
-          Chemistry and pharmaceutical fields exhibit the highest gender diversity, while electrical engineering
-          and mechanical engineering demonstrate the lowest representation -- a pattern that closely mirrors the gender
+          Chemistry and pharmaceutical fields exhibit the highest gender diversity, while mechanical engineering
+          and other fields demonstrate the lowest representation -- a pattern that closely mirrors the gender
           composition of STEM degree programs.
         </p>
       </KeyInsight>
@@ -301,9 +301,7 @@ export default function Chapter6() {
           Female inventor participation has increased across all technology areas, though
           significant disparities persist. Chemistry &amp; Metallurgy and Human Necessities exhibit the
           highest female inventor shares, while Electricity and Mechanical Engineering demonstrate
-          the lowest representation. Gender-diverse teams produce patents with citation impact comparable to
-          or exceeding that of all-male teams, suggesting that diversity in inventor teams
-          may contribute to innovation quality as well as equity.
+          the lowest representation. All-male teams produce the highest average citation impact (14.2 citations), followed by mixed-gender teams (12.6) and all-female teams (9.5), indicating that team composition correlates with citation outcomes in complex ways.
         </p>
       </KeyInsight>
 
@@ -319,9 +317,9 @@ export default function Chapter6() {
 
       <ChartContainer
         id="fig-inventors-first-time-entries"
-        title="Annual First-Time Inventor Entries Rose from 35,000 to a Peak of 140,490 in 2019"
+        title="Annual First-Time Inventor Entries Rose from a Late-1970s Low of 35,000 to a Peak of 140,490 in 2019"
         subtitle="Number of inventors filing their first US patent each year, measuring new entrant inflow, 1976-2025"
-        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from approximately 35,000-59,000 in the late 1970s to peaks exceeding 140,000 in recent years."
+        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from 35,000-86,000 in the late 1970s to peaks exceeding 140,000 by the late 2010s."
         insight="The sustained inflow of new inventors serves as an indicator of the innovation ecosystem's capacity for renewal, demonstrating continued broadening of the inventor base despite increasing specialization."
         loading={enL}
       >
@@ -337,7 +335,7 @@ export default function Chapter6() {
       <Narrative>
         <p>
           The flow of new inventors into the patent system has expanded substantially,
-          reaching its highest levels in recent years. This growth reflects both the expansion of technology
+          reaching its highest levels in the late 2010s. This growth reflects both the expansion of technology
           industries and the increasing globalization of research and development, as inventors from
           around the world file patents through the US system.
         </p>
@@ -368,7 +366,7 @@ export default function Chapter6() {
       <KeyInsight>
         <p>
           While the absolute number of new inventors entering the patent system has grown substantially,
-          patent grants have grown even faster (5.3-fold versus 2.8-fold since 1980), and the share of
+          patent grants have grown even faster (5.3-fold versus 2.8-fold since 1980, as of 2024), and the share of
           patents including a first-time inventor has declined from 71% to 26%. This divergence indicates that rising team sizes and repeat
           inventors drive much of the expansion, even as the continued inflow of first-time
           inventors sustains the renewal capacity of the innovation ecosystem.
@@ -433,10 +431,10 @@ export default function Chapter6() {
 
       <Narrative>
         <p>
-          Within this increasingly collaborative landscape, a small number of individuals stand out for their
-          extraordinary volume of patent output. <StatCallout value={topInventorName} /> holds the record
-          for the most patents granted to a single inventor, but prolificacy alone does not capture the full
-          picture of inventor performance.
+          Within this increasingly collaborative landscape, a small number of individuals are distinguished by their
+          exceptionally high volume of patent output. <StatCallout value={topInventorName} /> holds the record
+          for the most patents granted to a single inventor, but prolificacy alone does not fully characterize
+          inventor performance.
         </p>
       </Narrative>
 
@@ -486,7 +484,7 @@ export default function Chapter6() {
       <ChartContainer
         id="fig-inventors-citation-impact"
         title="Citation Impact Ranges from 10 to 965 Average Citations Among the 100 Most Prolific Inventors"
-        subtitle="Average and median forward citations per patent for the top 100 most prolific inventors, based on patents granted through 2020"
+        subtitle="Average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, based on patents granted through 2020"
         caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
         loading={siL}
@@ -689,7 +687,7 @@ export default function Chapter6() {
         id="fig-inventors-career-survival"
         title="Only 37-51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
         subtitle="Percentage of inventors remaining active at each career year, stratified by 5-year entry cohort, measuring career persistence"
-        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with approximately 38-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
+        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with approximately 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
         insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
@@ -782,7 +780,7 @@ export default function Chapter6() {
       </Narrative>
       <ChartContainer
         id="fig-inventors-mobility-rate"
-        title="Inventor Mobility Rates Rose from 50% in the 1980s to 60% in the 2000s"
+        title="Inventor Mobility Rates Rose from 50% in the 1980s to 60% in the 2000s Before Declining to 51% in the 2020s"
         subtitle="Percentage of prolific inventors (5+ patents per decade) who patented at multiple organizations, by decade"
         caption="This chart displays the percentage of prolific inventors (those with 5 or more patents per decade) who patented at multiple organizations. The upward trend across decades indicates growing inter-organizational mobility among active inventors."
         insight="Rising inventor mobility is consistent with the growing fluidity of the technology labor market, where career transitions between organizations appear to serve as channels for knowledge transfer."

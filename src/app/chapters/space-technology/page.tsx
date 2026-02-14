@@ -188,9 +188,9 @@ export default function Chapter18() {
       />
 
       <KeyFindings>
-        <li>Space technology patenting has experienced a commercial renaissance driven by new entrants such as SpaceX and Blue Origin, disrupting decades of dominance by traditional defense contractors.</li>
-        <li>Satellite design and space communications have emerged as the largest subfields, reflecting the growing economic importance of orbital infrastructure for global connectivity.</li>
-        <li>Boeing, Lockheed Martin, and Northrop Grumman remain the leading patent holders by volume, though their dominance has narrowed as commercial space firms scale their IP portfolios.</li>
+        <li>Space technology patenting has experienced a commercial resurgence driven by the emergence of commercial space ventures, altering decades of dominance by traditional defense contractors.</li>
+        <li>Space communications and other spacecraft constitute the largest subfields, followed by propulsion systems, reflecting the growing economic importance of orbital infrastructure for global connectivity.</li>
+        <li>Boeing, ViaSat, and Hughes Network Systems lead in space patent volume, followed by Lockheed Martin, though the competitive landscape has broadened as commercial space firms scale their IP portfolios.</li>
         <li>Space patents span multiple technology domains, with increasing co-classification in electronics, physics, and mechanical engineering, consistent with the multidisciplinary nature of spacecraft systems.</li>
       </KeyFindings>
 
@@ -209,18 +209,19 @@ export default function Chapter18() {
           Space technology has undergone a fundamental transformation over the past two decades,
           evolving from a government-dominated sector to one of the most dynamic arenas of
           commercial innovation. This chapter examines the trajectory of space-related patents,
-          from traditional aerospace engineering through the reusable rocket revolution to the
+          from traditional aerospace engineering through the advent of reusable rockets to the
           current era of satellite mega-constellations and commercial space stations.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          Space patent activity serves as a barometer of the commercial space revolution. The
-          acceleration in space-related patenting since the mid-2000s coincides with the emergence
-          of private launch providers, reflecting a fundamental shift in how the aerospace industry
-          approaches innovation -- from cost-plus government contracts to commercially competitive
-          technology development.
+          Space patent activity serves as a barometer of the commercial space transformation. After
+          a decline in the late 2000s, the acceleration in space-related patenting since around
+          2015 coincides with the maturation of private launch providers and satellite broadband
+          programs, reflecting a fundamental shift in how the aerospace industry approaches
+          innovation -- from cost-plus government contracts to commercially competitive technology
+          development.
         </p>
       </KeyInsight>
 
@@ -230,8 +231,8 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-space-annual-count"
         subtitle="Annual count of utility patents classified under space technology CPC codes, tracking the growth trajectory of space-related patenting."
-        title="Space Patent Filings Have Grown Substantially Since the Mid-2000s, Reflecting the Commercial Space Revolution"
-        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. The most prominent pattern is the acceleration beginning around 2005, coinciding with the emergence of commercial launch providers and satellite broadband programs."
+        title="Space Patent Filings Have Grown Substantially Since 2015, Reflecting the Commercialization of the Space Industry"
+        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs."
         insight="The growth in space patents mirrors the broader commercialization of the space industry, driven by reusable launch vehicles, satellite constellations, and increasing private-sector investment."
         loading={pyL}
       >
@@ -248,11 +249,12 @@ export default function Chapter18() {
 
       <KeyInsight>
         <p>
-          Space patent filings have exhibited substantial growth since the mid-2000s, driven by
+          Space patent filings declined in the late 2000s before resuming growth in the early
+          2010s, with real acceleration beginning around 2015. This growth has been driven by
           the entry of commercially oriented firms into launch services, satellite manufacturing,
-          and space communications. The growth rate has accelerated following key milestones in
-          reusable rocket technology, suggesting that demonstrated technical feasibility catalyzed
-          broader investment in space-related R&amp;D.
+          and space communications. The acceleration following key milestones in reusable rocket
+          technology suggests that demonstrated technical feasibility catalyzed broader investment
+          in space-related R&amp;D.
         </p>
       </KeyInsight>
 
@@ -282,9 +284,9 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-space-subfields"
         subtitle="Patent counts by space technology subfield (satellite design, propulsion, communications, etc.) over time."
-        title="Satellite Design and Space Communications Have Emerged as the Dominant Subfields, Driven by Constellation Programs"
-        caption="Patent counts by space technology subfield over time, based on CPC classifications. The data reveal that satellite design and space communications have driven recent growth, reflecting the economic importance of orbital infrastructure for global connectivity."
-        insight="The shift toward satellite design and communications patents reflects the commercial pivot of the space industry -- from exploration-driven missions to revenue-generating orbital services."
+        title="Space Communications and Other Spacecraft Constitute the Largest Subfields, Followed by Propulsion Systems"
+        caption="Patent counts by space technology subfield over time, based on CPC classifications. The data reveal that space communications and other spacecraft categories have driven recent growth, followed by propulsion systems, reflecting the economic importance of orbital infrastructure for global connectivity."
+        insight="The dominance of space communications patents reflects the commercial pivot of the space industry -- from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
         loading={sfL}
         height={650}
       >
@@ -304,12 +306,12 @@ export default function Chapter18() {
 
       <KeyInsight>
         <p>
-          The composition of space patents has shifted substantially over time. Traditional
-          subfields such as propulsion systems and attitude control continue to represent core
-          engineering challenges. However, satellite design and space communications have become
-          the dominant categories, reflecting the growing importance of orbital infrastructure for
-          telecommunications, Earth observation, and global connectivity initiatives such as
-          Starlink and Project Kuiper.
+          The composition of space patents has shifted substantially over time. Space
+          communications and other spacecraft constitute the largest subfields, followed by
+          propulsion systems. Traditional subfields such as attitude control continue to represent
+          core engineering challenges. The dominance of communications patents reflects the growing
+          importance of orbital infrastructure for telecommunications, Earth observation, and global
+          connectivity initiatives such as Starlink and Project Kuiper.
         </p>
       </KeyInsight>
 
@@ -319,7 +321,7 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-space-top-assignees"
         subtitle="Organizations ranked by total space-related patent count from 1976 to 2025, showing concentration among aerospace and defense firms."
-        title="Boeing, Lockheed Martin, and Northrop Grumman Lead in Total Space Patent Volume, Reflecting Decades of Government Contracting"
+        title="Boeing, ViaSat, and Hughes Network Systems Lead in Total Space Patent Volume, Reflecting the Importance of Satellite Communications"
         caption="Organizations ranked by total space-related patents, 1976-2025. The data indicate a concentration among traditional aerospace and defense contractors, though commercial space entrants have been scaling their portfolios in recent years."
         insight="The dominance of traditional aerospace firms in space patenting reflects the historical role of government contracts in funding space R&D, though commercial entrants are beginning to reshape the competitive landscape."
         loading={taL}
@@ -342,11 +344,11 @@ export default function Chapter18() {
 
       <KeyInsight>
         <p>
-          Space patent leadership reflects the enduring influence of aerospace and defense
-          contractors that built their portfolios through decades of NASA and Department of
-          Defense contracts. Boeing, Lockheed Martin, and Northrop Grumman occupy the top
-          positions, drawing on deep systems integration capabilities in launch vehicles, satellite
-          platforms, and space station infrastructure. The emergence of commercially oriented firms
+          Space patent leadership reflects a mix of traditional aerospace firms and satellite
+          communications specialists. Boeing leads in total volume, followed by ViaSat and
+          Hughes Network Systems -- both of which built large portfolios through satellite
+          broadband innovation. Lockheed Martin also maintains a substantial presence, drawing
+          on deep systems integration capabilities in launch vehicles and satellite platforms. The emergence of commercially oriented firms
           in lower ranking positions signals a potential long-term shift in the competitive
           landscape as private-sector investment in space technology continues to grow.
         </p>
@@ -423,7 +425,7 @@ export default function Chapter18() {
         id="fig-space-by-country"
         subtitle="Countries ranked by total space-related patents based on primary inventor location, showing geographic distribution of space innovation."
         title="The United States Dominates Space Patenting by Inventor Nationality, Reflecting Its Leadership in Both Government and Commercial Space Programs"
-        caption="Countries ranked by total space-related patents based on primary inventor location. The United States maintains a substantial lead, with significant contributions from Japan, France, and Germany reflecting their national space agencies and aerospace industries."
+        caption="Countries ranked by total space-related patents based on primary inventor location. The United States maintains a substantial lead, with significant contributions from France, Japan, and Germany reflecting their national space agencies and aerospace industries."
         insight="The United States lead in space patenting reflects its concentration of major aerospace firms, NASA research centers, and the growing commercial space ecosystem, while European and Japanese contributions reflect their respective national space programs."
         loading={geoL}
         height={900}
@@ -440,9 +442,9 @@ export default function Chapter18() {
         <p>
           The geographic distribution of space patents reveals the dominant role of the United
           States, supported by both its government space programs and the commercial space sector.
-          Japan, France, and Germany maintain significant positions, driven by their national
-          space agencies (JAXA, CNES, DLR) and aerospace industries (Mitsubishi Heavy Industries,
-          Airbus, Thales). The relatively limited presence of China in US patent filings likely
+          France, Japan, and Germany maintain significant positions, driven by their national
+          space agencies (CNES, JAXA, DLR) and aerospace industries (Airbus, Thales, Mitsubishi
+          Heavy Industries). The relatively limited presence of China in US patent filings likely
           understates its actual space technology capabilities, as Chinese firms and agencies
           tend to file domestically rather than in the US patent system.
         </p>
@@ -451,9 +453,9 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-space-by-state"
         subtitle="US states ranked by total space-related patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California and Colorado Lead US Space Patenting, Reflecting Aerospace Industry Clustering"
-        caption="US states ranked by total space-related patents based on primary inventor location. The concentration in California and Colorado is consistent with the location of major aerospace facilities, NASA centers, and the growing commercial space ecosystem in these states."
-        insight="The geographic clustering of space patents in California and Colorado reflects the concentration of aerospace and defense facilities, NASA research centers, and commercial space startups in these states."
+        title="California and Maryland Lead US Space Patenting, Reflecting Aerospace and Defense Industry Clustering"
+        caption="US states ranked by total space-related patents based on primary inventor location. California leads by a wide margin, followed by Maryland -- home to major defense contractors and NASA's Goddard Space Flight Center. Arizona, Washington, and Texas round out the top five."
+        insight="The geographic clustering of space patents in California and Maryland reflects the concentration of aerospace and defense facilities, NASA research centers, and satellite communications firms in these states."
         loading={geoL}
         height={900}
       >
@@ -468,12 +470,13 @@ export default function Chapter18() {
       <KeyInsight>
         <p>
           Within the United States, space patenting is concentrated in states with established
-          aerospace clusters. California leads, driven by the presence of SpaceX, Boeing
-          Satellite Systems, Northrop Grumman, and NASA&apos;s Jet Propulsion Laboratory.
-          Colorado, home to Lockheed Martin Space, United Launch Alliance, and Ball Aerospace,
-          represents a second major hub. The clustering of space innovation in a relatively
-          small number of states reflects the importance of proximity to launch facilities,
-          defense customers, and specialized talent pools.
+          aerospace clusters. California leads by a wide margin, driven by the presence of
+          Boeing Satellite Systems, numerous satellite communications firms, and NASA&apos;s Jet
+          Propulsion Laboratory. Maryland ranks second, anchored by major defense contractors
+          and NASA&apos;s Goddard Space Flight Center. Colorado, home to Lockheed Martin Space,
+          United Launch Alliance, and Ball Aerospace, ranks seventh. The clustering of space
+          innovation in a relatively small number of states reflects the importance of proximity
+          to defense customers, NASA centers, and specialized talent pools.
         </p>
       </KeyInsight>
 
@@ -505,9 +508,10 @@ export default function Chapter18() {
       <KeyInsight>
         <p>
           Space patents exhibit distinctive quality characteristics relative to the broader
-          patent system. The growing number of backward citations reflects the cumulative nature
-          of space engineering, where each generation of technology builds extensively on prior
-          work. The expanding technology scope indicates that space inventions are becoming more
+          patent system. Average backward citations peaked around 2011 and have declined
+          substantially since, a pattern consistent with the broader shift toward more narrowly
+          targeted prior art searches as the field has matured. The expanding technology scope
+          indicates that space inventions are becoming more
           interdisciplinary, spanning multiple CPC subclasses as spacecraft systems integrate
           advances in electronics, materials science, propulsion, and telecommunications.
         </p>
@@ -591,9 +595,10 @@ export default function Chapter18() {
           The strategic portfolios of leading space patent holders reveal distinct areas of
           specialization. Boeing and Lockheed Martin maintain broad portfolios spanning satellite
           design, propulsion, and space communications, consistent with their role as prime
-          contractors for both government and commercial programs. Northrop Grumman&apos;s
-          portfolio reflects its strength in spacecraft subsystems and defense applications.
-          The most notable strategic differences emerge in space communications, where firms
+          contractors for both government and commercial programs. ViaSat and Hughes Network
+          Systems have concentrated heavily on space communications, reflecting their focus on
+          satellite broadband technology. The most notable strategic differences emerge in
+          space communications more broadly, where firms
           building satellite constellation infrastructure have concentrated their inventive effort
           on antenna design, signal processing, and inter-satellite links.
         </p>
@@ -653,19 +658,20 @@ export default function Chapter18() {
 
       <Narrative>
         <p>
-          Space patents involve larger inventor teams than the broader patent system, reflecting
-          the systems complexity of spacecraft engineering. The comparison between space and
-          non-space patents reveals the extent to which space innovation demands multidisciplinary
-          collaboration, and how this gap has evolved as spacecraft systems have grown more complex.
+          Space patents historically involved smaller inventor teams than non-space patents for
+          most of the period studied. However, space patent team sizes have recently converged
+          with and slightly exceeded non-space averages in 2024-2025, reflecting the growing
+          systems complexity of modern spacecraft engineering and the increasing multidisciplinary
+          collaboration required in contemporary space technology development.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-space-team-comparison"
-        subtitle="Average inventors per patent for space vs. non-space utility patents by year, showing the team size differential."
-        title="Space Patents Consistently Involve Larger Teams Than Non-Space Patents, Reflecting Systems Complexity"
-        caption="Average number of inventors per patent for space-related vs. non-space utility patents, 1976-2025. The data indicate that space patents consistently involve larger teams, reflecting the systems integration challenges inherent in spacecraft engineering."
-        insight="Space patents consistently involve larger teams than non-space patents, and this gap reflects the inherent systems complexity of spacecraft engineering, which requires expertise spanning propulsion, electronics, structures, thermal management, and software."
+        subtitle="Average inventors per patent for space vs. non-space utility patents by year, showing recent convergence."
+        title="Space Patent Team Sizes Have Recently Converged With Non-Space Averages"
+        caption="Average number of inventors per patent for space-related vs. non-space utility patents, 1976-2025. Space patents historically involved smaller teams than non-space patents for most of this period, with convergence occurring only in recent years (2024-2025)."
+        insight="Space patent team sizes were historically smaller than non-space patents but have recently converged, with space teams slightly exceeding non-space averages only in 2024-2025 as spacecraft systems have grown more complex."
         loading={tcL}
       >
         <PWLineChart
@@ -688,7 +694,7 @@ export default function Chapter18() {
           The distribution of space patents by assignee type reveals the evolving balance between
           government, corporate, and university contributors to space innovation. While government
           agencies and their contractors historically dominated space patenting, the commercial
-          space revolution has shifted this balance decisively toward private-sector assignees.
+          space transition has shifted this balance decisively toward private-sector assignees.
         </p>
       </Narrative>
 
@@ -719,8 +725,9 @@ export default function Chapter18() {
           The evolution of assignee types in space patenting reflects the broader transformation
           of the space industry. Corporate assignees have increasingly dominated as commercial
           space companies have expanded their R&amp;D activities beyond traditional government
-          contracting. University space patenting has grown modestly, primarily in areas such as
-          CubeSat technology and space science instrumentation. The declining government share,
+          contracting. University space patenting peaked in the early 2000s and has remained
+          minimal, with activity concentrated in areas such as CubeSat technology and space
+          science instrumentation. The declining government share,
           measured as a proportion rather than in absolute terms, illustrates the shift from
           a model in which the government was the primary driver of space innovation to one in
           which the private sector increasingly leads technology development.

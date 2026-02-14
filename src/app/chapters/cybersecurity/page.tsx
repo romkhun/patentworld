@@ -191,15 +191,15 @@ export default function Chapter13() {
 
       <KeyFindings>
         <li>Cybersecurity patent filings have grown in tandem with the expansion of the digital economy and the evolving threat landscape, with filings accelerating sharply after major data breaches and ransomware campaigns.</li>
-        <li>Cryptography constitutes the largest cybersecurity subfield by patent volume, reflecting the foundational role of encryption in securing digital communications, transactions, and data storage.</li>
-        <li>Network security and authentication technologies have exhibited the fastest growth rates, driven by the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
-        <li>A small number of large technology firms -- IBM, Microsoft, Cisco, and Symantec/Broadcom -- dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
+        <li>Network security constitutes the largest cybersecurity subfield by patent volume, having surpassed cryptography in the early 2000s, reflecting the growing complexity of network defense requirements.</li>
+        <li>Data protection, system security, and authentication technologies have all exhibited rapid growth rates, driven by the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
+        <li>A small number of large technology firms -- IBM, Intel, Microsoft, and Cisco -- dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cybersecurity patenting traces the escalating arms race between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: cryptographic methods that once dominated have given way to a diversified portfolio spanning network security, authentication, and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> chapter.
+          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> chapter.
         </p>
       </aside>
 
@@ -235,8 +235,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-annual-count"
         subtitle="Annual count of utility patents classified under cybersecurity-related CPC codes, tracking the growth trajectory of cybersecurity patenting."
-        title="Cybersecurity Patent Filings Grew Exponentially Since the Early 2000s, Driven by Data Breaches, Ransomware, and Regulatory Compliance"
-        caption="Annual count and share of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration following the Snowden disclosures (2013) and the SolarWinds attack (2020)."
+        title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Driven by Data Breaches, Ransomware, and Regulatory Compliance"
+        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration following the Snowden disclosures (2013) and the SolarWinds attack (2020)."
         insight="The growth in cybersecurity patents tracks the expansion of the digital economy and the increasing sophistication of cyber threats, with each major security incident serving as a catalyst for inventive activity."
         loading={pyL}
       >
@@ -268,7 +268,7 @@ export default function Chapter13() {
         subtitle="Cybersecurity patents as a percentage of all utility patents, showing the growing reallocation of inventive effort toward security technologies."
         title="Cybersecurity's Share of Total Patents Has Risen Steadily, Indicating a Structural Reallocation of Inventive Effort Toward Security"
         caption="Percentage of all utility patents classified under cybersecurity-related CPC codes. The upward trend indicates that cybersecurity patenting growth is not merely tracking overall patent growth but represents a genuine reallocation of inventive effort."
-        insight="The growing share of cybersecurity patents among all patents demonstrates that security innovation is outpacing overall patent growth, reflecting the escalating strategic importance of digital defense."
+        insight="The growing share of cybersecurity patents among all patents demonstrates that security innovation is outpacing overall patent growth, reflecting the growing strategic importance of digital defense."
         loading={pyL}
       >
         <PWLineChart
@@ -291,8 +291,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-subfields"
         subtitle="Patent counts by cybersecurity subfield (cryptography, authentication, network security, etc.) over time, based on specific CPC group codes."
-        title="Cryptography Remains the Largest Subfield, While Network Security and Authentication Have Exhibited the Fastest Growth"
-        caption="Patent counts by cybersecurity subfield over time, based on CPC classifications. The data reveal that cryptography has historically dominated but that network security, authentication and access control, and data protection have experienced rapid growth since the mid-2010s."
+        title="Network Security Is the Largest Subfield, Having Surpassed Cryptography in the Early 2000s, While Data Protection and Authentication Have Also Grown Rapidly"
+        caption="Patent counts by cybersecurity subfield over time, based on CPC classifications. Network security surpassed cryptography around 2003 and has been the dominant subfield since, while data protection, authentication, and system security have all experienced rapid growth."
         insight="The diversification of cybersecurity subfields reflects the expanding attack surface: as digital systems have grown more complex, the defensive patent landscape has broadened from encryption-centric approaches to encompass network defense, identity management, and data protection."
         loading={sfL}
         height={650}
@@ -315,12 +315,13 @@ export default function Chapter13() {
         <p>
           The composition of cybersecurity patents has diversified substantially over time.
           Cryptography -- encompassing encryption algorithms, key management, and secure
-          communication protocols -- has historically constituted the largest subfield, reflecting
-          the foundational role of encryption in digital security. Since the mid-2010s,
-          authentication and access control technologies have grown rapidly, driven by the
-          adoption of multi-factor authentication, biometric identification, and zero-trust
-          security frameworks. Network security patents have similarly accelerated as cloud
-          computing and distributed architectures have created new defensive requirements.
+          communication protocols -- was the largest subfield through the early 2000s, reflecting
+          the foundational role of encryption in digital security. Network security surpassed
+          cryptography around 2003 and has been the dominant subfield since, driven by the
+          expansion of cloud computing and distributed architectures. Data protection,
+          authentication, and system security have all grown rapidly, particularly since the
+          mid-2010s, reflecting the adoption of multi-factor authentication, zero-trust
+          frameworks, and data privacy regulations.
         </p>
       </KeyInsight>
 
@@ -329,7 +330,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-top-assignees"
         subtitle="Organizations ranked by total cybersecurity-related patent count, showing concentration among large technology and defense firms."
-        title="IBM, Microsoft, Cisco, and Symantec/Broadcom Lead in Total Cybersecurity Patent Volume, Reflecting the Resource-Intensive Nature of Security R&D"
+        title="IBM, Intel, Microsoft, and Cisco Lead in Total Cybersecurity Patent Volume, Reflecting the Resource-Intensive Nature of Security R&D"
         caption="Organizations ranked by total cybersecurity-related patents. The data indicate a concentration among large technology firms with dedicated security research divisions, reflecting the substantial investment required to develop and maintain defensive technologies."
         insight="The dominance of large technology firms in cybersecurity patenting reflects the resource-intensive nature of security R&D, which requires deep expertise in cryptography, network protocols, and threat intelligence, as well as access to large-scale operational data."
         loading={taL}
@@ -436,7 +437,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-by-country"
         subtitle="Countries ranked by total cybersecurity-related patents based on primary inventor location, showing geographic distribution of security innovation."
-        title="The United States Dominates Cybersecurity Patenting, With Significant Contributions From Japan, South Korea, and Israel"
+        title="The United States Dominates Cybersecurity Patenting, With Significant Contributions From Japan, China, India, and Israel"
         caption="Countries ranked by total cybersecurity-related patents based on primary inventor location. The United States maintains a substantial lead, while the presence of Israel reflects that nation's well-documented specialization in cybersecurity innovation."
         insight="The geographic distribution of cybersecurity patents reflects the concentration of major technology firms and security research laboratories in the United States, while Israel's strong presence relative to its size underscores its recognized specialization in defensive and offensive cyber capabilities."
         loading={geoL}
@@ -457,9 +458,10 @@ export default function Chapter13() {
           contractors, and security research laboratories. The strong presence of Israel, despite
           its comparatively small economy, reflects that nation&apos;s well-documented
           specialization in cybersecurity -- a strength rooted in national security priorities
-          and a robust military-to-technology pipeline. Japan and South Korea contribute through
-          their large electronics and telecommunications sectors, where embedded security is
-          increasingly critical to product competitiveness.
+          and a robust military-to-technology pipeline. Japan, China, and India also contribute
+          substantially, with China and India ranking among the top five non-US contributors.
+          South Korea and Germany contribute through their large electronics and
+          telecommunications sectors.
         </p>
       </KeyInsight>
 
@@ -498,7 +500,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for cybersecurity patents by year, measuring quality trends."
-        title="Cybersecurity Patent Technology Scope Has Risen Steadily, Suggesting Growing Interdisciplinarity as Security Becomes Embedded Across Systems"
+        title="Cybersecurity Patent Technology Scope Has Generally Increased, Particularly Since 2014, Suggesting Growing Interdisciplinarity"
         caption="Average claims, backward citations, and technology scope for cybersecurity-related patents by year. The upward trend in technology scope suggests that cybersecurity patents are becoming increasingly interdisciplinary, spanning multiple CPC subclasses as security capabilities are integrated across diverse technology systems."
         insight="Rising technology scope indicates that cybersecurity patents increasingly span multiple technology domains, consistent with the integration of security features into networking, cloud computing, IoT, and enterprise software."
         loading={qL}
@@ -519,10 +521,11 @@ export default function Chapter13() {
 
       <KeyInsight>
         <p>
-          Cybersecurity patents exhibit distinctive quality characteristics. The growing
-          number of backward citations reflects the increasingly interconnected nature of
-          security research, where new defensive technologies build upon established
-          cryptographic foundations, network protocols, and authentication mechanisms. The
+          Cybersecurity patents exhibit distinctive quality characteristics. Backward
+          citations rose through the early 2010s before declining in recent years, a pattern
+          consistent with broader trends in patent citation practices. The earlier rise reflected
+          the increasingly interconnected nature of security research, where new defensive
+          technologies build upon established cryptographic foundations and network protocols. The
           expanding technology scope indicates that cybersecurity inventions are becoming
           more interdisciplinary, spanning multiple{' '}
           <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses as security
@@ -606,13 +609,12 @@ export default function Chapter13() {
         <p>
           The strategic differences among leading cybersecurity patent holders reflect their
           distinct market positions and technical strengths. IBM&apos;s portfolio emphasizes
-          cryptography and data protection, consistent with its historical leadership in
-          encryption research and enterprise security services. Microsoft&apos;s patents
-          concentrate on authentication and system security, reflecting the centrality of
-          identity management to its cloud platform strategy. Cisco&apos;s focus on network
-          security aligns with its core networking infrastructure business. Symantec/Broadcom&apos;s
-          emphasis on threat detection and endpoint protection reflects its consumer and
-          enterprise security product lines. These strategic divergences suggest that
+          network security and data protection, consistent with its enterprise security
+          services and cloud infrastructure business. Microsoft&apos;s patents concentrate
+          on network security and data protection, reflecting the security requirements of
+          its cloud platform and productivity suite. Cisco&apos;s focus on network security
+          aligns with its core networking infrastructure business. Intel&apos;s strength in
+          system security reflects its hardware-level security capabilities. These strategic divergences suggest that
           cybersecurity patent portfolios serve both defensive and product-differentiation
           purposes.
         </p>
@@ -631,8 +633,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-diffusion"
         subtitle="Percentage of cybersecurity patents co-classified with other CPC sections, measuring the diffusion of security technologies across sectors."
-        title="Cybersecurity Patents Show Increasing Co-Occurrence With Telecommunications, Human Necessities, and Operations CPC Codes"
-        caption="Percentage of cybersecurity patents that also carry CPC codes from other sections. Rising lines indicate cybersecurity diffusing into that sector. The most notable pattern is the increasing co-occurrence with Electricity (Section H, encompassing telecommunications) and Human Necessities (Section A, encompassing healthcare)."
+        title="Cybersecurity Patents Show Increasing Co-Occurrence With Operations, Human Necessities, and Other CPC Sections"
+        caption="Percentage of cybersecurity patents that also carry CPC codes from other sections. Rising lines indicate cybersecurity diffusing into that sector. The most notable pattern is the increasing co-occurrence with Operations &amp; Transport (Section B) and Human Necessities (Section A, encompassing healthcare)."
         insight="The rising co-occurrence of cybersecurity patents with other CPC sections reflects the pervasive integration of security capabilities across technology domains, consistent with cybersecurity's evolution from a standalone discipline to an embedded requirement of modern digital systems."
         loading={cdL}
       >
@@ -655,13 +657,13 @@ export default function Chapter13() {
         <p>
           Cybersecurity increasingly exhibits the characteristics of a pervasive technology that
           is embedded across diverse domains. The co-occurrence of cybersecurity patents with
-          Electricity (H) reflects the deep integration of security with telecommunications
-          and network infrastructure. Growing co-occurrence with Human Necessities (A)
-          indicates the expansion of security requirements into healthcare and medical devices,
-          driven by regulatory mandates such as HIPAA and the growing digitization of health
-          records. The broad upward trend across most sections suggests that cybersecurity
-          has evolved beyond a standalone computing discipline to become an essential component
-          of virtually every technology system.
+          Operations &amp; Transport (B) reflects the integration of security with logistics,
+          manufacturing, and transportation systems. Growing co-occurrence with Human
+          Necessities (A) indicates the expansion of security requirements into healthcare
+          and medical devices, driven by regulatory mandates such as HIPAA and the growing
+          digitization of health records. The broad upward trend across most sections suggests
+          that cybersecurity has evolved beyond a standalone computing discipline to become an
+          essential component of virtually every technology system.
         </p>
       </KeyInsight>
 
@@ -670,18 +672,19 @@ export default function Chapter13() {
       <Narrative>
         <p>
           Cybersecurity patents increasingly involve larger inventor teams and corporate assignees,
-          reflecting the multidisciplinary nature of modern security research. The average
-          cybersecurity patent lists more inventors than non-cybersecurity patents, and this
-          disparity provides insight into the collaborative demands of security innovation.
+          reflecting the multidisciplinary nature of modern security research. Average team sizes
+          for cybersecurity patents have tracked closely with non-cybersecurity patents, with
+          both exhibiting an upward trend that reflects the broader shift toward collaborative
+          invention.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-cyber-patents-team-comparison"
         subtitle="Average inventors per patent for cybersecurity vs. non-cybersecurity utility patents by year, showing comparative team size dynamics."
-        title="Cybersecurity Patents Involve Larger Teams Than Non-Cybersecurity Patents, Reflecting the Multidisciplinary Nature of Security Research"
-        caption="Average number of inventors per patent for cybersecurity-related vs. non-cybersecurity utility patents. The data indicate that cybersecurity patents consistently involve larger teams, reflecting the diverse expertise required to address modern security challenges."
-        insight="Cybersecurity patents consistently involve larger teams than non-cybersecurity patents, reflecting the multidisciplinary expertise required to address threats spanning cryptography, network architecture, software engineering, and domain-specific knowledge."
+        title="Cybersecurity and Non-Cybersecurity Patent Team Sizes Have Both Grown Steadily, Tracking Closely Over Time"
+        caption="Average number of inventors per patent for cybersecurity-related vs. non-cybersecurity utility patents. Both categories show a similar upward trend, reflecting the broader shift toward collaborative research across all technology domains."
+        insight="Cybersecurity patent team sizes have tracked closely with non-cybersecurity patents, both exhibiting steady growth that reflects the increasing complexity and multidisciplinary nature of modern invention."
         loading={ctcL}
       >
         <PWLineChart
@@ -699,8 +702,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-cyber-patents-assignee-type"
         subtitle="Distribution of cybersecurity patents by assignee type (corporate, university, government, individual) over time."
-        title="Corporate Assignees Dominate Cybersecurity Patenting, With the Corporate Share Intensifying as Security Has Become a Strategic Priority"
-        caption="Distribution of cybersecurity patent assignees by type (corporate, university, government, individual) over time. The data reveal that corporate assignees account for the vast majority of cybersecurity patents, with the corporate share intensifying since 2010 as firms expanded their security research divisions."
+        title="Corporate Assignees Dominate Cybersecurity Patenting, With the Corporate Share Increasing as Security Has Become a Strategic Priority"
+        caption="Distribution of cybersecurity patent assignees by type (corporate, university, government, individual) over time. The data reveal that corporate assignees account for the vast majority of cybersecurity patents, with the corporate share increasing since 2010 as firms expanded their security research divisions."
         insight="The dominance of corporate assignees in cybersecurity patenting reflects the strategic and commercial value of security technologies, while the relatively modest university share suggests that cybersecurity innovation is driven primarily by applied research within industry settings."
         loading={catL}
         height={500}

@@ -188,16 +188,16 @@ export default function Chapter20() {
       />
 
       <KeyFindings>
-        <li>Blockchain represents one of the smallest technology domains in the patent system, yet its explosive growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
+        <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
         <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
-        <li>IBM, Alibaba, and Mastercard lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
-        <li>Patent filings peaked around 2021, coinciding with the NFT and DeFi boom, and have since declined, tracking the broader cryptocurrency market correction.</li>
+        <li>IBM, Intel, and Alibaba-affiliated entities lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
+        <li>Patent filings peaked in 2022, coinciding with the tail end of the NFT and DeFi boom, and have since declined, tracking the broader cryptocurrency market correction.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2009 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi frenzy of 2021 -- that drove a rapid surge in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely because of this compactness: the data clearly reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The heavy presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
+          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2009 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that drove a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely because of this compactness: the data clearly reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
         </p>
       </aside>
 
@@ -219,7 +219,7 @@ export default function Chapter20() {
           As the smallest domain by patent volume in this study, blockchain offers an unusually
           clear illustration of how speculative enthusiasm translates into inventive activity.
           The rapid rise and subsequent decline in filings track the broader cryptocurrency
-          market cycle with remarkable fidelity, raising questions about the extent to which
+          market cycle with notable fidelity, raising questions about the extent to which
           patent filings in emerging technologies are driven by genuine technical progress
           versus market-driven incentives.
         </p>
@@ -231,7 +231,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-blockchain-annual-count"
         subtitle="Annual count of utility patents classified under blockchain-related CPC codes, tracking the growth and contraction of blockchain patenting."
-        title="Blockchain Patent Filings Surged After 2016, Peaked Around 2021, and Declined With the Crypto Market Correction"
+        title="Blockchain Patent Filings Surged After 2016, Peaked in 2022, and Declined With the Crypto Market Correction"
         caption="Annual count and share of utility patents classified under blockchain-related CPC codes, illustrating the pronounced hype-cycle pattern. The acceleration beginning in 2016 coincides with increasing enterprise interest in distributed ledger technology and the ICO boom of 2017."
         insight="The boom-and-bust pattern in blockchain patents closely mirrors the cryptocurrency market cycle, suggesting that patent filing behavior in this domain is unusually sensitive to market sentiment."
         loading={pyL}
@@ -253,7 +253,7 @@ export default function Chapter20() {
           AI or semiconductors, which exhibit sustained exponential growth, blockchain patents
           followed a sharp rise-peak-decline pattern. The inflection point around 2016 corresponds
           to the emergence of enterprise blockchain platforms and the Ethereum-enabled smart contract
-          ecosystem. The peak coincides with the NFT and DeFi frenzy of 2021, after which filings
+          ecosystem. The peak coincides with the NFT and DeFi surge of 2021, after which filings
           declined as crypto market valuations collapsed and corporate enthusiasm waned.
         </p>
       </KeyInsight>
@@ -262,7 +262,7 @@ export default function Chapter20() {
         id="fig-blockchain-share"
         subtitle="Blockchain patents as a percentage of all utility patents, showing the domain's still-small but rapidly changing share of total inventive activity."
         title="Blockchain's Share of Total Patents Rose Rapidly After 2016 Before Plateauing, Reflecting Its Niche but Volatile Status"
-        caption="Percentage of all utility patents classified under blockchain-related CPC codes. Even at its peak, blockchain represents a small fraction of total patenting, underscoring the domain's niche character despite outsized media attention."
+        caption="Percentage of all utility patents classified under blockchain-related CPC codes. Even at its peak, blockchain represents a small fraction of total patenting, underscoring the domain's niche character despite disproportionate media attention."
         insight="Blockchain's share of total patents remains small even at peak levels, highlighting the disconnect between the domain's media prominence and its actual footprint in the patent system."
         loading={pyL}
       >
@@ -273,7 +273,7 @@ export default function Chapter20() {
             { key: 'domain_pct', name: 'Blockchain Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
-          yFormatter={(v) => `${v.toFixed(2)}%`}
+          yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={BLOCKCHAIN_EVENTS}
         />
       </ChartContainer>
@@ -322,8 +322,8 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-blockchain-top-assignees"
         subtitle="Organizations ranked by total blockchain-related patent count, showing concentration among technology firms and financial services companies."
-        title="IBM, Alibaba, and Mastercard Lead Blockchain Patenting, Reflecting a Mix of Tech Giants and Financial Services Firms"
-        caption="Organizations ranked by total blockchain-related patents. The presence of both technology firms (IBM, Alibaba) and financial services companies (Mastercard) among the top filers distinguishes blockchain from other technology domains and reflects the technology's origins in financial disruption."
+        title="IBM, Intel, and Alibaba-Affiliated Entities Lead Blockchain Patenting, With Financial Services Firms Also Active"
+        caption="Organizations ranked by total blockchain-related patents. The presence of both technology firms (IBM, Intel, Alibaba) and financial services companies (Capital One, Wells Fargo) among active filers distinguishes blockchain from other technology domains and reflects the technology's origins in financial disruption."
         insight="The mix of technology firms and financial services companies among top blockchain patent holders is unique among technology domains, reflecting blockchain's dual identity as both a computing infrastructure and a financial technology."
         loading={taL}
         height={1400}
@@ -347,12 +347,15 @@ export default function Chapter20() {
         <p>
           The organizational landscape of blockchain patenting is distinctive in several respects.
           IBM&apos;s leadership reflects its early investment in Hyperledger and enterprise blockchain
-          platforms. Alibaba&apos;s strong position mirrors the Chinese technology sector&apos;s
-          aggressive blockchain strategy, particularly in supply chain and payment applications.
-          The presence of Mastercard, Bank of America, and other financial institutions among top
-          filers is unusual for a technology domain and underscores blockchain&apos;s roots as a
-          challenge to traditional financial intermediation. This mix of technology and finance
-          is not observed in domains like AI, semiconductors, or biotechnology.
+          platforms. Intel&apos;s strong second-place position underscores the hardware and
+          cryptographic infrastructure dimensions of blockchain technology. Alibaba-affiliated
+          entities mirror the Chinese technology sector&apos;s aggressive blockchain strategy,
+          particularly in supply chain and payment applications. The presence of Capital One,
+          Wells Fargo, Bank of America, and Mastercard among the financial institutions with
+          notable blockchain patent activity is unusual for a technology domain and underscores
+          blockchain&apos;s roots as a challenge to traditional financial intermediation. This mix
+          of technology and finance is not observed in domains like AI, semiconductors, or
+          biotechnology.
         </p>
       </KeyInsight>
 
@@ -456,9 +459,9 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-blockchain-by-state"
         subtitle="US states ranked by total blockchain-related patents based on primary inventor location, highlighting geographic clustering."
-        title="California Leads US Blockchain Patenting, With Financial Centers Also Strongly Represented"
-        caption="US states ranked by total blockchain-related patents based on primary inventor location. California's lead is consistent with broader technology sector patterns, but the strong presence of New York and other financial center states reflects blockchain's ties to the financial services industry."
-        insight="The presence of financial center states alongside traditional technology hubs in blockchain patenting reflects the domain's unique position at the intersection of fintech and distributed computing."
+        title="California Leads US Blockchain Patenting, With Texas, Massachusetts, and Washington Also Prominent"
+        caption="US states ranked by total blockchain-related patents based on primary inventor location. California's lead is consistent with broader technology sector patterns. Texas, Massachusetts, and Washington rank ahead of New York, suggesting that general technology hubs play a larger role than financial centers in blockchain patenting."
+        insight="The geographic distribution of blockchain patenting more closely follows general technology sector patterns than financial center geography, with California, Texas, Massachusetts, and Washington leading."
         loading={geoL}
         height={900}
       >
@@ -473,11 +476,11 @@ export default function Chapter20() {
       <KeyInsight>
         <p>
           Within the United States, blockchain patenting follows the familiar pattern of California
-          leadership, but with an important twist: states with major financial centers -- particularly
-          New York -- are more strongly represented than in most other technology domains. This
-          geographic signature reflects blockchain&apos;s dual identity as both a computing
-          infrastructure and a financial technology, attracting inventive activity from both
-          Silicon Valley and Wall Street.
+          leadership. Texas, Massachusetts, and Washington rank among the top states, ahead of
+          New York, suggesting that blockchain patenting is driven more by general technology
+          sector activity than by proximity to financial centers. While financial services firms
+          do file blockchain patents, the geographic distribution aligns more closely with
+          broader technology hub patterns than with a finance-driven narrative.
         </p>
       </KeyInsight>
 
@@ -605,9 +608,9 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-blockchain-diffusion"
         subtitle="Percentage of blockchain patents co-classified with other CPC sections, measuring blockchain's diffusion into adjacent technology domains."
-        title="Blockchain Patents Show Co-Occurrence With Electricity and Physics Sections, but Limited Spread Into Other Domains"
-        caption="Percentage of blockchain patents that also carry CPC codes from each non-blockchain section. Unlike AI, which has diffused broadly across multiple technology areas, blockchain's cross-domain reach remains relatively limited, consistent with a technology that has not yet achieved general-purpose status."
-        insight="Blockchain's limited cross-domain diffusion contrasts with AI's broad reach, suggesting that blockchain has not yet achieved the general-purpose technology status its advocates have predicted."
+        title="Blockchain Patents Show Co-Occurrence With Human Necessities and Performing Operations Sections, but Limited Spread Into Other Domains"
+        caption="Percentage of blockchain patents that also carry CPC codes from each non-blockchain section. The data show co-occurrence primarily with Sections A (Human Necessities), B (Performing Operations/Transporting), E (Fixed Constructions), and F (Mechanical Engineering). Unlike AI, which has diffused broadly across multiple technology areas, blockchain's cross-domain reach remains relatively limited."
+        insight="Blockchain's cross-domain diffusion is concentrated in Human Necessities (Section A) and Performing Operations (Section B), suggesting applications in areas like supply chain and commerce rather than the broad general-purpose reach seen in AI."
         loading={diffL}
       >
         {diffusionPivot.length > 0 && (
@@ -629,12 +632,13 @@ export default function Chapter20() {
         <p>
           The cross-domain diffusion data suggest that blockchain has not yet achieved the
           general-purpose technology status that its most enthusiastic proponents have predicted.
-          While blockchain patents do co-occur with electricity and physics CPC sections --
-          reflecting the cryptographic and networking foundations of the technology -- the
-          breadth of diffusion is substantially narrower than what is observed for AI. This
-          limited spread into healthcare, manufacturing, and other sectors may indicate that
-          blockchain&apos;s applications remain concentrated in its original financial and
-          computing niches.
+          Blockchain patents co-occur primarily with Human Necessities (Section A) and Performing
+          Operations/Transporting (Section B) CPC sections, reflecting applications in areas
+          such as supply chain management, commerce, and transactional operations. The breadth
+          of diffusion is substantially narrower than what is observed for AI. This relatively
+          focused spread suggests that blockchain&apos;s applications remain concentrated in
+          commerce-adjacent and operational niches rather than extending broadly into diverse
+          technology sectors.
         </p>
       </KeyInsight>
 
@@ -644,17 +648,17 @@ export default function Chapter20() {
       <Narrative>
         <p>
           Comparing inventor team sizes for blockchain patents versus non-blockchain patents
-          provides insight into the collaborative complexity of blockchain R&amp;D relative to
-          the broader patent system.
+          reveals that blockchain teams are consistently smaller, averaging 2.7-3.0 inventors
+          per patent compared to 3.0-3.2 for non-blockchain patents across the 2016-2025 period.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-blockchain-team-comparison"
         subtitle="Average inventors per patent for blockchain vs. non-blockchain utility patents by year, showing relative team complexity."
-        title="Blockchain Patent Teams Are Modestly Larger Than Non-Blockchain Teams, Reflecting Multidisciplinary Requirements"
-        caption="Average number of inventors per patent for blockchain-related vs. non-blockchain utility patents. The gap is smaller than in AI, consistent with blockchain's relatively narrower technical scope."
-        insight="The modest team size gap between blockchain and non-blockchain patents suggests that blockchain innovation, while multidisciplinary, does not require the same breadth of expertise as fields like AI."
+        title="Blockchain Patent Teams Are Consistently Smaller Than Non-Blockchain Averages"
+        caption="Average number of inventors per patent for blockchain-related vs. non-blockchain utility patents. Blockchain teams consistently average 2.7-3.0 inventors compared to 3.0-3.2 for non-blockchain patents, a persistent gap that distinguishes blockchain from domains like AI where specialized patents tend to involve larger teams."
+        insight="The persistently smaller team sizes for blockchain patents may reflect the domain's software-centric nature and its roots in cryptography and distributed systems, which require fewer collaborators than hardware-intensive or laboratory-based fields."
         loading={tcL}
       >
         <PWLineChart

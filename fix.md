@@ -108,12 +108,137 @@ Review the structure of the entire site for logical progression. When reordering
 
 - Verify the ACT sequence provides a logical narrative arc.
 - Ensure any cross-references between ACTs are accurate and point to the correct pages/sections after all reordering.
+- No content duplicated: No section or figure should appear in more than one chapter.
 
 ---
 
-## PHASE 5: SEO, GenAI Optimization, and Performance
+## PHASE 5: Titles
 
-### 5a. Technical SEO
+### PHASE 5a. Audit All Existing Titles
+
+Build a complete inventory in `TITLE_REVISIONS.md` with the following structure:
+
+```
+## ACT 1: [Current ACT Title]
+### Chapter: [Current Chapter Title]
+- Section: [Current Section Title]
+- Section: [Current Section Title]
+...
+### Chapter: [Current Chapter Title]
+- Section: ...
+...
+
+## ACT 2: [Current ACT Title]
+...
+```
+
+For each title (ACT, chapter, or section), flag any of the following problems:
+
+- **Vague or generic**: The title could apply to almost anything (e.g., "Overview," "Results," "Analysis," "Key Findings"). A reader scanning the table of contents cannot tell what the section actually covers.
+- **Inconsistent format**: The title follows a different grammatical pattern, length, or style than its peers at the same level (e.g., most chapter titles are noun phrases but one is a full sentence; most section titles are 3–5 words but one is 12 words).
+- **Missing key information**: The title does not mention the specific subject, metric, or finding it covers. A more informative title would help the reader (and search engines / AI systems) understand the content without clicking in.
+- **Redundant with parent**: The title merely restates its parent ACT or chapter title without adding specificity (e.g., a section titled "Innovation Trends" inside a chapter titled "Innovation Dynamics").
+- **Inconsistent terminology**: The title uses a term for a concept that other titles refer to by a different name (e.g., "Firms" in one title, "Companies" in another, "Assignees" in a third — when all mean the same thing).
+- **No problems found**: The title is clear, specific, consistent, and effective. Mark it as "OK — no change needed."
+
+---
+
+### PHASE 5b. Define Naming Conventions
+
+Before proposing any new titles, establish explicit conventions for each level. Derive these from the best existing titles on the site — do not invent conventions that conflict with what already works.
+
+#### ACT Titles
+
+- Examine all current ACT titles. Identify the pattern (e.g., "ACT N - [Noun Phrase]").
+- Define the convention: grammatical structure, approximate length, and tone. ACT titles should convey the broad theme of the act in 2–4 words.
+
+#### Chapter Titles
+
+- Examine all current chapter titles. Identify the dominant pattern (e.g., "The [Noun Phrase]" or "[Topic Domain]").
+- Define the convention. Chapter titles should:
+  - Be concise (2–5 words).
+  - Clearly identify the chapter's subject so a reader scanning the table of contents understands what each chapter covers.
+  - Follow a consistent grammatical structure across all chapters (e.g., all noun phrases, or all "The [X]" format — pick the pattern most existing titles already follow).
+
+#### Section Titles
+
+- Examine section titles across several chapters. Identify any existing pattern.
+- Define the convention. Section titles should:
+  - Be specific enough that a reader knows what the section covers without reading the body text.
+  - Prefer finding-driven or topic-driven titles over generic labels. For example: "Top 10 Assignees Hold 12% of All Patents" is better than "Top Assignees." However, introductory or transitional sections may use short descriptive titles (e.g., "Data and Methods") — this is acceptable.
+  - Be consistent in grammatical structure within each chapter (e.g., all noun phrases, or all "[Subject] [Verb] [Finding]" — pick one pattern per chapter and apply it).
+  - Be concise: aim for 4–10 words. Avoid overly long titles that read like captions.
+
+Log the conventions in `TITLE_REVISIONS.md` under a "NAMING CONVENTIONS" section.
+
+---
+
+### PHASE 5c: Propose New Titles
+
+For every title flagged with a problem in Phase 5a, propose a new title that:
+
+1. Follows the conventions defined in Phase 5b.
+2. Resolves the specific problem(s) flagged.
+3. Accurately describes the content — do not make the title more specific or dramatic than the content supports.
+4. Uses consistent terminology site-wide (e.g., if you standardize on "assignees" instead of "firms," apply it everywhere).
+
+For each proposed change, log in `TITLE_REVISIONS.md`:
+
+```
+### [Level]: [Old Title] → [New Title]
+- Problem(s): [what was wrong]
+- Rationale: [why the new title is better]
+```
+
+**Do not change titles marked "OK — no change needed" in Phase 5a.** Only revise titles that have identified problems.
+
+Review the full list of proposed changes before implementing anything. Check for:
+
+- **Internal consistency**: Do the new titles follow the conventions from Phase 5b? Do they use the same terminology?
+- **Distinctiveness**: Are any two titles at the same level too similar to each other? Each title should be clearly distinguishable from its neighbors.
+- **Accuracy**: Does each new title still accurately describe its content?
+
+---
+
+### PHASE 5d: Implement Title Changes
+
+Apply all proposed title changes from Phase 5c. For each title, update it in every location where it appears:
+
+#### For ACT titles:
+- Navigation sidebar, table of contents, any ACT landing/index pages, config files, page headers, breadcrumbs, and any cross-references on other pages.
+
+#### For chapter titles:
+- All the same locations as ACT titles, plus:
+- The page's `<title>` tag and meta description (`og:title`, `og:description`).
+- The URL slug, **only if** the current slug matches the old title and the new title meaningfully changes it. If you change a slug:
+  - Add a redirect from the old URL to the new URL using the project's existing redirect mechanism.
+  - Update all internal links pointing to the old URL.
+- Previous/next link labels on adjacent chapters.
+
+#### For section titles:
+- The section heading in the page content.
+- Any anchor IDs derived from the section title (e.g., `#market-concentration`). If you change an anchor ID:
+  - Update all internal links that target that anchor (search the full codebase).
+  - If any external links may reference the old anchor, keep the old anchor ID as a hidden element so the link still resolves.
+- Any "jump to section" or in-page navigation menus.
+
+---
+
+### PHASE 5e: Terminology Standardization Pass
+
+After all titles are updated, do a final pass across the entire site (not just titles — also body text, captions, and takeaways) to standardize the key terms you chose in Phase 5b/5c. For example:
+
+- If you standardized chapter titles on "assignees" instead of "firms" or "companies," check that body text within those chapters uses the same term (unless the context specifically requires the other term — e.g., "firm" when discussing firm-level economic analysis is appropriate even if titles say "assignee").
+- If you standardized on "patent class" instead of "technology field" or "CPC section," apply the same principle.
+
+This pass is limited to terminology alignment. Do not rewrite body text for other reasons.
+
+---
+
+
+## PHASE 6: SEO, GenAI Optimization, and Performance
+
+### 6a. Technical SEO
 
 - Ensure every page has a unique, descriptive `<title>` tag and `<meta name="description">` that accurately summarizes the page content.
 - Implement or verify Open Graph (`og:title`, `og:description`, `og:image`) and Twitter Card meta tags on every page.
@@ -121,7 +246,7 @@ Review the structure of the entire site for logical progression. When reordering
 - Implement structured data (JSON-LD) where appropriate: `WebSite` schema on the homepage, `Article` or `ScholarlyArticle` on content pages, `BreadcrumbList` on all pages.
 - Set canonical URLs on all pages. Ensure consistent URL format (decide on trailing slash or no trailing slash and apply uniformly).
 
-### 5b. GenAI Optimization
+### 6b. GenAI Optimization
 
 The goal is to make the site's content easily parseable and citable by LLM-based search engines and AI assistants.
 
@@ -129,13 +254,13 @@ The goal is to make the site's content easily parseable and citable by LLM-based
 - Use descriptive, self-contained section headings that communicate the finding (e.g., "Patent Filings Tripled Between 2000 and 2020" rather than "Results" or "Findings").
 - Ensure all key data points, findings, and statistics are stated in plain text in the HTML — not only embedded inside chart images or SVGs. Data that exists only in a non-text visual format is invisible to AI crawlers.
 
-### 5c. Content SEO
+### 6c. Content SEO
 
 - Ensure page URLs are descriptive and keyword-rich (e.g., `/patent-filing-trends` not `/chapter-3`).
 - Ensure heading tags (h1–h3) include terms that researchers and policymakers would search for.
 - Add internal links between related pages where they would help the reader and strengthen the site's topical structure. (This complements the cross-references added in Phase 4b — Phase 4 addressed consolidation of duplicate content; here, add navigational links between distinct but related topics.)
 
-### 5d. Performance
+### 6d. Performance
 
 - Optimize Largest Contentful Paint (LCP): lazy-load below-fold images and figures, preload critical above-fold assets, optimize font loading (use `font-display: swap` or preload key fonts).
 - Minimize Cumulative Layout Shift (CLS): set explicit `width` and `height` (or `aspect-ratio`) on all images, figures, and embeds.
@@ -144,7 +269,7 @@ The goal is to make the site's content easily parseable and citable by LLM-based
 - Remove unused CSS, JavaScript, and dependencies from the bundle.
 - Implement code splitting if the framework supports it and it is not already in place.
 
-### 5e. Accessibility
+### 6e. Accessibility
 
 - Ensure all images and figures have meaningful `alt` text that describes the content (not just "figure" or "chart").
 - Verify heading hierarchy: one `h1` per page, then `h2`, `h3`, etc. with no skipped levels.
@@ -153,7 +278,7 @@ The goal is to make the site's content easily parseable and citable by LLM-based
 
 ---
 
-## PHASE 6: Navigation
+## PHASE 7: Navigation
 
 Verify all navigation elements are correct and functional after the changes made in Phases 1–5.
 
@@ -161,31 +286,40 @@ Verify all navigation elements are correct and functional after the changes made
 - Breadcrumbs must be present and correct on every page.
 - Previous/next page links (if present) must follow the correct sequence.
 - All internal links site-wide must resolve to valid pages (no 404s). Test every internal link.
+- Table of contents is complete and accurate.
 - Test all navigation elements at mobile viewport widths.
 - For long pages, ensure "jump to section" or anchor links exist and work correctly.
 
 ---
 
-## PHASE 7: Bug Fixes and Final QA
+## PHASE 8: About the Author
 
-### 7a. Errors
+Revise to: 
+    - "Saerom (Ronnie) Lee is an Assistant Professor of Management at The Wharton School, University of Pennsylvania. His research examines organizational design, human capital acquisition, startup scaling, and high-growth entrepreneurship. Additional information is available on his personal website. PatentWorld was developed to provide a rigorous, interactive platform for examining half a century of US patent data. Correspondence: saeroms@upenn.edu. Feedback, collaboration inquiries, and suggestions are welcome."
+
+Add a hyperlink to "www.saeromlee.com" to "Saerom (Ronnie) Lee" and "personal website".
+
+## PHASE 9: Bug Fixes and Final QA
+
+### 9a. Errors
 
 - Fix all browser console errors, warnings, and runtime exceptions.
 - Fix any rendering issues visible in Chrome and Firefox (these are the two browsers you can test in the dev environment).
 - Fix any framework-specific issues (e.g., hydration mismatches, SSR/SSG errors) if applicable.
+- All figures render correctly. All text is properly formatted with no layout issues. Transitions between sections read naturally.
 
-### 7b. Code Cleanup
+### 9b. Code Cleanup
 
 - Remove unused files, components, styles, and dependencies from the codebase.
 - Consolidate duplicated logic into shared utilities or components.
 
-### 7c. Final Build Verification
+### 9c. Final Build Verification
 
 - Run the production build (`npm run build` or equivalent). It must complete with zero errors. Warnings should be resolved where possible.
 - Run the linter and type checker if configured. Fix all errors; resolve warnings where reasonable.
 - Start the production build locally and spot-check several pages to confirm correct rendering.
 
-### 7d. Final AUDIT_LOG Review
+### 9d. Final AUDIT_LOG Review
 
 - Review `AUDIT_LOG.md` for completeness. Ensure every change and every flagged item across all phases is logged.
 - Add a final summary section to `AUDIT_LOG.md` listing: total changes made, total items flagged for author review, and any known remaining issues.
@@ -194,8 +328,9 @@ Verify all navigation elements are correct and functional after the changes made
 
 ## General Guidelines
 
-- ACCURACY IS THE TOP PRIORITY. Never fabricate, invent, or assume information. If you cannot verify something, flag it in `AUDIT_LOG.md` for the author — do not guess.
+- ACCURACY IS THE TOP PRIORITY. Every analysis, figure, takeaway, and caption must be precisely supported by the data. Do not overstate, speculate, or extrapolate. Never fabricate, invent, or assume information. If you cannot verify something, flag it in `AUDIT_LOG.md` for the author — do not guess. The primary audience is researchers, policymakers, and industry professionals.
 - When a claim is partially correct but overstated, revise it to be precisely accurate rather than removing it entirely. Only remove claims that are outright false and cannot be salvaged.
 - Do not introduce new claims, findings, statistics, or interpretations that are not already present in the source material.
+- Match existing conventions exactly: same chart library, color palette, component patterns, data file format, caption style, takeaway format, and academic tone. When uncertain, find an existing example in the codebase and replicate it.
 - Maintain the author's voice and academic tone throughout all revisions.
-- When phases overlap in scope (e.g., both Phase 4 and Phase 5c mention cross-references), the earlier phase handles the content/structural concern and the later phase handles the technical/SEO implementation. Do not redo work that was already completed correctly.
+- When phases overlap in scope, the earlier phase handles the content/structural concern and the later phase handles the technical/SEO implementation. Do not redo work that was already completed correctly.

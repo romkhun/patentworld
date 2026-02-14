@@ -116,7 +116,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 1994,
     title: 'TRIPS Agreement',
     category: 'International',
-    description: 'The Agreement on Trade-Related Aspects of Intellectual Property Rights established minimum patent protection standards globally. Changed US patent term from 17 years from grant to 20 years from filing.',
+    description: 'The Agreement on Trade-Related Aspects of Intellectual Property Rights established minimum patent protection standards globally.',
     research: [
       {
         citation: 'Helpman, E. (1993). Innovation, imitation, and intellectual property rights. Econometrica, 61(6), 1247\u20131280. https://doi.org/10.2307/2951642',
@@ -162,7 +162,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 1998,
-    title: 'State Street Bank v. Signature',
+    title: 'State Street Bank v. Signature Financial Group',
     category: 'Court',
     description: 'The Court of Appeals for the Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." This holding precipitated a substantial increase in software and business method patent filings.',
     research: [
@@ -392,7 +392,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2023,
-    title: 'Proposed PREVAIL & PATENT Acts',
+    title: 'Proposed PREVAIL Act & Patent Eligibility Restoration Act (PERA)',
     category: 'Legislation',
     description: 'Congressional proposals to reform the PTAB system and patent eligibility under 35 U.S.C. \u00a7 101, reflecting the ongoing policy debate regarding the balance of innovation incentives.',
   },
@@ -425,7 +425,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility contributed to the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 

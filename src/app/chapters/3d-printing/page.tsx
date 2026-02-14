@@ -184,20 +184,20 @@ export default function Chapter19() {
       <ChapterHeader
         number={19}
         title="3D Printing & Additive Manufacturing"
-        subtitle="Layer-by-layer revolution in manufacturing"
+        subtitle="Layer-by-layer transformation in manufacturing"
       />
 
       <KeyFindings>
         <li>3D printing patent filings have grown approximately 20x since 2000, accelerating sharply after the expiration of key FDM patents in 2009 opened the field to a wave of new entrants and desktop applications.</li>
         <li>The technology has bifurcated into distinct tracks: polymer additive manufacturing (B29C64) for prototyping and consumer applications, and metal additive manufacturing (B22F10) for production-grade aerospace and medical components.</li>
-        <li>Stratasys, 3D Systems, HP, and GE Additive dominate the patent landscape, though their strategies differ markedly across AM processes, equipment, and materials.</li>
+        <li>HP, General Electric, Stratasys, and Boeing lead the 3D printing patent landscape, though their strategies differ markedly across AM processes, equipment, and materials.</li>
         <li>The introduction of the B33Y CPC classification specifically for additive manufacturing reflects the field&apos;s maturation into a recognized technology domain with distinct inventive activity.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing explosion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>.
+          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing expansion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>.
         </p>
       </aside>
 
@@ -232,7 +232,7 @@ export default function Chapter19() {
         id="fig-3dprint-annual-count"
         subtitle="Annual count of utility patents classified under additive manufacturing CPC codes (B33Y, B29C64, B22F10), tracking the growth trajectory of 3D printing patenting."
         title="3D Printing Patent Filings Grew Approximately 20x Since 2000, With Acceleration After the 2009 FDM Patent Expiration"
-        caption="Annual count and share of utility patents classified under additive manufacturing CPC codes, 1980-2025. The sharp acceleration after 2009 coincides with the expiration of Stratasys's foundational FDM patent, which opened the technology to widespread adoption and new entrants."
+        caption="Annual count and share of utility patents classified under additive manufacturing CPC codes, 1990-2025. The sharp acceleration after 2009 coincides with the expiration of Stratasys's foundational FDM patent, which opened the technology to widespread adoption and new entrants."
         insight="The exponential growth in 3D printing patents mirrors the broader democratization of additive manufacturing, driven by patent expirations, falling hardware costs, and expanding material capabilities."
         loading={pyL}
       >
@@ -274,7 +274,7 @@ export default function Chapter19() {
             { key: 'domain_pct', name: 'AM Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
-          yFormatter={(v) => `${v.toFixed(2)}%`}
+          yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PRINT3D_EVENTS)}
         />
       </ChartContainer>
@@ -285,7 +285,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-3dprint-subfields"
         subtitle="Patent counts by AM subfield (processes, equipment, materials, polymer AM, metal AM) over time, based on CPC group codes within B33Y, B29C64, and B22F10."
-        title="AM Processes and Polymer AM Dominate Filing Volume, While Metal AM Has Emerged as the Fastest-Growing Subfield Since 2015"
+        title="AM Processes and Polymer AM Dominate Filing Volume, While Metal AM and AM Auxiliary Operations Have Emerged as Rapidly Growing Subfields"
         caption="Patent counts by additive manufacturing subfield over time. AM processes and polymer AM (B29C64) represent the largest established categories, while metal AM (B22F10) has grown rapidly since 2015, reflecting the technology's expansion into production-grade applications in aerospace and medical devices."
         insight="The bifurcation between polymer and metal AM reflects two distinct technology trajectories: polymer AM serving prototyping and consumer markets, while metal AM targets high-value production applications."
         loading={sfL}
@@ -325,8 +325,8 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-3dprint-top-assignees"
         subtitle="Organizations ranked by total 3D printing patent count, showing concentration among AM specialists and industrial conglomerates."
-        title="Stratasys, 3D Systems, HP, and GE Additive Lead in AM Patent Volume, Reflecting Distinct Strategic Approaches to Additive Manufacturing"
-        caption="Organizations ranked by total additive manufacturing patents. The leadership of AM-native firms (Stratasys, 3D Systems) alongside industrial conglomerates (GE, HP, Siemens) reflects the technology's dual trajectory as both a standalone industry and an embedded manufacturing capability."
+        title="HP and General Electric Lead in AM Patent Volume, Followed by Stratasys, Boeing, 3D Systems, and Xerox"
+        caption="Organizations ranked by total additive manufacturing patents. The leadership of HP and GE alongside AM-native firms (Stratasys, 3D Systems) and aerospace companies (Boeing) reflects the technology's dual trajectory as both a standalone industry and an embedded manufacturing capability."
         insight="The co-existence of AM specialists and diversified industrial firms at the top of the patent rankings reflects additive manufacturing's dual identity: a standalone technology sector and an embedded capability within broader manufacturing systems."
         loading={taL}
         height={1400}
@@ -350,11 +350,10 @@ export default function Chapter19() {
         <p>
           The organizational landscape of 3D printing patents reflects the technology&apos;s
           maturation from a niche prototyping market to a strategically important manufacturing
-          capability. AM-native companies such as Stratasys and 3D Systems built early patent
-          portfolios around foundational process technologies, while later entrants like HP
-          and GE brought substantial resources from their existing manufacturing and
-          materials science operations. The presence of aerospace firms (Boeing, United
-          Technologies) and materials companies (Evonik, BASF) among top patent holders
+          capability. HP and General Electric lead in total AM patent volume, followed by
+          AM-native firms such as Stratasys and 3D Systems that built early patent portfolios
+          around foundational process technologies. The presence of aerospace firms (Boeing) and
+          materials and manufacturing firms (Xerox, Raytheon Technologies) among top patent holders
           underscores the expanding application base for additive manufacturing.
         </p>
       </KeyInsight>
@@ -464,7 +463,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-3dprint-by-state"
         subtitle="US states ranked by total 3D printing patents based on primary inventor location, highlighting geographic clustering of AM innovation."
-        title="AM Patenting Clusters in States With Strong Manufacturing and R&D Infrastructure, Including Minnesota, California, and Connecticut"
+        title="California, Massachusetts, and New York Lead US 3D Printing Patenting, Followed by Ohio, Texas, and Connecticut"
         caption="US states ranked by total additive manufacturing patents based on primary inventor location. The geographic clustering reflects the locations of major AM firms and their proximity to manufacturing customer bases in aerospace, medical devices, and automotive."
         insight="The clustering of AM patents in manufacturing-intensive states contrasts with the Silicon Valley concentration seen in software-oriented technology domains, reflecting additive manufacturing's ties to physical production infrastructure."
         loading={geoL}
@@ -495,7 +494,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-3dprint-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for 3D printing patents by year, measuring quality trends."
-        title="AM Patent Technology Scope Has Increased Steadily, Reflecting the Growing Interdisciplinarity of Additive Manufacturing Innovation"
+        title="AM Patent Technology Scope Has Increased Over the Long Term, Reflecting the Growing Interdisciplinarity of Additive Manufacturing Innovation"
         caption="Average claims, backward citations, and technology scope for additive manufacturing patents by year. The rising technology scope indicates that AM patents increasingly span multiple CPC subclasses, consistent with the interdisciplinary nature of AM systems that integrate materials science, mechanical engineering, and software control."
         insight="The expanding technology scope of AM patents reflects the interdisciplinary nature of additive manufacturing, which requires simultaneous innovation in materials, process control, equipment design, and software."
         loading={qL}
@@ -517,13 +516,11 @@ export default function Chapter19() {
       <KeyInsight>
         <p>
           AM patents exhibit distinctive quality characteristics that reflect the technology&apos;s
-          interdisciplinary nature. The growing backward citation count indicates an
-          increasingly interconnected knowledge base, as AM innovations draw on prior art
-          spanning materials science, mechanical engineering, thermal processing, and
-          computer-aided design. The expanding technology scope -- measured by the number of
-          distinct CPC subclasses per patent -- confirms that AM inventions increasingly
-          bridge multiple technology domains, consistent with the systems-level complexity
-          of modern additive manufacturing platforms.
+          interdisciplinary nature. Backward citations peaked around 2013 and have since declined,
+          while technology scope has shown a long-term increase. The expanding technology
+          scope -- measured by the number of distinct CPC subclasses per patent -- confirms
+          that AM inventions increasingly bridge multiple technology domains, consistent with
+          the systems-level complexity of modern additive manufacturing platforms.
         </p>
       </KeyInsight>
 
@@ -664,19 +661,19 @@ export default function Chapter19() {
 
       <Narrative>
         <p>
-          AM patents increasingly involve larger inventor teams compared to non-AM patents,
+          AM patents have generally involved larger inventor teams compared to non-AM patents,
           reflecting the multidisciplinary nature of additive manufacturing systems that
-          integrate materials science, process engineering, and software control. The
-          widening gap in team sizes between AM and non-AM patents highlights the
-          collaborative demands of AM innovation.
+          integrate materials science, process engineering, and software control. While the
+          gap narrowed and briefly reversed during 2016-2018, it has widened again in recent
+          years, highlighting the growing collaborative demands of AM innovation.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-3dprint-team-comparison"
         subtitle="Average inventors per patent for 3D printing vs. non-3D printing utility patents by year, showing the complexity gap between the two categories."
-        title="AM Patents Consistently Involve Larger Teams Than Non-AM Patents, With the Gap Reflecting the Multidisciplinary Demands of Additive Manufacturing"
-        caption="Average number of inventors per patent for additive manufacturing vs. non-AM utility patents by year. The data indicate that AM patents consistently involve larger teams, reflecting the multidisciplinary expertise required to advance process, materials, and equipment innovations simultaneously."
+        title="AM Patent Team Sizes Have Generally Exceeded Non-AM Averages, With Recent Widening"
+        caption="Average number of inventors per patent for additive manufacturing vs. non-AM utility patents by year. AM patents have generally involved larger teams, though the gap narrowed and briefly reversed during 2016-2018 before widening again in recent years, reflecting the evolving multidisciplinary demands of additive manufacturing."
         insight="The team size gap between AM and non-AM patents reflects the systems-level complexity of additive manufacturing, which requires concurrent innovation across materials, processes, equipment, and software."
         loading={tcL}
       >

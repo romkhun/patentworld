@@ -23,6 +23,22 @@ interface PWAreaChartProps {
 }
 
 export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent = false, xLabel, yLabel, yFormatter, yDomain, referenceLines }: PWAreaChartProps) {
+  const isStacked = stacked || stackedPercent;
+
+  // For stacked charts, reverse legend order so it matches visual stacking (top of stack = top of legend)
+  const reversedLegendPayload = useMemo(() => {
+    if (!isStacked) return undefined;
+    return [...areas].reverse().map((area, i) => {
+      const origIdx = areas.length - 1 - i;
+      return {
+        value: area.name,
+        type: 'circle' as const,
+        id: area.key,
+        color: area.color ?? CHART_COLORS[origIdx % CHART_COLORS.length],
+      };
+    });
+  }, [areas, isStacked]);
+
   const processedData = useMemo(() => stackedPercent ? data.map((d) => {
     const total = areas.reduce((s, a) => s + (Number(d[a.key]) || 0), 0);
     if (total === 0) return d;
@@ -49,7 +65,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
-          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
         >
@@ -58,15 +74,15 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
             />
           )}
         </XAxis>
         <YAxis
-          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
           tickLine={false}
           axisLine={false}
-          tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
+          tickFormatter={stackedPercent ? (v) => `${Number(v).toFixed(0)}%` : (yFormatter ?? formatCompact)}
           width={60}
           domain={stackedPercent ? [0, 100] : (yDomain ?? undefined)}
           allowDataOverflow={stackedPercent || yDomain ? true : undefined}
@@ -77,7 +93,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
               offset={-5}
             />
           )}
@@ -90,9 +106,10 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
+          {...(reversedLegendPayload ? { payload: reversedLegendPayload as any } : {})}
         />
         {referenceLines?.map((ref) => (
           <ReferenceLine

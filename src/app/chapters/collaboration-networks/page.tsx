@@ -208,7 +208,7 @@ export default function Chapter8() {
       <KeyInsight>
         <p>
           The co-patenting network exhibits distinct industry clusters. Electronics firms (Samsung,
-          LG, Sony) form a dense cluster, pharmaceutical companies (Pfizer, Merck, Novartis) cluster
+          LG, Sony) form a dense cluster, pharmaceutical companies (Pfizer, Novartis) cluster
           separately, and automotive firms (Toyota, Honda, Ford) constitute their own community. Bridge
           organizations that span multiple clusters -- often large conglomerates such as GE or Siemens
           -- appear to serve disproportionate roles in cross-industry knowledge transfer.
@@ -320,7 +320,7 @@ export default function Chapter8() {
       <Narrative>
         <p>
           Certain inventors serve as critical bridges connecting otherwise separate organizations
-          and technology communities. These &quot;bridge inventors&quot; have patented at three or more
+          and technology communities. These &quot;bridge inventors&quot; have patented at 30 or more
           distinct organizations, potentially facilitating the transfer of knowledge and practices between firms.
         </p>
       </Narrative>
@@ -360,8 +360,8 @@ export default function Chapter8() {
       <ChartContainer
         id="fig-collaboration-intl-collaboration"
         subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
-        title="International Co-Invention Increased from Approximately 2% in the 1980s to Approaching 10% of All Patents"
-        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to approaching 10% in recent years, with the most rapid growth occurring during the 2000s."
+        title="International Co-Invention Increased from Approximately 2% in the 1980s to Reaching 10% of All Patents"
+        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to reaching 10% in recent years, with the most rapid growth occurring during the 2010s."
         loading={icL}
         insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
@@ -391,14 +391,14 @@ export default function Chapter8() {
 
       <KeyInsight>
         <p>
-          International collaboration has increased from approximately 2% of patents in the 1980s to approaching 10%
+          International collaboration has increased from approximately 2% of patents in the 1980s to reaching 10%
           in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility,
           and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated
           in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
         </p>
       </KeyInsight>
 
-      <SectionDivider label="The US-China Decoupling" />
+      <SectionDivider label="US-China Collaboration Dynamics" />
 
       <Narrative>
         <p>
@@ -427,7 +427,7 @@ export default function Chapter8() {
             color: BUMP_COLORS[i % BUMP_COLORS.length],
           }))}
           yLabel="Co-invention Rate (%)"
-          yFormatter={(v: number) => `${v.toFixed(2)}%`}
+          yFormatter={(v: number) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -437,7 +437,7 @@ export default function Chapter8() {
         subtitle="Annual count of US-China co-invented patents broken down by CPC technology section, shown as a stacked area chart."
         title="US-China Co-Invention Grew from 77 Patents in 2000 to 2,749 in 2024, Led by Electricity (H) and Physics (G)"
         caption="Annual count of US patents co-invented with Chinese inventors, disaggregated by CPC section. All CPC sections have grown over time, though growth rates moderated across some technology areas in recent years."
-        insight="US-China collaboration has grown across most CPC technology sections. While growth rates moderated in some areas in recent years, most sections continued to expand, though chemistry (C) experienced a decline of approximately 33% between 2020 and 2023, reflecting evolving US-China research dynamics."
+        insight="US-China collaboration has grown across most CPC technology sections. While growth rates moderated in some areas in recent years, the trajectory varied by technology area, with Electricity (H) and Operations &amp; Transport (B) continuing to grow while Chemistry (C) declined by roughly a third between 2020 and 2023."
         loading={cisL}
         height={500}
       >

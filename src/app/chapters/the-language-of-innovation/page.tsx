@@ -70,7 +70,7 @@ export default function Chapter3() {
       name: t.name,
       data: years.map((year) => {
         const entry = prevalence.find((d) => d.year === year && d.topic === t.id);
-        return { x: year, y: (entry?.share ?? 0) * 100 };
+        return { x: year, y: entry?.share ?? 0 };
       }),
     }));
     // "Other" panel: sum of remaining topics
@@ -80,7 +80,7 @@ export default function Chapter3() {
         const otherShare = prevalence
           .filter((d) => d.year === year && otherIds.has(d.topic))
           .reduce((s, d) => s + (d.share ?? 0), 0);
-        return { x: year, y: otherShare * 100 };
+        return { x: year, y: otherShare };
       }),
     });
     const colors = top8.map((t) => TOPIC_COLORS[t.id % TOPIC_COLORS.length]);
@@ -169,19 +169,19 @@ export default function Chapter3() {
         </li>
         <li>Computing and semiconductor-related topics have grown from approximately 12% to over 33% of all patents since 1976, mirroring the digital revolution.</li>
         <li>Patents that span multiple topics — measured by Shannon entropy — tend to be the most novel inventions, often sitting at the intersection of technologies.</li>
-        <li>The semantic landscape of patents, visualized via <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip>, shows clear clustering by technology area with growing overlap between computational and scientific domains.</li>
+        <li>The semantic landscape of patents, visualized via <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip>, reveals clear clustering by technology area with growing overlap between computational and scientific domains.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most notable is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Approximately 8.45 million patent abstracts provide a rich corpus for examining the thematic structure of US patenting activity. By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
+          Approximately 8.4 million patent abstracts provide a rich corpus for examining the thematic structure of US patenting activity. By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
           modeling to every utility patent abstract filed with the USPTO since 1976, this analysis uncovers the latent themes of
           US innovation. Using <GlossaryTooltip term="TF-IDF">TF-IDF</GlossaryTooltip> to convert raw text into numerical
           features, and non-negative matrix factorization to discover 25 latent topics, the results indicate which themes
@@ -400,9 +400,9 @@ export default function Chapter3() {
       <ChartContainer
         id="fig-language-innovation-novelty"
         subtitle="Median and average Shannon entropy of patent topic distributions by year, measuring thematic diversity as a proxy for novelty."
-        title="Patent Novelty Rose 6.4% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With an Upward Trend Since the 1990s Despite a Dip From 2003 to 2014"
-        caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the 1990s suggests that modern inventions increasingly combine ideas from multiple technology domains, though a dip between 2003 and 2014 preceded acceleration in the late 2010s."
-        insight="Patent novelty has trended upward since the 1990s, though with a notable dip between 2003 and 2014, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the late 2010s, coinciding with the rise of AI and other general-purpose technologies."
+        title="Patent Novelty Rose 6.4% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With an Upward Trend Since the Late 1980s Despite a Dip From 2004 to 2014"
+        caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the late 1980s suggests that modern inventions increasingly combine ideas from multiple technology domains, though a dip between 2004 and 2014 preceded acceleration in the late 2010s."
+        insight="Patent novelty has trended upward since the late 1980s, though with a notable dip between 2004 and 2014, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the late 2010s, coinciding with the rise of AI and other general-purpose technologies."
         loading={novTL}
       >
         <PWLineChart
@@ -423,7 +423,7 @@ export default function Chapter3() {
           Rising entropy suggests that the boundaries between technology domains are becoming
           more porous. The most novel patents, those scoring highest on entropy, tend to
           be situated at the intersection of multiple topics, combining language from computing -- including the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> vocabulary that has become increasingly prevalent --
-          biology, chemistry, and engineering in ways that were uncommon just a few decades ago.
+          biology, chemistry, and engineering in ways that were uncommon only a few decades ago.
         </p>
       </KeyInsight>
 

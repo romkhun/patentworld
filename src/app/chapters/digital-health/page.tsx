@@ -197,7 +197,7 @@ export default function Chapter15() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two pivotal moments: the 2009 HITECH Act, which mandated electronic health record adoption and catalyzed a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by established medical device firms -- Medtronic, Philips, Siemens, and GE Healthcare -- yet the growing role of AI in clinical decision support is drawing technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents a particularly dynamic frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape entire surgical disciplines.
+          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two significant developments: the 2009 HITECH Act, which mandated electronic health record adoption and catalyzed a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by medical device firms such as Philips, Medtronic, and Intuitive Surgical, alongside technology companies including IBM and Samsung -- yet the growing role of AI in clinical decision support is drawing even more technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents a notably active frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape surgical disciplines.
         </p>
       </aside>
 
@@ -320,7 +320,7 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-digihealth-top-assignees"
         subtitle="Organizations ranked by total digital health patent count, showing concentration among established medical device and healthcare technology firms."
-        title="Medtronic, Philips, Siemens, and GE Healthcare Lead in Digital Health Patent Volume"
+        title="Philips, Medtronic, Intuitive Surgical, and Covidien Lead in Digital Health Patent Volume"
         caption="Organizations ranked by total digital health patents. The data indicate a concentration among established medical device manufacturers and diversified healthcare technology conglomerates, reflecting the capital-intensive nature of medical device R&D and the regulatory barriers to entry."
         insight="The dominance of established medical device firms reflects the substantial regulatory, clinical validation, and manufacturing requirements that characterize healthcare technology innovation."
         loading={taL}
@@ -345,10 +345,11 @@ export default function Chapter15() {
         <p>
           Digital health patent leadership reflects a concentration among firms with deep
           expertise in medical device engineering, clinical workflows, and regulatory
-          compliance. Medtronic, Philips, Siemens, and GE Healthcare have built extensive
-          portfolios spanning patient monitoring, diagnostic imaging, and health informatics.
-          The presence of both European medical technology firms and American healthcare
-          conglomerates indicates the global nature of competition in digital health innovation.
+          compliance. Philips (2,909 patents), Medtronic (2,302), Intuitive Surgical (1,994),
+          and Covidien (1,880) lead in total patent volume, while technology companies such as
+          IBM and Samsung also rank among the top holders. The presence of both medical device
+          firms and technology companies indicates the cross-disciplinary nature of competition
+          in digital health innovation.
         </p>
       </KeyInsight>
 
@@ -423,8 +424,8 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-digihealth-by-country"
         subtitle="Countries ranked by total digital health patents based on primary inventor location, showing geographic distribution of healthcare technology innovation."
-        title="The United States Leads in Digital Health Patents, With Germany, Japan, and the Netherlands as Major Contributors"
-        caption="Countries ranked by total digital health patents based on primary inventor location. The United States maintains a substantial lead, while Germany (Siemens), the Netherlands (Philips), and Japan reflect the global distribution of medical device manufacturing and R&D."
+        title="The United States Leads in Digital Health Patents, With Israel, South Korea, and Japan as Notable Contributors"
+        caption="Countries ranked by total digital health patents based on primary inventor location. The United States maintains a substantial lead, while Israel, South Korea, Japan, and the Netherlands reflect the global distribution of medical device and health technology R&D."
         insight="The geographic distribution of digital health patents reflects both the concentration of major medical device headquarters and the distributed nature of clinical research partnerships across advanced economies."
         loading={geoL}
         height={900}
@@ -441,20 +442,21 @@ export default function Chapter15() {
         <p>
           The geographic distribution of digital health patents reveals the dominant role of
           the United States, supported by its concentration of major healthcare systems,
-          medical device firms, and academic medical centers. The strong presence of Germany
-          and the Netherlands reflects the headquarters of Siemens and Philips, respectively,
-          while Japan&apos;s contributions span diagnostic imaging and patient monitoring
-          technologies. This distribution differs from the AI patent landscape, where East
-          Asian electronics firms play a more prominent role.
+          medical device firms, and academic medical centers. Israel and South Korea rank
+          prominently, reflecting their active health technology sectors and medical device
+          industries. Japan and the Netherlands (home to Philips) also contribute substantially,
+          while Germany&apos;s position reflects Siemens&apos;s medical technology operations.
+          This distribution differs from the AI patent landscape, where East Asian electronics
+          firms play a more prominent role.
         </p>
       </KeyInsight>
 
       <ChartContainer
         id="fig-digihealth-by-state"
         subtitle="US states ranked by total digital health patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California and Minnesota Lead US Digital Health Patenting, Reflecting Medical Device Industry Clusters"
-        caption="US states ranked by total digital health patents based on primary inventor location. California&apos;s lead reflects Silicon Valley&apos;s health technology ecosystem, while Minnesota&apos;s prominence is driven by Medtronic and the broader Minneapolis medical device cluster."
-        insight="The geographic clustering of digital health patents in California and Minnesota reflects distinct innovation ecosystems: Silicon Valley&apos;s technology-driven health startups and the Twin Cities&apos; established medical device manufacturing base."
+        title="California and Massachusetts Lead US Digital Health Patenting, Reflecting Medical Device and Health IT Industry Clusters"
+        caption="US states ranked by total digital health patents based on primary inventor location. California&apos;s lead reflects Silicon Valley&apos;s health technology ecosystem, while Massachusetts&apos;s strong second-place position is driven by its concentration of medical device firms, health IT companies, and academic medical centers."
+        insight="The geographic clustering of digital health patents in California and Massachusetts reflects distinct innovation ecosystems: Silicon Valley&apos;s technology-driven health startups and Boston&apos;s established medical device and health IT corridor."
         loading={geoL}
         height={900}
       >
@@ -469,12 +471,13 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           Within the United States, digital health patenting is concentrated in California
-          and Minnesota -- two states with distinct but complementary innovation ecosystems.
-          California&apos;s leadership reflects the Silicon Valley health technology corridor,
-          where software-driven approaches to clinical decision support and telemedicine
-          predominate. Minnesota&apos;s prominence is driven by the Minneapolis-St. Paul medical
-          device cluster, anchored by Medtronic and supported by the Mayo Clinic&apos;s
-          clinical research infrastructure.
+          and Massachusetts -- the two leading states by a substantial margin. California&apos;s
+          leadership reflects the Silicon Valley health technology corridor, where
+          software-driven approaches to clinical decision support and telemedicine predominate.
+          Massachusetts ranks second, driven by its concentration of medical device firms,
+          health IT companies, and the academic medical centers of the Boston corridor.
+          Minnesota, ranked third, benefits from the Minneapolis-St. Paul medical device
+          cluster anchored by Medtronic, while New York rounds out the top four.
         </p>
       </KeyInsight>
 
@@ -595,7 +598,7 @@ export default function Chapter15() {
           informatics. Siemens concentrates on medical imaging informatics and healthcare IT
           infrastructure. The emergence of surgical robotics as a distinct strategic focus --
           particularly for Intuitive Surgical -- illustrates how patent-protected platforms
-          can define entirely new categories of medical intervention.
+          can define new categories of medical intervention.
         </p>
       </KeyInsight>
 
@@ -615,8 +618,8 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-digihealth-diffusion"
         subtitle="Percentage of digital health patents co-classified with other CPC sections, measuring cross-domain technology integration."
-        title="Digital Health Patents Show Growing Co-Occurrence With Computing and Chemistry CPC Codes, Reflecting Deepening Technology Integration"
-        caption="Percentage of digital health patents that also carry CPC codes from each non-primary section. Rising lines indicate increasing integration between digital health and that technology sector. The most notable pattern is the growing co-occurrence with Physics (Section G, encompassing computing) and Human Necessities (Section A, encompassing broader healthcare)."
+        title="Digital Health Patents Show Growing Co-Occurrence With Electricity and Performing Operations CPC Codes, Reflecting Deepening Technology Integration"
+        caption="Percentage of digital health patents that also carry CPC codes from each non-primary section. Rising lines indicate increasing integration between digital health and that technology sector. The most notable pattern is the growing co-occurrence with Electricity (Section H, encompassing electronic circuits and communication) and Performing Operations (Section B, encompassing surgical instruments and transporting)."
         insight="The cross-domain diffusion of digital health patents is consistent with its characterization as an integrative technology that draws on computing, materials science, and clinical methodologies to deliver healthcare innovations."
         loading={diffL}
       >
@@ -639,13 +642,14 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           Digital health increasingly exhibits the characteristics of a cross-domain
-          technology. The growing co-occurrence with Physics (Section G), which encompasses
-          computing and instrumentation, reflects the deepening integration of software and
-          data analytics into medical devices. Co-occurrence with Chemistry (Section C)
-          indicates connections to pharmaceutical and biochemical technologies. This pattern
-          of broad diffusion suggests that digital health innovation is not confined to a
-          single technology silo but draws on -- and contributes to -- advances across multiple
-          sectors of the economy.
+          technology. The highest co-occurrence is with Electricity (Section H), which
+          encompasses electronic circuits, communication, and electric signaling -- reflecting
+          the deep integration of electronic systems into medical devices. Performing Operations
+          (Section B), covering surgical instruments and mechanical processes, is also strongly
+          represented. Co-occurrence with Chemistry (Section C) indicates connections to
+          pharmaceutical and biochemical technologies. This pattern of broad diffusion suggests
+          that digital health innovation is not confined to a single technology silo but draws
+          on -- and contributes to -- advances across multiple sectors of the economy.
         </p>
       </KeyInsight>
 
@@ -654,20 +658,20 @@ export default function Chapter15() {
 
       <Narrative>
         <p>
-          Digital health patents increasingly involve larger inventor teams and corporate
-          assignees, reflecting the multidisciplinary nature of modern healthcare technology.
-          The average digital health patent lists more inventors than non-digital-health
-          patents, and this disparity has widened over time as the complexity of integrating
-          clinical, engineering, and regulatory requirements has grown.
+          Since the mid-1990s, digital health patents have involved more inventors per patent
+          than non-digital-health patents, and this gap has widened over time as the complexity
+          of integrating clinical, engineering, and regulatory requirements has grown. Corporate
+          assignees dominate, reflecting the multidisciplinary nature of modern healthcare
+          technology.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-digihealth-team-comparison"
         subtitle="Average inventors per patent for digital health vs. non-digital-health utility patents by year, showing the complexity gap between the two categories."
-        title="Digital Health Patents Consistently Involve Larger Teams Than Non-Digital-Health Patents, Reflecting Multidisciplinary Requirements"
-        caption="Average number of inventors per patent for digital health vs. non-digital-health utility patents, 1976-2025. The data indicate that digital health patents consistently involve larger teams, reflecting the need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
-        insight="Digital health patents consistently involve larger teams than non-digital-health patents, a pattern that reflects the multidisciplinary demands of integrating clinical knowledge, engineering expertise, and regulatory compliance."
+        title="Since the Mid-1990s, Digital Health Patents Have Involved Larger Teams Than Non-Digital-Health Patents"
+        caption="Average number of inventors per patent for digital health vs. non-digital-health utility patents, 1976-2025. Before the mid-1990s, digital health team sizes were comparable to or slightly smaller than non-digital-health patents. Since then, digital health teams have grown larger, reflecting the increasing need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
+        insight="Since the mid-1990s, digital health patents have involved larger teams than non-digital-health patents, a pattern that reflects the growing multidisciplinary demands of integrating clinical knowledge, engineering expertise, and regulatory compliance."
         loading={tcL}
       >
         <PWLineChart
@@ -710,7 +714,7 @@ export default function Chapter15() {
           The growth in team sizes and corporate dominance in digital health patenting
           underscores the resource-intensive nature of healthcare technology innovation.
           Unlike software-centric technology domains where individual inventors and startups
-          can make outsized contributions, medical device innovation requires substantial
+          can make disproportionate contributions, medical device innovation requires substantial
           investment in clinical trials, regulatory submissions, and manufacturing -- creating
           structural advantages for large, established organizations with existing
           relationships with healthcare systems and regulatory agencies.

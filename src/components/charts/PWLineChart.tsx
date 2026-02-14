@@ -52,7 +52,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
-          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
         >
@@ -61,14 +61,14 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
             />
           )}
         </XAxis>
         <YAxis
           yAxisId="left"
           domain={yDomain}
-          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
           tickLine={false}
           axisLine={false}
           tickFormatter={yFormatter ?? formatCompact}
@@ -79,7 +79,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
               offset={-5}
             />
           )}
@@ -88,7 +88,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
           <YAxis
             yAxisId="right"
             orientation="right"
-            tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+            tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
             tickLine={false}
             axisLine={false}
             tickFormatter={rightYFormatter ?? formatCompact}
@@ -99,7 +99,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
                 value={rightYLabel}
                 angle={90}
                 position="insideRight"
-                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fontFamily: chartTheme.fontFamily }}
                 offset={-5}
               />
             )}
@@ -115,7 +115,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
           }}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
           onMouseEnter={handleLegendEnter}

@@ -191,15 +191,15 @@ export default function Chapter12() {
 
       <KeyFindings>
         <li>Quantum computing patents have grown rapidly from a very small base, reflecting the transition from theoretical physics to engineering-oriented hardware and software development.</li>
-        <li>IBM, Google, Intel, and Microsoft dominate quantum computing patenting, investing heavily in superconducting qubits, trapped ions, and software toolchains.</li>
-        <li>Error correction remains a central challenge, and patents in this subfield have grown disproportionately as the field moves toward fault-tolerant quantum computation.</li>
+        <li>IBM, Google, D-Wave, and Microsoft dominate quantum computing patenting, investing heavily in superconducting qubits, trapped ions, and software toolchains.</li>
+        <li>Error correction remains a central challenge, and patents in error correction and other quantum computing subfields have expanded substantially as the field moves toward fault-tolerant quantum computation.</li>
         <li>Despite small absolute volumes compared to other technology domains, quantum computing patents span multiple CPC sections, suggesting broad potential applications across industries.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a dramatic shift toward practical hardware implementations. The patent record captures this transition vividly: early filings focused on quantum algorithms and theoretical models, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of technology giants are racing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a tiny fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology on the cusp of broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures this transition clearly: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a tiny fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -208,10 +208,10 @@ export default function Chapter12() {
           Having examined <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductor</Link> patenting trends and the silicon foundation of modern computing, this chapter turns to the closely related field of quantum computing, where advances in qubit hardware depend on the same fabrication expertise documented in the preceding chapter.
         </p>
         <p>
-          Quantum computing represents one of the most ambitious frontiers in the history of
+          Quantum computing represents one of the most technically demanding frontiers in
           computing. This chapter examines the trajectory of <StatCallout value="quantum computing patents" /> --
-          from early algorithmic breakthroughs through the hardware race among technology
-          giants to the current push toward error-corrected, fault-tolerant machines.
+          from early algorithmic breakthroughs through the hardware competition among major technology
+          firms to the current effort toward error-corrected, fault-tolerant machines.
         </p>
       </Narrative>
 
@@ -231,7 +231,7 @@ export default function Chapter12() {
         id="fig-quantum-patents-annual-count"
         subtitle="Annual count of utility patents classified under quantum computing-related CPC codes, tracking the growth trajectory of quantum computing patenting."
         title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Reflecting the Field's Transition to Engineering"
-        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2015, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019."
+        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019."
         insight="The exponential growth in quantum computing patents mirrors increased corporate investment in quantum hardware and software, driven by milestones in qubit performance and error correction."
         loading={pyL}
       >
@@ -272,7 +272,7 @@ export default function Chapter12() {
             { key: 'domain_pct', name: 'Quantum Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
-          yFormatter={(v) => `${v.toFixed(2)}%`}
+          yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={QUANTUM_EVENTS}
         />
       </ChartContainer>
@@ -282,7 +282,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-quantum-patents-subfields"
         subtitle="Patent counts by quantum computing subfield (algorithms, physical realizations, error correction, etc.) over time, based on specific CPC group codes."
-        title="Physical Realizations and Error Correction Have Emerged as the Fastest-Growing Quantum Computing Subfields"
+        title="Physical Realizations Leads in Volume While All Quantum Subfields Have Grown Rapidly"
         caption="Patent counts by quantum computing subfield over time. The data reveal a shift from theoretical algorithm patents toward physical realizations and error correction, reflecting the field's maturation from theory to engineering."
         insight="The shift toward physical realizations and error correction patents reflects the field's transition from algorithmic theory to practical hardware engineering."
         loading={sfL}
@@ -305,10 +305,10 @@ export default function Chapter12() {
       <KeyInsight>
         <p>
           The composition of quantum computing patents has evolved substantially. Early filings
-          concentrated on quantum algorithms and theoretical models, but the recent surge is
-          dominated by physical realizations -- superconducting circuits, trapped ions, and
-          photonic systems -- alongside a rapidly growing body of work on quantum error
-          correction. This shift from theory to engineering reflects the field&apos;s movement
+          focused on physical realizations and quantum algorithms, and physical realizations
+          continues to lead in absolute volume. However, Other Quantum Computing and Quantum
+          Programming have shown the highest growth rates by ratio, while error correction
+          has also expanded rapidly. This diversification reflects the field&apos;s movement
           toward building practical, fault-tolerant quantum computers, with error correction
           emerging as perhaps the single most critical technical challenge.
         </p>
@@ -319,9 +319,9 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-quantum-patents-top-assignees"
         subtitle="Organizations ranked by total quantum computing patent count, showing concentration among a small number of technology firms."
-        title="IBM, Google, Intel, and Microsoft Lead Quantum Computing Patenting, Reflecting the Capital-Intensive Nature of Quantum R&D"
+        title="IBM, Google, D-Wave, and Microsoft Lead Quantum Computing Patenting, Reflecting the Capital-Intensive Nature of Quantum R&D"
         caption="Organizations ranked by total quantum computing patents, 1990-2025. The data indicate strong concentration among a handful of large technology firms that have made significant investments in quantum hardware and software."
-        insight="The dominance of a small group of technology giants in quantum computing patenting reflects the extraordinary capital requirements of quantum hardware research, which demands cryogenic infrastructure, specialized fabrication, and large physics and engineering teams."
+        insight="The dominance of a small group of major technology firms in quantum computing patenting reflects the substantial capital requirements of quantum hardware research, which demands cryogenic infrastructure, specialized fabrication, and large physics and engineering teams."
         loading={taL}
         height={1400}
       >
@@ -346,11 +346,10 @@ export default function Chapter12() {
           with the resources to sustain long-horizon research programs. IBM has maintained a
           leading position through its decades-long investment in quantum information science,
           while Google&apos;s entry -- culminating in its 2019 quantum supremacy demonstration --
-          rapidly elevated the company&apos;s patent portfolio. Intel and Microsoft have pursued
-          alternative hardware approaches (silicon spin qubits and topological qubits,
-          respectively), and their patent filings reflect these distinctive technical strategies.
-          The presence of defense contractors and national laboratories in the rankings
-          underscores the strategic significance of quantum computing.
+          substantially expanded the company&apos;s patent portfolio. D-Wave&apos;s strong third-place
+          position reflects its early and sustained work in quantum annealing, and Microsoft has pursued
+          its own hardware and software approaches. The presence of Northrop Grumman (#9)
+          among the top assignees underscores the strategic significance of quantum computing.
         </p>
       </KeyInsight>
 
@@ -411,7 +410,7 @@ export default function Chapter12() {
         <p>
           The most prolific quantum computing inventors are typically affiliated with the
           leading technology firms and national laboratories that dominate the organizational
-          rankings. The extreme concentration of patenting among a small number of individuals
+          rankings. The pronounced concentration of patenting among a small number of individuals
           reflects the highly specialized nature of quantum computing research, which requires
           deep expertise in quantum physics, cryogenic engineering, and quantum information
           theory -- skills that remain scarce in the global labor market.
@@ -423,8 +422,8 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-quantum-patents-by-country"
         subtitle="Countries ranked by total quantum computing patents based on primary inventor location, showing geographic distribution of quantum innovation."
-        title="The United States Leads in Quantum Computing Patents, With Significant Contributions From Japan, Canada, and China"
-        caption="Countries ranked by total quantum computing patents based on primary inventor location. The United States maintains a substantial lead, while the presence of Canada, Japan, and China reflects the global nature of quantum research investment."
+        title="The United States Leads in Quantum Computing Patents, With Significant Contributions From Canada, Japan, and China"
+        caption="Countries ranked by total quantum computing patents based on primary inventor location. The United States maintains a substantial lead, while the presence of Canada, Japan, China, and Israel reflects the global nature of quantum research investment."
         insight="The geographic distribution of quantum patents reflects the concentration of quantum research in countries with strong physics traditions and substantial government funding for quantum technologies."
         loading={geoL}
         height={900}
@@ -445,7 +444,8 @@ export default function Chapter12() {
           strong presence reflects the influence of the Perimeter Institute and D-Wave Systems,
           a pioneer in quantum annealing. China&apos;s growing share is consistent with its
           national quantum technology initiative, while Japan&apos;s contributions build on its
-          long-standing strengths in semiconductor and materials science research.
+          long-standing strengths in semiconductor and materials science research. Israel
+          rounds out the top five, reflecting its active quantum technology sector.
         </p>
       </KeyInsight>
 
@@ -484,9 +484,9 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-quantum-patents-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for quantum computing patents by year, measuring quality trends."
-        title="Quantum Computing Patents Show Rising Technology Scope, Reflecting Growing Interdisciplinarity as the Field Matures"
-        caption="Average claims, backward citations, and technology scope for quantum computing patents by year. The rising technology scope suggests that quantum patents are becoming increasingly interdisciplinary, spanning physics, electrical engineering, and computer science."
-        insight="Rising technology scope in quantum patents reflects the growing interdisciplinarity of quantum computing, which bridges fundamental physics, materials science, electrical engineering, and computer science."
+        title="Quantum Computing Technology Scope Peaked in 2020 Before Declining, Suggesting Increasing Specialization"
+        caption="Average claims, backward citations, and technology scope for quantum computing patents by year. Technology scope peaked around 2020 before declining, suggesting that after a period of broadening interdisciplinarity, quantum patents have become more specialized."
+        insight="Technology scope in quantum patents peaked around 2020 and has since declined, suggesting that after an initial period of broad interdisciplinary exploration, the field is increasingly focusing on more specialized technical challenges."
         loading={qL}
       >
         <PWLineChart
@@ -505,12 +505,13 @@ export default function Chapter12() {
 
       <KeyInsight>
         <p>
-          Quantum computing patents exhibit distinctive quality characteristics. The growing
-          technology scope reflects the inherently interdisciplinary nature of quantum computing,
-          which spans <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses in physics,
-          electrical engineering, and computer science. Backward citation patterns indicate an
-          expanding knowledge base, as quantum computing draws on advances in materials science,
-          cryogenics, and control systems alongside core quantum information theory.
+          Quantum computing patents exhibit distinctive quality characteristics. Technology scope
+          peaked around 2020 before declining, suggesting that after an initial period of broad
+          interdisciplinary exploration spanning <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses in physics,
+          electrical engineering, and computer science, the field has become more specialized.
+          Backward citation patterns indicate an expanding knowledge base, as quantum computing
+          draws on advances in materials science, cryogenics, and control systems alongside
+          core quantum information theory.
         </p>
       </KeyInsight>
 
@@ -518,7 +519,7 @@ export default function Chapter12() {
         id="fig-quantum-patents-team-size"
         subtitle="Average number of named inventors per quantum computing patent by year, reflecting the collaborative nature of quantum research."
         title="Quantum Computing Patent Teams Are Large and Growing, Reflecting the Multidisciplinary Expertise Required"
-        caption="Average number of inventors per quantum computing patent by year. The consistently large team sizes reflect the extraordinary range of expertise required, spanning quantum physics, cryogenic engineering, microwave electronics, and software development."
+        caption="Average number of inventors per quantum computing patent by year. The consistently large team sizes reflect the broad range of expertise required, spanning quantum physics, cryogenic engineering, microwave electronics, and software development."
         insight="Growing team sizes reflect the increasing complexity of quantum computing systems, which require expertise spanning quantum physics, cryogenic engineering, microwave electronics, materials science, and software development."
         loading={qL}
       >
@@ -537,7 +538,7 @@ export default function Chapter12() {
       <KeyInsight>
         <p>
           The large and growing team sizes for quantum computing patents underscore the
-          extraordinary range of expertise required to advance the field. Building a quantum
+          broad range of expertise required to advance the field. Building a quantum
           computer demands contributions from quantum physicists, cryogenic engineers,
           microwave electronics specialists, materials scientists, and software developers --
           a breadth of expertise that necessitates large, multidisciplinary research teams
@@ -549,8 +550,8 @@ export default function Chapter12() {
 
       <Narrative>
         <p>
-          Quantum computing patents consistently involve larger inventor teams than non-quantum
-          patents, and this gap has widened over time. The comparison illustrates the
+          Quantum computing patents have generally involved larger inventor teams than non-quantum
+          patents in recent years, though the gap has narrowed to near-zero. The comparison illustrates the
           capital-intensive, team-based nature of quantum research relative to the broader
           patent system.
         </p>
@@ -559,9 +560,9 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-quantum-patents-team-comparison"
         subtitle="Average inventors per patent for quantum vs. non-quantum utility patents by year, showing the team size gap between the two categories."
-        title="Quantum Patents Consistently Involve Larger Teams Than Non-Quantum Patents, Reflecting the Field's Collaborative Research Model"
-        caption="Average number of inventors per patent for quantum computing vs. non-quantum utility patents. The data indicate that quantum patents consistently involve larger teams, reflecting the multidisciplinary expertise required for quantum computing research."
-        insight="Quantum computing patents consistently involve larger teams than non-quantum patents, reflecting the collaborative, multidisciplinary nature of quantum research that requires physicists, engineers, and computer scientists working together."
+        title="Quantum Patents Generally Involve Larger Teams Than Non-Quantum Patents, Though the Gap Has Converged in Recent Years"
+        caption="Average number of inventors per patent for quantum computing vs. non-quantum utility patents. The data indicate that quantum patents have generally involved larger teams in recent years, though the gap has narrowed to near-zero by 2023-2025."
+        insight="Quantum computing patents have generally involved larger teams than non-quantum patents, though the gap has converged in recent years, reflecting the collaborative yet increasingly efficient nature of quantum research."
         loading={tcL}
       >
         <PWLineChart
@@ -580,10 +581,10 @@ export default function Chapter12() {
 
       <ChartContainer
         id="fig-quantum-patents-assignee-type"
-        subtitle="Distribution of quantum computing patents by assignee type (corporate, university, government, individual) over time."
-        title="Corporate Assignees Dominate Quantum Computing Patenting, Though Universities Play a Larger Role Than in Most Technology Domains"
-        caption="Distribution of quantum computing patent assignees by type over time. Corporate assignees have intensified their share since 2015, though university and government laboratory contributions remain more significant than in many other technology domains, reflecting quantum computing's roots in academic and government-funded research."
-        insight="While corporate assignees have come to dominate quantum computing patenting, the relatively large share of university and government patents reflects the field's origins in academic physics and sustained public investment in quantum research."
+        subtitle="Distribution of quantum computing patents by assignee type (corporate, government, individual) over time."
+        title="Corporate Assignees Dominate Quantum Computing Patents"
+        caption="Distribution of quantum computing patent assignees by type over time. Corporate assignees account for over 98% of quantum patents, with government entities and individual inventors making up the remainder."
+        insight="Corporate assignees overwhelmingly dominate quantum computing patenting, accounting for over 98% of filings. Government entities contribute roughly 1.2% and individual inventors about 0.2%."
         loading={atL}
         height={500}
       >
@@ -602,14 +603,14 @@ export default function Chapter12() {
 
       <KeyInsight>
         <p>
-          The assignee type distribution in quantum computing patents reveals a notable
-          distinction from other technology domains: universities and government laboratories
-          account for a larger share of total filings, reflecting the field&apos;s origins in
-          academic physics and sustained public investment through agencies such as the
-          National Science Foundation and the Department of Energy. However, the corporate
-          share has grown rapidly since 2015 as technology firms scaled their quantum
-          research programs, suggesting a gradual transition from publicly funded exploration
-          to commercially motivated development.
+          Corporate assignees account for over 98% of quantum computing patents, with
+          government entities contributing roughly 1.2% and individual inventors about 0.2%.
+          While several universities appear among top individual assignees, the aggregate
+          university share is minimal -- there is no separate &quot;University&quot; category in the
+          assignee type data. The pronounced corporate dominance reflects the capital-intensive
+          nature of quantum computing research, which requires cryogenic infrastructure,
+          specialized fabrication facilities, and large multidisciplinary teams that are
+          most readily sustained within major technology firms.
         </p>
       </KeyInsight>
 
@@ -659,11 +660,11 @@ export default function Chapter12() {
         <p>
           The strategy table reveals divergent bets among the leading quantum computing patent
           holders. IBM has built the broadest portfolio, spanning algorithms, physical
-          realizations, and error correction. Google&apos;s filings are concentrated in
-          superconducting qubit hardware and quantum algorithms, consistent with its pursuit
-          of quantum supremacy. Microsoft&apos;s portfolio reflects its distinctive bet on
-          topological qubits, while Intel&apos;s filings emphasize silicon-based approaches
-          that leverage its existing semiconductor fabrication expertise. These strategic
+          realizations, and error correction. Google maintains a broad portfolio spanning
+          physical realizations, quantum algorithms, error correction, and other quantum
+          computing approaches. Microsoft&apos;s portfolio emphasizes quantum algorithms and
+          error correction, alongside physical realizations. Intel, though a smaller quantum
+          patent holder, focuses primarily on physical realizations. These strategic
           differences suggest that the field has not yet converged on a dominant hardware
           paradigm.
         </p>
@@ -711,8 +712,8 @@ export default function Chapter12() {
           it remains more concentrated than for established general-purpose technologies such
           as artificial intelligence. The strong co-occurrence with Electricity (H) reflects
           the deep ties between quantum hardware and electrical engineering, while the growing
-          connections to Chemistry and Metallurgy (C) suggest expanding applications in
-          materials simulation and drug discovery. The pattern is consistent with quantum
+          sporadic co-occurrence with Chemistry and Metallurgy (C), typically below 2%, suggests
+          limited but present connections to materials science applications. The pattern is consistent with quantum
           computing&apos;s potential as a future general-purpose technology that has not yet
           reached the diffusion levels of more mature domains.
         </p>

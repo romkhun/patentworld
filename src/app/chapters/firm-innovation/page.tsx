@@ -518,7 +518,7 @@ export default function FirmInnovation() {
       <KeyFindings>
         <li>Corporations hold the substantial majority of US patents, with Asian firms (Samsung, Canon, LG) now accounting for over half of the top 25 patent holders, reflecting the globalization of technology leadership.</li>
         <li>Foreign assignees surpassed US-based assignees around 2007 and now account for the majority of patent grants, driven by multinational R&amp;D strategies.</li>
-        <li>Six distinct trajectory archetypes emerge from patent output histories, ranging from Steady Climbers to Boom &amp; Bust patterns, revealing characteristic lifecycle patterns of corporate innovation.</li>
+        <li>Three broad trajectory archetypes (with six sub-variants) emerge from patent output histories, ranging from Steady Climbers to Boom &amp; Bust patterns, revealing characteristic lifecycle patterns of corporate innovation.</li>
         <li>Only a small fraction of top patent filers have maintained a continuous top-50 presence across all five decades, underscoring the volatility of innovation leadership.</li>
         <li>Technology pivots, detected through shifts in patent portfolio composition, often precede major business transformations and can serve as early-warning indicators of corporate strategy changes.</li>
       </KeyFindings>
@@ -526,7 +526,7 @@ export default function FirmInnovation() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The digital transformation described in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link> has reshaped not only which technologies are patented but also which organizations produce them. Over five decades, individual inventors have given way to large corporate assignees whose patent portfolios serve as strategic instruments for cross-licensing, defensive protection, and competitive signaling. The organizational leadership of the patent system has passed through three distinct eras, from American industrial conglomerates such as General Electric, through Japanese electronics firms including Canon and Hitachi, to the present dominance of Korean multinationals, a succession that mirrors broader geopolitical shifts in research and development investment. Remarkably, while the national origin of leading assignees has shifted decisively toward East Asia, the structural concentration of patenting among elite organizations has remained stable across the entire period, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography. When these aggregate trends are disaggregated to the firm level, a striking picture of strategic heterogeneity emerges: the 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches -- some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise -- and the ability to detect strategic reorientation through shifts in patent portfolio composition, often years before such changes become apparent in product markets, suggests that the patent record functions as an early-warning system for corporate transformation. These patterns set the stage for <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link>, which examines the individual inventors behind these organizational outputs.
+          The digital transformation described in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link> has reshaped not only which technologies are patented but also which organizations produce them. Over five decades, individual inventors have given way to large corporate assignees whose patent portfolios serve as strategic instruments for cross-licensing, defensive protection, and competitive signaling. The organizational leadership of the patent system has passed through three distinct eras, from American industrial conglomerates such as General Electric, through Japanese electronics firms including Canon and Hitachi, to the present dominance of Korean multinationals, a succession that mirrors broader geopolitical shifts in research and development investment. Notably, while the national origin of leading assignees has shifted decisively toward East Asia, the structural concentration of patenting among elite organizations has remained stable across the entire period, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography. When these aggregate trends are disaggregated to the firm level, a distinct picture of strategic heterogeneity emerges: the 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches -- some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise -- and the ability to detect strategic reorientation through shifts in patent portfolio composition, often years before such changes become apparent in product markets, suggests that the patent record functions as an early-warning system for corporate transformation. These patterns set the stage for <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link>, which examines the individual inventors behind these organizational outputs.
         </p>
       </aside>
 
@@ -568,8 +568,8 @@ export default function FirmInnovation() {
       <Narrative>
         <p>
           The corporatization of patenting constitutes one of the most pronounced long-term trends. In the
-          late 1970s, individual inventors and government entities held meaningful shares of
-          patent grants. In recent years, large corporations account for the substantial majority of all grants.
+          late 1970s, government entities held a modest share (~4%) of
+          patent grants. By the 2020s, large corporations account for the substantial majority of all grants.
         </p>
       </Narrative>
 
@@ -1105,10 +1105,10 @@ export default function FirmInnovation() {
 
       <ChartContainer
         id="fig-firm-innovation-quality-scatter"
-        title="Amazon's 6.7% Blockbuster Rate Dwarfs the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
+        title="Amazon's 6.7% Blockbuster Rate Leads the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
         subtitle="Blockbuster rate vs. dud rate for the top 50 assignees (2010-2019), with bubble size proportional to patent count and color by primary CPC section"
         caption="Each bubble represents one of the top 50 assignees in the decade 2010-2019. X-axis: share of patents in the top 1% of their year x CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
-        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several Japanese electronics firms cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
+        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms, predominantly Japanese electronics companies, cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}
         height={500}
         wide
@@ -1134,7 +1134,7 @@ export default function FirmInnovation() {
           The quality typology scatter reveals that technology sector alone does not determine innovation strategy.
           Within the same CPC section, firms exhibit substantially different blockbuster-to-dud ratios,
           suggesting that organizational factors -- R&amp;D investment concentration, inventor incentive
-          structures, and portfolio management decisions -- play a significant role in shaping the quality
+          structures, and portfolio management decisions -- contribute meaningfully to shaping the quality
           distribution of a firm&apos;s patent output.
         </p>
       </KeyInsight>
@@ -1888,7 +1888,7 @@ export default function FirmInnovation() {
       <ChartContainer
         id="fig-firm-innovation-exploration-trajectories"
         subtitle="Exploration share (% of exploratory patents) over time for 20 major filers, displayed as small multiples sorted by most recent share."
-        title="11 of 20 Major Filers Keep Exploration Below 5%, with a Median Share of 3.3%"
+        title="11 of 20 Major Filers Keep Exploration Below 5%, with a Median Share of 2.9%"
         caption="Each panel shows one firm's exploration share (% of patents classified as exploratory) over time. Firms are sorted by most recent exploration share, descending. Exploration is defined as a composite score above 0.6 based on technology newness, citation newness, and external knowledge sourcing."
         insight="Most large patent filers maintain exploration shares below 5%, indicating that the vast majority of their patenting activity deepens established technology domains rather than entering new ones."
         loading={etL}
@@ -2021,7 +2021,7 @@ export default function FirmInnovation() {
         id="fig-firm-innovation-self-citation-by-assignee"
         subtitle="Self-citation rate (fraction of backward citations to same assignee) for the 20 most-cited assignees, revealing knowledge recycling patterns."
         title="Canon (47.6%), TSMC (38.4%), and Micron (25.3%) Exhibit the Highest Self-Citation Rates Among Top Assignees"
-        caption="This chart displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Firms with deep, cumulative R&D programs, including IBM, Samsung, and semiconductor manufacturers, exhibit the highest self-citation rates."
+        caption="This chart displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Canon (47.6%), TSMC (38.4%), and Micron (25.3%) exhibit the highest self-citation rates, reflecting deep cumulative R&D programs in imaging and semiconductor technologies."
         insight="Elevated self-citation rates among firms with cumulative R&D programs are consistent with long-term knowledge building on internal prior art, though strategic considerations may also contribute."
         loading={scaL}
         height={700}
@@ -2030,7 +2030,7 @@ export default function FirmInnovation() {
           data={(selfCiteAssignee ?? []).map(d => ({
             ...d,
             label: cleanOrgName(d.organization),
-            self_cite_pct: d.self_cite_rate * 100,
+            self_cite_pct: d.self_cite_rate,
           }))}
           xKey="label"
           bars={[{ key: 'self_cite_pct', name: 'Self-Citation Rate (%)', color: CHART_COLORS[6] }]}

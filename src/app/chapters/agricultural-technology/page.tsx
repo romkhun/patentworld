@@ -193,14 +193,14 @@ export default function Chapter16() {
       <KeyFindings>
         <li>Agricultural technology patenting reflects one of the oldest areas of continuous innovation in the US patent system, with soil working, planting, and horticulture patents tracing back to the earliest decades of patent records.</li>
         <li>Horticulture and forestry and plant breeding dominate patent volume, while precision agriculture -- though still small in absolute terms -- is among the fastest-growing subfields, driven by GPS, sensors, and AI integration.</li>
-        <li>A small number of major agribusiness firms -- Deere &amp; Company, BASF, Monsanto/Bayer, and Syngenta -- dominate agricultural patent portfolios, reflecting the capital-intensive nature of agricultural R&amp;D.</li>
+        <li>A small number of major agribusiness firms -- Pioneer Hi-Bred, Monsanto, Deere &amp; Company, and Syngenta -- dominate agricultural patent portfolios, reflecting the capital-intensive nature of agricultural R&amp;D.</li>
         <li>Climate change is driving renewed patent activity in drought-resistant crops, sustainable farming methods, and resource-efficient technologies, reshaping the trajectory of agricultural innovation.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a watershed moment, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is dominated by a small number of vertically integrated agribusiness firms whose patent strategies are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a watershed moment, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -235,8 +235,8 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-agtech-annual-count"
         subtitle="Annual count of utility patents classified under agricultural technology CPC codes, tracking the growth trajectory of agricultural patenting."
-        title="Agricultural Patent Filings Reflect Steady Growth With Accelerations Following the GM Crop Revolution and the Precision Agriculture Boom"
-        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976-2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture boom beginning around 2012."
+        title="Agricultural Patent Filings Reflect Steady Growth With Accelerations Following GM Crop Adoption and the Precision Agriculture Expansion"
+        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976-2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture expansion accelerating markedly from 2018."
         insight="Agricultural patent growth reflects the sector's ongoing transformation from mechanization to biotechnology and digital farming, with each technological wave generating new categories of inventive activity."
         loading={pyL}
       >
@@ -256,8 +256,8 @@ export default function Chapter16() {
           Agricultural patent filings exhibit long-term growth punctuated by waves of
           technological transformation. The introduction of genetically modified crops in
           1996 catalyzed a surge in plant breeding and biocide-related patents, while the
-          precision agriculture boom beginning around 2012 brought GPS, sensor, and
-          data-analytics technologies into agricultural patenting. These successive waves
+          precision agriculture expansion accelerating markedly from 2018 brought GPS, sensor,
+          and data-analytics technologies into agricultural patenting. These successive waves
           reflect the sector&apos;s capacity to absorb innovations from adjacent fields --
           molecular biology, electronics, and computing -- and adapt them to the specific
           challenges of food production.
@@ -279,7 +279,7 @@ export default function Chapter16() {
             { key: 'domain_pct', name: 'AgTech Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
-          yFormatter={(v) => `${v.toFixed(2)}%`}
+          yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={AGTECH_EVENTS}
         />
       </ChartContainer>
@@ -331,7 +331,7 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-agtech-top-assignees"
         subtitle="Organizations ranked by total agricultural technology patent count, showing concentration among major agribusiness firms."
-        title="Deere & Company, BASF, and Monsanto/Bayer Lead in Agricultural Patent Volume, Reflecting the Capital-Intensive Nature of Agricultural R&D"
+        title="Pioneer Hi-Bred, Monsanto, and Deere & Company Lead in AgTech Patent Volume"
         caption="Organizations ranked by total agricultural technology patents. The data indicate a concentration among large agribusiness firms with vertically integrated operations spanning equipment manufacturing, seed development, and crop protection chemicals."
         insight="The dominance of a small number of major agribusiness firms reflects the capital-intensive nature of agricultural R&D, which requires long development cycles, regulatory approvals, and extensive field testing."
         loading={taL}
@@ -354,16 +354,17 @@ export default function Chapter16() {
 
       <KeyInsight>
         <p>
-          Agricultural patent leadership reveals a sector dominated by vertically integrated
-          agribusiness conglomerates. Deere &amp; Company leads through its deep portfolio in
-          agricultural equipment and, increasingly, precision agriculture technologies. BASF,
-          Monsanto (now part of Bayer), and Syngenta hold major positions through their
-          investments in crop protection chemicals, genetically modified seeds, and plant
-          breeding. The presence of both equipment manufacturers and life science companies
-          at the top of the rankings reflects the dual nature of agricultural innovation:
-          mechanical and biological. The Monsanto-Bayer merger in 2018 consolidated
-          substantial agricultural patent portfolios, a pattern of industry consolidation
-          that has reshaped the competitive landscape.
+          Agricultural patent leadership reveals a sector dominated by seed science and
+          equipment manufacturing firms. Pioneer Hi-Bred (5,226 patents) and Monsanto
+          Technology (5,198) lead in total agricultural patent volume, reflecting the enormous
+          scale of investment in plant breeding and genetically modified seed development.
+          Deere &amp; Company (1,805) follows through its deep portfolio in agricultural
+          equipment and, increasingly, precision agriculture technologies. CNH Industrial
+          and Seminis Vegetable Seeds round out the top five. The presence of both equipment
+          manufacturers and life science companies at the top of the rankings reflects the
+          dual nature of agricultural innovation: mechanical and biological. The Monsanto-Bayer
+          merger in 2018 consolidated substantial agricultural patent portfolios, a pattern
+          of industry consolidation that has reshaped the competitive landscape.
         </p>
       </KeyInsight>
 
@@ -392,13 +393,15 @@ export default function Chapter16() {
       <KeyInsight>
         <p>
           The ranking data illustrate the effects of industry consolidation on agricultural
-          patent leadership. Deere &amp; Company has maintained a consistent top-tier
-          position through sustained investment in both mechanical and digital agricultural
-          technologies. The merger activity among seed and chemical companies -- including
-          Dow-DuPont, ChemChina-Syngenta, and Bayer-Monsanto -- has reshaped the competitive
-          landscape, concentrating patent portfolios among fewer but larger entities. The
-          emergence of technology companies in agricultural patent rankings in recent years
-          signals the growing convergence of agriculture with digital technology.
+          patent leadership. Pioneer Hi-Bred and Monsanto have maintained dominant positions
+          through sustained investment in seed science and plant breeding, while Deere &amp;
+          Company has held a consistent top-tier position through investment in both mechanical
+          and digital agricultural technologies. The merger activity among seed and chemical
+          companies -- including Dow-DuPont, ChemChina-Syngenta, and Bayer-Monsanto -- has
+          reshaped the competitive landscape, concentrating patent portfolios among fewer but
+          larger entities. While some technology companies appear in the broader rankings,
+          their agricultural patent volumes remain modest compared to the dominant agribusiness
+          firms.
         </p>
       </KeyInsight>
 
@@ -460,13 +463,13 @@ export default function Chapter16() {
           The geographic distribution of agricultural patents reflects the global structure
           of agribusiness. The United States leads, driven by the concentration of major
           agricultural equipment manufacturers, seed companies, and agrochemical firms.
-          European countries -- particularly Germany, the Netherlands, and Switzerland --
-          hold substantial portfolios through firms such as BASF, Syngenta, and agricultural
-          equipment manufacturers. Japan&apos;s presence reflects its investment in
-          agricultural machinery and controlled-environment agriculture. The geographic
-          patterns indicate that agricultural patent leadership correlates closely with
-          the presence of large agribusiness firms rather than with the size of a
-          country&apos;s agricultural sector alone.
+          Canada ranks as a prominent contributor, reflecting its substantial agricultural
+          sector and agribusiness R&amp;D activity. Germany and the Netherlands hold notable
+          portfolios through agricultural equipment and seed companies, while Japan&apos;s
+          presence reflects its investment in agricultural machinery and controlled-environment
+          agriculture. The geographic patterns indicate that agricultural patent leadership
+          correlates closely with the presence of large agribusiness firms and major
+          agricultural economies rather than with any single factor alone.
         </p>
       </KeyInsight>
 
@@ -492,11 +495,12 @@ export default function Chapter16() {
           Within the United States, agricultural patent activity exhibits a distinctive
           geographic pattern that differs substantially from technology patents. Rather than
           concentrating in coastal technology hubs, agricultural patents cluster in states
-          with major agribusiness headquarters (Illinois for Deere &amp; Company, Iowa, and
-          Indiana) and states with prominent land-grant universities and agricultural research
-          programs. This pattern reflects the importance of proximity to agricultural
-          production, field testing infrastructure, and the legacy of the Morrill Act&apos;s
-          land-grant university system in shaping agricultural R&amp;D capacity.
+          with major agribusiness headquarters. Iowa leads, driven by Pioneer Hi-Bred
+          (headquartered in Johnston, Iowa), followed by Illinois (home to Deere &amp; Company
+          and other agribusiness firms), and California. Minnesota rounds out the top four.
+          This pattern reflects the importance of proximity to agricultural production, field
+          testing infrastructure, and the legacy of the Morrill Act&apos;s land-grant
+          university system in shaping agricultural R&amp;D capacity.
         </p>
       </KeyInsight>
 
@@ -614,14 +618,15 @@ export default function Chapter16() {
       <KeyInsight>
         <p>
           The strategy table reveals the distinct competitive positions of agricultural
-          patent leaders. Deere &amp; Company&apos;s portfolio spans soil working, planting,
-          and precision agriculture, reflecting its evolution from a traditional equipment
-          manufacturer to a technology-driven agricultural platform. BASF and Syngenta
-          concentrate on plant breeding and crop protection chemicals, while Monsanto/Bayer&apos;s
-          portfolio bridges seed genetics and herbicide tolerance -- a dual strategy that
-          has been central to the genetically modified crop business model. The growing
-          overlap between equipment and life science companies in precision agriculture
-          suggests an emerging area of competitive convergence.
+          patent leaders. Pioneer Hi-Bred&apos;s portfolio is concentrated in plant breeding
+          and horticulture, reflecting its heritage as the leading hybrid seed company.
+          Monsanto&apos;s portfolio bridges seed genetics and herbicide tolerance -- a dual
+          strategy that has been central to the genetically modified crop business model.
+          Deere &amp; Company&apos;s portfolio spans soil working, planting, and precision
+          agriculture, reflecting its evolution from a traditional equipment manufacturer
+          to a technology-driven agricultural platform. The growing overlap between equipment
+          and life science companies in precision agriculture suggests an emerging area of
+          competitive convergence.
         </p>
       </KeyInsight>
 
@@ -639,8 +644,8 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-agtech-diffusion"
         subtitle="Percentage of agricultural patents co-classified with non-agricultural CPC sections, measuring technology diffusion into farming."
-        title="Agricultural Patents Show Increasing Co-Classification With Chemistry, Physics, and Human Necessities Sections, Reflecting Cross-Domain Convergence"
-        caption="Percentage of agricultural patents that also carry CPC codes from each non-agricultural section. Rising lines indicate growing technology convergence. The most notable pattern is the increasing co-occurrence with Chemistry (Section C, encompassing crop protection) and Physics (Section G, encompassing sensors and data processing)."
+        title="Agricultural Patents Show Dominant Co-Classification With Physics, Followed by Chemistry, Reflecting Cross-Domain Convergence"
+        caption="Percentage of agricultural patents that also carry CPC codes from each non-agricultural section. Rising lines indicate growing technology convergence. The most notable pattern is the dominant co-occurrence with Physics (Section G, encompassing sensors, data processing, and computing), followed by Chemistry (Section C, encompassing crop protection and biochemistry)."
         insight="The cross-domain diffusion of agricultural patents reveals how farming is becoming a technology-integration challenge, where innovations in chemistry, computing, and engineering converge in the field."
         loading={diffL}
       >
@@ -661,14 +666,15 @@ export default function Chapter16() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Agricultural patents increasingly exhibit cross-domain characteristics. The
-          co-occurrence with Chemistry (Section C) reflects the deep integration of crop
+          Agricultural patents increasingly exhibit cross-domain characteristics. Physics
+          (Section G) is the dominant co-occurring section, reaching nearly 29% of agricultural
+          patents in recent years, reflecting the deep incorporation of sensors, data processing,
+          computing technologies, and optical systems into agricultural systems -- a trend that
+          has accelerated with the precision agriculture movement. Chemistry (Section C) is
+          the second most prominent co-occurring section, reflecting the integration of crop
           protection chemicals and fertilizer technology with agricultural invention. The
-          growing co-classification with Physics (Section G) signals the incorporation of
-          sensors, data processing, and computing technologies into agricultural systems --
-          a trend that has accelerated with the precision agriculture movement. The connection
-          to Human Necessities (Section A) encompasses food processing and animal husbandry
-          technologies that extend the agricultural value chain beyond the farm gate.
+          connection to Human Necessities (Section A) encompasses food processing and animal
+          husbandry technologies that extend the agricultural value chain beyond the farm gate.
           Collectively, these patterns indicate that agricultural technology is evolving from
           a self-contained domain into a nexus of cross-disciplinary innovation.
         </p>
@@ -679,19 +685,20 @@ export default function Chapter16() {
 
       <Narrative>
         <p>
-          Agricultural patents increasingly involve larger inventor teams, reflecting the
-          multidisciplinary nature of modern farm technology. Comparing team sizes between
-          agricultural and non-agricultural patents reveals whether the collaborative intensity
-          of agricultural innovation follows or diverges from broader patent system trends.
+          Agricultural patents have involved growing inventor teams over time, though they
+          remain consistently smaller than non-agricultural patent teams. Comparing team sizes
+          between agricultural and non-agricultural patents reveals that agricultural innovation,
+          while becoming more collaborative, has not yet reached the team sizes typical of other
+          technology domains.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-agtech-team-comparison"
         subtitle="Average inventors per patent for AgTech vs. non-AgTech utility patents by year, comparing collaborative intensity."
-        title="AgTech Patents Show a Distinctive Team Size Pattern Relative to Non-AgTech Patents, Reflecting the Sector's Evolving Complexity"
-        caption="Average number of inventors per patent for agricultural vs. non-agricultural utility patents, 1976-2025. The comparison reveals whether agricultural innovation's growing multidisciplinarity is unique to the sector or tracks broader patent system trends."
-        insight="Comparing team sizes between AgTech and non-AgTech patents reveals the extent to which agricultural innovation's growing complexity is unique to the sector versus reflective of broader trends in collaborative research."
+        title="Agricultural Patent Teams Remain Smaller Than Non-AgTech Averages but Are Gradually Converging"
+        caption="Average number of inventors per patent for agricultural vs. non-agricultural utility patents, 1976-2025. Agricultural patent teams have consistently been smaller than non-AgTech teams, though the gap has narrowed over time as agricultural innovation becomes increasingly multidisciplinary."
+        insight="Agricultural patent teams remain consistently smaller than non-AgTech averages, reflecting the sector's historical roots in individual mechanical invention, though the gap is narrowing as precision agriculture and biotechnology demand larger collaborative teams."
         loading={tcL}
       >
         <PWLineChart

@@ -68,16 +68,16 @@ export default function Chapter1() {
 
       <KeyFindings>
         <li>The US patent system granted over 9.36 million patents between 1976 and 2025 — a roughly fivefold increase in annual output over five decades.</li>
-        <li>Utility patents account for over 90% of all grants, while design patents have grown from roughly 6% to 13% of annual output — a structural shift toward design-driven innovation.</li>
+        <li>Utility patents account for over 90% of all grants, while design patents have fluctuated between roughly 6% and 14% of annual output, peaking in 2008, declining through 2014, and returning to approximately 14% by 2025.</li>
         <li>Patent complexity has risen substantially: average claims per patent doubled from the 1970s through the mid-2000s before leveling off, with a notable median-mean inversion by the mid-2010s.</li>
-        <li>Grant lag — the time from filing to grant — peaked near four years around 2010, creating uncertainty during a period of rapid technological change.</li>
-        <li>Government-funded patents rose markedly after the 1980 Bayh-Dole Act, with HHS/NIH, Defense, and Energy leading federal patent portfolios.</li>
+        <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010, creating uncertainty during a period of rapid technological change.</li>
+        <li>Government-funded patents rose substantially from the early 1990s onward, a trend often attributed in part to the 1980 Bayh-Dole Act, with HHS/NIH, Defense, and Energy leading federal patent portfolios.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants per year by the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. Within this overall growth, the composition of patent types has shifted: design patents have doubled their share from roughly 6% to 13%, reflecting a broader strategic turn toward design-driven product differentiation. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers. The chapter concludes with an examination of government-funded patenting, which expanded substantially after the 1980 Bayh-Dole Act and continues to represent a significant share of foundational innovations.
+          Half a century of USPTO data reveals a patent system that has expanded substantially in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 66,000 grants per year on average by the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. Within this overall growth, the composition of patent types has shifted: design patent share has oscillated, reaching approximately 14% in 2008, declining to 7% by 2014, and returning to approximately 14% by 2025, reflecting a broader strategic turn toward design-driven product differentiation. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers. The chapter concludes with an examination of government-funded patenting, which expanded substantially after the 1980 Bayh-Dole Act and continues to represent a significant share of foundational innovations.
         </p>
       </aside>
 
@@ -106,7 +106,7 @@ export default function Chapter1() {
         title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
         subtitle="Total patents granted annually by the USPTO, broken down by patent type (utility, design, plant, reissue), 1976–2025"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
-        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining temporarily around 2007-2008 and the 2020 COVID-19 pandemic producing a visible dip."
+        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining notably in 2005 and again in 2007 and a broader decline in 2021-2023 following the 2019 peak."
         loading={ppyL}
       >
         <PWAreaChart
@@ -126,13 +126,13 @@ export default function Chapter1() {
 
       <Narrative>
         <p>
-          Annual patent grants averaged roughly 65,000 per year in the late
-          1970s, rising to over 350,000 in recent years. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
+          Annual patent grants averaged roughly 66,000 per year on average in the late
+          1970s, rising to over 350,000 by the 2020s. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
           novel inventions and processes — constitute over 90% of all grants. Design patents,
           which cover ornamental appearance, have also exhibited sustained growth.
         </p>
         <p>
-          This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining temporarily around 2007–2008, and patent office backlogs have introduced year-to-year
+          This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining notably in 2005 and again in 2007, and patent office backlogs have introduced year-to-year
           volatility. Nevertheless, the long-term trajectory indicates that an increasing
           number of individuals and <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
           intellectual property assumes greater strategic importance.
@@ -162,7 +162,7 @@ export default function Chapter1() {
       <ChartContainer
         id="fig-innovation-landscape-design-trends"
         subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
-        title="Design Patent Share Grew from 6% in the Early 1980s to Approximately 13% by 2024, Outpacing Utility Patent Growth"
+        title="Design Patent Share Has Fluctuated Between 6% and 14%, With Peaks in 2008 and 2025"
         caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by growth in consumer electronics, automotive design, and fashion-related filings."
         insight="The increasing share of design patents suggests a structural shift in innovation strategy toward design-driven product differentiation, reflecting broader economic trends in which aesthetic and user-experience considerations have become central to competitive advantage."
         loading={deL}
@@ -224,7 +224,7 @@ export default function Chapter1() {
 
       <KeyInsight>
         <p>
-          The relationship between average and median claims has evolved: the gap initially widened as a subset of patents pursued very large claim sets, but by the mid-2010s the median surpassed the average, indicating a compression of the upper tail and a more uniform distribution of claim counts across patents.
+          The relationship between average and median claims has evolved: the gap initially widened as a subset of patents pursued substantially larger claim sets, but by the mid-2010s the median surpassed the average, indicating a compression of the upper tail and a more uniform distribution of claim counts across patents.
         </p>
       </KeyInsight>
 
@@ -244,7 +244,7 @@ export default function Chapter1() {
         title="Grant Pendency Peaked at 3.8 Years in 2010, Up from 1.2 Years in 1976"
         subtitle="Average and median time from patent application filing to grant, measured in years, 1976–2025"
         caption="Average and median grant lag (time from application filing to patent issuance), 1976–2025, expressed in years. The late-2000s peak coincided with a surge in computing and telecommunications filings."
-        insight="Grant pendency represents a significant cost of the patent system. Extended review periods create prolonged uncertainty for both applicants and potential competitors, distorting investment and commercialization decisions."
+        insight="Grant pendency represents a considerable cost of the patent system. Extended review periods create prolonged uncertainty for both applicants and potential competitors, distorting investment and commercialization decisions."
         loading={lagL}
       >
         <PWLineChart
@@ -301,7 +301,7 @@ export default function Chapter1() {
         title="Government-Funded Patents Rose From 1,294 in 1980 to 8,359 in 2019 After the Bayh-Dole Act"
         caption="Number of utility patents acknowledging government funding interest, by year. A marked increase is evident after the 1980 Bayh-Dole Act, which permitted universities and small businesses to retain patent rights on federally funded inventions."
         loading={goL}
-        insight="Government-funded patents consistently exhibit higher citation impact than privately funded patents, supporting the role of public R&D investment in generating foundational innovations."
+        insight="Government-funded patents are often associated with higher citation impact in the academic literature, supporting the role of public R&D investment in generating foundational innovations. Note: this interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter."
       >
         <PWLineChart
           data={gov ?? []}
@@ -319,8 +319,7 @@ export default function Chapter1() {
           The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> of 1980 fundamentally altered the landscape of government-funded
           patenting by permitting universities and small businesses to retain rights to inventions
           developed with federal support. The resulting acceleration in government-acknowledged
-          patents is evident in the data, with recent years exhibiting further growth as
-          federal R&D budgets have expanded.
+          patents is evident in the data, though government-funded patent counts have declined somewhat since their 2019 peak of 8,359.
         </p>
       </Narrative>
 
@@ -353,10 +352,9 @@ export default function Chapter1() {
 
       <KeyInsight>
         <p>
-          Government-funded patents exhibit disproportionately high citation impact: they
-          tend to receive substantially more forward citations than privately funded patents,
+          Government-funded patents are often associated with higher citation impact in the academic literature,
           suggesting that public research investments generate foundational knowledge that
-          serves as a critical input for downstream commercial innovation.
+          serves as a critical input for downstream commercial innovation. This interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter.
         </p>
       </KeyInsight>
 
