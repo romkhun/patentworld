@@ -327,7 +327,7 @@ export default function Chapter21() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-ai-patents-top-assignees"
@@ -400,7 +400,7 @@ export default function Chapter21() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-ai-patents-top-inventors"
@@ -430,7 +430,7 @@ export default function Chapter21() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-ai-patents-by-country"

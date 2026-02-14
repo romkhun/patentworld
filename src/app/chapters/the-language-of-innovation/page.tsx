@@ -190,7 +190,7 @@ export default function Chapter3() {
       </Narrative>
 
       {/* ── Section: Emerging Themes ──────────────────────────────────────── */}
-      <SectionDivider label="Emerging Themes" />
+      <SectionDivider label="Topic Trends Over Time" />
 
       <Narrative>
         <p>
@@ -292,7 +292,7 @@ export default function Chapter3() {
       )}
 
       {/* ── Section: The Patent Landscape ────────────────────────────────── */}
-      <SectionDivider label="The Patent Landscape" />
+      <SectionDivider label="Topic Map" />
 
       <Narrative>
         <p>
@@ -355,7 +355,7 @@ export default function Chapter3() {
       </KeyInsight>
 
       {/* ── Section: Topics and Technology ────────────────────────────────── */}
-      <SectionDivider label="Topics and Technology" />
+      <SectionDivider label="Topics Across Technology Sections" />
 
       <Narrative>
         <p>

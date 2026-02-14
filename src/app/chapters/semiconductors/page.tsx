@@ -282,7 +282,7 @@ export default function Chapter11() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Subfields" />
+      <SectionDivider label="Semiconductor Subfields" />
 
       <ChartContainer
         id="fig-semi-patents-subfields"
@@ -321,7 +321,7 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-semi-patents-top-assignees"
@@ -398,7 +398,7 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-semi-patents-top-inventors"
@@ -430,7 +430,7 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-semi-patents-by-country"
@@ -531,7 +531,7 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Team Size" />
+      <SectionDivider label="Team Composition" />
 
       <ChartContainer
         id="fig-semi-patents-team-comparison"
@@ -566,7 +566,7 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Assignee Type" />
+      <SectionDivider label="Assignee Type Distribution" />
 
       <ChartContainer
         id="fig-semi-patents-assignee-type"

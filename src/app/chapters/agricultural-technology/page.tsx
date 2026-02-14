@@ -326,7 +326,7 @@ export default function Chapter16() {
       </KeyInsight>
 
       {/* ── Section 3: Organizations ── */}
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-agtech-top-assignees"
@@ -406,7 +406,7 @@ export default function Chapter16() {
       </KeyInsight>
 
       {/* ── Section 4: Inventors ── */}
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-agtech-top-inventors"
@@ -439,7 +439,7 @@ export default function Chapter16() {
       </KeyInsight>
 
       {/* ── Section 5: Geography ── */}
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-agtech-by-country"

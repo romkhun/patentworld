@@ -315,7 +315,7 @@ export default function Chapter15() {
       </KeyInsight>
 
       {/* ── Section 3: Organizations ─────────────────────────────────────── */}
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-digihealth-top-assignees"
@@ -388,7 +388,7 @@ export default function Chapter15() {
       </KeyInsight>
 
       {/* ── Section 4: Inventors ──────────────────────────────────────────── */}
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-digihealth-top-inventors"
@@ -419,7 +419,7 @@ export default function Chapter15() {
       </KeyInsight>
 
       {/* ── Section 5: Geography ──────────────────────────────────────────── */}
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-digihealth-by-country"

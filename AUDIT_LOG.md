@@ -1,4 +1,4 @@
-# AUDIT_LOG — PatentWorld Site Audit (Session 5)
+# AUDIT_LOG — PatentWorld Site Audit (Session 5-6)
 
 Audit started: 2026-02-14
 Site: patentworld.vercel.app
@@ -160,16 +160,56 @@ Updated `/about/page.tsx`:
 
 ---
 
+## Phase 9: Title Audit and Standardization (COMPLETED)
+
+Full inventory of all ACT, chapter, and section titles documented in `TITLE_REVISIONS.md`.
+
+### Naming Conventions Established
+
+- **ACT titles:** "The [Noun]" pattern (2-3 words) — all OK
+- **Chapter titles:** 2-5 word noun phrases — all OK
+- **Section titles:** Standardized labels for equivalent analyses across Act 5 deep dives
+
+### Changes by Category
+
+| Category | Count | Examples |
+|----------|:---:|---------|
+| Vague section labels (Ch 3) | 3 | "Emerging Themes"→"Topic Trends Over Time", "The Patent Landscape"→"Topic Map", "Topics and Technology"→"Topics Across Technology Sections" |
+| Generic labels standardized (Act 5) | 33 | "Organizations"→"Leading Organizations" (×11), "Inventors"→"Top Inventors" (×11), "Geography"→"Geographic Distribution" (×11) |
+| Missing domain prefix (Act 5) | 2 | "Subfields"→"Semiconductor Subfields", "Subfields"→"Quantum Computing Subfields" |
+| Inconsistent labels (Act 5) | 2 | "Team Size"→"Team Composition", "Assignee Type"→"Assignee Type Distribution" |
+| Overlapping names clarified (Ch 5-6) | 2 | "Knowledge Flows & Citations"→"Citation Networks", "Firm Quality Typology"→"Quality Typology", "Gender"→"Gender Composition" |
+
+Total: 42 section title updates across 15 chapter files.
+
+### Terminology Standardization
+
+- "Firms" / "companies" / "assignees" usage reviewed — all used correctly in distinct contexts (no blanket replacement needed)
+- "Forward citations" / "citations received" — consistent and contextually correct
+- "Grant lag" / "pendency" — both terms defined in glossary, used interchangeably as intended
+- "CPC" / "IPC" — only IPC reference is in correct context (WIPO field mapping)
+- No terminology changes required
+
+### Verification
+
+- `npx tsc --noEmit`: zero errors
+- `npm run build`: zero errors, all routes prerendered
+- `npx next lint`: zero warnings, zero errors
+- No internal links referenced old anchor IDs
+
+---
+
 ## Final Summary
 
 | Metric | Value |
 |--------|-------|
-| Total phases completed | 8 of 8 |
+| Total phases completed | 9 of 9 |
 | Chapter pages audited | 22 |
 | Non-chapter pages audited | 4 (Home, About, FAQ, Explore) |
 | Total visualizations | 259 |
 | Data accuracy fixes | ~72 across all chapters |
 | Tone/language edits | ~63 across all pages |
+| Title standardization edits | 42 across 15 files |
 | SEO fixes | 2 (About + FAQ meta tags) |
 | TypeScript errors fixed | 2 |
 | Lint warnings fixed | 2 |

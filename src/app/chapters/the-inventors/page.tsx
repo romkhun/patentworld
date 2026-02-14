@@ -182,7 +182,7 @@ export default function Chapter6() {
           PART I: WHO INVENTORS ARE — Demographics & Composition
           ═══════════════════════════════════════════════════════════════════ */}
 
-      <SectionDivider label="Gender" />
+      <SectionDivider label="Gender Composition" />
 
       <ChartContainer
         id="fig-inventors-female-share"

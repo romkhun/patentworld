@@ -320,7 +320,7 @@ export default function Chapter19() {
       </KeyInsight>
 
       {/* ── Section 3: Organizations ───────────────────────────────────── */}
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-3dprint-top-assignees"
@@ -395,7 +395,7 @@ export default function Chapter19() {
       </KeyInsight>
 
       {/* ── Section 5: Inventors ───────────────────────────────────────── */}
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-3dprint-top-inventors"
@@ -428,7 +428,7 @@ export default function Chapter19() {
       </KeyInsight>
 
       {/* ── Section 6: Geography ───────────────────────────────────────── */}
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-3dprint-by-country"

@@ -325,7 +325,7 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-cyber-patents-top-assignees"
@@ -400,7 +400,7 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-cyber-patents-top-inventors"
@@ -432,7 +432,7 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-cyber-patents-by-country"

@@ -277,7 +277,7 @@ export default function Chapter12() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Subfields" />
+      <SectionDivider label="Quantum Computing Subfields" />
 
       <ChartContainer
         id="fig-quantum-patents-subfields"
@@ -314,7 +314,7 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-quantum-patents-top-assignees"
@@ -387,7 +387,7 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-quantum-patents-top-inventors"
@@ -417,7 +417,7 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-quantum-patents-by-country"

@@ -1091,7 +1091,7 @@ export default function FirmInnovation() {
 
       {/* ── Firm Quality Typology ── */}
 
-      <SectionDivider label="Firm Quality Typology" />
+      <SectionDivider label="Quality Typology" />
 
       <Narrative>
         <p>
@@ -1649,7 +1649,7 @@ export default function FirmInnovation() {
 
       {/* ── Knowledge Flows & Citations ── */}
 
-      <SectionDivider label="Knowledge Flows & Citations" />
+      <SectionDivider label="Citation Networks" />
 
       <Narrative>
         <p>

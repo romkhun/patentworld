@@ -319,7 +319,7 @@ export default function Chapter17() {
       </KeyInsight>
 
       {/* -- Section 4: Top Organizations -------------------------------------- */}
-      <SectionDivider label="Organizations" />
+      <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
         id="fig-av-top-assignees"
@@ -396,7 +396,7 @@ export default function Chapter17() {
       </KeyInsight>
 
       {/* -- Section 6: Top Inventors ------------------------------------------ */}
-      <SectionDivider label="Inventors" />
+      <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-av-top-inventors"
@@ -428,7 +428,7 @@ export default function Chapter17() {
       </KeyInsight>
 
       {/* -- Section 7: Geography ---------------------------------------------- */}
-      <SectionDivider label="Geography" />
+      <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
         id="fig-av-geography-country"
