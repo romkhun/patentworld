@@ -35,11 +35,12 @@ function CounterStat({ target, label, suffix, decimals, trigger }: {
 }) {
   const count = useCountUp(decimals ? target * 100 : target, 1500, trigger);
   const display = decimals ? (count / 100).toFixed(decimals) : count.toLocaleString();
+  const fallback = decimals ? target.toFixed(decimals) : target.toLocaleString();
 
   return (
     <div className="text-center">
       <div className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">
-        {trigger ? display : '0'}{suffix ?? ''}
+        {trigger ? display : fallback}{suffix ?? ''}
       </div>
       <div className="mt-1 text-sm text-muted-foreground">{label}</div>
     </div>
@@ -70,9 +71,9 @@ export default function HomePage() {
             , The Wharton School, University of Pennsylvania
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            An interactive exploration of 50 years of innovation through {HERO_STATS.totalPatents} US patents.
-            From the semiconductor era to the rise of artificial intelligence, examine how technology, geography,
-            and human capital have shaped the landscape of invention.
+            An interactive exploration of {HERO_STATS.totalPatents} US patents granted from 1976 to 2025,
+            examining technology classifications, inventor demographics, geographic distribution,
+            citation networks, and patent quality indicators.
           </p>
 
           <div ref={statsRef} className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
