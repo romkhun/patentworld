@@ -147,6 +147,113 @@ export const ENTITY_COLORS: Record<string, string> = {
   'Toyota': '#999999',
 };
 
+// ── Deep Dive Domain Sub-category Colors ────────────────────────────────────
+
+export const SEMI_SUBFIELD_COLORS: Record<string, string> = {
+  'Manufacturing Processes': '#0072B2',
+  'Integrated Circuits': '#E69F00',
+  'Semiconductor Devices': '#009E73',
+  'Packaging & Interconnects': '#CC79A7',
+  'Assemblies & Modules': '#56B4E9',
+  'Photovoltaic Cells': '#D55E00',
+  'LEDs & Optoelectronics': '#332288',
+  'Organic Semiconductors': '#882255',
+  'Other Solid-State Devices': '#44AA99',
+  'Other Semiconductor': '#999999',
+};
+
+export const QUANTUM_SUBFIELD_COLORS: Record<string, string> = {
+  'Quantum Algorithms': '#0072B2',
+  'Physical Realizations': '#E69F00',
+  'Quantum Annealing': '#009E73',
+  'Error Correction': '#CC79A7',
+  'Quantum Programming': '#56B4E9',
+  'Other Quantum Computing': '#D55E00',
+  'Superconducting Devices': '#332288',
+  'Other Quantum': '#999999',
+};
+
+export const CYBER_SUBFIELD_COLORS: Record<string, string> = {
+  'Cryptography': '#0072B2',
+  'Authentication & Access Control': '#E69F00',
+  'Network Security': '#009E73',
+  'Data Protection': '#CC79A7',
+  'System Security': '#56B4E9',
+  'Other Computer Security': '#D55E00',
+  'Other Cybersecurity': '#999999',
+};
+
+export const BIOTECH_SUBFIELD_COLORS: Record<string, string> = {
+  'Gene Editing & Modification': '#0072B2',
+  'Expression Vectors': '#E69F00',
+  'Recombinant DNA': '#009E73',
+  'Enzyme Engineering': '#CC79A7',
+  'Nucleic Acid Detection': '#56B4E9',
+  'Other Genetic Engineering': '#D55E00',
+  'Other Biotech': '#999999',
+};
+
+export const DIGIHEALTH_SUBFIELD_COLORS: Record<string, string> = {
+  'Vital Signs Monitoring': '#0072B2',
+  'Diagnostic Imaging': '#E69F00',
+  'Physiological Signals': '#009E73',
+  'Other Patient Monitoring': '#CC79A7',
+  'Electronic Health Records': '#56B4E9',
+  'Clinical Decision Support': '#D55E00',
+  'Medical Imaging Informatics': '#332288',
+  'Healthcare IT Infrastructure': '#882255',
+  'Biomedical Data Analytics': '#44AA99',
+  'Other Health Informatics': '#AA4499',
+  'Surgical Robotics': '#117733',
+  'Other Digital Health': '#999999',
+};
+
+export const AGTECH_SUBFIELD_COLORS: Record<string, string> = {
+  'Soil Working & Tillage': '#0072B2',
+  'Planting & Sowing': '#E69F00',
+  'Horticulture & Forestry': '#009E73',
+  'Plant Breeding & Biocides': '#CC79A7',
+  'Precision Agriculture': '#56B4E9',
+  'Other AgTech': '#999999',
+};
+
+export const AV_SUBFIELD_COLORS: Record<string, string> = {
+  'Autonomous Driving Systems': '#0072B2',
+  'Navigation & Path Planning': '#E69F00',
+  'Vehicle Control': '#009E73',
+  'Scene Understanding': '#CC79A7',
+  'Other AV': '#999999',
+};
+
+export const SPACE_SUBFIELD_COLORS: Record<string, string> = {
+  'Satellite Design': '#0072B2',
+  'Propulsion Systems': '#E69F00',
+  'Attitude Control & Life Support': '#009E73',
+  'Re-Entry Systems': '#CC79A7',
+  'Arrangements for Landing': '#56B4E9',
+  'Space Communications': '#D55E00',
+  'Other Spacecraft': '#332288',
+  'Other Space': '#999999',
+};
+
+export const PRINT3D_SUBFIELD_COLORS: Record<string, string> = {
+  'AM Processes': '#0072B2',
+  'AM Equipment': '#E69F00',
+  'AM Auxiliary Operations': '#009E73',
+  'AM Data Handling': '#CC79A7',
+  'AM Materials': '#56B4E9',
+  'AM Products': '#D55E00',
+  'Polymer Additive Manufacturing': '#332288',
+  'Metal Additive Manufacturing': '#882255',
+  'Other 3D Printing': '#999999',
+};
+
+export const BLOCKCHAIN_SUBFIELD_COLORS: Record<string, string> = {
+  'Distributed Ledger & Consensus': '#0072B2',
+  'Cryptocurrency & Digital Money': '#E69F00',
+  'Other Blockchain': '#999999',
+};
+
 export const TOOLTIP_STYLE: React.CSSProperties = {
   backgroundColor: 'hsl(var(--card))',
   border: '1px solid hsl(var(--border))',

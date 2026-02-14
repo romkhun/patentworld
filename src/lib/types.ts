@@ -1166,6 +1166,98 @@ export interface FirmAmbidexterityRecord {
   median_fwd_cites: number;
 }
 
+// ── Deep Dive Domain Types (shared by all ACT 5 deep-dive chapters) ──────────
+
+/** Annual domain patent counts + share of total */
+export interface DomainPerYear {
+  year: number;
+  total_patents: number;
+  domain_patents: number;
+  domain_pct: number;
+}
+
+/** Subfield breakdown per year */
+export interface DomainBySubfield {
+  year: number;
+  subfield: string;
+  count: number;
+}
+
+/** Top assignees in a domain */
+export interface DomainTopAssignee {
+  organization: string;
+  domain_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+/** Org patent counts over time for heatmap */
+export interface DomainOrgOverTime {
+  year: number;
+  organization: string;
+  count: number;
+}
+
+/** Top inventors in a domain */
+export interface DomainTopInventor {
+  first_name: string;
+  last_name: string;
+  domain_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+/** Geographic distribution */
+export interface DomainGeography {
+  country: string;
+  state: string | null;
+  domain_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+/** Quality indicators over time */
+export interface DomainQuality {
+  year: number;
+  patent_count: number;
+  avg_claims: number;
+  avg_backward_cites: number;
+  avg_scope: number;
+  avg_team_size: number;
+}
+
+/** Team size comparison (domain vs non-domain) */
+export interface DomainTeamComparison {
+  year: number;
+  category: string;
+  patent_count: number;
+  avg_team_size: number;
+  median_team_size: number;
+}
+
+/** Assignee type distribution */
+export interface DomainAssigneeType {
+  year: number;
+  assignee_category: string;
+  count: number;
+}
+
+/** Strategy/portfolio: subfield counts per top org */
+export interface DomainStrategy {
+  organization: string;
+  subfield: string;
+  patent_count: number;
+}
+
+/** Cross-domain diffusion: co-occurrence with CPC sections */
+export interface DomainDiffusion {
+  year: number;
+  section: string;
+  domain_patents_with_section: number;
+  total_domain: number;
+  pct_of_domain: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

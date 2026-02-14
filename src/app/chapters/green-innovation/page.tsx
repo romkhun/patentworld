@@ -10,6 +10,7 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -17,21 +18,34 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { GREEN_EVENTS } from '@/lib/referenceEvents';
-import { CHART_COLORS, GREEN_CATEGORY_COLORS, COUNTRY_COLORS } from '@/lib/colors';
+import { CHART_COLORS, GREEN_CATEGORY_COLORS, COUNTRY_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { formatCompact } from '@/lib/formatters';
 import { cleanOrgName } from '@/lib/orgNames';
 import type {
   GreenVolume, GreenByCategory, GreenByCountry,
   GreenTopCompany, GreenAITrend, GreenAIHeatmap,
+  DomainTopInventor, DomainOrgOverTime, DomainQuality,
+  DomainTeamComparison, DomainAssigneeType, DomainStrategy,
+  DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter14() {
+export default function Chapter24() {
   const { data: volume, loading: volL } = useChapterData<GreenVolume[]>('green/green_volume.json');
   const { data: byCategory, loading: catL } = useChapterData<GreenByCategory[]>('green/green_by_category.json');
   const { data: byCountry, loading: ctyL } = useChapterData<GreenByCountry[]>('green/green_by_country.json');
   const { data: topCompanies, loading: coL } = useChapterData<GreenTopCompany[]>('green/green_top_companies.json');
   const { data: aiTrend, loading: aiTL } = useChapterData<GreenAITrend[]>('green/green_ai_trend.json');
   const { data: aiHeatmap, loading: aiHL } = useChapterData<GreenAIHeatmap[]>('green/green_ai_heatmap.json');
+
+  // New harmonized analyses
+  const { data: topInventors, loading: tiL } = useChapterData<DomainTopInventor[]>('green/green_top_inventors.json');
+  const { data: orgOverTime, loading: ootL } = useChapterData<DomainOrgOverTime[]>('green/green_org_over_time.json');
+  const { data: quality, loading: qL } = useChapterData<DomainQuality[]>('green/green_quality.json');
+  const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('green/green_team_comparison.json');
+  const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('green/green_assignee_type.json');
+  const { data: strategies } = useChapterData<DomainStrategy[]>('green/green_strategies.json');
+  const { data: diffusion, loading: dfL } = useChapterData<DomainDiffusion[]>('green/green_diffusion.json');
 
   // Pivot category data for stacked area chart
   const { categoryPivot, categoryAreas } = useMemo(() => {
@@ -110,6 +124,86 @@ export default function Chapter14() {
     return { heatmapData: data, aiSubfields: subfields };
   }, [aiHeatmap]);
 
+  // Inventor bar data
+  const inventorData = useMemo(() => {
+    if (!topInventors) return [];
+    return topInventors.slice(0, 25).map((d) => ({
+      ...d,
+      label: `${d.first_name} ${d.last_name}`,
+    }));
+  }, [topInventors]);
+
+  // Org rank data
+  const orgRankData = useMemo(() => {
+    if (!orgOverTime) return [];
+    const filtered = orgOverTime.filter((d) => d.year >= 2000);
+    const years = [...new Set(filtered.map((d) => d.year))];
+    const ranked: { year: number; organization: string; count: number; rank: number }[] = [];
+    years.forEach((year) => {
+      const yearData = filtered.filter((d) => d.year === year).sort((a, b) => b.count - a.count);
+      yearData.forEach((d, i) => {
+        ranked.push({ year: d.year, organization: cleanOrgName(d.organization), count: d.count, rank: i + 1 });
+      });
+    });
+    return ranked;
+  }, [orgOverTime]);
+
+  // Strategy table
+  const strategyOrgs = useMemo(() => {
+    if (!strategies) return [];
+    const orgMap = new Map<string, { organization: string; total: number; subfields: { subfield: string; count: number }[] }>();
+    strategies.forEach((d) => {
+      const existing = orgMap.get(d.organization);
+      if (existing) {
+        existing.total += d.patent_count;
+        existing.subfields.push({ subfield: d.subfield, count: d.patent_count });
+      } else {
+        orgMap.set(d.organization, { organization: d.organization, total: d.patent_count, subfields: [{ subfield: d.subfield, count: d.patent_count }] });
+      }
+    });
+    return [...orgMap.values()]
+      .sort((a, b) => b.total - a.total)
+      .slice(0, 15)
+      .map((o) => ({ ...o, subfields: o.subfields.sort((a, b) => b.count - a.count).slice(0, 3) }));
+  }, [strategies]);
+
+  // Diffusion pivot
+  const { diffusionPivot, diffusionSections } = useMemo(() => {
+    if (!diffusion) return { diffusionPivot: [], diffusionSections: [] as string[] };
+    const sections = [...new Set(diffusion.map((d) => d.section))].sort();
+    const years = [...new Set(diffusion.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: Record<string, unknown> = { year };
+      diffusion.filter((d) => d.year === year).forEach((d) => { row[d.section] = d.pct_of_domain; });
+      return row;
+    });
+    return { diffusionPivot: pivoted, diffusionSections: sections };
+  }, [diffusion]);
+
+  // Team comparison pivot
+  const teamComparisonPivot = useMemo(() => {
+    if (!teamComparison) return [];
+    const years = [...new Set(teamComparison.map((d) => d.year))].sort();
+    return years.map((year) => {
+      const row: Record<string, unknown> = { year };
+      teamComparison.filter((d) => d.year === year).forEach((d) => { row[d.category] = d.avg_team_size; });
+      return row;
+    });
+  }, [teamComparison]);
+
+  // Assignee type pivot
+  const { assigneeTypePivot, assigneeTypeNames } = useMemo(() => {
+    if (!assigneeType) return { assigneeTypePivot: [], assigneeTypeNames: [] as string[] };
+    const names = [...new Set(assigneeType.map((d) => d.assignee_category))].sort();
+    const years = [...new Set(assigneeType.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: Record<string, unknown> = { year };
+      assigneeType.filter((d) => d.year === year).forEach((d) => { row[d.assignee_category] = d.count; });
+      return row;
+    });
+    return { assigneeTypePivot: pivoted, assigneeTypeNames: names };
+  }, [assigneeType]);
+
   // Summary stats
   const peakYear = volume ? volume.reduce((best, d) => d.green_count > best.green_count ? d : best, volume[0]) : null;
   const totalGreen = volume ? volume.reduce((s, d) => s + d.green_count, 0) : 0;
@@ -117,7 +211,7 @@ export default function Chapter14() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={14}
+        number={24}
         title="The Green Innovation Race"
         subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
       />
@@ -139,6 +233,9 @@ export default function Chapter14() {
       </aside>
 
       <Narrative>
+        <p>
+          Having examined <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and its expanding role as a general-purpose technology across the patent system, this final chapter of ACT 5 turns to green innovation, a domain where AI-driven optimization is increasingly converging with climate technology to accelerate progress in renewable energy, battery chemistry, and carbon capture.
+        </p>
         <p>
           Climate change constitutes one of the defining challenges of the 21st century, and the
           patent system provides a valuable lens through which to observe the technological
@@ -284,6 +381,217 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
+      {/* ── Organization Rankings Over Time ────────────────────────────────── */}
+      <SectionDivider label="Organization Rankings Over Time" />
+
+      <Narrative>
+        <p>
+          The competitive landscape of green patenting has shifted substantially over the past two decades.
+          Traditional energy firms and early-moving automakers established initial leadership positions, but
+          electronics conglomerates and newer entrants have risen rapidly, reflecting the broadening of green
+          innovation beyond energy generation into batteries, vehicles, and digital infrastructure.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-green-org-rankings"
+        subtitle="Annual patent rank of leading green technology organizations from 2000 to 2025, showing competitive dynamics."
+        title="Green Patent Leadership Has Shifted as Electronics Firms Entered the Top Ranks Alongside Traditional Auto and Energy Companies"
+        caption="Annual patent rank of leading organizations in green technology, 2000-2025. The heatmap reveals how Samsung, LG, and Hyundai rose to challenge the longstanding dominance of Japanese and American incumbents."
+        insight="The entry of Korean electronics conglomerates into the top ranks of green patenting after 2010 reflects the strategic importance of battery technology and electric vehicles in reshaping the competitive landscape."
+        loading={ootL}
+        height={500}
+        wide
+      >
+        <PWRankHeatmap
+          data={orgRankData}
+          nameKey="organization"
+          yearKey="year"
+          rankKey="rank"
+          maxRank={15}
+          yearInterval={2}
+        />
+      </ChartContainer>
+
+      {/* ── Top Inventors ──────────────────────────────────────────────────── */}
+      <SectionDivider label="Top Green Patent Inventors" />
+
+      <Narrative>
+        <p>
+          Individual inventors in the green technology space reflect the breadth of the field, spanning
+          automotive engineers, battery chemists, power electronics specialists, and solar cell researchers.
+          The most prolific inventors tend to be associated with major corporate R&amp;D laboratories.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-green-top-inventors"
+        subtitle="Most prolific individual inventors in green technology patents, ranked by total patent count."
+        title="Top Green Patent Inventors Span Automotive, Battery, and Energy Systems Engineering"
+        caption="Inventors ranked by total green patent count (Y02/Y04S classifications), 1976-2025. The leading inventors are predominantly associated with major automotive and electronics firms."
+        loading={tiL}
+        height={600}
+      >
+        <PWBarChart
+          data={inventorData}
+          xKey="label"
+          bars={[{ key: 'domain_patents', name: 'Green Patents', color: CHART_COLORS[1] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      {/* ── Quality Indicators ─────────────────────────────────────────────── */}
+      <SectionDivider label="Green Patent Quality Indicators" />
+
+      <Narrative>
+        <p>
+          Quality metrics for green patents provide insight into the depth and breadth of climate
+          technology innovation. Average claims counts, backward citations, and technology scope
+          indicate whether green patents are becoming more complex and better integrated with prior art.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-green-quality"
+        subtitle="Average claims, backward citations, and CPC scope for green patents over time."
+        title="Green Patents Show Increasing Complexity as Measured by Claims and Technology Scope"
+        caption="Quality indicators for green patents over time, 1976-2025. Rising average claims and scope suggest that green innovations are becoming more complex and spanning multiple technology areas."
+        loading={qL}
+      >
+        <PWLineChart
+          data={quality ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[0] },
+            { key: 'avg_backward_cites', name: 'Average Backward Citations', color: CHART_COLORS[2] },
+            { key: 'avg_scope', name: 'Average Scope (CPC Subclasses)', color: CHART_COLORS[4] },
+          ]}
+          yLabel="Average Value"
+          referenceLines={GREEN_EVENTS}
+        />
+      </ChartContainer>
+
+      {/* ── Team Size Comparison ───────────────────────────────────────────── */}
+      <SectionDivider label="Team Size: Green vs. Non-Green Patents" />
+
+      <ChartContainer
+        id="fig-green-team-comparison"
+        subtitle="Average team size for green vs. non-green patents over time, measuring the collaborative intensity of climate technology R&D."
+        title="Green Patent Teams Have Grown Larger Than Non-Green Counterparts"
+        caption="Average number of inventors per patent for green and non-green patents, 1990-2025. Green patents consistently involve larger inventor teams, reflecting the interdisciplinary nature of climate technology."
+        insight="The consistently larger team sizes for green patents suggest that climate technology innovation draws on multiple disciplines -- materials science, electrical engineering, chemistry, and software -- requiring collaborative approaches."
+        loading={tcL}
+      >
+        <PWLineChart
+          data={teamComparisonPivot}
+          xKey="year"
+          lines={[
+            { key: 'Green', name: 'Green Patents', color: CHART_COLORS[1] },
+            { key: 'Non-Green', name: 'Non-Green Patents', color: CHART_COLORS[5] },
+          ]}
+          yLabel="Average Team Size"
+          referenceLines={GREEN_EVENTS}
+        />
+      </ChartContainer>
+
+      {/* ── Assignee Type Distribution ─────────────────────────────────────── */}
+      <SectionDivider label="Assignee Type Distribution" />
+
+      <ChartContainer
+        id="fig-green-assignee-type"
+        subtitle="Distribution of green patents by assignee type over time, showing the balance between corporate, government, university, and individual innovators."
+        title="Corporate Assignees Dominate Green Patenting, but University Contributions Are Growing"
+        caption="Annual green patent counts by assignee type, 1990-2025. Corporate assignees account for the vast majority of green patents, but university and government contributions have increased in absolute terms."
+        loading={atL}
+        height={500}
+        wide
+      >
+        <PWAreaChart
+          data={assigneeTypePivot}
+          xKey="year"
+          areas={assigneeTypeNames.map((name, i) => ({
+            key: name,
+            name,
+            color: CHART_COLORS[i % CHART_COLORS.length],
+          }))}
+          stacked
+          yLabel="Number of Patents"
+          referenceLines={GREEN_EVENTS}
+        />
+      </ChartContainer>
+
+      {/* ── Strategy Table ─────────────────────────────────────────────────── */}
+      {strategyOrgs.length > 0 && (
+        <>
+          <SectionDivider label="Green Patenting Strategies" />
+
+          <Narrative>
+            <p>
+              Leading green patent holders pursue distinct technology strategies. Some focus heavily on a
+              single sub-category (such as Toyota on transportation/EVs), while others maintain broader
+              portfolios spanning renewable energy, batteries, and industrial production.
+            </p>
+          </Narrative>
+
+          <div className="my-8 overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 px-3 font-semibold">Organization</th>
+                  <th className="text-right py-2 px-3 font-semibold">Total Patents</th>
+                  <th className="text-left py-2 px-3 font-semibold">Top Sub-Categories</th>
+                </tr>
+              </thead>
+              <tbody>
+                {strategyOrgs.map((org, i) => (
+                  <tr key={i} className="border-b border-muted/50 hover:bg-muted/20">
+                    <td className="py-2 px-3 font-medium">{cleanOrgName(org.organization)}</td>
+                    <td className="py-2 px-3 text-right">{org.total.toLocaleString()}</td>
+                    <td className="py-2 px-3 text-muted-foreground">
+                      {org.subfields.map((s) => `${s.subfield} (${s.count.toLocaleString()})`).join(', ')}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {/* ── Cross-Domain Diffusion ─────────────────────────────────────────── */}
+      <SectionDivider label="Cross-Domain Diffusion of Green Technology" />
+
+      <Narrative>
+        <p>
+          Green patents are by nature cross-cutting -- Y02/Y04S codes are applied alongside primary
+          CPC codes from other technology sections. Tracking co-classification patterns reveals how
+          green innovation diffuses across electricity, chemistry, mechanical engineering, and physics.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-green-diffusion"
+        subtitle="Percentage of green patents co-classified with other CPC sections, measuring the diffusion of climate technology across technology domains."
+        title="Green Patents Show Deepening Integration with Electricity and Chemistry Domains"
+        caption="Percentage of green patents co-classified with each non-Y CPC section, 1990-2025. The high co-occurrence with Electricity (H) and Chemistry/Metallurgy (C) reflects the central role of energy conversion and materials science in climate technology."
+        insight="Green patents are deeply embedded in electrical engineering and chemistry, reflecting the fundamental nature of climate technology as an applied fusion of these disciplines rather than a standalone technology domain."
+        loading={dfL}
+        wide
+      >
+        <PWLineChart
+          data={diffusionPivot}
+          xKey="year"
+          lines={diffusionSections.map((section) => ({
+            key: section,
+            name: CPC_SECTION_NAMES[section] ?? section,
+            color: CPC_SECTION_COLORS[section] ?? '#999999',
+          }))}
+          yLabel="% of Green Patents"
+          yFormatter={(v) => `${Number(v).toFixed(0)}%`}
+          referenceLines={GREEN_EVENTS}
+        />
+      </ChartContainer>
+
       {/* ── Section 4: Green AI ───────────────────────────────────────────── */}
       <SectionDivider label="Green AI — Where Climate Meets Artificial Intelligence" />
 
@@ -351,6 +659,7 @@ export default function Chapter14() {
 
       <Narrative>
         This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents one of the most consequential frontiers of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
+        Across the twelve technology domains examined in ACT 5 -- from <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> through <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and green innovation -- several cross-cutting themes emerge: the concentration of patent activity among a small number of resource-intensive firms, the accelerating convergence of formerly distinct technology fields, and the growing role of international competition in shaping domestic innovation trajectories. These domain-level patterns reinforce and extend the structural insights developed in the preceding acts, confirming that the US patent system is simultaneously becoming more specialized in its technical content and more interconnected in its organizational and geographic character.
       </Narrative>
 
       <DataNote>
@@ -365,8 +674,8 @@ export default function Chapter14() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={14} />
-      <ChapterNavigation currentChapter={14} />
+      <RelatedChapters currentChapter={24} />
+      <ChapterNavigation currentChapter={24} />
     </div>
   );
 }

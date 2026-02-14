@@ -1,0 +1,735 @@
+'use client';
+
+import { useMemo } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { StatCallout } from '@/components/chapter/StatCallout';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWAreaChart } from '@/components/charts/PWAreaChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { CHART_COLORS, CPC_SECTION_COLORS, SEMI_SUBFIELD_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { SEMI_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import { cleanOrgName } from '@/lib/orgNames';
+import Link from 'next/link';
+import type {
+  DomainPerYear, DomainBySubfield, DomainTopAssignee,
+  DomainTopInventor, DomainGeography, DomainQuality, DomainOrgOverTime,
+  DomainStrategy, DomainDiffusion, DomainTeamComparison, DomainAssigneeType,
+} from '@/lib/types';
+
+export default function Chapter13() {
+  const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('semiconductors/semi_per_year.json');
+  const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('semiconductors/semi_by_subfield.json');
+  const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('semiconductors/semi_top_assignees.json');
+  const { data: topInventors, loading: tiL } = useChapterData<DomainTopInventor[]>('semiconductors/semi_top_inventors.json');
+  const { data: geography, loading: geoL } = useChapterData<DomainGeography[]>('semiconductors/semi_geography.json');
+  const { data: quality, loading: qL } = useChapterData<DomainQuality[]>('semiconductors/semi_quality.json');
+  const { data: orgOverTime, loading: ootL } = useChapterData<DomainOrgOverTime[]>('semiconductors/semi_org_over_time.json');
+  const { data: semiStrategies } = useChapterData<DomainStrategy[]>('semiconductors/semi_strategies.json');
+  const { data: semiDiffusion, loading: sdL } = useChapterData<DomainDiffusion[]>('semiconductors/semi_diffusion.json');
+  const { data: semiTeam, loading: stcL } = useChapterData<DomainTeamComparison[]>('semiconductors/semi_team_comparison.json');
+  const { data: semiAssignType, loading: satL } = useChapterData<DomainAssigneeType[]>('semiconductors/semi_assignee_type.json');
+
+  // Pivot subfield data for stacked area chart
+  const { subfieldPivot, subfieldNames } = useMemo(() => {
+    if (!bySubfield) return { subfieldPivot: [], subfieldNames: [] };
+    const subfields = [...new Set(bySubfield.map((d) => d.subfield))];
+    const years = [...new Set(bySubfield.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: any = { year };
+      bySubfield.filter((d) => d.year === year).forEach((d) => {
+        row[d.subfield] = d.count;
+      });
+      return row;
+    });
+    return { subfieldPivot: pivoted, subfieldNames: subfields };
+  }, [bySubfield]);
+
+  const assigneeData = useMemo(() => {
+    if (!topAssignees) return [];
+    return topAssignees.map((d) => ({
+      ...d,
+      label: cleanOrgName(d.organization),
+    }));
+  }, [topAssignees]);
+
+  const inventorData = useMemo(() => {
+    if (!topInventors) return [];
+    return topInventors.map((d) => ({
+      ...d,
+      label: `${d.first_name} ${d.last_name}`.trim(),
+    }));
+  }, [topInventors]);
+
+  // Shared short display names for organizations (using centralized cleanOrgName)
+  const orgNameMap = useMemo(() => {
+    if (!orgOverTime) return {};
+    const map: Record<string, string> = {};
+    const orgNames = [...new Set(orgOverTime.map((d) => d.organization))];
+    orgNames.forEach((org) => {
+      map[org] = cleanOrgName(org);
+    });
+    return map;
+  }, [orgOverTime]);
+
+  // Compute rank data for heatmap (from 1990 onward, where semiconductor activity is well-established)
+  const orgRankData = useMemo(() => {
+    if (!orgOverTime) return [];
+    const years = [...new Set(orgOverTime.map((d) => d.year))].sort().filter((y) => y >= 1990);
+    const ranked: { organization: string; year: number; rank: number }[] = [];
+    years.forEach((year) => {
+      const yearData = orgOverTime
+        .filter((d) => d.year === year && d.count > 0)
+        .sort((a, b) => b.count - a.count);
+      yearData.forEach((d, i) => {
+        if (i < 15) {
+          ranked.push({
+            organization: orgNameMap[d.organization] ?? d.organization,
+            year,
+            rank: i + 1,
+          });
+        }
+      });
+    });
+    return ranked;
+  }, [orgOverTime, orgNameMap]);
+
+  const geoCountry = useMemo(() => {
+    if (!geography) return [];
+    const countryMap: Record<string, number> = {};
+    geography.forEach((d) => {
+      countryMap[d.country] = (countryMap[d.country] || 0) + d.domain_patents;
+    });
+    return Object.entries(countryMap)
+      .map(([country, domain_patents]) => ({ country, domain_patents }))
+      .sort((a, b) => b.domain_patents - a.domain_patents)
+      .slice(0, 30);
+  }, [geography]);
+
+  const geoState = useMemo(() => {
+    if (!geography) return [];
+    return geography
+      .filter((d) => d.country === 'US' && d.state)
+      .sort((a, b) => b.domain_patents - a.domain_patents)
+      .slice(0, 30)
+      .map((d) => ({ state: d.state, domain_patents: d.domain_patents }));
+  }, [geography]);
+
+  const strategyOrgs = useMemo(() => {
+    if (!semiStrategies) return [];
+    const orgs = [...new Set(semiStrategies.map(d => d.organization))];
+    return orgs.map(org => ({
+      organization: org,
+      subfields: semiStrategies.filter(d => d.organization === org).sort((a, b) => b.patent_count - a.patent_count),
+    })).sort((a, b) => {
+      const aTotal = a.subfields.reduce((s, d) => s + d.patent_count, 0);
+      const bTotal = b.subfields.reduce((s, d) => s + d.patent_count, 0);
+      return bTotal - aTotal;
+    });
+  }, [semiStrategies]);
+
+  const { diffusionPivot, diffusionSections } = useMemo(() => {
+    if (!semiDiffusion) return { diffusionPivot: [], diffusionSections: [] };
+    const sections = [...new Set(semiDiffusion.map(d => d.section))].sort();
+    const years = [...new Set(semiDiffusion.map(d => d.year))].sort((a, b) => a - b);
+    const pivoted = years.map(year => {
+      const row: Record<string, any> = { year };
+      semiDiffusion.filter(d => d.year === year).forEach(d => {
+        row[d.section] = d.pct_of_domain;
+      });
+      return row;
+    });
+    return { diffusionPivot: pivoted, diffusionSections: sections };
+  }, [semiDiffusion]);
+
+  const teamComparisonPivot = useMemo(() => {
+    if (!semiTeam) return [];
+    const years = [...new Set(semiTeam.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: Record<string, unknown> = { year };
+      semiTeam.filter(d => d.year === year).forEach(d => {
+        row[d.category] = d.avg_team_size;
+      });
+      return row;
+    });
+  }, [semiTeam]);
+
+  const { assigneeTypePivot, assigneeTypeNames } = useMemo(() => {
+    if (!semiAssignType) return { assigneeTypePivot: [], assigneeTypeNames: [] };
+    const categories = [...new Set(semiAssignType.map(d => d.assignee_category))];
+    const years = [...new Set(semiAssignType.map(d => d.year))].sort();
+    const pivoted = years.map(year => {
+      const row: Record<string, unknown> = { year };
+      semiAssignType.filter(d => d.year === year).forEach(d => {
+        row[d.assignee_category] = d.count;
+      });
+      return row;
+    });
+    return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
+  }, [semiAssignType]);
+
+  return (
+    <div>
+      <ChapterHeader
+        number={13}
+        title="Semiconductors"
+        subtitle="The silicon foundation of modern technology"
+      />
+
+      <KeyFindings>
+        <li>Semiconductor patents are among the most heavily filed in the US patent system, with CPC class H01L representing one of the single largest concentrations of patenting activity across all technology domains.</li>
+        <li>Manufacturing processes and integrated circuit design account for the majority of semiconductor patent filings, reflecting the capital-intensive nature of fabrication and the competitive dynamics of chip architecture.</li>
+        <li>East Asian firms -- Samsung, TSMC, and SK Hynix -- have emerged as dominant patent holders alongside American incumbents such as Intel and Qualcomm, illustrating the global nature of semiconductor competition.</li>
+        <li>LEDs, optoelectronics, and photovoltaic cells represent rapidly growing subfields within semiconductor patenting, driven by energy efficiency mandates and the expansion of solid-state lighting.</li>
+        <li>The CHIPS and Science Act of 2022 represents the most significant US policy intervention in semiconductor manufacturing in decades, with potential implications for the geographic distribution of future patenting activity.</li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
+        <p className="text-sm leading-relaxed">
+          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by relentless process miniaturization, enormous capital requirements, and intensifying international competition. What began as a predominantly American enterprise has become a globally distributed innovation system, with East Asian firms now holding leading positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>.
+        </p>
+      </aside>
+
+      <Narrative>
+        <p>
+          ACT 5 examines twelve technology domains through the lens of patent data, from semiconductors to <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>. This chapter begins with the silicon foundation underlying modern computing.
+        </p>
+        <p>
+          The semiconductor industry occupies a unique position in the modern innovation
+          landscape. As the foundational technology enabling computing, telecommunications,
+          automotive electronics, and an expanding universe of connected devices, semiconductors
+          represent one of the most <StatCallout value="capital-intensive" /> and
+          patent-dense fields in the United States patent system. This chapter examines
+          the evolution of semiconductor-related patenting -- from the early days of
+          discrete transistors and basic integrated circuits through the current era of
+          advanced process nodes, 3D packaging, and heterogeneous integration.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          Semiconductor patent activity serves as a barometer of technological investment
+          in the hardware layer that underpins the entire digital economy. The sustained
+          high volume of semiconductor patents reflects both the capital intensity of
+          fabrication R&amp;D and the competitive pressure to advance process nodes, improve
+          energy efficiency, and develop new device architectures for emerging applications
+          such as AI accelerators and power electronics.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Growth Trajectory" />
+
+      <ChartContainer
+        id="fig-semi-patents-annual-count"
+        subtitle="Annual count of utility patents classified under semiconductor-related CPC codes (H01L), tracking the growth trajectory of semiconductor patenting."
+        title="Semiconductor Patent Filings Reflect Decades of Sustained Investment in Fabrication and Device Innovation"
+        caption="Annual count and share of utility patents classified under semiconductor-related CPC codes (H01L), 1976-2025. H01L is one of the most heavily used CPC classes in the entire patent system, reflecting the enormous R&D investment required to advance semiconductor manufacturing."
+        insight="The sustained volume of semiconductor patents reflects the relentless pace of Moore's Law-driven innovation, where each new process node requires billions of dollars in R&D and generates thousands of patentable advances."
+        loading={pyL}
+      >
+        <PWLineChart
+          data={perYear ?? []}
+          xKey="year"
+          lines={[
+            { key: 'domain_patents', name: 'Semiconductor Patents', color: CHART_COLORS[0] },
+          ]}
+          yLabel="Number of Patents"
+          referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Semiconductor patent filings have maintained consistently high volumes over
+          several decades, reflecting the sustained capital investment required to push
+          the boundaries of transistor density, power efficiency, and manufacturing yield.
+          Unlike many technology domains that exhibit sudden exponential growth, semiconductor
+          patenting has followed a more stable trajectory -- consistent with an industry
+          where innovation is incremental, cumulative, and extremely capital-intensive.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-semi-patents-share"
+        subtitle="Semiconductor patents as a percentage of all utility patents, showing the evolving weight of semiconductor innovation within the broader patent system."
+        title="Semiconductor's Share of Total Patents Reveals the Shifting Weight of Hardware Innovation in the Patent System"
+        caption="Percentage of all utility patents classified under semiconductor-related CPC codes. Changes in this share reflect the relative pace of semiconductor innovation compared to the broader patent system, including periods of expansion driven by new device types and periods of relative stability."
+        insight="The semiconductor share of total patents captures the evolving balance between hardware and software innovation in the patent system, with fluctuations reflecting both industry cycles and shifts in inventive focus."
+        loading={pyL}
+      >
+        <PWLineChart
+          data={perYear ?? []}
+          xKey="year"
+          lines={[
+            { key: 'domain_pct', name: 'Semiconductor Share (%)', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Share (%)"
+          yFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Subfields" />
+
+      <ChartContainer
+        id="fig-semi-patents-subfields"
+        subtitle="Patent counts by semiconductor subfield (manufacturing processes, integrated circuits, LEDs, photovoltaics, etc.) over time, based on specific CPC group codes within H01L."
+        title="Manufacturing Processes and Integrated Circuits Dominate Semiconductor Patenting, With LEDs and Photovoltaics Emerging as Growing Subfields"
+        caption="Patent counts by semiconductor subfield over time, based on CPC classifications within H01L. Manufacturing processes and integrated circuit design have historically dominated, while LEDs/optoelectronics and photovoltaic cells have grown substantially since the mid-2000s, driven by energy efficiency requirements and solid-state lighting adoption."
+        insight="The subfield composition reveals the dual nature of semiconductor innovation: sustained investment in core fabrication and IC design alongside the emergence of application-driven subfields such as LEDs and photovoltaics."
+        loading={sfL}
+        height={650}
+      >
+        <PWAreaChart
+          data={subfieldPivot}
+          xKey="year"
+          areas={subfieldNames.map((name) => ({
+            key: name,
+            name,
+            color: SEMI_SUBFIELD_COLORS[name] ?? CHART_COLORS[0],
+          }))}
+          stacked
+          yLabel="Number of Patents"
+          referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The composition of semiconductor patents reflects the industry&apos;s dual focus
+          on advancing core manufacturing capabilities and expanding into new application
+          domains. Manufacturing processes -- encompassing lithography, etching, deposition,
+          and planarization -- remain the largest subfield, consistent with the enormous
+          engineering effort required at each new process node. Integrated circuit design
+          constitutes the second major category. The notable growth in LEDs and photovoltaic
+          cells since the mid-2000s reflects policy-driven demand for energy-efficient
+          lighting and renewable energy, demonstrating how semiconductor innovation responds
+          to external market and regulatory signals.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Organizations" />
+
+      <ChartContainer
+        id="fig-semi-patents-top-assignees"
+        subtitle="Organizations ranked by total semiconductor-related patent count from 1976 to 2025, showing concentration among integrated device manufacturers and foundries."
+        title="Samsung, TSMC, and Intel Lead in Total Semiconductor Patent Volume, Reflecting the Global Nature of Chip Industry R&D"
+        caption="Organizations ranked by total semiconductor-related patents, 1976-2025. The data reveal a mix of East Asian and American firms at the top, with integrated device manufacturers, pure-play foundries, and fabless design houses all represented."
+        insight="The dominance of both East Asian and American firms in semiconductor patenting reflects the globally distributed nature of the semiconductor supply chain, where design, fabrication, and packaging are often performed by different organizations in different countries."
+        loading={taL}
+        height={1400}
+      >
+        <PWBarChart
+          data={assigneeData}
+          xKey="label"
+          bars={[{ key: 'domain_patents', name: 'Semiconductor Patents', color: CHART_COLORS[0] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <RankingTable
+        title="View top semiconductor patent holders as a data table"
+        headers={['Organization', 'Semiconductor Patents']}
+        rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
+        caption="Top 15 organizations by semiconductor-related patent count, 1976-2025. Source: PatentsView."
+      />
+
+      <KeyInsight>
+        <p>
+          Semiconductor patent leadership reflects the vertically integrated and globally
+          distributed nature of the chip industry. Samsung, which operates both memory
+          and logic fabrication, maintains a commanding position. TSMC, the world&apos;s
+          largest pure-play foundry, has built an enormous patent portfolio around
+          advanced manufacturing processes. American firms such as Intel and Qualcomm
+          remain major patent holders, with Intel emphasizing process technology and
+          Qualcomm focusing on mobile SoC design. The presence of Japanese firms (Toshiba,
+          Sony) and other Korean firms (SK Hynix, LG) underscores the deeply international
+          character of semiconductor competition.
+        </p>
+      </KeyInsight>
+
+      {orgRankData.length > 0 && (
+        <ChartContainer
+          id="fig-semi-patents-org-rankings"
+          subtitle="Annual ranking of the top 15 organizations by semiconductor patent grants from 1990 to 2025, with darker cells indicating higher rank."
+          title="Organizational Rankings in Semiconductor Patents Reveal Shifting Competitive Dynamics Between US and East Asian Firms"
+          caption="Annual ranking of the top 15 organizations by semiconductor patent grants, 1990-2025. Darker cells indicate higher rank (more patents). The data reveal the rise of East Asian firms, particularly Samsung and TSMC, alongside the sustained presence of American and Japanese incumbents."
+          insight="The ranking dynamics reveal a long-term shift in semiconductor patent leadership from American and Japanese firms toward Korean and Taiwanese organizations, reflecting the geographic migration of advanced manufacturing capacity."
+          loading={ootL}
+          height={600}
+          wide
+        >
+          <PWRankHeatmap
+            data={orgRankData}
+            nameKey="organization"
+            yearKey="year"
+            rankKey="rank"
+            maxRank={15}
+            yearInterval={2}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The organizational ranking data reveal a long-term shift in semiconductor patent
+          leadership. Japanese firms such as Toshiba, Hitachi, and NEC held dominant
+          positions through the 1990s and early 2000s, reflecting Japan&apos;s earlier
+          prominence in memory manufacturing. The subsequent rise of Samsung and TSMC
+          mirrors the broader migration of advanced fabrication capacity to South Korea
+          and Taiwan. Intel has maintained a consistently high rank throughout, reflecting
+          its sustained investment in both process technology and architecture innovation.
+          The emergence of firms like Micron and Applied Materials in the rankings
+          highlights the importance of both memory manufacturing and semiconductor
+          equipment in the patent landscape.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Inventors" />
+
+      <ChartContainer
+        id="fig-semi-patents-top-inventors"
+        subtitle="Primary inventors ranked by total semiconductor-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
+        title="The Most Prolific Semiconductor Inventors Hold Hundreds of Patents, Reflecting Deep Specialization in Process and Device Engineering"
+        caption="Primary inventors ranked by total semiconductor-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total semiconductor patent output."
+        insight="The concentration of semiconductor patenting among a small cohort of prolific inventors reflects the deep specialization required in process engineering, device physics, and circuit design -- fields where decades of accumulated expertise translate into sustained inventive productivity."
+        loading={tiL}
+        height={1400}
+      >
+        <PWBarChart
+          data={inventorData}
+          xKey="label"
+          bars={[{ key: 'domain_patents', name: 'Semiconductor Patents', color: CHART_COLORS[4] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The most prolific semiconductor inventors are typically affiliated with major
+          integrated device manufacturers or foundries, where sustained investment in
+          process R&amp;D creates opportunities for extensive patenting over multi-decade
+          careers. The skewed distribution of individual output reflects the deep
+          specialization required in semiconductor process engineering and device physics,
+          where mastery of specific techniques such as lithography, thin-film deposition,
+          or transistor architecture enables repeated inventive contributions at the
+          frontier of manufacturing capability.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Geography" />
+
+      <ChartContainer
+        id="fig-semi-patents-by-country"
+        subtitle="Countries ranked by total semiconductor-related patents based on primary inventor location, showing geographic distribution of semiconductor innovation."
+        title="The United States, Japan, South Korea, and Taiwan Account for the Majority of Semiconductor Patents, Reflecting the Geographic Concentration of Fabrication Capacity"
+        caption="Countries ranked by total semiconductor-related patents based on primary inventor location. The geographic distribution closely mirrors the location of major fabrication facilities, with the United States, Japan, South Korea, and Taiwan dominating."
+        insight="The geographic distribution of semiconductor patents closely tracks the location of advanced fabrication facilities, underscoring the tight coupling between manufacturing presence and patenting activity in this capital-intensive industry."
+        loading={geoL}
+        height={900}
+      >
+        <PWBarChart
+          data={geoCountry}
+          xKey="country"
+          bars={[{ key: 'domain_patents', name: 'Semiconductor Patents', color: CHART_COLORS[2] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The geographic distribution of semiconductor patents reflects the concentration
+          of advanced fabrication capacity in a small number of countries. The United States
+          maintains a strong position driven by firms such as Intel, Qualcomm, and
+          Micron, as well as the research operations of foreign firms on US soil. Japan&apos;s
+          substantial patent share reflects its historical strength in memory and materials,
+          while South Korea and Taiwan&apos;s prominence corresponds directly to the
+          manufacturing operations of Samsung, SK Hynix, and TSMC. The CHIPS Act&apos;s
+          incentives for domestic fabrication may alter this geographic distribution in
+          the coming years.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-semi-patents-by-state"
+        subtitle="US states ranked by total semiconductor-related patents based on primary inventor location, highlighting geographic clustering within the United States."
+        title="California, Texas, and Oregon Lead US Semiconductor Patenting, Reflecting the Location of Major Fabs and Design Centers"
+        caption="US states ranked by total semiconductor-related patents based on primary inventor location. The distribution reflects the location of major fabrication facilities (Oregon, Arizona, Texas) and design centers (California), as well as corporate headquarters and R&D laboratories."
+        insight="The state-level distribution of semiconductor patents reflects both fabrication site locations and design center clusters, with California's dominance driven by its concentration of fabless design firms and corporate R&D laboratories."
+        loading={geoL}
+        height={900}
+      >
+        <PWBarChart
+          data={geoState}
+          xKey="state"
+          bars={[{ key: 'domain_patents', name: 'Semiconductor Patents', color: CHART_COLORS[3] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Within the United States, semiconductor patenting is concentrated in states that
+          host major fabrication facilities and design centers. California leads, driven
+          by the concentration of fabless design firms, corporate R&amp;D laboratories, and
+          the headquarters of companies such as Intel, Qualcomm, and Applied Materials.
+          Texas, Oregon, and Arizona reflect the location of major fabs operated by Intel,
+          Samsung, and TSMC. The geographic pattern underscores the importance of physical
+          manufacturing infrastructure in shaping local patenting activity -- a dynamic
+          that the CHIPS Act aims to expand by incentivizing new fab construction across
+          additional states.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Quality Indicators" />
+
+      <ChartContainer
+        id="fig-semi-patents-quality"
+        subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for semiconductor patents by year, measuring quality trends."
+        title="Semiconductor Patent Quality Indicators Reveal Growing Complexity and Interdisciplinarity Over Time"
+        caption="Average claims, backward citations, and technology scope for semiconductor-related patents by year. The upward trends in backward citations and technology scope suggest that semiconductor patents are becoming increasingly interconnected with adjacent fields, consistent with the growing integration of semiconductors with software, packaging, and systems-level innovation."
+        insight="Rising backward citations and technology scope indicate that semiconductor innovation is becoming more interconnected with adjacent domains, reflecting the industry's shift toward systems-level integration and heterogeneous architectures."
+        loading={qL}
+      >
+        <PWLineChart
+          data={quality ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[0] },
+            { key: 'avg_backward_cites', name: 'Average Backward Citations', color: CHART_COLORS[2] },
+            { key: 'avg_scope', name: 'Average Scope (CPC Subclasses)', color: CHART_COLORS[4] },
+          ]}
+          yLabel="Average per Patent"
+          yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Semiconductor patents exhibit distinctive quality characteristics that reflect the
+          engineering complexity of the field. The growing number of backward citations
+          indicates an increasingly dense web of prior art, consistent with an industry where
+          each new advance builds incrementally on a vast body of existing knowledge. The
+          expanding technology scope suggests that semiconductor patents are becoming more
+          interdisciplinary -- spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>{' '}
+          subclasses as chip technology integrates with packaging, software, and
+          systems-level design considerations.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Team Size" />
+
+      <ChartContainer
+        id="fig-semi-patents-team-comparison"
+        subtitle="Average inventors per patent for semiconductor vs. non-semiconductor utility patents by year, showing the complexity gap between the two categories."
+        title="Semiconductor Patents Consistently Involve Larger Teams Than Non-Semiconductor Patents, Reflecting the Collaborative Nature of Fab R&D"
+        caption="Average number of inventors per patent for semiconductor-related vs. non-semiconductor utility patents, 1976-2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
+        insight="Semiconductor patents involve larger inventor teams than non-semiconductor patents, consistent with the multidisciplinary nature of fabrication R&D, which requires expertise in materials science, physics, chemistry, and electrical engineering."
+        loading={stcL}
+      >
+        <PWLineChart
+          data={teamComparisonPivot}
+          xKey="year"
+          lines={[
+            { key: 'Semiconductor', name: 'Semiconductor Patents', color: CHART_COLORS[0] },
+            { key: 'Non-Semiconductor', name: 'Non-Semiconductor Patents', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Average Team Size"
+          yFormatter={(v: number) => v.toFixed(1)}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The team size comparison reveals that semiconductor patents consistently involve
+          more inventors than non-semiconductor patents. This pattern reflects the
+          multidisciplinary nature of semiconductor R&amp;D, which requires expertise spanning
+          materials science, device physics, process chemistry, electrical engineering, and
+          increasingly, software and systems architecture. The widening gap over time
+          suggests that semiconductor innovation is becoming more collaborative, likely
+          driven by the growing complexity of advanced process nodes and the integration
+          of multiple technology layers in modern chip designs.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Assignee Type" />
+
+      <ChartContainer
+        id="fig-semi-patents-assignee-type"
+        subtitle="Distribution of semiconductor patents by assignee type (corporate, university, government, individual) over time, showing the intensifying corporate share."
+        title="Corporate Assignees Overwhelmingly Dominate Semiconductor Patenting, Reflecting the Capital-Intensive Nature of the Industry"
+        caption="Distribution of semiconductor patent assignees by type (corporate, university, government, individual) over time. The data reveal that corporate assignees account for the vast majority of semiconductor patents, consistent with the enormous capital requirements of semiconductor fabrication and the central role of corporate R&D laboratories."
+        insight="The overwhelming corporate dominance in semiconductor patenting reflects the capital-intensive nature of the industry, where building and operating a leading-edge fab requires investments exceeding $20 billion."
+        loading={satL}
+        height={500}
+      >
+        <PWAreaChart
+          data={assigneeTypePivot}
+          xKey="year"
+          areas={assigneeTypeNames.map((name, i) => ({
+            key: name,
+            name,
+            color: CHART_COLORS[i % CHART_COLORS.length],
+          }))}
+          stacked
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Corporate assignees account for an overwhelming share of semiconductor patents,
+          more so than in many other technology domains. This concentration reflects the
+          capital-intensive nature of the semiconductor industry, where building a
+          leading-edge fabrication facility requires investments exceeding $20 billion.
+          University semiconductor patenting has grown modestly in absolute terms, primarily
+          in emerging areas such as organic semiconductors and novel device architectures,
+          but remains a small fraction of total activity. The negligible share of individual
+          inventors underscores the institutional nature of semiconductor innovation.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Semiconductor Patenting Strategies" />
+      <Narrative>
+        <p>
+          The leading semiconductor patent holders pursue notably different strategies,
+          shaped by their position in the supply chain. Integrated device manufacturers
+          such as Samsung and Intel patent broadly across manufacturing processes, IC design,
+          and packaging. Pure-play foundries like TSMC concentrate on process technology.
+          Fabless design firms such as Qualcomm focus on circuit architecture and
+          system-on-chip innovations. A comparison of subfield portfolios across major
+          holders reveals where each organization concentrates its inventive effort.
+        </p>
+      </Narrative>
+      {strategyOrgs.length > 0 && (
+        <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-2 font-medium text-muted-foreground">Organization</th>
+                <th className="text-left py-2 px-2 font-medium text-muted-foreground">Top Sub-Areas</th>
+                <th className="text-right py-2 px-2 font-medium text-muted-foreground">Total Semiconductor Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {strategyOrgs.slice(0, 15).map((org, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-2 font-medium text-sm">{cleanOrgName(org.organization)}</td>
+                  <td className="py-2 px-2">
+                    {org.subfields.slice(0, 3).map((sf, j) => (
+                      <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                      </span>
+                    ))}
+                  </td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          The strategy table reveals clear differentiation among the top semiconductor
+          patent holders. Samsung maintains the broadest portfolio, with substantial
+          patent counts across manufacturing processes, integrated circuits, and memory
+          devices. TSMC&apos;s portfolio is heavily concentrated in manufacturing processes,
+          consistent with its pure-play foundry model. Intel balances process technology
+          with IC design, reflecting its integrated device manufacturer approach. The
+          growing presence of LED and photovoltaic patents among firms such as Osram
+          and LG highlights the diversification of semiconductor innovation beyond
+          traditional computing applications.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Cross-Domain Diffusion" />
+      <Narrative>
+        <p>
+          Semiconductors, as a foundational technology, are deeply embedded across
+          multiple sectors of the economy. By tracking how frequently semiconductor-classified
+          patents also carry CPC codes from other technology areas, it is possible to measure
+          the integration of semiconductor innovation with computing, telecommunications,
+          healthcare devices, and other application domains.
+        </p>
+      </Narrative>
+      <ChartContainer
+        id="fig-semi-patents-diffusion"
+        subtitle="Percentage of semiconductor patents co-classified with other CPC sections, measuring semiconductor technology's integration across domains."
+        title="Semiconductor Patent Co-Classification With Other CPC Sections Reveals Deep Integration Across Computing, Telecommunications, and Manufacturing"
+        caption="Percentage of semiconductor patents that also carry CPC codes from other sections. Rising lines indicate growing integration of semiconductor technology with that sector. The pattern reflects the foundational role of semiconductors in enabling innovation across virtually every technology domain."
+        insight="The broad co-classification of semiconductor patents across multiple CPC sections confirms the foundational nature of semiconductor technology, which enables and constrains innovation in computing, telecommunications, healthcare, and manufacturing."
+        loading={sdL}
+      >
+        {diffusionPivot.length > 0 && (
+          <PWLineChart
+            data={diffusionPivot}
+            xKey="year"
+            lines={diffusionSections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            yLabel="% of Semiconductor Patents"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          The cross-domain diffusion data confirm the foundational nature of semiconductor
+          technology. Semiconductor patents exhibit substantial co-classification with
+          Electricity (H), reflecting the tight integration of chip technology with
+          electronic circuits and telecommunications systems. Co-occurrence with Physics (G)
+          captures the overlap with measurement, optics, and computing applications. The
+          presence of co-classification with Human Necessities (A) and Chemistry (C)
+          reflects the expanding role of semiconductors in medical devices, biosensors,
+          and materials science. The breadth of semiconductor diffusion across CPC sections
+          underscores why disruptions to the semiconductor supply chain -- as experienced
+          during the 2020-2021 chip shortage -- have cascading effects across the entire
+          economy.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        Having documented the landscape of semiconductor patenting, the analysis
+        demonstrates the foundational role of chip technology in the broader innovation
+        system. The organizational strategies behind semiconductor portfolios are explored
+        further in <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>,
+        while the interaction between semiconductor and artificial intelligence patents is
+        examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. The next chapter turns to <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link>, a domain that builds directly on semiconductor fabrication expertise while pursuing fundamentally different computational paradigms.
+      </Narrative>
+
+      <DataNote>
+        Semiconductor patents are identified using CPC classification H01L, which covers
+        semiconductor devices, processes, and related solid-state technology including
+        integrated circuits, LEDs, photovoltaic cells, and thermoelectric devices. A patent
+        is classified as semiconductor-related if any of its CPC codes fall within H01L.
+        Subfield classifications are based on more specific CPC group codes within H01L
+        (e.g., H01L21 for manufacturing processes, H01L27 for integrated circuits, H01L33
+        for LEDs). Semiconductor patenting strategies show patent counts per subfield for
+        the top assignees. Cross-domain diffusion measures co-occurrence of semiconductor
+        CPC codes with other CPC sections (Section H excluded from certain calculations
+        since it contains the core semiconductor classifications).
+      </DataNote>
+
+      <RelatedChapters currentChapter={13} />
+      <ChapterNavigation currentChapter={13} />
+    </div>
+  );
+}

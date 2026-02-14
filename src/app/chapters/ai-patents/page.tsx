@@ -43,7 +43,7 @@ const SUBFIELD_COLORS: Record<string, string> = {
   'Other AI': '#999999',
 };
 
-export default function Chapter13() {
+export default function Chapter23() {
   const { data: perYear, loading: pyL } = useChapterData<AIPatentsPerYear[]>('chapter11/ai_patents_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<AIBySubfield[]>('chapter11/ai_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<AITopAssignee[]>('chapter11/ai_top_assignees.json');
@@ -197,7 +197,7 @@ export default function Chapter13() {
   return (
     <div>
       <ChapterHeader
-        number={13}
+        number={23}
         title="Artificial Intelligence"
         subtitle="The growth of AI-related patenting activity in the United States"
       />
@@ -217,6 +217,9 @@ export default function Chapter13() {
       </aside>
 
       <Narrative>
+        <p>
+          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 5.
+        </p>
         <p>
           Artificial intelligence has evolved from a specialized academic pursuit to one of
           the most active domains in the United States patent system. This chapter examines
@@ -713,6 +716,7 @@ export default function Chapter13() {
 
       <Narrative>
         Having documented the growth of artificial intelligence in the patent system, the following chapter examines another consequential technology domain: <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>. As with AI, clean technology patents have grown rapidly and are increasingly converging with other fields, including artificial intelligence itself. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>.
+        The next and final chapter of ACT 5 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity.
       </Narrative>
 
       <DataNote>
@@ -724,8 +728,8 @@ export default function Chapter13() {
         on more specific CPC group codes within G06N. AI patenting strategies show patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={13} />
-      <ChapterNavigation currentChapter={13} />
+      <RelatedChapters currentChapter={23} />
+      <ChapterNavigation currentChapter={23} />
     </div>
   );
 }

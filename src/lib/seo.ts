@@ -18,6 +18,16 @@ const CHAPTER_KEYWORDS: Record<string, string[]> = {
   'green-innovation': ['green patents', 'climate technology patents', 'renewable energy patents', 'carbon capture patents', 'clean technology', 'green AI', 'Y02 CPC codes', 'environmental innovation'],
   'the-language-of-innovation': ['topic modeling patents', 'patent text analysis', 'NLP patents', 'semantic analysis', 'patent abstracts', 'innovation themes', 'patent novelty', 'emerging technologies'],
   'company-profiles': ['company patent portfolio', 'corporate innovation strategy', 'patent portfolio analysis', 'technology pivot', 'citation network', 'talent flow', 'radar chart', 'company innovation dashboard', 'patent assignee analysis'],
+  'semiconductors': ['semiconductor patents', 'chip patents', 'integrated circuit patents', 'TSMC patents', 'Intel patents', 'Samsung semiconductor', 'H01L CPC'],
+  'quantum-computing': ['quantum computing patents', 'quantum algorithms', 'quantum hardware', 'superconducting qubits', 'IBM quantum', 'Google quantum'],
+  'cybersecurity': ['cybersecurity patents', 'cryptography patents', 'network security patents', 'authentication patents', 'data protection patents'],
+  'biotechnology': ['biotech patents', 'gene editing patents', 'CRISPR patents', 'recombinant DNA', 'enzyme engineering', 'nucleic acid detection'],
+  'digital-health': ['digital health patents', 'medical device patents', 'patient monitoring', 'health informatics', 'surgical robotics', 'telemedicine'],
+  'agricultural-technology': ['agricultural technology patents', 'precision agriculture', 'plant breeding patents', 'farm technology', 'agtech patents'],
+  'autonomous-vehicles': ['autonomous vehicle patents', 'self-driving car patents', 'ADAS patents', 'lidar patents', 'path planning patents', 'Waymo patents'],
+  'space-technology': ['space technology patents', 'satellite patents', 'spacecraft patents', 'SpaceX patents', 'rocket propulsion patents'],
+  '3d-printing': ['3D printing patents', 'additive manufacturing patents', 'metal 3D printing', 'polymer 3D printing', 'Stratasys patents', '3D Systems patents'],
+  'blockchain': ['blockchain patents', 'cryptocurrency patents', 'distributed ledger patents', 'smart contract patents', 'digital currency patents'],
 };
 
 /** Insight-oriented page titles (under 60 chars for SEO) */
@@ -36,6 +46,16 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'green-innovation': 'Green Patents Tripled After Paris Agreement',
   'the-language-of-innovation': 'Computing Topics Now Dominate Patent Language',
   'company-profiles': 'How 100 Top Firms Innovate Differently',
+  'semiconductors': 'Semiconductor Patents Drive the Silicon Age',
+  'quantum-computing': 'Quantum Computing Patents Surged After 2015',
+  'cybersecurity': 'Cybersecurity Patents Grew With Digital Threats',
+  'biotechnology': 'Biotech Patents Transformed by Gene Editing',
+  'digital-health': 'Digital Health Patents Bridge Medicine and Tech',
+  'agricultural-technology': 'AgTech Patents Modernize Global Farming',
+  'autonomous-vehicles': 'AV Patents Accelerated in the 2010s',
+  'space-technology': 'Space Patents Reflect Commercial Frontier',
+  '3d-printing': '3D Printing Patents Grew 20x Since 2000',
+  'blockchain': 'Blockchain Patents Track a Hype Cycle',
 };
 
 /** Insight-oriented meta descriptions (under 160 chars) */
@@ -54,6 +74,16 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'green-innovation': 'Green patents tripled after the 2015 Paris Agreement. Explore renewable energy, carbon capture, and EV patent trends across 50 years of climate technology.',
   'the-language-of-innovation': 'NLP topic modeling of 9.36M patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
   'company-profiles': 'Interactive dashboards for 100 top patent filers. Compare portfolio strategies, technology pivots, citation impact, and innovation trajectories across companies.',
+  'semiconductors': 'Semiconductor patents span IC design, packaging, manufacturing, and optoelectronics. Explore how TSMC, Samsung, and Intel compete in the silicon age.',
+  'quantum-computing': 'Quantum computing patents surged after 2015, covering algorithms, hardware, error correction. Explore IBM, Google, and emerging players in quantum innovation.',
+  'cybersecurity': 'Cybersecurity patents span cryptography, authentication, and network security. Explore how digital threats drive patenting in data protection and system security.',
+  'biotechnology': 'Biotechnology patents cover gene editing, CRISPR, enzyme engineering, and nucleic acid detection. Explore 50 years of molecular biology innovation.',
+  'digital-health': 'Digital health patents bridge medicine and computing, from patient monitoring to surgical robotics. Explore health informatics and medical device innovation.',
+  'agricultural-technology': 'Agricultural technology patents span precision agriculture, plant breeding, and soil science. Explore how innovation is modernizing global food production.',
+  'autonomous-vehicles': 'Autonomous vehicle patents cover driving systems, navigation, and scene understanding. Explore the AV patent race among automotive and technology firms.',
+  'space-technology': 'Space technology patents span spacecraft design, propulsion, and satellite communications. Explore the patent landscape of the new commercial space era.',
+  '3d-printing': 'Additive manufacturing patents grew 20x since 2000, spanning polymer and metal 3D printing. Explore equipment, materials, and application patents.',
+  'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Explore one of the most hyped domains in the patent system.',
 };
 
 export function chapterMetadata(slug: string): Metadata {

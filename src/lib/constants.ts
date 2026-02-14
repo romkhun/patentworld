@@ -26,7 +26,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Technology Revolution',
     subtitle: 'The shifting frontiers of technology',
     description: 'Electrical engineering rose from 18% to over 45% of all patents while textiles and paper declined to near-zero, reflecting a fundamental structural transformation in US patenting.',
-    relatedChapters: [1, 3, 10, 13],
+    relatedChapters: [1, 3, 10, 23],
   },
   {
     number: 3,
@@ -34,7 +34,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Language of Innovation',
     subtitle: 'Semantic analysis of 8.45 million patent abstracts',
     description: 'NMF topic modeling reveals that computing and semiconductor topics grew from 12% to over 33% of all patents, while patent novelty has risen steadily since the 1990s.',
-    relatedChapters: [2, 10, 14],
+    relatedChapters: [2, 10, 24],
   },
   {
     number: 4,
@@ -42,7 +42,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Patent Law & Policy',
     subtitle: 'Legislation and jurisprudence shaping the patent system',
     description: 'Twenty-one major legislative acts and Supreme Court decisions from the Bayh-Dole Act (1980) to Arthrex (2021), each linked to empirical research on their effects.',
-    relatedChapters: [10, 12, 13],
+    relatedChapters: [10, 12, 23],
   },
   // ── Act 2: The Actors ──
   {
@@ -93,7 +93,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Knowledge Network',
     subtitle: 'Citation patterns, knowledge diffusion, and public funding',
     description: 'Average citation lag increased from approximately 3 years in the 1980s to over 16 years, reflecting the expanding body of relevant prior art.',
-    relatedChapters: [2, 4, 12, 14],
+    relatedChapters: [2, 4, 12, 24],
   },
   {
     number: 11,
@@ -114,19 +114,99 @@ export const CHAPTERS: ChapterMeta[] = [
   // ── Act 5: Deep Dives ──
   {
     number: 13,
+    slug: 'semiconductors',
+    title: 'Semiconductors',
+    subtitle: 'The silicon foundation of modern technology',
+    description: 'Semiconductor patents span manufacturing processes, integrated circuit design, packaging, and optoelectronics, with concentration among East Asian and US firms.',
+    relatedChapters: [2, 14, 15, 23],
+  },
+  {
+    number: 14,
+    slug: 'quantum-computing',
+    title: 'Quantum Computing',
+    subtitle: 'From theoretical foundations to practical hardware',
+    description: 'Quantum computing patents have grown rapidly since 2015, encompassing algorithms, physical realizations, error correction, and superconducting devices.',
+    relatedChapters: [13, 15, 23],
+  },
+  {
+    number: 15,
+    slug: 'cybersecurity',
+    title: 'Cybersecurity',
+    subtitle: 'Defending digital infrastructure through innovation',
+    description: 'Cybersecurity patents span cryptography, authentication, network security, and data protection, with growth accelerating alongside increasing digital threats.',
+    relatedChapters: [14, 22, 23],
+  },
+  {
+    number: 16,
+    slug: 'biotechnology',
+    title: 'Biotechnology & Gene Editing',
+    subtitle: 'Engineering life at the molecular level',
+    description: 'Biotechnology patents cover gene editing, recombinant DNA, enzyme engineering, and nucleic acid detection, with CRISPR driving a new wave of activity.',
+    relatedChapters: [17, 18, 24],
+  },
+  {
+    number: 17,
+    slug: 'digital-health',
+    title: 'Digital Health & Medical Devices',
+    subtitle: 'Technology transforming healthcare delivery',
+    description: 'Digital health patents encompass patient monitoring, health informatics, clinical decision support, and surgical robotics, bridging medicine and computing.',
+    relatedChapters: [16, 18, 23],
+  },
+  {
+    number: 18,
+    slug: 'agricultural-technology',
+    title: 'Agricultural Technology',
+    subtitle: 'Innovation feeding a growing world',
+    description: 'Agricultural technology patents cover soil working, planting, horticulture, plant breeding, and precision agriculture, reflecting the modernization of farming.',
+    relatedChapters: [16, 17, 24],
+  },
+  {
+    number: 19,
+    slug: 'autonomous-vehicles',
+    title: 'Autonomous Vehicles & ADAS',
+    subtitle: 'The race toward self-driving transportation',
+    description: 'Autonomous vehicle patents span driving systems, navigation, path planning, and scene understanding, with automotive and technology firms competing intensely.',
+    relatedChapters: [13, 20, 23, 24],
+  },
+  {
+    number: 20,
+    slug: 'space-technology',
+    title: 'Space Technology',
+    subtitle: 'Patenting the final frontier',
+    description: 'Space technology patents cover spacecraft design, propulsion systems, satellite communications, and re-entry systems, reflecting renewed commercial interest in space.',
+    relatedChapters: [13, 19, 21],
+  },
+  {
+    number: 21,
+    slug: '3d-printing',
+    title: '3D Printing & Additive Manufacturing',
+    subtitle: 'Layer-by-layer revolution in manufacturing',
+    description: 'Additive manufacturing patents span polymer and metal 3D printing, equipment design, materials science, and product applications across industries.',
+    relatedChapters: [13, 19, 20],
+  },
+  {
+    number: 22,
+    slug: 'blockchain',
+    title: 'Blockchain & Decentralized Systems',
+    subtitle: 'Distributed trust in the digital economy',
+    description: 'Blockchain patents cover distributed ledger technology, consensus mechanisms, and cryptocurrency, representing one of the most hyped emerging domains.',
+    relatedChapters: [15, 23],
+  },
+  {
+    number: 23,
     slug: 'ai-patents',
     title: 'Artificial Intelligence',
     subtitle: 'AI patenting from expert systems to deep learning',
     description: 'AI patent filings grew exponentially after 2012, with neural networks and deep learning displacing knowledge-based systems as the dominant methodology.',
-    relatedChapters: [2, 4, 7, 14],
+    relatedChapters: [2, 13, 15, 24],
   },
   {
-    number: 14,
+    number: 24,
     slug: 'green-innovation',
     title: 'The Green Innovation Race',
     subtitle: 'Climate technology patents from niche to mainstream',
     description: 'Battery, storage, and EV patents surpassed renewable energy as the dominant green sub-category, with South Korea emerging as a leading filer.',
-    relatedChapters: [2, 3, 8, 13],
+    relatedChapters: [2, 18, 19, 23],
   },
 ];
 
@@ -142,7 +222,7 @@ export const ACT_GROUPINGS: ActGrouping[] = [
   { act: 2, title: 'The Actors', subtitle: 'Organizations and inventors driving innovation', chapters: [5, 6, 7] },
   { act: 3, title: 'The Structure', subtitle: 'Where innovation happens and how it connects', chapters: [8, 9] },
   { act: 4, title: 'The Mechanics', subtitle: 'Knowledge flows, dynamics, and quality', chapters: [10, 11, 12] },
-  { act: 5, title: 'Deep Dives', subtitle: 'Emerging fields and frontier technologies', chapters: [13, 14] },
+  { act: 5, title: 'Deep Dives', subtitle: 'Emerging fields and frontier technologies', chapters: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
 ];
 
 export const CPC_SECTION_NAMES: Record<string, string> = {
@@ -162,6 +242,6 @@ export const HERO_STATS = {
   yearsCovered: 50,
   startYear: 1976,
   endYear: 2025,
-  chapters: 14,
-  visualizations: 127,
+  chapters: 24,
+  visualizations: 237,
 };
