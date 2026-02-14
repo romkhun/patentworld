@@ -9,6 +9,7 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -24,6 +25,7 @@ import type {
   QualityBySector, BreakthroughPatent,
   CompositeQualityIndex, SleepingBeauty,
   QualityByCountry, SelfCitationByAssignee, SelfCitationBySection,
+  FirmGiniYear,
 } from '@/lib/types';
 
 export default function Chapter9() {
@@ -37,6 +39,7 @@ export default function Chapter9() {
   const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
   const { data: selfCiteAssignee, loading: scaL } = useChapterData<SelfCitationByAssignee[]>('chapter9/self_citation_by_assignee.json');
   const { data: selfCiteSec } = useChapterData<SelfCitationBySection[]>('chapter9/self_citation_by_section.json');
+  const { data: firmGini, loading: fgL } = useChapterData<Record<string, FirmGiniYear[]>>('company/firm_quality_gini.json');
 
   // Pivot quality by sector for line chart
   const { sectorPivot, sectorNames } = useMemo(() => {
@@ -75,6 +78,14 @@ export default function Chapter9() {
       .sort((a, b) => b.patent_count - a.patent_count)
       .slice(0, 15);
   }, [qualByCountry]);
+
+  const giniPanels = useMemo(() => {
+    if (!firmGini) return [];
+    return Object.entries(firmGini).map(([name, data]) => ({
+      name,
+      data: data.map(d => ({ x: d.year, y: d.gini })),
+    }));
+  }, [firmGini]);
 
   return (
     <div>
@@ -515,6 +526,36 @@ export default function Chapter9() {
           patents to construct defensive thickets that raise barriers to entry for competitors.
         </p>
       </KeyInsight>
+
+      <SectionDivider label="Within-Firm Quality Concentration" />
+
+      <Narrative>
+        <p>
+          The Gini coefficient, applied to forward citations within each firm&apos;s annual patent
+          cohort, measures how concentrated a firm&apos;s citation impact is across its portfolio.
+          A Gini near 1.0 indicates that virtually all citation impact is concentrated in a
+          handful of patents; near 0.0 indicates impact is evenly distributed. A rising Gini
+          signals increasing dependence on a small number of high-impact inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Within-Firm Citation Gini Coefficient Over Time"
+        caption="Each panel shows one firm's citation Gini coefficient by year (top 20 firms by recent Gini). Higher values indicate more concentrated citation impact within the firm's patent portfolio."
+        insight="Most large patent filers exhibit Gini coefficients between 0.6 and 0.9, indicating that a small fraction of each firm's patents accounts for the majority of citation impact. Several firms show rising Gini trajectories, consistent with increasing reliance on blockbuster inventions."
+        loading={fgL}
+        height={600}
+        wide
+      >
+        <PWSmallMultiples
+          panels={giniPanels}
+          xLabel="Year"
+          yLabel="Gini"
+          yFormatter={(v) => v.toFixed(2)}
+          columns={4}
+          color={CHART_COLORS[4]}
+        />
+      </ChartContainer>
 
       <Narrative>
         Having examined the measurement of patent quality -- from citation impact to originality, generality, and composite indices -- the subsequent chapter addresses the legal and policy framework that shapes the patent system itself.

@@ -1,532 +1,534 @@
-# PatentWorld — Academic Reference Audit for Patent Law & Policy Chapter
+# PatentWorld — Visualization Improvement Suggestions
 
-## Objective
+## Guiding Principle
 
-Conduct a rigorous audit of every academic paper referenced in the Patent Law & Policy chapter of PatentWorld. This audit has three components:
+Every chart should pass the **5-second test**: a reader glancing at the chart for 5 seconds should be able to identify (1) what it shows and (2) the single most important pattern. If a chart requires more than 5 seconds to parse, it needs redesign — not more explanation.
 
-1. **Research**: For each legal or policy change discussed in the chapter, conduct an extensive search for high-quality academic papers from a defined set of top economics and management journals that empirically examine that specific legal/policy change.
-2. **Relevance verification**: For every paper currently cited in the chapter, verify that (a) it is published in one of the listed journals, (b) it specifically examines the legal/policy change it is listed under, and (c) it is a published article (not a working paper). Remove any paper that fails any of these three tests.
-3. **Summary accuracy**: For every paper that passes the relevance check, verify that the chapter's summary accurately represents the paper's research question, methodology, and findings. Correct any inaccurate summaries.
+The target audience is academic: faculty, PhD students, policymakers, journalists. They expect precision, clarity, and restraint. They are put off by dashboardy, corporate, or infographic aesthetics.
 
 ---
 
-## Strict Inclusion Criteria
+## 1. Chart Titles: Replace Labels with Findings
 
-### Eligible Journals — Exhaustive List
+The single highest-impact change across the entire site. Most patent data visualizations use descriptive titles ("Patents by Year," "Top Assignees," "Citation Trends") that tell the reader *what* the chart shows but not *what it means*.
 
-Only papers published in the following journals may be cited in the chapter. **No exceptions.**
+**Replace every chart title with a declarative finding that includes a specific number.**
 
-**Economics (Top 5):**
-1. American Economic Review (AER)
-2. Quarterly Journal of Economics (QJE)
-3. Journal of Political Economy (JPE)
-4. Review of Economic Studies (REStud / RES)
-5. Econometrica
-
-**Economics (Field Journals):**
-6. American Economic Journal: Economic Policy (AEJ: Policy)
-7. American Economic Journal: Applied Economics (AEJ: Applied)
-8. American Economic Journal: Microeconomics (AEJ: Micro)
-9. Review of Economics and Statistics (REStat)
-10. RAND Journal of Economics
-11. Journal of the European Economic Association (JEEA)
-12. Journal of Law and Economics
-13. Journal of Law, Economics, and Organization
-14. Journal of Financial Economics (JFE)
-15. Review of Financial Studies (RFS)
-16. Journal of Finance
-
-**Management & Strategy:**
-17. Management Science
-18. Organization Science
-19. Administrative Science Quarterly (ASQ)
-20. Strategic Management Journal (SMJ)
-21. Academy of Management Journal (AMJ)
-
-**Innovation & Science Policy:**
-23. Research Policy
-
-### Excluded — Do NOT Cite Any of the Following
-
-**Unpublished work of any kind:**
-- NBER Working Papers (even if by prominent authors)
-- SSRN preprints or working papers
-- CEPR Discussion Papers
-- University working paper series (e.g., Harvard Business School Working Papers, Stanford GSB Research Papers)
-- Federal Reserve working papers or discussion papers
-- Conference papers or proceedings not subsequently published in a listed journal
-- Dissertations or theses
-- Papers listed only on an author's personal website without a published journal version
-
-**Published but not in listed journals:**
-- Law reviews (e.g., Stanford Law Review, Yale Law Journal, Harvard Law Review) — even if they contain empirical analysis
-- Practitioner publications (e.g., Harvard Business Review, MIT Sloan Management Review)
-- Books or book chapters
-- Government reports (e.g., USPTO Economic Working Papers, FTC reports, GAO reports)
-- Trade publications or industry reports
-- Blog posts, op-eds, or news articles
-- Non-peer-reviewed outlets
-
-**How to handle borderline cases:**
-- If a paper exists as both an NBER Working Paper and a published journal article in a listed journal, cite **only** the published journal version with the journal's URL. Do not mention or link to the NBER version.
-- If a paper has been published in a journal not on the list, do not cite it regardless of its quality or citation count.
-- If you can only find a working paper version and cannot confirm publication in a listed journal, do **not** include it.
-
----
-
-### Hyperlink Requirement
-
-Every cited paper must include a **direct hyperlink to the paper on the journal's own website**. This means the URL domain must be one of the following (or the journal's actual domain):
-
-| Journal | Acceptable URL Domain |
+| Before (Descriptive) | After (Insight-Oriented) |
 |---|---|
-| AER, AEJ journals | `www.aeaweb.org/articles` or `doi.org` resolving to AEA |
-| QJE | `academic.oup.com/qje` |
-| JPE | `www.journals.uchicago.edu/journal/jpe` |
-| REStud | `academic.oup.com/restud` |
-| Econometrica | `www.econometricsociety.org` or `onlinelibrary.wiley.com/journal/14680262` |
-| REStat | `direct.mit.edu/rest` |
-| RAND Journal of Economics | `onlinelibrary.wiley.com/journal/17562171` |
-| JEEA | `academic.oup.com/jeea` |
-| J. Law & Economics | `www.journals.uchicago.edu/journal/jle` |
-| J. Law, Econ. & Organization | `academic.oup.com/jleo` |
-| JFE | `www.sciencedirect.com/journal/journal-of-financial-economics` |
-| RFS | `academic.oup.com/rfs` |
-| J. Finance | `onlinelibrary.wiley.com/journal/15406261` |
-| Management Science | `pubsonline.informs.org/journal/mnsc` |
-| Organization Science | `pubsonline.informs.org/journal/orsc` |
-| ASQ | `journals.sagepub.com/home/asq` |
-| SMJ | `onlinelibrary.wiley.com/journal/10970266` |
-| AMJ | `journals.aom.org/journal/amj` |
-| AMR | `journals.aom.org/journal/amr` |
-| Research Policy | `www.sciencedirect.com/journal/research-policy` |
+| Patents Over Time | Annual US Patent Grants Grew Five-Fold, from 70,226 in 1976 to 352,049 in 2024 |
+| Top 10 Assignees | IBM Holds the Largest US Patent Portfolio with [X] Grants, Followed by Samsung and Canon |
+| Citations by Technology | Computing Patents Receive [X]% More Forward Citations Than the Cross-Technology Median |
+| Gender in Patenting | Female Inventor Representation Rose from [X]% in 1976 to [Y]% in 2024 |
+| Grant Lag Over Time | Median Time from Application to Grant Increased from [X] to [Y] Months |
+| AI Patent Growth | AI-Related Patent Grants Grew [X]-Fold Between 2010 and 2024 |
+| Patent Quality Trends | Median 5-Year Forward Citations Declined from [X] in 1990 to [Y] in 2015 |
 
-**How to obtain the URL:**
-1. Search for the paper's exact title on the journal's website or via `doi.org/[DOI]`.
-2. The URL should resolve to the paper's abstract or landing page on the journal site.
-3. A DOI link (e.g., `https://doi.org/10.1257/aer.20151398`) is acceptable because it redirects to the journal's page.
-4. **Not acceptable**: Google Scholar links, SSRN links, NBER links, ResearchGate links, author's personal website links, university repository links, or PDF download links from unofficial sources.
-
-If you cannot find a journal-website URL for a paper, **do not include it** — this likely means the paper is not actually published in the claimed journal.
+These titles double as TL;DR summaries for AI crawlers, screen readers, and skim-readers. Verify every number before committing it to a title.
 
 ---
 
-## Step 0: Read the Current Chapter
+## 2. Legends: Positioning, Ordering, and Clutter
 
-1. Locate the Patent Law & Policy chapter in the codebase. Read the full source file.
+### 2.1 Positioning — Never Inside the Data Area
 
-2. Extract a structured inventory of every legal/policy change discussed. For each, record:
-   - **Policy name** (e.g., "America Invents Act")
-   - **Year enacted or decided**
-   - **Brief description** as stated in the chapter
-   - **All academic papers currently cited**, including: author(s), title, journal, year, summary text, and any URL currently provided
+Legends overlapping data lines, bars, or map regions is one of the most common readability failures. Rules:
 
-3. Save this inventory to `PATENT_LAW_REFERENCE_INVENTORY.md`.
+- **Desktop (≥1024px)**: Legend below the chart (horizontal layout), or to the right if there are ≤5 items.
+- **Tablet (768–1023px)**: Legend below the chart, always.
+- **Mobile (≤767px)**: Legend below the chart, stacked vertically if items don't fit on one row. Consider hiding legends on mobile and relying on tooltips + direct labels instead.
+- **Never**: Legend floating on top of the chart area, inside the plot region, or partially occluding data.
 
----
+Test every chart at 375px, 768px, and 1440px. If the legend overlaps at any breakpoint, fix it.
 
-## Step 1: Research — Find Published Papers for Each Policy Change
+### 2.2 Ordering — Match the Visual Hierarchy
 
-For each legal/policy change in the chapter, search for empirical academic papers published in the listed journals.
+Legend items must appear in the same order as their visual prominence in the chart:
 
-### 1.1 Policy Changes to Research
-
-The chapter likely covers some or all of the following:
-
-**Legislation:**
-- **Bayh-Dole Act (1980)**: Universities and small businesses retain ownership of federally funded inventions.
-- **Federal Courts Improvement Act (1982)**: Created the CAFC for centralized patent appeals.
-- **Hatch-Waxman Act (1984)**: Generic drug competition framework and patent term restoration.
-- **Uruguay Round / TRIPS (1994, effective 1995)**: Patent term changed to 20 years from filing.
-- **American Inventors Protection Act (1999)**: Required 18-month publication of applications.
-- **America Invents Act (AIA, 2011)**: First-to-file, inter partes review, post-grant review.
-
-**Supreme Court Decisions:**
-- **eBay v. MercExchange (2006)**: Four-factor test for injunctions.
-- **KSR v. Teleflex (2007)**: Broadened obviousness standard.
-- **Bilski v. Kappos (2010)**: Narrowed business method eligibility.
-- **Mayo v. Prometheus (2012)**: Two-step test for natural phenomena eligibility.
-- **Myriad Genetics (2013)**: Natural DNA not patent-eligible; cDNA is.
-- **Alice v. CLS Bank (2014)**: Raised the bar for software/abstract idea eligibility.
-- **TC Heartland v. Kraft Foods (2017)**: Restricted patent venue.
-- **Oil States v. Greene's Energy (2018)**: Upheld IPR constitutionality.
-- **Arthrex v. United States (2021)**: PTAB judges unconstitutionally appointed.
-
-### 1.2 Search Strategy
-
-For each policy change, conduct multiple searches:
-
-```
-# Search pattern 1: Policy + journal
-"America Invents Act" "American Economic Review"
-"Alice" patent eligibility "Quarterly Journal of Economics"
-"inter partes review" "Management Science"
-Bayh-Dole university patents "Journal of Political Economy"
-
-# Search pattern 2: Policy + causal identification
-"first to file" "difference in differences" patent
-"Alice" "regression discontinuity" patent 101
-patent injunction eBay "instrumental variable"
-
-# Search pattern 3: Known patent economists + policy
-Galasso Schankerman patent invalidation
-Sampat Williams Bayh-Dole university
-Lerner patent reform
-Cockburn MacGarvie Alice software patent
-Graham Marco AIA first-to-file
-Farre-Mensa Hegde patent examination
-Hegde Luo patent publication
-Autor Dorn patents China
-
-# Search pattern 4: Google Scholar with journal filter
-"America Invents Act" source:"American Economic Review"
-"patent reform" source:"Quarterly Journal of Economics"
-"patent eligibility" source:"Management Science"
-```
-
-### 1.3 Verification Protocol for Each Paper Found
-
-**This protocol is mandatory for every paper. Do not skip any step.**
-
-1. **Search for the exact paper title** in quotes on Google Scholar or the journal website.
-
-2. **Confirm publication in a listed journal.** Verify the journal name is exactly one of the 23 journals in the eligible list. If the paper appears only as a working paper (NBER, SSRN, etc.) with no published journal version, **discard it immediately**.
-
-3. **Obtain the journal-website URL.** Navigate to the paper's page on the journal's own website (not Google Scholar, not SSRN, not the author's homepage). Copy the URL. If you cannot find a journal-website URL, **discard the paper** — it is likely not published in the claimed journal.
-
-4. **Read the abstract** on the journal page. Confirm:
-   - The paper empirically examines the specific policy change you are researching (not merely mentioning it).
-   - The authors, title, year, volume, and issue match your records.
-
-5. **Record all details.** Only after completing steps 1–4, record the paper with all required fields.
-
-### 1.4 Required Fields for Each Paper
-
-```markdown
-### [Authors] ([Year])
-- **Title**: "[Exact title]"
-- **Journal**: [Full journal name]
-- **Publication details**: [Year], Vol. [X], No. [Y], pp. [A]–[B]
-- **URL**: [Direct link to paper on journal website or DOI link]
-- **Policy change examined**: [Specific policy change]
-- **Research question**: [1–2 sentences]
-- **Methodology**: [Empirical approach: DiD, RD, IV, event study, structural, descriptive]
-- **Key finding**: [2–3 sentences summarizing the main result]
-- **Relevance**: HIGH (primary focus is this policy change) / MEDIUM (examines this policy change as one of several topics)
-- **Verification**: [How confirmed — e.g., "Abstract read on journal website at [URL]"]
-```
-
-**Discard any paper where any of the following is true:**
-- Cannot confirm publication in a listed journal
-- Cannot obtain a journal-website URL
-- Cannot read the abstract to confirm relevance
-- The paper is a working paper, preprint, discussion paper, or "forthcoming"
-- The paper studies a different policy change than the one being researched
-- The paper merely mentions the policy change without empirically examining it
-
-### 1.5 Deliverable
-
-Create `PATENT_LAW_PAPERS_RESEARCH.md` organized by policy change. Include only papers that passed the full verification protocol. At the end of each policy change section, note:
-
-```markdown
-**Papers discarded during research:**
-- [Author] ([Year]), "[Title]" — Reason: [e.g., "NBER Working Paper only; no published journal version found," "Published in Stanford Law Review, not a listed journal," "Studies patent trolls generally, does not specifically examine the AIA"]
-```
-
----
-
-## Step 2: Verify Relevance of Currently Cited Papers
-
-For every paper currently cited in the chapter, apply the following three-gate test. A paper must pass **all three gates** to remain.
-
-### Gate 1: Publication Verification
-
-- Search for the paper by title on Google Scholar and the claimed journal's website.
-- **Is the paper published in one of the 23 listed journals?**
-  - If YES → proceed to Gate 2.
-  - If NO (published in unlisted journal, or only exists as working paper/preprint) → **REMOVE. Record reason.**
-  - If CANNOT FIND (no evidence the paper exists at all) → **REMOVE. Record as "Paper not found; likely does not exist."**
-
-- **Can you obtain a direct URL on the journal's website?**
-  - If YES → record it. Proceed to Gate 2.
-  - If NO → **REMOVE. If the journal URL cannot be found, the publication claim is unverified.**
-
-### Gate 2: Relevance Verification
-
-- Read the paper's abstract on the journal website.
-- **Does the paper specifically and empirically examine the policy change it is cited under?**
-  - If YES (primary or substantial focus) → proceed to Gate 3.
-  - If PARTIALLY (mentions the policy change but studies something broader) → **REMOVE from this policy section.** Check if it fits under a different policy change in the chapter; if so, move it. If not, remove entirely.
-  - If NO (does not study this policy change) → **REMOVE.**
-
-### Gate 3: Summary Accuracy (handled in Step 3)
-
-Papers that pass Gates 1 and 2 proceed to Step 3 for summary verification.
-
-### 2.1 Common Reasons for Removal
-
-Document the specific reason for every removal:
-
-| Reason Code | Description |
+| Chart Type | Legend Order |
 |---|---|
-| `NOT_PUBLISHED` | Paper exists only as a working paper, preprint, or SSRN upload; no published journal version in a listed journal found |
-| `WRONG_JOURNAL` | Paper is published but not in one of the 23 listed journals |
-| `NOT_FOUND` | No evidence the paper exists (likely a fabricated or hallucinated citation) |
-| `WRONG_POLICY` | Paper does not study the policy change it is cited under |
-| `TANGENTIAL` | Paper mentions the policy change but does not empirically examine it |
-| `NO_URL` | Cannot locate the paper on any journal website; publication claim unverified |
-| `DUPLICATE` | Same paper cited more than once |
+| Line chart | By value at the **rightmost** (most recent) data point, descending. The line that ends highest should be first in the legend. |
+| Stacked area/bar | Match the stacking order: bottom-to-top in the chart = top-to-bottom in the legend. |
+| Bar chart (grouped) | By total value, descending. |
+| Pie / donut | By slice size, descending (largest first). |
+| Scatter | By bubble size or by a meaningful grouping (e.g., technology area). |
 
-### 2.2 Deliverable
+If the current legend order is alphabetical or arbitrary, re-sort. Alphabetical ordering is almost never the most useful — it forces the reader to scan back and forth between the legend and the chart.
 
-Create `PATENT_LAW_CITATION_VERIFICATION.md`:
+### 2.3 Reduce Legend Clutter
 
-```markdown
-## [Policy Change Name]
-
-### Paper: "[Title]" by [Authors] ([Claimed Journal], [Year])
-- **Gate 1 — Published in listed journal?**: YES / NO
-  - Search method: [how you searched]
-  - Journal URL found: [URL or "None found"]
-  - If NO, reason: [NOT_PUBLISHED / WRONG_JOURNAL / NOT_FOUND / NO_URL]
-- **Gate 2 — Relevant to this policy change?**: YES / PARTIALLY / NO
-  - Abstract summary: [1–2 sentences on what the paper actually studies]
-  - If not relevant, reason: [WRONG_POLICY / TANGENTIAL]
-- **Action**: KEEP / REMOVE
-- **Removal reason code**: [if removed]
-```
+- **≤3 series**: Use direct labels on the lines/bars instead of a separate legend. Place the label at the end of each line (right-aligned, adjacent to the final data point). This eliminates the legend entirely.
+- **4–6 series**: A compact horizontal legend below the chart is fine.
+- **7+ series**: The chart probably has too many series. Switch to small multiples (one mini-chart per series) or add a toggle/filter to show ≤5 series at a time. A legend with 10+ items is never readable.
 
 ---
 
-## Step 3: Verify Summary Accuracy
+## 3. Axis Labels and Formatting
 
-For every paper that passed Gates 1 and 2, verify the accuracy of its summary in the chapter.
+### 3.1 No Unnecessary Decimal Places
 
-### 3.1 Verification Process
+| Data Type | Correct Formatting | Wrong |
+|---|---|---|
+| Years | `2000` | `2000.0`, `2,000` |
+| Patent counts | `150,000` or `150K` | `150000`, `150,000.00` |
+| Percentages | `45%` or `45.2%` | `45.23847%`, `0.45` |
+| Ratios / indices | `1.3` or `1.34` | `1.342857` |
+| Citation counts | `12` | `12.0`, `12.00` |
+| Dollar amounts (if any) | `$2.5B` | `$2,500,000,000` |
 
-For each paper:
+**Rule**: Use the fewest decimal places that preserve the distinction between adjacent data points. If two bars represent 45.2% and 45.8%, one decimal place is needed. If they represent 45% and 52%, zero decimal places suffice.
 
-1. **Read the abstract and, if accessible, the introduction and conclusion** on the journal website (using the URL obtained in Step 2).
+### 3.2 Year Axes
 
-2. **Compare the chapter's summary to the paper's actual content.** Check for:
+- Tick every 5 or 10 years: `1980, 1990, 2000, 2010, 2020`. Never show every year (too crowded) or fractional years (`2010.5`).
+- First and last years should always appear as ticks, even if they break the regular interval (e.g., `1976, 1980, 1990, 2000, 2010, 2020, 2025`).
+- On mobile, reduce to start and end year only, or every 10 years.
 
-   **Factual errors:**
-   - Incorrect research question
-   - Incorrect methodology described (e.g., claims "difference-in-differences" when paper uses "event study")
-   - Incorrect direction of findings (e.g., "increased" when paper found "decreased")
-   - Incorrect magnitude (e.g., "50% increase" when paper found "25% increase")
-   - Incorrect data or sample described
-   - Wrong author names or year
+### 3.3 Value Axes
 
-   **Mischaracterization:**
-   - Overstating findings ("proves" when paper says "suggests")
-   - Cherry-picking a secondary result while ignoring the main finding
-   - Attributing findings from a different paper
-   - Omitting crucial caveats or boundary conditions
+- Use abbreviated scales for large numbers: `0, 100K, 200K, 300K` not `0, 100000, 200000, 300000`.
+- Always start the y-axis at zero for bar charts (truncated y-axes distort comparisons).
+- For line charts, starting above zero is acceptable if the range is narrow and the purpose is to show variation — but label the axis clearly and do not mislead.
+- Always include the unit in the axis label: "Patent Grants (thousands)", "Share of Total (%)", "Median Forward Citations (5-year window)".
 
-3. **Classify accuracy:**
-   - **ACCURATE**: Summary correctly represents question, method, and findings.
-   - **MOSTLY ACCURATE**: Directionally correct with minor imprecisions. Correct with small edits.
-   - **INACCURATE**: Contains a factual error about findings, methodology, or question. Must be rewritten.
-   - **FABRICATED**: Describes findings that do not appear in the paper. Must be completely rewritten.
+### 3.4 Axis Label Orientation
 
-### 3.2 Summary Writing Standards
-
-All summaries (corrected or new) must follow this format:
-
-**Length**: 2–4 sentences.
-
-**Structure**:
-1. [Authors] ([Year]) [verb: examine / study / investigate / analyze] [specific policy change], using [methodology] and [data description].
-2. They [verb: find / document / estimate / provide evidence] that [main result with direction and, if available, magnitude].
-3. [Optional: additional finding, important caveat, or mechanism identified].
-
-**Hedging language** (match to the paper's own confidence):
-- Strong causal claims with credible identification: "find that," "show that"
-- Suggestive evidence: "provide evidence that," "find evidence consistent with"
-- Descriptive findings: "document that," "observe that"
-- Specific magnitudes: "estimate a [X] percent [increase/decrease] in..."
-- **Never use**: "prove," "demonstrate conclusively," "definitively show"
-
-**Mandatory elements**:
-- The specific policy change studied
-- The empirical methodology (named, not vague — "difference-in-differences" not "statistical analysis")
-- The direction of the main finding
-- The journal name and year at the end
-
-**Example of a correct summary:**
-
-> Galasso and Schankerman (2015) examine the effect of patent invalidation on subsequent innovation, exploiting the quasi-random assignment of judges at the Federal Circuit as a source of exogenous variation. They find that patent invalidation leads to a 50 percent increase in citations to the focal patent's technology area, with the effect concentrated in fields characterized by fragmented patent ownership such as computers and electronics.
-> — *Quarterly Journal of Economics*, 2015
-
-**The journal URL must appear as a hyperlink** either on the paper title, the journal name, or as a standalone link. Format in the chapter's source code as:
-
-```jsx
-// Example format — adapt to match the chapter's existing code style
-<p>
-  Galasso and Schankerman (2015) examine the effect of patent invalidation...
-  — <a href="https://doi.org/10.1093/qje/qju029" target="_blank" rel="noopener noreferrer">
-    <em>Quarterly Journal of Economics</em>, 2015
-  </a>
-</p>
-```
-
-### 3.3 Deliverable
-
-Create `PATENT_LAW_SUMMARY_VERIFICATION.md`:
-
-```markdown
-## [Policy Change Name]
-
-### Paper: "[Title]" by [Authors]
-- **Journal URL**: [URL]
-- **Current summary in chapter**: "[exact text]"
-- **Abstract on journal website**: "[key sentences from actual abstract]"
-- **Accuracy classification**: ACCURATE / MOSTLY ACCURATE / INACCURATE / FABRICATED
-- **Errors found**: [specific issues]
-- **Corrected summary**: "[rewritten text, if needed]"
-- **Corrected URL**: [journal-website URL to embed]
-```
+- Horizontal labels are always preferred. If x-axis labels must be rotated (e.g., long company names), rotate to 45° maximum. Never use vertical (90°) labels — they are unreadable.
+- If labels are too long for 45°, switch to a horizontal bar chart (swap x and y axes).
 
 ---
 
-## Step 4: Update the Chapter
+## 4. Color
 
-### 4.1 Remove All Ineligible Papers
+### 4.1 Palette
 
-Remove every paper that:
-- Failed Gate 1 (not published in a listed journal, or cannot verify publication)
-- Failed Gate 2 (does not specifically examine the policy change)
-- Is a working paper, preprint, or unpublished manuscript
-- Has no verifiable journal-website URL
+Use a single consistent palette across the entire site. Recommended: **Okabe-Ito** (designed for colorblind accessibility) or a **ColorBrewer qualitative** palette (e.g., Set2 or Dark2).
 
-### 4.2 Add Verified New Papers
+Define 8 named colors and assign them consistently:
 
-For each policy change, add the most important newly found papers from Step 1. Prioritize:
-1. Papers from the top-5 economics journals (AER, QJE, JPE, REStud, Econometrica).
-2. Papers from field journals with the strongest causal identification.
-3. Papers from management journals (Management Science, SMJ, AMJ, ASQ, Organization Science).
-4. Highly-cited papers over less-cited ones.
-5. More recent papers over older ones when studying the same policy change, unless the older paper is seminal.
-
-**Target density**:
-- Major policy changes (AIA, Alice, Bayh-Dole, CAFC, eBay): 2–5 papers each
-- Moderate policy changes (KSR, TC Heartland, Mayo, Myriad): 1–3 papers each
-- Minor or recent policy changes (Bilski, Oil States, Arthrex, AIPA): 0–2 papers each
-
-If no published empirical study from the listed journals exists for a given policy change, state this explicitly in the chapter: "To date, no empirical study of this decision's effects has been published in a leading economics or management journal." This is an honest and informative statement — do not fill the gap with tangentially related papers.
-
-### 4.3 Correct All Summaries
-
-Replace every INACCURATE or FABRICATED summary with the corrected version from Step 3.
-
-### 4.4 Add Hyperlinks
-
-For every paper cited in the updated chapter, ensure a clickable hyperlink to the journal website is present. The link should:
-- Open in a new tab (`target="_blank"`)
-- Include `rel="noopener noreferrer"` for security
-- Point to the paper's landing page on the journal's website (abstract page), not a PDF
-- Use DOI links (`https://doi.org/...`) where available, as these are permanent
-
-Verify every hyperlink by fetching the URL and confirming it resolves to the correct paper.
-
-### 4.5 Consistent Reference Formatting
-
-All references must follow a uniform format throughout the chapter. Use this template:
-
-**In the chapter text:**
 ```
-[Summary of 2–4 sentences describing the paper's question, method, and findings.]
-— [Authors] ([Year]). "[Title]." *[Journal Name]*, [Vol]([Issue]), [Pages]. [Hyperlink]
+Color 1: #0072B2  (blue)       — Primary series / most important
+Color 2: #E69F00  (orange)     — Secondary series
+Color 3: #009E73  (green)      — Tertiary series
+Color 4: #CC79A7  (pink)       — Fourth series
+Color 5: #56B4E9  (light blue) — Fifth series
+Color 6: #D55E00  (red-orange) — Sixth / alert
+Color 7: #F0E442  (yellow)     — Seventh (use sparingly — low contrast)
+Color 8: #999999  (gray)       — Reference lines, system averages, "other"
 ```
 
-Example:
-```
-Galasso and Schankerman (2015) examine the effect of patent invalidation on 
-subsequent innovation, exploiting quasi-random judge assignment at the Federal 
-Circuit. They find that invalidation increases follow-on citations by approximately 
-50 percent, with effects concentrated in fields with fragmented ownership.
-— Galasso, A., & Schankerman, M. (2015). "Patents and Cumulative Innovation: 
-Causal Evidence from the Courts." *Quarterly Journal of Economics*, 130(1), 317–369.
-https://doi.org/10.1093/qje/qju029
+**The same entity must always be the same color across the entire site.** If IBM is blue in Chapter 3, it must be blue in Chapter 9. If CPC Section G is green in the Technology Revolution chapter, it must be green everywhere.
+
+Create a `ENTITY_COLOR_MAP` constant:
+```js
+const ENTITY_COLORS = {
+  "IBM": "#0072B2",
+  "Samsung": "#E69F00",
+  "Canon": "#009E73",
+  // ...
+  "CPC Section G": "#0072B2",
+  "CPC Section H": "#E69F00",
+  // ...
+};
 ```
 
-### 4.6 Final Quality Control
+### 4.2 Colorblind Safety
 
-After all updates, verify:
-- [ ] Every cited paper is published in one of the 23 listed journals — no exceptions
-- [ ] Zero working papers, preprints, or unpublished manuscripts remain
-- [ ] Every cited paper has a functional hyperlink to the journal website
-- [ ] Every hyperlink resolves to the correct paper (test each one)
-- [ ] Every paper is cited under the correct policy change
-- [ ] Every summary accurately represents the paper's findings (per Step 3)
-- [ ] No paper appears more than once in the chapter
-- [ ] Reference formatting is consistent throughout
-- [ ] The narrative remains coherent after all additions and removals
-- [ ] Policy changes with no eligible papers explicitly state this
+- Never use red vs. green as the sole distinguisher between two series.
+- Test every chart with a colorblind simulator (e.g., Coblis or Chrome DevTools > Rendering > Emulate vision deficiencies).
+- When in doubt, add shape differences (dashed vs. solid lines, circles vs. squares for scatter points) in addition to color.
+
+### 4.3 Contrast
+
+- All text on charts (labels, annotations, tick marks) must meet WCAG 4.5:1 contrast against their background.
+- Light gray text on white backgrounds is a common failure. Use `#4A4A4A` minimum for chart text on white.
+- Colored fills (e.g., bar chart bars or area chart fills) must be distinguishable from adjacent fills. Test: can you tell the difference if you squint?
+
+### 4.4 Sequential and Diverging Scales
+
+- **Heatmaps with unipolar data** (e.g., patent counts, citation counts — always ≥0): Use a sequential single-hue scale (light to dark blue, or white to dark blue). Never use a rainbow scale.
+- **Heatmaps with bipolar data** (e.g., growth rates that can be positive or negative, or deviations from a mean): Use a diverging scale (red–white–blue or orange–white–purple) centered at zero or the neutral value.
+- **Always include a color legend** with labeled endpoints (minimum and maximum values) and ideally 3–5 intermediate tick marks.
 
 ---
 
-## Step 5: Create Verified Reference Table
+## 5. Chart-Type-Specific Improvements
 
-Create `PATENT_LAW_VERIFIED_REFERENCES.md`:
+### 5.1 Line Charts
 
-```markdown
-# Verified Academic References — Patent Law & Policy Chapter
-Last verified: [date]
+**Problem**: More than 5–6 overlapping lines become unreadable ("spaghetti chart").
 
-## Summary
-- Total papers cited: [N]
-- Papers in top-5 economics journals: [N]
-- Papers in field economics journals: [N]
-- Papers in management journals: [N]
-- Policy changes with no eligible papers: [list]
-- Papers removed during audit: [N]
-- Papers added during audit: [N]
+**Solutions**:
+- **≤3 lines**: Direct end-of-line labels (place the series name at the rightmost data point). No legend needed.
+- **4–6 lines**: Direct labels + a compact legend below.
+- **7–12 lines**: Switch to **small multiples** — a grid of small charts, each showing one series with a shared x and y scale. Each mini-chart has its own title (the series name). The reader sees individual trends and can compare across panels because the scales are identical.
+- **13+ lines**: Small multiples or an interactive toggle/filter that lets the user select which series to display. Never show all 13+ simultaneously.
 
-## Reference Table
+**Other line chart rules**:
+- Use a stroke width of 2px for primary series, 1.5px for secondary. Never 1px (too thin on high-DPI screens) or 4px (too dominant).
+- For time series with missing years, show a gap in the line (not a zero). Zero is a data value; a gap means "no data."
+- Add subtle hover interaction: on hover, bold the hovered line and fade all others to 20% opacity. This lets the reader isolate any series without clicking.
 
-| # | Policy Change | Authors | Year | Title | Journal | Vol(Issue) | Pages | URL | Verified |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | AIA (2011) | [authors] | [year] | [title] | [journal] | [vol(issue)] | [pp] | [journal URL] | ✅ |
-| 2 | Alice (2014) | [authors] | [year] | [title] | [journal] | [vol(issue)] | [pp] | [journal URL] | ✅ |
-| ... | | | | | | | | | |
+### 5.2 Bar Charts
 
-## Papers Removed During Audit
+- **Sort by value** (descending), not alphabetically, unless the x-axis is inherently ordered (years, rank positions).
+- **Horizontal bars** for long labels (company names, technology area names, country names). Vertical bars only for short labels (years, ranks).
+- **Label the bars directly** with the value if there are ≤15 bars and the values are important (e.g., the top-10 assignees chart). Place the label at the end of the bar (inside for long bars, outside for short bars).
+- **No 3D effects**. Ever.
+- **Consistent bar width**. All bars in a chart should be the same width. Use gaps of ~40% of bar width between bars.
 
-| # | Previously Under | Authors | Year | Title | Claimed Journal | Removal Reason |
-|---|---|---|---|---|---|---|
-| 1 | [policy] | [authors] | [year] | [title] | [journal] | [reason code] |
-| ... | | | | | | |
+### 5.3 Stacked Area / Stacked Bar Charts
+
+- **Stack order must be consistent** across all years/panels. The most important (or largest) category at the bottom, least important at top. The same order applies to the legend.
+- **Include a percentage toggle**: Allow the reader to switch between absolute values (stacked count) and relative values (stacked to 100%). The absolute view shows growth; the relative view shows composition shifts. Both are useful.
+- **Limit to 5–7 categories**. If there are more, group the smallest into "Other." No one can distinguish 12 stacked slices.
+- **Color the "Other" category gray** — it should not visually compete with named categories.
+
+### 5.4 Maps (US Choropleth)
+
+- **Use Albers USA projection** (or equivalent). Do not use Mercator for US-focused maps (Alaska and Hawaii are mispositioned or absent).
+- **Normalize by population or R&D spending** for any map showing patent counts. A raw-count choropleth of US states is just a population map. Patents per capita or patents per $1M R&D spending reveals meaningfully different geographic patterns.
+- **Include a labeled color legend** with the scale endpoints and at least one midpoint.
+- **Provide a tooltip on hover** showing the exact value for each state/county.
+- **Consider a cartogram or hex tile map** as an alternative — these give equal visual weight to small-area, high-patent states (Connecticut, Massachusetts, New Jersey) that are nearly invisible on geographic maps.
+
+### 5.5 Scatter Plots
+
+- **Label outliers** directly on the chart (the 5–10 most interesting points). Do not force the reader to hover over every dot.
+- **Include a reference line** where appropriate: 45-degree line for X vs. Y comparisons, horizontal/vertical lines for means, or a regression/LOESS trend line for relationships.
+- **Use bubble size as a third dimension** sparingly — and always include a size legend (e.g., "Bubble size = total patents: ● 1,000 ● 10,000 ● 50,000").
+- **Avoid overplotting**: If 500+ points overlap, use transparency (alpha = 0.3–0.5), jitter, hexbin aggregation, or density contours instead of opaque dots.
+
+### 5.6 Heatmaps
+
+- **Rows and columns must be sorted meaningfully** — not randomly or alphabetically (unless alphabetical is the most useful order). For a CPC × decade heatmap, sort CPC subclasses by total patent count (descending) so the most important subclasses are at the top.
+- **Limit to 15–20 rows maximum**. More than that and the cells become illegibly small. Aggregate or filter.
+- **Label the color scale** with exact values at the endpoints and midpoint.
+- **Add value labels inside cells** if there are ≤100 cells and the values are important. Use white text on dark cells, dark text on light cells.
+
+### 5.7 Network Graphs
+
+- **Limit to 20–30 nodes** for static display. A network with 100+ nodes and no interactivity is visual noise.
+- **Size nodes by degree or a meaningful metric** (e.g., total patents, centrality).
+- **Label all visible nodes**. If labels overlap, either reduce node count or implement a zoom interaction.
+- **Use directional edges (arrows) for citation networks** — the direction of knowledge flow matters.
+- **Provide a force-layout with collision detection** so nodes don't overlap.
+- **Add zoom and pan** for any network with >15 nodes.
+- Consider replacing the network graph entirely with a **chord diagram** (for flows between known entities) or a **matrix/heatmap** (for pairwise relationships) — these are often more readable than force-directed layouts.
+
+### 5.8 Small Multiples
+
+When used (for line charts with many series, or for comparing entities):
+- **Shared x and y scales across all panels** — this is the entire point. If each panel has its own scale, comparison is impossible.
+- **3–4 columns on desktop, 1–2 on mobile**.
+- **Label each panel clearly** (company name, technology area, etc.) at the top-left of each mini-chart.
+- **Sort panels by a meaningful metric** (e.g., by value at the most recent data point, or by total, descending). Not alphabetically.
+- **Highlight one reference line** in every panel (e.g., the system-wide average) in dashed gray to provide a common comparison baseline.
+
+---
+
+## 6. Captions
+
+Every chart must have a caption immediately below it. Captions serve three purposes: (1) accessibility (screen readers), (2) GenAI optimization (LLMs read captions but not SVG/canvas), and (3) reader guidance.
+
+### Structure
+
+```
+[Sentence 1: What the chart shows — the data, the axes, the scope.]
+[Sentence 2: The key pattern — the most important finding, with a specific number.]
+[Sentence 3 (optional): Context or significance — why this matters or how it connects to the chapter's argument.]
 ```
 
+### Examples
+
+**Bad caption**: "This chart shows patents over time."
+
+**Good caption**: "Annual US patent grants by the USPTO, 1976–2025. Patent grants grew from 70,226 in 1976 to a peak of 354,428 in 2020 before declining modestly to [X] in 2024. The sustained growth from 2000 to 2020, averaging [Y]% annually, coincided with the expansion of patenting in computing and electronics technologies (see Chapter 2)."
+
+**Bad caption**: "Top 10 companies by patent count."
+
+**Good caption**: "Cumulative US patent grants for the ten highest-volume assignees, 1976–2025. IBM leads with [X] total grants, followed by Samsung ([Y]) and Canon ([Z]). The top 10 assignees collectively account for [A]% of all US patents granted during this period, indicating [high/moderate] concentration."
+
+### Implementation
+
+Use `<figcaption>` in the HTML (not a `<p>` after the chart). Wrap the chart and caption in a `<figure>`:
+
+```html
+<figure>
+  <div class="chart-container">
+    <!-- chart renders here -->
+  </div>
+  <figcaption>
+    Annual US patent grants by the USPTO, 1976–2025. Patent grants grew from 
+    70,226 in 1976 to a peak of 354,428 in 2020...
+  </figcaption>
+</figure>
+```
+
+This structure is semantic, accessible, and readable by AI crawlers.
+
 ---
 
-## Critical Rules
+## 7. Tooltips
 
-1. **Never fabricate a paper.** If you cannot find a relevant published paper for a policy change, state this honestly. A Wharton professor's academic reputation depends on citation accuracy. A gap is infinitely preferable to a fabricated or unverifiable citation.
+### 7.1 Content
 
-2. **Never fabricate bibliographic details.** If you find a real paper but cannot confirm its volume, issue, or page numbers, mark those fields as "[details unverified]" rather than guessing.
+Every tooltip should show:
+- The exact value (with thousands separators, appropriate decimal places)
+- The series/entity name
+- The x-axis value (typically the year)
 
-3. **Never include unpublished work.** No NBER working papers, no SSRN preprints, no conference papers, no dissertations — regardless of author prestige or citation count. If it is not published in a listed journal, it does not appear in the chapter.
+For multi-series charts, show all visible series in the tooltip, sorted by value (descending), with the hovered series highlighted.
 
-4. **Never include a paper without a journal-website URL.** The URL serves as proof of publication. If you cannot find the paper on the journal's own website, the publication claim is unverified and the paper must be excluded.
+### 7.2 Formatting
 
-5. **Always verify through web search.** For every paper — currently cited or newly found — confirm its existence, journal, and content by searching the web. Do not rely on training data alone.
+```
+─────────────────────────
+  2015
+  ─────────────────────────
+  IBM           12,589 ← (highlighted)
+  Samsung        8,234
+  Canon          4,102
+  ─────────────────────────
+```
 
-6. **Err on the side of removal.** If there is any doubt about a paper's publication status, relevance, or summary accuracy, remove it or flag it for manual review. The author can always add it back after verification.
+- Consistent styling across the entire site (same font, same background, same border radius).
+- White background with a subtle shadow or border. Never a dark tooltip on a white chart (jarring contrast).
+- Numbers right-aligned within the tooltip for easy comparison.
 
-7. **Preserve the author's narrative intent.** When removing papers, ensure the surrounding text still makes sense. If removing a paper creates a gap in the narrative, either (a) replace it with a verified paper making a similar point, or (b) revise the narrative text to not depend on the removed citation.
+### 7.3 Behavior
+
+- Tooltip appears on hover (desktop) or tap (mobile).
+- Tooltip follows the cursor or snaps to the nearest data point.
+- **Tooltip must never overflow the viewport edge.** If the data point is near the right edge of the screen, the tooltip should flip to the left side.
+- On mobile, consider a fixed tooltip bar at the top or bottom of the chart (instead of a floating tooltip) since finger-following tooltips are unreliable on touch devices.
 
 ---
 
-## Deliverables Summary
+## 8. Annotations and Reference Lines
 
-| File | Content |
-|---|---|
-| `PATENT_LAW_REFERENCE_INVENTORY.md` | Current state: every policy change and its currently cited papers |
-| `PATENT_LAW_PAPERS_RESEARCH.md` | Newly found papers per policy change with full verification details and journal URLs |
-| `PATENT_LAW_CITATION_VERIFICATION.md` | Gate 1 + Gate 2 results for every currently cited paper |
-| `PATENT_LAW_SUMMARY_VERIFICATION.md` | Accuracy classification and corrected summaries for all retained papers |
-| `PATENT_LAW_VERIFIED_REFERENCES.md` | Final reference table with URLs, removal log, and summary statistics |
-| Updated chapter source file | All changes applied: removals, additions, corrected summaries, hyperlinks |
+### 8.1 Time-Series Annotations
+
+Every time-series chart spanning ≥15 years should include 2–4 contextual reference markers:
+
+| Event | Year | Style |
+|---|---|---|
+| Dot-com peak | 2000 | Thin dashed vertical line, labeled at top |
+| Global Financial Crisis | 2008–2009 | Light gray shaded vertical band |
+| America Invents Act | 2011 | Thin dashed vertical line |
+| Alice Corp. v. CLS Bank | 2014 | Thin dashed vertical line |
+| COVID-19 | 2020 | Thin dashed vertical line |
+
+Rules:
+- Annotations should be **subtle**: light gray dashed lines, small labels (10–11px), low opacity. They provide context, not distraction.
+- Labels at the top of the chart area, rotated 0° (horizontal), in a muted color.
+- **Not every chart needs every annotation.** Include only the events relevant to the chart's subject. A chart about grant lag does not need the dot-com annotation; a chart about software patents does need Alice.
+- Implement as a reusable `<TimeAnnotations events={[...]} />` component that accepts a list of events and renders them on any time-series chart.
+
+### 8.2 Reference Lines for Comparisons
+
+- On any chart showing a firm-level metric over time, include the **system-wide average** as a dashed gray line. This gives immediate context: is this firm above or below average?
+- On any scatter plot, include the **mean of x** and **mean of y** as faint dashed crosshairs. This divides the plot into four interpretable quadrants.
+- On any bar chart comparing entities, include the **overall average** as a vertical (for horizontal bars) or horizontal (for vertical bars) dashed line.
+
+---
+
+## 9. Responsive Design
+
+### 9.1 Mobile (≤767px)
+
+- Charts must be legible on a 375px-wide screen without horizontal scrolling.
+- Minimum font size on charts: 11px. Below this, text is unreadable on mobile.
+- Legends move below the chart.
+- Consider hiding complex secondary panels (e.g., the decomposition panel in the exploration chart) behind a "Show details" toggle on mobile.
+- Touch targets for interactive elements (toggles, dropdowns, buttons) must be ≥44×44px.
+- Tooltips: use a fixed bottom bar instead of floating cursor-following tooltips.
+
+### 9.2 Chart Container Heights
+
+**Critical for CLS (Cumulative Layout Shift)**. Every chart container must have an explicit height or aspect ratio set before the chart renders. Without this, the page layout shifts as charts load, causing a poor CLS score and a jarring user experience.
+
+```css
+.chart-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;  /* or explicit min-height */
+  min-height: 300px;
+}
+
+@media (max-width: 767px) {
+  .chart-container {
+    aspect-ratio: 4 / 3;
+    min-height: 250px;
+  }
+}
+```
+
+### 9.3 Adaptive Tick Counts
+
+On mobile, reduce the number of axis ticks to prevent overcrowding:
+- X-axis (years): show 3–5 ticks on mobile (start, midpoint, end), 6–10 on desktop.
+- Y-axis: show 4–5 ticks on mobile, 6–8 on desktop.
+- Recharts/D3 tick count can be set dynamically based on container width.
+
+---
+
+## 10. Animation and Interaction
+
+### 10.1 Entrance Animation
+
+- Charts should **not** animate on page load by default. Academic readers find count-up animations and line-drawing effects distracting. Exception: the homepage hero counters can animate from 0 to their final value, but only if the static HTML contains the real numbers as a fallback.
+- If animation is used, keep it under 500ms with an ease-out curve. Never bounce effects.
+
+### 10.2 Hover Effects
+
+- **Line charts**: On hover, bold the hovered line (increase stroke width by 1px) and fade all other lines to 20% opacity. This isolates the hovered series without removing context.
+- **Bar charts**: On hover, darken the hovered bar slightly (10% darker fill) and show the tooltip.
+- **Scatter plots**: On hover, enlarge the hovered point by 50% and show the tooltip with all relevant dimensions.
+- **All charts**: Smooth transition (150ms) for hover state changes. No abrupt snapping.
+
+### 10.3 Interactive Controls
+
+For charts with many entities (e.g., top-50 company profiles):
+- **Dropdown selector**: Let the user choose which company to display. Default to the most interesting or most-patented company.
+- **"Compare" mode**: Let the user select 2–3 companies and display them side-by-side or overlaid.
+- **Series toggle**: For multi-series line charts, let the user click a legend item to show/hide that series. The hidden series should be visually struck through in the legend.
+
+### 10.4 Keyboard Accessibility
+
+All interactive chart elements must be navigable by keyboard:
+- Tab to focus on interactive elements (dropdowns, toggles).
+- Arrow keys to navigate between data points (for screen reader users).
+- ARIA labels on chart containers describing the key finding (e.g., `aria-label="Chart showing IBM's forward citation distribution from 1980 to 2020. Median citations declined from 12 to 7."`).
+
+---
+
+## 11. Typography on Charts
+
+### 11.1 Font
+
+Use the same font family as the site's body text (likely a system sans-serif or Inter/Source Sans). Do not use a different font on charts — this creates visual dissonance.
+
+### 11.2 Size Hierarchy
+
+| Element | Size | Weight |
+|---|---|---|
+| Chart title | 15–16px | Semibold (600) |
+| Axis labels (e.g., "Year", "Patent Grants") | 12–13px | Regular (400) |
+| Tick labels (e.g., "2000", "150K") | 11–12px | Regular (400) |
+| Annotations / reference labels | 10–11px | Regular, italic or muted color |
+| Caption | 13–14px | Regular (400), muted color |
+| Tooltip text | 12–13px | Regular |
+
+### 11.3 Number Formatting
+
+Use a consistent number formatter across the entire site:
+
+```js
+function formatNumber(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;  
+  return n.toLocaleString();
+}
+
+function formatPercent(n, decimals = 1) {
+  return `${n.toFixed(decimals)}%`;
+}
+```
+
+Apply this formatter to all tooltips, axis ticks, and direct labels. Never display raw unformatted numbers.
+
+---
+
+## 12. Whitespace and Layout
+
+### 12.1 Chart Spacing
+
+- **Between charts**: At least 48px vertical gap between consecutive charts. Dense stacking makes the page feel cluttered and makes it hard to tell where one chart ends and the next begins.
+- **Between chart and caption**: 12–16px.
+- **Between title and chart area**: 16–20px.
+- **Internal padding**: 24px between the chart's data area and the container edges (top, right, bottom, left). This prevents data points or labels from being clipped at the edges.
+
+### 12.2 Width
+
+- Charts should be **full content width** on both desktop and mobile. Do not float charts to the left or right with text wrapping around them — this works for images in newspapers, not for data visualizations that need horizontal space.
+- On very wide screens (>1440px), cap chart width at ~900–1000px to prevent the visualization from becoming too stretched. Center it with `max-width: 960px; margin: 0 auto;`.
+
+### 12.3 Vertical Rhythm
+
+All charts within a chapter should have a consistent height (or a small set of heights: standard = 400px, tall = 500px, compact = 300px). Mixed heights make the page feel chaotic. Set a site-wide chart height and only deviate when the data demands it (e.g., a heatmap with many rows needs more vertical space).
+
+---
+
+## 13. Data-Ink Ratio
+
+Maximize the share of the chart's visual elements that represent data, and minimize non-data elements:
+
+**Remove**:
+- Grid lines (or make them very faint: `stroke: #f0f0f0`). A chart with 10 horizontal grid lines and 10 vertical grid lines has 20 non-data lines competing with the actual data lines.
+- Chart borders / boxes around the plot area.
+- Background shading on the plot area (should be white or transparent).
+- Decorative elements, icons, or imagery.
+
+**Keep**:
+- Axis lines (x and y).
+- Tick marks (short, subtle).
+- Data elements (lines, bars, points).
+- Direct labels (preferred over legends when possible).
+- Annotations that add context.
+
+The goal is a clean, uncluttered chart where the data is the visual dominant.
+
+---
+
+## 14. Specific Chart Patterns for Patent Data
+
+### 14.1 Bump Chart for Rankings Over Time
+
+For any chart showing "top N assignees" or "top N technology areas" over time, a **bump chart** (ranking lines) is far more effective than overlapping line charts of raw counts. Each line shows an entity's rank position (y-axis, inverted so #1 is at top) across years (x-axis). Crossings are visually salient — readers instantly see who rose, who fell, and when.
+
+Use for: top assignees by decade, top CPC subclasses, top states/cities.
+
+### 14.2 Slope Chart for Before/After Comparisons
+
+For any comparison between two time periods (e.g., "share of patents before vs. after Alice"), a **slope chart** (two vertical axes connected by lines) is cleaner than a grouped bar chart. Each entity is a line; upward slope = increase, downward = decrease. The steepness encodes the magnitude.
+
+Use for: policy impact comparisons, decade-over-decade compositional shifts.
+
+### 14.3 Strip / Beeswarm Plot for Distributions
+
+For showing the distribution of a continuous variable across categories (e.g., forward citations by CPC section), a **beeswarm plot** (one dot per observation, jittered to avoid overlap) or a **strip plot** shows the actual distribution shape, including outliers. This is more informative than a bar chart of means and more visually engaging than a box plot.
+
+Use for: citation distributions by technology, grant lag distributions by company.
+
+### 14.4 Fan Chart for Uncertainty / Distributional Data
+
+For the firm-level quality distribution analysis, a **fan chart** (ribbon chart) shows the median as a line and the interquartile/interdecile ranges as nested ribbons. This conveys the full distribution in a compact, time-series-compatible format.
+
+Use for: firm citation distributions over time, claims distributions over time.
+
+---
+
+## Summary Checklist
+
+For every chart on the site, verify:
+
+- [ ] Title is a declarative finding with a specific number
+- [ ] Legend does not overlap any data, axis, or caption at any breakpoint
+- [ ] Legend items are in descending order by value (or match stacking order)
+- [ ] Axis labels have no unnecessary decimal places
+- [ ] Year axis shows whole years only, with sensible tick intervals
+- [ ] Large numbers use thousands separators or abbreviations (K/M)
+- [ ] Color palette is consistent site-wide and colorblind-safe
+- [ ] Sequential/diverging color scales are appropriate for the data type
+- [ ] Text meets 4.5:1 contrast
+- [ ] ≤6 overlapping lines; otherwise small multiples or toggle
+- [ ] Bar charts sorted by value (descending) unless chronological
+- [ ] Caption present using `<figcaption>`, containing the key finding with a number
+- [ ] Tooltip shows exact values on hover, does not overflow viewport
+- [ ] Responsive: legible at 375px, no horizontal scroll, legends below chart
+- [ ] Chart container has explicit height/aspect-ratio (prevents CLS)
+- [ ] Touch targets ≥ 44px on mobile
+- [ ] 2–4 contextual annotations on time-series charts spanning ≥15 years
+- [ ] System-wide average reference line on firm-level charts
+- [ ] No 3D effects, no decorative imagery, minimal grid lines
+- [ ] Chart passes the 5-second test: key pattern is identifiable at a glance

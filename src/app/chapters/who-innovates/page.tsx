@@ -11,6 +11,9 @@ import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWRankHeatmap } from '@/components/charts/PWRankHeatmap';
+import { PWFanChart } from '@/components/charts/PWFanChart';
+import { PWBubbleScatter } from '@/components/charts/PWBubbleScatter';
+import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -25,6 +28,7 @@ import type {
   FirmCitationImpact, FirmTechEvolution, NonUSBySection,
 } from '@/lib/types';
 import type { PortfolioDiversity, NetworkMetricsByDecade, BridgeInventor } from '@/lib/types';
+import type { FirmQualityYear, FirmClaimsYear, FirmQualityScatter } from '@/lib/types';
 
 function pivotByCategory(data: AssigneeTypePerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -56,8 +60,12 @@ export default function Chapter3() {
   const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
   const { data: bridgeInventors } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
   const { data: nonUS, loading: nuL } = useChapterData<NonUSBySection[]>('chapter3/non_us_by_section.json');
+  const { data: firmQuality, loading: fqL } = useChapterData<Record<string, FirmQualityYear[]>>('company/firm_quality_distribution.json');
+  const { data: firmClaims, loading: fcmL } = useChapterData<Record<string, FirmClaimsYear[]>>('company/firm_claims_distribution.json');
+  const { data: firmScatter, loading: fsL } = useChapterData<FirmQualityScatter[]>('company/firm_quality_scatter.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
+  const [selectedQualityFirm, setSelectedQualityFirm] = useState<string>('IBM');
 
   const typePivot = useMemo(() => types ? pivotByCategory(types) : [], [types]);
   const categories = useMemo(() => types ? [...new Set(types.map((d) => d.category))] : [], [types]);
@@ -153,6 +161,20 @@ export default function Chapter3() {
     }));
     return { nonUSPivot: pivoted, nonUSCountryAreas: areas };
   }, [nonUS]);
+
+  const qualityCompanies = useMemo(() => firmQuality ? Object.keys(firmQuality).sort() : [], [firmQuality]);
+  const selectedQualityData = useMemo(() => firmQuality?.[selectedQualityFirm] ?? [], [firmQuality, selectedQualityFirm]);
+  const selectedClaimsData = useMemo(() => firmClaims?.[selectedQualityFirm] ?? [], [firmClaims, selectedQualityFirm]);
+  const scatterData = useMemo(() => {
+    if (!firmScatter) return [];
+    return firmScatter.map(d => ({
+      company: d.company,
+      x: d.blockbuster_rate,
+      y: d.dud_rate,
+      size: d.patent_count,
+      section: d.primary_section,
+    }));
+  }, [firmScatter]);
 
   return (
     <div>
@@ -618,6 +640,127 @@ export default function Chapter3() {
           East Asian economies (Japan, South Korea, China) now exceeds the US share in
           several technology areas. This shift has been most pronounced in semiconductors
           and display technology, where Korean and Japanese firms hold dominant positions.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Innovation Quality Profiles" />
+
+      <Narrative>
+        <p>
+          Aggregate statistics such as average forward citations conceal the shape of each
+          firm&apos;s quality distribution. A company with a median of 1 citation and a 99th
+          percentile of 200 is a fundamentally different innovator than one with a median of 1
+          and a 99th percentile of 10, even if their averages are similar. The fan charts below
+          reveal how each firm&apos;s citation distribution evolves over time.
+        </p>
+      </Narrative>
+
+      <div className="mb-6">
+        <div className="text-sm font-medium mb-2">Select a company:</div>
+        <PWCompanySelector
+          companies={qualityCompanies}
+          selected={selectedQualityFirm}
+          onSelect={setSelectedQualityFirm}
+        />
+      </div>
+
+      <ChartContainer
+        title={`${selectedQualityFirm}: Forward Citation Distribution Over Time`}
+        caption={`5-year forward citation percentiles for ${selectedQualityFirm} patents by grant year (1976–2019). Bands show P25–P75 (dark) and P10–P90 (light). Solid line = median; dashed gray = system-wide median. Only years with ≥10 patents shown.`}
+        insight="The width of the fan reveals the dispersion of quality within the firm's portfolio. A widening gap between the median and upper percentiles indicates increasing reliance on a small fraction of high-impact patents."
+        loading={fqL}
+        height={400}
+        wide
+      >
+        <PWFanChart
+          data={selectedQualityData}
+          yLabel="5-Year Forward Citations"
+          showMean
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        title={`${selectedQualityFirm}: Blockbuster and Dud Rates Over Time`}
+        caption={`Annual blockbuster rate (patents in top 1% of year × CPC section cohort, blue) and dud rate (zero 5-year forward citations, red) for ${selectedQualityFirm}. Dashed line at 1% marks the expected blockbuster rate under uniform quality.`}
+        loading={fqL}
+        height={300}
+        wide
+      >
+        {selectedQualityData.length > 0 ? (
+          <PWLineChart
+            data={selectedQualityData.map(d => ({
+              year: d.year,
+              blockbuster_rate: +(d.blockbuster_rate * 100).toFixed(2),
+              dud_rate: +(d.dud_rate * 100).toFixed(2),
+            }))}
+            xKey="year"
+            lines={[
+              { key: 'blockbuster_rate', name: 'Blockbuster Rate (%)', color: CHART_COLORS[0] },
+              { key: 'dud_rate', name: 'Dud Rate (%)', color: CHART_COLORS[3] },
+            ]}
+            yLabel="Share of Patents (%)"
+            yFormatter={(v) => `${v}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`${selectedQualityFirm}: Claims Distribution Over Time`}
+        caption={`Claim count percentiles for ${selectedQualityFirm} patents by grant year. Bands show P25–P75 (dark). Dashed gray = system-wide median claims.`}
+        loading={fcmL}
+        height={350}
+        wide
+      >
+        <PWFanChart
+          data={selectedClaimsData}
+          yLabel="Number of Claims"
+          showP10P90={false}
+          color={CHART_COLORS[1]}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Firm Quality Typology" />
+
+      <Narrative>
+        <p>
+          Plotting each firm&apos;s blockbuster rate against its dud rate for the most recent
+          complete decade (2010–2019) reveals distinct innovation strategies. Firms in the
+          upper-right produce both high-impact breakthroughs and many zero-citation patents — a
+          high-variance strategy. Firms in the lower-right achieve high blockbuster rates with
+          few duds, the hallmark of consistent quality.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Innovation Strategy at a Glance: Blockbuster Rate vs. Dud Rate (2010–2019)"
+        caption="Each bubble represents one of the top 50 assignees in the decade 2010–2019. X-axis: share of patents in the top 1% of their year × CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
+        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several Japanese electronics firms cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
+        loading={fsL}
+        height={500}
+        wide
+      >
+        <PWBubbleScatter
+          data={scatterData}
+          xLabel="Blockbuster Rate (%)"
+          yLabel="Dud Rate (%)"
+          xMidline={1}
+          yMidline={40}
+          quadrants={[
+            { position: 'top-right', label: 'High-Variance' },
+            { position: 'bottom-right', label: 'Consistent Stars' },
+            { position: 'top-left', label: 'Underperformers' },
+            { position: 'bottom-left', label: 'Steady Contributors' },
+          ]}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The quality typology scatter reveals that technology sector alone does not determine innovation strategy.
+          Within the same CPC section, firms exhibit dramatically different blockbuster-to-dud ratios,
+          suggesting that organizational factors — R&amp;D investment concentration, inventor incentive
+          structures, and portfolio management decisions — play a significant role in shaping the quality
+          distribution of a firm&apos;s patent output.
         </p>
       </KeyInsight>
 

@@ -1070,6 +1070,102 @@ export interface CorporateSpeed {
   patent_count: number;
 }
 
+// Firm-level quality distribution types
+export interface FirmQualityYear {
+  year: number;
+  patent_count: number;
+  p10: number;
+  p25: number;
+  p50: number;
+  p75: number;
+  p90: number;
+  p99: number;
+  mean: number;
+  dud_rate: number;
+  blockbuster_rate: number;
+  gini: number;
+  system_median: number;
+}
+
+export interface FirmClaimsYear {
+  year: number;
+  p25: number;
+  p50: number;
+  p75: number;
+  p90: number;
+  mean: number;
+  system_median: number;
+}
+
+export interface FirmScopeYear {
+  year: number;
+  p50: number;
+  p75: number;
+  p90: number;
+  mean: number;
+  system_median: number;
+}
+
+export interface FirmQualityScatter {
+  company: string;
+  blockbuster_rate: number;
+  dud_rate: number;
+  patent_count: number;
+  primary_section: string;
+}
+
+export interface FirmGiniYear {
+  year: number;
+  gini: number;
+}
+
+// Firm-level exploration/exploitation types
+export interface FirmExplorationYear {
+  year: number;
+  patent_count: number;
+  mean_exploration: number;
+  mean_tech_newness: number;
+  mean_citation_newness: number;
+  mean_external_score: number;
+  exploration_share: number;
+  exploitation_share: number;
+  ambidexterity_share: number;
+  system_mean: number;
+  explore_median_cites: number | null;
+  exploit_median_cites: number | null;
+  quality_premium: number | null;
+}
+
+export interface FirmExplorationScatter {
+  company: string;
+  exploration_share: number;
+  quality_premium: number;
+  patent_count: number;
+  primary_section: string;
+}
+
+export interface FirmExplorationTrajectory {
+  year: number;
+  exploration_share: number;
+}
+
+export interface FirmLifecyclePoint {
+  relative_year: number;
+  mean_exploration: number;
+  system_mean: number;
+}
+
+export interface FirmAmbidexterityRecord {
+  company: string;
+  window: string;
+  patent_count: number;
+  ambidexterity_index: number;
+  exploration_share: number;
+  exploitation_share: number;
+  blockbuster_rate: number;
+  median_fwd_cites: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

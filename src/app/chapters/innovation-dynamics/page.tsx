@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -12,6 +12,9 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
+import { PWBubbleScatter } from '@/components/charts/PWBubbleScatter';
+import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -31,6 +34,11 @@ import type {
   ClaimsAnalysis,
   ClaimsBySection,
   ClaimMonster,
+  FirmExplorationYear,
+  FirmExplorationScatter,
+  FirmExplorationTrajectory,
+  FirmLifecyclePoint,
+  FirmAmbidexterityRecord,
 } from '@/lib/types';
 
 function pivotGrantLag(data: GrantLagBySector[]) {
@@ -66,6 +74,15 @@ export default function Chapter8() {
   // E1, E2: Design patents and claims
   const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
   const { data: claimsData, loading: clL } = useChapterData<{ trends: ClaimsAnalysis[]; by_section: ClaimsBySection[]; claim_monsters: ClaimMonster[] }>('company/claims_analysis.json');
+
+  // Exploration/exploitation data
+  const { data: firmExploration, loading: feL } = useChapterData<Record<string, FirmExplorationYear[]>>('company/firm_exploration_scores.json');
+  const { data: explScatter, loading: esL } = useChapterData<FirmExplorationScatter[]>('company/firm_exploration_scatter.json');
+  const { data: explTrajectories, loading: etL } = useChapterData<Record<string, FirmExplorationTrajectory[]>>('company/firm_exploration_trajectories.json');
+  const { data: lifecycleData, loading: lcL } = useChapterData<{ firms: Record<string, FirmLifecyclePoint[]>; system_average: FirmLifecyclePoint[] }>('company/firm_exploration_lifecycle.json');
+  const { data: ambidexterity, loading: amL } = useChapterData<FirmAmbidexterityRecord[]>('company/firm_ambidexterity_quality.json');
+
+  const [selectedExplFirm, setSelectedExplFirm] = useState<string>('IBM');
 
   const claimsSectionPivot = useMemo(() => {
     if (!claimsData?.by_section) return { data: [] as any[], decades: [] as string[] };
@@ -123,6 +140,48 @@ export default function Chapter8() {
   }, [corpDiv]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
+
+  const explCompanies = useMemo(() => firmExploration ? Object.keys(firmExploration).sort() : [], [firmExploration]);
+  const selectedExplData = useMemo(() => firmExploration?.[selectedExplFirm] ?? [], [firmExploration, selectedExplFirm]);
+
+  const explTrajPanels = useMemo(() => {
+    if (!explTrajectories) return [];
+    return Object.entries(explTrajectories).map(([name, data]) => ({
+      name,
+      data: data.map(d => ({ x: d.year, y: d.exploration_share })),
+    }));
+  }, [explTrajectories]);
+
+  const lifecyclePanels = useMemo(() => {
+    if (!lifecycleData?.firms) return [];
+    return Object.entries(lifecycleData.firms).map(([name, data]) => ({
+      name,
+      data: data.map(d => ({ x: d.relative_year, y: d.mean_exploration, ref: d.system_mean })),
+    }));
+  }, [lifecycleData]);
+
+  const explScatterData = useMemo(() => {
+    if (!explScatter) return [];
+    return explScatter.map(d => ({
+      company: d.company,
+      x: d.exploration_share,
+      y: d.quality_premium,
+      size: d.patent_count,
+      section: d.primary_section,
+    }));
+  }, [explScatter]);
+
+  const ambidexterityScatterData = useMemo(() => {
+    if (!ambidexterity) return [];
+    return ambidexterity.map(d => ({
+      company: d.company,
+      x: d.ambidexterity_index,
+      y: d.blockbuster_rate,
+      size: d.patent_count,
+      section: 'G',
+      window: d.window,
+    }));
+  }, [ambidexterity]);
 
   return (
     <div>
@@ -493,9 +552,200 @@ export default function Chapter8() {
         ) : <div />}
       </ChartContainer>
 
+      <SectionDivider label="Exploration and Exploitation" />
+
       <Narrative>
-        Having examined the dynamics of innovation -- its speed, convergence, and collaborative nature -- the subsequent chapter addresses the measurement of patent quality and impact.
-        Understanding velocity and scope establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.
+        <p>
+          The exploration/exploitation framework (March, 1991) provides a lens for examining
+          whether firms are entering new technology domains (exploration) or deepening established
+          ones (exploitation). Each patent from a top-50 assignee is scored on three indicators:
+          technology newness (whether the firm has prior presence in the patent&apos;s CPC subclass),
+          citation newness (whether backward citations point to unfamiliar technology areas),
+          and external knowledge sourcing (the inverse of self-citation rate). The composite
+          exploration score averages these three indicators on a 0–1 scale.
+        </p>
+      </Narrative>
+
+      <div className="mb-6">
+        <div className="text-sm font-medium mb-2">Select a company:</div>
+        <PWCompanySelector
+          companies={explCompanies}
+          selected={selectedExplFirm}
+          onSelect={setSelectedExplFirm}
+        />
+      </div>
+
+      <ChartContainer
+        title={`${selectedExplFirm}: Exploration Score and Composition Over Time`}
+        caption={`Mean exploration score and its three component indicators for ${selectedExplFirm} by year. The composite score (blue) averages technology newness, citation newness, and external knowledge sourcing (1 - self-citation rate). Higher values indicate more exploratory behavior.`}
+        insight="Decomposing the composite score into its three indicators reveals which dimension of exploration is driving changes over time — whether the firm is entering new technology areas, citing unfamiliar prior art, or drawing on external knowledge."
+        loading={feL}
+        height={350}
+        wide
+      >
+        {selectedExplData.length > 0 ? (
+          <PWLineChart
+            data={selectedExplData}
+            xKey="year"
+            lines={[
+              { key: 'mean_exploration', name: 'Composite Score', color: CHART_COLORS[0] },
+              { key: 'mean_tech_newness', name: 'Technology Newness', color: CHART_COLORS[1] },
+              { key: 'mean_citation_newness', name: 'Citation Newness', color: CHART_COLORS[2] },
+              { key: 'mean_external_score', name: 'External Sourcing', color: CHART_COLORS[5] },
+            ]}
+            yLabel="Score (0–1)"
+            yFormatter={(v) => v.toFixed(2)}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`${selectedExplFirm}: Exploration vs. Exploitation Share Over Time`}
+        caption={`Share of ${selectedExplFirm}'s annual patents classified as exploratory (score > 0.6), exploitative (score < 0.4), or ambidextrous (0.4–0.6). Dashed gray = system-wide mean exploration score.`}
+        loading={feL}
+        height={300}
+        wide
+      >
+        {selectedExplData.length > 0 ? (
+          <PWAreaChart
+            data={selectedExplData.map(d => ({
+              year: d.year,
+              Exploratory: +(d.exploration_share * 100).toFixed(1),
+              Ambidextrous: +(d.ambidexterity_share * 100).toFixed(1),
+              Exploitative: +(d.exploitation_share * 100).toFixed(1),
+            }))}
+            xKey="year"
+            areas={[
+              { key: 'Exploratory', name: 'Exploratory (>0.6)', color: CHART_COLORS[0] },
+              { key: 'Ambidextrous', name: 'Ambidextrous (0.4–0.6)', color: CHART_COLORS[2] },
+              { key: 'Exploitative', name: 'Exploitative (<0.4)', color: CHART_COLORS[3] },
+            ]}
+            stackedPercent
+            yLabel="Share (%)"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title="Exploration Share Trajectories Across Major Patent Filers"
+        caption="Each panel shows one firm's exploration share (% of patents classified as exploratory) over time. Firms are sorted by most recent exploration share, descending. Exploration is defined as a composite score above 0.6 based on technology newness, citation newness, and external knowledge sourcing."
+        insight="Most large patent filers maintain exploration shares below 5%, indicating that the vast majority of their patenting activity deepens established technology domains rather than entering new ones."
+        loading={etL}
+        height={500}
+        wide
+      >
+        <PWSmallMultiples
+          panels={explTrajPanels}
+          xLabel="Year"
+          yLabel="Exploration %"
+          yFormatter={(v) => `${v.toFixed(0)}%`}
+          columns={4}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Does Exploration Pay Off?" />
+
+      <Narrative>
+        <p>
+          The central analytical question is whether exploration produces higher-quality patents.
+          For each firm in the most recent complete decade, the scatter below plots exploration
+          share against the exploration quality premium — the difference in median 5-year forward
+          citations between exploratory and exploitative patents. Firms in the upper-right quadrant
+          are &ldquo;rewarded explorers&rdquo; whose forays into new domains yield higher-impact inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Exploration Share vs. Quality Premium (2010–2019)"
+        caption="Each bubble represents one top-50 assignee. X-axis: share of patents classified as exploratory. Y-axis: exploration quality premium (median citations of exploratory patents minus median citations of exploitative patents). Bubble size: total patents. Color: primary CPC section. Only firms with ≥20 exploratory and ≥20 exploitative patents shown."
+        loading={esL}
+        height={450}
+        wide
+      >
+        <PWBubbleScatter
+          data={explScatterData}
+          xLabel="Exploration Share (%)"
+          yLabel="Quality Premium (citations)"
+          xFormatter={(v) => `${v.toFixed(1)}%`}
+          yFormatter={(v) => v.toFixed(1)}
+          xMidline={3}
+          yMidline={0}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Exploration Decay Curves" />
+
+      <Narrative>
+        <p>
+          When a firm enters a new technology area, does its exploration score in that area
+          decline over time as it transitions from search to exploitation? The decay curves below
+          track the mean exploration score by years since entry, averaged across all technology
+          subclasses in which each firm holds at least 20 patents.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Exploration-to-Exploitation Transition by Firm"
+        caption="Each panel shows one firm's average exploration score by years since entry into a new CPC subclass. Dashed gray = system-wide average. The typical firm's exploration score falls sharply within 5 years, but the rate of decay varies considerably across organizations."
+        insight="On average, a firm's exploration score in a newly entered technology subclass declines from 1.0 at entry to below 0.1 within 5 years. Some firms maintain higher exploration scores for longer periods, suggesting a more sustained period of search and experimentation."
+        loading={lcL}
+        height={500}
+        wide
+      >
+        <PWSmallMultiples
+          panels={lifecyclePanels}
+          xLabel="Years Since Entry"
+          yLabel="Score"
+          yFormatter={(v) => v.toFixed(2)}
+          columns={5}
+          color={CHART_COLORS[4]}
+        />
+      </ChartContainer>
+
+      <SectionDivider label="Ambidexterity and Performance" />
+
+      <Narrative>
+        <p>
+          Do firms that maintain a balance between exploration and exploitation produce
+          higher-quality patent portfolios? The ambidexterity index (1 minus the absolute
+          difference between exploration and exploitation shares) ranges from 0 (pure explorer or
+          exploiter) to 1 (perfect 50/50 balance). The scatter below plots this index against
+          the firm&apos;s blockbuster rate for each 5-year window since 1980.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Ambidexterity vs. Blockbuster Rate by Firm-Period"
+        caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980–2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year × CPC cohort). Only firm-periods with ≥50 patents shown."
+        loading={amL}
+        height={400}
+        wide
+      >
+        {ambidexterityScatterData.length > 0 ? (
+          <PWBubbleScatter
+            data={ambidexterityScatterData}
+            xLabel="Ambidexterity Index"
+            yLabel="Blockbuster Rate (%)"
+            xFormatter={(v) => v.toFixed(2)}
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
+          exploitative, with exploration shares typically below 5%. This is consistent with the theoretical
+          prediction that large, established organizations tend to favor exploitation of existing
+          competencies over exploration of new domains. The exploration decay curves show that even when
+          firms do enter new technology areas, they transition to exploitation rapidly — typically within
+          5 years of entry.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        Having examined the dynamics of innovation -- its speed, convergence, collaborative nature, and the balance between exploration and exploitation -- the subsequent chapter addresses the measurement of patent quality and impact.
+        Understanding velocity, scope, and strategic orientation establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.
       </Narrative>
 
       <DataNote>

@@ -1,0 +1,142 @@
+'use client';
+
+import { useMemo } from 'react';
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis,
+  ReferenceLine, Label,
+} from 'recharts';
+import { CPC_SECTION_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+
+interface BubbleDataPoint {
+  company: string;
+  x: number;
+  y: number;
+  size: number;
+  section: string;
+}
+
+interface QuadrantLabel {
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  label: string;
+}
+
+interface PWBubbleScatterProps {
+  data: BubbleDataPoint[];
+  xLabel: string;
+  yLabel: string;
+  xFormatter?: (v: number) => string;
+  yFormatter?: (v: number) => string;
+  xMidline?: number;
+  yMidline?: number;
+  quadrants?: QuadrantLabel[];
+}
+
+export function PWBubbleScatter({
+  data,
+  xLabel,
+  yLabel,
+  xFormatter = (v) => `${v}%`,
+  yFormatter = (v) => `${v}%`,
+  xMidline,
+  yMidline,
+  quadrants: _quadrants,
+}: PWBubbleScatterProps) {
+  const sections = useMemo(() => [...new Set(data.map((d) => d.section))].sort(), [data]);
+
+  const grouped = useMemo(
+    () => sections.map((section) => ({
+      section,
+      data: data.filter((d) => d.section === section),
+      color: CPC_SECTION_COLORS[section] ?? '#94a3b8',
+    })),
+    [data, sections]
+  );
+
+  const maxSize = Math.max(...data.map((d) => d.size));
+  const minSize = Math.min(...data.map((d) => d.size));
+
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <ScatterChart margin={{ top: 20, right: 20, left: 10, bottom: 10 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+        <XAxis
+          dataKey="x"
+          type="number"
+          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickLine={false}
+          axisLine={{ stroke: 'hsl(var(--border))' }}
+          tickFormatter={xFormatter}
+          domain={['auto', 'auto']}
+        >
+          <Label
+            value={xLabel}
+            position="insideBottom"
+            offset={-5}
+            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+          />
+        </XAxis>
+        <YAxis
+          dataKey="y"
+          type="number"
+          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={yFormatter}
+          width={60}
+          domain={['auto', 'auto']}
+        >
+          <Label
+            value={yLabel}
+            angle={-90}
+            position="insideLeft"
+            offset={10}
+            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+          />
+        </YAxis>
+        <ZAxis
+          dataKey="size"
+          range={[40, 400]}
+          domain={[minSize, maxSize]}
+        />
+
+        {xMidline !== undefined && (
+          <ReferenceLine x={xMidline} stroke="#9ca3af" strokeDasharray="6 3" />
+        )}
+        {yMidline !== undefined && (
+          <ReferenceLine y={yMidline} stroke="#9ca3af" strokeDasharray="6 3" />
+        )}
+
+        <Tooltip
+          contentStyle={TOOLTIP_STYLE}
+          content={({ active, payload }) => {
+            if (!active || !payload?.length) return null;
+            const d = payload[0]?.payload;
+            if (!d) return null;
+            return (
+              <div style={TOOLTIP_STYLE}>
+                <div className="font-semibold text-sm mb-1">{d.company}</div>
+                <div className="text-xs text-muted-foreground">{xLabel}: {xFormatter(d.x)}</div>
+                <div className="text-xs text-muted-foreground">{yLabel}: {yFormatter(d.y)}</div>
+                <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">
+                  Section: {d.section} ({CPC_SECTION_NAMES[d.section] ?? d.section})
+                </div>
+              </div>
+            );
+          }}
+        />
+
+        {grouped.map((group) => (
+          <Scatter
+            key={group.section}
+            name={`${group.section}: ${CPC_SECTION_NAMES[group.section] ?? group.section}`}
+            data={group.data}
+            fill={group.color}
+            fillOpacity={0.7}
+          />
+        ))}
+      </ScatterChart>
+    </ResponsiveContainer>
+  );
+}
