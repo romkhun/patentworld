@@ -319,8 +319,8 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
-            Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Innovation.&rdquo;
-            The Wharton School, University of Pennsylvania. Available at: https://patentworld.vercel.app/
+            Lee, Saerom. 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
+            The Wharton School, University of Pennsylvania. https://patentworld.vercel.app/
           </p>
         </section>
 
