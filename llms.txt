@@ -1,0 +1,35 @@
+# PatentWorld
+
+> An interactive data exploration of 9.36 million US patents spanning 50 years of global innovation (1976-2025).
+
+PatentWorld visualizes every patent granted by the United States Patent and Trademark Office (USPTO) from 1976 to 2025. The data comes from PatentsView, a platform supported by the USPTO that disambiguates and links patent data.
+
+## Chapters
+
+- [The Innovation Landscape](/chapters/the-innovation-landscape/): 50 years of global invention in 9.36 million US patents. How the pace and nature of patenting has changed since 1976, annual patent grants, and long-term trends.
+- [The Technology Revolution](/chapters/the-technology-revolution/): The shifting frontiers of technology. CPC classification trends, WIPO sector analysis, emerging vs. declining technologies, and the rise of digital innovation.
+- [Who Innovates?](/chapters/who-innovates/): The organizations driving patent activity. Top patent holders over time, corporate vs. individual vs. government patenting, sector concentration, and organizational dynamics.
+- [The Inventors](/chapters/the-inventors/): The people behind the patents. Team sizes, gender trends in patenting, prolific inventors, and the demographics of innovation.
+- [The Geography of Innovation](/chapters/the-geography-of-innovation/): Where ideas are born. US state-level patent activity, international origin countries, geographic concentration, and innovation hubs from Silicon Valley to Shenzhen.
+- [Collaboration Networks](/chapters/collaboration-networks/): The web of co-invention and co-patenting. Network analysis of firm-to-firm collaboration, co-inventor networks, and international inventor migration flows.
+- [The Knowledge Network](/chapters/the-knowledge-network/): How ideas build on ideas. Patent citation networks, knowledge flows between technology sectors, government-funded invention, and the structure of technological knowledge.
+- [Innovation Dynamics](/chapters/innovation-dynamics/): The tempo and trajectory of invention. Grant lag trends, cross-domain convergence, international collaboration rates, corporate technology portfolios, and innovation velocity.
+- [Patent Quality](/chapters/patent-quality/): Measuring the value and impact of inventions. Forward citations, originality indices, generality scores, and other dimensions of patent quality over 50 years.
+- [Patent Law & Policy](/chapters/patent-law/): The rules that shape innovation. Major legislation (Bayh-Dole, Hatch-Waxman, AIA), Supreme Court decisions (eBay, KSR, Alice, Myriad), and policy changes affecting the US patent system from 1980 to present, with published academic research from top economics and management journals.
+- [Artificial Intelligence](/chapters/ai-patents/): The rise of AI in the patent system. How AI patenting evolved from early expert systems to deep learning and generative AI, top AI patent holders, and technology subfield trends.
+
+## Data
+
+- Source: PatentsView (patentsview.org), USPTO
+- Coverage: 9.36 million granted US utility patents
+- Time period: 1976-2025
+- Classifications: Cooperative Patent Classification (CPC), WIPO technology fields
+- Variables: Patent grants, technology classifications, inventor demographics, geographic distribution, citation networks, patent quality indicators, team sizes, organizational data, government interest
+
+## Methodology
+
+Raw data downloaded as TSV files from PatentsView bulk data downloads, processed using DuckDB analytical SQL database. Key processing: joining patent records with inventor/assignee/location/classification data, aggregating by year/technology/geography/organization, computing derived metrics (citation counts, team sizes, concentration ratios, diversity indices).
+
+## Technology
+
+Built with Next.js 14, Recharts, D3.js, Tailwind CSS. All data pre-computed and served as static JSON. Static site export with dark/light theme support.

@@ -1,0 +1,130 @@
+{
+  "IBM": [
+    { "year": 1981, "label": "IBM PC launched" },
+    { "year": 1997, "label": "Deep Blue beats Kasparov" },
+    { "year": 2005, "label": "PC division sold to Lenovo" },
+    { "year": 2011, "label": "Watson wins Jeopardy" },
+    { "year": 2019, "label": "Quantum computing milestone" }
+  ],
+  "Samsung": [
+    { "year": 1983, "label": "First DRAM chip" },
+    { "year": 1992, "label": "World's first 64Mb DRAM" },
+    { "year": 2010, "label": "First Galaxy smartphone" },
+    { "year": 2017, "label": "Acquires Harman International" },
+    { "year": 2022, "label": "3nm GAA foundry process" }
+  ],
+  "Canon": [
+    { "year": 1976, "label": "First laser printer" },
+    { "year": 1987, "label": "EOS autofocus system" },
+    { "year": 2000, "label": "Digital SLR breakthrough" },
+    { "year": 2018, "label": "Mirrorless EOS R launch" }
+  ],
+  "Panasonic": [
+    { "year": 1979, "label": "First portable VHS camcorder" },
+    { "year": 1991, "label": "First lithium-ion battery" },
+    { "year": 2008, "label": "First OLED TV" },
+    { "year": 2014, "label": "Tesla Gigafactory partnership" }
+  ],
+  "Toshiba": [
+    { "year": 1985, "label": "First laptop computer" },
+    { "year": 1987, "label": "Invents NAND flash memory" },
+    { "year": 2006, "label": "Acquires Westinghouse Nuclear" },
+    { "year": 2018, "label": "Memory division sold" }
+  ],
+  "General Electric": [
+    { "year": 1976, "label": "CT scanner introduced" },
+    { "year": 1992, "label": "Jet engine tech milestone" },
+    { "year": 2012, "label": "Industrial Internet initiative" },
+    { "year": 2015, "label": "Predix IoT platform launch" }
+  ],
+  "Hitachi": [
+    { "year": 1982, "label": "First compact disc player" },
+    { "year": 1993, "label": "TFT color LCD panel" },
+    { "year": 2003, "label": "Perpendicular magnetic recording" },
+    { "year": 2012, "label": "Social Innovation pivot" }
+  ],
+  "Sony": [
+    { "year": 1979, "label": "Walkman launched" },
+    { "year": 1994, "label": "PlayStation launched" },
+    { "year": 2004, "label": "Blu-ray format introduced" },
+    { "year": 2013, "label": "PlayStation 4 launch" },
+    { "year": 2020, "label": "PlayStation 5 launch" }
+  ],
+  "Intel": [
+    { "year": 1978, "label": "8086 processor launched" },
+    { "year": 1993, "label": "Pentium processor debut" },
+    { "year": 2006, "label": "Core architecture introduced" },
+    { "year": 2018, "label": "Mobileye autonomous driving" },
+    { "year": 2021, "label": "IDM 2.0 foundry strategy" }
+  ],
+  "Microsoft": [
+    { "year": 1985, "label": "Windows 1.0 released" },
+    { "year": 1995, "label": "Windows 95 and IE" },
+    { "year": 2010, "label": "Azure cloud platform" },
+    { "year": 2016, "label": "LinkedIn acquisition" },
+    { "year": 2023, "label": "OpenAI partnership deepens" }
+  ],
+  "Apple": [
+    { "year": 1984, "label": "Macintosh launched" },
+    { "year": 2001, "label": "iPod unveiled" },
+    { "year": 2007, "label": "iPhone launched" },
+    { "year": 2010, "label": "iPad launched" },
+    { "year": 2020, "label": "Apple Silicon M1 chip" }
+  ],
+  "Google": [
+    { "year": 1998, "label": "Google founded" },
+    { "year": 2005, "label": "Android acquired" },
+    { "year": 2014, "label": "DeepMind acquired" },
+    { "year": 2016, "label": "TPU chip announced" },
+    { "year": 2023, "label": "Gemini AI model launched" }
+  ],
+  "Qualcomm": [
+    { "year": 1995, "label": "CDMA commercialized" },
+    { "year": 2007, "label": "Snapdragon SoC launched" },
+    { "year": 2017, "label": "5G modem prototype" },
+    { "year": 2021, "label": "4nm Snapdragon 8 Gen 1" }
+  ],
+  "LG Electronics": [
+    { "year": 1999, "label": "First CDMA handset" },
+    { "year": 2009, "label": "First OLED TV prototype" },
+    { "year": 2013, "label": "Curved OLED TV launched" },
+    { "year": 2021, "label": "Exits smartphone market" }
+  ],
+  "Fujitsu": [
+    { "year": 1993, "label": "World's fastest supercomputer" },
+    { "year": 2009, "label": "K computer development" },
+    { "year": 2014, "label": "Quantum-inspired Digital Annealer" },
+    { "year": 2020, "label": "Fugaku tops Top500 list" }
+  ],
+  "NEC": [
+    { "year": 1983, "label": "PC-98 series launched" },
+    { "year": 2002, "label": "Earth Simulator supercomputer" },
+    { "year": 2011, "label": "NeoFace facial recognition" },
+    { "year": 2019, "label": "5G base station rollout" }
+  ],
+  "Micron Technology": [
+    { "year": 1984, "label": "First 256K DRAM shipped" },
+    { "year": 2006, "label": "IM Flash NAND JV" },
+    { "year": 2012, "label": "Acquires Elpida Memory" },
+    { "year": 2022, "label": "232-layer NAND production" }
+  ],
+  "Texas Instruments": [
+    { "year": 1982, "label": "First single-chip DSP" },
+    { "year": 1996, "label": "DLP projector technology" },
+    { "year": 2007, "label": "OMAP mobile processor" },
+    { "year": 2011, "label": "Acquires National Semiconductor" }
+  ],
+  "Siemens": [
+    { "year": 1980, "label": "First digital telephone exchange" },
+    { "year": 1998, "label": "Siemens Healthineers CT scan" },
+    { "year": 2007, "label": "Acquires UGS PLM Software" },
+    { "year": 2016, "label": "MindSphere IoT platform" },
+    { "year": 2020, "label": "Xcelerator digital platform" }
+  ],
+  "3M": [
+    { "year": 1980, "label": "Post-it Notes launched" },
+    { "year": 1995, "label": "Microreplication film tech" },
+    { "year": 2002, "label": "Novec engineered fluids" },
+    { "year": 2015, "label": "3M Futures platform launch" }
+  ]
+}
