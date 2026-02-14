@@ -319,16 +319,28 @@ export const CHAPTERS: ChapterMeta[] = [
   },
 ];
 
+export interface SubGroup {
+  title: string;
+  chapters: number[];
+}
+
 export interface ActGrouping {
   act: number;
   title: string;
   subtitle: string;
   chapters: number[];
+  subgroups?: SubGroup[];
 }
 
 export const ACT_GROUPINGS: ActGrouping[] = [
   { act: 1, title: 'The System', subtitle: 'How the patent landscape took shape', chapters: [1, 2, 3, 4, 5, 6, 7] },
-  { act: 2, title: 'The Actors', subtitle: 'Organizations and inventors driving innovation', chapters: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] },
+  {
+    act: 2, title: 'The Actors', subtitle: 'Organizations and inventors driving innovation', chapters: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    subgroups: [
+      { title: 'The Organizations', chapters: [8, 9, 10, 11, 12, 13, 14, 15, 16] },
+      { title: 'The Inventors', chapters: [17, 18, 19, 20] },
+    ],
+  },
   { act: 3, title: 'The Structure', subtitle: 'Where innovation happens and how it connects', chapters: [21, 22, 23, 24, 25, 26] },
   { act: 4, title: 'The Mechanics', subtitle: 'Knowledge flows, dynamics, and quality', chapters: [27, 28, 29, 30, 31] },
   { act: 5, title: 'Deep Dives', subtitle: 'Emerging fields and frontier technologies', chapters: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43] },

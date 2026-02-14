@@ -111,23 +111,53 @@ export default function HomePage() {
                   <h3 className="font-serif text-xl font-semibold">{act.title}</h3>
                   <p className="text-sm text-muted-foreground">{act.subtitle}</p>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {actChapters.map((ch) => (
-                    <Link
-                      key={ch.slug}
-                      href={`/chapters/${ch.slug}/`}
-                      className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-                    >
-                      <h4 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
-                        {ch.title}
-                      </h4>
-                      <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
-                      <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                        Explore <ArrowRight className="h-3 w-3" />
+                {act.subgroups ? (
+                  act.subgroups.map((sg) => {
+                    const sgChapters = sg.chapters.map(
+                      (n) => CHAPTERS.find((c) => c.number === n)!
+                    );
+                    return (
+                      <div key={sg.title} className="mb-6 last:mb-0">
+                        <h4 className="mb-3 text-sm font-semibold text-muted-foreground">{sg.title}</h4>
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                          {sgChapters.map((ch) => (
+                            <Link
+                              key={ch.slug}
+                              href={`/chapters/${ch.slug}/`}
+                              className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                            >
+                              <h4 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
+                                {ch.title}
+                              </h4>
+                              <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
+                              <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                                Explore <ArrowRight className="h-3 w-3" />
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </Link>
-                  ))}
-                </div>
+                    );
+                  })
+                ) : (
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {actChapters.map((ch) => (
+                      <Link
+                        key={ch.slug}
+                        href={`/chapters/${ch.slug}/`}
+                        className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                      >
+                        <h4 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
+                          {ch.title}
+                        </h4>
+                        <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
+                        <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                          Explore <ArrowRight className="h-3 w-3" />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}

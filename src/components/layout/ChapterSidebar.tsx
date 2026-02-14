@@ -18,12 +18,7 @@ export function ChapterSidebar() {
           const actChapters = act.chapters.map(
             (n) => CHAPTERS.find((c) => c.number === n)!
           );
-          return (
-            <div key={act.act}>
-              <div className="mt-4 first:mt-0 mb-1 px-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
-                Act {act.act} — {act.title}
-              </div>
-              {actChapters.map((ch) => {
+          const renderChapterLink = (ch: typeof actChapters[0]) => {
                 const href = `/chapters/${ch.slug}/`;
                 const isActive = pathname === href || pathname === `/chapters/${ch.slug}`;
                 return (
@@ -43,7 +38,29 @@ export function ChapterSidebar() {
                     <span>{ch.title}</span>
                   </Link>
                 );
-              })}
+              };
+          return (
+            <div key={act.act}>
+              <div className="mt-4 first:mt-0 mb-1 px-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                Act {act.act} — {act.title}
+              </div>
+              {act.subgroups ? (
+                act.subgroups.map((sg) => {
+                  const sgChapters = sg.chapters.map(
+                    (n) => CHAPTERS.find((c) => c.number === n)!
+                  );
+                  return (
+                    <div key={sg.title}>
+                      <div className="mt-2 mb-0.5 px-3 text-[10px] font-medium italic text-muted-foreground/50">
+                        {sg.title}
+                      </div>
+                      {sgChapters.map(renderChapterLink)}
+                    </div>
+                  );
+                })
+              ) : (
+                actChapters.map(renderChapterLink)
+              )}
             </div>
           );
         })}

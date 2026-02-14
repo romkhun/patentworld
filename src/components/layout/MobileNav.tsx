@@ -92,28 +92,65 @@ export function MobileNav() {
                       <div className="mt-3 first:mt-0 mb-1 px-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
                         Act {act.act} — {act.title}
                       </div>
-                      {actChapters.map((ch) => {
-                        const href = `/chapters/${ch.slug}/`;
-                        const isActive = pathname === href || pathname === `/chapters/${ch.slug}`;
-                        return (
-                          <Link
-                            key={ch.slug}
-                            href={href}
-                            onClick={() => setOpen(false)}
-                            className={clsx(
-                              'flex items-start gap-2 rounded-md px-3 py-2 text-sm transition-colors',
-                              isActive
-                                ? 'bg-accent text-foreground font-medium'
-                                : 'text-muted-foreground hover:bg-accent/50'
-                            )}
-                          >
-                            <span className="shrink-0 font-mono text-xs text-muted-foreground mt-0.5">
-                              {String(ch.number).padStart(2, '0')}
-                            </span>
-                            <span>{ch.title}</span>
-                          </Link>
-                        );
-                      })}
+                      {act.subgroups ? (
+                        act.subgroups.map((sg) => {
+                          const sgChapters = sg.chapters.map(
+                            (n) => CHAPTERS.find((c) => c.number === n)!
+                          );
+                          return (
+                            <div key={sg.title}>
+                              <div className="mt-2 mb-0.5 px-3 text-[10px] font-medium italic text-muted-foreground/50">
+                                {sg.title}
+                              </div>
+                              {sgChapters.map((ch) => {
+                                const href = `/chapters/${ch.slug}/`;
+                                const isActive = pathname === href || pathname === `/chapters/${ch.slug}`;
+                                return (
+                                  <Link
+                                    key={ch.slug}
+                                    href={href}
+                                    onClick={() => setOpen(false)}
+                                    className={clsx(
+                                      'flex items-start gap-2 rounded-md px-3 py-2 text-sm transition-colors',
+                                      isActive
+                                        ? 'bg-accent text-foreground font-medium'
+                                        : 'text-muted-foreground hover:bg-accent/50'
+                                    )}
+                                  >
+                                    <span className="shrink-0 font-mono text-xs text-muted-foreground mt-0.5">
+                                      {String(ch.number).padStart(2, '0')}
+                                    </span>
+                                    <span>{ch.title}</span>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          );
+                        })
+                      ) : (
+                        actChapters.map((ch) => {
+                          const href = `/chapters/${ch.slug}/`;
+                          const isActive = pathname === href || pathname === `/chapters/${ch.slug}`;
+                          return (
+                            <Link
+                              key={ch.slug}
+                              href={href}
+                              onClick={() => setOpen(false)}
+                              className={clsx(
+                                'flex items-start gap-2 rounded-md px-3 py-2 text-sm transition-colors',
+                                isActive
+                                  ? 'bg-accent text-foreground font-medium'
+                                  : 'text-muted-foreground hover:bg-accent/50'
+                              )}
+                            >
+                              <span className="shrink-0 font-mono text-xs text-muted-foreground mt-0.5">
+                                {String(ch.number).padStart(2, '0')}
+                              </span>
+                              <span>{ch.title}</span>
+                            </Link>
+                          );
+                        })
+                      )}
                     </div>
                   );
                 })}
