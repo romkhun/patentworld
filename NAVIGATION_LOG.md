@@ -64,3 +64,40 @@ Implemented 4 new navigation features and verified 8 existing features across th
 | 9.5 Skip-to-content link | **Implemented** |
 | 9.5 Heading hierarchy | Complete (one h1 per page) |
 | 9.5 ARIA labels on charts | Complete |
+
+---
+
+## Stream 6 Update: Chapter Table of Contents
+
+### Problem
+
+Chapter pages with multiple sections (separated by `SectionDivider` components) lacked a way for readers to see section structure or jump to specific sections.
+
+### Solution
+
+**SectionDivider enhancements** (`src/components/chapter/SectionDivider.tsx`):
+- Added optional `id` prop for explicit anchor IDs
+- Auto-generates anchor IDs from `label` prop via slugification (e.g., "Citation Patterns" → `citation-patterns`)
+- Added `data-section-label` attribute for DOM discovery
+- Added `scroll-mt-20` to offset for the sticky header when scrolling to anchors
+
+**ChapterTableOfContents component** (`src/components/chapter/ChapterTableOfContents.tsx`):
+- Client component that discovers sections at mount via `document.querySelectorAll('[data-section-label]')`
+- Renders "In this chapter" navigation with anchor links
+- Uses `IntersectionObserver` (rootMargin: `-80px 0px -60% 0px`) to track and highlight the active section
+- Gracefully hidden when no sections exist (e.g., short chapters without SectionDividers)
+
+**Responsive layout:**
+- **Desktop (xl+, ≥1280px):** Fixed side panel at `right-8 top-20`, 208px wide, with backdrop blur
+- **Below xl:** Inline collapsible `<details>` block at top of content area, showing section count
+
+**Integration** (`src/app/chapters/layout.tsx`):
+- Rendered inside the content column between `Breadcrumb` and `<article>`
+
+### Files Changed
+
+| File | Change |
+|---|---|
+| `src/components/chapter/SectionDivider.tsx` | Added `id`, `data-section-label`, `scroll-mt-20` |
+| `src/components/chapter/ChapterTableOfContents.tsx` | New component |
+| `src/app/chapters/layout.tsx` | Import and render `ChapterTableOfContents` |
