@@ -122,7 +122,7 @@ export default function Chapter5() {
       setTimeout(() => setSelectedOrgSeries(new Set(top10Clean.slice(0, 5))), 0);
     }
     return { orgOutputPivot: pivoted, orgOutputNames: top10Clean };
-  }, [orgsTime]);
+  }, [orgsTime, selectedOrgSeries.size]);
 
   // Tech evolution: list of orgs and pivoted data for selected org
   const techOrgList = useMemo(() => {
@@ -164,7 +164,7 @@ export default function Chapter5() {
       setTimeout(() => setSelectedDivSeries(new Set(orgs.slice(0, 5))), 0);
     }
     return { diversityPivot: pivoted, diversityOrgs: orgs };
-  }, [diversity]);
+  }, [diversity, selectedDivSeries.size]);
 
   const { nonUSPivot, nonUSCountryAreas } = useMemo(() => {
     if (!nonUS) return { nonUSPivot: [], nonUSCountryAreas: [] };
@@ -377,7 +377,7 @@ export default function Chapter5() {
               xKey="year"
               lines={orgOutputNames
                 .filter((name) => selectedOrgSeries.has(name))
-                .map((name, i) => ({
+                .map((name, _i) => ({
                   key: name,
                   name: name.length > 25 ? name.slice(0, 22) + '...' : name,
                   color: CHART_COLORS[orgOutputNames.indexOf(name) % CHART_COLORS.length],

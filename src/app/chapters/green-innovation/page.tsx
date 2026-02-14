@@ -126,15 +126,15 @@ export default function Chapter14() {
         <li>
           <GlossaryTooltip term="green patents">Green patents</GlossaryTooltip> — those classified under <GlossaryTooltip term="Y02">Y02/Y04S</GlossaryTooltip> codes — total {formatCompact(totalGreen)} over 50 years, peaking at {peakYear ? formatCompact(peakYear.green_count) : '—'} in {peakYear?.year ?? '—'}.
         </li>
-        <li>Batteries and storage, transportation and electric vehicles, and renewable energy constitute the fastest-growing green sub-categories, exhibiting pronounced acceleration following the 2015 Paris Agreement.</li>
-        <li>Japan historically dominated green patenting through Toyota and Honda; however, Samsung, Hyundai, and General Electric have substantially narrowed the gap in recent years.</li>
+        <li>Batteries and storage, transportation and electric vehicles, and renewable energy constitute the fastest-growing green sub-categories, exhibiting continued growth following the 2015 Paris Agreement.</li>
+        <li>Japan has historically been the second-largest green patent filer through Toyota and Honda; however, Samsung, Hyundai, and General Electric have substantially narrowed the gap in recent years.</li>
         <li>Artificial intelligence is increasingly applied to climate-related problems; patents at the intersection of green technology and AI have grown markedly since 2015.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement and the broader <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> reshaping patenting activity. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Most consequentially, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link>, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
+          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into nearly one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement and the broader <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> reshaping patenting activity. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Most consequentially, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link>, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
         </p>
       </aside>
 
@@ -154,9 +154,9 @@ export default function Chapter14() {
       <Narrative>
         <p>
           Green patent filings increased from approximately 3,000 per year in the late 1970s to
-          over 30,000 per year by the early 2020s. The most pronounced acceleration followed the
+          over 30,000 per year by the early 2020s. Continued growth followed the
           2015 Paris Agreement, with batteries and electric vehicles leading the expansion. Green
-          patents now represent approximately 10% of all utility patents granted each year.
+          patents now represent approximately 9-10% of all utility patents granted each year.
         </p>
       </Narrative>
 
@@ -165,7 +165,7 @@ export default function Chapter14() {
         subtitle="Annual count and share of utility patents with at least one Y02/Y04S CPC code, tracking the growth of climate technology patenting."
         title={`Green Patent Volume Rose to ${peakYear ? formatCompact(peakYear.green_count) : '—'} by ${peakYear?.year ?? '—'}, Reaching Approximately ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of All Utility Patents`}
         caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '—'} in ${peakYear?.year ?? '—'}, representing approximately ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of all utility patents.`}
-        insight="Green patenting has evolved from a specialized activity to approximately one in ten US patents, reflecting substantial corporate and government investment in climate technology. The growth trajectory mirrors, and in certain periods exceeds, the broader expansion of the patent system."
+        insight="Green patenting has evolved from a specialized activity to nearly one in ten US patents, reflecting substantial corporate and government investment in climate technology. The growth trajectory mirrors, and in certain periods exceeds, the broader expansion of the patent system."
         loading={volL}
       >
         <PWLineChart
@@ -229,7 +229,7 @@ export default function Chapter14() {
 
       <Narrative>
         <p>
-          Japan historically dominated green patenting, led by Toyota and Honda in automotive
+          Japan has historically been the second-largest green patent filer, led by Toyota and Honda in automotive
           technologies and Mitsubishi Electric and Toshiba in energy systems. In recent years, South Korean
           firms (Samsung, LG, Hyundai) have grown rapidly, while US companies such as General Electric and
           Ford have maintained strong positions.

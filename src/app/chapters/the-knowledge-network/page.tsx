@@ -29,10 +29,10 @@ import type {
 
 export default function Chapter10() {
   const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
-  const { data: lag, loading: laL } = useChapterData<CitationLag[]>('chapter6/citation_lag.json');
+  useChapterData<CitationLag[]>('chapter6/citation_lag.json');
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
   const { data: agencies, loading: agL } = useChapterData<GovAgency[]>('chapter6/gov_agencies.json');
-  useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
+  const { data: lagTrend, loading: ltL } = useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
   const { data: citeLagBySection, loading: clsL } = useChapterData<CitationLagBySection[]>('chapter6/citation_lag_by_section.json');
 
   // C1, C2, C3: Corporate citation analyses
@@ -77,15 +77,6 @@ export default function Chapter10() {
     }));
   }, [agencies]);
 
-  const lagYears = useMemo(() => {
-    if (!lag) return [];
-    return lag.map((d) => ({
-      ...d,
-      avg_lag_years: d.avg_lag_days / 365.25,
-      median_lag_years: d.median_lag_days / 365.25,
-    }));
-  }, [lag]);
-
   const { lagBySectionPivot, lagSections } = useMemo(() => {
     if (!citeLagBySection) return { lagBySectionPivot: [], lagSections: [] };
     const sections = [...new Set(citeLagBySection.map(d => d.section))].sort();
@@ -118,7 +109,7 @@ export default function Chapter10() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Over five decades the temporal reach of patent citations has stretched dramatically -- from a median lag of roughly 3 years in the early 1980s to over 16 years by 2025 -- indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. Public funding channels, catalyzed by the Bayh-Dole Act of 1980 and led by HHS/NIH, the Department of Defense, and the Department of Energy, account for a disproportionate share of high-impact foundational knowledge, complementing the collaboration networks documented in <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Collaboration Networks</Link>. At the corporate level, directed citation flows among the top 30 assignees reveal asymmetric knowledge dependencies: certain firms function primarily as knowledge producers while others operate as integrators drawing broadly from multiple sources, a structural pattern that parallels the talent-flow asymmetries observed in the preceding chapter.
+          Over five decades the temporal reach of patent citations has stretched dramatically -- from an average lag of roughly 3 years in the early 1980s to over 16 years by 2025 -- indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. Public funding channels, catalyzed by the Bayh-Dole Act of 1980 and led by HHS/NIH, the Department of Defense, and the Department of Energy, account for a disproportionate share of high-impact foundational knowledge, complementing the collaboration networks documented in <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Collaboration Networks</Link>. At the corporate level, directed citation flows among the top 30 assignees reveal asymmetric knowledge dependencies: certain firms function primarily as knowledge producers while others operate as integrators drawing broadly from multiple sources, a structural pattern that parallels the talent-flow asymmetries observed in the preceding chapter.
         </p>
       </aside>
 
@@ -180,11 +171,11 @@ export default function Chapter10() {
         subtitle="Average and median time in years between a cited patent's grant date and the citing patent's grant date, by year."
         title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
         caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
-        loading={laL}
+        loading={ltL}
         insight="The lengthening citation lag indicates that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
       >
         <PWLineChart
-          data={lagYears}
+          data={lagTrend ?? []}
           xKey="year"
           lines={[
             { key: 'avg_lag_years', name: 'Average Lag', color: CHART_COLORS[0] },

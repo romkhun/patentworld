@@ -363,7 +363,7 @@ export default function Chapter7() {
 
       <ChartContainer
         id="fig-inventors-citation-impact"
-        title="Citation Impact Ranges from 1 to 965 Average Citations Among the 100 Most Prolific Inventors"
+        title="Citation Impact Ranges from 10 to 965 Average Citations Among the 100 Most Prolific Inventors"
         subtitle="Average and median forward citations per patent for the top 100 most prolific inventors, based on patents granted through 2020"
         caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
@@ -581,7 +581,7 @@ export default function Chapter7() {
       </Narrative>
       <ChartContainer
         id="fig-inventors-gender-by-cpc"
-        title="Female Inventor Shares Range from 10.6% (Fixed Constructions) to 31.2% (Chemistry) Across CPC Sections"
+        title="Female Inventor Shares Range from 8.2% (Fixed Constructions) to 23.4% (Chemistry) Across CPC Sections"
         subtitle="Female inventor share by CPC section and 5-year period, showing technology-specific gender variation over time"
         caption="This chart displays the percentage of inventors who are female within each CPC section, measured in 5-year periods. Chemistry and Human Necessities consistently exhibit the highest female representation, while Electricity and Mechanical Engineering demonstrate the lowest."
         insight="The technology-specific gender gap mirrors the composition of STEM degree pipelines. Fields with higher female enrollment, such as chemistry and life sciences, demonstrate correspondingly higher female inventor representation."

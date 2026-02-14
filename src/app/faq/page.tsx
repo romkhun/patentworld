@@ -28,7 +28,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Is AI patenting increasing?',
-    answer: 'AI-related patent filings grew approximately ten-fold during the deep learning era (2012-2025). Neural network and deep learning approaches have displaced earlier knowledge-based and expert system methodologies as the dominant AI patent category.',
+    answer: 'AI-related patent filings grew approximately six-fold during the deep learning era, from about 5,200 in 2012 to nearly 30,000 by 2023. Neural network and deep learning approaches have become the dominant AI patent category, surpassing earlier subfields including computer vision and knowledge-based systems.',
   },
   {
     question: 'What is the gender gap in US patenting?',
@@ -36,7 +36,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Which countries\' inventors file the most US patents?',
-    answer: 'While the United States remains the largest source of US patent inventors, Japan, South Korea, China, and Germany are major contributors. Foreign-origin patents have increased substantially, with international co-invention growing from approximately 2% to over 10% of all patents.',
+    answer: 'While the United States remains the largest source of US patent inventors, Japan, South Korea, China, and Germany are major contributors. Foreign-origin patents have increased substantially, with international co-invention growing from approximately 2% to approaching 10% of all patents.',
   },
   {
     question: 'How has patent quality changed over time?',

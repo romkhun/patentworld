@@ -292,8 +292,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-subfields"
         subtitle="Patent counts by AI subfield (neural networks, machine learning, NLP, etc.) over time, based on specific CPC group codes within G06N."
-        title="Neural Networks / Deep Learning Patents Surged from 175 in 2012 to 10,467 in 2023, Displacing Knowledge-Based Systems as the Dominant AI Subfield"
-        caption="Patent counts by AI subfield over time, based on CPC classifications. The data reveal that neural networks/deep learning and machine learning have driven the recent growth, displacing knowledge-based systems that dominated through the 1990s."
+        title="Neural Networks / Deep Learning Patents Surged from 175 in 2012 to 10,467 in 2023, Becoming the Dominant AI Subfield"
+        caption="Patent counts by AI subfield over time, based on CPC classifications. The data reveal that neural networks/deep learning and machine learning have driven the recent growth, surpassing earlier subfields including computer vision, knowledge-based systems, and other classical approaches."
         insight="The shift from expert systems to deep learning reflects fundamental changes in AI methodology, moving from hand-crafted rules to data-driven pattern recognition."
         loading={sfL}
         height={650}
@@ -315,7 +315,7 @@ export default function Chapter13() {
       <KeyInsight>
         <p>
           The composition of AI patents has shifted substantially over time. Early AI patenting
-          was dominated by knowledge-based systems and pattern recognition. Since 2012, neural
+          included computer vision, knowledge-based systems, and other classical approaches. Since 2012, neural
           networks and deep learning have become the dominant subfield, reflecting the
           methodological transformation catalyzed by advances in convolutional and recurrent
           architectures. Computer vision and natural language processing have also experienced
@@ -365,7 +365,7 @@ export default function Chapter13() {
         <ChartContainer
           id="fig-ai-patents-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by AI patent grants from 2000 to 2025, with darker cells indicating higher rank."
-          title="7 Firms Exceeded 400 AI Patents in 2024, Up From 1 in 2000, as Multiple Firms Converged at the Top After 2012"
+          title="7 Firms Exceeded 400 AI Patents Annually by 2024, as Multiple Firms Converged at the Top After 2012"
           caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal rapid convergence of multiple firms since 2012 as advances in deep learning attracted investment from across technology sectors."
           insight="The rapid convergence of multiple firms at the top since 2012 reflects intensifying competitive dynamics in AI capabilities, as the deep learning transformation attracted substantial investment from firms across technology sectors."
           loading={ootL}
@@ -431,7 +431,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-by-country"
         subtitle="Countries ranked by total AI-related patents based on primary inventor location, showing geographic distribution of AI innovation."
-        title="The United States Accounts for 56% of Global AI Patents, Followed by Japan at 12% and China at 6%"
+        title="The United States Accounts for 56% of AI Patents in the US System by Inventor Nationality, Followed by Japan at 12% and China at 6%"
         caption="Countries ranked by total AI-related patents based on primary inventor location. The United States maintains a substantial lead, while the strong presence of Japan, China, and South Korea indicates significant Asian investment in AI-driven electronics and consumer technology."
         insight="The United States lead in AI patenting reflects its concentration of major AI research laboratories and technology firms, while the strong presence of Japan, China, and South Korea indicates substantial Asian investment in AI-driven electronics and consumer technology."
         loading={geoL}
@@ -459,7 +459,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-by-state"
         subtitle="US states ranked by total AI-related patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California Produces 38% of US AI Patents, Reflecting Strong Agglomeration Effects"
+        title="California Produces Nearly 38% of US AI Patents, Reflecting Strong Agglomeration Effects"
         caption="US states ranked by total AI-related patents based on primary inventor location. California's substantial lead is consistent with agglomeration effects, where proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         insight="California's dominance in AI patents is consistent with strong agglomeration effects: proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         loading={geoL}
@@ -589,9 +589,10 @@ export default function Chapter13() {
       )}
       <KeyInsight>
         <p>
-          IBM leads in total AI patents, though its portfolio emphasizes knowledge-based
-          systems from its earlier period of AI investment. Samsung and Google have built
-          substantial deep learning portfolios. The most notable strategic differences emerge
+          IBM leads in total AI patents, and its portfolio reflects substantial investment
+          in natural language processing and machine learning, alongside legacy strength in
+          knowledge-based systems. Samsung and Google have built diverse AI portfolios
+          spanning computer vision, deep learning, and natural language processing. The most notable strategic differences emerge
           in newer subfields: natural language processing and speech recognition are more
           concentrated among a small number of organizations, while computer vision is broadly
           contested. The relative scarcity of quantum computing patents may represent an
@@ -612,7 +613,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-gpt-diffusion"
         subtitle="Percentage of AI patents co-classified with non-AI CPC sections, measuring AI's diffusion into healthcare, manufacturing, and other domains."
-        title="AI Patent Co-Occurrence with Manufacturing CPC Codes Rose from 4% to 11%, and Healthcare from 4% to 9%, Since 1990"
+        title="AI Patent Co-Occurrence with Manufacturing CPC Codes Rose from Under 4% to 11%, and Healthcare from Approximately 4% to Nearly 9%, Since 1990"
         caption="Percentage of AI patents that also carry CPC codes from each non-AI section (G excluded). Rising lines indicate AI diffusing into that sector. The most notable pattern is the increasing co-occurrence with Human Necessities (Section A, encompassing healthcare) and Performing Operations (Section B, encompassing manufacturing)."
         insight="The presence of AI across multiple CPC sections is consistent with its characterization as a general-purpose technology, comparable to electricity or computing in earlier eras. The rising co-occurrence with healthcare and manufacturing CPC codes suggests expanding real-world applications of AI."
         loading={agdL}

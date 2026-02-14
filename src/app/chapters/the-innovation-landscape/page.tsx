@@ -52,11 +52,11 @@ export default function Chapter1() {
       <ChapterHeader
         number={1}
         title="The Innovation Landscape"
-        subtitle="Five decades of inventive activity documented in over 9.3 million US patents"
+        subtitle="Five decades of inventive activity documented in over 9.36 million US patents"
       />
 
       <KeyFindings>
-        <li>The US patent system granted over 9.3 million patents between 1976 and 2025 — a roughly fivefold increase in annual output over five decades.</li>
+        <li>The US patent system granted over 9.36 million patents between 1976 and 2025 — a roughly fivefold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, with design patents growing as a secondary category.</li>
         <li>Patent complexity has risen substantially: average claims per patent rose from the 1970s through the mid-2000s before leveling off.</li>
         <li>Grant lag — the time from filing to grant — peaked near four years around 2010, creating uncertainty during a period of rapid technological change.</li>
@@ -65,7 +65,7 @@ export default function Chapter1() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants in the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers.
+          Half a century of USPTO data reveals a patent system that has expanded dramatically in scale while simultaneously growing more complex in structure. What began as an annual output of roughly 65,000 grants per year by the late 1970s had escalated to more than 350,000 by the 2020s, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly, a tension explored further in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>. Meanwhile, the evolution of patent claim structures, including a notable inversion in which median claims overtook the average by the mid-2010s, points to shifting drafting strategies that merit attention from both practitioners and policymakers.
         </p>
       </aside>
 
@@ -90,7 +90,7 @@ export default function Chapter1() {
         title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
         subtitle="Total patents granted annually by the USPTO, broken down by patent type (utility, design, plant, reissue), 1976–2025"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
-        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Notable disruptions include the 2008 financial crisis and the 2020 COVID-19 pandemic."
+        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining temporarily around 2007-2008 and the 2020 COVID-19 pandemic producing a visible dip."
         loading={ppyL}
       >
         <PWAreaChart
@@ -110,14 +110,13 @@ export default function Chapter1() {
 
       <Narrative>
         <p>
-          Annual patent grants increased from approximately 65,000–70,000 in the late
-          1970s to over 350,000 in recent years. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
+          Annual patent grants averaged roughly 65,000 per year in the late
+          1970s, rising to over 350,000 in recent years. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
           novel inventions and processes — constitute over 90% of all grants. Design patents,
           which cover ornamental appearance, have also exhibited sustained growth.
         </p>
         <p>
-          This expansion has not been monotonic. The 2008 financial crisis produced a
-          visible contraction, and patent office backlogs have introduced year-to-year
+          This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining temporarily around 2007–2008, and patent office backlogs have introduced year-to-year
           volatility. Nevertheless, the long-term trajectory indicates that an increasing
           number of individuals and <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
           intellectual property assumes greater strategic importance.
@@ -228,7 +227,7 @@ export default function Chapter1() {
       <ChartContainer
         id="fig-innovation-landscape-design-trends"
         subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
-        title="Design Patent Share Grew from 6% in the Early 1980s to 13% by 2024, Outpacing Utility Patent Growth"
+        title="Design Patent Share Grew from 6% in the Early 1980s to Approximately 13% by 2024, Outpacing Utility Patent Growth"
         caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion industries."
         insight="The increasing share of design patents suggests a structural shift in corporate innovation strategy toward design-driven product differentiation, with Samsung, Nike, and LG Electronics among the leading filers."
         loading={deL}

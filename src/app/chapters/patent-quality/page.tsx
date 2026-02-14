@@ -210,7 +210,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-patent-quality-scope"
         subtitle="Average and median number of distinct CPC subclasses assigned per patent, measuring technological breadth over time."
-        title="Average Patent Scope Grew from 1.8 to 2.5 CPC Subclasses as Technologies Became More Interdisciplinary"
+        title="Average Patent Scope Grew from 1.8 to Nearly 2.5 CPC Subclasses as Technologies Became More Interdisciplinary"
         caption="This chart displays the average and median number of distinct CPC subclasses per patent, measuring technological breadth. The steady increase indicates growing convergence of once-separate technology domains, particularly in areas such as IoT, biotechnology, and AI."
         loading={trL}
         insight="Broadening patent scope is consistent with the convergence of once-separate technology domains, with contemporary inventions in areas such as IoT, biotechnology, and AI spanning multiple classification categories."
@@ -286,7 +286,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-patent-quality-self-citation-rate"
         subtitle="Average and median self-citation rate per patent (fraction of backward citations to the same assignee's earlier patents), by year."
-        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounded to 15% by the 2020s"
+        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13-15% in the 2020s"
         caption="This chart displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
         loading={scL}
         insight="Self-citation patterns indicate knowledge accumulation strategies within firms, with temporal changes potentially reflecting shifts between exploration of new domains and exploitation of established competencies."

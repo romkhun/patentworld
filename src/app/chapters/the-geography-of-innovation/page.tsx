@@ -82,7 +82,7 @@ export default function Chapter8() {
       setTimeout(() => setSelectedCountrySeries(new Set(result.countries.slice(0, 5))), 0);
     }
     return result;
-  }, [countries]);
+  }, [countries, selectedCountrySeries.size]);
 
   const specByState = useMemo(() => {
     if (!spec) return [];
@@ -169,7 +169,7 @@ export default function Chapter8() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The organizational and inventor-level concentration documented in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> and <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link> has a pronounced spatial dimension: inventive activity clusters in a small number of self-reinforcing ecosystems where skilled labor, venture capital, research universities, and corporate laboratories co-locate. Within the United States, a handful of coastal states generate a disproportionate share of all output, with California alone exceeding the combined total of the bottom thirty states, a gap that has widened rather than narrowed over the digital era. Internationally, the same globalization of assignee origin observed in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> manifests geographically, as successive waves of filings from Japan, South Korea, and more recently China have transformed the US patent system into a de facto global institution. City-level analysis reveals that this concentration is even more extreme at finer geographic scales, with distinctive regional specializations, from Detroit in automotive-related mechanical engineering to San Diego in wireless and semiconductor technology, exhibiting strong path dependence that digital connectivity has done little to erode.
+          The organizational and inventor-level concentration documented in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> and <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link> has a pronounced spatial dimension: inventive activity clusters in a small number of self-reinforcing ecosystems where skilled labor, venture capital, research universities, and corporate laboratories co-locate. Within the United States, a handful of coastal states generate a disproportionate share of all output, with California alone exceeding the combined total of the bottom thirty states and territories, a gap that has widened rather than narrowed over the digital era. Internationally, the same globalization of assignee origin observed in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link> manifests geographically, as successive waves of filings from Japan, South Korea, and more recently China have transformed the US patent system into a de facto global institution. City-level analysis reveals that this concentration is even more extreme at finer geographic scales, with distinctive regional specializations, from Detroit in automotive-related mechanical engineering to San Diego in wireless and semiconductor technology, exhibiting strong path dependence that digital connectivity has done little to erode.
         </p>
       </aside>
 
@@ -185,7 +185,7 @@ export default function Chapter8() {
       <ChartContainer
         id="fig-geography-state-choropleth"
         subtitle="Total utility patents by primary inventor state (1976-2025), displayed as a choropleth map with darker shading for higher counts."
-        title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States Combined (314,664)"
+        title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States and Territories Combined (314,664)"
         caption="This choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
         insight="The coastal concentration of patent activity reflects the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
         loading={stL}
@@ -197,7 +197,7 @@ export default function Chapter8() {
       <KeyInsight>
         <p>
           Innovation activity is disproportionately concentrated in coastal states. California alone accounts for more
-          patents than the bottom 30 states combined, reflecting the predominant role of Silicon Valley
+          patents than the bottom 30 states and territories combined, reflecting the predominant role of Silicon Valley
           in the US innovation ecosystem.
         </p>
       </KeyInsight>
@@ -368,7 +368,7 @@ export default function Chapter8() {
       <KeyInsight>
         <p>
           The US patent system has evolved into a global institution. Japan dominated foreign filings
-          through the 1990s, and Germany held the second position among foreign filers through the 2000s before being surpassed by South Korea (2015) and China (2020). South Korea and China have emerged as significant contributors in the 2000s
+          through the 1990s, and Germany held the second position among foreign filers through the 2000s before being surpassed by South Korea (around 2011–2015) and China (2019). South Korea and China have emerged as significant contributors in the 2000s
           and 2010s respectively. China&apos;s sustained growth in US patent filings is indicative of a fundamental
           shift in inventive activity as reflected in US patent filings.
         </p>

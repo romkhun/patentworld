@@ -453,7 +453,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: filing surges after the 1998 State Street decision, pendency declines after AIA-era reforms, and a slowdown in software-related grants after the 2014 eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation landscape</Link> that earlier chapters have charted.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation landscape</Link> that earlier chapters have charted.
         </p>
       </aside>
 
@@ -522,8 +522,7 @@ export default function Chapter4() {
           </li>
           <li>
             <strong>Alice Corp. v. CLS Bank International (2014):</strong> The Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially narrowing patent
-            eligibility. This holding contributed to an observable
-            slowdown in software-related patent grants in subsequent years.
+            eligibility. This holding may have contributed to a moderation in software-related patenting in subsequent years, though Sections G and H continued to grow in absolute terms.
           </li>
         </ul>
       </Narrative>
@@ -552,7 +551,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-applications-vs-grants"
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
-        title="Applications Grew from 66,000 to 349,000 (1976-2019) While the Grant-to-Application Ratio Fell from 100% to 66% by 1997, Reflecting Increasing Examination Lag"
+        title="Applications Grew from 66,000 to 349,000 (1976-2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="This chart displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
@@ -600,7 +599,7 @@ export default function Chapter4() {
         id="fig-patent-law-hhi-by-section"
         subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
         title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below the 1,500 Threshold"
-        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values."
+        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values in recent decades."
         insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
         loading={hhiL}
       >

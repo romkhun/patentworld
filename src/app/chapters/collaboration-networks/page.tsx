@@ -279,8 +279,8 @@ export default function Chapter9() {
       <ChartContainer
         id="fig-collaboration-intl-collaboration"
         subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
-        title="International Co-Invention Increased from Approximately 2% in the 1980s to 10% of All Patents"
-        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to over 10% in recent years, with the most rapid growth occurring during the 2000s."
+        title="International Co-Invention Increased from Approximately 2% in the 1980s to Approaching 10% of All Patents"
+        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to approaching 10% in recent years, with the most rapid growth occurring during the 2000s."
         loading={icL}
         insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
@@ -310,7 +310,7 @@ export default function Chapter9() {
 
       <KeyInsight>
         <p>
-          International collaboration has increased from approximately 2% of patents in the 1980s to 10%
+          International collaboration has increased from approximately 2% of patents in the 1980s to approaching 10%
           in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility,
           and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated
           in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.

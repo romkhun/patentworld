@@ -69,8 +69,6 @@ export default function Chapter2() {
     return merged;
   }), [sectionPivot]);
 
-  const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
-
   const changeData = useMemo(() => {
     if (!cpcChange) return [];
     const fmtLabel = (d: CPCClassChange & { direction: string }) => {
@@ -129,10 +127,10 @@ export default function Chapter2() {
       />
 
       <KeyFindings>
-        <li>Electrical engineering rose from the smallest sector to surpass first chemistry (1994) and then mechanical engineering (1995), becoming the dominant patent sector and marking the transition to the digital era.</li>
+        <li>Electrical engineering rose from one of the smaller sectors to surpass first chemistry (1994) and then mechanical engineering (1995), becoming the dominant patent sector and marking the transition to the digital era.</li>
         <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now constitute over 57% of all patent grants, an increase from about 27% in the 1970s.</li>
-        <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), with growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by up to 84%.</li>
-        <li>Technology diversity declined substantially from its mid-1980s peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.</li>
+        <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), with growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by nearly 84%.</li>
+        <li>Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -253,7 +251,7 @@ export default function Chapter2() {
       {treemap && treemap.length > 0 && (
         <ChartContainer
           id="fig-technology-revolution-cpc-treemap"
-          title="The Top 3 CPC Classes Account for 30-42% of Patents in Most Sections, Revealing Concentrated Innovation"
+          title="The Top 3 CPC Classes Account for 15-42% of Patents Across Sections, Revealing Concentrated Innovation"
           subtitle="Proportional treemap of patent volume by CPC technology class, sized by total grants and colored by CPC section"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while pharmaceutical and organic chemistry lead section C (Chemistry)."
           insight="Within each CPC section, patent activity is concentrated in a small number of dominant classes. This concentration pattern suggests that a limited set of technology subfields drives the majority of inventive output within each broader domain."
@@ -278,7 +276,7 @@ export default function Chapter2() {
       {changeData.length > 0 && (
         <ChartContainer
           id="fig-technology-revolution-cpc-class-change"
-          title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Up to 84%"
+          title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Nearly 84%"
           subtitle="Percentage change in patent counts by CPC class, comparing 2000–2010 to 2015–2025, for classes with 100+ patents in each period"
           caption="Percent change in patent counts comparing 2000-2010 to 2015-2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
           insight="This pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
@@ -299,7 +297,7 @@ export default function Chapter2() {
         <p>
           The magnitude of these structural shifts is substantial. The fastest-growing classes
           exhibit increases exceeding 1,000%, while declining classes have contracted
-          by up to 84%. These figures do not represent marginal adjustments; rather, they indicate
+          by nearly 84%. These figures do not represent marginal adjustments; rather, they indicate
           a fundamental reorientation of inventive activity across technology domains.
         </p>
       </Narrative>
@@ -320,7 +318,7 @@ export default function Chapter2() {
         title="Technology Diversity Declined from 0.848 in 1984 to 0.777 in 2009 Before Stabilizing at 0.789 by 2025"
         subtitle="Technology diversity index (1 minus HHI of CPC section concentration), where higher values indicate more diverse patent output, 1976–2025"
         caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976-2025. Higher values indicate more diverse technology output. The index declined substantially as digital technologies concentrated activity, then stabilized after 2009."
-        insight="Technology diversity declined substantially from its mid-1980s peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
+        insight="Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
         loading={divL}
       >
         <PWLineChart
@@ -334,7 +332,7 @@ export default function Chapter2() {
 
       <KeyInsight>
         <p>
-          Technology diversity declined substantially from its mid-1980s peak through 2009 as digital technologies concentrated
+          Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated
           patent activity in sections G and H. Since then, diversity has stabilized at a lower level, indicating
           that while the concentration shift has not reversed, it has at least ceased accelerating.
         </p>

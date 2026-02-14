@@ -128,7 +128,6 @@ export function textColorForBg(hexOrR: string | number, g?: number, b?: number):
 export function textColorForHsl(hslStr: string): string {
   const match = hslStr.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
   if (!match) return 'hsl(var(--foreground))';
-  const h = Number(match[1]);
   const s = Number(match[2]) / 100;
   const l = Number(match[3]) / 100;
   // HSL → approximate luminance via lightness
