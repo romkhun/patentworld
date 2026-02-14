@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 
 interface FanChartDataPoint {
   year: number;
@@ -61,17 +62,17 @@ export function PWFanChart({
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey="year"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
         />
         <YAxis
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
           tickFormatter={fmt}
           width={60}
-          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: 13 }, offset: -5 } : undefined}
+          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }, offset: -5 } : undefined}
         />
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
@@ -95,7 +96,7 @@ export function PWFanChart({
           }}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />

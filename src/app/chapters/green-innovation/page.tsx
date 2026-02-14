@@ -181,6 +181,8 @@ export default function Chapter12() {
       </Narrative>
 
       <ChartContainer
+        id="fig-green-innovation-volume"
+        subtitle="Annual count and share of utility patents with at least one Y02/Y04S CPC code, tracking the growth of climate technology patenting."
         title={`Green Patent Volume Rose to ${peakYear ? formatCompact(peakYear.green_count) : '—'} by ${peakYear?.year ?? '—'}, Reaching Approximately ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of All Utility Patents`}
         caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '—'} in ${peakYear?.year ?? '—'}, representing approximately ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of all utility patents.`}
         insight="Green patenting has evolved from a specialized activity to approximately one in ten US patents, reflecting substantial corporate and government investment in climate technology. The growth trajectory mirrors, and in certain periods exceeds, the broader expansion of the patent system."
@@ -213,6 +215,8 @@ export default function Chapter12() {
       </Narrative>
 
       <ChartContainer
+        id="fig-green-innovation-by-category"
+        subtitle="Annual patent counts by green technology sub-category (renewable energy, batteries, EVs, carbon capture, etc.) based on Y02/Y04S sub-codes."
         title="Battery, Storage, and EV Patents Surpassed Renewable Energy After 2010, Reaching 7,363 and 5,818 vs. 3,453 by 2024"
         caption="Annual patent counts by green technology sub-category (Y02/Y04S CPC sub-codes), 1976–2025. The most notable pattern is the rapid growth of battery/storage and transportation patents, which overtook renewable energy generation as the leading sub-categories during the 2010s."
         insight="The green patent portfolio has diversified substantially. While renewable energy generation once dominated, the 2010s exhibited considerable growth in battery/storage and electric vehicle patents, consistent with the electrification of transportation becoming a primary frontier of clean technology innovation."
@@ -252,6 +256,8 @@ export default function Chapter12() {
       </Narrative>
 
       <ChartContainer
+        id="fig-green-innovation-by-country"
+        subtitle="Annual green patent counts by primary assignee country, showing the shifting competitive landscape of climate technology innovation."
         title="South Korea's Green Patents Grew From 174 in 2005 to 2,989 by 2024, Reaching 67% of Japan's Annual Count"
         caption="Annual green patent counts by primary assignee country/region, 1976–2025. The most significant shift is South Korea's rapid ascent, driven by Samsung, LG, and Hyundai, which substantially narrowed Japan's longstanding lead."
         insight="Japan's early lead in green patenting reflects its substantial early investment in hybrid vehicles and energy efficiency. South Korea's recent growth, driven by Samsung, LG, and Hyundai, illustrates how the competitive landscape has shifted as battery and electric vehicle technologies have become central to the clean energy transition."
@@ -269,6 +275,8 @@ export default function Chapter12() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-green-innovation-top-companies"
+        subtitle="Organizations ranked by total green patent count (Y02/Y04S classifications) from 1976 to 2025, dominated by automotive and electronics firms."
         title="Samsung (13,771), Toyota (12,636), and GE (10,812) Lead the Top 20 Green Patent Holders"
         caption="Organizations ranked by total green patent count (Y02/Y04S classifications), 1976-2025. The data indicate that automotive firms and electronics conglomerates account for the majority of the top 20 positions, with Samsung, Toyota, and General Electric each exceeding 10,000 green patents."
         insight="The leading green patent holders are predominantly automotive and electronics conglomerates -- organizations with substantial R&D budgets and the engineering capabilities to address energy, transportation, and industrial decarbonization at scale."
@@ -307,6 +315,8 @@ export default function Chapter12() {
       </Narrative>
 
       <ChartContainer
+        id="fig-green-innovation-ai-trend"
+        subtitle="Annual count of patents co-classified under both green (Y02/Y04S) and AI-related CPC codes, tracking the intersection of climate and AI technologies."
         title="Green-AI Patents Grew 30-Fold From 41 in 2010 to 1,238 in 2023"
         caption="Annual count of patents classified under both Y02/Y04S (green) and AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976–2025. The most prominent pattern is the sharp upward trajectory beginning around 2015, as machine learning and neural network methods were applied to energy optimization and materials discovery."
         insight="Green-AI patents increased from near zero before 2010 to a rapidly expanding category, as machine learning and neural network methods have been applied to energy optimization, materials discovery, climate modeling, and autonomous vehicle navigation."
@@ -324,6 +334,8 @@ export default function Chapter12() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-green-innovation-ai-heatmap"
+        subtitle="Patent counts at the intersection of green sub-categories and AI subfields, showing which climate domains most intensively adopt AI techniques."
         title="Industrial Production (3,114) and Smart Grids (2,245) Exhibit the Highest AI Adoption Among Green Sub-Categories"
         caption="Patent counts at the intersection of green sub-categories and AI subfields; only combinations with more than 5 patents are shown. The data indicate that industrial production and smart grids represent the green categories most intensively adopting AI, with machine learning and neural networks as the dominant techniques."
         insight="Industrial production and smart grids constitute the green categories most intensively adopting AI, with machine learning and neural networks as the predominant AI techniques. Computer vision appears to play a growing role in quality control for renewable energy manufacturing."

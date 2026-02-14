@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 import type { ReferenceEvent } from '@/lib/referenceEvents';
 
 interface PWAreaChartProps {
@@ -46,7 +47,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
         >
@@ -55,12 +56,12 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
             />
           )}
         </XAxis>
         <YAxis
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
           tickFormatter={stackedPercent ? (v) => `${v}%` : (yFormatter ?? formatCompact)}
@@ -74,7 +75,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
               offset={-5}
             />
           )}
@@ -87,7 +88,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />

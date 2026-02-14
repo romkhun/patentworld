@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 
 interface PWScatterChartProps {
   data: any[];
@@ -21,10 +22,12 @@ interface PWScatterChartProps {
   xFormatter?: (v: number) => string;
   yFormatter?: (v: number) => string;
   showMeanLines?: boolean;
+  hideAxes?: boolean;
+  hideGrid?: boolean;
 }
 
 export function PWScatterChart({
-  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter, showMeanLines = false,
+  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter, showMeanLines = false, hideAxes = false, hideGrid = false,
 }: PWScatterChartProps) {
   const fmtX = xFormatter ?? formatCompact;
   const fmtY = yFormatter ?? formatCompact;
@@ -50,29 +53,31 @@ export function PWScatterChart({
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ScatterChart margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
+        {!hideGrid && <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />}
         <XAxis
           dataKey={xKey}
           type="number"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={hideAxes ? false : { fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickFormatter={(v) => fmtX(v)}
           tickLine={false}
-          axisLine={{ stroke: 'hsl(var(--border))' }}
+          axisLine={hideAxes ? false : { stroke: 'hsl(var(--border))' }}
           name={xLabel ?? xKey}
-          label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -5, fontSize: 13, fill: 'hsl(var(--muted-foreground))' } : undefined}
+          label={!hideAxes && xLabel ? { value: xLabel, position: 'insideBottom', offset: -5, fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
+          hide={hideAxes}
         />
         <YAxis
           dataKey={yKey}
           type="number"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={hideAxes ? false : { fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickFormatter={(v) => fmtY(v)}
           tickLine={false}
           axisLine={false}
-          width={60}
+          width={hideAxes ? 0 : 60}
           name={yLabel ?? yKey}
-          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', offset: 10, fontSize: 13, fill: 'hsl(var(--muted-foreground))' } : undefined}
+          label={!hideAxes && yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', offset: 10, fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
+          hide={hideAxes}
         />
         <ZAxis range={[20, 20]} />
         {means && (
@@ -109,20 +114,24 @@ export function PWScatterChart({
           }}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />
-        {grouped.map((group) => (
-          <Scatter
-            key={group.name}
-            name={group.name}
-            data={group.data}
-            fill={group.color}
-            fillOpacity={data.length > 200 ? 0.4 : 0.7}
-            isAnimationActive={false}
-          />
-        ))}
+        {grouped.map((group, idx) => {
+          const shapes: ('circle' | 'square' | 'triangle' | 'diamond')[] = ['circle', 'square', 'triangle', 'diamond'];
+          return (
+            <Scatter
+              key={group.name}
+              name={group.name}
+              data={group.data}
+              fill={group.color}
+              fillOpacity={data.length > 200 ? 0.4 : 0.7}
+              shape={shapes[idx % shapes.length]}
+              isAnimationActive={false}
+            />
+          );
+        })}
       </ScatterChart>
     </ResponsiveContainer>
   );

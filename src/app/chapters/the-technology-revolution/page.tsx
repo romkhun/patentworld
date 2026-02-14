@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -51,6 +51,8 @@ export default function Chapter2() {
   const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
   const { data: scurves, loading: scL } = useChapterData<TechnologySCurve[]>('chapter2/technology_scurves.json');
 
+  const [cpcStackedPercent, setCpcStackedPercent] = useState(true);
+
   const sectorPivot = useMemo(() => sectors ? pivotBySector(sectors) : [], [sectors]);
   const sectionPivot = useMemo(() => cpcSections ? pivotBySection(cpcSections) : [], [cpcSections]);
 
@@ -58,6 +60,13 @@ export default function Chapter2() {
     if (!sectors) return [];
     return [...new Set(sectors.map((d) => d.sector))];
   }, [sectors]);
+
+  // CPC sections: merge D (Textiles) into "Other" for 7-category limit
+  const mainSectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y' && k !== 'D');
+  const sectionPivotMerged = useMemo(() => sectionPivot.map((row: any) => {
+    const merged = { ...row, Other: (row['D'] ?? 0) + (row['Y'] ?? 0) };
+    return merged;
+  }), [sectionPivot]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
 
@@ -142,7 +151,9 @@ export default function Chapter2() {
       </Narrative>
 
       <ChartContainer
+        id="fig-technology-revolution-wipo-sectors"
         title="Electrical Engineering Grew 14-Fold from 10,404 Patents in 1976 to 150,702 in 2024"
+        subtitle="Annual patent grants by WIPO technology sector, showing the structural crossover from chemistry to electrical engineering, 1976–2025"
         caption="Patent grants by WIPO sector (primary classification), 1976-2025. The data reveal a structural crossover around the mid-1990s, with electrical engineering overtaking first chemistry (1994) and then mechanical engineering (1995) to become the leading sector."
         insight="The mid-1990s crossover in which electrical engineering surpassed first chemistry and then mechanical engineering constitutes one of the most significant structural shifts in the history of patenting, driven by advances in computing and telecommunications."
         loading={secL}
@@ -178,22 +189,43 @@ export default function Chapter2() {
         </p>
       </KeyInsight>
 
+      <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto">
+        <span className="text-sm text-muted-foreground">View:</span>
+        <button
+          onClick={() => setCpcStackedPercent(true)}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Share (%)
+        </button>
+        <button
+          onClick={() => setCpcStackedPercent(false)}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${!cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Count
+        </button>
+      </div>
+
       <ChartContainer
+        id="fig-technology-revolution-cpc-sections"
         title="CPC Sections G and H Gained Roughly 30 Percentage Points of Share Over Five Decades"
+        subtitle="Share of utility patents by CPC section, toggling between percentage share and absolute count views, 1976–2025"
         caption="Share of utility patents by CPC section (primary classification), 1976-2025. Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity. The stacked area visualization reveals a sustained reallocation of patent activity toward digital technology sections."
         insight="Digital technology sections (G, H) gained roughly 30 percentage points of share over five decades, while chemistry and operations contracted proportionally. This redistribution is consistent with the economy-wide shift toward information-intensive industries."
         loading={cpcL}
         height={650}
+        interactive
+        statusText={cpcStackedPercent ? 'Showing percentage share' : 'Showing patent counts'}
       >
         <PWAreaChart
-          data={sectionPivot}
+          data={sectionPivotMerged}
           xKey="year"
-          areas={sectionKeys.map((key) => ({
+          areas={[...mainSectionKeys.map((key) => ({
             key,
             name: `${key}: ${CPC_SECTION_NAMES[key]}`,
             color: CPC_SECTION_COLORS[key],
-          }))}
-          stackedPercent
+          })), { key: 'Other', name: 'Other (D, Y)', color: '#9ca3af' }]}
+          stacked={!cpcStackedPercent}
+          stackedPercent={cpcStackedPercent}
         />
       </ChartContainer>
 
@@ -218,7 +250,9 @@ export default function Chapter2() {
 
       {treemap && treemap.length > 0 && (
         <ChartContainer
+          id="fig-technology-revolution-cpc-treemap"
           title="The Top 3 CPC Classes Account for 30-42% of Patents in Most Sections, Revealing Concentrated Innovation"
+          subtitle="Proportional treemap of patent volume by CPC technology class, sized by total grants and colored by CPC section"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while pharmaceutical and organic chemistry lead section C (Chemistry)."
           insight="Within each CPC section, patent activity is concentrated in a small number of dominant classes. This concentration pattern suggests that a limited set of technology subfields drives the majority of inventive output within each broader domain."
           loading={tmL}
@@ -241,7 +275,9 @@ export default function Chapter2() {
 
       {changeData.length > 0 && (
         <ChartContainer
+          id="fig-technology-revolution-cpc-class-change"
           title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Up to 84%"
+          subtitle="Percentage change in patent counts by CPC class, comparing 2000–2010 to 2015–2025, for classes with 100+ patents in each period"
           caption="Percent change in patent counts comparing 2000-2010 to 2015-2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
           insight="This pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
           loading={chgL}
@@ -278,7 +314,9 @@ export default function Chapter2() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-technology-revolution-diversity-index"
         title="Technology Diversity Declined from 0.848 in 1984 to 0.777 in 2009 Before Stabilizing at 0.789 by 2025"
+        subtitle="Technology diversity index (1 minus HHI of CPC section concentration), where higher values indicate more diverse patent output, 1976–2025"
         caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976-2025. Higher values indicate more diverse technology output. The index declined substantially as digital technologies concentrated activity, then stabilized after 2009."
         insight="Technology diversity declined substantially from its mid-1980s peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
         loading={divL}
@@ -331,7 +369,9 @@ export default function Chapter2() {
         </div>
       )}
       <ChartContainer
+        id="fig-technology-revolution-citation-decay"
         title="Electricity (H) and Physics (G) Patents Exhibit the Shortest Citation Half-Lives at 10.7 and 11.2 Years, vs. 15.6 Years for Human Necessities (A)"
+        subtitle="Percentage of total forward citations received at each post-grant year, by CPC section, measuring knowledge obsolescence rates"
         caption="Distribution of forward citations by years after grant, by CPC section. Each line indicates the percentage of a technology area's total citations arriving in each post-grant year. Sections H (Electricity) and G (Physics) exhibit the steepest early peaks, while Chemistry (C) and Human Necessities (A) demonstrate more gradual accumulation."
         insight="Rapidly evolving fields such as computing (H) and physics (G) exhibit short citation half-lives, indicating that knowledge in these domains becomes superseded more quickly. Chemistry and pharmaceutical innovations, by contrast, maintain relevance over substantially longer periods."
         loading={dcL}
@@ -372,7 +412,9 @@ export default function Chapter2() {
       </Narrative>
 
       <ChartContainer
+        id="fig-technology-revolution-scurve-maturity"
         title="Textiles Has Reached Over 97% of Estimated Carrying Capacity While Computing Sections Continue to Grow"
+        subtitle="Percentage of estimated logistic carrying capacity reached by each CPC section, measuring technology lifecycle maturity, 1976–2025"
         caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts, 1976-2025. Higher values indicate greater technological maturity as measured by proximity to the estimated saturation point."
         insight="Textiles (D) has reached over 97% of estimated carrying capacity, while Fixed Constructions (E) is approaching 60%, suggesting maturation. Physics (G) and Electricity (H), which encompass computing, AI, and semiconductors, appear to retain substantial growth potential."
         loading={scL}

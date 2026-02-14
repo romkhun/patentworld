@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { geoAlbersUsa, geoPath } from 'd3-geo';
 import { scaleQuantize } from 'd3-scale';
 import * as topojson from 'topojson-client';
+import chartTheme from '@/lib/chartTheme';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 
 const FIPS_TO_ABBREV: Record<string, string> = {
@@ -35,15 +36,7 @@ const STATE_NAMES: Record<string, string> = {
   WY: 'Wyoming',
 };
 
-const COLOR_STEPS = [
-  'hsl(202, 70%, 94%)',
-  'hsl(202, 70%, 84%)',
-  'hsl(202, 70%, 74%)',
-  'hsl(202, 70%, 64%)',
-  'hsl(202, 70%, 54%)',
-  'hsl(202, 70%, 44%)',
-  'hsl(202, 70%, 34%)',
-];
+const COLOR_STEPS = chartTheme.sequentialStops(7);
 
 interface PWChoroplethMapProps {
   data: Record<string, number>;
@@ -103,6 +96,32 @@ export function PWChoroplethMap({
 
   const handleMouseLeave = useCallback(() => setTooltip(null), []);
 
+  // Compute top 5 and bottom 5 states for direct labels
+  const labeledStates = useMemo(() => {
+    const entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
+    if (entries.length === 0) return [];
+    const top5 = entries.slice(0, 5).map(([abbrev]) => abbrev);
+    const bottom5 = entries.slice(-5).map(([abbrev]) => abbrev);
+    return [...new Set([...top5, ...bottom5])];
+  }, [data]);
+
+  // State centroid positions (approximate)
+  const stateCentroids = useMemo(() => {
+    if (!features.length) return new Map<string, [number, number]>();
+    const centroids = new Map<string, [number, number]>();
+    features.forEach((feature) => {
+      const fips = String(feature.id).padStart(2, '0');
+      const abbrev = FIPS_TO_ABBREV[fips];
+      if (abbrev && labeledStates.includes(abbrev)) {
+        const centroid = pathGen.centroid(feature);
+        if (centroid && !isNaN(centroid[0])) {
+          centroids.set(abbrev, centroid as [number, number]);
+        }
+      }
+    });
+    return centroids;
+  }, [features, labeledStates, pathGen]);
+
   if (!topo) return <div className="flex items-center justify-center h-full text-muted-foreground">Loading map...</div>;
 
   const [minVal, maxVal] = colorScale.domain();
@@ -128,6 +147,23 @@ export function PWChoroplethMap({
             />
           );
         })}
+        {/* Direct labels for top/bottom states */}
+        {Array.from(stateCentroids.entries()).map(([abbrev, [cx, cy]]) => (
+          <text
+            key={`label-${abbrev}`}
+            x={cx}
+            y={cy}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontSize={chartTheme.fontSize.annotation}
+            fontWeight={chartTheme.fontWeight.axisLabel}
+            fontFamily={chartTheme.fontFamily}
+            fill="hsl(var(--foreground))"
+            pointerEvents="none"
+          >
+            {abbrev}
+          </text>
+        ))}
       </svg>
       {tooltip && (
         <div

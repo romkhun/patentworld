@@ -2,10 +2,11 @@
 
 import { useState, useCallback } from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, Text,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 import type { ReferenceEvent } from '@/lib/referenceEvents';
 import { timeAnnotations, type TimeEventKey } from './TimeAnnotations';
 
@@ -14,6 +15,7 @@ interface LineConfig {
   name: string;
   color?: string;
   yAxisId?: 'left' | 'right';
+  dashPattern?: string;
 }
 
 interface PWLineChartProps {
@@ -27,9 +29,10 @@ interface PWLineChartProps {
   rightYFormatter?: (v: number) => string;
   referenceLines?: ReferenceEvent[];
   annotations?: TimeEventKey[];
+  showEndLabels?: boolean;
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines, annotations }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
   const [hoveredLine, setHoveredLine] = useState<string | null>(null);
 
@@ -40,13 +43,15 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
     setHoveredLine(null);
   }, []);
 
+  const rightMargin = showEndLabels ? 100 : (hasRightAxis ? 10 : 10);
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data} margin={{ top: 5, right: hasRightAxis ? 10 : 10, left: 10, bottom: 5 }}>
+      <LineChart data={data} margin={{ top: 5, right: rightMargin, left: 10, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey={xKey}
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
         >
@@ -55,13 +60,13 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
             />
           )}
         </XAxis>
         <YAxis
           yAxisId="left"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
           tickFormatter={yFormatter ?? formatCompact}
@@ -72,7 +77,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
               offset={-5}
             />
           )}
@@ -81,7 +86,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
           <YAxis
             yAxisId="right"
             orientation="right"
-            tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+            tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
             tickLine={false}
             axisLine={false}
             tickFormatter={rightYFormatter ?? formatCompact}
@@ -92,7 +97,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
                 value={rightYLabel}
                 angle={90}
                 position="insideRight"
-                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
                 offset={-5}
               />
             )}
@@ -108,7 +113,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
           }}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
           onMouseEnter={handleLegendEnter}
@@ -129,6 +134,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
           const color = line.color ?? CHART_COLORS[i % CHART_COLORS.length];
           const isHovered = hoveredLine === line.key || hoveredLine === line.name;
           const isDimmed = hoveredLine !== null && !isHovered;
+          const lastDataPoint = data[data.length - 1];
           return (
             <Line
               key={line.key}
@@ -136,13 +142,37 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               dataKey={line.key}
               name={line.name}
               stroke={color}
-              strokeWidth={isHovered ? 3 : 2}
-              strokeOpacity={isDimmed ? 0.2 : 1}
+              strokeWidth={isHovered ? 4 : 2}
+              strokeOpacity={isDimmed ? 0.15 : 1}
+              strokeDasharray={line.dashPattern}
               dot={false}
               activeDot={isDimmed ? false : { r: 5, stroke: '#fff', strokeWidth: 2, fill: color }}
               yAxisId={line.yAxisId ?? 'left'}
               isAnimationActive={false}
-            />
+            >
+              {showEndLabels && lastDataPoint?.[line.key] != null && (
+                <Label
+                  position="right"
+                  content={({ viewBox }: any) => {
+                    if (!viewBox || viewBox.y == null) return null;
+                    const label = line.name.length > 16 ? line.name.slice(0, 14) + '...' : line.name;
+                    return (
+                      <Text
+                        x={(viewBox.x ?? 0) + 8}
+                        y={viewBox.y}
+                        fill={isDimmed ? 'hsl(var(--muted-foreground))' : color}
+                        fontSize={chartTheme.fontSize.annotation}
+                        fontWeight={isHovered ? chartTheme.fontWeight.title : chartTheme.fontWeight.regular}
+                        dominantBaseline="central"
+                        textAnchor="start"
+                      >
+                        {label}
+                      </Text>
+                    );
+                  }}
+                />
+              )}
+            </Line>
           );
         })}
       </LineChart>

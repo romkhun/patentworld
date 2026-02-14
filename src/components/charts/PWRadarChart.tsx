@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
+import chartTheme from '@/lib/chartTheme';
 
 interface PWRadarChartProps {
   data: { dimension: string; [company: string]: number | string }[];
@@ -32,12 +33,12 @@ export function PWRadarChart({
         />
         <PolarAngleAxis
           dataKey="dimension"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
         />
         <PolarRadiusAxis
           angle={90}
           domain={[0, 100]}
-          tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickCount={5}
         />
         <Tooltip
@@ -48,7 +49,7 @@ export function PWRadarChart({
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />

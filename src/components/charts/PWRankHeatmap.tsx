@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import chartTheme from '@/lib/chartTheme';
 
 interface PWRankHeatmapProps {
   data: any[];
@@ -68,16 +69,15 @@ export function PWRankHeatmap({
 
   const cellColor = (rank: number | null) => {
     if (rank == null) return 'transparent';
-    // Darker blue = higher rank (lower number)
-    const intensity = 1 - (rank - 1) / maxRank;
-    const lightness = 92 - intensity * 52; // range: 40% (rank 1) to 92% (rank maxRank)
-    return `hsl(221, 70%, ${lightness}%)`;
+    // Darker = higher rank (lower number)
+    const t = 1 - (rank - 1) / maxRank;
+    return chartTheme.sequentialScale(t);
   };
 
   const textColor = (rank: number | null) => {
     if (rank == null) return 'hsl(var(--muted-foreground))';
-    const intensity = 1 - (rank - 1) / maxRank;
-    return intensity > 0.55 ? '#fff' : 'hsl(var(--foreground))';
+    const color = cellColor(rank);
+    return chartTheme.textColorForHsl(color);
   };
 
   return (
@@ -158,6 +158,18 @@ export function PWRankHeatmap({
           })}
         </tbody>
       </table>
+      {/* Gradient legend */}
+      <div className="flex items-center justify-center gap-2 mt-3 text-xs text-muted-foreground">
+        <span>#1</span>
+        <div
+          className="h-3 rounded-sm"
+          style={{
+            width: 120,
+            background: `linear-gradient(90deg, ${chartTheme.sequentialScale(1)}, ${chartTheme.sequentialScale(0.5)}, ${chartTheme.sequentialScale(0)})`,
+          }}
+        />
+        <span>#{maxRank}</span>
+      </div>
     </div>
   );
 }

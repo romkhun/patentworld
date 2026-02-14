@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { TOOLTIP_STYLE } from '@/lib/colors';
+import chartTheme from '@/lib/chartTheme';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type { ConvergenceEntry } from '@/lib/types';
 
@@ -36,9 +37,8 @@ export function PWConvergenceMatrix({ data, eras }: PWConvergenceMatrixProps) {
 
   const getColor = (pct: number) => {
     if (pct === 0) return 'hsl(var(--muted) / 0.3)';
-    const intensity = Math.pow(pct / maxPct, 0.6); // slight gamma for better visual spread
-    const lightness = 95 - intensity * 50; // 95 (lightest) to 45 (darkest)
-    return `hsl(221, 83%, ${lightness}%)`;
+    const t = Math.pow(pct / maxPct, 0.6); // slight gamma for better visual spread
+    return chartTheme.sequentialScale(t);
   };
 
   const getCellEntry = (row: string, col: string) => {
@@ -115,9 +115,7 @@ export function PWConvergenceMatrix({ data, eras }: PWConvergenceMatrixProps) {
                             : getColor(entry?.co_occurrence_pct ?? 0),
                           color: isDiagonal
                             ? 'transparent'
-                            : (entry?.co_occurrence_pct ?? 0) > maxPct * 0.6
-                              ? '#fff'
-                              : 'hsl(var(--foreground))',
+                            : chartTheme.textColorForHsl(getColor(entry?.co_occurrence_pct ?? 0)),
                           border: hoveredCell?.row === row && hoveredCell?.col === col
                             ? '2px solid hsl(var(--primary))'
                             : '1px solid transparent',

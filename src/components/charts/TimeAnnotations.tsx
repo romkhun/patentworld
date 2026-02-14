@@ -34,7 +34,7 @@ export const TIME_EVENTS: Record<TimeEventKey, TimeEvent> = {
 const ANNOTATION_STROKE = '#d1d5db';
 const ANNOTATION_DASH = '4 4';
 const ANNOTATION_WIDTH = 1;
-const ANNOTATION_FONT_SIZE = 10;
+const ANNOTATION_FONT_SIZE = 11;
 
 export function timeAnnotations(
   events: TimeEventKey[],

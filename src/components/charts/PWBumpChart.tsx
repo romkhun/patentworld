@@ -5,6 +5,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, Text,
 } from 'recharts';
 import { BUMP_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
+import chartTheme from '@/lib/chartTheme';
 
 interface BumpChartEntry {
   year: number;
@@ -26,8 +27,8 @@ function EndLabel({ viewBox, value, color, highlighted, onEnter, onLeave }: { vi
       x={(viewBox.x ?? 0) + 8}
       y={viewBox.y}
       fill={color}
-      fontSize={11}
-      fontWeight={highlighted ? 700 : 500}
+      fontSize={chartTheme.fontSize.annotation}
+      fontWeight={highlighted ? chartTheme.fontWeight.title : chartTheme.fontWeight.axisLabel}
       dominantBaseline="central"
       textAnchor="start"
       style={{ cursor: 'pointer' }}
@@ -68,17 +69,17 @@ export function PWBumpChart({ data, nameKey, yearKey, rankKey, maxRank = 15 }: P
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
         <XAxis
           dataKey="year"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
         />
         <YAxis
           reversed
           domain={[1, maxRank]}
           ticks={Array.from({ length: maxRank }, (_, i) => i + 1)}
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
-          label={{ value: 'Rank', angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: 12 } }}
+          label={{ value: 'Rank', angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel } }}
         />
         <Tooltip
           contentStyle={{ ...TOOLTIP_STYLE, maxWidth: '320px', fontSize: '12px' }}

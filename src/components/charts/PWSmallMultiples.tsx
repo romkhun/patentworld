@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 
 interface SmallMultiplesProps {
   panels: {
@@ -18,6 +19,8 @@ interface SmallMultiplesProps {
   referenceLabel?: string;
   columns?: number;
   color?: string;
+  yDomain?: [number, number];
+  panelColors?: string[];
 }
 
 export function PWSmallMultiples({
@@ -29,6 +32,8 @@ export function PWSmallMultiples({
   referenceLabel,
   columns = 4,
   color = CHART_COLORS[0],
+  yDomain,
+  panelColors,
 }: SmallMultiplesProps) {
   const fmt = yFormatter ?? formatCompact;
 
@@ -37,7 +42,7 @@ export function PWSmallMultiples({
       className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       style={columns > 4 ? { gridTemplateColumns: undefined } : undefined}
     >
-      {panels.map((panel) => (
+      {panels.map((panel, panelIdx) => (
         <div key={panel.name} className="rounded-lg border bg-card/50 p-3">
           <div className="mb-2 text-xs font-medium truncate" title={panel.name}>
             {panel.name}
@@ -48,18 +53,19 @@ export function PWSmallMultiples({
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} vertical={false} />
                 <XAxis
                   dataKey="x"
-                  tick={{ fontSize: 9, fill: 'hsl(var(--muted-foreground))' }}
+                  tick={{ fontSize: chartTheme.fontSize.smallMultiplesTick, fill: 'hsl(var(--muted-foreground))' }}
                   tickLine={false}
                   axisLine={false}
                   tickCount={3}
                 />
                 <YAxis
-                  tick={{ fontSize: 9, fill: 'hsl(var(--muted-foreground))' }}
+                  tick={{ fontSize: chartTheme.fontSize.smallMultiplesTick, fill: 'hsl(var(--muted-foreground))' }}
                   tickLine={false}
                   axisLine={false}
                   tickFormatter={fmt}
                   width={32}
                   tickCount={3}
+                  domain={yDomain}
                 />
                 <Tooltip
                   contentStyle={{ ...TOOLTIP_STYLE, fontSize: '12px', padding: '6px 10px' }}
@@ -90,7 +96,7 @@ export function PWSmallMultiples({
                 <Line
                   type="monotone"
                   dataKey="y"
-                  stroke={color}
+                  stroke={panelColors?.[panelIdx] ?? color}
                   strokeWidth={2}
                   dot={false}
                   activeDot={{ r: 3 }}

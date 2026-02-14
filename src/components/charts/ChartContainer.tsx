@@ -5,22 +5,26 @@ import { useInView } from '@/hooks/useInView';
 
 interface ChartContainerProps {
   title: string;
+  subtitle?: string;
   caption?: string;
   insight?: string;
   height?: number;
   loading?: boolean;
   wide?: boolean;
   ariaLabel?: string;
+  id?: string;
+  interactive?: boolean;
+  statusText?: string;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, caption, insight, height = 600, loading, wide, ariaLabel, children }: ChartContainerProps) {
+export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
 
   return (
     <figure
       ref={ref}
-      role="figure"
+      id={id}
       aria-label={ariaLabel ?? title}
       className={`fade-in-section relative my-16 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden max-w-[960px] mx-auto ${wide ? '-mx-4 lg:-mx-8 !max-w-none' : ''} ${inView ? 'is-visible' : ''}`}
     >
@@ -30,7 +34,11 @@ export function ChartContainer({ title, caption, insight, height = 600, loading,
         style={{ background: 'linear-gradient(90deg, hsl(var(--chart-1)), hsl(var(--chart-5)))' }}
         aria-hidden="true"
       />
-      <h3 className="mb-4 font-sans text-[15px] font-semibold leading-snug tracking-tight text-foreground/90">{title}</h3>
+      <h3 className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h3>
+      {subtitle && (
+        <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
+      )}
+      {!subtitle && <div className="mb-3" />}
       {loading || !inView ? (
         <div
           className="chart-container-inner flex flex-col gap-3 justify-center"
@@ -43,9 +51,17 @@ export function ChartContainer({ title, caption, insight, height = 600, loading,
           <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
         </div>
       ) : (
-        <div className="chart-container-inner w-full" style={{ height, minHeight: 250 }}>
+        <div
+          className="chart-container-inner w-full"
+          style={{ height, minHeight: 250 }}
+          role={interactive ? 'group' : 'img'}
+          aria-label={ariaLabel ?? title}
+        >
           {children}
         </div>
+      )}
+      {interactive && statusText && (
+        <p className="sr-only" aria-live="polite">{statusText}</p>
       )}
       {caption && (
         <figcaption className="mt-4 text-[13px] leading-relaxed text-muted-foreground/80">{caption}</figcaption>

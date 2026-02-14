@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -10,6 +10,7 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
+import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -54,6 +55,38 @@ export default function Chapter13() {
     return { prevalencePivot: pivoted, topicAreas: areas };
   }, [prevalence, definitions]);
 
+  const [topicView, setTopicView] = useState<'stacked' | 'multiples'>('stacked');
+
+  // Small multiples data for top 8 topics + Other
+  const { topicPanels, topicPanelColors } = useMemo(() => {
+    if (!prevalence || !definitions) return { topicPanels: [], topicPanelColors: [] };
+    const sorted = [...definitions].sort((a, b) => b.patent_count - a.patent_count);
+    const top8 = sorted.slice(0, 8);
+    const otherIds = new Set(sorted.slice(8).map((t) => t.id));
+    const years = [...new Set(prevalence.map((d) => d.year))].sort();
+
+    const panels = top8.map((t) => ({
+      name: t.name,
+      data: years.map((year) => {
+        const entry = prevalence.find((d) => d.year === year && d.topic === t.id);
+        return { x: year, y: (entry?.share ?? 0) * 100 };
+      }),
+    }));
+    // "Other" panel: sum of remaining topics
+    panels.push({
+      name: 'Other (17 topics)',
+      data: years.map((year) => {
+        const otherShare = prevalence
+          .filter((d) => d.year === year && otherIds.has(d.topic))
+          .reduce((s, d) => s + (d.share ?? 0), 0);
+        return { x: year, y: otherShare * 100 };
+      }),
+    });
+    const colors = top8.map((t) => TOPIC_COLORS[t.id % TOPIC_COLORS.length]);
+    colors.push('#9ca3af');
+    return { topicPanels: panels, topicPanelColors: colors };
+  }, [prevalence, definitions]);
+
   // Prepare CPC × Topic data: for top 8 topics (by patent count), show share per CPC section
   const { cpcBarData, cpcBarTopics } = useMemo(() => {
     if (!cpcMatrix || !definitions) return { cpcBarData: [], cpcBarTopics: [] };
@@ -86,6 +119,35 @@ export default function Chapter13() {
     if (!definitions) return [];
     return definitions.map((t) => t.name);
   }, [definitions]);
+
+  // Cluster centroids for UMAP overlay labels (top 8 topics only)
+  const umapCentroids = useMemo(() => {
+    if (!umapData || !definitions || umapData.length === 0) return [];
+    const sorted = [...definitions].sort((a, b) => b.patent_count - a.patent_count);
+    const top8Names = new Set(sorted.slice(0, 8).map((t) => t.name));
+    // Compute bounding box
+    const xs = umapData.map((d) => d.x);
+    const ys = umapData.map((d) => d.y);
+    const xMin = Math.min(...xs);
+    const xMax = Math.max(...xs);
+    const yMin = Math.min(...ys);
+    const yMax = Math.max(...ys);
+    // Group by topic, compute mean position, convert to percentage
+    const byTopic = new Map<string, { sx: number; sy: number; n: number }>();
+    umapData.forEach((d) => {
+      if (!top8Names.has(d.topic_name)) return;
+      const entry = byTopic.get(d.topic_name) ?? { sx: 0, sy: 0, n: 0 };
+      entry.sx += d.x;
+      entry.sy += d.y;
+      entry.n += 1;
+      byTopic.set(d.topic_name, entry);
+    });
+    return Array.from(byTopic.entries()).map(([name, { sx, sy, n }]) => ({
+      name,
+      cx: ((sx / n - xMin) / (xMax - xMin)) * 100,
+      cy: ((sy / n - yMin) / (yMax - yMin)) * 100,
+    }));
+  }, [umapData, definitions]);
 
   // Summary stats
   const totalPatents = definitions
@@ -138,21 +200,52 @@ export default function Chapter13() {
         </p>
       </Narrative>
 
+      <div className="my-4 flex items-center gap-2 max-w-[960px] mx-auto">
+        <span className="text-sm text-muted-foreground">View:</span>
+        <button
+          onClick={() => setTopicView('stacked')}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'stacked' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Stacked %
+        </button>
+        <button
+          onClick={() => setTopicView('multiples')}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'multiples' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Small Multiples
+        </button>
+      </div>
+
       <ChartContainer
+        id="fig-language-innovation-topic-prevalence"
+        subtitle="Share of patents belonging to each of 25 NMF-derived topics by year, revealing the shift toward computing and digital technology themes."
         title="Computing and Semiconductor Topics Grew From Approximately 12% to Over 33% of All Patents Since 1976"
         caption="Share of patents belonging to each of 25 NMF-derived topics, 1976–2025, sorted by total patent count. The most prominent trend is the expansion of computing, semiconductor, and communications topics, which grew from approximately 12% to over 33% of the total."
         insight="The language of innovation has shifted decisively toward computing and digital technology over 50 years. Topics related to software, semiconductors, and wireless communications now dominate patent abstracts."
         loading={prevL || defL}
-        height={650}
+        height={topicView === 'multiples' ? 550 : 650}
         wide
+        interactive
+        statusText={topicView === 'multiples' ? 'Showing top 8 topics + Other as small multiples' : 'Showing all 25 topics as stacked percentage'}
       >
-        <PWAreaChart
-          data={prevalencePivot}
-          xKey="year"
-          areas={topicAreas}
-          stackedPercent
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008] })}
-        />
+        {topicView === 'stacked' ? (
+          <PWAreaChart
+            data={prevalencePivot}
+            xKey="year"
+            areas={topicAreas}
+            stackedPercent
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008] })}
+          />
+        ) : (
+          <PWSmallMultiples
+            panels={topicPanels}
+            xLabel="Year"
+            yLabel="Share (%)"
+            yFormatter={(v) => `${v.toFixed(0)}%`}
+            columns={3}
+            panelColors={topicPanelColors}
+          />
+        )}
       </ChartContainer>
 
       {/* Topic definitions table */}
@@ -204,35 +297,50 @@ export default function Chapter13() {
           To visualize the full semantic landscape of patents, a stratified sample of 5,000 patents is projected
           from high-dimensional TF-IDF space into two dimensions using UMAP. Each point represents a patent,
           colored by its dominant topic. Clusters indicate families of related inventions, and overlapping regions
-          suggest technology convergence.
+          suggest technology convergence. Note that the axes of a UMAP projection are unitless — only the relative
+          distances and clustering patterns are interpretable, not the absolute positions.
         </p>
       </Narrative>
 
       <ChartContainer
+        id="fig-language-innovation-umap"
+        subtitle="UMAP projection of 5,000 patent abstracts from TF-IDF space into 2D, colored by dominant topic, revealing semantic clustering and overlap."
         title="UMAP Projection of 5,000 Patents Reveals 25 Distinct Technology Clusters With Meaningful Spatial Relationships"
-        caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. The projection reveals clear clustering by technology area, with computing and electronics topics grouped together and chemistry and biotechnology forming a separate cluster."
+        caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. Note: UMAP axes are unitless projections — only the relative distances between points are meaningful, not the absolute positions. Source: PatentsView / USPTO."
         insight="The UMAP projection reveals clear topic clusters with meaningful spatial relationships: computing and electronics topics cluster together, while chemistry and biotechnology form a distinct neighborhood. Patents bridging clusters often represent the most novel cross-domain inventions."
         loading={umapL || defL}
         height={650}
         wide
       >
-        <PWScatterChart
-          data={umapData ?? []}
-          xKey="x"
-          yKey="y"
-          colorKey="topic_name"
-          nameKey="patent_id"
-          categories={umapCategories}
-          colors={TOPIC_COLORS}
-          tooltipFields={[
-            { key: 'topic_name', label: 'Topic' },
-            { key: 'year', label: 'Year' },
-            { key: 'section', label: 'CPC Section' },
-            { key: 'patent_id', label: 'Patent' },
-          ]}
-          xLabel="UMAP-1"
-          yLabel="UMAP-2"
-        />
+        <div className="relative w-full h-full">
+          <PWScatterChart
+            data={umapData ?? []}
+            xKey="x"
+            yKey="y"
+            colorKey="topic_name"
+            nameKey="patent_id"
+            categories={umapCategories}
+            colors={TOPIC_COLORS}
+            tooltipFields={[
+              { key: 'topic_name', label: 'Topic' },
+              { key: 'year', label: 'Year' },
+              { key: 'section', label: 'CPC Section' },
+              { key: 'patent_id', label: 'Patent' },
+            ]}
+            hideAxes
+            hideGrid
+          />
+          {/* Cluster centroid labels */}
+          {umapCentroids.map(({ name, cx, cy }) => (
+            <div
+              key={name}
+              className="absolute pointer-events-none text-[10px] font-medium text-muted-foreground/70 whitespace-nowrap"
+              style={{ left: `${cx}%`, top: `${cy}%`, transform: 'translate(-50%, -50%)' }}
+            >
+              {name}
+            </div>
+          ))}
+        </div>
       </ChartContainer>
 
       <KeyInsight>
@@ -257,6 +365,8 @@ export default function Chapter13() {
       </Narrative>
 
       <ChartContainer
+        id="fig-language-innovation-topic-cpc"
+        subtitle="Share of patents in each CPC section belonging to the top 8 NMF topics, cross-tabulating text-derived themes with formal classification."
         title="Computing-Related Topics Appear Across All 8 CPC Sections, Confirming Their General-Purpose Nature"
         caption="Share (%) of patents in each CPC section belonging to each of the top 8 topics, ordered A through H. The most notable pattern is that computing and data-processing topics appear across nearly all sections, suggesting that digital technology has become a general-purpose innovation platform."
         insight="Topics related to computing and data processing appear across nearly all CPC sections, consistent with the characterization of digital technology as a general-purpose innovation platform that pervades virtually every industry."
@@ -286,6 +396,8 @@ export default function Chapter13() {
       </Narrative>
 
       <ChartContainer
+        id="fig-language-innovation-novelty"
+        subtitle="Median and average Shannon entropy of patent topic distributions by year, measuring thematic diversity as a proxy for novelty."
         title="Patent Novelty Rose 6.4% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With Steady Gains Since the 1990s"
         caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the 1990s suggests that modern inventions increasingly combine ideas from multiple technology domains, with acceleration during the 2010s."
         insight="Patent novelty has risen steadily since the 1990s, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the 2010s, coinciding with the rise of AI and other general-purpose technologies."
@@ -296,7 +408,7 @@ export default function Chapter13() {
           xKey="year"
           lines={[
             { key: 'median_entropy', name: 'Median Entropy', color: CHART_COLORS[0] },
-            { key: 'avg_entropy', name: 'Average Entropy', color: CHART_COLORS[2] },
+            { key: 'avg_entropy', name: 'Average Entropy', color: CHART_COLORS[2], dashPattern: '8 4' },
           ]}
           yLabel="Shannon Entropy (bits)"
           yFormatter={(v) => v.toFixed(2)}

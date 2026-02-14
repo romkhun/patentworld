@@ -318,6 +318,8 @@ export default function Chapter14() {
       )}
 
       <ChartContainer
+        id="fig-company-profiles-mortality-heatmap"
+        subtitle="Rank heatmap of top patent-holding companies across five decades, with darker cells indicating higher rank (more patents)."
         title="Only 9 of 50 Top Patent Filers Survived All 5 Decades, an 18% Cumulative Survival Rate"
         caption="Rank heatmap showing how top patent-holding companies shifted in ranking across decades. Darker cells indicate higher rank (more patents). The most notable pattern is the high degree of turnover, with most firms that dominated one era being displaced by new entrants in the next."
         insight="The high turnover in top rankings demonstrates that sustained innovation leadership is exceptionally rare. Most firms that dominated one era were displaced by new entrants in the subsequent decade."
@@ -485,6 +487,8 @@ export default function Chapter14() {
       </Narrative>
 
       <ChartContainer
+        id="fig-company-profiles-diversification"
+        subtitle="Shannon entropy across CPC subclasses over time for the 10 most diversified firms, measuring portfolio breadth."
         title="Mitsubishi Electric Leads 50 Firms With Shannon Entropy of 6.7 Across 229 CPC Subclasses"
         caption="Shannon entropy across CPC subclasses over time for the 10 most diversified patent filers. The data indicate that technology conglomerates maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization."
         insight="Technology conglomerates such as Samsung and Hitachi maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization, reflecting fundamentally different innovation strategies."
@@ -507,6 +511,8 @@ export default function Chapter14() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-company-profiles-diversity-vs-citations"
+        subtitle="Shannon entropy (portfolio breadth) vs. median 5-year forward citations for each company, testing the trade-off between diversification and quality."
         title="Across 47 Companies, Entropy Ranges From 3.1 to 6.7 With No Clear Citation Trade-Off"
         caption="Shannon entropy (x-axis) vs. median 5-year forward citations (y-axis) for the latest period. Each point represents a company. The scatter indicates no simple trade-off between breadth and quality, as some highly diversified firms also achieve strong citation impact."
         insight="The scatter plot reveals no simple trade-off between breadth and quality: some highly diversified firms also achieve strong citation impact, suggesting that diversification and research excellence are not mutually exclusive."
@@ -554,6 +560,8 @@ export default function Chapter14() {
       </Narrative>
 
       <ChartContainer
+        id="fig-company-profiles-concentration"
+        subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration by CPC section over time, measuring competitive dynamics."
         title="Section H (Electricity) Maintains the Second-Highest HHI at 102 While Section D Surged to 150 by 2025"
         caption="Herfindahl-Hirschman Index for each CPC technology section over time. Higher values indicate greater concentration of patent activity among fewer firms. The most notable pattern is the rising concentration in Sections H (Electricity) and G (Physics), while more applied fields such as E (Fixed Constructions) remain comparatively fragmented."
         insight="Rising concentration in Sections H (Electricity) and G (Physics) reflects the dominance of a few technology firms, while more applied fields such as E (Fixed Constructions) remain fragmented across many smaller filers."
@@ -602,6 +610,8 @@ export default function Chapter14() {
 
       {pivotCompanyData.length > 0 && (
         <ChartContainer
+          id="fig-company-profiles-pivot-detection"
+          subtitle="Jensen-Shannon divergence between consecutive 5-year CPC distribution windows, with spikes indicating significant portfolio reorientation."
           title={`${activePivotCompany} JSD Scores Flag Portfolio Shifts Among 51 Detected Pivots Across 20 Companies`}
           caption="Jensen-Shannon divergence between consecutive 5-year windows. Higher values indicate larger shifts in technology portfolio composition. Spikes in JSD correspond to periods when the company's innovation strategy underwent significant reorientation."
           insight="Elevated JSD scores identify periods when a company's innovation strategy underwent significant reorientation, often driven by acquisitions, market shifts, or deliberate R&D pivots."
@@ -706,6 +716,8 @@ export default function Chapter14() {
       )}
 
       <ChartContainer
+        id="fig-company-profiles-annual-output"
+        subtitle="Utility patents granted per year for the selected company, showing growth phases and strategic shifts over time."
         title={`${activeCompany || 'Loading...'} Annual Patent Output Across ${companySummary?.activeYears ?? ''} Active Years, Peaking at ${companySummary ? formatCompact(companySummary.peakCount) : '...'} in ${companySummary?.peakYear ?? '...'}`}
         caption="Utility patents granted per year for the selected company. Annual patent counts indicate growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
         insight="Annual patent counts reveal growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
@@ -722,6 +734,8 @@ export default function Chapter14() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-company-profiles-cpc-distribution"
+        subtitle="CPC section distribution over time for the selected company, showing how the technology portfolio has evolved."
         title={`${activeCompany || 'Loading...'} Technology Portfolio Spans 8 CPC Sections From ${companySummary?.firstYear ?? '...'} to ${companySummary?.lastYear ?? '...'}`}
         caption="CPC section distribution over time illustrating how the company's technology focus has evolved. Shifts in the distribution signal strategic pivots; a growing share in Section H (Electricity) or G (Physics) often indicates a move toward digital and computing technologies."
         insight="Shifts in the CPC distribution signal strategic pivots: a growing share in Section H (Electricity) or G (Physics) often indicates a transition toward digital and computing technologies."
@@ -743,6 +757,8 @@ export default function Chapter14() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-company-profiles-citations"
+        subtitle="Median 5-year forward citations per patent over time for the selected company, tracking research influence and impact trends."
         title={`${activeCompany || 'Loading...'} Median 5-Year Forward Citations Track Research Influence Over ${companySummary?.activeYears ?? ''} Years`}
         caption="Median 5-year forward citations per patent over time. Citation trends indicate whether a company's patents are becoming more or less influential; declining citations despite rising volume may suggest a shift toward defensive or incremental patenting."
         insight="Citation trends indicate whether a company's patents are becoming more or less influential. Declining citations despite rising volume may suggest a shift toward defensive or incremental patenting."
@@ -762,6 +778,8 @@ export default function Chapter14() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-company-profiles-team-size"
+        subtitle="Average team size and total active inventors over time for the selected company, indicating R&D investment and specialization trends."
         title={`${activeCompany || 'Loading...'} Team Size and Inventor Pool Show R&D Investment Trends From ${companySummary?.firstYear ?? '...'} to ${companySummary?.lastYear ?? '...'}`}
         caption="Average team size (left axis) and total active inventors (right axis) over time. Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with stable inventor counts indicate deepening specialization."
         insight="Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with stable inventor counts indicate deepening specialization."
@@ -782,6 +800,8 @@ export default function Chapter14() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-company-profiles-cpc-breadth"
+        subtitle="Number of distinct CPC subclasses with patent activity each year for the selected company, measuring portfolio diversification."
         title={`${activeCompany || 'Loading...'} CPC Subclass Breadth Tracks Diversification Over ${companySummary?.activeYears ?? ''} Active Years`}
         caption="Number of distinct CPC subclasses with patent activity each year. Rising CPC breadth indicates diversification of the innovation portfolio across more technology domains, while declining breadth suggests increasing specialization."
         insight="Rising CPC breadth indicates that a company is diversifying its innovation portfolio across more technology domains, while declining breadth suggests increasing specialization."

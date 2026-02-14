@@ -20,6 +20,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -66,6 +67,8 @@ export default function Chapter3() {
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
   const [selectedQualityFirm, setSelectedQualityFirm] = useState<string>('IBM');
+  const [selectedOrgSeries, setSelectedOrgSeries] = useState<Set<string>>(new Set());
+  const [selectedDivSeries, setSelectedDivSeries] = useState<Set<string>>(new Set());
 
   const typePivot = useMemo(() => types ? pivotByCategory(types) : [], [types]);
   const categories = useMemo(() => types ? [...new Set(types.map((d) => d.category))] : [], [types]);
@@ -100,6 +103,10 @@ export default function Chapter3() {
         .forEach((d) => { row[d.organization] = d.count; });
       return row;
     });
+    // Initialize series selector on first load
+    if (top10.length > 0 && selectedOrgSeries.size === 0) {
+      setTimeout(() => setSelectedOrgSeries(new Set(top10.slice(0, 5))), 0);
+    }
     return { orgOutputPivot: pivoted, orgOutputNames: top10 };
   }, [orgsTime]);
 
@@ -137,6 +144,9 @@ export default function Chapter3() {
       });
       return row;
     });
+    if (orgs.length > 0 && selectedDivSeries.size === 0) {
+      setTimeout(() => setSelectedDivSeries(new Set(orgs.slice(0, 5))), 0);
+    }
     return { diversityPivot: pivoted, diversityOrgs: orgs };
   }, [diversity]);
 
@@ -208,7 +218,9 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
+        id="fig-who-innovates-assignee-types"
         title="Corporate Assignees Grew From 94% to 99% of US Patent Grants Between 1976 and 2024"
+        subtitle="Share of utility patents by assignee category (corporate, individual, government, university), measured as percentage of annual grants, 1976–2025"
         caption="Share of utility patents by assignee category (primary assignee), 1976-2025. Corporate entities have progressively expanded their share, while individual inventors and government entities have declined proportionally."
         insight="The Bayh-Dole Act (1980) enabled university patenting, but the predominant trend is the rise of corporate R&amp;D as patent portfolios became strategic assets for cross-licensing and competitive signaling."
         loading={typL}
@@ -245,7 +257,9 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-who-innovates-top-assignees"
         title="IBM Leads With 161,888 Cumulative Grants, but Samsung Trails by Fewer Than 4,000 Patents"
+        subtitle="Top organizations ranked by cumulative utility patent grants, 1976–2025"
         caption="Organizations ranked by total utility patents granted, 1976-2025. Japanese and Korean firms occupy a majority of the top positions alongside American technology firms."
         insight="The ranking demonstrates the global nature of US patent activity. Japanese and Korean firms compete directly with American technology firms for the leading positions, reflecting the internationalization of technology-intensive industries."
         loading={topL}
@@ -285,7 +299,9 @@ export default function Chapter3() {
 
       {orgsTime && orgsTime.length > 0 && (
         <ChartContainer
+          id="fig-who-innovates-rank-heatmap"
           title="GE Held Rank 1 for 6 Consecutive Years (1980-1985) Before Japanese and Korean Firms Rose to Dominance"
+          subtitle="Annual grant rankings of the top 15 patent-holding organizations, with darker cells indicating higher rank, 1976–2025"
           caption="Rank heatmap depicting the annual grant rankings of the top 15 patent-holding organizations over time. Darker cells indicate higher rank. The visualization reveals sequential transitions in organizational leadership from American to Japanese to Korean firms."
           insight="Three distinct eras are evident: GE dominance (1970s-80s), the rise of Japanese electronics firms (1980s-90s), and the ascendancy of Korean firms (2000s-present). These shifts correspond to broader geopolitical changes in R&amp;D investment patterns."
           loading={orgL}
@@ -311,23 +327,41 @@ export default function Chapter3() {
       </KeyInsight>
 
       {orgOutputPivot.length > 0 && (
-        <ChartContainer
-          title="Samsung Peaked at 9,716 Annual Grants in 2024, Overtaking IBM Which Peaked at 9,257 in 2019"
-          caption="Annual patent grants for the 10 historically top-ranked organizations, 1976-2025. The data reveal divergent trajectories, with certain firms exhibiting sustained growth and others demonstrating gradual decline over the five-decade period."
-          insight="The divergence between IBM's declining trajectory and Samsung's sustained ascent illustrates how corporate patent strategies differ. IBM shifted toward services while Samsung invested extensively in hardware and electronics R&amp;D."
-          loading={orgL}
-        >
-          <PWLineChart
-            data={orgOutputPivot}
-            xKey="year"
-            lines={orgOutputNames.map((name, i) => ({
+        <>
+          <PWSeriesSelector
+            items={orgOutputNames.map((name, i) => ({
               key: name,
               name: name.length > 25 ? name.slice(0, 22) + '...' : name,
               color: CHART_COLORS[i % CHART_COLORS.length],
             }))}
-            yLabel="Patents"
+            selected={selectedOrgSeries}
+            onChange={setSelectedOrgSeries}
+            defaultCount={5}
           />
-        </ChartContainer>
+          <ChartContainer
+            id="fig-who-innovates-org-output-trends"
+            title="Samsung Peaked at 9,716 Annual Grants in 2024, Overtaking IBM Which Peaked at 9,257 in 2019"
+            subtitle="Annual patent grants for the 10 historically top-ranked organizations, with selectable series, 1976–2025"
+            caption="Annual patent grants for the 10 historically top-ranked organizations, 1976-2025. The data reveal divergent trajectories, with certain firms exhibiting sustained growth and others demonstrating gradual decline over the five-decade period."
+            insight="The divergence between IBM's declining trajectory and Samsung's sustained ascent illustrates how corporate patent strategies differ. IBM shifted toward services while Samsung invested extensively in hardware and electronics R&amp;D."
+            loading={orgL}
+            interactive
+            statusText={`Showing ${selectedOrgSeries.size} of ${orgOutputNames.length} organizations`}
+          >
+            <PWLineChart
+              data={orgOutputPivot}
+              xKey="year"
+              lines={orgOutputNames
+                .filter((name) => selectedOrgSeries.has(name))
+                .map((name, i) => ({
+                  key: name,
+                  name: name.length > 25 ? name.slice(0, 22) + '...' : name,
+                  color: CHART_COLORS[orgOutputNames.indexOf(name) % CHART_COLORS.length],
+                }))}
+              yLabel="Patents"
+            />
+          </ChartContainer>
+        </>
       )}
 
       <KeyInsight>
@@ -341,7 +375,9 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-who-innovates-domestic-vs-foreign"
         title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
+        subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976–2025"
         caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for approximately 51-56% of grants in the 2020s."
         insight="The shift to a foreign-majority patent system reflects the globalization of R&amp;D. The US patent system functions as the de facto global standard for protecting high-value inventions regardless of assignee nationality."
         loading={dvfL}
@@ -351,7 +387,7 @@ export default function Chapter3() {
           xKey="year"
           lines={[
             { key: 'US', name: 'US', color: CHART_COLORS[0] },
-            { key: 'Foreign', name: 'Foreign', color: CHART_COLORS[3] },
+            { key: 'Foreign', name: 'Foreign', color: CHART_COLORS[3], dashPattern: '8 4' },
           ]}
           yLabel="Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 1995, 2008] })}
@@ -368,7 +404,9 @@ export default function Chapter3() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-who-innovates-concentration"
         title="The Top 100 Organizations Hold 32-39% of Corporate Patents, a Share That Has Narrowed Since the 2010s"
+        subtitle="Share of corporate patents held by the top 10, 50, and 100 organizations, measured by 5-year period, 1976–2025"
         caption="Share of all corporate patents held by the top 10, 50, and 100 organizations, by 5-year period. The relative stability of these concentration ratios across decades suggests persistent structural features of the patent system."
         insight="Despite the entry of new organizations, the patent landscape remains dominated by large, well-resourced entities that invest systematically in R&amp;D. The stability of concentration ratios is consistent with the presence of substantial barriers to large-scale patenting."
         loading={concL}
@@ -378,8 +416,8 @@ export default function Chapter3() {
           xKey="period"
           lines={[
             { key: 'top10_share', name: 'Top 10', color: CHART_COLORS[0] },
-            { key: 'top50_share', name: 'Top 50', color: CHART_COLORS[1] },
-            { key: 'top100_share', name: 'Top 100', color: CHART_COLORS[2] },
+            { key: 'top50_share', name: 'Top 50', color: CHART_COLORS[1], dashPattern: '8 4' },
+            { key: 'top100_share', name: 'Top 100', color: CHART_COLORS[2], dashPattern: '2 4' },
           ]}
           yLabel="Share %"
           yFormatter={(v) => `${v.toFixed(1)}%`}
@@ -408,7 +446,9 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
+        id="fig-who-innovates-citation-impact"
         title="Microsoft Leads in Average Citations (30.7) While IBM's 5.6x Average-to-Median Ratio Reveals a Highly Skewed Portfolio"
+        subtitle="Average and median forward citations per patent for major assignees, based on patents granted through 2020"
         caption="Average and median forward citations per patent for major patent holders, limited to patents granted through 2020 to allow for citation accumulation. Organizations with large average-to-median ratios exhibit skewed citation distributions indicative of a small number of highly cited patents."
         insight="The divergence between average and median citations distinguishes portfolios characterized by a few highly cited patents (high average, lower median) from those with more uniformly impactful output."
         loading={citL}
@@ -465,10 +505,13 @@ export default function Chapter3() {
       )}
 
       <ChartContainer
+        id="fig-who-innovates-tech-evolution"
         title={`${activeOrg || 'Loading...'}: Technology Portfolio Composition Across 8 CPC Sections by 5-Year Period (1976-2025)`}
+        subtitle="CPC section share of patents by 5-year period for the selected organization, showing technology portfolio evolution"
         caption="CPC technology section shares by 5-year period. The chart illustrates how the selected organization's innovation portfolio has evolved across technology domains."
         insight="Substantial shifts in a firm's technology composition, such as Samsung's expansion of its already electronics-dominated portfolio into new technology areas, indicate deliberate strategic reorientation of R&amp;D investment."
         loading={tevL}
+        interactive={true}
       >
         <PWAreaChart
           data={techEvoPivot}
@@ -500,20 +543,36 @@ export default function Chapter3() {
           many technology areas, while lower entropy indicates specialization in a limited number of domains.
         </p>
       </Narrative>
+      <PWSeriesSelector
+        items={diversityOrgs.slice(0, 10).map((org, i) => ({
+          key: org,
+          name: org.length > 25 ? org.slice(0, 22) + '...' : org,
+          color: BUMP_COLORS[i % BUMP_COLORS.length],
+        }))}
+        selected={selectedDivSeries}
+        onChange={setSelectedDivSeries}
+        defaultCount={5}
+      />
       <ChartContainer
+        id="fig-who-innovates-portfolio-diversity"
         title="Portfolio Diversity Rose Across Leading Firms, With Mitsubishi Electric Reaching a Peak Entropy of 4.9"
+        subtitle="Shannon entropy of CPC subclass distribution per 5-year period for leading assignees, measuring technology portfolio breadth"
         caption="Shannon entropy across CPC subclasses per 5-year period for leading assignees. Higher values indicate broader technology portfolios. The general upward trajectory across most organizations suggests a trend toward greater technological breadth."
         insight="The upward trend in portfolio diversity suggests that competitive advantage may increasingly require spanning multiple technology domains rather than maintaining deep specialization in a single area."
         loading={divL}
+        interactive
+        statusText={`Showing ${selectedDivSeries.size} of ${diversityOrgs.slice(0, 10).length} organizations`}
       >
         <PWLineChart
           data={diversityPivot}
           xKey="period"
-          lines={diversityOrgs.slice(0, 10).map((org, i) => ({
-            key: org,
-            name: org.length > 25 ? org.slice(0, 22) + '...' : org,
-            color: BUMP_COLORS[i % BUMP_COLORS.length],
-          }))}
+          lines={diversityOrgs.slice(0, 10)
+            .filter((org) => selectedDivSeries.has(org))
+            .map((org) => ({
+              key: org,
+              name: org.length > 25 ? org.slice(0, 22) + '...' : org,
+              color: BUMP_COLORS[diversityOrgs.indexOf(org) % BUMP_COLORS.length],
+            }))}
           yLabel="Shannon Entropy"
           yFormatter={(v: number) => v.toFixed(1)}
         />
@@ -539,7 +598,9 @@ export default function Chapter3() {
         </p>
       </Narrative>
       <ChartContainer
+        id="fig-who-innovates-collaboration-network"
         title="Average Inventor Degree Rose 2.5x, From 2.7 in the 1980s to 6.8 in the 2020s"
+        subtitle="Average co-inventors per inventor and average team size by decade, measuring collaboration network connectivity"
         caption="Summary statistics of the inventor collaboration network by decade. Average degree measures the typical number of co-inventors per active inventor. Both metrics exhibit sustained increases, indicating a progressively more collaborative innovation ecosystem."
         insight="Rising average inventor degree reflects both larger team sizes and more extensive cross-organizational collaboration, resulting in a more interconnected innovation network over time."
         loading={nmL}
@@ -550,7 +611,7 @@ export default function Chapter3() {
             xKey="decade_label"
             lines={[
               { key: 'avg_degree', name: 'Avg Co-Inventors (Degree)', color: CHART_COLORS[0] },
-              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
+              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1], dashPattern: '8 4' },
             ]}
             yLabel="Count"
             yFormatter={(v: number) => v.toFixed(1)}
@@ -618,7 +679,9 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
+        id="fig-who-innovates-non-us-assignees"
         title="Japan Accounts for 1.4 Million US Patents Since 1976, With South Korea (359K) and China (222K) Rising Rapidly"
+        subtitle="Annual patent grants by primary assignee country/region, showing successive waves of international entry, 1976–2025"
         caption="Annual patent grants by primary assignee country/region, 1976-2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World. The stacked area chart reveals sequential waves of international entry into the US patent system."
         insight="Japan drove the first wave of non-US patenting in the 1980s-90s, particularly in automotive and electronics. South Korea emerged as a major presence in the 2000s, while China's share has grown rapidly since 2010, concentrated primarily in telecommunications and computing."
         loading={nuL}
@@ -665,12 +728,15 @@ export default function Chapter3() {
       </div>
 
       <ChartContainer
+        id="fig-who-innovates-quality-fan"
         title={`${selectedQualityFirm}: 35 of 48 Top Firms Saw Median Forward Citations Fall to Zero by 2019`}
+        subtitle={`5-year forward citation percentiles (P10–P90) for ${selectedQualityFirm} patents by grant year, with company selector`}
         caption={`5-year forward citation percentiles for ${selectedQualityFirm} patents by grant year (1976–2019). Bands show P25–P75 (dark) and P10–P90 (light). Solid line = median; dashed gray = system-wide median. Only years with ≥10 patents shown.`}
         insight="The width of the fan reveals the dispersion of quality within the firm's portfolio. A widening gap between the median and upper percentiles indicates increasing reliance on a small fraction of high-impact patents."
         loading={fqL}
         height={400}
         wide
+        interactive={true}
       >
         <PWFanChart
           data={selectedQualityData}
@@ -680,11 +746,14 @@ export default function Chapter3() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-who-innovates-blockbuster-dud"
         title={`${selectedQualityFirm}: Blockbuster Rate (Top 1% Patents) and Dud Rate (Zero Citations) Over Time`}
+        subtitle={`Annual share of top-1% blockbuster patents and zero-citation dud patents for ${selectedQualityFirm}, with company selector`}
         caption={`Annual blockbuster rate (patents in top 1% of year × CPC section cohort, blue) and dud rate (zero 5-year forward citations, red) for ${selectedQualityFirm}. Dashed line at 1% marks the expected blockbuster rate under uniform quality.`}
         loading={fqL}
         height={300}
         wide
+        interactive={true}
       >
         {selectedQualityData.length > 0 ? (
           <PWLineChart
@@ -696,7 +765,7 @@ export default function Chapter3() {
             xKey="year"
             lines={[
               { key: 'blockbuster_rate', name: 'Blockbuster Rate (%)', color: CHART_COLORS[0] },
-              { key: 'dud_rate', name: 'Dud Rate (%)', color: CHART_COLORS[3] },
+              { key: 'dud_rate', name: 'Dud Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
             ]}
             yLabel="Share of Patents (%)"
             yFormatter={(v) => `${v}%`}
@@ -705,11 +774,14 @@ export default function Chapter3() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-who-innovates-claims-distribution"
         title={`${selectedQualityFirm}: Claim Count Distribution by Grant Year (1976-2025)`}
+        subtitle={`Claim count percentiles (P25–P75) for ${selectedQualityFirm} patents by grant year, with company selector`}
         caption={`Claim count percentiles for ${selectedQualityFirm} patents by grant year. Bands show P25–P75 (dark). Dashed gray = system-wide median claims.`}
         loading={fcmL}
         height={350}
         wide
+        interactive={true}
       >
         <PWFanChart
           data={selectedClaimsData}
@@ -732,7 +804,9 @@ export default function Chapter3() {
       </Narrative>
 
       <ChartContainer
+        id="fig-who-innovates-quality-scatter"
         title="Amazon's 6.7% Blockbuster Rate Dwarfs the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
+        subtitle="Blockbuster rate vs. dud rate for the top 50 assignees (2010–2019), with bubble size proportional to patent count and color by primary CPC section"
         caption="Each bubble represents one of the top 50 assignees in the decade 2010–2019. X-axis: share of patents in the top 1% of their year × CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
         insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several Japanese electronics firms cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}

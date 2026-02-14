@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import { CPC_SECTION_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import chartTheme from '@/lib/chartTheme';
 
 interface BubbleDataPoint {
   company: string;
@@ -63,7 +64,7 @@ export function PWBubbleScatter({
         <XAxis
           dataKey="x"
           type="number"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
           tickFormatter={xFormatter}
@@ -73,13 +74,13 @@ export function PWBubbleScatter({
             value={xLabel}
             position="insideBottom"
             offset={-5}
-            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
           />
         </XAxis>
         <YAxis
           dataKey="y"
           type="number"
-          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
           tickFormatter={yFormatter}
@@ -91,7 +92,7 @@ export function PWBubbleScatter({
             angle={-90}
             position="insideLeft"
             offset={10}
-            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+            style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
           />
         </YAxis>
         <ZAxis

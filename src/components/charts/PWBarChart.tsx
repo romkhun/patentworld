@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 
 interface PWBarChartProps {
   data: any[];
@@ -65,7 +66,7 @@ export function PWBarChart({
           <>
             <XAxis
               type="number"
-              tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
               tickFormatter={yFormatter ?? formatCompact}
@@ -78,14 +79,14 @@ export function PWBarChart({
                   value={yLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
                 />
               )}
             </XAxis>
             <YAxis
               type="category"
               dataKey={xKey}
-              tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
               width={labelWidth}
@@ -95,7 +96,7 @@ export function PWBarChart({
                   value={xLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
                   offset={-5}
                 />
               )}
@@ -108,7 +109,7 @@ export function PWBarChart({
           <>
             <XAxis
               dataKey={xKey}
-              tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
             >
@@ -117,12 +118,12 @@ export function PWBarChart({
                   value={xLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
                 />
               )}
             </XAxis>
             <YAxis
-              tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
               tickFormatter={yFormatter ?? formatCompact}
@@ -133,7 +134,7 @@ export function PWBarChart({
                   value={yLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
                   offset={-5}
                 />
               )}
@@ -152,7 +153,7 @@ export function PWBarChart({
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />

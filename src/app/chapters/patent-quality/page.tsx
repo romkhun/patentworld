@@ -133,6 +133,8 @@ export default function Chapter9() {
       <SectionDivider label="Citation Impact" />
 
       <ChartContainer
+        id="fig-patent-quality-forward-citations"
+        subtitle="Average and median forward citations received within 5 years of grant, by grant year. The gap between the two measures reveals the skewness of the citation distribution."
         title="Average Forward Citations per Patent Rose from 2.5 to 6.4 While the Median Remained at 2, Revealing Growing Skewness"
         caption="This chart displays average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020). The persistent gap between average and median reveals a highly skewed distribution, with most patents receiving modest citations whereas a small fraction becomes heavily cited."
         loading={trL}
@@ -171,6 +173,8 @@ export default function Chapter9() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-patent-quality-backward-citations"
+        subtitle="Average and median backward citations (references to prior art) per utility patent by year, reflecting the expanding body of searchable prior art."
         title="Backward Citations Per Patent Have Increased from Approximately 5 in the 1970s to Around 20 in Recent Years"
         caption="This chart displays average and median backward citations (references to prior art) per utility patent from 1976 to 2025. The consistent upward trend reflects the expanding universe of searchable prior art and increasingly thorough examination and disclosure requirements."
         loading={trL}
@@ -202,6 +206,8 @@ export default function Chapter9() {
       <SectionDivider label="Scope & Breadth" />
 
       <ChartContainer
+        id="fig-patent-quality-scope"
+        subtitle="Average and median number of distinct CPC subclasses assigned per patent, measuring technological breadth over time."
         title="Average Patent Scope Grew from 1.8 to 2.5 CPC Subclasses as Technologies Became More Interdisciplinary"
         caption="This chart displays the average and median number of distinct CPC subclasses per patent, measuring technological breadth. The steady increase indicates growing convergence of once-separate technology domains, particularly in areas such as IoT, biotechnology, and AI."
         loading={trL}
@@ -243,6 +249,8 @@ export default function Chapter9() {
       </Narrative>
 
       <ChartContainer
+        id="fig-patent-quality-originality-generality"
+        subtitle="Average originality (diversity of backward citation fields) and generality (diversity of forward citation fields), measured as 1 minus the HHI of CPC sections."
         title="Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
         caption="This chart displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
         loading={ogL}
@@ -274,6 +282,8 @@ export default function Chapter9() {
       <SectionDivider label="Self-Citation" />
 
       <ChartContainer
+        id="fig-patent-quality-self-citation-rate"
+        subtitle="Average and median self-citation rate per patent (fraction of backward citations to the same assignee's earlier patents), by year."
         title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounded to 15% by the 2020s"
         caption="This chart displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
         loading={scL}
@@ -306,6 +316,8 @@ export default function Chapter9() {
       <SectionDivider label="Quality Across Sectors" />
 
       <ChartContainer
+        id="fig-patent-quality-claims-by-sector"
+        subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to show cross-sector convergence trends."
         title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Driving Cross-Sector Convergence"
         caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. The convergence of claim counts across sectors suggests a broad trend toward more detailed patent drafting."
         loading={bsL}
@@ -396,6 +408,8 @@ export default function Chapter9() {
         </p>
       </Narrative>
       <ChartContainer
+        id="fig-patent-quality-composite-index"
+        subtitle="Z-score normalized composite of forward citations, claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality."
         title="Chemistry (C) and Human Necessities (A) Patents Maintain the Highest Composite Quality Scores, While Electronics (H) and Physics (G) Rose from Negative to Positive Z-Scores Since the 1990s"
         caption="This chart displays a Z-score normalized composite index of forward citations (5-year window), claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality. Chemistry (C) and Human Necessities (A) patents consistently score highest, whereas Electronics (H) and Physics (G) have improved from negative to positive composite scores since the 1990s."
         loading={cqL}
@@ -438,6 +452,8 @@ export default function Chapter9() {
       </Narrative>
 
       <ChartContainer
+        id="fig-patent-quality-claims-by-country"
+        subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
         title="The United States Leads with 164,000 Patents and 18.4 Average Claims in the 2020s, While China's 19,200 Patents Average 14.7 Claims"
         caption="This chart displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented approach. The lower average claims from rapidly growing patent origins such as China are consistent with research on early-stage patent system development."
@@ -464,6 +480,8 @@ export default function Chapter9() {
       </Narrative>
 
       <ChartContainer
+        id="fig-patent-quality-self-citation-by-assignee"
+        subtitle="Self-citation rate (fraction of backward citations to same assignee) for the 20 most-cited assignees, revealing knowledge recycling patterns."
         title="Canon (47.6%), TSMC (38.4%), and Micron (25.3%) Exhibit the Highest Self-Citation Rates Among Top Assignees"
         caption="This chart displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Firms with deep, cumulative R&D programs, including IBM, Samsung, and semiconductor manufacturers, exhibit the highest self-citation rates."
         insight="Elevated self-citation rates among firms with cumulative R&D programs are consistent with long-term knowledge building on internal prior art, though strategic considerations may also contribute."
@@ -540,6 +558,8 @@ export default function Chapter9() {
       </Narrative>
 
       <ChartContainer
+        id="fig-patent-quality-firm-gini"
+        subtitle="Gini coefficient of forward citations within each firm's annual patent cohort, measuring how concentrated citation impact is across the portfolio."
         title="Within-Firm Citation Gini Coefficients Rose from 0.5 to Above 0.8 for Most Large Filers, Signaling Growing Reliance on Blockbuster Patents"
         caption="Each panel shows one firm's citation Gini coefficient by year (top 20 firms by recent Gini). Higher values indicate more concentrated citation impact within the firm's patent portfolio."
         insight="Most large patent filers exhibit Gini coefficients between 0.6 and 0.9, indicating that a small fraction of each firm's patents accounts for the majority of citation impact. Several firms show rising Gini trajectories, consistent with increasing reliance on blockbuster inventions."

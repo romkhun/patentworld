@@ -127,6 +127,8 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
+        id="fig-knowledge-network-citations-per-patent"
+        subtitle="Average and median backward citation counts per utility patent by grant year, showing the expanding knowledge base over time."
         title="Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023"
         caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
         loading={ciL}
@@ -168,6 +170,8 @@ export default function Chapter7() {
       <SectionDivider label="Citation Patterns" />
 
       <ChartContainer
+        id="fig-knowledge-network-citation-lag"
+        subtitle="Average and median time in years between a cited patent's grant date and the citing patent's grant date, by year."
         title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
         caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
         loading={laL}
@@ -206,6 +210,8 @@ export default function Chapter7() {
       <SectionDivider label="Government Funding" />
 
       <ChartContainer
+        id="fig-knowledge-network-gov-funded"
+        subtitle="Annual count of utility patents acknowledging government funding interest, tracking the impact of the 1980 Bayh-Dole Act."
         title="Government-Funded Patents Rose From 1,294 in 1980 to 8,359 in 2019 After the Bayh-Dole Act"
         caption="Number of utility patents acknowledging government funding interest, by year. A marked increase is evident after the 1980 Bayh-Dole Act, which permitted universities and small businesses to retain patent rights on federally funded inventions."
         loading={goL}
@@ -232,6 +238,8 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
+        id="fig-knowledge-network-gov-agencies"
+        subtitle="Federal agencies ranked by total number of associated government-interest patents across all years."
         title="HHS/NIH Leads With 55,587 Patents, Followed by Defense (43,736) and Energy (33,994)"
         caption="Federal agencies ranked by total number of associated patents (all time). The Department of Health and Human Services/NIH, Department of Defense, and Department of Energy account for the largest share of government-interest patents."
         loading={agL}
@@ -267,6 +275,8 @@ export default function Chapter7() {
 
       <SectionDivider label="Citation Lag by Technology Area" />
       <ChartContainer
+        id="fig-knowledge-network-lag-by-section"
+        subtitle="Median citation lag in years by CPC technology section and decade, revealing technology-specific differences in knowledge accumulation speed."
         title="Physics and Electricity Show 11-Year Median Lag in the 2020s vs. 17 Years for Chemistry"
         caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."
         loading={clsL}
@@ -326,6 +336,8 @@ export default function Chapter7() {
       </div>
 
       <ChartContainer
+        id="fig-knowledge-network-corporate-citation-flows"
+        subtitle="Directed citation flows among the top 30 patent filers shown as a chord diagram, with ribbon width proportional to citation volume."
         title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies (${selectedDecade})`}
         caption="Directed citation flows between the most prolific patent filers. Arc size represents total citations; ribbon width indicates flow volume. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others serve as integrators (drawing broadly from multiple sources)."
         insight="Citation flows reveal asymmetric knowledge dependencies. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others operate as integrators (drawing broadly from multiple sources)."
@@ -390,6 +402,8 @@ export default function Chapter7() {
       </Narrative>
 
       <ChartContainer
+        id="fig-knowledge-network-citation-half-life"
+        subtitle="Years until a firm's patents accumulate 50% of total forward citations, using patents 15+ years old to ensure complete citation windows."
         title="Citation Half-Lives Range From 6.3 Years (Huawei) to 14.3 Years (US Air Force)"
         caption="Years until a firm's patents accumulate 50% of their total forward citations. Only patents 15 or more years old are included to ensure a complete citation window. Pharmaceutical and chemical firms demonstrate longer half-lives, whereas electronics and IT firms exhibit shorter ones."
         insight="Pharmaceutical and chemical firms tend to exhibit longer citation half-lives, reflecting the gradual accumulation of citations in science-intensive fields. Electronics and IT firms demonstrate shorter half-lives, with citations peaking shortly after grant."

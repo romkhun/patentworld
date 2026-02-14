@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -16,6 +16,7 @@ import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -53,6 +54,8 @@ export default function Chapter6() {
   const { data: diffusionSummary } = useChapterData<{ tech_area: string; periods: { period: string; total_cities: number; total_patents: number }[] }[]>('chapter4/innovation_diffusion_summary.json');
   const { data: regionalSpec } = useChapterData<RegionalSpecialization[]>('chapter4/regional_specialization.json');
 
+  const [selectedCountrySeries, setSelectedCountrySeries] = useState<Set<string>>(new Set());
+
   const topStates = useMemo(() => {
     if (!states) return [];
     return states.map((d) => ({
@@ -71,7 +74,11 @@ export default function Chapter6() {
 
   const { pivoted: countryPivot, countries: topCountryNames } = useMemo(() => {
     if (!countries) return { pivoted: [], countries: [] };
-    return pivotCountries(countries);
+    const result = pivotCountries(countries);
+    if (result.countries.length > 0 && selectedCountrySeries.size === 0) {
+      setTimeout(() => setSelectedCountrySeries(new Set(result.countries.slice(0, 5))), 0);
+    }
+    return result;
   }, [countries]);
 
   const specByState = useMemo(() => {
@@ -173,6 +180,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-geography-state-choropleth"
+        subtitle="Total utility patents by primary inventor state (1976-2025), displayed as a choropleth map with darker shading for higher counts."
         title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States Combined (314,664)"
         caption="This choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
         insight="The coastal concentration of patent activity reflects the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
@@ -193,6 +202,8 @@ export default function Chapter6() {
       <SectionDivider label="State Rankings" />
 
       <ChartContainer
+        id="fig-geography-state-rankings"
+        subtitle="US states ranked by total utility patents from primary inventors (1976-2025)."
         title="California Accounts for Nearly One-Quarter (23.6%) of All US Patent Grants, 1976–2025"
         caption="This chart ranks US states by total utility patents attributed to primary inventors from 1976 to 2025. California leads by a substantial margin, followed by Texas, New York, Massachusetts, and Michigan."
         insight="California accounts for nearly one-quarter (23.6%) of all US patent activity, a concentration driven by the Silicon Valley ecosystem of venture capital, research universities, and technology firms."
@@ -228,6 +239,8 @@ export default function Chapter6() {
 
       {stateTimePivot.length > 0 && (
         <ChartContainer
+          id="fig-geography-state-trends"
+          subtitle="Annual patent grants for the top 10 states by total output, showing diverging trajectories over time."
           title="California's Patent Output Has Diverged Sharply from Other Leading States, Reaching 4.0x Texas by 2024"
           caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the early 1990s, with the gap widening in each subsequent decade."
           insight="California's accelerating divergence from other states since the 1990s is consistent with the compounding advantages characteristic of self-reinforcing innovation ecosystems."
@@ -261,6 +274,8 @@ export default function Chapter6() {
       <SectionDivider label="City Level" />
 
       <ChartContainer
+        id="fig-geography-city-rankings"
+        subtitle="US cities ranked by total utility patents from primary inventors (1976-2025), revealing finer-grained concentration patterns."
         title="San Jose (96,068), San Diego (70,186), and Austin (53,595) Lead All US Cities in Total Patent Output"
         caption="This chart ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
         insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national innovation output."
@@ -296,20 +311,36 @@ export default function Chapter6() {
 
       <SectionDivider label="International" />
 
+      <PWSeriesSelector
+        items={topCountryNames.map((name, i) => ({
+          key: name,
+          name,
+          color: CHART_COLORS[i % CHART_COLORS.length],
+        }))}
+        selected={selectedCountrySeries}
+        onChange={setSelectedCountrySeries}
+        defaultCount={5}
+      />
       <ChartContainer
+        id="fig-geography-country-trends"
+        subtitle="Annual US patent grants by primary inventor country for the top 15 countries, showing the evolving international composition of filings."
         title="Japan Leads Foreign Patent Filings with 1.45 Million, While China Surged from 299 (2000) to 30,695 (2024)"
         caption="This chart displays annual utility patent grants by primary inventor country for the top 8 countries by total output. Japan maintained the largest foreign share through the 1990s, while South Korea and China have demonstrated the most pronounced growth in the 2000s and 2010s respectively."
         insight="Japan's leading position among foreign filers reflects decades of sustained corporate research and development investment, while South Korea's rise is consistent with the expansion of firms such as Samsung and LG into global patent markets."
         loading={coL}
+        interactive
+        statusText={`Showing ${selectedCountrySeries.size} of ${topCountryNames.length} countries`}
       >
         <PWLineChart
           data={countryPivot}
           xKey="year"
-          lines={topCountryNames.map((name, i) => ({
-            key: name,
-            name,
-            color: CHART_COLORS[i % CHART_COLORS.length],
-          }))}
+          lines={topCountryNames
+            .filter((name) => selectedCountrySeries.has(name))
+            .map((name) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[topCountryNames.indexOf(name) % CHART_COLORS.length],
+            }))}
           yLabel="Patents"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
@@ -335,6 +366,8 @@ export default function Chapter6() {
 
       {specByState.length > 0 && (
         <ChartContainer
+          id="fig-geography-state-specialization"
+          subtitle="CPC technology section distribution by state, shown as 100% stacked bars to reveal distinctive regional specialization patterns."
           title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering vs. California's 65.1% in Physics and Electricity"
           caption="This chart displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
           insight="Geographic concentration of innovation creates self-reinforcing cycles, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
@@ -380,6 +413,8 @@ export default function Chapter6() {
 
       {mobilityTrend && mobilityTrend.length > 0 && (
         <ChartContainer
+          id="fig-geography-inventor-mobility-trend"
+          subtitle="Domestic and international inventor mobility rates over time, measured as the share of patents filed by inventors who changed location since their prior patent."
           title="International Inventor Mobility Rose from 1.3% (1980) to 5.1% (2024), Surpassing Domestic Rates of 3.5%"
           caption="This chart displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
           insight="Inventor mobility constitutes an important mechanism for knowledge diffusion, as mobile inventors carry tacit knowledge and professional networks from one region of concentrated inventive activity to another."
@@ -390,7 +425,7 @@ export default function Chapter6() {
             xKey="year"
             lines={[
               { key: 'domestic_mobility_pct', name: 'Domestic Mobility (% Interstate)', color: CHART_COLORS[0] },
-              { key: 'intl_mobility_pct', name: 'International Mobility (%)', color: CHART_COLORS[3] },
+              { key: 'intl_mobility_pct', name: 'International Mobility (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
             ]}
             yLabel="Percent"
             yFormatter={(v) => `${v.toFixed(1)}%`}
@@ -412,6 +447,8 @@ export default function Chapter6() {
 
       {topStateFlows.length > 0 && (
         <ChartContainer
+          id="fig-geography-state-flows"
+          subtitle="Top 30 state-to-state inventor migration corridors, measured by sequential patents filed from different states."
           title="California Accounts for 54.9% of All Interstate Inventor Migration, with 127,466 Inflows and 118,630 Outflows"
           caption="This chart displays the most common state-to-state inventor moves, based on sequential patents filed from different states. California-linked corridors dominate, reflecting the state's role as the primary hub for inventor talent flows."
           insight="The dominant migration corridors reveal the gravitational pull of major technology clusters, with California functioning as both the largest source and destination of inventor talent."
@@ -429,6 +466,8 @@ export default function Chapter6() {
 
       {countryFlows && countryFlows.length > 0 && (
         <ChartContainer
+          id="fig-geography-global-flows"
+          subtitle="Global inventor migration flows between countries, with arc width proportional to the volume of moves and country shading indicating total movement."
           title="The United States Is Involved in 77.6% of All International Inventor Migration Flows (509,639 of 656,397 Moves)"
           caption="This map displays global inventor migration flows between countries, with arc width representing the volume of moves and country shading indicating total inventor movement. The United States emerges as the central node, connecting East Asian, European, and other innovation ecosystems."
           insight="The United States functions as the primary global hub for inventor migration, connecting East Asian, European, and other innovation ecosystems through flows of researchers and engineers."

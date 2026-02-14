@@ -5,6 +5,7 @@ import { Treemap, ResponsiveContainer, Tooltip } from 'recharts';
 import { CPC_SECTION_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { formatCompact } from '@/lib/formatters';
+import chartTheme from '@/lib/chartTheme';
 import type { CPCTreemapEntry } from '@/lib/types';
 
 interface PWTreemapProps {
@@ -36,7 +37,7 @@ function CustomContent(props: TreemapContentProps) {
     <g>
       <rect x={x} y={y} width={width} height={height} fill={fill} fillOpacity={0.85} stroke="hsl(var(--background))" strokeWidth={1.5} rx={2} />
       {width > 40 && height > 24 && (
-        <text x={x + 4} y={y + 14} fill="#fff" fontSize={11} fontWeight={500}>
+        <text x={x + 4} y={y + 14} fill="#fff" fontSize={chartTheme.fontSize.annotation} fontWeight={chartTheme.fontWeight.axisLabel} fontFamily={chartTheme.fontFamily}>
           {label}
         </text>
       )}

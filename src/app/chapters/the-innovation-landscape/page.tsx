@@ -83,7 +83,9 @@ export default function Chapter1() {
       </Narrative>
 
       <ChartContainer
+        id="fig-innovation-landscape-annual-grants"
         title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
+        subtitle="Total patents granted annually by the USPTO, broken down by patent type (utility, design, plant, reissue), 1976–2025"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
         insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Notable disruptions include the 2008 financial crisis and the 2020 COVID-19 pandemic."
         loading={ppyL}
@@ -129,7 +131,9 @@ export default function Chapter1() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-innovation-landscape-claims-per-patent"
         title="Average Claims per Patent Doubled from 9.4 in 1976 to a Peak of 18.9 in 2005"
+        subtitle="Average and median number of claims per utility patent, measuring patent scope and complexity over time, 1976–2025"
         caption="Average and median number of claims per utility patent, 1976–2025. The relationship between mean and median has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
         insight="The relationship between average and median claims per patent has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
         loading={clL}
@@ -162,7 +166,9 @@ export default function Chapter1() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-innovation-landscape-grant-lag"
         title="Grant Pendency Peaked at 3.8 Years in 2010, Up from 1.2 Years in 1976"
+        subtitle="Average and median time from patent application filing to grant, measured in years, 1976–2025"
         caption="Average and median grant lag (time from application filing to patent issuance), 1976–2025, expressed in years. The late-2000s peak coincided with a surge in computing and telecommunications filings."
         insight="Grant pendency represents a significant cost of the patent system. Extended review periods create prolonged uncertainty for both applicants and potential competitors, distorting investment and commercialization decisions."
         loading={lagL}

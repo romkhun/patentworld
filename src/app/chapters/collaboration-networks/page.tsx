@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
@@ -22,6 +22,7 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { PWSankeyDiagram } from '@/components/charts/PWSankeyDiagram';
 import { PWRadarChart } from '@/components/charts/PWRadarChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import type {
   NetworkData, CoInventionRate, CoInventionBySection,
@@ -41,6 +42,7 @@ export default function Chapter6() {
   const { data: corpSpeed, loading: csL } = useChapterData<CorporateSpeed[]>('company/corporate_speed.json');
 
   const [radarCompanies, setRadarCompanies] = useState<string[]>([]);
+  const [strategyViewMode, setStrategyViewMode] = useState<'radar' | 'bar'>('radar');
 
   // Build radar chart data from strategy profiles
   const radarData = useMemo((): { dimension: string; [company: string]: number | string }[] => {
@@ -55,6 +57,16 @@ export default function Chapter6() {
       return row;
     });
   }, [strategyProfiles, radarCompanies]);
+
+  // Bar chart data for strategy profiles
+  const strategyBarData = useMemo(() => {
+    if (!radarData || radarData.length === 0) return [];
+    return radarData.map(row => {
+      const barRow: Record<string, any> = { dimension: row.dimension };
+      radarCompanies.forEach(c => { barRow[c] = row[c]; });
+      return barRow;
+    });
+  }, [radarData, radarCompanies]);
 
   // Initialize radar companies to first 2 when data loads
   useEffect(() => {
@@ -168,6 +180,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-firm-network"
+        subtitle="Co-patenting network among organizations, with node size representing patent count and edge width indicating shared patents."
         title="618 Organizations Form Distinct Industry Clusters in the Co-Patenting Network"
         caption="Co-patenting network among organizations with significant collaboration ties. Node size represents total patent count; edge width indicates the number of shared patents. The network exhibits dense intra-industry clustering with sparse inter-industry connections."
         insight="The prevalence of co-patenting is consistent with both the growing complexity of innovation and the strategic importance of inter-firm collaboration in technology development."
@@ -217,6 +231,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-inventor-network"
+        subtitle="Co-invention network among prolific inventors, with edges representing shared patents and node size indicating total patent count."
         title="632 Prolific Inventors Form 1,236 Co-Invention Ties in Fragmented Team Clusters"
         caption="Co-invention network among inventors with significant collaboration ties. Edges represent shared patents; node size indicates total patent count. The network is more fragmented than the organizational co-patenting network, with many small, tightly connected teams."
         insight="The increasing connectivity of the co-invention network suggests that knowledge may diffuse more rapidly, though it may simultaneously create path dependencies in innovation direction."
@@ -266,6 +282,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-co-invention-rates"
+        subtitle="Share of US patents co-invented with each partner country (1976-2025), measured as the percentage with at least one US and one foreign inventor."
         title="US-China Co-Invention Rates Have Grown Substantially, Surpassing 2% by 2025"
         caption="Share of US patents co-invented with each partner country, 1976-2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025."
         insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025, though growth rates moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
@@ -286,6 +304,8 @@ export default function Chapter6() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-collaboration-us-china-by-section"
+        subtitle="Annual count of US-China co-invented patents broken down by CPC technology section, shown as a stacked area chart."
         title="US-China Co-Invention Grew from 77 Patents in 2000 to 2,749 in 2024, Led by Electricity (H) and Physics (G)"
         caption="Annual count of US patents co-invented with Chinese inventors, disaggregated by CPC section. All CPC sections have grown over time, though growth rates moderated across some technology areas in recent years."
         insight="US-China collaboration has grown across most CPC technology sections. While growth rates moderated in some areas in recent years, most sections continued to expand, though chemistry (C) experienced a decline of approximately 33% between 2020 and 2023, reflecting evolving US-China research dynamics."
@@ -328,6 +348,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-talent-flows"
+        subtitle="Inventor movements between top 50 patent-filing organizations, based on consecutive patents with different assignees within 5 years."
         title="143,524 Inventor Movements Flow Among 50 Major Patent-Filing Organizations"
         caption="Movement of inventors between top patent-filing organizations, based on consecutive patents with different assignees (gap of 5 years or fewer). Blue nodes indicate net talent importers; red nodes indicate net exporters. The bidirectional nature of many flows suggests active talent cycling within industry clusters."
         insight="Large technology companies tend to be net talent importers, drawing inventors from smaller firms and universities. The bidirectional nature of many flows is consistent with active talent cycling within industry clusters."
@@ -356,6 +378,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-portfolio-overlap"
+        subtitle="UMAP projection of patent portfolio similarity among 248 companies, with proximity reflecting cosine similarity of CPC subclass distributions."
         title="248 Companies Cluster into 8 Industries by Patent Portfolio Similarity"
         caption="Each point represents a company; proximity reflects similarity in CPC subclass distributions, and color indicates industry cluster. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
         insight="Companies cluster by industry, though the boundaries are increasingly blurred. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
@@ -419,18 +443,51 @@ export default function Chapter6() {
         </div>
       )}
 
+      <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto">
+        <span className="text-sm text-muted-foreground">View:</span>
+        <button
+          onClick={() => setStrategyViewMode('radar')}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${strategyViewMode === 'radar' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Radar
+        </button>
+        <button
+          onClick={() => setStrategyViewMode('bar')}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${strategyViewMode === 'bar' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+        >
+          Bar
+        </button>
+      </div>
+
       <ChartContainer
+        id="fig-collaboration-strategy-profiles"
+        subtitle="Eight-dimensional innovation strategy profiles for top assignees, with each dimension normalized to a 0-100 scale for comparison."
         title="Corporate Innovation Strategies Diverge Across Eight Normalized Dimensions for 30 Top Assignees, with Scores Spanning 0 to 100"
         caption="Eight-dimensional strategy profile comparing selected companies, with all dimensions normalized to a 0-100 scale across the top 30 assignees. Divergent profiles indicate distinct strategic orientations between diversified conglomerates and focused technology leaders."
         insight="Companies exhibit distinctive strategy profiles. Some emphasize breadth and collaboration (diversified conglomerates), while others optimize for depth and defensiveness (focused technology leaders)."
         loading={spL}
         height={500}
+        interactive
+        statusText={`Showing ${strategyViewMode} view for ${radarCompanies.join(', ') || 'no companies'}`}
       >
         {radarData.length > 0 ? (
-          <PWRadarChart
-            data={radarData}
-            companies={radarCompanies}
-          />
+          strategyViewMode === 'radar' ? (
+            <PWRadarChart
+              data={radarData}
+              companies={radarCompanies}
+            />
+          ) : (
+            <PWBarChart
+              data={strategyBarData}
+              xKey="dimension"
+              bars={radarCompanies.map((c, i) => ({
+                key: c,
+                name: c,
+                color: CHART_COLORS[i % CHART_COLORS.length],
+              }))}
+              yLabel="Score (0-100)"
+            />
+          )
         ) : <div className="flex items-center justify-center h-full text-muted-foreground text-sm">Select companies above to compare</div>}
       </ChartContainer>
 
@@ -446,6 +503,8 @@ export default function Chapter6() {
       </Narrative>
 
       <ChartContainer
+        id="fig-collaboration-corporate-speed"
+        subtitle="Median days from application to patent grant for the top 8 filers by year, reflecting technology-specific pendency patterns."
         title="Grant Lag Spans 439 to 1,482 Days Across Top 8 Patent Filers"
         caption="Median number of days from application filing to patent grant for the top patent filers, by year. Software and electronics-focused firms tend to exhibit longer pendency periods, while companies filing primarily in mechanical and design categories demonstrate shorter grant lags."
         insight="Grant lag patterns reflect both the technology composition of a company's portfolio and its patent prosecution efficiency. Companies filing primarily in software and electronics tend to face longer pendency, whereas mechanical and design patents tend to proceed more rapidly."

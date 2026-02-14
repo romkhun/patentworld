@@ -253,6 +253,8 @@ export default function Chapter11() {
       <SectionDivider label="Growth Trajectory" />
 
       <ChartContainer
+        id="fig-ai-patents-annual-count"
+        subtitle="Annual count of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), tracking the growth trajectory of AI patenting."
         title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, a 5.7x Increase Driven by Deep Learning Advances"
         caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing."
         insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, driven by advances in deep learning frameworks, GPU computing, and large-scale data availability."
@@ -280,6 +282,8 @@ export default function Chapter11() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-ai-patents-share"
+        subtitle="AI patents as a percentage of all utility patents, showing the growing reallocation of inventive effort toward AI technologies."
         title="AI's Share of Total Patents Rose from 0.15% in 1976 to 9.4% in 2023, Indicating a Reallocation of Inventive Effort"
         caption="Percentage of all utility patents classified under AI-related CPC codes. The upward trend indicates that AI patenting growth is not merely tracking overall patent growth but represents a disproportionate concentration of inventive effort."
         insight="The growing share of AI patents among all patents demonstrates that AI growth is not merely tracking overall patent expansion; rather, it suggests a genuine reallocation of inventive effort toward AI technologies."
@@ -300,6 +304,8 @@ export default function Chapter11() {
       <SectionDivider label="AI Subfields" />
 
       <ChartContainer
+        id="fig-ai-patents-subfields"
+        subtitle="Patent counts by AI subfield (neural networks, machine learning, NLP, etc.) over time, based on specific CPC group codes within G06N."
         title="Neural Networks / Deep Learning Patents Surged from 175 in 2012 to 10,467 in 2023, Displacing Knowledge-Based Systems as the Dominant AI Subfield"
         caption="Patent counts by AI subfield over time, based on CPC classifications. The data reveal that neural networks/deep learning and machine learning have driven the recent growth, displacing knowledge-based systems that dominated through the 1990s."
         insight="The shift from expert systems to deep learning reflects fundamental changes in AI methodology, moving from hand-crafted rules to data-driven pattern recognition."
@@ -334,6 +340,8 @@ export default function Chapter11() {
       <SectionDivider label="Organizations" />
 
       <ChartContainer
+        id="fig-ai-patents-top-assignees"
+        subtitle="Organizations ranked by total AI-related patent count from 1976 to 2025, showing concentration among large technology firms."
         title="IBM (16,781), Google (7,775), and Samsung (6,195) Lead in Total AI Patent Volume, Reflecting the Resource-Intensive Nature of AI R&D"
         caption="Organizations ranked by total AI-related patents, 1976-2025. The data indicate a concentration among large technology firms with substantial computational infrastructure and data assets."
         insight="The dominance of large technology firms in AI patenting reflects the resource-intensive nature of AI R&D, which requires large-scale datasets, computing infrastructure, and specialized talent."
@@ -361,6 +369,8 @@ export default function Chapter11() {
 
       {orgRankData.length > 0 && (
         <ChartContainer
+          id="fig-ai-patents-org-rankings"
+          subtitle="Annual ranking of the top 15 organizations by AI patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="7 Firms Exceeded 400 AI Patents in 2024, Up From 1 in 2000, as Multiple Firms Converged at the Top After 2012"
           caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal rapid convergence of multiple firms since 2012 as advances in deep learning attracted investment from across technology sectors."
           insight="The rapid convergence of multiple firms at the top since 2012 reflects intensifying competitive dynamics in AI capabilities, as the deep learning transformation attracted substantial investment from firms across technology sectors."
@@ -395,6 +405,8 @@ export default function Chapter11() {
       <SectionDivider label="Inventors" />
 
       <ChartContainer
+        id="fig-ai-patents-top-inventors"
+        subtitle="Primary inventors ranked by total AI-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
         title="The Top 10 AI Inventors Hold 1,943 Patents, Accounting for 35% of Output Among the Most Prolific Cohort"
         caption="Primary inventors ranked by total AI-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total AI patent output."
         insight="The concentration of AI patenting among a small cohort of prolific inventors mirrors the broader superstar pattern in innovation, where a few highly productive individuals account for a disproportionate share of output."
@@ -423,6 +435,8 @@ export default function Chapter11() {
       <SectionDivider label="Geography" />
 
       <ChartContainer
+        id="fig-ai-patents-by-country"
+        subtitle="Countries ranked by total AI-related patents based on primary inventor location, showing geographic distribution of AI innovation."
         title="The United States Accounts for 56% of Global AI Patents, Followed by Japan at 12% and China at 6%"
         caption="Countries ranked by total AI-related patents based on primary inventor location. The United States maintains a substantial lead, while the strong presence of Japan, China, and South Korea indicates significant Asian investment in AI-driven electronics and consumer technology."
         insight="The United States lead in AI patenting reflects its concentration of major AI research laboratories and technology firms, while the strong presence of Japan, China, and South Korea indicates substantial Asian investment in AI-driven electronics and consumer technology."
@@ -449,6 +463,8 @@ export default function Chapter11() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-ai-patents-by-state"
+        subtitle="US states ranked by total AI-related patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California Produces 38% of US AI Patents, Reflecting Strong Agglomeration Effects"
         caption="US states ranked by total AI-related patents based on primary inventor location. California's substantial lead is consistent with agglomeration effects, where proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         insight="California's dominance in AI patents is consistent with strong agglomeration effects: proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
@@ -477,6 +493,8 @@ export default function Chapter11() {
       <SectionDivider label="Quality Indicators" />
 
       <ChartContainer
+        id="fig-ai-patents-quality"
+        subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for AI patents by year, measuring quality trends."
         title="AI Patent Technology Scope Rose from 1.69 in 1990 to 3.21 in 2023, Suggesting Growing Interdisciplinarity"
         caption="Average claims, backward citations, and technology scope for AI-related patents by year. The most notable pattern is the upward trend in backward citations and technology scope, suggesting that AI patents are becoming increasingly interconnected and interdisciplinary."
         insight="Rising backward citations and technology scope suggest that AI patents are becoming more interconnected and interdisciplinary, consistent with the expanding role of AI as a general-purpose technology."
@@ -507,6 +525,8 @@ export default function Chapter11() {
       </KeyInsight>
 
       <ChartContainer
+        id="fig-ai-patents-team-size"
+        subtitle="Average number of named inventors per AI-related patent by year, reflecting the growing complexity and multidisciplinarity of AI research."
         title="Average AI Patent Team Size Grew from 2.0 in 1976 to 3.5 in 2025, Indicating Growing Research Complexity"
         caption="Average number of inventors per AI-related patent by year. The upward trend is consistent with the interpretation that modern AI research requires expertise spanning machine learning, domain knowledge, hardware optimization, and software engineering."
         insight="Growing team sizes reflect the increasing complexity of AI research, which now necessitates expertise spanning machine learning, domain knowledge, hardware optimization, and software engineering."
@@ -596,6 +616,8 @@ export default function Chapter11() {
         </p>
       </Narrative>
       <ChartContainer
+        id="fig-ai-patents-gpt-diffusion"
+        subtitle="Percentage of AI patents co-classified with non-AI CPC sections, measuring AI's diffusion into healthcare, manufacturing, and other domains."
         title="AI Patent Co-Occurrence with Manufacturing CPC Codes Rose from 4% to 11%, and Healthcare from 4% to 9%, Since 1990"
         caption="Percentage of AI patents that also carry CPC codes from each non-AI section (G excluded). Rising lines indicate AI diffusing into that sector. The most notable pattern is the increasing co-occurrence with Human Necessities (Section A, encompassing healthcare) and Performing Operations (Section B, encompassing manufacturing)."
         insight="The presence of AI across multiple CPC sections is consistent with its characterization as a general-purpose technology, comparable to electricity or computing in earlier eras. The rising co-occurrence with healthcare and manufacturing CPC codes suggests expanding real-world applications of AI."
@@ -642,6 +664,8 @@ export default function Chapter11() {
       </Narrative>
 
       <ChartContainer
+        id="fig-ai-patents-team-comparison"
+        subtitle="Average inventors per patent for AI vs. non-AI utility patents by year, showing the widening complexity gap between the two categories."
         title="AI Patents Consistently Involve Larger Teams Than Non-AI Patents, With the Gap Widening from 0.08 to 0.31 Inventors Since 2010"
         caption="Average number of inventors per patent for AI-related vs. non-AI utility patents, 1976–2025. The data indicate that AI patents consistently involve larger teams, and the gap has widened since 2010, reflecting the increasing complexity of AI systems."
         insight="AI patents consistently involve larger teams than non-AI patents, and the gap has widened since 2010. This pattern reflects the increasing complexity of AI systems, which require expertise spanning machine learning, domain knowledge, hardware, and software engineering."
@@ -660,6 +684,8 @@ export default function Chapter11() {
       </ChartContainer>
 
       <ChartContainer
+        id="fig-ai-patents-assignee-type"
+        subtitle="Distribution of AI patents by assignee type (corporate, university, government, individual) over time, showing the intensifying corporate share."
         title="Corporate Assignees Account for 99% of AI Patents, With Volume Growing 8x Since 2010"
         caption="Distribution of AI patent assignees by type (corporate, university, government, individual) over time. The data reveal that the corporate share has intensified since 2010 as large technology firms expanded their AI research divisions, while university AI patenting has grown in absolute terms but declined as a proportion."
         insight="Corporate assignees have dominated AI patenting throughout its history, and the corporate share has intensified since 2010 as large technology companies expanded their AI research divisions. University AI patenting has grown in absolute terms but has declined as a share."
