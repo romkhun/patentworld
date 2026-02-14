@@ -30,7 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter15() {
+export default function Chapter13() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('cyber/cyber_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('cyber/cyber_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('cyber/cyber_top_assignees.json');
@@ -184,7 +184,7 @@ export default function Chapter15() {
   return (
     <div>
       <ChapterHeader
-        number={15}
+        number={13}
         title="Cybersecurity"
         subtitle="Defending digital infrastructure through innovation"
       />
@@ -199,7 +199,7 @@ export default function Chapter15() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cybersecurity patenting traces the escalating arms race between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: cryptographic methods that once dominated have given way to a diversified portfolio spanning network security, authentication, and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/innovation-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation dynamics</Link> chapter.
+          Cybersecurity patenting traces the escalating arms race between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: cryptographic methods that once dominated have given way to a diversified portfolio spanning network security, authentication, and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> chapter.
         </p>
       </aside>
 
@@ -732,7 +732,7 @@ export default function Chapter15() {
       </KeyInsight>
 
       <Narrative>
-        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
+        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
       </Narrative>
 
       <DataNote>
@@ -748,8 +748,8 @@ export default function Chapter15() {
         Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={15} />
-      <ChapterNavigation currentChapter={15} />
+      <RelatedChapters currentChapter={13} />
+      <ChapterNavigation currentChapter={13} />
     </div>
   );
 }

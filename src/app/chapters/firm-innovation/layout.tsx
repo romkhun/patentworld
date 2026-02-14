@@ -1,6 +1,6 @@
 import { chapterMetadata, chapterJsonLd } from '@/lib/seo';
 
-const SLUG = 'who-innovates';
+const SLUG = 'firm-innovation';
 export const metadata = chapterMetadata(SLUG);
 
 export default function Layout({ children }: { children: React.ReactNode }) {

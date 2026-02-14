@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter21() {
+export default function Chapter19() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('3dprint/3dprint_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('3dprint/3dprint_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('3dprint/3dprint_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter21() {
   return (
     <div>
       <ChapterHeader
-        number={21}
+        number={19}
         title="3D Printing & Additive Manufacturing"
         subtitle="Layer-by-layer revolution in manufacturing"
       />
@@ -730,7 +730,7 @@ export default function Chapter21() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>.
+        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         The next chapter examines <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain and distributed ledger technology</Link>, a domain that, like 3D printing, experienced a rapid expansion in patent filings driven by speculative enthusiasm and the expiration of foundational intellectual property.
       </Narrative>
 
@@ -745,8 +745,8 @@ export default function Chapter21() {
         co-occurrence of AM CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={21} />
-      <ChapterNavigation currentChapter={21} />
+      <RelatedChapters currentChapter={19} />
+      <ChapterNavigation currentChapter={19} />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWTreemap } from '@/components/charts/PWTreemap';
+import { PWConvergenceMatrix } from '@/components/charts/PWConvergenceMatrix';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -22,7 +23,7 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { formatCompact } from '@/lib/formatters';
-import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry, TechnologyHalfLife, TechnologyDecayCurve, TechnologySCurve } from '@/lib/types';
+import type { SectorPerYear, CPCSectionPerYear, CPCClassChange, TechDiversity, CPCTreemapEntry, TechnologyHalfLife, TechnologyDecayCurve, TechnologySCurve, HHIBySection, ConvergenceEntry, GrantLagBySector } from '@/lib/types';
 
 function pivotBySector(data: SectorPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -42,6 +43,17 @@ function pivotBySection(data: CPCSectionPerYear[]) {
   });
 }
 
+function pivotGrantLag(data: GrantLagBySector[]) {
+  const periods = [...new Set(data.map((d) => d.period))].sort();
+  return periods.map((period) => {
+    const row: any = { period: `${period}s` };
+    data.filter((d) => d.period === period).forEach((d) => {
+      row[d.sector] = d.avg_lag_days;
+    });
+    return row;
+  });
+}
+
 export default function Chapter2() {
   const { data: sectors, loading: secL } = useChapterData<SectorPerYear[]>('chapter2/wipo_sectors_per_year.json');
   const { data: cpcSections, loading: cpcL } = useChapterData<CPCSectionPerYear[]>('chapter2/cpc_sections_per_year.json');
@@ -51,6 +63,9 @@ export default function Chapter2() {
   const { data: halfLife } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
   const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
   const { data: scurves, loading: scL } = useChapterData<TechnologySCurve[]>('chapter2/technology_scurves.json');
+  const { data: hhiData, loading: hhiL } = useChapterData<HHIBySection[]>('chapter10/hhi_by_section.json');
+  const { data: convergenceData, loading: conL } = useChapterData<ConvergenceEntry[]>('chapter10/convergence_matrix.json');
+  const { data: grantLag, loading: glL } = useChapterData<GrantLagBySector[]>('chapter7/grant_lag_by_sector.json');
 
   const [cpcStackedPercent, setCpcStackedPercent] = useState(true);
 
@@ -118,6 +133,35 @@ export default function Chapter2() {
     }));
   }, [scurves]);
 
+  // Pivot HHI data: one line per CPC section over time
+  const hhiPivot = useMemo(() => {
+    if (!hhiData) return [];
+    const periods = [...new Set(hhiData.map((d) => d.period))].sort();
+    return periods.map((period) => {
+      const row: Record<string, any> = { period };
+      hhiData.filter((d) => d.period === period).forEach((d) => {
+        row[d.section] = d.hhi;
+      });
+      return row;
+    });
+  }, [hhiData]);
+
+  const hhiSections = useMemo(() => {
+    if (!hhiData) return [];
+    return [...new Set(hhiData.filter((d) => d.section !== 'Overall').map((d) => d.section))].sort();
+  }, [hhiData]);
+
+  const convergenceEras = useMemo(() => {
+    if (!convergenceData) return [];
+    return [...new Set(convergenceData.map((d) => d.era))].sort();
+  }, [convergenceData]);
+
+  const lagPivot = useMemo(() => grantLag ? pivotGrantLag(grantLag) : [], [grantLag]);
+  const grantLagSectorNames = useMemo(() => {
+    if (!grantLag) return [];
+    return [...new Set(grantLag.map((d) => d.sector))];
+  }, [grantLag]);
+
   return (
     <div>
       <ChapterHeader
@@ -131,14 +175,19 @@ export default function Chapter2() {
         <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now constitute over 57% of all patent grants, an increase from about 27% in the 1970s.</li>
         <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), with growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by nearly 84%.</li>
         <li>Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.</li>
+        <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
+        <li>Despite concentration in digital fields, patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold.</li>
+        <li>Citation half-lives vary by more than five years across technology fields, with Electricity (H) at 10.7 years and Human Necessities (A) at 15.6 years, revealing substantially different rates of knowledge obsolescence.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The fivefold expansion in patent output documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at an unprecedented pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio, a structural shift that also shapes the organizational landscape examined in <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link>
+          The fivefold expansion in patent output documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> masks a fundamental realignment in the composition of American invention. A pair of mid-1990s crossover events, in which electrical engineering overtook both chemistry and mechanical engineering in annual grant volume, signaled the transition from the mechanical-chemical era to the digital era. The consequences of this transition have been far-reaching: technology classes centered on data processing and digital communication have expanded by orders of magnitude, while analog-era categories have contracted sharply, a pattern consistent with Schumpeterian creative destruction operating at an unprecedented pace. The resulting concentration of inventive activity in computing-related fields has measurably reduced the diversity of the patent portfolio. At the same time, traditional technology boundaries have become increasingly permeable, with the Physics-Electricity convergence pair now accounting for over a third of all cross-section patents. Yet patent markets remain unconcentrated across all technology sectors, and field-specific metrics such as citation half-lives and grant lags reveal markedly different innovation dynamics across domains. These structural shifts also shape the organizational landscape examined in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
+
+      {/* ── Section 1: Overview of Technology Fields ── */}
 
       <Narrative>
         <p>
@@ -146,6 +195,8 @@ export default function Chapter2() {
           decades, the balance of inventive activity has shifted substantially from traditional
           industries such as chemistry and mechanical engineering toward{' '}
           <StatCallout value="electrical engineering and computing" />.
+          This section surveys the landscape at two complementary levels of granularity: the five WIPO
+          technology sectors and the eight primary CPC classification sections.
         </p>
       </Narrative>
 
@@ -271,7 +322,19 @@ export default function Chapter2() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Structural Change" />
+      {/* ── Section 2: Trends by Field ── */}
+
+      <SectionDivider label="Structural Change and Growth Dynamics" />
+
+      <Narrative>
+        <p>
+          The overview of technology fields reveals a system transformed by the digital transition. This
+          section examines the dynamics of that transformation in greater detail: which specific technology
+          classes have grown or declined most dramatically, how overall diversity has responded to the
+          concentration of activity in digital fields, and where each technology domain stands within its
+          innovation lifecycle.
+        </p>
+      </Narrative>
 
       {changeData.length > 0 && (
         <ChartContainer
@@ -338,77 +401,11 @@ export default function Chapter2() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="The Half-Life of Technology" />
       <Narrative>
         <p>
-          The rate at which a technology becomes obsolete can be measured through citation dynamics.
-          By examining when a patent receives the majority of its forward citations, it is possible to
-          estimate the &quot;half-life&quot; of knowledge in each technology area, defined as the time required
-          for 50% of all citations to accumulate. Shorter half-lives indicate rapidly evolving fields,
-          while longer half-lives suggest foundational knowledge with lasting relevance.
-        </p>
-      </Narrative>
-      {halfLife && halfLife.length > 0 && (
-        <div className="max-w-2xl mx-auto my-8">
-          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Citation Half-Life by Technology Area</h3>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-2 px-3 font-medium text-muted-foreground">CPC Section</th>
-                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Half-Life (years)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...halfLife].sort((a, b) => (a.half_life_years ?? 0) - (b.half_life_years ?? 0)).map((hl, i) => (
-                <tr key={i} className="border-b border-border/50">
-                  <td className="py-2 px-3">{hl.section}: {CPC_SECTION_NAMES[hl.section] ?? hl.section}</td>
-                  <td className="text-right py-2 px-3 font-mono font-semibold">{hl.half_life_years?.toFixed(1) ?? 'N/A'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <ChartContainer
-        id="fig-technology-revolution-citation-decay"
-        title="Electricity (H) and Physics (G) Patents Exhibit the Shortest Citation Half-Lives at 10.7 and 11.2 Years, vs. 15.6 Years for Human Necessities (A)"
-        subtitle="Percentage of total forward citations received at each post-grant year, by CPC section, measuring knowledge obsolescence rates"
-        caption="Distribution of forward citations by years after grant, by CPC section. Each line indicates the percentage of a technology area's total citations arriving in each post-grant year. Sections H (Electricity) and G (Physics) exhibit the steepest early peaks, while Chemistry (C) and Human Necessities (A) demonstrate more gradual accumulation."
-        insight="Rapidly evolving fields such as computing (H) and physics (G) exhibit short citation half-lives, indicating that knowledge in these domains becomes superseded more quickly. Chemistry and pharmaceutical innovations, by contrast, maintain relevance over substantially longer periods."
-        loading={dcL}
-      >
-        {decayPivot.length > 0 && (
-          <PWLineChart
-            data={decayPivot}
-            xKey="years_after"
-            lines={decaySections.map(section => ({
-              key: section,
-              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
-              color: CPC_SECTION_COLORS[section],
-            }))}
-            xLabel="Years After Grant"
-            yLabel="% of Total Citations"
-            yFormatter={(v: number) => `${v.toFixed(1)}%`}
-          />
-        )}
-      </ChartContainer>
-      <KeyInsight>
-        <p>
-          Electricity (H) and Physics (G) patents exhibit the shortest half-lives,
-          consistent with the rapid innovation cycles in computing and electronics in which
-          current advances are quickly superseded by subsequent developments. Human Necessities (A) and
-          Fixed Constructions (E) show the longest half-lives, reflecting the enduring
-          relevance of innovations in these domains that often represent fundamental advances with lasting impact.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Technology Life Cycle S-Curves" />
-      <Narrative>
-        <p>
-          Fitting logistic S-curves to cumulative patent counts by CPC section indicates where
-          each technology domain resides within its innovation lifecycle. Mature technologies such as mechanical
-          engineering and chemistry exhibit decelerating growth rates, while computing-related sections
-          continue along a steep upward trajectory.
+          The diversity decline raises a natural question: are certain technology domains approaching
+          saturation while others continue to expand? Fitting logistic S-curves to cumulative patent counts
+          by CPC section provides an estimate of where each field stands within its innovation lifecycle.
         </p>
       </Narrative>
 
@@ -468,6 +465,208 @@ export default function Chapter2() {
         </p>
       </KeyInsight>
 
+      {/* ── Section 3: Cross-Field Dynamics ── */}
+
+      <SectionDivider label="Cross-Field Dynamics" />
+
+      <Narrative>
+        <p>
+          The preceding analysis examined each technology field in relative isolation. Yet the boundaries
+          between fields are not fixed: as digital technology has become pervasive, inventions increasingly
+          span multiple CPC sections, and the question of whether any single field has become dominated by
+          a small number of actors takes on greater significance. This section examines these cross-field
+          dynamics through two complementary lenses: technology convergence and market concentration.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-technology-revolution-convergence-matrix"
+        subtitle="Percentage of multi-section patents spanning each CPC section pair by era, measuring how technology boundaries have become more permeable."
+        title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976-1995 and 2011-2025"
+        caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
+        insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
+        loading={conL}
+        height={700}
+      >
+        {convergenceData && convergenceEras.length > 0 && (
+          <PWConvergenceMatrix data={convergenceData} eras={convergenceEras} />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The G-H (Physics-Electricity) pair has dominated convergence since the mid-1990s, reflecting
+          the deep integration of computing, electronics, and physics. In the earliest era (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
+          substantially: in 2011-2025, G-H convergence has intensified as digital technology permeates
+          an increasing number of domains. The growing overlap between A (Human Necessities) and G (Physics)
+          in recent years is consistent with the rise of health technology and biomedical electronics.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        <p>
+          Given the increasing convergence of technology fields and the dominance of a few CPC sections,
+          it is natural to ask whether certain technology areas are becoming dominated by a small number
+          of large entities. The Herfindahl-Hirschman Index (HHI) measures market concentration by summing
+          the squared market shares of all firms in a sector. On the standard DOJ/FTC scale,{' '}
+          <StatCallout value="below 1,500" /> indicates an unconcentrated market,{' '}
+          <StatCallout value="1,500-2,500" /> is moderately concentrated, and{' '}
+          <StatCallout value="above 2,500" /> is highly concentrated.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-technology-revolution-hhi-by-section"
+        subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
+        title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below the 1,500 Threshold"
+        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values in recent decades."
+        insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
+        loading={hhiL}
+      >
+        <PWLineChart
+          data={hhiPivot}
+          xKey="period"
+          lines={hhiSections.map((section) => ({
+            key: section,
+            name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+            color: CPC_SECTION_COLORS[section],
+          }))}
+          yLabel="HHI"
+          yFormatter={(v: number) => v.toLocaleString()}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Patent markets across all technology sectors remain unconcentrated, with HHI
+          values well below the 1,500 threshold. This pattern reflects the broad base of inventors and
+          organizations participating in the patent system. Even in Electricity (H) and Physics (G) --
+          the sections most associated with large technology firms -- concentration remains low,
+          though certain sections exhibit modest increases in recent periods. Textiles and Paper (D) tends
+          to be the most concentrated, consistent with its smaller inventor base and more
+          specialized industrial structure.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section 4: Field-Specific Metrics ── */}
+
+      <SectionDivider label="Field-Specific Metrics" />
+
+      <Narrative>
+        <p>
+          The structural overview, growth dynamics, and cross-field patterns examined thus far describe
+          the broad contours of technological change. This final section turns to metrics that characterize
+          individual technology fields: the rate at which knowledge becomes obsolete, as measured by
+          citation half-lives, and the duration of the patent examination process, which varies substantially
+          across technology sectors.
+        </p>
+      </Narrative>
+
+      {halfLife && halfLife.length > 0 && (
+        <div className="max-w-2xl mx-auto my-8">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Citation Half-Life by Technology Area</h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">CPC Section</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Half-Life (years)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...halfLife].sort((a, b) => (a.half_life_years ?? 0) - (b.half_life_years ?? 0)).map((hl, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{hl.section}: {CPC_SECTION_NAMES[hl.section] ?? hl.section}</td>
+                  <td className="text-right py-2 px-3 font-mono font-semibold">{hl.half_life_years?.toFixed(1) ?? 'N/A'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <ChartContainer
+        id="fig-technology-revolution-citation-decay"
+        title="Electricity (H) and Physics (G) Patents Exhibit the Shortest Citation Half-Lives at 10.7 and 11.2 Years, vs. 15.6 Years for Human Necessities (A)"
+        subtitle="Percentage of total forward citations received at each post-grant year, by CPC section, measuring knowledge obsolescence rates"
+        caption="Distribution of forward citations by years after grant, by CPC section. Each line indicates the percentage of a technology area's total citations arriving in each post-grant year. Sections H (Electricity) and G (Physics) exhibit the steepest early peaks, while Chemistry (C) and Human Necessities (A) demonstrate more gradual accumulation."
+        insight="Rapidly evolving fields such as computing (H) and physics (G) exhibit short citation half-lives, indicating that knowledge in these domains becomes superseded more quickly. Chemistry and pharmaceutical innovations, by contrast, maintain relevance over substantially longer periods."
+        loading={dcL}
+      >
+        {decayPivot.length > 0 && (
+          <PWLineChart
+            data={decayPivot}
+            xKey="years_after"
+            lines={decaySections.map(section => ({
+              key: section,
+              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
+              color: CPC_SECTION_COLORS[section],
+            }))}
+            xLabel="Years After Grant"
+            yLabel="% of Total Citations"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Electricity (H) and Physics (G) patents exhibit the shortest half-lives,
+          consistent with the rapid innovation cycles in computing and electronics in which
+          current advances are quickly superseded by subsequent developments. Human Necessities (A) and
+          Fixed Constructions (E) show the longest half-lives, reflecting the enduring
+          relevance of innovations in these domains that often represent fundamental advances with lasting impact.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        <p>
+          Knowledge obsolescence rates are complemented by examination pendency as a second
+          field-specific metric. The duration from application filing to patent grant varies substantially
+          across technology sectors, reflecting differences in examination complexity, prior art volume,
+          and USPTO resource allocation.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-technology-revolution-grant-lag-by-sector"
+        subtitle="Average days from application filing to patent grant by WIPO technology sector across 5-year periods."
+        title="Chemistry and Electrical Engineering Patents Exhibit the Longest Grant Lags, Exceeding 3.5 Years in the Late 2000s"
+        caption="This chart displays the average number of days from application filing to patent grant, disaggregated by WIPO technology sector across 5-year periods. Chemistry and electrical engineering patents exhibit the longest pendency in the late 2000s, with both peaking above 1,300 days."
+        loading={glL}
+        insight="Technology-specific backlogs appear to reflect both the complexity of patent examination in certain fields and the USPTO's resource allocation decisions."
+      >
+        <PWLineChart
+          data={lagPivot}
+          xKey="period"
+          lines={grantLagSectorNames.map((name) => ({
+            key: name,
+            name,
+            color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
+          }))}
+          yLabel="Years"
+          yFormatter={(v) => `${Math.round(v / 365.25 * 10) / 10}`}
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          The duration from application to grant has fluctuated
+          considerably over the decades. Patent office backlogs, examination complexity,
+          and policy reforms each contribute to observable shifts in the grant lag trajectory.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          Grant lags reveal the institutional constraints on innovation. The late 2000s backlog
+          elevated average pendency beyond 3.5 years; subsequent USPTO reforms reduced
+          these durations. Chemistry and electrical engineering patents exhibit the longest
+          examination periods in the late 2000s, a pattern consistent with the substantial volume and complexity of prior art in
+          these fields.
+        </p>
+      </KeyInsight>
+
+      {/* ── Closing ── */}
+
       <Narrative>
         The first two chapters established how the patent system grew and which technologies fueled that expansion. The analysis now turns to the language of patents themselves, examining how the vocabulary of invention has evolved alongside these structural shifts.
         The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. The <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of American innovation.
@@ -475,7 +674,7 @@ export default function Chapter2() {
 
       <DataNote>
         Technology classifications use the primary CPC section (sequence 0) for each patent
-        and WIPO technology fields mapped from IPC codes. Technology half-life is computed as the time until 50% of cumulative forward citations are received, based on patents granted 1976-2010 with citations tracked through 2025.
+        and WIPO technology fields mapped from IPC codes. Technology half-life is computed as the time until 50% of cumulative forward citations are received, based on patents granted 1976-2010 with citations tracked through 2025. Market concentration (HHI) is computed within each CPC section by assignee market share in 5-year windows. Technology convergence measures the co-occurrence of CPC section pairs on multi-section patents by era. Grant lag is measured as the average days from application filing to patent grant by WIPO sector in 5-year periods.
       </DataNote>
 
       <RelatedChapters currentChapter={2} />

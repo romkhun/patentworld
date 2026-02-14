@@ -1,6 +1,6 @@
 import { chapterMetadata, chapterJsonLd } from '@/lib/seo';
 
-const SLUG = 'company-profiles';
+const SLUG = 'sector-dynamics';
 export const metadata = chapterMetadata(SLUG);
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -30,15 +30,17 @@ import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import type {
   NetworkData, CoInventionRate, CoInventionBySection,
   TalentFlowData, PortfolioOverlapPoint, StrategyProfile, CorporateSpeed,
-  IntlCollaboration,
+  IntlCollaboration, NetworkMetricsByDecade, BridgeInventor,
 } from '@/lib/types';
 
-export default function Chapter9() {
+export default function Chapter8() {
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
   const { data: inventorNetwork, loading: inL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
   const { data: coInvention, loading: ciL } = useChapterData<CoInventionRate[]>('chapter6/co_invention_rates.json');
   const { data: coInventionBySec, loading: cisL } = useChapterData<CoInventionBySection[]>('chapter6/co_invention_us_china_by_section.json');
   const { data: intlCollab, loading: icL } = useChapterData<IntlCollaboration[]>('chapter7/intl_collaboration.json');
+  const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
+  const { data: bridgeInventors } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
 
   // F1, F2, F3, F4: Talent flows and strategy
   const { data: talentFlows, loading: tfL } = useChapterData<TalentFlowData>('company/talent_flows.json');
@@ -133,7 +135,7 @@ export default function Chapter9() {
   return (
     <div>
       <ChapterHeader
-        number={9}
+        number={8}
         title="Collaboration Networks"
         subtitle="Structural analysis of co-invention and co-patenting networks"
       />
@@ -148,7 +150,7 @@ export default function Chapter9() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Knowledge Network</Link>, while radar-chart strategy profiles show that <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">individual firms</Link> occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
+          The structure of collaborative patenting reveals distinct industry clusters -- electronics firms, pharmaceutical companies, and automotive manufacturers each form dense communities linked by sparse but strategically important inter-cluster bridges. Geopolitically, the US-China co-invention corridor expanded from near zero in the 1990s to over 2% of US patents by 2025, although chemistry-related collaboration declined by roughly a third between 2020 and 2023 amid tightening export controls. Beyond these formal co-patenting ties, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel that supplements the citation-based flows analyzed in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link>, while radar-chart strategy profiles show that <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">individual firms</Link> occupy markedly different positions along dimensions such as breadth, speed, and science intensity.
         </p>
       </aside>
 
@@ -273,6 +275,85 @@ export default function Chapter9() {
           institutional partnerships than by individual inventor relationships.
         </p>
       </Narrative>
+
+      <SectionDivider label="Collaboration Network Structure" />
+      <Narrative>
+        <p>
+          The structure of innovation collaboration has evolved considerably over the study period.
+          By analyzing co-inventor relationships as a network, it is possible to measure the connectedness
+          of the innovation ecosystem. The average degree (number of collaborators per inventor) and network
+          density indicate whether innovation is becoming more or less collaborative over time.
+        </p>
+      </Narrative>
+      <ChartContainer
+        id="fig-collaboration-network-metrics"
+        title="Average Inventor Degree Rose 2.5x, From 2.7 in the 1980s to 6.8 in the 2020s"
+        subtitle="Average co-inventors per inventor and average team size by decade, measuring collaboration network connectivity"
+        caption="Summary statistics of the inventor collaboration network by decade. Average degree measures the typical number of co-inventors per active inventor. Both metrics exhibit sustained increases, indicating a progressively more collaborative innovation ecosystem."
+        insight="Rising average inventor degree reflects both larger team sizes and more extensive cross-organizational collaboration, resulting in a more interconnected innovation network over time."
+        loading={nmL}
+      >
+        {networkMetrics && (
+          <PWLineChart
+            data={networkMetrics}
+            xKey="decade_label"
+            lines={[
+              { key: 'avg_degree', name: 'Average Co-Inventors (Degree)', color: CHART_COLORS[0] },
+              { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[1], dashPattern: '8 4' },
+            ]}
+            yLabel="Average per Inventor"
+            yFormatter={(v: number) => v.toFixed(1)}
+          />
+        )}
+      </ChartContainer>
+      <KeyInsight>
+        <p>
+          The innovation network has become substantially more interconnected. Average inventor
+          degree has risen steadily since the 1980s, reflecting both larger team sizes and more
+          extensive cross-organizational collaboration. This &quot;small world&quot; property suggests that knowledge
+          may diffuse more rapidly through the network, and is consistent with the broader trend
+          toward team-based rather than individual invention.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Bridge Inventors" />
+      <Narrative>
+        <p>
+          Certain inventors serve as critical bridges connecting otherwise separate organizations
+          and technology communities. These &quot;bridge inventors&quot; have patented at three or more
+          distinct organizations, potentially facilitating the transfer of knowledge and practices between firms.
+        </p>
+      </Narrative>
+      {bridgeInventors && bridgeInventors.length > 0 && (
+        <div className="max-w-3xl mx-auto my-8 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Inventor</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Organizations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bridgeInventors.slice(0, 15).map((inv, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{inv.first_name} {inv.last_name}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.num_orgs}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.total_patents.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <KeyInsight>
+        <p>
+          Bridge inventors who span multiple organizations appear to play a disproportionate role in the
+          innovation ecosystem. Their movement between firms creates channels for knowledge
+          transfer that would not exist through patent citations alone, which may help explain why
+          geographic and organizational proximity are significant factors in innovation diffusion.
+        </p>
+      </KeyInsight>
 
       <SectionDivider label="Global Collaboration" />
 
@@ -576,7 +657,7 @@ export default function Chapter9() {
 
       <Narrative>
         The preceding chapters mapped where innovation occurs and how its participants collaborate. The analysis now shifts from the structure of the innovation system to its mechanics: how knowledge flows through citations, how patent output accelerates and converges, and how patent quality is measured.
-        <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent citations</Link> -- the formal references linking new inventions to prior art -- reveal the underlying structure of how knowledge accumulates, diffuses, and shapes the direction of technological progress.
+        <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent citations</Link> -- the formal references linking new inventions to prior art -- reveal the underlying structure of how knowledge accumulates, diffuses, and shapes the direction of technological progress.
       </Narrative>
 
       <DataNote>
@@ -586,8 +667,8 @@ export default function Chapter9() {
         clutter. Talent flows track inventor movements between assignees based on consecutive patent filings with gap ≤ 5 years. Portfolio overlap uses cosine similarity of CPC subclass distributions projected to 2D via UMAP. Strategy profiles normalize 8 innovation dimensions to a 0–100 scale across the top 30 assignees.
       </DataNote>
 
-      <RelatedChapters currentChapter={9} />
-      <ChapterNavigation currentChapter={9} />
+      <RelatedChapters currentChapter={8} />
+      <ChapterNavigation currentChapter={8} />
     </div>
   );
 }

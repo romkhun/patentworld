@@ -175,7 +175,7 @@ Chapters were processed in three parallel batches:
 
 ---
 
-*Reorganization completed 2026-02-13. Chapters reordered, section ordering audited, transitions updated, TL;DR labels fixed. Executive Summary deduplication completed 2026-02-14.*
+*Reorganization completed 2026-02-13. Chapters reordered, section ordering audited, transitions updated, TL;DR labels fixed. Executive Summary deduplication completed 2026-02-14. Major structural reorganization completed 2026-02-14 (Session 4).*
 
 ---
 
@@ -221,3 +221,98 @@ npm run build -> Compiled successfully
 All 22 routes prerendered as static content
 Zero TypeScript errors
 ```
+
+---
+
+## Session 4 (2026-02-14): Major Structural Reorganization
+
+### Overview
+
+Executed the 14-step restructuring plan from `/restructure`. Merged and split chapters by analysis level, restructured content within chapters, and renumbered the entire site from 24 to 22 chapters.
+
+### Steps 1–5: Content Placement Moves
+
+Moved specific sections/figures between chapters to align content with each chapter's designated analysis level:
+
+| Content Moved | From | To | Rationale |
+|---|---|---|---|
+| Market Concentration (HHI) | Innovation Dynamics | Technology Revolution | Industry-level content |
+| Technology Convergence Matrix | Innovation Dynamics | Technology Revolution | Industry-level content |
+| Grant Lag by CPC Section | Patent Quality | Technology Revolution | Industry-level content |
+| Network Structure & Bridge Inventors | Knowledge Network | Collaboration Networks | Network-level content |
+| Exploration/Exploitation (6 figures) | Innovation Dynamics | Who Innovates | Firm-level content |
+| Self-Citation by Assignee | Patent Quality | Who Innovates | Firm-level content |
+| Within-Firm Quality Gini | Patent Quality | Who Innovates | Firm-level content |
+
+### Step 6: Merge Who Innovates + Company Profiles → Firm Innovation
+
+- Created **`firm-innovation/page.tsx`** (2,103 lines) combining all firm-level content
+- Deleted `who-innovates/` and `company-profiles/` directories
+- Updated `constants.ts`: replaced ch5 (who-innovates) + ch6 (company-profiles) with single ch5 (firm-innovation)
+- Updated `seo.ts`: replaced old entries with firm-innovation metadata
+
+### Step 7: Split ACT 4 → Patent Quality + Sector Dynamics
+
+- **Patent Quality** (ch10→ch9 after renumber): patent-level content from Knowledge Network, Innovation Dynamics, old Patent Quality
+  - 10 sections: Forward/backward citations, citation lag, claims, scope, convergence, originality, self-citation patterns, sleeping beauty patents, quality by country
+- **Sector Dynamics** (new, ch11→ch10 after renumber): industry-level content from Knowledge Network, Innovation Dynamics
+  - 7 sections: Citation lag by CPC, innovation velocity, examination friction, claims by tech area, quality across sectors, composite quality index, self-citation by section
+- Deleted `the-knowledge-network/` and `innovation-dynamics/` directories
+
+### Step 8: Route Remaining Content
+
+- 12 firm-level items from ACT 4 added to firm-innovation (chord diagram, citation leaders table, citation half-life, corporate tech portfolios, 6 exploration/exploitation figures, self-citation by assignee, within-firm quality Gini)
+- Patent Market Concentration identified as DUPLICATE of content already in Technology Revolution — not added
+
+### Steps 9–12: Chapter Restructuring (executed in parallel)
+
+| Chapter | Restructuring |
+|---|---|
+| Innovation Landscape | Patent-level focus: overview → trends → breakdowns → complexity → pendency → funding |
+| Technology Revolution | Industry-level focus: tech field overview → trends by field → cross-field dynamics → field-specific metrics |
+| The Inventors | 3-part flow: Part I (Who) → Part II (What) → Part III (How) |
+| Geography | 2-level hierarchy: Domestic (US states/regions → mobility) → International (countries → mobility) |
+
+### Step 13: Navigation, Numbering, Cross-References
+
+**Renumbering** (24 → 22 chapters):
+
+| Old # | New # | Slug |
+|---|---|---|
+| 1–4 | 1–4 | (unchanged) |
+| 5 | 5 | firm-innovation (new) |
+| — | — | who-innovates (deleted) |
+| — | — | company-profiles (deleted) |
+| 7 | 6 | collaboration-networks |
+| — | — | the-knowledge-network (deleted) |
+| — | — | innovation-dynamics (deleted) |
+| 8 | 7 | the-language-of-innovation |
+| 9 | 8 | patent-law |
+| 10 | 9 | patent-quality (rewritten) |
+| 11 | 10 | sector-dynamics (new) |
+| 13–24 | 11–22 | ACT 5 chapters |
+
+**Cross-reference updates:**
+- 12 instances: `/chapters/company-profiles` → `/chapters/firm-innovation`
+- 5 instances: `/chapters/who-innovates` → `/chapters/firm-innovation`
+- 4 instances: `/chapters/the-knowledge-network` → `/chapters/patent-quality`
+- 2 instances: `/chapters/innovation-dynamics` → `/chapters/sector-dynamics`
+- HERO_STATS chapters: 24 → 22
+
+### Step 14: Build Verification
+
+```
+TypeScript check: zero errors
+npm run build: zero errors, all 22 chapter pages generated successfully
+All routes prerendered as static content
+```
+
+### Directories Deleted
+- `src/app/chapters/who-innovates/`
+- `src/app/chapters/company-profiles/`
+- `src/app/chapters/the-knowledge-network/`
+- `src/app/chapters/innovation-dynamics/`
+
+### Directories Created
+- `src/app/chapters/firm-innovation/`
+- `src/app/chapters/sector-dynamics/`

@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter17() {
+export default function Chapter15() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('digihealth/digihealth_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('digihealth/digihealth_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('digihealth/digihealth_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter17() {
   return (
     <div>
       <ChapterHeader
-        number={17}
+        number={15}
         title="Digital Health & Medical Devices"
         subtitle="Technology transforming healthcare delivery"
       />
@@ -727,8 +727,8 @@ export default function Chapter17() {
           collectively point toward a future in which the boundaries between medical devices
           and computing platforms become increasingly indistinct. The organizational strategies
           documented here are explored further in{' '}
-          <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
-            Company Innovation Profiles
+          <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
+            Firm Innovation
           </Link>, while the broader relationship between digital health and artificial
           intelligence is examined in the chapter on{' '}
           <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
@@ -750,8 +750,8 @@ export default function Chapter17() {
         CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={17} />
-      <ChapterNavigation currentChapter={17} />
+      <RelatedChapters currentChapter={15} />
+      <ChapterNavigation currentChapter={15} />
     </div>
   );
 }

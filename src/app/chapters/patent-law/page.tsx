@@ -9,18 +9,15 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
-import { PWConvergenceMatrix } from '@/components/charts/PWConvergenceMatrix';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { PWTimeline, type TimelineEvent } from '@/components/charts/PWTimeline';
-import { CPC_SECTION_COLORS } from '@/lib/colors';
-import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import type { HHIBySection, ApplicationsVsGrants, ConvergenceEntry } from '@/lib/types';
+import type { ApplicationsVsGrants } from '@/lib/types';
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   {
@@ -402,38 +399,13 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
 ];
 
 export default function Chapter4() {
-  const { data: hhiData, loading: hhiL } = useChapterData<HHIBySection[]>('chapter10/hhi_by_section.json');
   const { data: pipelineData, loading: pipL } = useChapterData<ApplicationsVsGrants[]>('chapter10/applications_vs_grants.json');
-  const { data: convergenceData, loading: conL } = useChapterData<ConvergenceEntry[]>('chapter10/convergence_matrix.json');
-
-  // Pivot HHI data: one line per CPC section over time
-  const hhiPivot = useMemo(() => {
-    if (!hhiData) return [];
-    const periods = [...new Set(hhiData.map((d) => d.period))].sort();
-    return periods.map((period) => {
-      const row: Record<string, any> = { period };
-      hhiData.filter((d) => d.period === period).forEach((d) => {
-        row[d.section] = d.hhi;
-      });
-      return row;
-    });
-  }, [hhiData]);
-
-  const hhiSections = useMemo(() => {
-    if (!hhiData) return [];
-    return [...new Set(hhiData.filter((d) => d.section !== 'Overall').map((d) => d.section))].sort();
-  }, [hhiData]);
 
   // Filter pipeline data to exclude the last partial year (2025 has distorted ratio)
   const pipelineFiltered = useMemo(() => {
     if (!pipelineData) return [];
     return pipelineData.filter((d) => d.year <= 2024);
   }, [pipelineData]);
-
-  const convergenceEras = useMemo(() => {
-    if (!convergenceData) return [];
-    return [...new Set(convergenceData.map((d) => d.era))].sort();
-  }, [convergenceData]);
 
   return (
     <div>
@@ -453,7 +425,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction. Despite these interventions, patent markets remain structurally unconcentrated across all CPC sections (HHI well below 1,500), and the G-H (Physics-Electricity) convergence pair -- which rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025 -- underscores the pervasive influence of digital technology on the <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation landscape</Link> that earlier chapters have charted.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility fueled the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 
@@ -500,7 +472,7 @@ export default function Chapter4() {
         <ul className="list-disc pl-5 space-y-2 mt-2">
           <li>
             <strong>Bayh-Dole Act (1980):</strong> Precipitated a substantial increase in university patenting.
-            Government-funded patents (The Knowledge Network) began rising in the 1980s as universities
+            Government-funded patents (Patent Quality) began rising in the 1980s as universities
             established technology transfer offices.
           </li>
           <li>
@@ -582,89 +554,8 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Market Concentration" />
-
       <Narrative>
-        <p>
-          Whether certain technology areas are becoming dominated by a small number of large entities warrants examination. The
-          Herfindahl-Hirschman Index (HHI) measures market concentration by summing the squared
-          market shares of all firms in a sector. On the standard DOJ/FTC scale,{' '}
-          <StatCallout value="below 1,500" /> indicates an unconcentrated market,{' '}
-          <StatCallout value="1,500-2,500" /> is moderately concentrated, and{' '}
-          <StatCallout value="above 2,500" /> is highly concentrated.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        id="fig-patent-law-hhi-by-section"
-        subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
-        title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below the 1,500 Threshold"
-        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values in recent decades."
-        insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
-        loading={hhiL}
-      >
-        <PWLineChart
-          data={hhiPivot}
-          xKey="period"
-          lines={hhiSections.map((section) => ({
-            key: section,
-            name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
-            color: CPC_SECTION_COLORS[section],
-          }))}
-          yLabel="HHI"
-          yFormatter={(v: number) => v.toLocaleString()}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          Patent markets across all technology sectors remain unconcentrated, with HHI
-          values well below the 1,500 threshold. This pattern reflects the broad base of inventors and
-          organizations participating in the patent system. Even in Electricity (H) and Physics (G) --
-          the sections most associated with large technology firms -- concentration remains low,
-          though certain sections exhibit modest increases in recent periods. Textiles and Paper (D) tends
-          to be the most concentrated, consistent with its smaller inventor base and more
-          specialized industrial structure.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Technology Convergence" />
-
-      <Narrative>
-        <p>
-          Whether technology boundaries are becoming more permeable over time merits analysis. When a single patent spans multiple CPC
-          technology sections, it indicates that the invention draws on knowledge from distinct
-          fields. The matrix below presents the frequency with which each pair of technology sections co-occurs
-          on the same patent, measured as a percentage of all multi-section patents in each era.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        id="fig-patent-law-convergence-matrix"
-        subtitle="Percentage of multi-section patents spanning each CPC section pair by era, measuring how technology boundaries have become more permeable."
-        title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976-1995 and 2011-2025"
-        caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
-        insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
-        loading={conL}
-        height={700}
-      >
-        {convergenceData && convergenceEras.length > 0 && (
-          <PWConvergenceMatrix data={convergenceData} eras={convergenceEras} />
-        )}
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The G-H (Physics-Electricity) pair has dominated convergence since the mid-1990s, reflecting
-          the deep integration of computing, electronics, and physics. In the earliest era (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
-          substantially: in 2011-2025, G-H convergence has intensified as digital technology permeates
-          an increasing number of domains. The growing overlap between A (Human Necessities) and G (Physics)
-          in recent years is consistent with the rise of health technology and biomedical electronics.
-        </p>
-      </KeyInsight>
-
-      <Narrative>
-        Having examined the legal and policy framework that governs the patent system, the analysis shifts from the system itself to the actors within it. The <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates which organizations drive patent activity, how corporate leadership has shifted across geographies and industries, and what the concentration of patenting reveals about the structure of modern innovation.
+        Having examined the legal and policy framework that governs the patent system, the analysis shifts from the system itself to the actors within it. The <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates which organizations drive patent activity, how corporate leadership has shifted across geographies and industries, and what the concentration of patenting reveals about the structure of modern innovation.
       </Narrative>
 
       <DataNote>
@@ -675,11 +566,7 @@ export default function Chapter4() {
         published studies in leading economics and management journals including the
         American Economic Review, Quarterly Journal of Economics, Journal of Political
         Economy, Review of Economic Studies, Management Science, Strategic Management
-        Journal, and Academy of Management Journal. HHI is computed using the standard
-        Herfindahl-Hirschman Index formula (sum of squared percentage market shares) on
-        patent assignees within each CPC section per 5-year period. The convergence matrix
-        counts distinct CPC section co-occurrences across all CPC codes assigned to each
-        patent (not just the primary classification). Applications vs. grants data uses
+        Journal, and Academy of Management Journal. Applications vs. grants data uses
         PatentsView, which only includes patents that were eventually granted -- the
         &quot;applications&quot; count therefore represents successful filings rather than total
         submissions to the USPTO.

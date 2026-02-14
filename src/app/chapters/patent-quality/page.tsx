@@ -9,68 +9,53 @@ import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
-import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
-import { CHART_COLORS, WIPO_SECTOR_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
-import { formatCompact } from '@/lib/formatters';
+import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { formatCompact } from '@/lib/formatters';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import { cleanOrgName } from '@/lib/orgNames';
 import type {
+  CitationsPerYear, CitationLagTrend,
   QualityTrend, OriginalityGenerality, SelfCitationRate,
-  QualityBySector, BreakthroughPatent,
-  CompositeQualityIndex, SleepingBeauty,
-  QualityByCountry, SelfCitationByAssignee, SelfCitationBySection,
-  FirmGiniYear,
+  SleepingBeauty, QualityByCountry,
+  CrossDomain,
+  ClaimsAnalysis,
 } from '@/lib/types';
 
-export default function Chapter12() {
+export default function PatentQuality() {
+  // Citation Impact & Scope (from old Patent Quality chapter)
   const { data: trends, loading: trL } = useChapterData<QualityTrend[]>('chapter9/quality_trends.json');
+
+  // Backward Citations (from old Knowledge Network chapter)
+  const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
+
+  // Citation Lag (from old Knowledge Network chapter)
+  const { data: lagTrend, loading: ltL } = useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
+
+  // Patent Claims (from old Innovation Dynamics chapter)
+  const { data: claimsData, loading: clL } = useChapterData<{ trends: ClaimsAnalysis[] }>('company/claims_analysis.json');
+
+  // Cross-Domain Convergence (from old Innovation Dynamics chapter)
+  const { data: crossDomain, loading: cdL } = useChapterData<CrossDomain[]>('chapter7/cross_domain.json');
+
+  // Originality & Generality (from old Patent Quality chapter)
   const { data: origGen, loading: ogL } = useChapterData<OriginalityGenerality[]>('chapter9/originality_generality.json');
+
+  // Self-Citation (from old Patent Quality chapter)
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
-  const { data: bySector, loading: bsL } = useChapterData<QualityBySector[]>('chapter9/quality_by_sector.json');
-  useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
-  const { data: compositeQuality, loading: cqL } = useChapterData<CompositeQualityIndex[]>('chapter9/composite_quality_index.json');
+
+  // Sleeping Beauties (from old Patent Quality chapter)
   const { data: sleepingBeauties } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
+
+  // Quality by Country (from old Patent Quality chapter)
   const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
-  const { data: selfCiteAssignee, loading: scaL } = useChapterData<SelfCitationByAssignee[]>('chapter9/self_citation_by_assignee.json');
-  const { data: selfCiteSec } = useChapterData<SelfCitationBySection[]>('chapter9/self_citation_by_section.json');
-  const { data: firmGini, loading: fgL } = useChapterData<Record<string, FirmGiniYear[]>>('company/firm_quality_gini.json');
-
-  // Pivot quality by sector for line chart
-  const { sectorPivot, sectorNames } = useMemo(() => {
-    if (!bySector) return { sectorPivot: [], sectorNames: [] };
-    const sectors = [...new Set(bySector.map((d) => d.sector))];
-    const periods = [...new Set(bySector.map((d) => d.period))].sort();
-    const pivoted = periods.map((period) => {
-      const row: any = { period };
-      bySector.filter((d) => d.period === period).forEach((d) => {
-        row[d.sector] = d.avg_claims;
-      });
-      return row;
-    });
-    return { sectorPivot: pivoted, sectorNames: sectors };
-  }, [bySector]);
-
-  const { compositeQualityPivot, compositeQualitySections } = useMemo(() => {
-    if (!compositeQuality) return { compositeQualityPivot: [], compositeQualitySections: [] };
-    const sections = [...new Set(compositeQuality.map(d => d.section))].sort();
-    const years = [...new Set(compositeQuality.map(d => d.year))].sort((a, b) => a - b);
-    const pivoted = years.map(year => {
-      const row: Record<string, any> = { year };
-      compositeQuality.filter(d => d.year === year).forEach(d => {
-        row[d.section] = d.composite_index;
-      });
-      return row;
-    });
-    return { compositeQualityPivot: pivoted, compositeQualitySections: sections };
-  }, [compositeQuality]);
 
   const latestDecadeCountry = useMemo(() => {
     if (!qualByCountry) return [];
@@ -81,33 +66,26 @@ export default function Chapter12() {
       .slice(0, 15);
   }, [qualByCountry]);
 
-  const giniPanels = useMemo(() => {
-    if (!firmGini) return [];
-    return Object.entries(firmGini).map(([name, data]) => ({
-      name,
-      data: data.map(d => ({ x: d.year, y: d.gini })),
-    }));
-  }, [firmGini]);
-
   return (
     <div>
       <ChapterHeader
-        number={12}
+        number={9}
         title="Patent Quality"
-        subtitle="Measuring the value and impact of patented inventions"
+        subtitle="Measuring the value, impact, and characteristics of patented inventions"
       />
 
       <KeyFindings>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent have increased over time, though median citations remain flat, indicating growing skewness in the citation distribution.</li>
-        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> -- the breadth of prior art drawn upon -- has increased, suggesting more interdisciplinary innovation.</li>
-        <li>Patent <GlossaryTooltip term="generality">generality</GlossaryTooltip> -- the breadth of downstream citing fields -- exhibits technology-specific patterns, with foundational inventions scoring highest.</li>
-        <li>Quality metrics vary substantially across technology sectors; biotechnology and pharmaceutical patents tend to receive more citations per patent than electronics patents.</li>
+        <li>Citation lag has grown from approximately 3 years to over 16 years, reflecting the expanding body of prior art that newer patents must reference.</li>
+        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> has increased while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined, indicating diverging knowledge flows: broader inputs have not translated into correspondingly broader downstream applicability.</li>
+        <li>Multi-section patents rose from 21% to 41% of all grants, signaling increasing technological convergence across once-separate domains.</li>
+        <li>Sleeping beauty patents are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Multiple quality dimensions have moved in distinct directions since the 1970s: average claims per patent rose roughly 76% (from approximately 9.5 to 17) alongside the <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">fivefold volume growth</Link>, backward citations quadrupled, and the originality index climbed from 0.09 to 0.25 -- yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. A composite Z-score index aggregating citations, claims, scope, and grant speed shows Chemistry and Human Necessities patents consistently scoring highest, while Electronics and Physics patents have risen from negative to positive composite territory since the 1990s, a trajectory consistent with the accelerating innovation velocity documented in <Link href="/chapters/innovation-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Innovation Dynamics</Link>. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment and reinforcing the sector-specific quality patterns that pervade the data.
+          Multiple dimensions of patent quality have moved in distinct directions since the 1970s. Average forward citations per patent rose from 2.5 to 6.4 within 5-year windows, yet the median remained at 2, revealing a highly skewed distribution in which a small fraction of patents captures a disproportionate share of total citations. Citation lag -- the temporal distance over which patents reference prior art -- expanded from approximately 3 years in the early 1980s to over 16 years by 2025, indicating that the cumulative stock of prior art now demands far deeper backward searches than it once did. The originality index climbed from 0.09 to 0.25, indicating more interdisciplinary innovation, yet the generality index fell from 0.28 to 0.15, revealing that broader knowledge inputs have not translated into correspondingly broader downstream applicability. Patent scope broadened as average CPC subclasses per patent grew from 1.8 to nearly 2.5, and multi-section patents rose from 21% to 41% of all grants, consistent with the convergence of once-separate technology domains. Sleeping beauty patents -- dormant for a decade or more before experiencing citation bursts -- are concentrated overwhelmingly in Human Necessities (94% of identified cases), challenging the assumption that short citation windows suffice for impact assessment.
         </p>
       </aside>
 
@@ -131,6 +109,10 @@ export default function Chapter12() {
           a nuanced characterization of inventive value.
         </p>
       </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 1. Citation Impact (Forward Citations) */}
+      {/* ------------------------------------------------------------------ */}
 
       <SectionDivider label="Citation Impact" />
 
@@ -174,36 +156,146 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
+      {/* ------------------------------------------------------------------ */}
+      {/* 2. Backward Citations */}
+      {/* ------------------------------------------------------------------ */}
+
+      <SectionDivider label="Backward Citations" />
+
       <ChartContainer
         id="fig-patent-quality-backward-citations"
-        subtitle="Average and median backward citations (references to prior art) per utility patent by year, reflecting the expanding body of searchable prior art."
-        title="Backward Citations Per Patent Have Increased from Approximately 5 in the 1970s to Around 20 in Recent Years"
-        caption="This chart displays average and median backward citations (references to prior art) per utility patent from 1976 to 2025. The consistent upward trend reflects the expanding universe of searchable prior art and increasingly thorough examination and disclosure requirements."
-        loading={trL}
-        insight="The growing body of backward citations is consistent with the expanding universe of prior art and more thorough examination and disclosure requirements over time."
+        subtitle="Average and median backward citation counts per utility patent by grant year, showing the expanding knowledge base over time."
+        title="Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023"
+        caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
+        loading={ciL}
+        insight="The growth in backward citations reflects both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
       >
         <PWLineChart
-          data={trends ?? []}
+          data={cites ?? []}
           xKey="year"
           lines={[
-            { key: 'avg_backward_cites', name: 'Average Backward Citations', color: CHART_COLORS[3] },
-            { key: 'median_backward_cites', name: 'Median Backward Citations', color: CHART_COLORS[5] },
+            { key: 'avg_citations', name: 'Average', color: CHART_COLORS[0] },
+            { key: 'median_citations', name: 'Median', color: CHART_COLORS[2] },
           ]}
           yLabel="Citations"
-          yFormatter={(v) => v.toFixed(0)}
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
+          yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 2001, 2008] })}
         />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          The average number of backward citations per patent has grown substantially over the
+          decades, reflecting the expanding body of prior art that new inventions must
+          acknowledge. Patents increasingly build on larger bodies of prior art, with the average rising
+          from approximately 5 in the 1970s to around 21 in recent years. The gap between average and median
+          suggests a long tail of heavily-cited patents, a pattern consistent with both the expanding universe of
+          prior art and more thorough examination and disclosure requirements.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The widening divergence between mean and median backward citations constitutes a notable structural feature of
+          the knowledge network. Although the median patent cites a modest number of prior art references, a growing
+          tail of patents with extensive backward citations elevates the mean. This trend reflects both the
+          expanding universe of searchable prior art and evolving patent office practices
+          that encourage more thorough prior art disclosure.
+        </p>
+      </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 3. Citation Lag */}
+      {/* ------------------------------------------------------------------ */}
+
+      <SectionDivider label="Citation Lag" />
+
+      <ChartContainer
+        id="fig-patent-quality-citation-lag"
+        subtitle="Average and median time in years between a cited patent's grant date and the citing patent's grant date, by year."
+        title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
+        caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
+        loading={ltL}
+        insight="The lengthening citation lag indicates that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
+      >
+        <PWLineChart
+          data={lagTrend ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_lag_years', name: 'Average Lag', color: CHART_COLORS[0] },
+            { key: 'median_lag_years', name: 'Median Lag', color: CHART_COLORS[2] },
+          ]}
+          yLabel="Years"
+          yFormatter={(v) => `${v.toFixed(1)}y`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 2001, 2008] })}
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          The citation lag -- the temporal distance over which patents cite prior art -- has increased steadily,
+          indicating that the useful life of patented knowledge continues to extend. Contemporary
+          patents draw on an increasingly expansive base of prior art, reaching further back in time
+          than patents of earlier decades.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The lengthening citation lag -- from approximately 3 years in the early 1980s to over 16 years
+          in the most recent period -- indicates that the expanding body of relevant prior art requires newer patents
+          to reach further back in time. This widening temporal window reflects both the cumulative
+          nature of technological progress and the increasing searchability of prior art databases.
+        </p>
+      </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 4. Patent Claims */}
+      {/* ------------------------------------------------------------------ */}
+
+      <SectionDivider label="Patent Claims" />
+
+      <Narrative>
+        <p>
+          The number of claims in a patent defines the scope of legal protection. Trends in
+          claim counts reveal how patent strategy has evolved -- from relatively concise early
+          patents to the <StatCallout value="claim-intensive patents" /> of the contemporary era.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-quality-claims-trends"
+        subtitle="Median and 90th percentile claim counts for utility patents by grant year, measuring the evolution of patent scope over time."
+        title="Median Claims Doubled from 8 to 18 (1976-2025) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025"
+        caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The widening gap between median and 90th percentile values indicates that claim inflation is concentrated in the upper tail of the distribution, particularly in software and biotechnology patents."
+        insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
+        loading={clL}
+      >
+        {claimsData?.trends ? (
+          <PWLineChart
+            data={claimsData.trends}
+            xKey="year"
+            lines={[
+              { key: 'median_claims', name: 'Median Claims', color: CHART_COLORS[0] },
+              { key: 'p90_claims', name: '90th Percentile', color: CHART_COLORS[3] },
+            ]}
+            yLabel="Number of Claims"
+          />
+        ) : <div />}
       </ChartContainer>
 
       <KeyInsight>
         <p>
-          Patents increasingly build on larger bodies of prior art. The average number of
-          backward citations has increased from approximately 5 in the 1970s to around 20 in recent years,
-          a trend consistent with both the expanding universe of prior art and more thorough examination
-          and disclosure requirements. This pattern has implications for the originality index,
-          as broader citation bases tend to span more technology domains.
+          The doubling of median claims from 8 to 18 over five decades reflects the growing complexity
+          of patent drafting strategies. The decline of the 90th percentile from its 2005 peak suggests
+          that the most extreme claim inflation has moderated, potentially in response to judicial
+          and administrative scrutiny of overly broad patent claims.
         </p>
       </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 5. Scope & Breadth */}
+      {/* ------------------------------------------------------------------ */}
 
       <SectionDivider label="Scope & Breadth" />
 
@@ -236,6 +328,57 @@ export default function Chapter12() {
           IoT, biotechnology, and AI inherently span multiple classification categories.
         </p>
       </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 6. Cross-Domain Convergence */}
+      {/* ------------------------------------------------------------------ */}
+
+      <SectionDivider label="Cross-Domain Convergence" />
+
+      <ChartContainer
+        id="fig-patent-quality-cross-domain"
+        subtitle="Annual patent counts by number of CPC sections spanned (1, 2, or 3+), shown as a stacked area to illustrate growing cross-domain convergence."
+        title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2020), Indicating Increasing Technological Convergence"
+        caption="This chart presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
+        loading={cdL}
+        height={500}
+        insight="The rising share of cross-domain innovation suggests that technological boundaries are increasingly permeable, with inventions more frequently occurring at the intersection of multiple fields."
+      >
+        <PWAreaChart
+          data={crossDomain ?? []}
+          xKey="year"
+          areas={[
+            { key: 'single_section', name: 'Single Section', color: CHART_COLORS[0] },
+            { key: 'two_sections', name: 'Two Sections', color: CHART_COLORS[2] },
+            { key: 'three_plus_sections', name: 'Three+ Sections', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Share of Patents (%)"
+          stacked
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          The share of patents spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections has increased over time, indicating
+          growing <StatCallout value="technological convergence" />. Contemporary inventions
+          increasingly draw on knowledge from multiple domains, a characteristic of the digital era
+          in which software, electronics, and traditional engineering fields intersect.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The rise of multi-domain patents is consistent with a structural shift in the nature of
+          invention. Technologies such as autonomous vehicles, wearable health monitors, and
+          smart materials inherently span traditional boundaries between physics, chemistry,
+          and engineering, conferring an advantage upon organizations capable of integrating diverse expertise.
+        </p>
+      </KeyInsight>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* 7. Originality & Generality */}
+      {/* ------------------------------------------------------------------ */}
 
       <SectionDivider label="Originality & Generality" />
 
@@ -281,7 +424,11 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Self-Citation" />
+      {/* ------------------------------------------------------------------ */}
+      {/* 8. Self-Citation Patterns */}
+      {/* ------------------------------------------------------------------ */}
+
+      <SectionDivider label="Self-Citation Patterns" />
 
       <ChartContainer
         id="fig-patent-quality-self-citation-rate"
@@ -309,47 +456,18 @@ export default function Chapter12() {
           Self-citation patterns indicate knowledge accumulation strategies within firms.
           Organizations that consistently cite their own prior patents are building on
           internal knowledge stocks, a characteristic of cumulative innovation within technological
-          trajectories. Changes in self-citation rates over time may reflect shifts in
-          corporate R&D strategy, from exploration of new domains to exploitation of
-          established competencies.
+          trajectories. The long-term decline in self-citation rates from 35% to approximately 10%
+          may reflect the broadening of knowledge inputs alongside the growing accessibility of
+          external prior art, though the modest rebound in the 2020s warrants continued observation.
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Quality Across Sectors" />
-
-      <ChartContainer
-        id="fig-patent-quality-claims-by-sector"
-        subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to show cross-sector convergence trends."
-        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Driving Cross-Sector Convergence"
-        caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. The convergence of claim counts across sectors suggests a broad trend toward more detailed patent drafting."
-        loading={bsL}
-        insight="Biotechnology and pharmaceutical patents tend to exhibit higher citation impact per patent, a pattern consistent with the slower but more impactful nature of pharmaceutical innovation."
-      >
-        <PWLineChart
-          data={sectorPivot}
-          xKey="period"
-          lines={sectorNames.map((name) => ({
-            key: name,
-            name,
-            color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[0],
-          }))}
-          yLabel="Average Claims Per Patent"
-          yFormatter={(v) => v.toFixed(1)}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          Patent complexity, as measured by average claims per patent, varies considerably
-          across technology sectors. Electrical engineering and instruments patents tend to have the most
-          claims in recent decades, reflecting the detailed and layered claim structures characteristic of
-          software and electronics inventions. The convergence of claim counts across sectors in recent decades
-          suggests a broad trend toward more complex patent drafting strategies irrespective
-          of technology domain.
-        </p>
-      </KeyInsight>
+      {/* ------------------------------------------------------------------ */}
+      {/* 9. Sleeping Beauty Patents */}
+      {/* ------------------------------------------------------------------ */}
 
       <SectionDivider label="Sleeping Beauty Patents" />
+
       <Narrative>
         <p>
           Certain patents receive minimal attention for years, only to be &quot;rediscovered&quot; when
@@ -358,6 +476,7 @@ export default function Chapter12() {
           within a 3-year window. Such patents represent inventions that preceded the technology necessary for their practical application.
         </p>
       </Narrative>
+
       {sleepingBeauties && sleepingBeauties.length > 0 && (
         <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
           <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Top Sleeping Beauty Patents</h3>
@@ -382,13 +501,14 @@ export default function Chapter12() {
                   <td className="text-right py-2 px-3 font-mono">{sb.early_cites}</td>
                   <td className="text-right py-2 px-3 font-mono font-semibold">{sb.burst_citations}</td>
                   <td className="text-right py-2 px-3">+{sb.burst_year_after_grant} years</td>
-                  <td className="text-right py-2 px-3 font-mono">{sb.total_fwd_cites.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{formatCompact(sb.total_fwd_cites)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       )}
+
       <KeyInsight>
         <p>
           Sleeping beauty patents are overwhelmingly concentrated in Human Necessities (Section A), which accounts for 94% of identified cases. In this domain, fundamental discoveries may require decades to find
@@ -399,49 +519,9 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Composite Quality Index" />
-      <Narrative>
-        <p>
-          Individual quality metrics each capture one dimension of patent value. Combining
-          forward citations, claims count, technology scope, and grant speed into a single
-          Z-score normalized composite index enables tracking of overall patent quality trends
-          across technology areas. Positive values indicate above-average quality; negative
-          values indicate below-average quality.
-        </p>
-      </Narrative>
-      <ChartContainer
-        id="fig-patent-quality-composite-index"
-        subtitle="Z-score normalized composite of forward citations, claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality."
-        title="Chemistry (C) and Human Necessities (A) Patents Maintain the Highest Composite Quality Scores, While Electronics (H) and Physics (G) Rose from Negative to Positive Z-Scores Since the 1990s"
-        caption="This chart displays a Z-score normalized composite index of forward citations (5-year window), claims, scope, and grant speed by CPC section. Values above 0 indicate above-average quality. Chemistry (C) and Human Necessities (A) patents consistently score highest, whereas Electronics (H) and Physics (G) have improved from negative to positive composite scores since the 1990s."
-        loading={cqL}
-        insight="Composite quality has improved across most technology areas since the 1990s, with Chemistry and Human Necessities maintaining the highest scores throughout."
-      >
-        {compositeQualityPivot.length > 0 && (
-          <PWLineChart
-            data={compositeQualityPivot}
-            xKey="year"
-            lines={compositeQualitySections.map(section => ({
-              key: section,
-              name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
-              color: CPC_SECTION_COLORS[section],
-            }))}
-            yLabel="Composite Index (Z-score)"
-            yFormatter={(v: number) => v.toFixed(2)}
-            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
-          />
-        )}
-      </ChartContainer>
-      <KeyInsight>
-        <p>
-          The composite quality index reveals diverging trajectories across technology areas.
-          Chemistry and Human Necessities patents have maintained consistently higher composite
-          quality, driven by strong forward citation rates and broad scope. Electronics and
-          Physics patenting has exhibited improving average quality since the 1990s, with composite
-          scores rising from negative to positive territory. The overall upward trend since
-          the 1990s suggests that patent quality has improved alongside growing volume.
-        </p>
-      </KeyInsight>
+      {/* ------------------------------------------------------------------ */}
+      {/* 10. Quality vs. Quantity by Country */}
+      {/* ------------------------------------------------------------------ */}
 
       <SectionDivider label="Quality vs. Quantity by Country" />
 
@@ -470,131 +550,25 @@ export default function Chapter12() {
         />
       </ChartContainer>
 
-      <SectionDivider label="Self-Citation and Corporate Knowledge Recycling" />
-
       <Narrative>
-        <p>
-          Self-citations, in which a firm cites its own earlier patents, reveal the extent
-          to which organizations build upon their own knowledge base. Elevated self-citation rates may indicate
-          deep, cumulative R&D programs, but may also reflect strategic behavior intended to construct
-          defensive patent thickets.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        id="fig-patent-quality-self-citation-by-assignee"
-        subtitle="Self-citation rate (fraction of backward citations to same assignee) for the 20 most-cited assignees, revealing knowledge recycling patterns."
-        title="Canon (47.6%), TSMC (38.4%), and Micron (25.3%) Exhibit the Highest Self-Citation Rates Among Top Assignees"
-        caption="This chart displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Firms with deep, cumulative R&D programs, including IBM, Samsung, and semiconductor manufacturers, exhibit the highest self-citation rates."
-        insight="Elevated self-citation rates among firms with cumulative R&D programs are consistent with long-term knowledge building on internal prior art, though strategic considerations may also contribute."
-        loading={scaL}
-        height={700}
-      >
-        <PWBarChart
-          data={(selfCiteAssignee ?? []).map(d => ({
-            ...d,
-            label: cleanOrgName(d.organization),
-            self_cite_pct: d.self_cite_rate * 100,
-          }))}
-          xKey="label"
-          bars={[{ key: 'self_cite_pct', name: 'Self-Citation Rate (%)', color: CHART_COLORS[6] }]}
-          layout="vertical"
-          yFormatter={(v) => `${v.toFixed(1)}%`}
-        />
-      </ChartContainer>
-
-      {selfCiteSec && (
-        <div className="my-12 overflow-x-auto">
-          <h3 className="mb-4 font-sans text-base font-semibold tracking-tight text-muted-foreground">
-            Self-Citation Rates by CPC Section and Decade
-          </h3>
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="border-b border-border text-left text-muted-foreground">
-                <th className="py-2 pr-4 font-medium">Section</th>
-                <th className="py-2 pr-4 font-medium">Decade</th>
-                <th className="py-2 pr-4 text-right font-medium">Total Citations</th>
-                <th className="py-2 pr-4 text-right font-medium">Self-Citations</th>
-                <th className="py-2 text-right font-medium">Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selfCiteSec.map((d, i) => (
-                <tr key={i} className="border-b border-border/50">
-                  <td className="py-1.5 pr-4 font-medium">{d.section}</td>
-                  <td className="py-1.5 pr-4">{d.decade}s</td>
-                  <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.total_citations)}</td>
-                  <td className="py-1.5 pr-4 text-right font-mono text-xs">{formatCompact(d.self_citations)}</td>
-                  <td className="py-1.5 text-right font-mono text-xs">{(d.self_cite_rate * 100).toFixed(1)}%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <figcaption className="mt-3 text-xs text-muted-foreground">
-            Self-citation rate = (self-citations / total citations) for patents in each CPC section and decade.
-            A self-citation occurs when the citing and cited patents share the same primary assignee.
-          </figcaption>
-        </div>
-      )}
-
-      <KeyInsight>
-        <p>
-          Self-citation patterns reveal meaningful differences in how firms and sectors accumulate
-          knowledge. In patent-dense fields such as semiconductors and electronics, elevated self-citation
-          rates may reflect genuine cumulative innovation, with each patent building upon the firm&apos;s
-          previous work. Nevertheless, these rates may also signal strategic behavior, as firms cite their own
-          patents to construct defensive thickets that raise barriers to entry for competitors.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Within-Firm Quality Concentration" />
-
-      <Narrative>
-        <p>
-          The Gini coefficient, applied to forward citations within each firm&apos;s annual patent
-          cohort, measures how concentrated a firm&apos;s citation impact is across its portfolio.
-          A Gini near 1.0 indicates that virtually all citation impact is concentrated in a
-          handful of patents; near 0.0 indicates impact is evenly distributed. A rising Gini
-          signals increasing dependence on a small number of high-impact inventions.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        id="fig-patent-quality-firm-gini"
-        subtitle="Gini coefficient of forward citations within each firm's annual patent cohort, measuring how concentrated citation impact is across the portfolio."
-        title="Within-Firm Citation Gini Coefficients Rose from 0.5 to Above 0.8 for Most Large Filers, Signaling Growing Reliance on Blockbuster Patents"
-        caption="Each panel shows one firm's citation Gini coefficient by year (top 20 firms by recent Gini). Higher values indicate more concentrated citation impact within the firm's patent portfolio."
-        insight="Most large patent filers exhibit Gini coefficients between 0.6 and 0.9, indicating that a small fraction of each firm's patents accounts for the majority of citation impact. Several firms show rising Gini trajectories, consistent with increasing reliance on blockbuster inventions."
-        loading={fgL}
-        height={850}
-        wide
-      >
-        <PWSmallMultiples
-          panels={giniPanels}
-          xLabel="Year"
-          yLabel="Gini"
-          yFormatter={(v) => v.toFixed(2)}
-          columns={4}
-          color={CHART_COLORS[4]}
-        />
-      </ChartContainer>
-
-      <Narrative>
-        The preceding chapters examined the mechanics of innovation: knowledge flows through citations, the tempo and convergence of patent activity, and the measurement of patent quality. The remaining chapters provide deep dives into specific domains of particular consequence.
-        The analysis turns next to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, one of the most rapidly growing areas of patenting activity, where the quality metrics developed in this chapter prove especially relevant for distinguishing genuine innovation from the accelerating volume of AI-related filings.
+        The preceding sections examined patent-level quality metrics across multiple dimensions -- citations, claims, scope, originality, and generality. Together, these indicators demonstrate that patent quality is multidimensional and that trends in different dimensions do not always move in parallel. The subsequent chapters provide deep dives into specific domains, beginning with <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, one of the most rapidly growing areas of patenting activity, where these quality metrics prove especially relevant for distinguishing genuine innovation from the accelerating volume of AI-related filings.
       </Narrative>
 
       <DataNote>
         Quality indicators computed from PatentsView data following the framework of Jaffe and
         de Rassenfosse (2017). Forward citations use a 5-year window and are limited to
-        patents granted through 2020 for citation accumulation. Originality and generality
+        patents granted through 2020 for citation accumulation. Backward citation counts include all
+        US patent citations per utility patent. Citation lag is measured as the time between the cited
+        patent&apos;s grant date and the citing patent&apos;s grant date. Originality and generality
         use the Herfindahl-based measures of Trajtenberg, Henderson, and Jaffe (1997).
-        Breakthrough patents are defined as the top 1% of forward citations within each
-        year-technology cohort. The composite quality index combines Z-score normalized forward citations (5-year window), claims count, technology scope, and grant speed (inverted). Sleeping beauty patents are identified as those with fewer than 2 citations per year in their first 10 years followed by a burst of 10+ citations in a 3-year window.
+        Claims analysis uses the patent_num_claims field from g_patent for utility patents only.
+        Cross-domain analysis counts distinct CPC sections per patent (excluding section Y).
+        Sleeping beauty patents are identified as those with fewer than 2 citations per year in their
+        first 10 years followed by a burst of 10+ citations in a 3-year window.
       </DataNote>
 
-      <RelatedChapters currentChapter={12} />
-      <ChapterNavigation currentChapter={12} />
+      <RelatedChapters currentChapter={9} />
+      <ChapterNavigation currentChapter={9} />
     </div>
   );
 }

@@ -30,7 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter19() {
+export default function Chapter17() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('av/av_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('av/av_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('av/av_top_assignees.json');
@@ -184,7 +184,7 @@ export default function Chapter19() {
   return (
     <div>
       <ChapterHeader
-        number={19}
+        number={17}
         title="Autonomous Vehicles & ADAS"
         subtitle="The race toward self-driving transportation"
       />
@@ -722,7 +722,7 @@ export default function Chapter19() {
         technology, and automotive engineering has created one of the most dynamic and
         capital-intensive innovation races in the modern patent system. The organizational
         strategies behind AV patenting are explored further in{' '}
-        <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Company Innovation Profiles</Link>,
+        <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
         while the AI foundations that underpin autonomous driving are examined in the{' '}
         <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
         The next chapter examines <Link href="/chapters/space-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">space technology</Link>, a domain where autonomous navigation, sensor fusion, and systems integration challenges parallel those encountered in self-driving vehicles but are extended to the orbital environment.
@@ -742,8 +742,8 @@ export default function Chapter19() {
         sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={19} />
-      <ChapterNavigation currentChapter={19} />
+      <RelatedChapters currentChapter={17} />
+      <ChapterNavigation currentChapter={17} />
     </div>
   );
 }

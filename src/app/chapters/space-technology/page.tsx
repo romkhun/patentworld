@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter20() {
+export default function Chapter18() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('space/space_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('space/space_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('space/space_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter20() {
   return (
     <div>
       <ChapterHeader
-        number={20}
+        number={18}
         title="Space Technology"
         subtitle="Patenting the final frontier"
       />
@@ -755,8 +755,8 @@ export default function Chapter20() {
         diffusion measures co-occurrence of space CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={20} />
-      <ChapterNavigation currentChapter={20} />
+      <RelatedChapters currentChapter={18} />
+      <ChapterNavigation currentChapter={18} />
     </div>
   );
 }
