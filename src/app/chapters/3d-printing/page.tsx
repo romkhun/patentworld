@@ -188,7 +188,7 @@ export default function Chapter11() {
       />
 
       <KeyFindings>
-        <li>3D printing patent filings have grown approximately 20x since 2000, accelerating sharply after the expiration of key FDM patents in 2009 opened the field to a wave of new entrants and desktop applications.</li>
+        <li>3D printing patent filings have grown substantially since 2000, with notable acceleration after the expiration of key FDM patents in 2009.</li>
         <li>The technology has bifurcated into distinct tracks: polymer additive manufacturing (B29C64) for prototyping and consumer applications, and metal additive manufacturing (B22F10) for production-grade aerospace and medical components.</li>
         <li>HP, General Electric, Stratasys, and Boeing lead the 3D printing patent landscape, though their strategies differ markedly across AM processes, equipment, and materials.</li>
         <li>The introduction of the B33Y CPC classification specifically for additive manufacturing reflects the field&apos;s maturation into a recognized technology domain with distinct inventive activity.</li>
@@ -231,9 +231,9 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-annual-count"
         subtitle="Annual count of utility patents classified under additive manufacturing CPC codes (B33Y, B29C64, B22F10), tracking the growth trajectory of 3D printing patenting."
-        title="3D Printing Patent Filings Grew Approximately 20x Since 2000, With Acceleration After the 2009 FDM Patent Expiration"
+        title="3D Printing Patent Filings Grew Substantially Since 2000, With Acceleration After the 2009 FDM Patent Expiration"
         caption="Annual count and share of utility patents classified under additive manufacturing CPC codes, 1990-2025. The sharp acceleration after 2009 coincides with the expiration of Stratasys's foundational FDM patent, which opened the technology to widespread adoption and new entrants."
-        insight="The exponential growth in 3D printing patents mirrors the broader democratization of additive manufacturing, driven by patent expirations, falling hardware costs, and expanding material capabilities."
+        insight="The growth in 3D printing patents is associated with the broader expansion of additive manufacturing, coinciding with patent expirations, falling hardware costs, and expanding material capabilities."
         loading={pyL}
       >
         <PWLineChart
@@ -250,12 +250,11 @@ export default function Chapter11() {
       <KeyInsight>
         <p>
           The growth trajectory of 3D printing patents exhibits two distinct phases. The
-          first, spanning the 1990s through 2009, reflects steady but moderate patenting
-          concentrated among a small number of pioneering firms. The second, beginning with
-          the FDM patent expiration in 2009 and accelerating through the desktop 3D printing
-          boom of 2013-2014, represents an inflection point as new entrants, open-source
-          communities, and industrial manufacturers simultaneously expanded the technology&apos;s
-          scope and application domains.
+          first, spanning the 1990s through 2009, shows steady but moderate patenting
+          concentrated among a small number of pioneering firms. The second, beginning around
+          the 2009 FDM patent expiration and accelerating through the desktop 3D printing
+          period of 2013-2014, shows an inflection point coinciding with expansion by new entrants, open-source
+          communities, and industrial manufacturers.
         </p>
       </KeyInsight>
 
@@ -515,8 +514,7 @@ export default function Chapter11() {
 
       <KeyInsight>
         <p>
-          AM patents exhibit distinctive quality characteristics that reflect the technology&apos;s
-          interdisciplinary nature. Backward citations peaked around 2013 and have since declined,
+          AM patents exhibit distinctive quality characteristics. Backward citations peaked around 2013 and have since declined,
           while technology scope has shown a long-term increase. The expanding technology
           scope -- measured by the number of distinct CPC subclasses per patent -- confirms
           that AM inventions increasingly bridge multiple technology domains, consistent with

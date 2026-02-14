@@ -188,9 +188,9 @@ export default function Chapter18() {
       />
 
       <KeyFindings>
-        <li>Digital health patent filings have grown substantially since 2009, accelerated by the HITECH Act&apos;s mandate for electronic health record adoption and the COVID-19 pandemic&apos;s expansion of telemedicine.</li>
+        <li>Digital health patent filings have grown substantially since 2009, with notable growth following the 2009 HITECH Act&apos;s mandate for electronic health record adoption and the 2020 COVID-19 pandemic, which coincided with rapid expansion of telemedicine adoption.</li>
         <li>Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest subfield, reflecting the centrality of continuous data capture to modern healthcare.</li>
-        <li>Surgical robotics, led by Intuitive Surgical and the da Vinci platform, has emerged as one of the fastest-growing subfields, transforming minimally invasive procedures.</li>
+        <li>Surgical robotics, led by Intuitive Surgical (1,994 patents) and the da Vinci platform, has emerged as one of the fastest-growing subfields, with substantial growth in minimally invasive procedure technologies.</li>
         <li>Health informatics and clinical decision support are increasingly integrated with artificial intelligence, driving a convergence between digital health and machine learning technologies.</li>
       </KeyFindings>
 
@@ -216,10 +216,11 @@ export default function Chapter18() {
 
       <KeyInsight>
         <p>
-          Digital health patent activity serves as a barometer for the technological
-          transformation of healthcare delivery. The acceleration of filings following the
-          HITECH Act and the COVID-19 pandemic reflects how regulatory mandates and public
-          health emergencies can catalyze innovation in ways that reshape entire industries.
+          Digital health patent activity serves as an indicator of technological
+          transformation in healthcare delivery. The acceleration of filings observed following the
+          HITECH Act and the COVID-19 pandemic coincides with regulatory mandates and public
+          health emergencies that have been associated with increased innovation activity in
+          healthcare technology.
         </p>
       </KeyInsight>
 
@@ -230,8 +231,8 @@ export default function Chapter18() {
         id="fig-digihealth-annual-count"
         subtitle="Annual count of utility patents classified under digital health CPC codes, tracking the growth trajectory of digital health patenting."
         title="Digital Health Patent Filings Have Grown Substantially Since 2009, Driven by the HITECH Act and COVID-19 Pandemic"
-        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which accelerated telemedicine and remote monitoring."
-        insight="The growth trajectory of digital health patents reflects the convergence of regulatory mandates, public health emergencies, and advances in sensor technology, wireless connectivity, and cloud computing."
+        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption."
+        insight="The growth trajectory of digital health patents coincides with regulatory mandates (HITECH Act), public health emergencies (COVID-19), and advances in sensor technology, wireless connectivity, and cloud computing."
         loading={pyL}
       >
         <PWLineChart
@@ -249,10 +250,10 @@ export default function Chapter18() {
         <p>
           Digital health patent filings exhibit two distinct acceleration phases. The first
           followed the 2009 HITECH Act, which allocated billions in incentive payments for
-          electronic health record adoption, spurring investment in health IT infrastructure.
-          The second began in 2020 as the COVID-19 pandemic necessitated rapid deployment of
-          telemedicine, remote patient monitoring, and digital diagnostics -- compressing years
-          of anticipated adoption into months.
+          electronic health record adoption, coinciding with increased investment in health IT
+          infrastructure. The second began in 2020, coinciding with the COVID-19 pandemic and rapid
+          deployment of telemedicine, remote patient monitoring, and digital diagnostics during
+          2020-2021.
         </p>
       </KeyInsight>
 
@@ -284,7 +285,7 @@ export default function Chapter18() {
         subtitle="Patent counts by digital health subfield (patient monitoring, health informatics, surgical robotics, etc.) over time."
         title="Patient Monitoring Dominates Digital Health Patenting, While Surgical Robotics and Health Informatics Are the Fastest-Growing Subfields"
         caption="Patent counts by digital health subfield over time. Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest category. Surgical robotics and health informatics have exhibited the most rapid growth in recent years."
-        insight="The shift toward health informatics and surgical robotics reflects a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies enable more sophisticated interventions."
+        insight="The shift toward health informatics and surgical robotics coincides with a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies have enabled more sophisticated clinical interventions."
         loading={sfL}
         height={650}
       >
@@ -552,7 +553,7 @@ export default function Chapter18() {
 
       <Narrative>
         <p>
-          The leading digital health patent holders pursue notably different strategies.
+          The leading digital health patent holders pursue different strategies.
           Certain firms concentrate on patient monitoring hardware, while others emphasize
           health informatics and clinical decision support. A comparison of subfield portfolios
           across major holders reveals where each organization concentrates its inventive

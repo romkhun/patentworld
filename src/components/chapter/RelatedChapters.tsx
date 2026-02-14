@@ -35,7 +35,7 @@ export function RelatedChapters({ currentChapter }: RelatedChaptersProps) {
           <Link
             key={ch!.number}
             href={`/chapters/${ch!.slug}/`}
-            className="rounded-lg border p-4 transition-colors hover:bg-accent"
+            className="rounded-lg border p-4 transition-colors hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <div className="text-xs font-mono text-muted-foreground">
               Chapter {String(ch!.number).padStart(2, '0')}

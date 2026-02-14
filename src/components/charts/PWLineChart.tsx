@@ -136,7 +136,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
           const color = line.color ?? CHART_COLORS[i % CHART_COLORS.length];
           const isHovered = hoveredLine === line.key || hoveredLine === line.name;
           const isDimmed = hoveredLine !== null && !isHovered;
-          const lastDataPoint = data[data.length - 1];
+          const lastDataPoint = data && data.length > 0 ? data[data.length - 1] : null;
           return (
             <Line
               key={line.key}

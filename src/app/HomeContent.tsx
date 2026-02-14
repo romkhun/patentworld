@@ -86,7 +86,7 @@ export default function HomePage() {
           <div className="mt-12">
             <Link
               href={`/chapters/${CHAPTERS[0].slug}/`}
-              className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-foreground/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Start Reading <ArrowRight className="h-4 w-4" />
             </Link>
@@ -105,10 +105,10 @@ export default function HomePage() {
             return (
               <div key={act.act}>
                 <div className="mb-4">
-                  <h3 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Act {act.act}
-                  </h3>
-                  <h4 className="font-serif text-xl font-semibold">{act.title}</h4>
+                  </div>
+                  <h3 className="font-serif text-xl font-semibold">{act.title}</h3>
                   <p className="text-sm text-muted-foreground">{act.subtitle}</p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -116,11 +116,11 @@ export default function HomePage() {
                     <Link
                       key={ch.slug}
                       href={`/chapters/${ch.slug}/`}
-                      className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors"
+                      className="group rounded-lg border bg-card p-6 hover:border-foreground/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
                     >
-                      <h3 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
+                      <h4 className="font-serif text-lg font-semibold group-hover:text-chart-1 transition-colors">
                         {ch.title}
-                      </h3>
+                      </h4>
                       <p className="mt-2 text-sm text-muted-foreground">{ch.description}</p>
                       <div className="mt-4 flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                         Explore <ArrowRight className="h-3 w-3" />
@@ -150,7 +150,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/about/"
-            className="mt-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+            className="mt-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm"
           >
             Data sources and methodology <ArrowRight className="h-3 w-3" />
           </Link>

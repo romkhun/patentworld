@@ -31,7 +31,7 @@ export function ChapterSidebar() {
                     key={ch.slug}
                     href={href}
                     className={clsx(
-                      'flex items-start gap-3 rounded-md px-3 py-2 text-sm transition-colors',
+                      'flex items-start gap-3 rounded-md px-3 py-2 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary',
                       isActive
                         ? 'bg-accent text-foreground font-medium'
                         : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'

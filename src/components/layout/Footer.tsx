@@ -12,15 +12,15 @@ export function Footer() {
               href="https://patentsview.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-foreground"
+              className="underline hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm"
             >
               PatentsView
             </a>
             {' '}(USPTO). {HERO_STATS.totalPatents} US patents, {HERO_STATS.startYear}-{HERO_STATS.endYear}.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <Link href="/about/" className="hover:text-foreground">About</Link>
-            <Link href="/explore/" className="hover:text-foreground">Explore</Link>
+            <Link href="/about/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
+            <Link href="/explore/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
           </div>
         </div>
       </div>

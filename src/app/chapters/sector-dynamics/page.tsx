@@ -187,7 +187,7 @@ export default function SectorDynamics() {
         title="Physics and Electricity Show 11-Year Median Lag in the 2020s vs. 17 Years for Chemistry"
         caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."
         loading={clsL}
-        insight="The increasing density of the citation network indicates that modern inventions build on a broader base of prior knowledge, which appears to accelerate the pace of cumulative innovation."
+        insight="The increasing density of the citation network indicates that modern inventions build on a broader base of prior knowledge, which is consistent with an accelerating pace of cumulative innovation."
       >
         {lagBySectionPivot.length > 0 && (
           <PWLineChart
@@ -206,13 +206,13 @@ export default function SectorDynamics() {
 
       <KeyInsight>
         <p>
-          Citation lag has increased over time, reflecting the expanding body of relevant
+          Citation lag has increased over time, consistent with the expanding body of relevant
           prior art that newer patents must reference. The growth in lag has been most pronounced
           since the 2000s, as the cumulative stock of patented knowledge has grown substantially.
           Technology areas such as Physics and Electricity tend to exhibit shorter citation lags,
           consistent with rapid innovation cycles in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">computing and electronics</Link>, whereas
           Chemistry and Human Necessities (including pharmaceuticals) demonstrate longer lags,
-          reflecting the extended development timelines characteristic of those fields.
+          consistent with the extended development timelines characteristic of those fields.
         </p>
       </KeyInsight>
 
@@ -233,7 +233,7 @@ export default function SectorDynamics() {
         title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Dot-Com Bust (2004-2005) and Financial Crisis (2007)"
         caption="This chart presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
-        insight="The correlation of growth rates across sectors suggests that macroeconomic conditions and patent policy exert stronger influence on patenting rates than sector-specific technology cycles."
+        insight="The correlation of growth rates across sectors is consistent with macroeconomic conditions and patent policy exerting stronger influence on patenting rates than sector-specific technology cycles."
       >
         <PWLineChart
           data={velocityPivot}
@@ -277,7 +277,7 @@ export default function SectorDynamics() {
         title="Since the Mid-2000s, Chemistry (C) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,293 Days in the 2010-2014 Period"
         caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
-        insight="Examination duration patterns reveal the institutional constraints that shape innovation timelines, with technology-specific backlogs reflecting the USPTO's resource allocation across its technology centers."
+        insight="Examination duration patterns are consistent with institutional constraints that shape innovation timelines, with technology-specific backlogs associated with the USPTO's resource allocation across its technology centers."
       >
         {frictionPivot.length > 0 && (
           <PWLineChart
@@ -360,7 +360,7 @@ export default function SectorDynamics() {
         title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Reflecting Broad Increases Across Sectors"
         caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
-        insight="Electrical engineering patents tend to exhibit higher citation impact per patent than Chemistry patents, a pattern consistent with the rapid innovation cycles and dense citation networks in computing and electronics."
+        insight="Electrical engineering patents tend to exhibit higher citation impact per patent than Chemistry patents, a pattern consistent with rapid innovation cycles and dense citation networks in computing and electronics."
       >
         <PWLineChart
           data={sectorPivot}
@@ -484,8 +484,8 @@ export default function SectorDynamics() {
           Self-citation patterns reveal meaningful differences in how firms and sectors accumulate
           knowledge. In patent-dense fields such as semiconductors and electronics, elevated self-citation
           rates may reflect genuine cumulative innovation, with each patent building upon the firm&apos;s
-          previous work. Nevertheless, these rates may also signal strategic behavior, as firms cite their own
-          patents to construct defensive thickets that raise barriers to entry for competitors.
+          previous work. However, these rates may also signal strategic behavior, as firms cite their own
+          patents to construct defensive thickets that may raise barriers to entry for competitors.
         </p>
       </KeyInsight>
 

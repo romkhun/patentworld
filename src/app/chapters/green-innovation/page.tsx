@@ -220,9 +220,9 @@ export default function Chapter19() {
         <li>
           <GlossaryTooltip term="green patents">Green patents</GlossaryTooltip> — those classified under <GlossaryTooltip term="Y02">Y02/Y04S</GlossaryTooltip> codes — total {formatCompact(totalGreen)} over 50 years, peaking at {peakYear ? formatCompact(peakYear.green_count) : '—'} in {peakYear?.year ?? '—'}.
         </li>
-        <li>Batteries and storage, transportation and electric vehicles, and renewable energy constitute the fastest-growing green sub-categories, exhibiting continued growth following the 2015 Paris Agreement.</li>
-        <li>Japan has historically been the second-largest green patent filer through Toyota and Honda; however, Samsung, Hyundai, and General Electric have substantially narrowed the gap in recent years.</li>
-        <li>Artificial intelligence is increasingly applied to climate-related problems; patents at the intersection of green technology and AI have grown markedly since 2015.</li>
+        <li>Batteries and storage, transportation and electric vehicles, and renewable energy have exhibited continued growth in patent filings since the 2015 Paris Agreement, with batteries/storage reaching 7,363 patents and transportation/EVs reaching 5,818 patents by 2024.</li>
+        <li>Japan has historically been the second-largest green patent filer, led by Toyota (12,636 total patents) and Honda (5,807); South Korea&apos;s annual green patent count grew from 174 in 2005 to 2,989 by 2024, reaching 67% of Japan&apos;s 2024 count (4,455).</li>
+        <li>Patents at the intersection of green technology and AI grew from 41 in 2010 to 1,238 in 2023 (a 30-fold increase), with the most rapid growth occurring after 2015.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -251,9 +251,10 @@ export default function Chapter19() {
       <Narrative>
         <p>
           Green patent filings increased from approximately 3,000 per year in the late 1970s to
-          over 30,000 per year by the early 2020s. Continued growth followed the
-          2015 Paris Agreement, with batteries and electric vehicles leading the expansion. Green
-          patents now represent approximately 9-10% of all utility patents granted each year.
+          over 30,000 per year by the early 2020s (peaking at 35,693 in 2019). Patent filings
+          continued to grow following the 2015 Paris Agreement, with batteries and electric vehicles
+          exhibiting particularly strong growth. Green patents represented approximately 9-10% of
+          all utility patents granted annually during 2015-2024.
         </p>
       </Narrative>
 
@@ -285,9 +286,11 @@ export default function Chapter19() {
       <Narrative>
         <p>
           Green technologies have not followed a uniform growth trajectory. Renewable energy
-          generation (solar and wind) led the early expansion, but batteries, energy storage, and
-          transportation (particularly electric vehicles) have emerged as the dominant categories
-          in recent years. Carbon capture remains a smaller but rapidly growing segment.
+          generation (solar and wind) led the early expansion, but batteries/storage and
+          transportation (particularly electric vehicles) have grown to become the largest categories
+          in recent years, with batteries/storage reaching 7,363 patents and transportation/EVs
+          reaching 5,818 patents in 2024, compared to 3,453 renewable energy patents. Carbon capture
+          remains a smaller category at 374 patents in 2024.
         </p>
       </Narrative>
 
@@ -295,8 +298,8 @@ export default function Chapter19() {
         id="fig-green-innovation-by-category"
         subtitle="Annual patent counts by green technology sub-category (renewable energy, batteries, EVs, carbon capture, etc.) based on Y02/Y04S sub-codes."
         title="Battery, Storage, and EV Patents Surpassed Renewable Energy After 2010, Reaching 7,363 and 5,818 vs. 3,453 by 2024"
-        caption="Annual patent counts by green technology sub-category (Y02/Y04S CPC sub-codes), 1976–2025. The most notable pattern is the rapid growth of battery/storage and transportation patents, which overtook renewable energy generation as the leading sub-categories during the 2010s."
-        insight="The green patent portfolio has diversified substantially. While renewable energy generation once dominated, the 2010s exhibited considerable growth in battery/storage and electric vehicle patents, consistent with the electrification of transportation becoming a primary frontier of clean technology innovation."
+        caption="Annual patent counts by green technology sub-category (Y02/Y04S CPC sub-codes), 1976–2025. Battery/storage and transportation patents overtook renewable energy generation as the leading sub-categories during the 2010s, with battery/storage reaching 7,363 patents and transportation/EVs reaching 5,818 patents by 2024, compared to 3,453 renewable energy patents."
+        insight="The green patent portfolio has diversified substantially. While renewable energy generation dominated through the 2000s, the 2010s exhibited considerable growth in battery/storage and electric vehicle patents, coinciding with the electrification of transportation and declining battery costs."
         loading={catL}
         height={550}
         wide
@@ -315,9 +318,10 @@ export default function Chapter19() {
         <p>
           The composition of green innovation has shifted substantially over time. Renewable energy
           patents, led by solar and wind technologies, dominated through the 2000s. Since 2010, however,
-          batteries and energy storage and transportation/EVs have become the fastest-growing segments,
-          driven by declining battery costs, automaker electrification strategies, and supportive policies
-          such as the Inflation Reduction Act.
+          batteries/storage and transportation/EVs have grown substantially, with batteries/storage
+          reaching 7,363 patents and transportation/EVs reaching 5,818 patents by 2024, surpassing
+          renewable energy&apos;s 3,453 patents. This growth coincided with declining battery costs,
+          automaker electrification strategies, and supportive policies such as the Inflation Reduction Act.
         </p>
       </KeyInsight>
 
@@ -326,10 +330,12 @@ export default function Chapter19() {
 
       <Narrative>
         <p>
-          Japan has historically been the second-largest green patent filer, led by Toyota and Honda in automotive
-          technologies and Mitsubishi Electric and Toshiba in energy systems. In recent years, South Korean
-          firms (Samsung, LG, Hyundai) have grown rapidly, while US companies such as General Electric and
-          Ford have maintained strong positions.
+          Japan has historically been the second-largest green patent filer, led by Toyota (12,636 total
+          patents) and Honda (5,807) in automotive technologies and Mitsubishi Electric and Toshiba in
+          energy systems. South Korea&apos;s annual green patent count grew from 174 in 2005 to 2,989 by 2024
+          (reaching 67% of Japan&apos;s 2024 count of 4,455), driven by Samsung (13,771 total patents), LG,
+          and Hyundai (4,888). US firms such as General Electric (10,812) and Ford (7,383) have maintained
+          strong positions.
         </p>
       </Narrative>
 
@@ -337,8 +343,8 @@ export default function Chapter19() {
         id="fig-green-innovation-by-country"
         subtitle="Annual green patent counts by primary assignee country, showing the shifting competitive landscape of climate technology innovation."
         title="South Korea's Green Patents Grew From 174 in 2005 to 2,989 by 2024, Reaching 67% of Japan's Annual Count"
-        caption="Annual green patent counts by primary assignee country/region, 1976–2025. The most significant shift is South Korea's rapid ascent, driven by Samsung, LG, and Hyundai, which substantially narrowed Japan's longstanding lead."
-        insight="Japan's early lead in green patenting reflects its substantial early investment in hybrid vehicles and energy efficiency. South Korea's recent growth, driven by Samsung, LG, and Hyundai, illustrates how the competitive landscape has shifted as battery and electric vehicle technologies have become central to the clean energy transition."
+        caption="Annual green patent counts by primary assignee country/region, 1976–2025. South Korea's annual count grew from 174 in 2005 to 2,989 by 2024, reaching 67% of Japan's 2024 count (4,455), driven by Samsung, LG, and Hyundai."
+        insight="Japan's early lead in green patenting reflects its substantial early investment in hybrid vehicles and energy efficiency. South Korea's growth from 174 annual patents in 2005 to 2,989 in 2024 coincides with the rise of Samsung (13,771 total patents), LG, and Hyundai (4,888) in battery and electric vehicle technologies."
         loading={ctyL}
         height={500}
         wide
@@ -397,7 +403,7 @@ export default function Chapter19() {
         id="fig-green-org-rankings"
         subtitle="Annual patent rank of leading green technology organizations from 2000 to 2025, showing competitive dynamics."
         title="Green Patent Leadership Has Shifted as Electronics Firms Entered the Top Ranks Alongside Traditional Auto and Energy Companies"
-        caption="Annual patent rank of leading organizations in green technology, 2000-2025. The heatmap reveals how Samsung, LG, and Hyundai rose to challenge the longstanding dominance of Japanese and American incumbents."
+        caption="Annual patent rank of leading organizations in green technology, 2000-2025. The heatmap reveals how Samsung, LG, and Hyundai rose to challenge the longstanding dominance of Japanese and US-based incumbents."
         insight="The entry of Korean electronics conglomerates into the top ranks of green patenting after 2010 reflects the strategic importance of battery technology and electric vehicles in reshaping the competitive landscape."
         loading={ootL}
         height={500}
@@ -608,8 +614,8 @@ export default function Chapter19() {
         id="fig-green-innovation-ai-trend"
         subtitle="Annual count of patents co-classified under both green (Y02/Y04S) and AI-related CPC codes, tracking the intersection of climate and AI technologies."
         title="Green-AI Patents Grew 30-Fold From 41 in 2010 to 1,238 in 2023"
-        caption="Annual count of patents classified under both Y02/Y04S (green) and AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976–2025. The most prominent pattern is the marked upward trajectory beginning around 2015, as machine learning and neural network methods were applied to energy optimization and materials discovery."
-        insight="Green-AI patents increased from near zero before 2010 to a rapidly expanding category, as machine learning and neural network methods have been applied to energy optimization, materials discovery, climate modeling, and autonomous vehicle navigation."
+        caption="Annual count of patents classified under both Y02/Y04S (green) and AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976–2025. Green-AI patents grew from 41 in 2010 to 1,238 in 2023 (a 30-fold increase), with the most prominent growth beginning around 2015, coinciding with advances in machine learning and neural network methods."
+        insight="Green-AI patents grew from 41 in 2010 to 1,238 in 2023, coinciding with the application of machine learning and neural network methods to energy optimization, materials discovery, climate modeling, and autonomous vehicle navigation."
         loading={aiTL}
       >
         <PWLineChart
@@ -648,12 +654,12 @@ export default function Chapter19() {
 
       <KeyInsight>
         <p>
-          The convergence of AI and green technology represents a rapidly expanding area
-          within the patent landscape, as evidenced by the 30-fold growth documented above. Machine learning techniques are being applied to
-          optimize renewable energy generation, improve battery chemistry through materials
-          informatics, enhance smart grid efficiency, and develop autonomous electric vehicles.
-          As both AI capabilities and climate policy imperatives continue to intensify, this
-          intersection appears likely to expand further.
+          The convergence of AI and green technology has expanded substantially, with green-AI patents
+          growing from 41 in 2010 to 1,238 in 2023 (a 30-fold increase). Machine learning techniques
+          are being applied to optimize renewable energy generation, improve battery chemistry through
+          materials informatics, enhance smart grid efficiency, and develop autonomous electric vehicles.
+          The growth trajectory suggests this intersection may continue to expand as AI capabilities
+          advance and climate policy imperatives intensify.
         </p>
       </KeyInsight>
 

@@ -56,8 +56,8 @@ export function PWBubbleScatter({
     [data, sections]
   );
 
-  const maxSize = Math.max(...data.map((d) => d.size));
-  const minSize = Math.min(...data.map((d) => d.size));
+  const maxSize = data.length > 0 ? Math.max(...data.map((d) => d.size)) : 1;
+  const minSize = data.length > 0 ? Math.min(...data.map((d) => d.size)) : 0;
 
   return (
     <ResponsiveContainer width="100%" height="100%">

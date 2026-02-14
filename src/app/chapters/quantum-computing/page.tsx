@@ -190,7 +190,7 @@ export default function Chapter20() {
       />
 
       <KeyFindings>
-        <li>Quantum computing patents have grown rapidly from a very small base, reflecting the transition from theoretical physics to engineering-oriented hardware and software development.</li>
+        <li>Quantum computing patents have grown rapidly from a very small base since the mid-2010s, coinciding with the transition from theoretical physics research to engineering-oriented hardware and software development.</li>
         <li>IBM, Google, D-Wave, and Microsoft dominate quantum computing patenting, investing heavily in superconducting qubits, trapped ions, and software toolchains.</li>
         <li>Error correction remains a central challenge, and patents in error correction and other quantum computing subfields have expanded substantially as the field moves toward fault-tolerant quantum computation.</li>
         <li>Despite small absolute volumes compared to other technology domains, quantum computing patents span multiple CPC sections, suggesting broad potential applications across industries.</li>
@@ -217,11 +217,11 @@ export default function Chapter20() {
 
       <KeyInsight>
         <p>
-          Quantum computing patent activity serves as a leading indicator of the field&apos;s
-          maturation from theoretical curiosity to engineering discipline. The rapid growth
-          in patent filings since 2015 coincides with significant advances in qubit coherence
+          Quantum computing patent activity serves as an indicator of the field&apos;s
+          maturation from theoretical research to engineering discipline. The rapid growth
+          in patent filings since 2015 coincides with advances in qubit coherence
           times, gate fidelities, and the emergence of cloud-based quantum computing platforms,
-          reflecting a transition from academic research to industrial capability building.
+          suggesting a transition from primarily academic research to industrial capability building.
         </p>
       </KeyInsight>
 
@@ -232,7 +232,7 @@ export default function Chapter20() {
         subtitle="Annual count of utility patents classified under quantum computing-related CPC codes, tracking the growth trajectory of quantum computing patenting."
         title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Reflecting the Field's Transition to Engineering"
         caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019."
-        insight="The exponential growth in quantum computing patents mirrors increased corporate investment in quantum hardware and software, driven by milestones in qubit performance and error correction."
+        insight="The growth in quantum computing patents coincides with increased corporate investment in quantum hardware and software, following milestones in qubit performance and error correction demonstrated in the late 2010s."
         loading={pyL}
       >
         <PWLineChart
@@ -249,10 +249,10 @@ export default function Chapter20() {
       <KeyInsight>
         <p>
           Quantum computing patent filings have exhibited rapid growth since the mid-2010s,
-          driven by advances in superconducting qubit hardware, trapped-ion systems, and the
+          coinciding with advances in superconducting qubit hardware, trapped-ion systems, and the
           development of quantum software toolchains. Although the absolute volume remains
           small relative to established technology domains such as artificial intelligence
-          or semiconductors, the growth rate signals substantial corporate commitment to
+          or semiconductors, the growth rate suggests substantial corporate commitment to
           quantum technologies.
         </p>
       </KeyInsight>
@@ -284,7 +284,7 @@ export default function Chapter20() {
         subtitle="Patent counts by quantum computing subfield (algorithms, physical realizations, error correction, etc.) over time, based on specific CPC group codes."
         title="Physical Realizations Leads in Volume While All Quantum Subfields Have Grown Rapidly"
         caption="Patent counts by quantum computing subfield over time. The data reveal a shift from theoretical algorithm patents toward physical realizations and error correction, reflecting the field's maturation from theory to engineering."
-        insight="The shift toward physical realizations and error correction patents reflects the field's transition from algorithmic theory to practical hardware engineering."
+        insight="The shift toward physical realizations and error correction patents coincides with the field's transition from algorithmic theory to practical hardware engineering in the 2010s."
         loading={sfL}
         height={650}
       >

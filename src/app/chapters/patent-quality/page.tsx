@@ -121,7 +121,7 @@ export default function PatentQuality() {
         title="Average Forward Citations per Patent Rose from 2.5 to a Peak of 6.4 in 2019 While the Median Oscillated Between 2 and 3, Revealing Growing Skewness"
         caption="This chart displays average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020). The persistent gap between average and median reveals a highly skewed distribution, with most patents receiving modest citations whereas a small fraction becomes heavily cited."
         loading={trL}
-        insight="The increase in average citations alongside flat median citations indicates growing skewness: a small fraction of patents captures a disproportionate share of total citations."
+        insight="The increase in average citations alongside relatively flat median citations indicates growing skewness: a small fraction of patents captures a disproportionate share of total citations."
       >
         <PWLineChart
           data={(trends ?? []).filter((d) => d.year <= 2020)}
@@ -167,7 +167,7 @@ export default function PatentQuality() {
         title="Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023"
         caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
         loading={ciL}
-        insight="The growth in backward citations reflects both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
+        insight="The growth in backward citations is consistent with both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
       >
         <PWLineChart
           data={cites ?? []}
@@ -197,7 +197,7 @@ export default function PatentQuality() {
         <p>
           The widening divergence between mean and median backward citations constitutes a notable structural feature of
           the knowledge network. Although the median patent cites a modest number of prior art references, a growing
-          tail of patents with extensive backward citations elevates the mean. This trend reflects both the
+          tail of patents with extensive backward citations elevates the mean. This pattern is consistent with both the
           expanding universe of searchable prior art and evolving patent office practices
           that encourage more thorough prior art disclosure.
         </p>
@@ -215,7 +215,7 @@ export default function PatentQuality() {
         title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
         caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
         loading={ltL}
-        insight="The lengthening citation lag indicates that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
+        insight="The lengthening citation lag is consistent with foundational knowledge having an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
       >
         <PWLineChart
           data={lagTrend ?? []}
@@ -242,8 +242,8 @@ export default function PatentQuality() {
       <KeyInsight>
         <p>
           The lengthening citation lag -- from approximately 3 years in the early 1980s to over 16 years
-          in the most recent period -- indicates that the expanding body of relevant prior art requires newer patents
-          to reach further back in time. This widening temporal window reflects both the cumulative
+          in the most recent period -- is consistent with the expanding body of relevant prior art requiring newer patents
+          to reach further back in time. This widening temporal window is associated with both the cumulative
           nature of technological progress and the increasing searchability of prior art databases.
         </p>
       </KeyInsight>
@@ -371,7 +371,7 @@ export default function PatentQuality() {
           The rise of multi-domain patents is consistent with a structural shift in the nature of
           invention. Technologies such as autonomous vehicles, wearable health monitors, and
           smart materials inherently span traditional boundaries between physics, chemistry,
-          and engineering, conferring an advantage upon organizations capable of integrating diverse expertise.
+          and engineering, potentially conferring an advantage upon organizations capable of integrating diverse expertise.
         </p>
       </KeyInsight>
 
@@ -416,9 +416,9 @@ export default function PatentQuality() {
       <KeyInsight>
         <p>
           Originality has trended upward over time, indicating that patents increasingly
-          draw on diverse knowledge sources. By contrast, generality has declined, suggesting that
+          draw on diverse knowledge sources. By contrast, generality has declined, indicating that
           although inventions draw on broader inputs, their downstream applications have become more
-          concentrated within specific fields. This divergence indicates that interdisciplinary
+          concentrated within specific fields. This divergence shows that interdisciplinary
           inputs do not necessarily translate into broad downstream applicability.
         </p>
       </KeyInsight>

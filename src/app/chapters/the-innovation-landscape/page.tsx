@@ -106,7 +106,7 @@ export default function Chapter1() {
         title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
         subtitle="Total patents granted annually by the USPTO, broken down by patent type (utility, design, plant, reissue), 1976–2025"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
-        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining notably in 2005 and again in 2007 and a broader decline in 2021-2023 following the 2019 peak."
+        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining in 2005 and again in 2007 and a broader decline in 2021-2023 following the 2019 peak."
         loading={ppyL}
       >
         <PWAreaChart
@@ -132,7 +132,7 @@ export default function Chapter1() {
           which cover ornamental appearance, have also exhibited sustained growth.
         </p>
         <p>
-          This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining notably in 2005 and again in 2007, and patent office backlogs have introduced year-to-year
+          This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining in 2005 and again in 2007, and patent office backlogs have introduced year-to-year
           volatility. Nevertheless, the long-term trajectory indicates that an increasing
           number of individuals and <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
           intellectual property assumes greater strategic importance.

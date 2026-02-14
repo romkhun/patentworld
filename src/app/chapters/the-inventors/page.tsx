@@ -186,10 +186,10 @@ export default function Chapter6() {
 
       <ChartContainer
         id="fig-inventors-female-share"
-        title="Female Inventor Share Rose Steadily from 2.8% to 14.9%, 1976-2025"
+        title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025"
         subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976-2025"
-        caption="This chart tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from approximately 3% in the late 1970s, though the female share has not yet reached 15% as of the most recent data."
-        insight="The persistent gender gap in patenting appears to reflect broader systemic barriers in STEM fields, spanning educational pipelines, workplace culture, and institutional support structures."
+        caption="This chart tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025, an increase of 5.3-fold over the study period."
+        insight="The persistent gender gap in patenting reflects broader systemic barriers in STEM fields, spanning educational pipelines, workplace culture, and institutional support structures."
         loading={gnL}
       >
         <PWLineChart
@@ -206,10 +206,10 @@ export default function Chapter6() {
 
       <Narrative>
         <p>
-          Progress on gender diversity in patenting has been measurable but gradual. Despite decades of
-          initiatives to broaden participation in STEM, the female share of inventors on US
-          patents remains well below parity. At the observed rate of change, achieving equal
-          representation would require several additional decades.
+          Progress on gender diversity in patenting has been measurable but gradual. The female share
+          increased from 2.8% in 1976 to 14.9% in 2025. Despite decades of initiatives to broaden
+          participation in STEM, the female share of inventors on US patents remains well below parity.
+          At the observed rate of change, achieving equal representation would require several additional decades.
         </p>
       </Narrative>
 
@@ -219,7 +219,7 @@ export default function Chapter6() {
           title="Chemistry Leads Female Inventor Representation at 14.6%; Mechanical Engineering Lowest at 5.4%"
           subtitle="Female inventor share by WIPO technology sector, showing cross-sector variation in gender representation"
           caption="This chart displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while mechanical engineering and other fields demonstrate the lowest shares."
-          insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, suggesting that educational pipeline differences constitute a primary driver of the gender gap in patenting."
+          insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, indicating that educational pipeline differences are strongly associated with the gender gap in patenting."
           loading={gsL}
           height={500}
         >
@@ -235,7 +235,7 @@ export default function Chapter6() {
 
       <KeyInsight>
         <p>
-          Female representation among US patent inventors has increased steadily but remains below 15%.
+          Female representation among US patent inventors has increased steadily from 2.8% to 14.9%.
           Chemistry and pharmaceutical fields exhibit the highest gender diversity, while mechanical engineering
           and other fields demonstrate the lowest representation -- a pattern that closely mirrors the gender
           composition of STEM degree programs.
@@ -317,9 +317,9 @@ export default function Chapter6() {
 
       <ChartContainer
         id="fig-inventors-first-time-entries"
-        title="Annual First-Time Inventor Entries Rose from a Late-1970s Low of 35,000 to a Peak of 140,490 in 2019"
+        title="Annual First-Time Inventor Entries Rose from 35,126 in 1979 to a Peak of 140,490 in 2019"
         subtitle="Number of inventors filing their first US patent each year, measuring new entrant inflow, 1976-2025"
-        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from 35,000-86,000 in the late 1970s to peaks exceeding 140,000 by the late 2010s."
+        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from 35,126 in 1979 to a peak of 140,490 in 2019."
         insight="The sustained inflow of new inventors serves as an indicator of the innovation ecosystem's capacity for renewal, demonstrating continued broadening of the inventor base despite increasing specialization."
         loading={enL}
       >
@@ -579,7 +579,7 @@ export default function Chapter6() {
         title="The Share of Single-Patent Inventors Dipped from 40% in the Early 1980s to 36% in the 2000s Before Rising to 45% by 2020"
         subtitle="Percentage of active inventors each year who have filed exactly one patent, tracking the prevalence of one-time filers over time"
         caption="This chart displays the percentage of active inventors each year who have filed exactly one patent in the dataset. The gradual decline suggests increasing professionalization of patenting activity over the study period."
-        insight="The declining share of single-patent inventors suggests that patenting has become increasingly concentrated among repeat filers, a pattern consistent with the growing complexity and cost of navigating the patent system."
+        insight="The declining share of single-patent inventors from 40% to 36% before rising to 45% indicates that patenting concentration among repeat filers has fluctuated over time, potentially reflecting changing costs and complexity of navigating the patent system."
         loading={stL}
       >
         <PWLineChart
@@ -605,7 +605,7 @@ export default function Chapter6() {
         title="The Top 5% of Inventors Grew from 26% to 60% of Annual Patent Output, 1976-2025"
         subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
         caption="This chart tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
-        insight="Rising concentration of patents among top inventors suggests that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
+        insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
         loading={ssL}
       >
         {superstar && (

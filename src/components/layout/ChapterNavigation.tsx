@@ -15,7 +15,7 @@ export function ChapterNavigation({ currentChapter }: ChapterNavigationProps) {
       {prev ? (
         <Link
           href={`/chapters/${prev.slug}/`}
-          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors"
+          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <ChevronLeft className="h-5 w-5 shrink-0 text-muted-foreground" />
           <div className="text-right flex-1">
@@ -29,7 +29,7 @@ export function ChapterNavigation({ currentChapter }: ChapterNavigationProps) {
       {next ? (
         <Link
           href={`/chapters/${next.slug}/`}
-          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors"
+          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <div className="flex-1">
             <div className="text-xs text-muted-foreground">Next</div>
@@ -40,7 +40,7 @@ export function ChapterNavigation({ currentChapter }: ChapterNavigationProps) {
       ) : (
         <Link
           href="/explore/"
-          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors"
+          className="flex flex-1 items-center gap-3 rounded-lg border p-4 hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <div className="flex-1">
             <div className="text-xs text-muted-foreground">Continue</div>

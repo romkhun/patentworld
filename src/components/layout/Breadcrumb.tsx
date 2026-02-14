@@ -16,7 +16,7 @@ export function Breadcrumb() {
     <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted-foreground">
       <ol className="flex items-center gap-1">
         <li>
-          <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+          <Link href="/" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-md">Home</Link>
         </li>
         <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
         <li aria-current="page" className="text-foreground font-medium truncate">

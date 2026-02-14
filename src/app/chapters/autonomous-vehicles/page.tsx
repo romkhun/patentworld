@@ -190,10 +190,10 @@ export default function Chapter14() {
       />
 
       <KeyFindings>
-        <li>Autonomous vehicle patent filings surged in the 2010s, driven by competition between established automakers and technology companies entering the transportation sector.</li>
+        <li>Autonomous vehicle patent filings increased rapidly in the 2010s, coinciding with competition between established automakers and technology companies entering the transportation sector.</li>
         <li>Navigation and path planning constitutes the largest AV subfield, reflecting the central engineering challenge of route optimization and real-time autonomous decision-making.</li>
         <li>The competitive landscape spans traditional automakers (Toyota, Honda, Ford, GM), technology firms (Google/Waymo), and other technology companies, each pursuing distinct technical strategies.</li>
-        <li>Scene understanding -- computer vision applied to driving environments -- has emerged as one of the fastest-growing subfields, fueled by advances in deep learning and sensor fusion.</li>
+        <li>Scene understanding -- computer vision applied to driving environments -- has emerged as one of the fastest-growing subfields, associated with advances in deep learning and sensor fusion.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -232,7 +232,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-annual-count"
         subtitle="Annual count of utility patents classified under AV-related CPC codes, tracking the growth trajectory of autonomous vehicle patenting."
-        title="AV Patent Filings Surged Through the 2010s, Driven by the Entry of Technology Companies Into the Transportation Sector"
+        title="AV Patent Filings Increased Rapidly Through the 2010s, Driven by the Entry of Technology Companies Into the Transportation Sector"
         caption="Annual count and share of utility patents classified under AV-related CPC codes (G05D1, B60W, G08G), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs."
         insight="The exponential growth in AV patents mirrors the broader industry transformation, driven by advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
         loading={pyL}
@@ -250,10 +250,10 @@ export default function Chapter14() {
 
       <KeyInsight>
         <p>
-          AV patent filings exhibited exponential growth through the 2010s, driven by the
+          AV patent filings exhibited substantial growth through the 2010s, associated with the
           entry of technology companies such as Google, Apple, and Uber into the transportation
-          sector. This growth substantially exceeded the rate of overall patent expansion,
-          indicating a genuine reallocation of inventive effort toward autonomous driving
+          sector. This growth exceeded the rate of overall patent expansion,
+          indicating a reallocation of inventive effort toward autonomous driving
           technologies.
         </p>
       </KeyInsight>

@@ -2,25 +2,31 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CHAPTERS } from '@/lib/constants';
 
+const BASE_URL = 'https://patentworld.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'About PatentWorld — Data, Methodology & Sources',
-  description: 'Data sources, methodology, and analytical approach for PatentWorld. Built on 9.36 million US patents from PatentsView / USPTO, covering 1976 to 2025.',
+  title: '9.36M US Patents Analyzed: Data & Methodology',
+  description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, metrics (citations, HHI, CPC), and FAQs.',
   openGraph: {
     type: 'website',
-    title: 'About PatentWorld',
-    description: 'Data sources, methodology, and technology behind the interactive patent data exploration.',
-    url: 'https://patentworld.vercel.app/about/',
+    title: '9.36M US Patents Analyzed: Data & Methodology | PatentWorld',
+    description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, and key metrics.',
+    url: `${BASE_URL}/about/`,
     siteName: 'PatentWorld',
-    images: [{ url: 'https://patentworld.vercel.app/og/home.png', width: 1200, height: 630, alt: 'About PatentWorld' }],
+    images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'About PatentWorld' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About PatentWorld | PatentWorld',
-    description: 'Data sources, methodology, and analytical approach for PatentWorld. Built on 9.36M US patents.',
-    images: ['https://patentworld.vercel.app/og/home.png'],
+    title: '9.36M US Patents Analyzed: Data & Methodology | PatentWorld',
+    description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, and key metrics.',
+    images: [`${BASE_URL}/og/home.png`],
   },
   alternates: {
-    canonical: 'https://patentworld.vercel.app/about/',
+    canonical: `${BASE_URL}/about/`,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -96,7 +102,7 @@ function DatasetJsonLd() {
     name: 'PatentWorld — US Patent Data (1976–2025)',
     description:
       'Interactive analysis of 9.36 million US utility patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
-    url: 'https://patentworld.vercel.app/about/',
+    url: `${BASE_URL}/about/`,
     license: 'https://creativecommons.org/licenses/by/4.0/',
     temporalCoverage: '1976/2025',
     spatialCoverage: 'United States',
@@ -112,7 +118,7 @@ function DatasetJsonLd() {
     distribution: {
       '@type': 'DataDownload',
       encodingFormat: 'application/json',
-      contentUrl: 'https://patentworld.vercel.app/',
+      contentUrl: BASE_URL,
     },
     isBasedOn: {
       '@type': 'Dataset',
@@ -141,11 +147,30 @@ function DatasetJsonLd() {
   );
 }
 
+function BreadcrumbJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${BASE_URL}/about/` },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default function AboutPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 lg:px-8">
       <DatasetJsonLd />
       <FAQJsonLd />
+      <BreadcrumbJsonLd />
 
       <h1 className="font-serif text-4xl font-bold tracking-tight">About PatentWorld</h1>
       <p className="mt-3 text-sm text-muted-foreground">
@@ -191,7 +216,7 @@ export default function AboutPage() {
           <ol className="list-decimal pl-6 space-y-1 mt-2">
             {CHAPTERS.map((ch) => (
               <li key={ch.slug}>
-                <Link href={`/chapters/${ch.slug}`} className="underline underline-offset-2 hover:text-foreground transition-colors">
+                <Link href={`/chapters/${ch.slug}/`} className="underline underline-offset-2 hover:text-foreground transition-colors">
                   {ch.title}
                 </Link>
                 {' '}&mdash; {ch.description}
@@ -326,8 +351,9 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
-            Lee, Saerom. 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
-            The Wharton School, University of Pennsylvania. https://patentworld.vercel.app/
+            Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
+            The Wharton School, University of Pennsylvania.
+            Available at: https://patentworld.vercel.app/
           </p>
         </section>
 

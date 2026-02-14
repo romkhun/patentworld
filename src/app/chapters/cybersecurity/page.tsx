@@ -190,9 +190,9 @@ export default function Chapter17() {
       />
 
       <KeyFindings>
-        <li>Cybersecurity patent filings have grown in tandem with the expansion of the digital economy and the evolving threat landscape, with filings accelerating sharply after major data breaches and ransomware campaigns.</li>
-        <li>Network security constitutes the largest cybersecurity subfield by patent volume, having surpassed cryptography in the early 2000s, reflecting the growing complexity of network defense requirements.</li>
-        <li>Data protection, system security, and authentication technologies have all exhibited rapid growth rates, driven by the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
+        <li>Cybersecurity patent filings have grown alongside the expansion of the digital economy, with notable acceleration in filings observed following major data breaches and ransomware campaigns such as the Snowden disclosures (2013), WannaCry (2017), and SolarWinds (2020).</li>
+        <li>Network security constitutes the largest cybersecurity subfield by patent volume, having surpassed cryptography around 2003, coinciding with the expansion of cloud computing and distributed network architectures.</li>
+        <li>Data protection, system security, and authentication technologies have all exhibited rapid growth rates, particularly since the mid-2010s, coinciding with the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
         <li>A small number of large technology firms -- IBM, Intel, Microsoft, and Cisco -- dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
       </KeyFindings>
 
@@ -220,13 +220,12 @@ export default function Chapter17() {
 
       <KeyInsight>
         <p>
-          Cybersecurity patent activity serves as a barometer of the evolving threat landscape.
-          Each major security incident -- from large-scale data breaches to nation-state cyber
-          operations -- has triggered measurable increases in patenting activity, as firms race
-          to develop and protect novel defensive technologies. The growth trajectory reflects
-          both the expanding digital economy and the regulatory responses, such as GDPR and
-          sector-specific compliance requirements, that have created market incentives for
-          security innovation.
+          Cybersecurity patent activity serves as an indicator of evolving security priorities.
+          Measurable increases in patenting activity have been observed following major security
+          incidents such as the Snowden disclosures (2013), WannaCry ransomware campaign (2017),
+          and SolarWinds attack (2020). The growth trajectory coincides with both the expanding
+          digital economy and regulatory responses such as GDPR and sector-specific compliance
+          requirements.
         </p>
       </KeyInsight>
 
@@ -236,8 +235,8 @@ export default function Chapter17() {
         id="fig-cyber-patents-annual-count"
         subtitle="Annual count of utility patents classified under cybersecurity-related CPC codes, tracking the growth trajectory of cybersecurity patenting."
         title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Driven by Data Breaches, Ransomware, and Regulatory Compliance"
-        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration following the Snowden disclosures (2013) and the SolarWinds attack (2020)."
-        insight="The growth in cybersecurity patents tracks the expansion of the digital economy and the increasing sophistication of cyber threats, with each major security incident serving as a catalyst for inventive activity."
+        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020)."
+        insight="The growth in cybersecurity patents coincides with the expansion of the digital economy, with acceleration observed following major security incidents such as the Snowden disclosures (2013), WannaCry ransomware campaign (2017), and SolarWinds attack (2020)."
         loading={pyL}
       >
         <PWLineChart
@@ -253,13 +252,13 @@ export default function Chapter17() {
 
       <KeyInsight>
         <p>
-          Cybersecurity patent filings have grown substantially since the early 2000s,
-          accelerating in response to high-profile security incidents and evolving regulatory
-          requirements. The Snowden revelations of 2013 catalyzed a surge in encryption and
-          privacy-related patents, while the WannaCry ransomware campaign of 2017 and the
-          European Union&apos;s General Data Protection Regulation drove further investment in
-          data protection technologies. The SolarWinds supply-chain attack of 2020 intensified
-          focus on system integrity and zero-trust security models.
+          Cybersecurity patent filings have grown substantially since the early 2000s, with
+          acceleration observed following high-profile security incidents and regulatory changes.
+          Notable growth in encryption and privacy-related patents occurred following the Snowden
+          revelations of 2013, while continued growth in data protection patents coincided with the
+          WannaCry ransomware campaign of 2017 and the European Union&apos;s General Data Protection
+          Regulation. Growth in system integrity and zero-trust security patents continued following
+          the SolarWinds supply-chain attack of 2020.
         </p>
       </KeyInsight>
 
@@ -293,7 +292,7 @@ export default function Chapter17() {
         subtitle="Patent counts by cybersecurity subfield (cryptography, authentication, network security, etc.) over time, based on specific CPC group codes."
         title="Network Security Is the Largest Subfield, Having Surpassed Cryptography in the Early 2000s, While Data Protection and Authentication Have Also Grown Rapidly"
         caption="Patent counts by cybersecurity subfield over time, based on CPC classifications. Network security surpassed cryptography around 2003 and has been the dominant subfield since, while data protection, authentication, and system security have all experienced rapid growth."
-        insight="The diversification of cybersecurity subfields reflects the expanding attack surface: as digital systems have grown more complex, the defensive patent landscape has broadened from encryption-centric approaches to encompass network defense, identity management, and data protection."
+        insight="The diversification of cybersecurity subfields coincides with the expanding attack surface: as digital systems have grown more complex, the defensive patent landscape has broadened from encryption-centric approaches to encompass network defense, identity management, and data protection."
         loading={sfL}
         height={650}
       >

@@ -191,7 +191,7 @@ export default function Chapter8() {
         subtitle="Co-patenting network among organizations, with node size representing patent count and edge width indicating shared patents."
         title="618 Organizations Form Distinct Industry Clusters in the Co-Patenting Network"
         caption="Co-patenting network among organizations with significant collaboration ties. Node size represents total patent count; edge width indicates the number of shared patents. The network exhibits dense intra-industry clustering with sparse inter-industry connections."
-        insight="The prevalence of co-patenting is consistent with both the growing complexity of innovation and the strategic importance of inter-firm collaboration in technology development."
+        insight="The prevalence of co-patenting is consistent with the growing complexity of innovation and increasing inter-firm collaboration in technology development."
         loading={fnL}
         height={900}
         wide
@@ -242,7 +242,7 @@ export default function Chapter8() {
         subtitle="Co-invention network among prolific inventors, with edges representing shared patents and node size indicating total patent count."
         title="632 Prolific Inventors Form 1,236 Co-Invention Ties in Fragmented Team Clusters"
         caption="Co-invention network among inventors with significant collaboration ties. Edges represent shared patents; node size indicates total patent count. The network is more fragmented than the organizational co-patenting network, with many small, tightly connected teams."
-        insight="The increasing connectivity of the co-invention network suggests that knowledge may diffuse more rapidly, though it may simultaneously create path dependencies in innovation direction."
+        insight="The increasing connectivity of the co-invention network is consistent with potentially faster knowledge diffusion, though it may simultaneously create path dependencies in innovation direction."
         loading={inL}
         height={900}
         wide
@@ -348,10 +348,10 @@ export default function Chapter8() {
       )}
       <KeyInsight>
         <p>
-          Bridge inventors who span multiple organizations appear to play a disproportionate role in the
-          innovation ecosystem. Their movement between firms creates channels for knowledge
-          transfer that would not exist through patent citations alone, which may help explain why
-          geographic and organizational proximity are significant factors in innovation diffusion.
+          Bridge inventors who span multiple organizations may play a disproportionate role in the
+          innovation ecosystem. Their movement between firms creates potential channels for knowledge
+          transfer beyond patent citations alone, which may help explain observed patterns in which
+          geographic and organizational proximity are associated with innovation diffusion.
         </p>
       </KeyInsight>
 
@@ -415,7 +415,7 @@ export default function Chapter8() {
         subtitle="Share of US patents co-invented with each partner country (1976-2025), measured as the percentage with at least one US and one foreign inventor."
         title="US-China Co-Invention Rates Have Grown Substantially, Surpassing 2% by 2025"
         caption="Share of US patents co-invented with each partner country, 1976-2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025."
-        insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025, though growth rates moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
+        insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025, though growth rates have moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
         loading={ciL}
       >
         <PWLineChart
@@ -437,7 +437,7 @@ export default function Chapter8() {
         subtitle="Annual count of US-China co-invented patents broken down by CPC technology section, shown as a stacked area chart."
         title="US-China Co-Invention Grew from 77 Patents in 2000 to 2,749 in 2024, Led by Electricity (H) and Physics (G)"
         caption="Annual count of US patents co-invented with Chinese inventors, disaggregated by CPC section. All CPC sections have grown over time, though growth rates moderated across some technology areas in recent years."
-        insight="US-China collaboration has grown across most CPC technology sections. While growth rates moderated in some areas in recent years, the trajectory varied by technology area, with Electricity (H) and Operations &amp; Transport (B) continuing to grow while Chemistry (C) declined by roughly a third between 2020 and 2023."
+        insight="US-China collaboration has grown across most CPC technology sections. Growth trajectories varied by technology area, with Electricity (H) and Operations &amp; Transport (B) continuing to grow while Chemistry (C) declined by approximately one-third between 2020 and 2023."
         loading={cisL}
         height={500}
       >

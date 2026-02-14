@@ -69,7 +69,7 @@ export function ChapterTableOfContents() {
             <a
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
-              className={`block rounded px-2 py-1 text-sm transition-colors hover:text-foreground ${
+              className={`block rounded px-2 py-1 text-sm transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
                 activeId === section.id
                   ? 'font-medium text-foreground'
                   : 'text-muted-foreground'

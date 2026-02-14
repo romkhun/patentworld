@@ -194,13 +194,13 @@ export default function Chapter12() {
         <li>Agricultural technology patenting reflects one of the oldest areas of continuous innovation in the US patent system, with soil working, planting, and horticulture patents tracing back to the earliest decades of patent records.</li>
         <li>Horticulture and forestry and plant breeding dominate patent volume, while precision agriculture -- though still small in absolute terms -- is among the fastest-growing subfields, driven by GPS, sensors, and AI integration.</li>
         <li>A small number of major agribusiness firms -- Pioneer Hi-Bred, Monsanto, Deere &amp; Company, and Syngenta -- dominate agricultural patent portfolios, reflecting the capital-intensive nature of agricultural R&amp;D.</li>
-        <li>Climate change is driving renewed patent activity in drought-resistant crops, sustainable farming methods, and resource-efficient technologies, reshaping the trajectory of agricultural innovation.</li>
+        <li>Recent patent activity in drought-resistant crops, sustainable farming methods, and resource-efficient technologies is associated with increasing focus on climate resilience.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a watershed moment, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a substantial structural change, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -253,11 +253,11 @@ export default function Chapter12() {
 
       <KeyInsight>
         <p>
-          Agricultural patent filings exhibit long-term growth punctuated by waves of
-          technological transformation. The introduction of genetically modified crops in
-          1996 catalyzed a surge in plant breeding and biocide-related patents, while the
-          precision agriculture expansion accelerating markedly from 2018 brought GPS, sensor,
-          and data-analytics technologies into agricultural patenting. These successive waves
+          Agricultural patent filings exhibit long-term growth with notable shifts
+          around major technological developments. The introduction of genetically modified crops in
+          1996 coincided with increased plant breeding and biocide-related patents, while the
+          precision agriculture expansion accelerating from 2018 is associated with increased GPS, sensor,
+          and data-analytics patent activity. These successive waves
           reflect the sector&apos;s capacity to absorb innovations from adjacent fields --
           molecular biology, electronics, and computing -- and adapt them to the specific
           challenges of food production.
@@ -317,8 +317,7 @@ export default function Chapter12() {
           substantial but have plateaued. Horticulture and forestry patents, encompassing
           greenhouse technologies, irrigation systems, and tree cultivation, represent the
           largest subfield by volume. Plant breeding and biocides have grown substantially
-          since the adoption of genetically modified crops in 1996. Perhaps most notably,
-          precision agriculture (G06Q50/02) -- encompassing GPS-guided equipment, sensor
+          since the adoption of genetically modified crops in 1996. Precision agriculture (G06Q50/02) -- encompassing GPS-guided equipment, sensor
           networks, variable-rate application, and AI-driven crop management -- remains small
           in absolute terms but is among the fastest-growing subfields, signaling a
           technological transition that may fundamentally reshape agricultural innovation.
@@ -355,8 +354,8 @@ export default function Chapter12() {
       <KeyInsight>
         <p>
           Agricultural patent leadership reveals a sector dominated by seed science and
-          equipment manufacturing firms. Pioneer Hi-Bred (5,226 patents) and Monsanto
-          Technology (5,198) lead in total agricultural patent volume, reflecting the enormous
+          equipment manufacturing firms. Pioneer Hi-Bred and Monsanto
+          Technology lead in total agricultural patent volume, reflecting the substantial
           scale of investment in plant breeding and genetically modified seed development.
           Deere &amp; Company (1,805) follows through its deep portfolio in agricultural
           equipment and, increasingly, precision agriculture technologies. CNH Industrial
@@ -495,9 +494,9 @@ export default function Chapter12() {
           Within the United States, agricultural patent activity exhibits a distinctive
           geographic pattern that differs substantially from technology patents. Rather than
           concentrating in coastal technology hubs, agricultural patents cluster in states
-          with major agribusiness headquarters. Iowa leads, driven by Pioneer Hi-Bred
-          (headquartered in Johnston, Iowa), followed by Illinois (home to Deere &amp; Company
-          and other agribusiness firms), and California. Minnesota rounds out the top four.
+          with major agribusiness headquarters. Iowa and Illinois lead, reflecting the presence of major seed
+          companies and agricultural equipment manufacturers, followed by California and other states
+          with significant agricultural sectors.
           This pattern reflects the importance of proximity to agricultural production, field
           testing infrastructure, and the legacy of the Morrill Act&apos;s land-grant
           university system in shaping agricultural R&amp;D capacity.

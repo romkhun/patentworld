@@ -198,7 +198,7 @@ export default function Chapter7() {
         subtitle="Total utility patents by primary inventor state (1976-2025), displayed as a choropleth map with darker shading for higher counts."
         title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States and Territories Combined (314,664)"
         caption="This choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
-        insight="The coastal concentration of patent activity reflects the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
+        insight="The coastal concentration of patent activity is associated with the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
         loading={stL}
         height={650}
       >
@@ -208,8 +208,8 @@ export default function Chapter7() {
       <KeyInsight>
         <p>
           Innovation activity is disproportionately concentrated in coastal states. California alone accounts for more
-          patents than the bottom 30 states and territories combined, reflecting the predominant role of Silicon Valley
-          in the US innovation ecosystem.
+          patents than the bottom 30 states and territories combined, indicating the predominant role of Silicon Valley
+          in US patenting activity.
         </p>
       </KeyInsight>
 
@@ -262,7 +262,7 @@ export default function Chapter7() {
           subtitle="Annual patent grants for the top 10 states by total output, showing diverging trajectories over time."
           title="California's Patent Output Has Diverged Sharply from Other Leading States, Reaching 4.0x Texas by 2024"
           caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the mid-1990s, with the gap widening in each subsequent decade."
-          insight="California's accelerating divergence from other states since the 1990s is consistent with the compounding advantages characteristic of self-reinforcing innovation ecosystems."
+          insight="California's accelerating divergence from other states since the 1990s is consistent with compounding advantages observed in self-reinforcing innovation ecosystems."
           loading={spyL}
         >
           <PWLineChart
@@ -296,7 +296,7 @@ export default function Chapter7() {
           subtitle="CPC technology section distribution by state, shown as 100% stacked bars to reveal distinctive regional specialization patterns."
           title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering vs. California's 65.1% in Physics and Electricity"
           caption="This chart displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
-          insight="Geographic concentration of innovation creates self-reinforcing cycles, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
+          insight="Geographic concentration of innovation is associated with self-reinforcing patterns, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
           loading={spL}
           height={1200}
         >
@@ -444,7 +444,7 @@ export default function Chapter7() {
       )}
       <KeyInsight>
         <p>
-          Regional specialization reveals the distinctive innovation profiles of American cities.
+          Regional specialization reveals the distinctive innovation profiles of US cities.
           Detroit&apos;s automotive-related technologies concentration reflects its automotive heritage.
           San Diego exhibits a pronounced concentration in Electricity, reflecting its semiconductor and wireless technology base. Durham and Chapel Hill demonstrate strong chemistry
           specialization. These patterns suggest that innovation ecosystems develop persistent
@@ -468,7 +468,7 @@ export default function Chapter7() {
           subtitle="Domestic and international inventor mobility rates over time, measured as the share of patents filed by inventors who changed location since their prior patent."
           title="International Inventor Mobility Rose from 1.3% (1980) to 5.1% (2024), Surpassing Domestic Rates of 3.5%"
           caption="This chart displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
-          insight="Inventor mobility constitutes an important mechanism for knowledge diffusion, as mobile inventors carry tacit knowledge and professional networks from one region of concentrated inventive activity to another."
+          insight="Inventor mobility represents a potential mechanism for knowledge diffusion, as mobile inventors may carry tacit knowledge and professional networks from one region to another."
           loading={mtL}
         >
           <PWLineChart
@@ -492,7 +492,7 @@ export default function Chapter7() {
           careers, a significant minority relocates between states, carrying
           knowledge and professional networks with them. This geographic diffusion of
           human capital appears to serve an important function in extending innovation capabilities
-          beyond established technology hubs. Notably, international mobility has surpassed domestic interstate mobility in recent years, a trend examined further in the international analysis below.
+          beyond established technology hubs. International mobility has surpassed domestic interstate mobility in recent years, a trend examined further in the international analysis below.
         </p>
       </KeyInsight>
 

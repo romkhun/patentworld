@@ -188,7 +188,7 @@ export default function Chapter22() {
       />
 
       <KeyFindings>
-        <li>Space technology patenting has experienced a commercial resurgence driven by the emergence of commercial space ventures, altering decades of dominance by traditional defense contractors.</li>
+        <li>Space technology patenting has experienced growth since 2015, coinciding with the emergence of commercial space ventures and shifting the competitive landscape that was previously dominated by traditional defense contractors.</li>
         <li>Space communications and other spacecraft constitute the largest subfields, followed by propulsion systems, reflecting the growing economic importance of orbital infrastructure for global connectivity.</li>
         <li>Boeing, ViaSat, and Hughes Network Systems lead in space patent volume, followed by Lockheed Martin, though the competitive landscape has broadened as commercial space firms scale their IP portfolios.</li>
         <li>Space patents span multiple technology domains, with increasing co-classification in electronics, physics, and mechanical engineering, consistent with the multidisciplinary nature of spacecraft systems.</li>
@@ -197,7 +197,7 @@ export default function Chapter22() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Space technology patenting reflects one of the most consequential transformations in American industrial innovation: the shift from a government-dominated endeavor to a commercially driven ecosystem. For decades, space patents were the province of a small number of aerospace and defense contractors working under NASA and Department of Defense contracts. The founding of SpaceX in 2002 and the subsequent demonstration of reusable rocket technology catalyzed a broader commercial space movement that has reshaped the competitive landscape. Satellite design and space communications now constitute the largest subfields, driven by ambitious constellation programs such as Starlink that aim to provide global broadband connectivity. Propulsion systems and attitude control represent core engineering challenges where patent activity remains concentrated among firms with deep systems integration expertise. The balance between government and commercial patenting has shifted decisively toward the private sector, a pattern with significant implications for the future trajectory of space industrialization.
+          Space technology patenting reflects one of the most consequential transformations in US industrial patenting: the shift from a government-dominated endeavor to a commercially driven ecosystem. For decades, space patents were the province of a small number of aerospace and defense contractors working under NASA and Department of Defense contracts. The founding of SpaceX in 2002 and the subsequent demonstration of reusable rocket technology catalyzed a broader commercial space movement that has reshaped the competitive landscape. Satellite design and space communications now constitute the largest subfields, driven by ambitious constellation programs such as Starlink that aim to provide global broadband connectivity. Propulsion systems and attitude control represent core engineering challenges where patent activity remains concentrated among firms with deep systems integration expertise. The balance between government and commercial patenting has shifted decisively toward the private sector, a pattern with significant implications for the future trajectory of space industrialization.
         </p>
       </aside>
 
@@ -216,12 +216,11 @@ export default function Chapter22() {
 
       <KeyInsight>
         <p>
-          Space patent activity serves as a barometer of the commercial space transformation. After
+          Space patent activity serves as an indicator of the commercial space transformation. After
           a decline in the late 2000s, the acceleration in space-related patenting since around
           2015 coincides with the maturation of private launch providers and satellite broadband
-          programs, reflecting a fundamental shift in how the aerospace industry approaches
-          innovation -- from cost-plus government contracts to commercially competitive technology
-          development.
+          programs, suggesting a shift in how the aerospace industry approaches innovation --
+          from cost-plus government contracts to commercially competitive technology development.
         </p>
       </KeyInsight>
 
@@ -233,7 +232,7 @@ export default function Chapter22() {
         subtitle="Annual count of utility patents classified under space technology CPC codes, tracking the growth trajectory of space-related patenting."
         title="Space Patent Filings Have Grown Substantially Since 2015, Reflecting the Commercialization of the Space Industry"
         caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs."
-        insight="The growth in space patents mirrors the broader commercialization of the space industry, driven by reusable launch vehicles, satellite constellations, and increasing private-sector investment."
+        insight="The growth in space patents coincides with the broader commercialization of the space industry, including reusable launch vehicles, satellite constellations, and increasing private-sector investment."
         loading={pyL}
       >
         <PWLineChart
@@ -250,11 +249,11 @@ export default function Chapter22() {
       <KeyInsight>
         <p>
           Space patent filings declined in the late 2000s before resuming growth in the early
-          2010s, with real acceleration beginning around 2015. This growth has been driven by
-          the entry of commercially oriented firms into launch services, satellite manufacturing,
-          and space communications. The acceleration following key milestones in reusable rocket
-          technology suggests that demonstrated technical feasibility catalyzed broader investment
-          in space-related R&amp;D.
+          2010s, with acceleration beginning around 2015. This growth coincides with the entry
+          of commercially oriented firms into launch services, satellite manufacturing, and space
+          communications. The acceleration following key milestones in reusable rocket technology
+          suggests a possible relationship between demonstrated technical feasibility and increased
+          investment in space-related R&D.
         </p>
       </KeyInsight>
 
@@ -286,7 +285,7 @@ export default function Chapter22() {
         subtitle="Patent counts by space technology subfield (satellite design, propulsion, communications, etc.) over time."
         title="Space Communications and Other Spacecraft Constitute the Largest Subfields, Followed by Propulsion Systems"
         caption="Patent counts by space technology subfield over time, based on CPC classifications. The data reveal that space communications and other spacecraft categories have driven recent growth, followed by propulsion systems, reflecting the economic importance of orbital infrastructure for global connectivity."
-        insight="The dominance of space communications patents reflects the commercial pivot of the space industry -- from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
+        insight="The dominance of space communications patents coincides with the commercial evolution of the space industry -- from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
         loading={sfL}
         height={650}
       >
@@ -738,7 +737,7 @@ export default function Chapter22() {
       <Narrative>
         <p>
           The trajectory of space technology patenting documents one of the most significant
-          structural transformations in American innovation: the commercialization of space.
+          structural transformations in US patenting: the commercialization of space.
           From the dominance of traditional aerospace contractors to the emergence of
           commercially driven firms building reusable rockets and satellite mega-constellations,
           the patent record captures a fundamental shift in how space technology is developed,

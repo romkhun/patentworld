@@ -1,11 +1,60 @@
 import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
 
+const BASE_URL = 'https://patentworld.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'PatentWorld: US Patent Trends & Innovation Data',
-  description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, AI patents, technology sectors, inventor demographics, gender gap, geographic clusters, citation networks, grant lag, and patent quality indicators.',
+  title: '50 Years of US Patents: 9.36M Grants Visualized',
+  description: 'Explore 9.36M US patents (1976-2025): IBM leads with 100K+ patents, AI grew 10x since 2012, women at 15% of inventors, computing rose from 10% to 55% of all patents.',
   alternates: {
-    canonical: 'https://patentworld.vercel.app',
+    canonical: BASE_URL,
+  },
+  openGraph: {
+    type: 'website',
+    title: '50 Years of US Patents: 9.36M Grants Visualized | PatentWorld',
+    description: 'Explore 9.36M US patents (1976-2025): IBM leads, AI grew 10x, women at 15% of inventors, computing rose to 55%.',
+    url: BASE_URL,
+    siteName: 'PatentWorld',
+    images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'PatentWorld — 50 Years of US Patent Data' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '50 Years of US Patents: 9.36M Grants Visualized | PatentWorld',
+    description: 'Explore 9.36M US patents (1976-2025): IBM leads, AI grew 10x, women at 15% of inventors, computing rose to 55%.',
+    images: [`${BASE_URL}/og/home.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+    },
+  },
+};
+
+const WEBSITE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'PatentWorld',
+  description: 'Interactive exploration of 9.36 million US patents spanning 50 years of innovation data, from 1976 to 2025.',
+  url: BASE_URL,
+  author: {
+    '@type': 'Person',
+    name: 'Saerom (Ronnie) Lee',
+    jobTitle: 'Assistant Professor of Management',
+    affiliation: {
+      '@type': 'Organization',
+      name: 'The Wharton School, University of Pennsylvania',
+    },
+    url: 'https://www.saeromlee.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'University of Pennsylvania',
+    url: 'https://www.upenn.edu',
   },
 };
 
@@ -101,7 +150,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([WEBSITE_JSONLD, FAQ_JSONLD]) }}
       />
       <HomeContent />
     </>

@@ -188,10 +188,10 @@ export default function Chapter15() {
       />
 
       <KeyFindings>
-        <li>Biotechnology patenting has grown substantially since the 1980s, catalyzed by the Bayh-Dole Act (1980) which enabled universities to patent federally funded inventions and transformed academic research into a pipeline for commercial biotechnology.</li>
+        <li>Biotechnology patenting has grown substantially since the 1980s, following the Bayh-Dole Act (1980) which enabled universities to patent federally funded inventions.</li>
         <li>The completion of the Human Genome Project in 2003 and the publication of CRISPR-Cas9 gene editing in 2012 represent inflection points that reshaped the composition of biotech patents, shifting activity toward genomic technologies and precision gene editing.</li>
         <li>Unlike AI patenting, which is dominated by technology firms, biotech patents are concentrated among research universities (University of California, Harvard, Stanford), agricultural biotech firms (Monsanto, Pioneer Hi-Bred, DuPont), and enzyme companies (Novozymes), reflecting the distinct institutional structure of life sciences innovation.</li>
-        <li>The rapid development and patenting of mRNA vaccine technology during the COVID-19 pandemic demonstrated the capacity of the biotech patent system to respond to public health emergencies at a notably accelerated pace.</li>
+        <li>The development and patenting of mRNA vaccine technology during the COVID-19 pandemic occurred at an accelerated pace relative to typical biotech development timelines.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -264,8 +264,8 @@ export default function Chapter15() {
 
       <KeyInsight>
         <p>
-          Biotechnology patent filings have exhibited substantial growth since the early 1980s, with a notable dip in the early 2000s,
-          when the Bayh-Dole Act enabled universities to patent inventions arising from federally
+          Biotechnology patent filings have exhibited substantial growth since the early 1980s,
+          following the Bayh-Dole Act which enabled universities to patent inventions arising from federally
           funded research. This legislative change was consequential for the life sciences,
           creating a direct pathway from academic laboratories to commercial development. The
           completion of the Human Genome Project in 2003 accelerated genomic patenting, while the
@@ -277,9 +277,9 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-share"
         subtitle="Biotech patents as a percentage of all utility patents, showing the evolving weight of life sciences in the innovation system."
-        title="Biotechnology's Share of Total Patents Reflects the Growing Centrality of Life Sciences Innovation"
-        caption="Percentage of all utility patents classified under biotechnology-related CPC codes. Biotech's share rose to approximately 2.1% in the late 1990s before settling in the 1.6-1.8% range in recent years, reflecting how molecular biology has become a stable but significant component of the patent system."
-        insight="The growing share of biotech patents among all patents demonstrates that life sciences innovation is not merely tracking overall patent expansion but represents a genuine structural shift in the composition of American inventive activity."
+        title="Biotechnology's Share of Total Patents Reflects the Centrality of Life Sciences Innovation"
+        caption="Percentage of all utility patents classified under biotechnology-related CPC codes. Biotech's share has fluctuated over time, reflecting how molecular biology has become a stable but significant component of the patent system."
+        insight="The growing share of biotech patents among all patents demonstrates that life sciences innovation is not merely tracking overall patent expansion but represents a genuine structural shift in the composition of inventive activity reflected in the USPTO record."
         loading={pyL}
       >
         <PWLineChart
@@ -300,9 +300,9 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-subfields"
         subtitle="Patent counts by biotechnology subfield (gene editing, recombinant DNA, enzyme engineering, etc.) over time, based on CPC classifications."
-        title="Recombinant DNA and Expression Vectors Have Shown the Strongest Growth Since 2012"
-        caption="Patent counts by biotechnology subfield over time, based on CPC classifications. The data reveal strong growth in recombinant DNA (+156%) and expression vectors (+109%) since 2012, alongside the emergence of gene editing and nucleic acid detection methods."
-        insight="The subfield composition of biotech patents has shifted substantially since 2012, with recombinant DNA technology continuing to grow -- more than tripling since 2012 -- while gene editing and expression vector technologies have also expanded considerably."
+        title="Recombinant DNA and Expression Vectors Are Among the Largest Growing Biotech Subfields"
+        caption="Patent counts by biotechnology subfield over time, based on CPC classifications. The data reveal substantial growth in recombinant DNA and expression vectors since 2012, alongside the expansion of gene editing and nucleic acid detection methods."
+        insight="The subfield composition of biotech patents has shifted substantially since 2012, with recombinant DNA technology continuing to grow substantially, while gene editing and expression vector technologies have also expanded considerably."
         loading={sfL}
         height={650}
       >
@@ -323,12 +323,12 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           The composition of biotechnology patents has evolved substantially over the past five
-          decades. Early biotech patenting was dominated by enzyme engineering -- the most active subfield in the field&apos;s earliest years. Since 2012, gene
-          editing and modification patents have expanded rapidly, driven by the development of CRISPR-Cas9 technology, which
-          made precise genomic alterations faster, cheaper, and more accessible. Enzyme engineering
+          decades. Early biotech patenting was concentrated in enzyme engineering. Since 2012, gene
+          editing and modification patents have expanded substantially, associated with the development of CRISPR-Cas9 technology, which
+          enabled more precise genomic alterations. Enzyme engineering
           and nucleic acid detection have also experienced considerable growth, reflecting advances
           in directed evolution (recognized by the 2018 Nobel Prize in Chemistry) and the
-          proliferation of PCR-based and next-generation sequencing diagnostic platforms,
+          proliferation of PCR-based and advanced sequencing diagnostic platforms,
           particularly during the COVID-19 pandemic.
         </p>
       </KeyInsight>
@@ -364,7 +364,7 @@ export default function Chapter15() {
         <p>
           The leading biotechnology patent holders reflect the distinctive institutional structure
           of life sciences innovation. Unlike artificial intelligence, where technology corporations
-          overwhelmingly dominate, biotech patenting features a notably diverse organizational
+          overwhelmingly dominate, biotech patenting features a diverse organizational
           landscape. Agricultural biotech firms such as Monsanto, Pioneer Hi-Bred, and DuPont are
           among the top patent holders, alongside enzyme companies like Novozymes. Research
           universities -- empowered by the Bayh-Dole Act -- hold prominent positions, with the
@@ -625,7 +625,7 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           The strategic portfolios of leading biotech patent holders reveal distinctive
-          organizational approaches. Agricultural biotech firms concentrate heavily on &quot;Other Genetic Engineering&quot; -- Monsanto holds 1,729 patents and Pioneer Hi-Bred 1,326 patents in this subfield alone, reflecting their focus on crop trait engineering. Research universities often hold stronger positions in gene
+          organizational approaches. Agricultural biotech firms concentrate heavily on genetic engineering categories, reflecting their focus on crop trait engineering. Research universities often hold stronger positions in gene
           editing and fundamental genetic engineering methods, reflecting their role as originators
           of basic scientific breakthroughs. Specialized biotechnology firms frequently focus on
           narrow but high-value niches such as enzyme engineering or nucleic acid detection
@@ -724,7 +724,7 @@ export default function Chapter15() {
         id="fig-biotech-assignee-type"
         subtitle="Distribution of biotech patents by assignee type (corporate, university, government, individual) over time, revealing the distinctive institutional mix."
         title="Corporate Assignees Dominate Aggregate Biotech Patent Counts, Though Individual Universities Rank Highly"
-        caption="Distribution of biotechnology patent assignees by type (corporate, university, government, individual) over time. Corporate assignees account for 96-98% of biotech patents in the aggregate categorization. Notably, while individual universities such as the University of California (#1 overall), Harvard (#8), and Stanford (#10) rank among the top assignees, the aggregate &quot;University/Other&quot; category remains small, suggesting many university-originated patents may be assigned to corporate licensees."
+        caption="Distribution of biotechnology patent assignees by type (corporate, university, government, individual) over time. Corporate assignees account for 96-98% of biotech patents in the aggregate categorization. While individual universities such as the University of California (#1 overall), Harvard (#8), and Stanford (#10) rank among the top assignees, the aggregate &quot;University/Other&quot; category remains small, suggesting many university-originated patents may be assigned to corporate licensees."
         insight="The assignee type distribution reveals an apparent paradox: while individual universities rank among the top biotech patent holders, the aggregate University/Other category accounts for less than 1% of patents. This disconnect likely reflects the practice of assigning university-originated inventions to corporate licensees and spin-off companies."
         loading={atL}
         height={500}

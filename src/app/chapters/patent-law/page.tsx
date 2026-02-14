@@ -42,10 +42,6 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
         citation: 'Agrawal, A., & Henderson, R. M. (2002). Putting patents in context: Exploring knowledge transfer from MIT. Management Science, 48(1), 44\u201360. https://doi.org/10.1287/mnsc.48.1.44.14279',
         summary: 'Patenting is a minority activity at MIT: most faculty estimate patents account for less than 10% of knowledge that transfers from their labs. Firms citing MIT papers are generally not the same as those citing MIT patents, suggesting patents capture only a narrow channel of university knowledge transfer.',
       },
-      {
-        citation: 'Hvide, H. K., & Jones, B. F. (2018). University innovation and the professor\u2019s privilege. American Economic Review, 108(7), 1860\u20131898. https://doi.org/10.1257/aer.20160284',
-        summary: 'Studying Norway\u2019s 2003 abolition of the \u201Cprofessor\u2019s privilege\u201D (moving to a Bayh-Dole\u2013like model where universities hold IP rights), the authors find a 50 percent decline in both entrepreneurship and patenting rates by university researchers, with quality measures also declining\u2014providing causal evidence on the effects of Bayh-Dole\u2013style IP regimes.',
-      },
     ],
   },
   {
@@ -119,14 +115,6 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     description: 'The Agreement on Trade-Related Aspects of Intellectual Property Rights established minimum patent protection standards globally.',
     research: [
       {
-        citation: 'Helpman, E. (1993). Innovation, imitation, and intellectual property rights. Econometrica, 61(6), 1247\u20131280. https://doi.org/10.2307/2951642',
-        summary: 'In a dynamic general equilibrium framework where the North invents and the South imitates, strengthening IPR in the South does not necessarily improve global or Southern welfare. The effects depend on the balance of terms-of-trade, production composition, and product availability channels.',
-      },
-      {
-        citation: 'Grossman, G. M., & Lai, E. L.-C. (2004). International protection of intellectual property. American Economic Review, 94(5), 1635\u20131653. https://doi.org/10.1257/0002828043052312',
-        summary: 'Non-cooperative equilibria generally provide inadequate IP protection from the perspective of world welfare. Harmonization of patent policies (as pursued through TRIPS) is neither necessary nor sufficient for global efficiency.',
-      },
-      {
         citation: 'Branstetter, L. G., Fisman, R., & Foley, C. F. (2006). Do stronger intellectual property rights increase international technology transfer? Empirical evidence from U.S. firm-level panel data. The Quarterly Journal of Economics, 121(1), 321\u2013349. https://doi.org/10.1093/qje/121.1.321',
         summary: 'U.S. multinationals respond to TRIPS-related IP reforms abroad by significantly increasing technology transfer. Royalty payments to affiliates increase by over 30% for affiliates of parent companies that use U.S. patents most extensively prior to reform.',
       },
@@ -137,10 +125,6 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       {
         citation: 'Moser, P., & Voena, A. (2012). Compulsory licensing: Evidence from the Trading with the Enemy Act. American Economic Review, 102(1), 396\u2013427. https://doi.org/10.1257/aer.102.1.396',
         summary: 'Using a WWI natural experiment, compulsory licensing increased domestic invention by 20%. Directly relevant to TRIPS Article 31, which allows compulsory licenses for public health needs.',
-      },
-      {
-        citation: 'Moser, P. (2005). How do patent laws influence innovation? Evidence from nineteenth-century world\u2019s fairs. American Economic Review, 95(4), 1214\u20131236. https://doi.org/10.1257/0002828054825501',
-        summary: 'Countries without patent laws produced as many innovations as those with them, but innovation was concentrated in sectors where secrecy provided protection. Patent laws channel innovation toward patent-sensitive industries rather than increasing overall innovation.',
       },
       {
         citation: 'Chaudhuri, S., Goldberg, P. K., & Jia, P. (2006). Estimating the effects of global patent protection in pharmaceuticals: A case study of quinolones in India. American Economic Review, 96(5), 1477\u20131514. https://doi.org/10.1257/aer.96.5.1477',
@@ -169,10 +153,6 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       {
         citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
         summary: 'A 10% increase in patents relevant to a software market reduces the entry rate by 3\u20138%, intensifying after expansions in software patentability during the mid-1990s. However, potential entrants holding their own patents are more likely to enter, suggesting patents serve as both barriers and entry tickets.',
-      },
-      {
-        citation: 'Lerner, J. (2002). 150 years of patent protection. American Economic Review, 92(2), 221\u2013225. https://doi.org/10.1257/000282802320189294',
-        summary: 'Examining 177 patent policy changes across 60 countries over 150 years, strengthening patent protection (including expanding patentable subject matter) has few positive effects on domestic patent applications.',
       },
     ],
   },
@@ -252,17 +232,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2010,
     title: 'Bilski v. Kappos',
     category: 'Court',
-    description: 'The Court held that the "machine-or-transformation" test is not the sole test for patent eligibility under 35 U.S.C. \u00a7 101, while narrowing the scope of patentable subject matter for business methods.',
-    research: [
-      {
-        citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
-        summary: 'Expanded software and business method patentability created barriers to entry. The holding in Bilski v. Kappos narrowed business method patent eligibility from the broad State Street standard, addressing the deterrent effects on new firm entry documented in this study.',
-      },
-      {
-        citation: 'Hegde, D., Ljungqvist, A., & Raj, M. (2022). Quick or broad patents? Evidence from U.S. startups. The Review of Financial Studies, 35(6), 2705\u20132742. https://doi.org/10.1093/rfs/hhab097',
-        summary: 'Broader patent scope increases a startup\u2019s future growth but imposes negative externalities on rivals\u2019 innovation. As the holding in Bilski v. Kappos narrowed the scope of business method patents, the findings illuminate the tradeoffs in patent eligibility decisions.',
-      },
-    ],
+    description: 'The Court held that the "machine-or-transformation" test is not the sole test for patent eligibility under 35 U.S.C. \u00a7 101, while narrowing the scope of patentable subject matter for business methods. No empirical study of this provision\u2019s effects has been identified in a leading peer-reviewed journal.',
+    research: [],
   },
   {
     year: 2011,
@@ -296,13 +267,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2013,
     title: 'AIA First-Inventor-to-File',
     category: 'Policy',
-    description: 'The AIA\'s first-inventor-to-file provision took effect March 16, 2013, fundamentally changing patent priority rules.',
-    research: [
-      {
-        citation: 'Lerner, J. (2009). The empirical impact of intellectual property rights on innovation: Puzzles and clues. American Economic Review, 99(2), 343\u2013348. https://doi.org/10.1257/aer.99.2.343',
-        summary: 'Examining major patent policy shifts across 60 nations over 150 years, there is little evidence that changes such as first-to-file vs. first-to-invent meaningfully alter domestic research investments.',
-      },
-    ],
+    description: 'The AIA\'s first-inventor-to-file provision took effect March 16, 2013, fundamentally changing patent priority rules. No empirical study of this provision\u2019s effects has been identified in a leading peer-reviewed journal.',
+    research: [],
   },
   {
     year: 2013,
@@ -330,10 +296,6 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     category: 'Court',
     description: 'The Court held that claims directed to an abstract idea implemented on a generic computer are not patent-eligible under 35 U.S.C. \u00a7 101, establishing a two-step framework for patent eligibility analysis. This holding led to a substantial increase in \u00a7 101 rejections and invalidations, particularly for software patents.',
     research: [
-      {
-        citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
-        summary: 'Expanded software patentability had created significant entry barriers\u2014a 10% increase in relevant patents reduces entry by 3\u20138%. The holding in Alice Corp. v. CLS Bank International substantially restricted abstract-idea software patents, addressing these innovation costs.',
-      },
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
         summary: 'Nearly half of issued patents are on inventions that do not require patent incentives. Improving screening (which the Alice Corp. holding effectively accomplished for software patents) can significantly improve welfare.',

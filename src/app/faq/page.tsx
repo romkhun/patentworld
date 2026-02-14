@@ -1,25 +1,31 @@
 import type { Metadata } from 'next';
 import { HERO_STATS } from '@/lib/constants';
 
+const BASE_URL = 'https://patentworld.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions',
-  description: 'Answers to common questions about US patent data, top patent holders, grant timelines, and technology trends — drawn from analysis of 9.36 million US patents (1976-2025).',
+  title: 'Top 10 Patent FAQs: IBM, AI Growth & Gender Gap',
+  description: 'Get answers on US patent trends: IBM leads with 100K+ patents, AI filings grew 6x since 2012, women remain at 15% of inventors. Data from 9.36M patents (1976-2025).',
   openGraph: {
     type: 'website',
-    title: 'FAQ | PatentWorld',
-    description: 'Answers to common questions about US patent data, top patent holders, grant timelines, and technology trends.',
-    url: 'https://patentworld.vercel.app/faq/',
+    title: 'Top 10 Patent FAQs: IBM, AI Growth & Gender Gap | PatentWorld',
+    description: 'Get answers on US patent trends: IBM leads, AI filings grew 6x, women remain at 15% of inventors. Data from 9.36M patents.',
+    url: `${BASE_URL}/faq/`,
     siteName: 'PatentWorld',
-    images: [{ url: 'https://patentworld.vercel.app/og/home.png', width: 1200, height: 630, alt: 'PatentWorld FAQ' }],
+    images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'PatentWorld FAQ' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FAQ | PatentWorld',
-    description: 'Answers to common questions about US patent data, top patent holders, grant timelines, and technology trends.',
-    images: ['https://patentworld.vercel.app/og/home.png'],
+    title: 'Top 10 Patent FAQs: IBM, AI Growth & Gender Gap | PatentWorld',
+    description: 'Get answers on US patent trends: IBM leads, AI filings grew 6x, women remain at 15% of inventors. Data from 9.36M patents.',
+    images: [`${BASE_URL}/og/home.png`],
   },
   alternates: {
-    canonical: 'https://patentworld.vercel.app/faq/',
+    canonical: `${BASE_URL}/faq/`,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -72,18 +78,28 @@ export default function FAQPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: FAQ_ITEMS.map((item) => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer,
-              },
-            })),
-          }),
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: FAQ_ITEMS.map((item) => ({
+                '@type': 'Question',
+                name: item.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: item.answer,
+                },
+              })),
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+                { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${BASE_URL}/faq/` },
+              ],
+            },
+          ]),
         }}
       />
 
@@ -111,7 +127,7 @@ export default function FAQPage() {
       <div className="mt-12 rounded-lg border bg-muted/30 p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Suggested Citation</h2>
         <p className="mt-2 text-sm leading-relaxed">
-          Lee, Saerom. 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo; The Wharton School, University of Pennsylvania.{' '}
+          Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo; The Wharton School, University of Pennsylvania. Available at:{' '}
           <a href="https://patentworld.vercel.app" className="text-primary hover:underline">
             https://patentworld.vercel.app
           </a>
