@@ -50,6 +50,61 @@ export function PWSankeyDiagram({
     if (inputNodes.length === 0 || inputLinks.length === 0)
       return { nodes: [] as SNode[], links: [] as SLink[] };
 
+    // d3-sankey requires a DAG. Resolve bidirectional pairs into net flows,
+    // then break any remaining cycles via DFS back-edge removal.
+    const linkMap = new Map<string, { source: number; target: number; value: number }>();
+    for (const l of inputLinks) {
+      const fwdKey = `${l.source}->${l.target}`;
+      const revKey = `${l.target}->${l.source}`;
+      if (linkMap.has(revKey)) {
+        const rev = linkMap.get(revKey)!;
+        const net = rev.value - l.value;
+        if (net > 0) {
+          rev.value = net;
+        } else if (net < 0) {
+          linkMap.delete(revKey);
+          linkMap.set(fwdKey, { source: l.source, target: l.target, value: -net });
+        } else {
+          linkMap.delete(revKey);
+        }
+      } else {
+        linkMap.set(fwdKey, { source: l.source, target: l.target, value: l.value });
+      }
+    }
+    let acyclicLinks = Array.from(linkMap.values()).filter(l => l.value > 0 && l.source !== l.target);
+
+    // Break remaining cycles: DFS to find and remove back edges (smallest value first)
+    const adj: Record<number, { target: number; key: string }[]> = {};
+    const edgeByKey = new Map<string, typeof acyclicLinks[0]>();
+    for (const l of acyclicLinks) {
+      const key = `${l.source}->${l.target}`;
+      edgeByKey.set(key, l);
+      (adj[l.source] ??= []).push({ target: l.target, key });
+    }
+    const removed = new Set<string>();
+    const WHITE = 0, GRAY = 1, BLACK = 2;
+    const color: Record<number, number> = {};
+    function dfs(u: number) {
+      color[u] = GRAY;
+      for (const { target: v, key } of adj[u] ?? []) {
+        if (removed.has(key)) continue;
+        if (color[v] === GRAY) {
+          removed.add(key); // back edge — break cycle
+        } else if ((color[v] ?? WHITE) === WHITE) {
+          dfs(v);
+        }
+      }
+      color[u] = BLACK;
+    }
+    const allNodes = new Set<number>();
+    acyclicLinks.forEach(l => { allNodes.add(l.source); allNodes.add(l.target); });
+    for (const n of allNodes) {
+      if ((color[n] ?? WHITE) === WHITE) dfs(n);
+    }
+    if (removed.size > 0) {
+      acyclicLinks = acyclicLinks.filter(l => !removed.has(`${l.source}->${l.target}`));
+    }
+
     const sankeyLayout = d3Sankey<SankeyNodeInput, SankeyLinkInput>()
       .nodeId(((d: any, i: number) => i) as any)
       .nodeWidth(16)
@@ -62,7 +117,7 @@ export function PWSankeyDiagram({
 
     const graph = sankeyLayout({
       nodes: inputNodes.map((n) => ({ ...n })),
-      links: inputLinks.map((l) => ({ ...l })),
+      links: acyclicLinks.map((l) => ({ ...l })),
     });
 
     return { nodes: graph.nodes, links: graph.links };

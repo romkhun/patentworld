@@ -40,7 +40,7 @@ export function PWSmallMultiples({
   return (
     <div
       className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-      style={columns > 4 ? { gridTemplateColumns: undefined } : undefined}
+      style={columns > 4 ? { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` } : undefined}
     >
       {panels.map((panel, panelIdx) => (
         <div key={panel.name} className="rounded-lg border bg-card/50 p-3">
