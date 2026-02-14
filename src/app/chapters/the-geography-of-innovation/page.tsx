@@ -45,7 +45,7 @@ function pivotCountries(data: CountryPerYear[], topN: number = 15) {
   };
 }
 
-export default function Chapter6() {
+export default function Chapter8() {
   const { data: states, loading: stL } = useChapterData<StateSummary[]>('chapter4/us_states_summary.json');
   const { data: countries, loading: coL } = useChapterData<CountryPerYear[]>('chapter4/countries_per_year.json');
   const { data: cities, loading: ciL } = useChapterData<TopCity[]>('chapter4/top_cities.json');
@@ -154,7 +154,7 @@ export default function Chapter6() {
   return (
     <div>
       <ChapterHeader
-        number={5}
+        number={8}
         title="The Geography of Innovation"
         subtitle="Spatial distribution, concentration, and mobility patterns in US patent activity"
       />
@@ -595,8 +595,8 @@ export default function Chapter6() {
         patents by the same disambiguated inventor. Innovation diffusion tracks patent activity in AI, Biotech & Pharma, and Clean Energy across cities with 5+ patents per period. Regional specialization uses Location Quotient (LQ) computed for US cities with 500+ patents (2010-2025).
       </DataNote>
 
-      <RelatedChapters currentChapter={5} />
-      <ChapterNavigation currentChapter={5} />
+      <RelatedChapters currentChapter={8} />
+      <ChapterNavigation currentChapter={8} />
     </div>
   );
 }

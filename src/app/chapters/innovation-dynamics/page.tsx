@@ -27,12 +27,9 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type {
   GrantLagBySector,
   CrossDomain,
-  IntlCollaboration,
   CorpDiversification,
   InnovationVelocity,
   FrictionMapEntry,
-  DesignPatentTrend,
-  DesignTopFiler,
   ClaimsAnalysis,
   ClaimsBySection,
   ClaimMonster,
@@ -65,16 +62,14 @@ function pivotVelocity(data: InnovationVelocity[]) {
   });
 }
 
-export default function Chapter8() {
+export default function Chapter11() {
   const { data: grantLag, loading: glL } = useChapterData<GrantLagBySector[]>('chapter7/grant_lag_by_sector.json');
   const { data: crossDomain, loading: cdL } = useChapterData<CrossDomain[]>('chapter7/cross_domain.json');
-  const { data: intlCollab, loading: icL } = useChapterData<IntlCollaboration[]>('chapter7/intl_collaboration.json');
   const { data: corpDiv, loading: cpL } = useChapterData<CorpDiversification[]>('chapter7/corp_diversification.json');
   const { data: velocity, loading: vlL } = useChapterData<InnovationVelocity[]>('chapter7/innovation_velocity.json');
   const { data: frictionMap, loading: fmL } = useChapterData<FrictionMapEntry[]>('chapter7/friction_map.json');
 
-  // E1, E2: Design patents and claims
-  const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
+  // Claims analysis
   const { data: claimsData, loading: clL } = useChapterData<{ trends: ClaimsAnalysis[]; by_section: ClaimsBySection[]; claim_monsters: ClaimMonster[] }>('company/claims_analysis.json');
 
   // Exploration/exploitation data
@@ -188,7 +183,7 @@ export default function Chapter8() {
   return (
     <div>
       <ChapterHeader
-        number={8}
+        number={11}
         title="Innovation Dynamics"
         subtitle="The tempo and trajectory of technological change"
       />
@@ -196,23 +191,22 @@ export default function Chapter8() {
       <KeyFindings>
         <li><GlossaryTooltip term="grant lag">Grant lag</GlossaryTooltip> varies significantly by technology sector; software and electronics patents exhibit longer pendency times than mechanical inventions.</li>
         <li>Cross-domain innovation has intensified, with patents increasingly spanning multiple technology classifications.</li>
-        <li>International collaboration on patents has grown steadily, particularly between the United States, Europe, and East Asia.</li>
         <li>Innovation velocity, as measured by the rate of knowledge diffusion through citations, appears to have accelerated in digital technology fields.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The tempo and trajectory of innovation have shifted in tandem: examination backlogs that pushed average pendency beyond 3.5 years in the late 2000s were subsequently reduced by USPTO hiring initiatives and the AIA reforms discussed in <Link href="/chapters/patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Law &amp; Policy</Link>, yet technology-specific friction persists, with chemistry patents routinely requiring the longest examination durations. Simultaneously, the share of patents spanning three or more CPC sections rose from 21% to 41% of all grants between 1976 and 2020, and the proportion listing inventors from multiple countries climbed from roughly 2% to over 10%, together signaling that innovation is becoming both more interdisciplinary and more geographically distributed. Design patents have outpaced utility patent growth since the 2000s -- led by Samsung, Nike, and LG Electronics -- while an exploration/exploitation analysis reveals that most large filers devote fewer than 5% of their patents to genuinely new technology domains, underscoring the tension between incremental deepening and frontier search that the quality metrics in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> will further illuminate.
+          The tempo and trajectory of innovation have shifted in tandem: examination backlogs that pushed average pendency beyond 3.5 years in the late 2000s were subsequently reduced by USPTO hiring initiatives and the AIA reforms discussed in <Link href="/chapters/patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Law &amp; Policy</Link>, yet technology-specific friction persists, with chemistry patents routinely requiring the longest examination durations. Simultaneously, the share of patents spanning three or more CPC sections rose from 21% to 41% of all grants between 1976 and 2020, signaling that innovation is becoming increasingly interdisciplinary. An exploration/exploitation analysis reveals that most large filers devote fewer than 5% of their patents to genuinely new technology domains, underscoring the tension between incremental deepening and frontier search that the quality metrics in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> will further illuminate.
         </p>
       </aside>
 
       <Narrative>
         <p>
           Beyond the question of what is patented and by whom, the <StatCallout value="dynamics of innovation" /> --
-          its speed, breadth, and collaborative nature -- reveal underlying structural patterns. The
+          its speed, breadth, and strategic orientation -- reveal underlying structural patterns. The
           duration from application to grant, the degree of technological convergence across
-          traditional boundaries, and the extent of international collaboration each illuminate
+          traditional boundaries, and the balance between exploration and exploitation each illuminate
           distinct dimensions of the innovation process.
         </p>
       </Narrative>
@@ -296,49 +290,6 @@ export default function Chapter8() {
           invention. Technologies such as autonomous vehicles, wearable health monitors, and
           smart materials inherently span traditional boundaries between physics, chemistry,
           and engineering, conferring an advantage upon organizations capable of integrating diverse expertise.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Global Collaboration" />
-
-      <ChartContainer
-        id="fig-innovation-dynamics-intl-collaboration"
-        subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
-        title="International Co-Invention Increased from Approximately 2% in the 1980s to 10% of All Patents"
-        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to over 10% in recent years, with the most rapid growth occurring during the 2000s."
-        loading={icL}
-        insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
-      >
-        <PWLineChart
-          data={intlCollab ?? []}
-          xKey="year"
-          lines={[
-            { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0], yAxisId: 'left' },
-            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2], yAxisId: 'right' },
-          ]}
-          yLabel="Number of Patents"
-          rightYLabel="Share (%)"
-          rightYFormatter={(v) => `${v.toFixed(1)}%`}
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
-        />
-      </ChartContainer>
-
-      <Narrative>
-        <p>
-          The growth of international collaboration in patenting is consistent with the globalization
-          of corporate R&D. Multinational firms increasingly distribute their research
-          activities across multiple countries, utilizing local talent pools and regulatory
-          environments. The result is an expanding network of cross-border co-invention that
-          transcends traditional national innovation systems.
-        </p>
-      </Narrative>
-
-      <KeyInsight>
-        <p>
-          International collaboration has increased from approximately 2% of patents in the 1980s to 10%
-          in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility,
-          and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated
-          in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
         </p>
       </KeyInsight>
 
@@ -472,58 +423,6 @@ export default function Chapter8() {
           alleviate the backlog, which continued growing until systemic reforms took effect.
         </p>
       </KeyInsight>
-
-      <SectionDivider label="Design vs. Utility Patents" />
-
-      <Narrative>
-        <p>
-          Whereas utility patents protect functional inventions, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> protect
-          ornamental appearance. The balance between these two types reflects shifting
-          innovation strategies -- from purely engineering-oriented approaches to <StatCallout value="design-driven innovation" />.
-        </p>
-      </Narrative>
-
-      <ChartContainer
-        id="fig-innovation-dynamics-design-trends"
-        subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
-        title="Design Patent Share Grew from 6% in the Early 1980s to 13% by 2024, Outpacing Utility Patent Growth"
-        caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion industries."
-        insight="The increasing share of design patents suggests a structural shift in corporate innovation strategy toward design-driven product differentiation, with Samsung, Nike, and LG Electronics among the leading filers."
-        loading={deL}
-      >
-        {designData?.trends ? (
-          <PWLineChart
-            data={designData.trends}
-            xKey="year"
-            lines={[
-              { key: 'utility_count', name: 'Utility Patents', color: CHART_COLORS[0] },
-              { key: 'design_count', name: 'Design Patents', color: CHART_COLORS[3] },
-              { key: 'design_share', name: 'Design Share (%)', color: CHART_COLORS[4], yAxisId: 'right' },
-            ]}
-            yLabel="Number of Patents"
-            rightYLabel="Design Share (%)"
-            rightYFormatter={(v) => `${v.toFixed(1)}%`}
-          />
-        ) : <div />}
-      </ChartContainer>
-
-      <ChartContainer
-        id="fig-innovation-dynamics-design-top-filers"
-        subtitle="Organizations ranked by total design patents granted, showing which firms lead in design-driven intellectual property."
-        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Automotive Firms"
-        caption="This chart displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
-        loading={deL}
-        height={500}
-      >
-        {designData?.top_filers ? (
-          <PWBarChart
-            data={designData.top_filers.slice(0, 20)}
-            xKey="company"
-            bars={[{ key: 'design_patents', name: 'Design Patents', color: CHART_COLORS[3] }]}
-            layout="vertical"
-          />
-        ) : <div />}
-      </ChartContainer>
 
       <SectionDivider label="Patent Claims Analysis" />
 
@@ -781,18 +680,18 @@ export default function Chapter8() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the dynamics of innovation -- its speed, convergence, collaborative nature, and the balance between exploration and exploitation -- the subsequent chapter addresses the measurement of <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and impact</Link>.
+        Having examined the dynamics of innovation -- its speed, convergence, and the balance between exploration and exploitation -- the subsequent chapter addresses the measurement of <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and impact</Link>.
         Understanding velocity, scope, and strategic orientation establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.
       </Narrative>
 
       <DataNote>
         Grant lag uses the difference between patent grant date and application filing date.
         Cross-domain analysis counts distinct CPC sections per patent (excluding section Y).
-        International collaboration identifies patents with inventors in 2+ different countries. Examination duration is measured as the time from application filing date to patent grant date, aggregated by CPC section and 5-year period. Design patent analysis includes all patent types. Claims analysis uses the patent_num_claims field from g_patent for utility patents only.
+        Examination duration is measured as the time from application filing date to patent grant date, aggregated by CPC section and 5-year period. Claims analysis uses the patent_num_claims field from g_patent for utility patents only.
       </DataNote>
 
-      <RelatedChapters currentChapter={8} />
-      <ChapterNavigation currentChapter={8} />
+      <RelatedChapters currentChapter={11} />
+      <ChapterNavigation currentChapter={11} />
     </div>
   );
 }

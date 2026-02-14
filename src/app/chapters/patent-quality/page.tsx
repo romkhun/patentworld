@@ -30,7 +30,7 @@ import type {
   FirmGiniYear,
 } from '@/lib/types';
 
-export default function Chapter9() {
+export default function Chapter12() {
   const { data: trends, loading: trL } = useChapterData<QualityTrend[]>('chapter9/quality_trends.json');
   const { data: origGen, loading: ogL } = useChapterData<OriginalityGenerality[]>('chapter9/originality_generality.json');
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
@@ -92,7 +92,7 @@ export default function Chapter9() {
   return (
     <div>
       <ChapterHeader
-        number={9}
+        number={12}
         title="Patent Quality"
         subtitle="Measuring the value and impact of patented inventions"
       />
@@ -580,8 +580,8 @@ export default function Chapter9() {
       </ChartContainer>
 
       <Narrative>
-        The preceding chapters examined the mechanics of innovation: knowledge flows through citations, the tempo and convergence of patent activity, and the measurement of patent quality. The remaining chapters provide context and deep dives into specific domains.
-        The analysis begins with the <Link href="/chapters/patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">legal and policy framework</Link> that shapes the patent system itself, where rules governing patentability, examination, and enforcement exert substantial influence on both the quality and quantity of innovation.
+        The preceding chapters examined the mechanics of innovation: knowledge flows through citations, the tempo and convergence of patent activity, and the measurement of patent quality. The remaining chapters provide deep dives into specific domains of particular consequence.
+        The analysis turns next to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, one of the most rapidly growing areas of patenting activity, where the quality metrics developed in this chapter prove especially relevant for distinguishing genuine innovation from the accelerating volume of AI-related filings.
       </Narrative>
 
       <DataNote>
@@ -593,8 +593,8 @@ export default function Chapter9() {
         year-technology cohort. The composite quality index combines Z-score normalized forward citations (5-year window), claims count, technology scope, and grant speed (inverted). Sleeping beauty patents are identified as those with fewer than 2 citations per year in their first 10 years followed by a burst of 10+ citations in a 3-year window.
       </DataNote>
 
-      <RelatedChapters currentChapter={9} />
-      <ChapterNavigation currentChapter={9} />
+      <RelatedChapters currentChapter={12} />
+      <ChapterNavigation currentChapter={12} />
     </div>
   );
 }

@@ -20,7 +20,8 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import { CHART_COLORS } from '@/lib/colors';
-import type { PatentsPerYear, ClaimsPerYear, GrantLag, HeroStats } from '@/lib/types';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import type { PatentsPerYear, ClaimsPerYear, GrantLag, HeroStats, DesignPatentTrend, DesignTopFiler } from '@/lib/types';
 
 function pivotByType(data: PatentsPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
@@ -38,6 +39,7 @@ export default function Chapter1() {
   const { data: claims, loading: clL } = useChapterData<ClaimsPerYear[]>('chapter1/claims_per_year.json');
   const { data: lag, loading: lagL } = useChapterData<GrantLag[]>('chapter1/grant_lag.json');
   const { data: hero } = useChapterData<HeroStats>('chapter1/hero_stats.json');
+  const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
 
   const pivotedPatents = useMemo(() => ppy ? pivotByType(ppy) : [], [ppy]);
 
@@ -212,6 +214,40 @@ export default function Chapter1() {
           was most consequential.
         </p>
       </KeyInsight>
+
+      <SectionDivider label="Design vs. Utility Patents" />
+
+      <Narrative>
+        <p>
+          Whereas utility patents protect functional inventions, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> protect
+          ornamental appearance. The balance between these two types reflects shifting
+          innovation strategies -- from purely engineering-oriented approaches to <StatCallout value="design-driven innovation" />.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-innovation-landscape-design-trends"
+        subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
+        title="Design Patent Share Grew from 6% in the Early 1980s to 13% by 2024, Outpacing Utility Patent Growth"
+        caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion industries."
+        insight="The increasing share of design patents suggests a structural shift in corporate innovation strategy toward design-driven product differentiation, with Samsung, Nike, and LG Electronics among the leading filers."
+        loading={deL}
+      >
+        {designData?.trends ? (
+          <PWLineChart
+            data={designData.trends}
+            xKey="year"
+            lines={[
+              { key: 'utility_count', name: 'Utility Patents', color: CHART_COLORS[0] },
+              { key: 'design_count', name: 'Design Patents', color: CHART_COLORS[3] },
+              { key: 'design_share', name: 'Design Share (%)', color: CHART_COLORS[4], yAxisId: 'right' },
+            ]}
+            yLabel="Number of Patents"
+            rightYLabel="Design Share (%)"
+            rightYFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
 
       <Narrative>
         Having examined the overall scale and trajectory of US patent activity over five decades, the next chapter identifies which <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technologies have driven this growth</Link>.

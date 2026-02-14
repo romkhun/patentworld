@@ -30,6 +30,7 @@ import { cleanOrgName } from '@/lib/orgNames';
 import type {
   AssigneeTypePerYear, TopAssignee, OrgOverTime, DomesticVsForeign, Concentration,
   FirmCitationImpact, FirmTechEvolution, NonUSBySection,
+  DesignPatentTrend, DesignTopFiler,
 } from '@/lib/types';
 import type { PortfolioDiversity, NetworkMetricsByDecade, BridgeInventor } from '@/lib/types';
 import type { FirmQualityYear, FirmClaimsYear, FirmQualityScatter } from '@/lib/types';
@@ -52,7 +53,7 @@ function pivotByOrigin(data: DomesticVsForeign[]) {
   });
 }
 
-export default function Chapter3() {
+export default function Chapter5() {
   const { data: types, loading: typL } = useChapterData<AssigneeTypePerYear[]>('chapter3/assignee_types_per_year.json');
   const { data: top, loading: topL } = useChapterData<TopAssignee[]>('chapter3/top_assignees.json');
   const { data: orgsTime, loading: orgL } = useChapterData<OrgOverTime[]>('chapter3/top_orgs_over_time.json');
@@ -67,6 +68,7 @@ export default function Chapter3() {
   const { data: firmQuality, loading: fqL } = useChapterData<Record<string, FirmQualityYear[]>>('company/firm_quality_distribution.json');
   const { data: firmClaims, loading: fcmL } = useChapterData<Record<string, FirmClaimsYear[]>>('company/firm_claims_distribution.json');
   const { data: firmScatter, loading: fsL } = useChapterData<FirmQualityScatter[]>('company/firm_quality_scatter.json');
+  const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
 
   const [selectedOrg, setSelectedOrg] = useState<string>('');
   const [selectedQualityFirm, setSelectedQualityFirm] = useState<string>('IBM');
@@ -203,7 +205,7 @@ export default function Chapter3() {
   return (
     <div>
       <ChapterHeader
-        number={3}
+        number={5}
         title="Who Innovates?"
         subtitle="The organizations driving patent activity"
       />
@@ -731,6 +733,36 @@ export default function Chapter3() {
         </p>
       </KeyInsight>
 
+      <SectionDivider label="Design Patent Leadership" />
+
+      <Narrative>
+        <p>
+          Beyond utility patents, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> have
+          become an increasingly important element of corporate intellectual property strategy.
+          The organizations that lead in design patent filings reveal how firms leverage ornamental
+          and aesthetic innovation as a competitive tool, particularly in consumer electronics,
+          automotive, and fashion industries where product appearance is a key differentiator.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-who-innovates-design-top-filers"
+        subtitle="Organizations ranked by total design patents granted, showing which firms lead in design-driven intellectual property."
+        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Automotive Firms"
+        caption="This chart displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
+        loading={deL}
+        height={500}
+      >
+        {designData?.top_filers ? (
+          <PWBarChart
+            data={designData.top_filers.slice(0, 20)}
+            xKey="company"
+            bars={[{ key: 'design_patents', name: 'Design Patents', color: CHART_COLORS[3] }]}
+            layout="vertical"
+          />
+        ) : <div />}
+      </ChartContainer>
+
       <SectionDivider label="Innovation Quality Profiles" />
 
       <Narrative>
@@ -865,8 +897,8 @@ export default function Chapter3() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the organizations driving patent activity, the following chapter turns to <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the individual inventors</Link> behind these patents.
-        While corporations file the patents, it is the inventors, through their team structures, career trajectories, and demographic composition, who ultimately shape the direction and quality of innovation. The geographic patterns of where these inventors work are explored in <Link href="/chapters/the-geography-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Geography of Innovation</Link>.
+        Having examined the organizations driving patent activity at the aggregate level, the <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> disaggregates these trends to the firm level, constructing interactive innovation profiles for 100 major patent filers.
+        The trajectory archetypes, portfolio strategies, and quality distributions revealed at the company level provide the bridge between the macro patterns documented here and the individual inventors examined in <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Inventors</Link>.
       </Narrative>
 
       <DataNote>
@@ -877,8 +909,8 @@ export default function Chapter3() {
         Portfolio diversity is measured using Shannon entropy across CPC subclasses per 5-year period. Network metrics are computed from co-inventor relationships on shared patents.
       </DataNote>
 
-      <RelatedChapters currentChapter={3} />
-      <ChapterNavigation currentChapter={3} />
+      <RelatedChapters currentChapter={5} />
+      <ChapterNavigation currentChapter={5} />
     </div>
   );
 }

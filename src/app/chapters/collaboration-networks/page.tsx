@@ -30,13 +30,15 @@ import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import type {
   NetworkData, CoInventionRate, CoInventionBySection,
   TalentFlowData, PortfolioOverlapPoint, StrategyProfile, CorporateSpeed,
+  IntlCollaboration,
 } from '@/lib/types';
 
-export default function Chapter6() {
+export default function Chapter9() {
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
   const { data: inventorNetwork, loading: inL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
   const { data: coInvention, loading: ciL } = useChapterData<CoInventionRate[]>('chapter6/co_invention_rates.json');
   const { data: coInventionBySec, loading: cisL } = useChapterData<CoInventionBySection[]>('chapter6/co_invention_us_china_by_section.json');
+  const { data: intlCollab, loading: icL } = useChapterData<IntlCollaboration[]>('chapter7/intl_collaboration.json');
 
   // F1, F2, F3, F4: Talent flows and strategy
   const { data: talentFlows, loading: tfL } = useChapterData<TalentFlowData>('company/talent_flows.json');
@@ -131,7 +133,7 @@ export default function Chapter6() {
   return (
     <div>
       <ChapterHeader
-        number={6}
+        number={9}
         title="Collaboration Networks"
         subtitle="Structural analysis of co-invention and co-patenting networks"
       />
@@ -271,6 +273,49 @@ export default function Chapter6() {
           institutional partnerships than by individual inventor relationships.
         </p>
       </Narrative>
+
+      <SectionDivider label="Global Collaboration" />
+
+      <ChartContainer
+        id="fig-collaboration-intl-collaboration"
+        subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
+        title="International Co-Invention Increased from Approximately 2% in the 1980s to 10% of All Patents"
+        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to over 10% in recent years, with the most rapid growth occurring during the 2000s."
+        loading={icL}
+        insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
+      >
+        <PWLineChart
+          data={intlCollab ?? []}
+          xKey="year"
+          lines={[
+            { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0], yAxisId: 'left' },
+            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2], yAxisId: 'right' },
+          ]}
+          yLabel="Number of Patents"
+          rightYLabel="Share (%)"
+          rightYFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          The growth of international collaboration in patenting is consistent with the globalization
+          of corporate R&D. Multinational firms increasingly distribute their research
+          activities across multiple countries, utilizing local talent pools and regulatory
+          environments. The result is an expanding network of cross-border co-invention that
+          transcends traditional national innovation systems.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          International collaboration has increased from approximately 2% of patents in the 1980s to 10%
+          in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility,
+          and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated
+          in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
+        </p>
+      </KeyInsight>
 
       <SectionDivider label="The US-China Decoupling" />
 
@@ -541,8 +586,8 @@ export default function Chapter6() {
         clutter. Talent flows track inventor movements between assignees based on consecutive patent filings with gap ≤ 5 years. Portfolio overlap uses cosine similarity of CPC subclass distributions projected to 2D via UMAP. Strategy profiles normalize 8 innovation dimensions to a 0–100 scale across the top 30 assignees.
       </DataNote>
 
-      <RelatedChapters currentChapter={6} />
-      <ChapterNavigation currentChapter={6} />
+      <RelatedChapters currentChapter={9} />
+      <ChapterNavigation currentChapter={9} />
     </div>
   );
 }

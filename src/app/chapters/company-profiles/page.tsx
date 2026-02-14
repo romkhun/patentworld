@@ -35,7 +35,7 @@ import type {
 
 const CPC_SECTIONS = Object.keys(CPC_SECTION_NAMES);
 
-export default function Chapter14() {
+export default function Chapter6() {
   /* ── Data loading ── */
   const { data: profiles, loading: prL } = useChapterData<CompanyProfile[]>('company/company_profiles.json');
   const { data: trajRaw } = useChapterData<{ companies: TrajectoryArchetype[] } | TrajectoryArchetype[]>('company/trajectory_archetypes.json');
@@ -247,7 +247,7 @@ export default function Chapter14() {
   return (
     <div>
       <ChapterHeader
-        number={14}
+        number={6}
         title="Company Innovation Profiles"
         subtitle="Interactive dashboards for 100 major patent filers"
       />
@@ -262,7 +262,7 @@ export default function Chapter14() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          When the aggregate trends examined in preceding chapters -- the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">rise of AI</Link>, the expansion of <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green technology</Link>, the growing interdisciplinarity of <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent language</Link> -- are disaggregated to the firm level, a striking picture of strategic heterogeneity emerges. The 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches: some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise, with no clear penalty in citation impact for either strategy. The ability to detect strategic reorientation through shifts in patent portfolio composition -- often years before such changes become apparent in product markets -- suggests that the patent record functions as an early-warning system for corporate transformation, connecting the macro-level patterns of earlier chapters to the micro-level decisions of individual firms.
+          When the aggregate trends examined across PatentWorld -- the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">rise of AI</Link>, the expansion of <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green technology</Link>, the growing interdisciplinarity of <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent language</Link> -- are disaggregated to the firm level, a striking picture of strategic heterogeneity emerges. The 100 largest patent filers follow sharply divergent innovation trajectories, and the rarity of sustained leadership across multiple decades underscores how difficult it is for any single organization to remain at the frontier of technological change. Portfolio analysis reveals that firms navigate this challenge through fundamentally different approaches: some pursue broad diversification across technology domains, while others concentrate resources in narrow areas of deep expertise, with no clear penalty in citation impact for either strategy. The ability to detect strategic reorientation through shifts in patent portfolio composition -- often years before such changes become apparent in product markets -- suggests that the patent record functions as an early-warning system for corporate transformation, connecting the macro-level patterns of earlier chapters to the micro-level decisions of individual firms.
         </p>
       </aside>
 
@@ -811,7 +811,7 @@ export default function Chapter14() {
       </KeyInsight>
 
       <Narrative>
-        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. For broader context on the trends analyzed here, see <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Innovation Landscape</Link> and <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Who Innovates?</Link>.
+        Having examined corporate innovation strategies at the firm level, the <Link href="/chapters/the-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> turns to the individual inventors behind these organizational outputs. While corporations file the patents, it is the inventors -- through their team structures, career trajectories, and demographic composition -- who ultimately shape the direction and quality of innovation.
       </Narrative>
 
       <DataNote>
@@ -825,8 +825,8 @@ export default function Chapter14() {
         shares.
       </DataNote>
 
-      <RelatedChapters currentChapter={14} />
-      <ChapterNavigation currentChapter={14} />
+      <RelatedChapters currentChapter={6} />
+      <ChapterNavigation currentChapter={6} />
     </div>
   );
 }

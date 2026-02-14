@@ -25,7 +25,7 @@ import type {
   GreenTopCompany, GreenAITrend, GreenAIHeatmap,
 } from '@/lib/types';
 
-export default function Chapter12() {
+export default function Chapter14() {
   const { data: volume, loading: volL } = useChapterData<GreenVolume[]>('green/green_volume.json');
   const { data: byCategory, loading: catL } = useChapterData<GreenByCategory[]>('green/green_by_category.json');
   const { data: byCountry, loading: ctyL } = useChapterData<GreenByCountry[]>('green/green_by_country.json');
@@ -117,7 +117,7 @@ export default function Chapter12() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={12}
+        number={14}
         title="The Green Innovation Race"
         subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
       />
@@ -350,7 +350,7 @@ export default function Chapter12() {
       </KeyInsight>
 
       <Narrative>
-        Having traced the evolution of green innovation from a specialized domain to a mainstream category of patenting activity, the <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> shifts from structured classification data to the text of patents themselves. By applying natural language processing to millions of patent abstracts, the analysis identifies the latent thematic structure of US patenting and examines how the language of invention has evolved over five decades.
+        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents one of the most consequential frontiers of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
       </Narrative>
 
       <DataNote>
@@ -365,8 +365,8 @@ export default function Chapter12() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={12} />
-      <ChapterNavigation currentChapter={12} />
+      <RelatedChapters currentChapter={14} />
+      <ChapterNavigation currentChapter={14} />
     </div>
   );
 }

@@ -401,7 +401,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
 ];
 
-export default function Chapter10() {
+export default function Chapter4() {
   const { data: hhiData, loading: hhiL } = useChapterData<HHIBySection[]>('chapter10/hhi_by_section.json');
   const { data: pipelineData, loading: pipL } = useChapterData<ApplicationsVsGrants[]>('chapter10/applications_vs_grants.json');
   const { data: convergenceData, loading: conL } = useChapterData<ConvergenceEntry[]>('chapter10/convergence_matrix.json');
@@ -438,7 +438,7 @@ export default function Chapter10() {
   return (
     <div>
       <ChapterHeader
-        number={10}
+        number={4}
         title="Patent Law & Policy"
         subtitle="The legal and institutional framework governing patent rights"
       />
@@ -665,7 +665,7 @@ export default function Chapter10() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the legal and policy framework that governs the patent system, the following chapter addresses one of the most consequential technological developments reshaping that framework: <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>. The rapid growth of AI patenting raises fundamental questions about patent eligibility, prior art, and the definition of inventorship.
+        Having examined the legal and policy framework that governs the patent system, the analysis shifts from the system itself to the actors within it. The <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates which organizations drive patent activity, how corporate leadership has shifted across geographies and industries, and what the concentration of patenting reveals about the structure of modern innovation.
       </Narrative>
 
       <DataNote>
@@ -686,8 +686,8 @@ export default function Chapter10() {
         submissions to the USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={10} />
-      <ChapterNavigation currentChapter={10} />
+      <RelatedChapters currentChapter={4} />
+      <ChapterNavigation currentChapter={4} />
     </div>
   );
 }

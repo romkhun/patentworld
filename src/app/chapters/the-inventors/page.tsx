@@ -56,7 +56,7 @@ function pivotGender(data: GenderRow[]) {
   });
 }
 
-export default function Chapter4() {
+export default function Chapter7() {
   const { data: team, loading: tmL } = useChapterData<TeamSizePerYear[]>('chapter5/team_size_per_year.json');
   const { data: gender, loading: gnL } = useChapterData<GenderRow[]>('chapter5/gender_per_year.json');
   const { data: genderSector, loading: gsL } = useChapterData<GenderSectorRow[]>('chapter5/gender_by_sector.json');
@@ -150,7 +150,7 @@ export default function Chapter4() {
   return (
     <div>
       <ChapterHeader
-        number={4}
+        number={7}
         title="The Inventors"
         subtitle="Demographic composition, career trajectories, and productivity patterns among patent inventors"
       />
@@ -866,8 +866,8 @@ export default function Chapter4() {
         to last patent year per inventor. Superstar concentration is computed using cumulative patent counts per inventor. Solo inventor analysis uses the inventor count per patent. First-time inventors are identified by their earliest patent filing date. Inventor mobility measures distinct assignee organizations per prolific inventor. Gender analysis uses PatentsView&apos;s gender_code field. Career curves and specialization analysis use inventors with 5+ and 10+ patents respectively. Comeback inventors are those with gaps of 5+ years between consecutive patents.
       </DataNote>
 
-      <RelatedChapters currentChapter={4} />
-      <ChapterNavigation currentChapter={4} />
+      <RelatedChapters currentChapter={7} />
+      <ChapterNavigation currentChapter={7} />
     </div>
   );
 }

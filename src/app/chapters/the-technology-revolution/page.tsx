@@ -471,8 +471,8 @@ export default function Chapter2() {
       </KeyInsight>
 
       <Narrative>
-        The first two chapters established how the patent system grew and which technologies fueled that expansion. The analysis now shifts from the system itself to the actors within it: the organizations and individual inventors who produce patents.
-        The shift from chemistry to digital technology has reshaped not only the composition of patent grants but also the organizational landscape of innovation, from American industrial conglomerates to Asian electronics firms. The <Link href="/chapters/who-innovates" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates who these organizations are and how their dominance has evolved.
+        The first two chapters established how the patent system grew and which technologies fueled that expansion. The analysis now turns to the language of patents themselves, examining how the vocabulary of invention has evolved alongside these structural shifts.
+        The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. The <Link href="/chapters/the-language-of-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of American innovation.
       </Narrative>
 
       <DataNote>

@@ -27,7 +27,7 @@ import type {
   CorporateCitationFlow, TechLeadership, CitationHalfLife,
 } from '@/lib/types';
 
-export default function Chapter7() {
+export default function Chapter10() {
   const { data: cites, loading: ciL } = useChapterData<CitationsPerYear[]>('chapter6/citations_per_year.json');
   const { data: lag, loading: laL } = useChapterData<CitationLag[]>('chapter6/citation_lag.json');
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
@@ -103,7 +103,7 @@ export default function Chapter7() {
   return (
     <div>
       <ChapterHeader
-        number={7}
+        number={10}
         title="The Knowledge Network"
         subtitle="Citation networks, knowledge diffusion, and the role of public funding"
       />
@@ -438,8 +438,8 @@ export default function Chapter7() {
         and lag calculations exclude records with missing dates. Citation lag is measured as the time between the cited patent&apos;s grant date and the citing patent&apos;s grant date. Corporate citation flows aggregate all citations between pairs of the top 30 assignees per decade. Citation half-life uses patents granted before 2010 to ensure at least 15 years of citation accumulation.
       </DataNote>
 
-      <RelatedChapters currentChapter={7} />
-      <ChapterNavigation currentChapter={7} />
+      <RelatedChapters currentChapter={10} />
+      <ChapterNavigation currentChapter={10} />
     </div>
   );
 }

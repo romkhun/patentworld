@@ -27,7 +27,7 @@ import type {
   TopicUMAPPoint, TopicNoveltyTrend, TopicNoveltyPatent,
 } from '@/lib/types';
 
-export default function Chapter13() {
+export default function Chapter3() {
   const { data: definitions, loading: defL } = useChapterData<TopicDefinition[]>('chapter12/topic_definitions.json');
   const { data: prevalence, loading: prevL } = useChapterData<TopicPrevalence[]>('chapter12/topic_prevalence.json');
   const { data: cpcMatrix, loading: cpcL } = useChapterData<TopicCPCMatrix[]>('chapter12/topic_cpc_matrix.json');
@@ -158,7 +158,7 @@ export default function Chapter13() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={13}
+        number={3}
         title="The Language of Innovation"
         subtitle="Thematic structure and evolution of patent language over 50 years"
       />
@@ -175,7 +175,7 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the steady rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in Chapters 11 and 12 are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that American innovation has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most striking is the steady rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/the-knowledge-network" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Knowledge Network</Link> and <Link href="/chapters/innovation-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Innovation Dynamics</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
@@ -465,8 +465,8 @@ export default function Chapter13() {
       )}
 
       <Narrative>
-        Having uncovered the latent thematic structure of patent language, the final chapter shifts focus to the company level, constructing interactive <Link href="/chapters/company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">innovation profiles for 100 major patent filers</Link>.
-        The topics and trends identified in this chapter provide the foundation for understanding how individual firms have navigated the evolving technology landscape.
+        Having uncovered the latent thematic structure of patent language, the analysis turns next to the <Link href="/chapters/patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">legal and policy framework</Link> governing the patent system.
+        The topics and trends identified in this chapter provide essential context for understanding how legislative and judicial decisions have shaped the direction and character of US patenting activity.
       </Narrative>
 
       <DataNote>
@@ -480,8 +480,8 @@ export default function Chapter13() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={13} />
-      <ChapterNavigation currentChapter={13} />
+      <RelatedChapters currentChapter={3} />
+      <ChapterNavigation currentChapter={3} />
     </div>
   );
 }
