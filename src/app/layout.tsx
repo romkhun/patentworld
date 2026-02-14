@@ -73,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${playfair.variable} ${jakarta.variable} ${jetbrains.variable}`}>
       <head>
         <meta name="google-site-verification" content="El4nzV7RYgAGJl6KI74cX-Hj3LNkzQamTYyudkoF0es" />
+        <meta name="msvalidate.01" content="AFA1EA03BEF26C7EAF46830EC6A92A41" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
