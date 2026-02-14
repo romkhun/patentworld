@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { BarChart3 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { MobileNav } from './MobileNav';
 
 export function Header() {
   return (
@@ -30,6 +31,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <MobileNav />
         </div>
       </div>
     </header>

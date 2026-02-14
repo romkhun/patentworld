@@ -31,7 +31,7 @@ export default function Chapter9() {
   const { data: origGen, loading: ogL } = useChapterData<OriginalityGenerality[]>('chapter9/originality_generality.json');
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
   const { data: bySector, loading: bsL } = useChapterData<QualityBySector[]>('chapter9/quality_by_sector.json');
-  const { data: breakthrough, loading: btL } = useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
+  useChapterData<BreakthroughPatent[]>('chapter9/breakthrough_patents.json');
   const { data: compositeQuality, loading: cqL } = useChapterData<CompositeQualityIndex[]>('chapter9/composite_quality_index.json');
   const { data: sleepingBeauties } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
   const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
@@ -116,38 +116,6 @@ export default function Chapter9() {
           originality and generality indices measure how a patent draws on and contributes to
           diverse knowledge domains. No single indicator is sufficient; together, they provide
           a nuanced characterization of inventive value.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Claims & Complexity" />
-
-      <ChartContainer
-        title="Average Claims Per Patent Have Increased from Approximately 9.5 to Approximately 17 Since the 1970s"
-        caption="This chart displays the average and median number of claims per utility patent from 1976 to 2025. Claims define the legally protected boundaries of an invention. The widening divergence between mean and median indicates that a growing tail of high-claim patents is elevating the average."
-        loading={trL}
-        insight="The approximately 76% increase in average claims since the 1970s is consistent with both increasing invention complexity and strategic behavior by applicants seeking broader legal protection."
-      >
-        <PWLineChart
-          data={trends ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[0] },
-            { key: 'median_claims', name: 'Median Claims', color: CHART_COLORS[2] },
-          ]}
-          yLabel="Claims"
-          yFormatter={(v) => v.toFixed(0)}
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The average number of claims per patent has increased by approximately 76% since the 1970s, rising from approximately 9.5 to approximately 17. This
-          trend is consistent with both increasing invention complexity and strategic behavior by applicants
-          seeking broader protection. The widening gap between mean and median indicates that
-          a growing tail of patents with very large claim sets is elevating the average,
-          a pattern consistent with the &quot;patent thicket&quot; hypothesis in which firms employ dense webs of
-          overlapping claims to construct defensive barriers.
         </p>
       </KeyInsight>
 
@@ -321,37 +289,6 @@ export default function Chapter9() {
           trajectories. Changes in self-citation rates over time may reflect shifts in
           corporate R&D strategy, from exploration of new domains to exploitation of
           established competencies.
-        </p>
-      </KeyInsight>
-
-      <SectionDivider label="Breakthrough Inventions" />
-
-      <ChartContainer
-        title="The Breakthrough Patent Rate Fluctuates Around 1%, with Variation Indicating Shifts in the Citation Distribution"
-        caption="This chart displays the percentage of patents in the top 1% of forward citations within their year-technology cohort, from 1976 to 2020. Periods with rates above 1% suggest that top inventions are becoming disproportionately more impactful relative to average patents."
-        loading={btL}
-        insight="Variation in the breakthrough rate over time indicates whether the right tail of the citation distribution is shifting, suggesting changes in how concentrated inventive impact is among top patents."
-      >
-        <PWLineChart
-          data={breakthrough ?? []}
-          xKey="year"
-          lines={[
-            { key: 'breakthrough_pct', name: 'Breakthrough Rate (%)', color: CHART_COLORS[3] },
-          ]}
-          yLabel="Percent"
-          yFormatter={(v) => `${v.toFixed(2)}%`}
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          By definition, breakthrough patents represent the top 1% within each year-technology
-          cohort; consequently, the rate remains near 1%. Temporal variation, however, indicates whether
-          the quality distribution is shifting. Periods with rates slightly above 1% suggest
-          that the right tail of the citation distribution is becoming heavier, implying that
-          top inventions are becoming even more disproportionately impactful relative to
-          average patents.
         </p>
       </KeyInsight>
 

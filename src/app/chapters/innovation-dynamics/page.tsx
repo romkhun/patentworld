@@ -493,41 +493,6 @@ export default function Chapter8() {
         ) : <div />}
       </ChartContainer>
 
-      {claimsData?.claim_monsters && claimsData.claim_monsters.length > 0 && (
-        <>
-          <Narrative>
-            <p>
-              Certain patents exhibit exceptionally high claim counts. These claim-intensive patents
-              frequently represent strategic defensive filings or comprehensive platform patents.
-            </p>
-          </Narrative>
-          <div className="my-8 overflow-x-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-border text-left text-muted-foreground">
-                  <th className="py-2 pr-4 font-medium">Patent ID</th>
-                  <th className="py-2 pr-4 font-medium">Year</th>
-                  <th className="py-2 pr-4 text-right font-medium">Claims</th>
-                  <th className="py-2 pr-4 font-medium">Tech Area</th>
-                  <th className="py-2 font-medium">Assignee</th>
-                </tr>
-              </thead>
-              <tbody>
-                {claimsData.claim_monsters.slice(0, 15).map((m) => (
-                  <tr key={m.patent_id} className="border-b border-border/50">
-                    <td className="py-2 pr-4 font-mono text-xs">{m.patent_id}</td>
-                    <td className="py-2 pr-4">{m.year}</td>
-                    <td className="py-2 pr-4 text-right font-mono font-bold">{m.claims.toLocaleString()}</td>
-                    <td className="py-2 pr-4">{m.section}</td>
-                    <td className="py-2 text-xs">{m.assignee && m.assignee.length > 30 ? m.assignee.slice(0, 28) + '...' : (m.assignee ?? '—')}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
-
       <Narrative>
         Having examined the dynamics of innovation -- its speed, convergence, and collaborative nature -- the subsequent chapter addresses the measurement of patent quality and impact.
         Understanding velocity and scope establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.

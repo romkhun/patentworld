@@ -30,7 +30,7 @@ export default function Chapter7() {
   const { data: lag, loading: laL } = useChapterData<CitationLag[]>('chapter6/citation_lag.json');
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
   const { data: agencies, loading: agL } = useChapterData<GovAgency[]>('chapter6/gov_agencies.json');
-  const { data: citeLagTrend, loading: cltL } = useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
+  useChapterData<CitationLagTrend[]>('chapter6/citation_lag_trend.json');
   const { data: citeLagBySection, loading: clsL } = useChapterData<CitationLagBySection[]>('chapter6/citation_lag_by_section.json');
 
   // C1, C2, C3: Corporate citation analyses
@@ -265,35 +265,7 @@ export default function Chapter7() {
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Citation Lag Analysis" />
-      <Narrative>
-        <p>
-          The pace at which patents reference prior art can be measured by the citation lag --
-          the time between when a cited patent was granted and when the citing patent is granted.
-          The increasing lag over time reflects the growing body of prior art that newer patents
-          must reference, as the cumulative stock of patented knowledge expands.
-        </p>
-      </Narrative>
-      <ChartContainer
-        title="Median Citation Lag Has Increased as Patents Reference an Expanding Body of Prior Art"
-        caption="Median time (in years) between a cited patent's grant date and the citing patent's grant date. The increasing lag reflects the growing body of relevant prior art that newer patents must reference."
-        loading={cltL}
-        insight="The increasing citation lag indicates that the expanding body of relevant prior art requires newer patents to reach further back in time, as the cumulative stock of patented knowledge continues to grow."
-      >
-        {citeLagTrend && (
-          <PWLineChart
-            data={citeLagTrend}
-            xKey="year"
-            lines={[
-              { key: 'median_lag_years', name: 'Median Citation Lag (years)', color: CHART_COLORS[0] },
-              { key: 'avg_lag_years', name: 'Average Citation Lag (years)', color: CHART_COLORS[2] },
-            ]}
-            yLabel="Years"
-            yFormatter={(v: number) => v.toFixed(1)}
-            referenceLines={filterEvents(PATENT_EVENTS, { only: [1980, 2001, 2008] })}
-          />
-        )}
-      </ChartContainer>
+      <SectionDivider label="Citation Lag by Technology Area" />
       <ChartContainer
         title="Physics and Electricity Exhibit Shorter Citation Lags Than Chemistry and Life Sciences"
         caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."

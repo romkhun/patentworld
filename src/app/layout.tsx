@@ -3,6 +3,8 @@ import { Playfair_Display, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/g
 import { ThemeProvider } from 'next-themes';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ReadingProgress } from '@/components/layout/ReadingProgress';
+import { BackToTop } from '@/components/layout/BackToTop';
 import { CHAPTERS } from '@/lib/constants';
 import './globals.css';
 
@@ -126,8 +128,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-1 focus:left-1 focus:z-[80] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:text-sm">
+            Skip to content
+          </a>
+          <ReadingProgress />
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main id="main-content" className="min-h-screen">{children}</main>
+          <BackToTop />
           <Footer />
         </ThemeProvider>
       </body>

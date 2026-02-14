@@ -819,23 +819,6 @@ export default function Chapter4() {
         </p>
       </Narrative>
 
-      <ChartContainer
-        title="Most Inventor Comebacks Occur After Gaps of 5–7 Years, Declining Sharply for Longer Absences"
-        caption="This chart displays the number of inventors returning to patenting after gaps of 5 or more years, categorized by gap duration. The highest frequency of returns occurs at the 5- to 7-year mark, with the count declining substantially for longer absences."
-        insight="Notably, a significant fraction of returning inventors change both their employer and technology field upon re-entry, suggesting that extended gaps frequently coincide with career transitions or pivots."
-        loading={cbL}
-        height={400}
-      >
-        {comebackData ? (
-          <PWBarChart
-            data={comebackData}
-            xKey="gap_years"
-            bars={[{ key: 'count', name: 'Comeback Inventors', color: CHART_COLORS[5] }]}
-            xLabel="Gap Duration (years)"
-          />
-        ) : <div />}
-      </ChartContainer>
-
       {comebackData && comebackData.length > 0 && (() => {
         const totalCount = comebackData.reduce((s: number, d: any) => s + d.count, 0);
         const wtdAssignee = comebackData.reduce((s: number, d: any) => s + d.changed_assignee_pct * d.count, 0) / totalCount;

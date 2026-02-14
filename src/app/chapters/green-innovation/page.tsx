@@ -355,7 +355,7 @@ export default function Chapter12() {
       </KeyInsight>
 
       <Narrative>
-        Having traced the evolution of green innovation from a specialized domain to a mainstream category of patenting activity, the following chapter shifts from structured classification data to the text of patents themselves. By applying natural language processing to millions of patent abstracts, the analysis identifies the latent thematic structure of American innovation and examines how the language of invention has evolved over five decades.
+        Having traced the evolution of green innovation from a specialized domain to a mainstream category of patenting activity, the following chapter shifts from structured classification data to the text of patents themselves. By applying natural language processing to millions of patent abstracts, the analysis identifies the latent thematic structure of US patenting and examines how the language of invention has evolved over five decades.
       </Narrative>
 
       <DataNote>
