@@ -29,7 +29,7 @@ import type {
   DomainStrategy, DomainDiffusion, DomainTeamComparison, DomainAssigneeType,
 } from '@/lib/types';
 
-export default function Chapter11() {
+export default function Chapter21() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('semiconductors/semi_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('semiconductors/semi_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('semiconductors/semi_top_assignees.json');
@@ -183,7 +183,7 @@ export default function Chapter11() {
   return (
     <div>
       <ChapterHeader
-        number={11}
+        number={21}
         title="Semiconductors"
         subtitle="The silicon foundation of modern technology"
       />
@@ -728,8 +728,8 @@ export default function Chapter11() {
         contains the core semiconductor classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={11} />
-      <ChapterNavigation currentChapter={11} />
+      <RelatedChapters currentChapter={21} />
+      <ChapterNavigation currentChapter={21} />
     </div>
   );
 }

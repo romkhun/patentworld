@@ -30,7 +30,7 @@ import type {
   DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter22() {
+export default function Chapter19() {
   const { data: volume, loading: volL } = useChapterData<GreenVolume[]>('green/green_volume.json');
   const { data: byCategory, loading: catL } = useChapterData<GreenByCategory[]>('green/green_by_category.json');
   const { data: byCountry, loading: ctyL } = useChapterData<GreenByCountry[]>('green/green_by_country.json');
@@ -211,8 +211,8 @@ export default function Chapter22() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={22}
-        title="The Green Innovation Race"
+        number={19}
+        title="Green Innovation"
         subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
       />
 
@@ -674,8 +674,8 @@ export default function Chapter22() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={22} />
-      <ChapterNavigation currentChapter={22} />
+      <RelatedChapters currentChapter={19} />
+      <ChapterNavigation currentChapter={19} />
     </div>
   );
 }

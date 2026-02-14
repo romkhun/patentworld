@@ -43,7 +43,7 @@ const SUBFIELD_COLORS: Record<string, string> = {
   'Other AI': '#999999',
 };
 
-export default function Chapter21() {
+export default function Chapter13() {
   const { data: perYear, loading: pyL } = useChapterData<AIPatentsPerYear[]>('chapter11/ai_patents_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<AIBySubfield[]>('chapter11/ai_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<AITopAssignee[]>('chapter11/ai_top_assignees.json');
@@ -197,7 +197,7 @@ export default function Chapter21() {
   return (
     <div>
       <ChapterHeader
-        number={21}
+        number={13}
         title="Artificial Intelligence"
         subtitle="The growth of AI-related patenting activity in the United States"
       />
@@ -730,8 +730,8 @@ export default function Chapter21() {
         on more specific CPC group codes within G06N. AI patenting strategies present patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={21} />
-      <ChapterNavigation currentChapter={21} />
+      <RelatedChapters currentChapter={13} />
+      <ChapterNavigation currentChapter={13} />
     </div>
   );
 }

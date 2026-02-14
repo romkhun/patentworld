@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter20() {
+export default function Chapter16() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('blockchain/blockchain_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('blockchain/blockchain_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('blockchain/blockchain_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter20() {
   return (
     <div>
       <ChapterHeader
-        number={20}
+        number={16}
         title="Blockchain & Decentralized Systems"
         subtitle="Distributed trust in the digital economy"
       />
@@ -742,8 +742,8 @@ export default function Chapter20() {
         CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={20} />
-      <ChapterNavigation currentChapter={20} />
+      <RelatedChapters currentChapter={16} />
+      <ChapterNavigation currentChapter={16} />
     </div>
   );
 }

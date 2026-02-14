@@ -30,7 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter12() {
+export default function Chapter20() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('quantum/quantum_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('quantum/quantum_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('quantum/quantum_top_assignees.json');
@@ -184,7 +184,7 @@ export default function Chapter12() {
   return (
     <div>
       <ChapterHeader
-        number={12}
+        number={20}
         title="Quantum Computing"
         subtitle="From theoretical foundations to practical hardware"
       />
@@ -733,8 +733,8 @@ export default function Chapter12() {
         with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={12} />
-      <ChapterNavigation currentChapter={12} />
+      <RelatedChapters currentChapter={20} />
+      <ChapterNavigation currentChapter={20} />
     </div>
   );
 }

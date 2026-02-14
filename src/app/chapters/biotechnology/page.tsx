@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter14() {
+export default function Chapter15() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('biotech/biotech_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('biotech/biotech_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('biotech/biotech_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter14() {
   return (
     <div>
       <ChapterHeader
-        number={14}
+        number={15}
         title="Biotechnology &amp; Gene Editing"
         subtitle="Engineering life at the molecular level"
       />
@@ -811,8 +811,8 @@ export default function Chapter14() {
         co-occurrence of biotech CPC codes with non-biotech CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={14} />
-      <ChapterNavigation currentChapter={14} />
+      <RelatedChapters currentChapter={15} />
+      <ChapterNavigation currentChapter={15} />
     </div>
   );
 }

@@ -30,7 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter13() {
+export default function Chapter17() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('cyber/cyber_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('cyber/cyber_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('cyber/cyber_top_assignees.json');
@@ -184,7 +184,7 @@ export default function Chapter13() {
   return (
     <div>
       <ChapterHeader
-        number={13}
+        number={17}
         title="Cybersecurity"
         subtitle="Defending digital infrastructure through innovation"
       />
@@ -751,8 +751,8 @@ export default function Chapter13() {
         Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={13} />
-      <ChapterNavigation currentChapter={13} />
+      <RelatedChapters currentChapter={17} />
+      <ChapterNavigation currentChapter={17} />
     </div>
   );
 }

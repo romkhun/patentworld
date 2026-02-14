@@ -31,7 +31,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter16() {
+export default function Chapter12() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('agtech/agtech_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('agtech/agtech_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('agtech/agtech_top_assignees.json');
@@ -185,7 +185,7 @@ export default function Chapter16() {
   return (
     <div>
       <ChapterHeader
-        number={16}
+        number={12}
         title="Agricultural Technology"
         subtitle="Innovation feeding a growing world"
       />
@@ -782,8 +782,8 @@ export default function Chapter16() {
         &quot;Non-AgTech&quot; based on patent classification.
       </DataNote>
 
-      <RelatedChapters currentChapter={16} />
-      <ChapterNavigation currentChapter={16} />
+      <RelatedChapters currentChapter={12} />
+      <ChapterNavigation currentChapter={12} />
     </div>
   );
 }

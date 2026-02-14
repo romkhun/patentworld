@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter19() {
+export default function Chapter11() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('3dprint/3dprint_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('3dprint/3dprint_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('3dprint/3dprint_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter19() {
   return (
     <div>
       <ChapterHeader
-        number={19}
+        number={11}
         title="3D Printing & Additive Manufacturing"
         subtitle="Layer-by-layer transformation in manufacturing"
       />
@@ -742,8 +742,8 @@ export default function Chapter19() {
         co-occurrence of AM CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={19} />
-      <ChapterNavigation currentChapter={19} />
+      <RelatedChapters currentChapter={11} />
+      <ChapterNavigation currentChapter={11} />
     </div>
   );
 }

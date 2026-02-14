@@ -28,7 +28,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter15() {
+export default function Chapter18() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('digihealth/digihealth_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('digihealth/digihealth_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('digihealth/digihealth_top_assignees.json');
@@ -182,7 +182,7 @@ export default function Chapter15() {
   return (
     <div>
       <ChapterHeader
-        number={15}
+        number={18}
         title="Digital Health & Medical Devices"
         subtitle="Technology transforming healthcare delivery"
       />
@@ -754,8 +754,8 @@ export default function Chapter15() {
         CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={15} />
-      <ChapterNavigation currentChapter={15} />
+      <RelatedChapters currentChapter={18} />
+      <ChapterNavigation currentChapter={18} />
     </div>
   );
 }

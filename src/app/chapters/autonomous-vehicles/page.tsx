@@ -30,7 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
 } from '@/lib/types';
 
-export default function Chapter17() {
+export default function Chapter14() {
   const { data: perYear, loading: pyL } = useChapterData<DomainPerYear[]>('av/av_per_year.json');
   const { data: bySubfield, loading: sfL } = useChapterData<DomainBySubfield[]>('av/av_by_subfield.json');
   const { data: topAssignees, loading: taL } = useChapterData<DomainTopAssignee[]>('av/av_top_assignees.json');
@@ -184,7 +184,7 @@ export default function Chapter17() {
   return (
     <div>
       <ChapterHeader
-        number={17}
+        number={14}
         title="Autonomous Vehicles & ADAS"
         subtitle="The race toward self-driving transportation"
       />
@@ -744,8 +744,8 @@ export default function Chapter17() {
         sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={17} />
-      <ChapterNavigation currentChapter={17} />
+      <RelatedChapters currentChapter={14} />
+      <ChapterNavigation currentChapter={14} />
     </div>
   );
 }
