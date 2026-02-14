@@ -450,7 +450,7 @@ query_to_json(con, f"""
         JOIN {LOCATION_TSV()} l ON a.location_id = l.location_id
         WHERE p.patent_type = 'utility'
           AND p.patent_date IS NOT NULL
-          AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1976 AND 2020
+          AND YEAR(CAST(p.patent_date AS DATE)) BETWEEN 1980 AND 2020
           AND l.disambig_country IS NOT NULL
         GROUP BY country, decade
         HAVING country IS NOT NULL AND patent_count >= 100

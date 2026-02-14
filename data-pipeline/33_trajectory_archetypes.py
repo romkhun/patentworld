@@ -156,47 +156,67 @@ def classify_centroid(centroid):
     """
     Classify a centroid shape into an archetype label using heuristics.
     Centroid is a 50-element array (normalized 0-100).
+
+    Uses peak position, tail value, variance, and trend to discriminate
+    between six archetype shapes.
     """
     n = len(centroid)
-    peak_idx = int(np.argmax(centroid))
-    peak_pos = peak_idx / (n - 1)  # 0=start, 1=end
+    # Normalize to 0-1 for cleaner thresholds
+    c = centroid / 100.0
 
-    # Split into halves
-    first_half = centroid[:n // 2]
-    second_half = centroid[n // 2:]
-    first_mean = first_half.mean()
-    second_mean = second_half.mean()
+    peak_idx = int(np.argmax(c))
+    peak_pos = peak_idx / (n - 1)        # 0 = start, 1 = end
+    peak_val = float(c[peak_idx])
 
-    # Tail value (last 5 years)
-    tail_mean = centroid[-5:].mean()
-    head_mean = centroid[:5].mean()
+    # Early / late averages (first and last quarter)
+    early_avg = float(c[:n // 4].mean())
+    late_avg = float(c[-(n // 4):].mean())
+    tail_val = float(c[-5:].mean())       # last 5 years
 
-    # Variance
-    overall_var = centroid.var()
+    # Standard deviation as volatility measure
+    std = float(c.std())
 
-    # Growth trend: slope of linear fit
-    x = np.arange(n)
-    slope = np.polyfit(x, centroid, 1)[0]
+    # Slope of linear fit (overall trend)
+    x = np.arange(n, dtype=float)
+    slope = float(np.polyfit(x, c, 1)[0])
 
-    # Decision tree
-    if peak_pos < 0.35 and tail_mean < 30:
-        return "Fading Giant"
-    elif peak_pos > 0.7 and head_mean < 20:
+    # Slope of the tail portion (last quarter)
+    tail_quarter = c[-(n // 4):]
+    x_tail = np.arange(len(tail_quarter), dtype=float)
+    tail_slope = float(np.polyfit(x_tail, tail_quarter, 1)[0])
+
+    # ── Decision tree (ordered from most specific to least) ──
+
+    # Steady Climber: ends high and generally increasing
+    if tail_val > 0.7 and late_avg > early_avg:
+        return "Steady Climber"
+
+    # Late Bloomer: peak near the end, started low
+    if peak_pos > 0.7 and early_avg < 0.2:
         return "Late Bloomer"
-    elif slope > 0.8 and tail_mean > 60:
-        return "Steady Climber"
-    elif overall_var > 600 and abs(second_mean - first_mean) < 20:
-        return "Volatile"
-    elif peak_pos >= 0.3 and peak_pos <= 0.7 and tail_mean < 40:
-        return "Boom & Bust"
-    elif overall_var < 300 and tail_mean > 40:
-        return "Plateau"
-    elif slope > 0.3:
-        return "Steady Climber"
-    elif slope < -0.3:
+
+    # Fading Giant: peaked early/mid with a high peak, now very low
+    if peak_pos < 0.5 and tail_val < 0.2 and peak_val > 0.7:
         return "Fading Giant"
-    else:
+
+    # Boom & Bust: peaked before the last third, tail is low
+    if peak_pos < 0.6 and tail_val < 0.3:
+        return "Boom & Bust"
+
+    # Volatile: high variance without a clear directional trend
+    if std > 0.25 and abs(late_avg - early_avg) < 0.2:
+        return "Volatile"
+
+    # Plateau: low variance, moderate tail value
+    if std < 0.20 and 0.3 <= tail_val <= 0.7:
         return "Plateau"
+
+    # ── Fallback tiebreakers ──
+    if slope > 0:
+        return "Steady Climber"
+    if slope < 0 and tail_val < 0.3:
+        return "Fading Giant"
+    return "Plateau"
 
 
 # Map each cluster index to an archetype

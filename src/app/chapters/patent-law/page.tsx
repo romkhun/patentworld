@@ -26,7 +26,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 1980,
     title: 'Bayh-Dole Act',
     category: 'Legislation',
-    description: 'Allowed universities and small businesses to patent federally funded inventions. Transformed university tech transfer and dramatically increased academic patenting.',
+    description: 'Permitted universities and small businesses to patent federally funded inventions. Transformed university technology transfer and substantially increased academic patenting.',
     research: [
       {
         citation: 'Jensen, R., & Thursby, M. (2001). Proofs and prototypes for sale: The licensing of university inventions. American Economic Review, 91(1), 240\u2013259. https://doi.org/10.1257/aer.91.1.240',
@@ -45,8 +45,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
         summary: 'Patenting is a minority activity at MIT: most faculty estimate patents account for less than 10% of knowledge that transfers from their labs. Firms citing MIT papers are generally not the same as those citing MIT patents, suggesting patents capture only a narrow channel of university knowledge transfer.',
       },
       {
-        citation: 'Griliches, Z. (1990). Patent statistics as economic indicators: A survey. Journal of Economic Literature, 28(4), 1661\u20131707.',
-        summary: 'Foundational survey reviewing the use of patent data in economic analysis, establishing the strengths and limitations of patent-based metrics that underpin subsequent research on university patenting and the effects of the Bayh-Dole Act.',
+        citation: 'Hvide, H. K., & Jones, B. F. (2018). University innovation and the professor\u2019s privilege. American Economic Review, 108(7), 1860\u20131898. https://doi.org/10.1257/aer.20160284',
+        summary: 'Studying Norway\u2019s 2003 abolition of the \u201Cprofessor\u2019s privilege\u201D (moving to a Bayh-Dole\u2013like model where universities hold IP rights), the authors find a 50 percent decline in both entrepreneurship and patenting rates by university researchers, with quality measures also declining\u2014providing causal evidence on the effects of Bayh-Dole\u2013style IP regimes.',
       },
     ],
   },
@@ -77,8 +77,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
         summary: 'Using the Federal Circuit\u2019s creation as a quasi-natural experiment, businesses reduced strategic patenting by 23.3% on average\u2014stronger legal protection makes each patent more effective, reducing demand for large portfolios.',
       },
       {
-        citation: 'Kogan, L., Papanikolaou, D., Seru, A., & Stoffman, N. (2017). Technological innovation, resource allocation, and growth. The Quarterly Journal of Economics, 132(2), 665\u2013712. https://doi.org/10.1093/qje/qjw040',
-        summary: 'A new measure of economic importance combining patent data with stock market reactions to patent news reveals substantial growth, reallocation, and creative destruction. Provides a market-based approach to measuring patent value across the pre- and post-Federal Circuit eras.',
+        citation: 'Hall, B. H., & Ziedonis, R. H. (2001). The patent paradox revisited: An empirical study of patenting in the U.S. semiconductor industry, 1979\u20131995. RAND Journal of Economics, 32(1), 101\u2013128. https://doi.org/10.2307/2696400',
+        summary: 'Stronger patent rights ushered in by the CAFC reshaped incentives to patent in the semiconductor industry, increasing patent propensity by approximately 10 percent per year after 1986. The strengthening of patent rights spawned \u201Cpatent portfolio races\u201D among capital-intensive firms but also facilitated entry by specialized design firms.',
       },
       {
         citation: 'Somaya, D., & McDaniel, C. A. (2012). Tribunal specialization and institutional targeting in patent enforcement. Organization Science, 23(3), 869\u2013887. https://doi.org/10.1287/orsc.1110.0669',
@@ -107,6 +107,10 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       {
         citation: 'Cockburn, I. M., Lanjouw, J. O., & Schankerman, M. (2016). Patents and the global diffusion of new drugs. American Economic Review, 106(1), 136\u2013164. https://doi.org/10.1257/aer.20141482',
         summary: 'Longer and more extensive patent rights accelerate drug launch across countries, while price regulation delays it. Demonstrates that the duration of effective patent protection\u2014the core concern of Hatch-Waxman\u2014has real consequences for drug availability.',
+      },
+      {
+        citation: 'Scott Morton, F. M. (1999). Entry decisions in the generic pharmaceutical industry. RAND Journal of Economics, 30(3), 421\u2013440. https://doi.org/10.2307/2556056',
+        summary: 'Analyzing all generic drug approvals from 1984 to 1994 under Hatch-Waxman\u2019s ANDA pathway, prior experience with a drug or therapeutic class significantly reduces the cost of preparing an application and increases the probability of entry\u2014firms specialize along both scientific and marketing dimensions.',
       },
     ],
   },
@@ -140,6 +144,10 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
         citation: 'Moser, P. (2005). How do patent laws influence innovation? Evidence from nineteenth-century world\u2019s fairs. American Economic Review, 95(4), 1214\u20131236. https://doi.org/10.1257/0002828054825501',
         summary: 'Countries without patent laws produced as many innovations as those with them, but innovation was concentrated in sectors where secrecy provided protection. Patent laws channel innovation toward patent-sensitive industries rather than increasing overall innovation.',
       },
+      {
+        citation: 'Chaudhuri, S., Goldberg, P. K., & Jia, P. (2006). Estimating the effects of global patent protection in pharmaceuticals: A case study of quinolones in India. American Economic Review, 96(5), 1477\u20131514. https://doi.org/10.1257/aer.96.5.1477',
+        summary: 'Using structural demand estimation on the Indian fluoroquinolones market, the withdrawal of domestic generic products following TRIPS-mandated patent protection would cause substantial consumer welfare losses, even in the presence of price regulation\u2014providing direct empirical evidence on the distributional consequences of TRIPS in developing countries.',
+      },
     ],
   },
   {
@@ -158,7 +166,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 1998,
     title: 'State Street Bank v. Signature',
     category: 'Court',
-    description: 'Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." Precipitated a substantial increase in software and business method patent filings.',
+    description: 'The Court of Appeals for the Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." This holding precipitated a substantial increase in software and business method patent filings.',
     research: [
       {
         citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
@@ -210,7 +218,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2006,
     title: 'eBay v. MercExchange',
     category: 'Court',
-    description: 'Supreme Court ruled that patent holders are not automatically entitled to injunctive relief. Ended the presumption of permanent injunctions in patent cases, significantly impacting patent troll litigation strategies.',
+    description: 'The Court held that patent holders are not automatically entitled to injunctive relief, ending the presumption of permanent injunctions in patent cases. This holding significantly affected non-practicing entity litigation strategies.',
     research: [
       {
         citation: 'Mezzanotti, F. (2021). Roadblock to innovation: The role of patent litigation in corporate R&D. Management Science, 67(12), 7362\u20137390. https://doi.org/10.1287/mnsc.2020.3816',
@@ -224,13 +232,17 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
         citation: 'Cohen, L., Gurun, U. G., & Kominers, S. D. (2019). Patent trolls: Evidence from targeted firms. Management Science, 65(12), 5461\u20135486. https://doi.org/10.1287/mnsc.2018.3147',
         summary: 'NPEs target cash-rich firms, asserting lower-quality patents and engaging in forum shopping. NPE litigation significantly reduces innovation at targeted firms\u2014the hold-up concerns that motivated the eBay ruling.',
       },
+      {
+        citation: 'Farrell, J., & Shapiro, C. (2008). How strong are weak patents? American Economic Review, 98(4), 1347\u20131369. https://doi.org/10.1257/aer.98.4.1347',
+        summary: 'When downstream users compete, even probabilistic (weak) patents can extract high running royalties. Examining patent validity prior to licensing is socially beneficial both ex post and ex ante\u2014providing the theoretical foundation for why reducing automatic injunctions, as the eBay ruling accomplished, can improve welfare.',
+      },
     ],
   },
   {
     year: 2007,
     title: 'KSR v. Teleflex',
     category: 'Court',
-    description: 'Supreme Court broadened the obviousness standard, making it easier to invalidate patents by rejecting the rigid "teaching-suggestion-motivation" test previously used by the Federal Circuit.',
+    description: 'The Court held that the rigid "teaching-suggestion-motivation" test previously employed by the Federal Circuit was not the exclusive standard for obviousness under 35 U.S.C. \u00a7 103, thereby broadening the grounds for patent invalidation.',
     research: [
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
@@ -242,15 +254,15 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2010,
     title: 'Bilski v. Kappos',
     category: 'Court',
-    description: 'Supreme Court narrowed patentable subject matter for business methods, ruling that the "machine-or-transformation" test is not the sole test for patent eligibility under \u00a7101.',
+    description: 'The Court held that the "machine-or-transformation" test is not the sole test for patent eligibility under 35 U.S.C. \u00a7 101, while narrowing the scope of patentable subject matter for business methods.',
     research: [
       {
         citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
-        summary: 'Expanded software and business method patentability created barriers to entry. Bilski narrowed business method patent eligibility from the broad State Street standard, addressing the deterrent effects on new firm entry documented in this study.',
+        summary: 'Expanded software and business method patentability created barriers to entry. The holding in Bilski v. Kappos narrowed business method patent eligibility from the broad State Street standard, addressing the deterrent effects on new firm entry documented in this study.',
       },
       {
         citation: 'Hegde, D., Ljungqvist, A., & Raj, M. (2022). Quick or broad patents? Evidence from U.S. startups. The Review of Financial Studies, 35(6), 2705\u20132742. https://doi.org/10.1093/rfs/hhab097',
-        summary: 'Broader patent scope increases a startup\u2019s future growth but imposes negative externalities on rivals\u2019 innovation. Since Bilski narrowed the scope of business method patents, the findings illuminate the tradeoffs in patent eligibility decisions.',
+        summary: 'Broader patent scope increases a startup\u2019s future growth but imposes negative externalities on rivals\u2019 innovation. As the holding in Bilski v. Kappos narrowed the scope of business method patents, the findings illuminate the tradeoffs in patent eligibility decisions.',
       },
     ],
   },
@@ -258,7 +270,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2011,
     title: 'America Invents Act (AIA)',
     category: 'Legislation',
-    description: 'Most sweeping patent reform since 1952. Switched from "first to invent" to "first inventor to file." Created inter partes review (IPR) and post-grant review (PGR) proceedings at the Patent Trial and Appeal Board (PTAB).',
+    description: 'The most comprehensive patent reform since the Patent Act of 1952. Transitioned the United States from a "first to invent" to a "first inventor to file" system. Established inter partes review (IPR) and post-grant review (PGR) proceedings at the Patent Trial and Appeal Board (PTAB).',
     research: [
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
@@ -275,6 +287,10 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       {
         citation: 'Huang, K. G., Li, M.-X., Shen, C. H.-H., & Wang, Y. (2024). Escaping the patent trolls: The impact of non-practicing entity litigation on firm innovation strategies. Strategic Management Journal, 45(10), 1954\u20131987. https://doi.org/10.1002/smj.3606',
         summary: 'Firms targeted by NPEs shift toward in-house technologies to reduce legal exposure, while non-target firms redirect innovation away from targeted areas. These distortions underscore why the AIA introduced IPR proceedings.',
+      },
+      {
+        citation: 'Helmers, C., & Love, B. J. (2023). Patent validity and litigation: Evidence from US inter partes review. Journal of Law & Economics, 66(1), 53\u201381. https://doi.org/10.1086/721911',
+        summary: 'Analyzing the AIA\u2019s inter partes review mechanism directly, both the decision to file an IPR petition and the PTAB\u2019s initial institution decision have large, positive effects on the settlement rate of concurrent court proceedings\u2014demonstrating that IPR generates valuable validity information that facilitates case resolution.',
       },
     ],
   },
@@ -294,7 +310,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2013,
     title: 'Association for Molecular Pathology v. Myriad',
     category: 'Court',
-    description: 'Supreme Court held that naturally occurring DNA segments are not patent eligible, but synthetically created complementary DNA (cDNA) is. Major impact on biotech patenting.',
+    description: 'The Court held that naturally occurring DNA segments are not patent-eligible under 35 U.S.C. \u00a7 101, but that synthetically created complementary DNA (cDNA) is patent-eligible. This holding had substantial implications for biotechnology patenting.',
     research: [
       {
         citation: 'Sampat, B. N., & Williams, H. L. (2019). How do patents affect follow-on innovation? Evidence from the human genome. American Economic Review, 109(1), 203\u2013236. https://doi.org/10.1257/aer.20151398',
@@ -312,21 +328,21 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2014,
-    title: 'Alice Corp. v. CLS Bank',
+    title: 'Alice Corp. v. CLS Bank International',
     category: 'Court',
-    description: 'Supreme Court established the two-step framework for patent eligibility under \u00a7101, invalidating abstract idea patents implemented on generic computers. Led to dramatic increase in \u00a7101 rejections and invalidations, especially for software patents.',
+    description: 'The Court held that claims directed to an abstract idea implemented on a generic computer are not patent-eligible under 35 U.S.C. \u00a7 101, establishing a two-step framework for patent eligibility analysis. This holding led to a substantial increase in \u00a7 101 rejections and invalidations, particularly for software patents.',
     research: [
       {
         citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915\u2013933. https://doi.org/10.1287/mnsc.1110.1321',
-        summary: 'Expanded software patentability had created significant entry barriers\u2014a 10% increase in relevant patents reduces entry by 3\u20138%. Alice dramatically restricted abstract-idea software patents, addressing these innovation costs.',
+        summary: 'Expanded software patentability had created significant entry barriers\u2014a 10% increase in relevant patents reduces entry by 3\u20138%. The holding in Alice Corp. v. CLS Bank International substantially restricted abstract-idea software patents, addressing these innovation costs.',
       },
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
-        summary: 'Nearly half of issued patents are on inventions that do not require patent incentives. Improving screening (which Alice effectively did for software patents) can significantly improve welfare.',
+        summary: 'Nearly half of issued patents are on inventions that do not require patent incentives. Improving screening (which the Alice Corp. holding effectively accomplished for software patents) can significantly improve welfare.',
       },
       {
         citation: 'Mezzanotti, F. (2021). Roadblock to innovation: The role of patent litigation in corporate R&D. Management Science, 67(12), 7362\u20137390. https://doi.org/10.1287/mnsc.2020.3816',
-        summary: 'Patent litigation deters R&D investment by lowering returns and exacerbating financing constraints. The overly broad software patents targeted by Alice were a major source of such litigation-driven innovation costs.',
+        summary: 'Patent litigation deters R&D investment by lowering returns and exacerbating financing constraints. The overly broad software patents addressed by the Alice Corp. holding were a significant source of such litigation-driven innovation costs.',
       },
     ],
   },
@@ -334,7 +350,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2017,
     title: 'TC Heartland v. Kraft Foods',
     category: 'Court',
-    description: 'Supreme Court restricted patent venue rules, requiring suits to be filed where the defendant is incorporated. Dramatically reduced filings in plaintiff-friendly Eastern District of Texas.',
+    description: 'The Court held that patent infringement suits must be filed where the defendant is incorporated, restricting venue rules. This holding substantially reduced filings in the previously plaintiff-favorable Eastern District of Texas.',
     research: [
       {
         citation: 'Cohen, L., Gurun, U. G., & Kominers, S. D. (2019). Patent trolls: Evidence from targeted firms. Management Science, 65(12), 5461\u20135486. https://doi.org/10.1287/mnsc.2018.3147',
@@ -350,7 +366,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2018,
     title: 'Oil States v. Greene\'s Energy',
     category: 'Court',
-    description: 'Supreme Court upheld the constitutionality of inter partes review (IPR) proceedings at the PTAB, affirming Congress\'s power to create administrative patent validity challenges.',
+    description: 'The Court held that inter partes review (IPR) proceedings at the PTAB are constitutional, affirming Congress\'s authority to create administrative patent validity challenges.',
     research: [
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
@@ -362,13 +378,13 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2018,
     title: 'SAS Institute v. Iancu',
     category: 'Court',
-    description: 'Supreme Court ruled that PTAB must review all claims challenged in an IPR petition, not just a subset, changing PTAB practice significantly.',
+    description: 'The Court held that the PTAB must review all claims challenged in an IPR petition, not merely a subset, thereby altering PTAB practice.',
   },
   {
     year: 2021,
     title: 'Executive Order on Competition',
     category: 'Policy',
-    description: 'President Biden\'s Executive Order on Promoting Competition directed agencies to address the misuse of patents and strengthened patent system transparency initiatives.',
+    description: 'The Executive Order on Promoting Competition directed federal agencies to address the misuse of patents and strengthened patent system transparency initiatives.',
     research: [
       {
         citation: 'Lerner, J., & Tirole, J. (2015). Standard-essential patents. Journal of Political Economy, 123(3), 547\u2013586. https://doi.org/10.1086/680995',
@@ -380,7 +396,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2023,
     title: 'Proposed PREVAIL & PATENT Acts',
     category: 'Legislation',
-    description: 'Congressional proposals to reform the PTAB system and patent eligibility under \u00a7101, reflecting ongoing policy debate about balancing innovation incentives.',
+    description: 'Congressional proposals to reform the PTAB system and patent eligibility under 35 U.S.C. \u00a7 101, reflecting the ongoing policy debate regarding the balance of innovation incentives.',
   },
 ];
 
@@ -423,39 +439,39 @@ export default function Chapter10() {
       <ChapterHeader
         number={10}
         title="Patent Law & Policy"
-        subtitle="The rules that shape innovation"
+        subtitle="The legal and institutional framework governing patent rights"
       />
 
       <KeyFindings>
         <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
-        <li>The America Invents Act (2011) was the most significant patent reform since 1952, switching the US from first-to-invent to first-inventor-to-file.</li>
-        <li>The <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank decision</GlossaryTooltip> (2014) dramatically curtailed patent eligibility for software and business method patents.</li>
-        <li>Legislative and judicial changes have measurable effects on patent filing patterns, visible in the data within 1-2 years of major rulings.</li>
+        <li>The America Invents Act (2011) constituted the most significant patent reform since 1952, transitioning the United States from a first-to-invent to a first-inventor-to-file system.</li>
+        <li>In <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank International</GlossaryTooltip> (2014), the Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially curtailing patent eligibility for software and business method patents.</li>
+        <li>Legislative and judicial changes exhibit measurable effects on patent filing patterns, with impacts observable in the data within one to two years of major rulings.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Fifteen landmark legislative and judicial events since 1980 have reshaped US patent law, from the Bayh-Dole Act and creation of the Federal Circuit (1982) to the AIA (2011) and Alice decision (2014). Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold. The G-H (Physics-Electricity) convergence pair dominates cross-section patenting and has intensified dramatically since 2011, reflecting the pervasiveness of digital technology.
+          Twenty-one landmark legislative and judicial events since 1980 have reshaped United States patent law, from the Bayh-Dole Act and the creation of the Court of Appeals for the Federal Circuit (1982) to the America Invents Act (2011) and the Supreme Court&apos;s holding in Alice Corp. v. CLS Bank International (2014). Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold. The G-H (Physics-Electricity) convergence pair dominates cross-section patenting in recent decades and has intensified substantially since 2011, reflecting the pervasiveness of digital technology.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          The patent system does not exist in a vacuum. Over the past half century,{' '}
+          The patent system operates within a dynamic legal and institutional context. Over the past half century,{' '}
           <StatCallout value="landmark legislation" />, Supreme Court decisions, and policy
-          changes have fundamentally reshaped the rules governing patents -- who can get them,
-          what can be patented, and how they can be enforced. These legal shifts have had
-          profound effects on patenting behavior, with visible impacts on the trends shown
+          changes have fundamentally reshaped the rules governing patents -- who may obtain them,
+          what subject matter is patent-eligible, and how patents may be enforced. These legal shifts have had
+          substantial effects on patenting behavior, with observable impacts on the trends documented
           throughout this book.
         </p>
       </Narrative>
 
       <Narrative>
         <p>
-          The timeline below chronicles the most consequential changes to US patent law and
-          policy from 1980 to the present. Click on any event to learn more about its impact
-          and the published academic research examining its effects.
+          The timeline below chronicles the most consequential changes to United States patent law and
+          policy from 1980 to the present. Each event entry includes a description of its impact
+          and references to published academic research examining its effects.
         </p>
       </Narrative>
 
@@ -465,10 +481,10 @@ export default function Chapter10() {
 
       <KeyInsight>
         <p>
-          The arc of patent law over the past four decades follows a clear pattern: an era of
-          expansion and strengthening (1982-2000) driven by the Federal Circuit and pro-patent
-          legislative reforms, followed by a rebalancing era (2006-present) as the Supreme
-          Court stepped in to narrow patent scope, and Congress created administrative
+          The trajectory of patent law over the past four decades exhibits a discernible pattern: an era of
+          expansion and strengthening (1982-2000) driven by the Court of Appeals for the Federal Circuit and pro-patent
+          legislative reforms, followed by an era of recalibration (2006-present) as the Supreme
+          Court narrowed patent scope, and Congress established administrative
           alternatives to costly litigation through the <GlossaryTooltip term="AIA">AIA</GlossaryTooltip>.
         </p>
       </KeyInsight>
@@ -477,23 +493,23 @@ export default function Chapter10() {
 
       <Narrative>
         <p>
-          Several of the legal events above left visible marks on the patent data explored
+          Several of the legal events documented above exhibit observable effects on the patent data examined
           in earlier chapters:
         </p>
         <ul className="list-disc pl-5 space-y-2 mt-2">
           <li>
-            <strong>Bayh-Dole Act (1980):</strong> Triggered a surge in university patenting.
-            Government-funded patents (Chapter 7) began climbing in the 1980s as universities
+            <strong>Bayh-Dole Act (1980):</strong> Precipitated a substantial increase in university patenting.
+            Government-funded patents (Chapter 7) began rising in the 1980s as universities
             established technology transfer offices.
           </li>
           <li>
-            <strong>Federal Circuit (1982):</strong> Unified and strengthened patent rights,
+            <strong>Court of Appeals for the Federal Circuit (1982):</strong> Unified and strengthened patent rights,
             contributing to the overall upward trend in patent grants through the 1990s and
             2000s (Chapter 1).
           </li>
           <li>
-            <strong>State Street Bank (1998):</strong> Established the patentability of business
-            methods, precipitating a rapid expansion in software patent filings visible as
+            <strong>State Street Bank v. Signature Financial Group (1998):</strong> Established the patentability of business
+            methods, precipitating a rapid expansion in software patent filings observable as
             the acceleration of Section G (Physics) and H (Electricity) patents in the late
             1990s (Chapter 2).
           </li>
@@ -504,8 +520,8 @@ export default function Chapter10() {
             all patents filed after March 2013.
           </li>
           <li>
-            <strong>Alice Corp. v. CLS Bank (2014):</strong> Dramatically narrowed patent
-            eligibility for abstract ideas implemented on computers. Contributed to a visible
+            <strong>Alice Corp. v. CLS Bank International (2014):</strong> The Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially narrowing patent
+            eligibility. This holding contributed to an observable
             slowdown in software-related patent grants in subsequent years.
           </li>
         </ul>
@@ -513,10 +529,10 @@ export default function Chapter10() {
 
       <KeyInsight>
         <p>
-          The patent system reflects an ongoing tension between encouraging innovation
-          through strong patent rights and preventing the abuse of overly broad patents
-          that can stifle competition. Each major legal change represents a recalibration
-          of this balance, with measurable consequences for the pace, direction, and nature
+          The patent system reflects a persistent tension between encouraging innovation
+          through strong patent rights and preventing the misuse of overly broad patents
+          that may impede competition. Each major legal change represents a recalibration
+          of this balance, with measurable consequences for the pace, direction, and character
           of patenting activity.
         </p>
       </KeyInsight>
@@ -525,17 +541,17 @@ export default function Chapter10() {
 
       <Narrative>
         <p>
-          How efficiently does the patent system process inventions? By comparing the number of
-          patent applications filed each year against the grants issued, we can track the USPTO&apos;s
+          The efficiency of the patent system in processing inventions warrants examination. Comparing the number of
+          patent applications filed each year against the grants issued enables tracking of the USPTO&apos;s
           throughput and the growing gap between filing and granting activity. The ratio of grants
-          to applications reveals how the system&apos;s selectivity and backlog have evolved over time.
+          to applications indicates how the system&apos;s selectivity and backlog have evolved over time.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Patent Applications vs. Grants Over Time"
-        caption="Annual filings (by filing date) and grants (by grant date) for utility patents, with grant-to-application ratio. Note: Only patents that were eventually granted appear in this dataset."
-        insight="Major legislative changes create visible inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants reflects increasing examination complexity and backlog."
+        title="The Growing Divergence Between Applications and Grants Since the Mid-1990s Reflects Increasing Examination Lag"
+        caption="This chart displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
+        insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
       >
         <PWLineChart
@@ -557,8 +573,8 @@ export default function Chapter10() {
         <p>
           In the early years, grants and applications tracked closely because the dataset only
           captures successful filings. The growing divergence from the mid-1990s onward reflects
-          the increasing time lag between filing and grant -- applications filed in a given year
-          may not be granted for 2-4 years. The spike in grants around 2012-2015 coincides with
+          the increasing time lag between filing and grant; applications filed in a given year
+          may not be granted for two to four years. The increase in grants around 2012-2015 coincides with
           the USPTO clearing a significant backlog, while the America Invents Act&apos;s procedural
           reforms reshaped the pipeline.
         </p>
@@ -568,7 +584,7 @@ export default function Chapter10() {
 
       <Narrative>
         <p>
-          Are certain technology areas becoming dominated by a few large players? The
+          Whether certain technology areas are becoming dominated by a small number of large entities warrants examination. The
           Herfindahl-Hirschman Index (HHI) measures market concentration by summing the squared
           market shares of all firms in a sector. On the standard DOJ/FTC scale,{' '}
           <StatCallout value="below 1,500" /> indicates an unconcentrated market,{' '}
@@ -578,9 +594,9 @@ export default function Chapter10() {
       </Narrative>
 
       <ChartContainer
-        title="HHI Concentration by CPC Technology Section"
-        caption="Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration."
-        insight="Despite concerns about market power in technology, patent markets remain remarkably unconcentrated across all sectors. Even in areas dominated by large firms, the broad base of innovators keeps concentration well below antitrust thresholds."
+        title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below the 1,500 Threshold"
+        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration, with Textiles and Paper (D) exhibiting the highest values."
+        insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
         loading={hhiL}
       >
         <PWLineChart
@@ -598,11 +614,11 @@ export default function Chapter10() {
 
       <KeyInsight>
         <p>
-          Patent markets across all technology sectors remain remarkably unconcentrated, with HHI
-          values well below the 1,500 threshold. This reflects the broad base of inventors and
+          Patent markets across all technology sectors remain unconcentrated, with HHI
+          values well below the 1,500 threshold. This pattern reflects the broad base of inventors and
           organizations participating in the patent system. Even in Electricity (H) and Physics (G) --
-          the sections most associated with large tech companies -- concentration remains low,
-          though some sections show modest increases in recent periods. Textiles &amp; Paper (D) tends
+          the sections most associated with large technology firms -- concentration remains low,
+          though certain sections exhibit modest increases in recent periods. Textiles and Paper (D) tends
           to be the most concentrated, consistent with its smaller inventor base and more
           specialized industrial structure.
         </p>
@@ -612,17 +628,17 @@ export default function Chapter10() {
 
       <Narrative>
         <p>
-          Are technology boundaries blurring over time? When a single patent spans multiple CPC
-          technology sections, it signals that the invention draws on knowledge from distinct
-          fields. The matrix below shows how often each pair of technology sections co-occurs
+          Whether technology boundaries are becoming more permeable over time merits analysis. When a single patent spans multiple CPC
+          technology sections, it indicates that the invention draws on knowledge from distinct
+          fields. The matrix below presents the frequency with which each pair of technology sections co-occurs
           on the same patent, measured as a percentage of all multi-section patents in each era.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Technology Convergence Matrix"
-        caption="Percentage of multi-section patents that span each pair of CPC sections, by era. Select an era to compare convergence patterns over time."
-        insight="Technology boundaries are blurring over time, with the Physics-Electricity convergence intensifying as digital technology permeates nearly every domain. This increasing cross-pollination has implications for patent scope and examination complexity."
+        title="The G-H (Physics-Electricity) Convergence Pair Dominates and Has Intensified Substantially Since 2011"
+        caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
+        insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}
         height={520}
       >
@@ -633,18 +649,16 @@ export default function Chapter10() {
 
       <KeyInsight>
         <p>
-          The G-H (Physics-Electricity) pair dominates convergence across all eras, reflecting
-          the deep integration of computing, electronics, and physics. But the pattern has shifted
-          dramatically: in the earliest era, convergence was more evenly distributed across pairs,
-          while in 2011-2025, G-H convergence has intensified as digital technology permeates
-          nearly every domain. The growing overlap between A (Human Necessities) and G (Physics)
-          in recent years reflects the rise of health technology and biomedical electronics.
+          The G-H (Physics-Electricity) pair has dominated convergence since the mid-1990s, reflecting
+          the deep integration of computing, electronics, and physics. In the earliest era (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
+          substantially: in 2011-2025, G-H convergence has intensified as digital technology permeates
+          an increasing number of domains. The growing overlap between A (Human Necessities) and G (Physics)
+          in recent years is consistent with the rise of health technology and biomedical electronics.
         </p>
       </KeyInsight>
 
       <Narrative>
-        Having surveyed the legal and policy framework that governs the patent system, the next chapter turns to one of the most consequential applications of that framework: green innovation.
-        The interplay between patent law, government incentives, and climate policy has shaped the trajectory of clean technology patents over the past five decades.
+        Having examined the legal and policy framework that governs the patent system, the following chapter addresses one of the most consequential technological developments reshaping that framework: artificial intelligence. The rapid growth of AI patenting raises fundamental questions about patent eligibility, prior art, and the definition of inventorship.
       </Narrative>
 
       <DataNote>

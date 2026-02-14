@@ -15,7 +15,7 @@ interface ChartContainerProps {
 }
 
 export function ChartContainer({ title, caption, insight, height = 600, loading, wide, ariaLabel, children }: ChartContainerProps) {
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
 
   return (
     <figure
@@ -31,7 +31,7 @@ export function ChartContainer({ title, caption, insight, height = 600, loading,
         aria-hidden="true"
       />
       <h3 className="mb-4 font-sans text-base font-semibold tracking-tight text-muted-foreground">{title}</h3>
-      {loading ? (
+      {loading || !inView ? (
         <div className="flex flex-col gap-3 justify-center" aria-label="Loading chart" style={{ height }}>
           <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
           <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />

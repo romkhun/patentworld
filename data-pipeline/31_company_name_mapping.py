@@ -88,13 +88,22 @@ EXPLICIT_MAP = {
     "Johnson & Johnson": "Johnson & Johnson",
     "Pfizer Inc.": "Pfizer",
     "Eli Lilly and Company": "Eli Lilly",
+    "ELI LILLY AND COMPANY": "Eli Lilly",
     "Abbott Laboratories": "Abbott Labs",
     "Medtronic, Inc.": "Medtronic",
     "Boston Scientific Corporation": "Boston Scientific",
     "Merck Sharp & Dohme LLC": "Merck",
+    "MERCK & CO., INC.": "Merck",
     "Bristol-Myers Squibb Company": "Bristol-Myers Squibb",
     "BECTON, DICKINSON AND COMPANY": "Becton Dickinson",
+    "Becton, Dickinson and Company": "Becton Dickinson",
     "Procter & Gamble Company": "Procter & Gamble",
+    "THE PROCTER & GAMBLE COMPANY": "Procter & Gamble",
+
+    # ── Additional US companies with tricky suffixes ──
+    "DEERE & COMPANY": "John Deere",
+    "AT&T CORP.": "AT&T",
+    "SHELL OIL COMPNY": "Shell",
 
     # ── Japan ──
     "Canon Kabushiki Kaisha": "Canon",
@@ -248,6 +257,10 @@ def _auto_clean(raw: str) -> str:
         if cleaned == name:
             break
         name = cleaned
+
+    # Strip trailing " &" or " and" left over after suffix removal
+    name = re.sub(r"\s+&\s*$", "", name)
+    name = re.sub(r"\s+and\s*$", "", name, flags=re.IGNORECASE)
 
     # Fix common title-case artifacts
     name = re.sub(r"\bOf\b", "of", name)

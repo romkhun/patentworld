@@ -1,118 +1,147 @@
-# PatentWorld — Performance Audit
+# PatentWorld — Performance Audit (Stream 8)
 
-## Architecture Summary
+## Scope
 
-PatentWorld is a **fully static Next.js 14 site** (all pages prerendered at build time).
-- No API routes or server-side data fetching
-- All data served as static JSON files from `/public/data/`
-- Charts are client-side rendered using Recharts and D3
+Performance audit and optimization targeting Lighthouse Performance >= 90 and passing Core Web Vitals. Covers static rendering, lazy loading, asset optimization, layout stability, and interactivity.
 
-## Build Output Analysis
+---
 
-All 22 pages prerendered as static content (`○` symbol):
-```
-Route (app)                                Size     First Load JS
-┌ ○ /                                      4.27 kB         101 kB
-├ ○ /_not-found                            880 B          88.5 kB
-├ ○ /about                                 179 B          96.5 kB
-├ ○ /chapters/ai-patents                   8.39 kB         243 kB
-├ ○ /chapters/collaboration-networks       30.6 kB         258 kB
-├ ○ /chapters/company-profiles             9.35 kB         248 kB
-├ ○ /chapters/green-innovation             9.6 kB          238 kB
-├ ○ /chapters/innovation-dynamics          10.6 kB         239 kB
-├ ○ /chapters/patent-law                   18.8 kB         237 kB
-├ ○ /chapters/patent-quality               11.3 kB         235 kB
-├ ○ /chapters/the-geography-of-innovation  22.9 kB         247 kB
-├ ○ /chapters/the-innovation-landscape     7.65 kB         230 kB
-├ ○ /chapters/the-inventors                13.9 kB         243 kB
-├ ○ /chapters/the-knowledge-network        13.1 kB         237 kB
-├ ○ /chapters/the-language-of-innovation   9.3 kB          242 kB
-├ ○ /chapters/the-technology-revolution    17.3 kB         246 kB
-├ ○ /chapters/who-innovates                7.64 kB         242 kB
-├ ○ /explore                               3.19 kB        90.8 kB
-+ First Load JS shared by all              87.6 kB
-```
+## Architecture Baseline
 
-## Optimizations Applied
+| Metric | Value |
+|--------|-------|
+| Framework | Next.js 14.2.35 (App Router) |
+| Rendering | 100% Static (all 22 routes prerendered) |
+| Chart libraries | Recharts (client-side), D3 (client-side) |
+| Data loading | Client-side fetch with in-memory cache |
+| Fonts | Google Fonts via next/font (3 families, all display: swap) |
+| CSS | Tailwind CSS (purged at build time) |
+| Total pages | 22 |
 
-### Static Generation
-- ✅ All pages use static generation (prerendered at build time)
-- ✅ Narrative text and chart annotations in raw HTML
-- ✅ No API routes or server-side rendering
+---
 
-### Font Optimization
-- ✅ `next/font/google` used for Playfair Display, Plus Jakarta Sans, JetBrains Mono
-- ✅ `display: 'swap'` set on all fonts (prevents FOIT)
-- ✅ `latin` subset only (minimizes font file size)
+## 8.2 Static Rendering Verification
 
-### Code Splitting
-- ✅ Heavy chart libraries (Recharts, D3) only imported in client components
-- ✅ `'use client'` directive limits client-side JS to interactive components
-- ✅ Shared JS bundle is 87.6 kB (reasonable for a data-rich site)
+All 22 routes show static in the build output, confirming static generation:
+- Narrative text, TL;DR blocks, chart titles, captions, insights, and figcaptions are all rendered into the HTML at build time
+- Chart data is fetched client-side via useChapterData hook after hydration
+- The article wrapper uses Schema.org itemScope attribute in the static HTML
+
+Result: PASS
+
+---
+
+## 8.3 Lazy Loading
+
+### Before
+- ChartContainer used useInView only for CSS fade-in animation
+- Chart children were always rendered regardless of scroll position
+
+### After
+- ChartContainer defers chart children rendering until container is within 200px of viewport
+- useInView hook updated to support rootMargin for pre-loading
+- Off-screen charts display skeleton loading states with explicit height
+
+Key change in ChartContainer.tsx: condition changed from loading-only to loading-or-not-inView. On a typical chapter page with 10+ charts, only the first 1-2 charts render immediately.
+
+---
+
+## 8.4 Asset Optimization
 
 ### Data Files
-- ✅ Data split into per-chapter directories (only needed data loaded per page)
-- ✅ Most data files under 100 KB
-- ⚠️ `innovation_diffusion.json` (4.6 MB) and `topic_umap.json` (1.7 MB) are large but loaded only on their respective pages
 
-### Layout Stability (CLS)
-- ✅ ChartContainer provides consistent height wrapper for all charts
-- ✅ Loading skeleton shown while data loads (prevents layout shift)
-- ✅ Fonts use `font-display: swap`
-- ✅ IntersectionObserver-based fade-in animation for charts
+| Optimization | Before | After | Savings |
+|-------------|--------|-------|---------|
+| Total /public/data/ | 11.0 MB | 6.1 MB | -4.9 MB (45%) |
+| innovation_diffusion.json | 4.5 MB | 9.1 KB (precomputed summary) | -4.5 MB (99.8%) |
+| topic_umap.json | 1.7 MB | 501 KB (downsampled 15K to 5K) | -1.2 MB (70%) |
+| regional_specialization.json | 678 KB | 666 KB (float trimming) | -12 KB |
+| company_profiles.json | 1.2 MB | 1.2 MB (float trimming) | minimal |
 
-### Caching
-- ✅ Static assets get immutable caching headers via Vercel
-- ✅ JSON data files served from `/public/` with appropriate caching
-- ✅ No dynamic API calls that need ISR
+Details:
+- innovation_diffusion.json: Component only used aggregate summary statistics. Pre-computed the 9.1KB summary server-side, eliminating 29,162 records.
+- topic_umap.json: Downsampled from 15,000 to 5,000 points (200/topic). Visual density preserved.
+- Float precision trimmed to 2-3 decimal places across all large files.
 
-### Accessibility
-- ✅ `aria-label` on all chart containers (ChartContainer, PWChordDiagram, PWSankeyDiagram, PWNetworkGraph)
-- ✅ `role="img"` on D3 SVG components
-- ✅ Proper heading hierarchy: h1 (ChapterHeader) → h2 (KeyFindings, TL;DR, RelatedChapters) → h3 (ChartContainer)
-- ✅ Focus indicators on interactive elements
+### JavaScript Bundles
 
-### SEO
-- ✅ JSON-LD structured data: WebSite, Dataset, Article, BreadcrumbList, FAQPage
-- ✅ OpenGraph and Twitter Card meta tags on all pages
-- ✅ Canonical URLs on all pages
-- ✅ Sitemap.xml generated dynamically
-- ✅ robots.txt allows all search engines and AI crawlers
+| Route | Page JS | First Load JS |
+|-------|---------|---------------|
+| Home | 4.3 KB | 101 KB |
+| About | 179 B | 96.5 KB |
+| Average chapter | ~12 KB | ~243 KB |
+| Shared JS | -- | 87.6 KB |
 
-## Data File Size Report
+Recharts and D3 are only loaded by the pages that use them.
 
-| Directory | Total Size | Largest File |
-|-----------|-----------|--------------|
-| chapter1/ | 40 KB | patents_per_year.json (13 KB) |
-| chapter2/ | 85 KB | wipo_fields_per_year.json (35 KB) |
-| chapter3/ | 180 KB | firm_collaboration_network.json (45 KB) |
-| chapter4/ | 5.4 MB | innovation_diffusion.json (4.6 MB) |
-| chapter5/ | 220 KB | inventor_collaboration_network.json (95 KB) |
-| chapter6/ | 160 KB | citations_per_year.json (30 KB) |
-| chapter7/ | 90 KB | cross_domain.json (25 KB) |
-| chapter9/ | 140 KB | composite_quality_index.json (35 KB) |
-| chapter10/ | 25 KB | convergence_matrix.json (15 KB) |
-| chapter11/ | 120 KB | ai_by_subfield.json (30 KB) |
-| chapter12/ | 1.9 MB | topic_umap.json (1.7 MB) |
-| company/ | 2.3 MB | company_profiles.json (1.2 MB) |
-| green/ | 45 KB | green_by_category.json (15 KB) |
-| explore/ | 200 KB | top_assignees_all.json (100 KB) |
+### Fonts
+- 3 Google Fonts loaded via next/font/google with subsets: latin and display: swap
+- font-display: swap prevents invisible text during font loading
 
-## Visualization Quality
+### Images
+- No img tags in the application -- all visualizations are SVG/Canvas
+- OG images (~230 KB each) are only served as meta tags, not rendered inline
 
-- ✅ Consistent color palette across all chart components (CHART_COLORS, CPC_SECTION_COLORS, COUNTRY_COLORS, etc.)
-- ✅ Number formatting with K/M notation via `formatCompact()` on all Recharts axis ticks and tooltips
-- ✅ Tooltips present on all interactive charts with consistent styling (TOOLTIP_STYLE)
-- ✅ No line charts exceed 6 data series (all use 1–4 lines)
-- ✅ Bar charts sorted meaningfully (by value or chronologically)
-- ✅ PWScatterChart: axis formatting and labeled axes added
-- ✅ PWRankHeatmap: hover tooltips added showing full org name, year, and rank
+---
 
-## Recommendations (Future)
+## 8.5 Layout Stability (CLS)
 
-1. **Lazy loading**: Consider `next/dynamic` for chart components below the fold to reduce initial JS
-2. **Large data files**: `innovation_diffusion.json` (4.6 MB) and `topic_umap.json` (1.7 MB) could be paginated or virtualized
-3. **Data compression**: `company_profiles.json` (1.2 MB) could be split by company for on-demand loading
-4. **OG images**: Generate branded OG images for each chapter using `next/og` for social sharing
-5. **Lighthouse audit**: Run Lighthouse on deployed site for production-level metrics
-6. **Reference lines**: Add historical event reference lines to time-series charts (recessions, major legislation)
+| Element | Explicit Dimensions | Notes |
+|---------|:---:|-------|
+| ChartContainer | height prop (default: 600px) | Always has explicit height |
+| Chart loading skeleton | Same height as chart | Fills the same space |
+| Fonts | font-display: swap | Prevents layout shift |
+| Images | N/A | No inline images |
+
+---
+
+## 8.6 Interactivity (INP)
+
+All interactions are lightweight React state updates or D3 DOM operations:
+- Chart hover/tooltip: immediate (Recharts React state)
+- Company selector search: immediate (React useState)
+- Decade/filter selectors: immediate (state toggle)
+- Theme toggle: immediate (next-themes class toggle)
+- Network graph drag: immediate (D3 force simulation, requestAnimationFrame)
+
+---
+
+## 8.7 Performance Summary
+
+| Metric | Expected | Target | Notes |
+|--------|----------|--------|-------|
+| Performance | 90-95 | >= 90 | Static HTML, deferred charts, optimized data |
+| LCP | < 1.5s | < 2.5s | Static HTML served immediately from CDN |
+| INP | < 100ms | < 200ms | Lightweight state updates |
+| CLS | < 0.05 | < 0.1 | All containers have explicit dimensions |
+
+---
+
+## Files Modified
+
+| File | Changes |
+|------|---------|
+| src/components/charts/ChartContainer.tsx | Defer chart children until inView; skeleton for off-screen |
+| src/hooks/useInView.ts | Added rootMargin support (200px pre-load) |
+| src/app/chapters/the-geography-of-innovation/page.tsx | Switch from 4.5MB raw data to 9KB precomputed summary |
+| public/data/chapter12/topic_umap.json | Downsampled from 15K to 5K points |
+| src/app/chapters/the-language-of-innovation/page.tsx | Updated text to reflect 5K sample size |
+| public/data/chapter4/innovation_diffusion.json | Removed (replaced by summary) |
+| public/data/chapter4/innovation_diffusion_summary.json | Created (9.1 KB) |
+| public/data/chapter4/regional_specialization.json | Float precision trimmed |
+| public/data/company/company_profiles.json | Float precision trimmed |
+
+---
+
+## Build Verification
+
+```
+npm run build -> Compiled successfully
+All 22 routes prerendered as static content
+No TypeScript errors, no build warnings
+Total data payload: 6.1 MB (reduced from 11.0 MB)
+```
+
+---
+
+*Performance audit completed 2026-02-13. Lazy loading implemented, data files optimized (45% reduction), CLS prevention verified, all builds passing.*

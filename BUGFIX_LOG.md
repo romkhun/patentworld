@@ -1,104 +1,69 @@
-# PatentWorld — Bug Fix Log
+# PatentWorld — Bug Fix Log (Stream 1)
 
-## Build Errors & Warnings (Work Stream 6.2)
+## 1.1 Build & Compilation
 
-### Fixed: All ESLint unused variable warnings (14 warnings → 0)
+**Result**: `npm run build` completes with zero errors, zero warnings. All 22 routes (14 chapters + home + about + explore + robots + sitemap + _not-found) generated successfully as static content.
 
-| File | Variable | Fix |
-|------|----------|-----|
-| `ai-patents/page.tsx:51` | `asL` loading unused | Removed `loading: asL` from destructuring |
-| `patent-quality/page.tsx:36` | `sbL` loading unused | Removed `loading: sbL` from destructuring |
-| `patent-quality/page.tsx:39` | `scsL` loading unused | Removed `loading: scsL` from destructuring |
-| `the-geography-of-innovation/page.tsx:53` | `diffL` loading unused | Removed `loading: diffL` from destructuring |
-| `the-geography-of-innovation/page.tsx:54` | `rsL` loading unused | Removed `loading: rsL` from destructuring |
-| `the-inventors/page.tsx:67` | `soloBySection` data unused | Removed data destructuring (kept hook call for prefetch) |
-| `the-inventors/page.tsx:67` | `sbsL` loading unused | Removed with data destructuring |
-| `the-inventors/page.tsx:69` | `mobL` loading unused | Removed `loading: mobL` from destructuring |
-| `the-inventors/page.tsx:71` | `genderByTech` data unused | Removed data destructuring (kept hook call for prefetch) |
-| `the-inventors/page.tsx:71` | `gbtL` loading unused | Removed with data destructuring |
-| `the-inventors/page.tsx:72` | `gtqL` loading unused | Removed `loading: gtqL` from destructuring |
-| `the-technology-revolution/page.tsx:50` | `hlL` loading unused | Removed `loading: hlL` from destructuring |
-| `who-innovates/page.tsx:57` | `biL` loading unused | Removed `loading: biL` from destructuring |
+## 1.2 Runtime Errors Fixed
 
-**Result**: `npm run build` completes with zero errors, zero warnings. All 22 pages generated successfully.
+### Fixed: company-profiles page crash — trajectory_archetypes.json wrapper object
+- **File**: `src/app/chapters/company-profiles/page.tsx`
+- **Issue**: Pipeline outputs `{year_min, year_max, companies: [...]}` but page expected flat `TrajectoryArchetype[]`
+- **Fix**: Added `useMemo` to extract `.companies` from wrapper, with fallback for flat arrays
 
----
+### Fixed: company-profiles page crash — continuous_companies data mismatch
+- **File**: `src/app/chapters/company-profiles/page.tsx`
+- **Issue**: `continuous_companies` is array of objects `{company, raw_name, decades}` but rendered as React children (strings), causing "Objects are not valid as a React child" crash
+- **Fix**: Added `continuousNames` useMemo extracting `.company` from each object
 
-## Chapter Reordering (Work Stream 3)
+### Fixed: company-profiles page — survival_rates data mismatch
+- **File**: `src/app/chapters/company-profiles/page.tsx`
+- **Issue**: `survival_rates` is array of transition objects `{from_decade, to_decade, survival_rate}` but page used `Object.entries()` expecting `Record<string, number>`, displaying "NaN%"
+- **Fix**: Now reads `.from_decade`, `.to_decade`, `.survival_rate` fields directly
 
-### Fixed: Chapter number swap (AI ↔ Green Innovation)
+### Fixed: company-profiles page — infinite loop in PWRankHeatmap
+- **File**: `src/app/chapters/company-profiles/page.tsx`
+- **Issue**: Passed decade strings (`"1976-85"`) as `yearKey` to `PWRankHeatmap`. The component's `for (y = minYear; y <= maxYear; y += yearInterval)` loop did string concatenation (`"1976-85" + 5 = "1976-855"`), creating an infinite loop that froze the browser
+- **Fix**: Changed to numeric `start_year` values with `yearInterval={10}`, `maxRank={50}`
 
-- AI Patents: Chapter 11 → Chapter 12
-- Green Innovation: Chapter 12 → Chapter 11
-- Updated `constants.ts` CHAPTERS array ordering and relatedChapters references
-- Updated `ChapterHeader` gradient colors for chapters 11 and 12
-- Updated `currentChapter` props in `ai-patents/page.tsx` (11→12)
-- Updated `currentChapter` props in `green-innovation/page.tsx` (12→11)
-- Updated `relatedChapters` for chapters 7, 10, 11, 12, 13 to reflect new numbering
+## 1.3 Navigation & Links
 
----
+- All 14 chapter pages have correct `currentChapter` prop matching CHAPTERS array
+- `ChapterNavigation` correctly links prev/next using `c.number === currentChapter ± 1`
+- Chapter 14 (last) shows "Explore the Data" as next destination
+- All external links (`saeromlee.com`, `patentsview.org`, `claude.ai`, `mailto:saeroms@upenn.edu`) use `target="_blank"` and `rel="noopener noreferrer"`
+- Home page chapter grid renders all 14 chapters from CHAPTERS constant
 
-## Hero Stats (Work Stream 1)
+## 1.4 Hero Stats Verified
 
-### Fixed: Visualization count outdated
+| Stat | Displayed | Verified Value | Status |
+|------|-----------|----------------|--------|
+| Patents | 9.36M | 9,361,444 (hero_stats.json) | ✅ Correct |
+| Years | 50 | 1976–2025 (50 years in data) | ✅ Correct |
+| Chapters | 14 | 14 entries in CHAPTERS array | ✅ Correct |
+| Visualizations | 120→121 | 121 `<ChartContainer` instances | ✅ Updated |
 
-- **Old value**: 64 visualizations
-- **New value**: 120 visualizations (121 ChartContainer instances + 16 standalone tables)
-- Updated `HERO_STATS.visualizations` in `constants.ts`
+## 1.5 Data Integrity
 
----
+- All 130 JSON data files parse successfully (no invalid JSON, no empty arrays/objects)
+- All chapter data directories contain expected files
+- ChapterHeader gradient colors defined for all 14 chapters
+- All chart components properly guard against null/undefined data with early returns
 
-## SEO & Accessibility (Work Stream 5)
+## 1.6 Re-Audit (2026-02-13)
 
-### Fixed: robots.txt missing AI crawlers
-- Added `Bytespider` and `CCBot` to allowed crawlers in `robots.ts`
+Build and lint re-verified after all previous fixes:
+- `npx next build`: PASS — zero errors, zero warnings, 22/22 pages generated
+- `npx next lint`: PASS — no ESLint warnings or errors
+- All 14 chapter `currentChapter` props verified correct
+- All 121 `<ChartContainer>` instances confirmed (matches HERO_STATS.visualizations)
+- OG images: all 15 present in `public/og/` (home + 14 chapters)
+- robots.ts and sitemap.ts properly configured
+- hero_stats.json: 9,361,444 total, peak 2019 (392,618) — all verified against raw data
 
-### Fixed: Author metadata
-- Updated `layout.tsx` authors from `PatentWorld` to `Saerom (Ronnie) Lee`
+### Remaining Items (Cannot Verify Without Browser)
 
-### Fixed: SEO dateModified
-- Updated `seo.ts` dateModified from `2025-06-01` to `2025-12-01`
-
-### Fixed: WebSite JSON-LD missing author
-- Added `author` field (Saerom Lee, Wharton) to WebSite JSON-LD in `layout.tsx`
-
-### Fixed: About page missing chapter links
-- Added "Explore the Chapters" section with links to all 14 chapters
-- Satisfies internal linking requirement (about page → all chapters)
-
----
-
-## Visualization Improvements (Work Stream 2)
-
-### Fixed: PWScatterChart axis formatting
-- Added `formatCompact` tick formatting to X and Y axes
-- Added axis label props (`xFormatter`, `yFormatter`) for custom formatting
-- Added `label` to both axes for visible axis names
-- Improved tooltip to format numeric values with `toLocaleString()`
-
-### Fixed: PWRankHeatmap hover tooltips
-- Added floating tooltip on cell hover showing full org name, year, and rank
-- Tooltip follows cursor position relative to container
-- Cleared on mouse leave
-
----
-
-## Accessibility (Work Stream 5/6)
-
-### Fixed: Chart accessibility
-- Added `ariaLabel` prop to `ChartContainer` (falls back to `title`)
-- Added `role="img"` and `aria-label` to `PWChordDiagram`, `PWSankeyDiagram`, `PWNetworkGraph`
-- Added `<figcaption>` rendering within `ChartContainer` for chart captions
-
-### Fixed: FAQ expanded for GEO
-- Expanded FAQ from 5 to 10 questions covering grant lag, fastest-growing areas, AI patenting, gender gap, and top countries
-- All answers include specific numbers from the data
-
-### Added: TL;DR summaries to all 14 chapters
-- Each chapter now has a visually distinct `<aside>` block after KeyFindings
-- Contains 2-3 fact-dense sentences with specific numbers
-- Optimized for LLM extraction (GEO)
-
-### Added: Chapter transition paragraphs
-- All 14 chapters now have transition text connecting to the next chapter
-- Chapter 14 has a closing paragraph concluding the PatentWorld exploration
+- Responsive layout at 375px/768px/1440px (code uses Tailwind responsive classes consistently)
+- Tooltip overflow on mobile (tooltips use absolute positioning with container-relative coordinates)
+- Touch target sizes for interactive elements
+- Header nav hidden on mobile (`hidden md:flex`) — Explore/About accessible via footer links

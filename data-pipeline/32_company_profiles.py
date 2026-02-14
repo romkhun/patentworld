@@ -253,7 +253,7 @@ cite_rows = con.execute(f"""
             bp.organization,
             bp.grant_year AS year,
             bp.patent_id,
-            COUNT(cit.patent_id) AS fwd_cites_5yr
+            COUNT(citing_p.patent_id) AS fwd_cites_5yr
         FROM base_patents bp
         LEFT JOIN {CITATION_TSV()} cit ON bp.patent_id = cit.citation_patent_id
         LEFT JOIN {PATENT_TSV()} citing_p ON cit.patent_id = citing_p.patent_id

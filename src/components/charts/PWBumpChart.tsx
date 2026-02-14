@@ -75,7 +75,7 @@ export function PWBumpChart({ data, nameKey, yearKey, rankKey, maxRank = 15 }: P
           reversed
           domain={[1, maxRank]}
           ticks={Array.from({ length: maxRank }, (_, i) => i + 1)}
-          tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
+          tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
           tickLine={false}
           axisLine={false}
           label={{ value: 'Rank', angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: 12 } }}

@@ -129,37 +129,38 @@ export default function Chapter8() {
       <ChapterHeader
         number={8}
         title="Innovation Dynamics"
-        subtitle="The tempo and trajectory of invention"
+        subtitle="The tempo and trajectory of technological change"
       />
 
       <KeyFindings>
-        <li><GlossaryTooltip term="grant lag">Grant lag</GlossaryTooltip> varies significantly by technology sector — software and electronics patents face longer pendency times than mechanical inventions.</li>
+        <li><GlossaryTooltip term="grant lag">Grant lag</GlossaryTooltip> varies significantly by technology sector; software and electronics patents exhibit longer pendency times than mechanical inventions.</li>
         <li>Cross-domain innovation has intensified, with patents increasingly spanning multiple technology classifications.</li>
-        <li>International collaboration on patents has grown steadily, particularly between the US, Europe, and East Asia.</li>
-        <li>Innovation velocity — measured by the speed of knowledge diffusion through citations — has accelerated in digital technology fields.</li>
+        <li>International collaboration on patents has grown steadily, particularly between the United States, Europe, and East Asia.</li>
+        <li>Innovation velocity, as measured by the rate of knowledge diffusion through citations, appears to have accelerated in digital technology fields.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Grant lags peaked above 3.5 years in the early 2000s before USPTO reforms brought them down; electrical engineering and instruments patents consistently face the longest waits. International co-invention grew from under 5% of patents in the 1980s to over 10% today. Cross-domain patents spanning three or more CPC sections have risen steadily, and design patents have grown faster than utility patents since the 2000s, with Apple, Samsung, and Nike among the top filers.
+          Grant lags peaked above 3.5 years in the late 2000s before USPTO reforms reduced them; chemistry and electrical engineering patents consistently exhibit the longest pendency periods. International co-invention increased from approximately 2% of patents in the 1980s to over 10% in recent years. Cross-domain patents spanning three or more CPC sections have risen steadily, and design patents have grown at a higher rate than utility patents since the 2000s, with Samsung, Nike, and LG Electronics among the leading filers.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Beyond what is patented and by whom, the <StatCallout value="dynamics of innovation" /> --
-          its speed, breadth, and collaborative nature -- reveal deeper patterns. How long does it
-          take for an invention to move from application to grant? Are technologies converging across
-          traditional boundaries? Is innovation becoming more international?
+          Beyond the question of what is patented and by whom, the <StatCallout value="dynamics of innovation" /> --
+          its speed, breadth, and collaborative nature -- reveal underlying structural patterns. The
+          duration from application to grant, the degree of technological convergence across
+          traditional boundaries, and the extent of international collaboration each illuminate
+          distinct dimensions of the innovation process.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Grant Lag by Technology Sector (5-Year Periods)"
-        caption="Average days from application filing to patent grant, by WIPO sector."
+        title="Chemistry and Electrical Engineering Patents Exhibit the Longest Grant Lags, Exceeding 3.5 Years in the Late 2000s"
+        caption="This chart displays the average number of days from application filing to patent grant, disaggregated by WIPO technology sector across 5-year periods. Chemistry and electrical engineering patents exhibit the longest pendency in the late 2000s, with both peaking above 1,300 days."
         loading={glL}
-        insight="Technology-specific backlogs reflect both the complexity of patent examination in certain fields and the USPTO's resource allocation challenges."
+        insight="Technology-specific backlogs appear to reflect both the complexity of patent examination in certain fields and the USPTO's resource allocation decisions."
       >
         <PWLineChart
           data={lagPivot}
@@ -176,30 +177,30 @@ export default function Chapter8() {
 
       <Narrative>
         <p>
-          The time from application to grant varies by technology sector and has fluctuated
-          significantly over the decades. Patent office backlogs, examination complexity,
-          and policy reforms all leave their mark on the grant lag curve.
+          The duration from application to grant varies by technology sector and has fluctuated
+          considerably over the decades. Patent office backlogs, examination complexity,
+          and policy reforms each contribute to observable shifts in the grant lag trajectory.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          Grant lags reveal the institutional bottlenecks of innovation. The early 2000s backlog
-          crisis pushed average pendency past 3.5 years, but USPTO reforms have since reduced
-          wait times. Electrical engineering and instruments patents consistently face the longest
-          examinations, reflecting the sheer volume and complexity of prior art in fast-moving
-          digital technology fields.
+          Grant lags reveal the institutional constraints on innovation. The late 2000s backlog
+          elevated average pendency beyond 3.5 years; subsequent USPTO reforms reduced
+          these durations. Chemistry and electrical engineering patents exhibit the longest
+          examination periods in the late 2000s, a pattern consistent with the substantial volume and complexity of prior art in
+          these fields.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Convergence" />
 
       <ChartContainer
-        title="Cross-Domain Innovation: Patents Spanning Multiple Technology Sections"
-        caption="Number of patents classified in a single section, two sections, or three or more CPC sections (excluding Y). Stacked from bottom: Single Section, Two Sections, Three+ Sections."
+        title="Multi-Section Patents Have Risen Steadily, Indicating Increasing Technological Convergence"
+        caption="This chart presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
-        insight="Rising cross-domain innovation suggests that technological boundaries are blurring, with breakthroughs increasingly occurring at the intersection of multiple fields."
+        insight="The rising share of cross-domain innovation suggests that technological boundaries are increasingly permeable, with inventions more frequently occurring at the intersection of multiple fields."
       >
         <PWAreaChart
           data={crossDomain ?? []}
@@ -216,29 +217,29 @@ export default function Chapter8() {
 
       <Narrative>
         <p>
-          The share of patents spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections has grown over time, reflecting
-          increasing <StatCallout value="technological convergence" />. Modern inventions
-          increasingly draw on knowledge from multiple domains -- a hallmark of the digital age
-          where software, electronics, and traditional engineering intersect.
+          The share of patents spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections has increased over time, indicating
+          growing <StatCallout value="technological convergence" />. Contemporary inventions
+          increasingly draw on knowledge from multiple domains, a characteristic of the digital era
+          in which software, electronics, and traditional engineering fields intersect.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          The rise of multi-domain patents signals a fundamental change in the nature of
-          invention. Technologies like autonomous vehicles, wearable health monitors, and
+          The rise of multi-domain patents is consistent with a structural shift in the nature of
+          invention. Technologies such as autonomous vehicles, wearable health monitors, and
           smart materials inherently span traditional boundaries between physics, chemistry,
-          and engineering -- rewarding organizations that can integrate diverse expertise.
+          and engineering, conferring an advantage upon organizations capable of integrating diverse expertise.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Global Collaboration" />
 
       <ChartContainer
-        title="International Collaboration in Patenting"
-        caption="Patents with inventors from two or more countries: annual count and percentage of all patents."
+        title="International Co-Invention Increased from Approximately 2% in the 1980s to 10% of All Patents"
+        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to over 10% in recent years, with the most rapid growth occurring during the 2000s."
         loading={icL}
-        insight="The growth of international co-invention reflects both the globalization of corporate R&D and the increasing mobility of scientific talent."
+        insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
         <PWLineChart
           data={intlCollab ?? []}
@@ -256,20 +257,20 @@ export default function Chapter8() {
 
       <Narrative>
         <p>
-          The growth of international collaboration in patenting reflects the globalization
+          The growth of international collaboration in patenting is consistent with the globalization
           of corporate R&D. Multinational firms increasingly distribute their research
-          activities across multiple countries, leveraging local talent pools and regulatory
-          environments. The result is a growing web of cross-border co-invention that
+          activities across multiple countries, utilizing local talent pools and regulatory
+          environments. The result is an expanding network of cross-border co-invention that
           transcends traditional national innovation systems.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          International collaboration has grown from under 5% of patents in the 1980s to over 10%
-          today. This reflects the rise of multinational R&D operations, global talent mobility,
-          and the increasing ease of remote scientific collaboration. The trend accelerated sharply
-          in the 2000s as communication technology reduced the friction of cross-border teamwork.
+          International collaboration has increased from approximately 2% of patents in the 1980s to 10%
+          in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility,
+          and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated
+          in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
         </p>
       </KeyInsight>
 
@@ -277,11 +278,11 @@ export default function Chapter8() {
 
       {corpDivLate.length > 0 && (
         <ChartContainer
-          title="Top 10 Organizations: Technology Portfolio (2001-2025)"
-          caption="Distribution of patent grants across CPC technology sections for the top 10 patent holders."
+          title="IBM and Samsung Maintain the Most Diversified Technology Portfolios Among the Top Ten Patent Holders (2001-2025)"
+          caption="This chart displays the distribution of patent grants across CPC technology sections for the ten largest patent holders in the 2001-2025 period. IBM and Samsung exhibit the broadest portfolio diversification, spanning physics, electricity, and chemistry, whereas firms such as Intel concentrate in semiconductor-related classifications."
           loading={cpL}
           height={650}
-          insight="Portfolio breadth correlates with firm longevity at the top of the patent rankings, as the most persistent leaders maintain diversified technology portfolios."
+          insight="Portfolio breadth appears to correlate with firm longevity at the top of the patent rankings, as the most persistent leaders maintain diversified technology portfolios."
         >
           <PWBarChart
             data={corpDivLate}
@@ -299,18 +300,18 @@ export default function Chapter8() {
 
       <Narrative>
         <p>
-          The technology portfolios of major patent holders reveal how companies diversify their
+          The technology portfolios of major patent holders illustrate how firms diversify their
           innovation across fields. IBM and Samsung maintain broadly diversified portfolios spanning
-          physics, electricity, and chemistry, while companies like Intel concentrate heavily in
-          semiconductor-related physics and electricity classes.
+          physics, electricity, and chemistry, whereas firms such as Intel concentrate predominantly in
+          semiconductor-related physics and electricity classifications.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          Portfolio breadth correlates with firm longevity at the top of the patent rankings.
-          The most persistent leaders -- IBM, Samsung, Canon -- have diversified technology
-          portfolios, while more specialized firms tend to rise and fall with the fortunes
+          Portfolio breadth appears to correlate with firm longevity at the top of the patent rankings.
+          The most persistent leaders -- IBM, Samsung, Canon -- maintain diversified technology
+          portfolios, whereas more specialized firms tend to rise and fall with the trajectories
           of their core technology domains.
         </p>
       </KeyInsight>
@@ -318,10 +319,10 @@ export default function Chapter8() {
       <SectionDivider label="Velocity" />
 
       <ChartContainer
-        title="Innovation Velocity: Year-over-Year Growth by Sector"
-        caption="Annual percentage change in patent grants by WIPO sector."
+        title="Patenting Growth Rates Are Highly Correlated Across Sectors, with Synchronized Declines During the 2001 and 2008 Downturns"
+        caption="This chart presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
-        insight="Faster citation accumulation in digital fields confirms the accelerating pace of knowledge creation and obsolescence in computing and electronics."
+        insight="The correlation of growth rates across sectors suggests that macroeconomic conditions and patent policy exert stronger influence on patenting rates than sector-specific technology cycles."
       >
         <PWLineChart
           data={velocityPivot}
@@ -340,35 +341,35 @@ export default function Chapter8() {
       <Narrative>
         <p>
           Year-over-year growth rates reveal the cyclical nature of patenting activity. All sectors
-          tend to move together in response to macroeconomic conditions and patent policy changes,
-          but electrical engineering has consistently shown stronger growth momentum since the 1990s.
+          tend to co-move in response to macroeconomic conditions and patent policy changes,
+          though electrical engineering has consistently exhibited stronger growth momentum since the 1990s.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
           Innovation velocity is highly correlated across sectors, suggesting that macroeconomic
-          conditions and patent policy are stronger drivers of patenting rates than sector-specific
-          technology cycles. The synchronized dips during the early 2000s dot-com bust and the 2008
-          financial crisis are particularly striking.
+          conditions and patent policy are stronger determinants of patenting rates than sector-specific
+          technology cycles. The synchronized declines during the early 2000s dot-com contraction and the 2008
+          financial crisis are particularly instructive.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Patent Examination Friction" />
       <Narrative>
         <p>
-          Not all technologies move through the patent office at the same speed. The
-          &quot;friction map&quot; reveals which technology areas systematically face longer
-          examination times, measured as the median duration from filing to grant.
-          These differences reflect both the complexity of examination and USPTO resource
+          Technologies do not proceed through the patent office at uniform speed. The
+          &quot;friction map&quot; identifies which technology areas systematically exhibit longer
+          examination durations, measured as the median time from filing to grant.
+          These differences appear to reflect both the complexity of examination and the USPTO&apos;s resource
           allocation across technology centers.
         </p>
       </Narrative>
       <ChartContainer
-        title="Median Examination Duration by Technology Area"
-        caption="Median time from application filing to patent grant, by CPC section and 5-year period."
+        title="Chemistry (C) Patents Consistently Exhibit the Longest Examination Durations, Peaking in the 2010-2014 Period"
+        caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Chemistry and Human Necessities patents consistently exhibit the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
-        insight="Examination duration patterns reveal the institutional friction that shapes innovation timelines, with technology-specific backlogs reflecting USPTO resource allocation across its technology centers."
+        insight="Examination duration patterns reveal the institutional constraints that shape innovation timelines, with technology-specific backlogs reflecting the USPTO's resource allocation across its technology centers."
       >
         {frictionPivot.length > 0 && (
           <PWLineChart
@@ -386,13 +387,13 @@ export default function Chapter8() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Examination duration increased dramatically across all technology areas through
-          the 2000s, peaking around 2010-2014 as the USPTO struggled with a massive backlog.
-          The AIA reforms and USPTO hiring initiatives helped reduce pendency in subsequent
-          years. Physics (G) and Electricity (H) patents consistently face the longest
-          examination times, reflecting the complexity and volume of software and electronics
-          applications. The financial crisis of 2008-09 did not reduce filing rates enough to
-          ease the backlog, which continued growing until systemic reforms took effect.
+          Examination duration increased substantially across all technology areas through
+          the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog.
+          The AIA reforms and USPTO hiring initiatives contributed to reduced pendency in subsequent
+          years. Chemistry (C) patents consistently exhibit the longest
+          examination durations, a pattern consistent with the complexity of chemical and biomedical
+          examination. The financial crisis of 2008-2009 did not reduce filing rates sufficiently to
+          alleviate the backlog, which continued growing until systemic reforms took effect.
         </p>
       </KeyInsight>
 
@@ -400,16 +401,16 @@ export default function Chapter8() {
 
       <Narrative>
         <p>
-          While utility patents protect functional inventions, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> protect
-          ornamental appearance. The balance between these two types reveals shifting
-          innovation strategies -- from pure engineering to <StatCallout value="design-driven innovation" />.
+          Whereas utility patents protect functional inventions, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> protect
+          ornamental appearance. The balance between these two types reflects shifting
+          innovation strategies -- from purely engineering-oriented approaches to <StatCallout value="design-driven innovation" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Design vs. Utility Patent Trends"
-        caption="Annual counts of utility and design patents, with design patent share (right axis)."
-        insight="Design patents have grown significantly faster than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion. Apple, Samsung, and Nike are among the largest design patent filers."
+        title="Design Patents Have Grown at a Higher Rate Than Utility Patents Since the 2000s"
+        caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by consumer electronics, automotive design, and fashion industries."
+        insight="The increasing share of design patents suggests a structural shift in corporate innovation strategy toward design-driven product differentiation, with Samsung, Nike, and LG Electronics among the leading filers."
         loading={deL}
       >
         {designData?.trends ? (
@@ -429,8 +430,8 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title="Top Design Patent Filers"
-        caption="Organizations with the most design patents granted (all time)."
+        title="Consumer Electronics and Automotive Firms Dominate Design Patent Filings"
+        caption="This chart displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
         loading={deL}
         height={500}
       >
@@ -450,14 +451,14 @@ export default function Chapter8() {
         <p>
           The number of claims in a patent defines the scope of legal protection. Trends in
           claim counts reveal how patent strategy has evolved -- from relatively concise early
-          patents to the <StatCallout value="claim-heavy patents" /> of the modern era.
+          patents to the <StatCallout value="claim-intensive patents" /> of the contemporary era.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Claim Count Trends Over Time"
-        caption="Median and 90th percentile claim counts for utility patents by grant year."
-        insight="Both median and 90th percentile claim counts have increased substantially since the 1990s, reflecting more sophisticated patent drafting strategies and broader claim scopes in software and biotech."
+        title="Median Claim Counts Have Increased Since the 1990s While the 90th Percentile Has Declined from Its 2005 Peak"
+        caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The widening gap between median and 90th percentile values indicates that claim inflation is concentrated in the upper tail of the distribution, particularly in software and biotechnology patents."
+        insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
         loading={clL}
       >
         {claimsData?.trends ? (
@@ -474,8 +475,8 @@ export default function Chapter8() {
       </ChartContainer>
 
       <ChartContainer
-        title="Median Claims by Technology Area"
-        caption="Median claim count by CPC section and decade."
+        title="Claim Counts Have Converged Across Technology Areas, with Physics and Electricity Leading"
+        caption="This chart displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with convergence in recent decades suggesting a broad trend toward more detailed patent drafting regardless of field."
         loading={clL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -496,8 +497,8 @@ export default function Chapter8() {
         <>
           <Narrative>
             <p>
-              Some patents push the boundaries with extraordinary claim counts. These &quot;claim monsters&quot;
-              often represent strategic defensive filings or comprehensive platform patents.
+              Certain patents exhibit exceptionally high claim counts. These claim-intensive patents
+              frequently represent strategic defensive filings or comprehensive platform patents.
             </p>
           </Narrative>
           <div className="my-8 overflow-x-auto">
@@ -518,7 +519,7 @@ export default function Chapter8() {
                     <td className="py-2 pr-4">{m.year}</td>
                     <td className="py-2 pr-4 text-right font-mono font-bold">{m.claims.toLocaleString()}</td>
                     <td className="py-2 pr-4">{m.section}</td>
-                    <td className="py-2 text-xs">{m.assignee?.length > 30 ? m.assignee.slice(0, 28) + '...' : m.assignee}</td>
+                    <td className="py-2 text-xs">{m.assignee && m.assignee.length > 30 ? m.assignee.slice(0, 28) + '...' : (m.assignee ?? '—')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -528,8 +529,8 @@ export default function Chapter8() {
       )}
 
       <Narrative>
-        Having explored the dynamics of innovation -- its speed, convergence, and collaborative nature -- the next chapter examines how we measure the quality and impact of individual patents.
-        Understanding velocity and scope sets the stage for asking a deeper question: are more patents necessarily better patents?
+        Having examined the dynamics of innovation -- its speed, convergence, and collaborative nature -- the subsequent chapter addresses the measurement of patent quality and impact.
+        Understanding velocity and scope establishes the foundation for a central question: whether an increase in patent volume corresponds to an increase in patent quality.
       </Narrative>
 
       <DataNote>

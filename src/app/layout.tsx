@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PatentWorld - 50 Years of Global Innovation in US Patents',
+    default: 'PatentWorld — 50 Years of US Patent Data Visualized',
     template: '%s | PatentWorld',
   },
   description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, technology sectors, inventor demographics, geographic clusters, citation networks, and patent quality indicators.',
@@ -34,15 +34,22 @@ export const metadata: Metadata = {
   authors: [{ name: 'Saerom (Ronnie) Lee', url: 'https://www.saeromlee.com' }],
   openGraph: {
     type: 'website',
-    title: 'PatentWorld - 50 Years of Global Innovation',
-    description: 'Explore 9.36 million US patents from 1976 to 2025 through interactive data visualizations covering technology trends, inventor demographics, geographic clusters, and patent quality.',
+    title: 'PatentWorld — 50 Years of US Patent Data Visualized',
+    description: 'Interactive analysis of 9.36M US patents (1976-2025). Explore trends in technology, company portfolios, inventor demographics, and geographic concentration.',
     siteName: 'PatentWorld',
     url: 'https://patentworld.vercel.app',
+    images: [{
+      url: 'https://patentworld.vercel.app/og/home.png',
+      width: 1200,
+      height: 630,
+      alt: 'PatentWorld — 50 Years of US Patent Data Visualized',
+    }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PatentWorld - 50 Years of Global Innovation',
-    description: 'Explore 9.36 million US patents from 1976 to 2025 through interactive data visualizations.',
+    title: 'PatentWorld — 50 Years of US Patent Data Visualized',
+    description: 'Interactive analysis of 9.36M US patents (1976-2025). Explore trends in technology, company portfolios, inventor demographics, and geographic concentration.',
+    images: ['https://patentworld.vercel.app/og/home.png'],
   },
   robots: {
     index: true,

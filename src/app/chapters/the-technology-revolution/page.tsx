@@ -115,36 +115,36 @@ export default function Chapter2() {
       <ChapterHeader
         number={2}
         title="The Technology Revolution"
-        subtitle="The shifting frontiers of technology"
+        subtitle="Structural shifts in the composition of patented technology, 1976-2025"
       />
 
       <KeyFindings>
-        <li>Electrical engineering overtook chemistry as the dominant patent sector in the early 1990s, marking the transition from the chemical-pharmaceutical era to the digital era.</li>
-        <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now account for nearly 48% of all patent grants, up from 30% in the 1970s.</li>
-        <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), while analog-era classes (typewriters, photographic processes) are declining.</li>
-        <li>Despite the digital surge, overall technology diversity has remained stable — new fields are growing without fully displacing established ones.</li>
+        <li>Electrical engineering rose from the smallest sector to surpass first chemistry (1994) and then mechanical engineering (1995), becoming the dominant patent sector and marking the transition to the digital era.</li>
+        <li><GlossaryTooltip term="CPC">CPC</GlossaryTooltip> sections G (Physics) and H (Electricity) now constitute over 57% of all patent grants, an increase from about 27% in the 1970s.</li>
+        <li>The fastest-growing technology classes are concentrated in digital technologies (data processing, digital communication), with growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by up to 84%.</li>
+        <li>Technology diversity declined notably from its mid-1980s peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Electrical engineering overtook chemistry as the top patent sector in the early 1990s, and CPC sections G (Physics) and H (Electricity) have grown from 30% of all patents in the 1970s to nearly 48% today. Digital technology classes like data processing and digital communication show growth rates of several hundred percent, while analog-era classes like typewriters and photographic processes have contracted by similar margins. Despite this digital surge, the overall technology diversity index has remained stable -- new fields are expanding without fully displacing established ones.
+          Electrical engineering rose to surpass first chemistry (1994) and then mechanical engineering (1995) as the leading patent sector. CPC sections G (Physics) and H (Electricity) have increased from about 27% of all patents in the 1970s to over 57% in recent years. The fastest-growing digital technology classes exhibit growth rates exceeding 1,000%, while the most rapidly declining classes have contracted by up to 84%. Technology diversity declined notably from its mid-1980s peak through 2009 as digital technologies concentrated activity, then stabilized at a lower level.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          The composition of patents tells the story of technological change. Over five
-          decades, the balance of innovation has shifted dramatically from traditional
-          industries like chemistry and mechanical engineering toward{' '}
+          The composition of patent grants reflects the trajectory of technological change. Over five
+          decades, the balance of inventive activity has shifted substantially from traditional
+          industries such as chemistry and mechanical engineering toward{' '}
           <StatCallout value="electrical engineering and computing" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="WIPO Technology Sectors Over Time"
-        caption="Patent grants by WIPO sector (primary classification), 1976-2025."
-        insight="The 1990s crossover where electrical engineering surpassed chemistry represents one of the most significant structural shifts in the history of patenting, driven by the computing and telecommunications revolutions."
+        title="Electrical Engineering Rose to Become the Dominant Patent Sector by the Mid-1990s"
+        caption="Patent grants by WIPO sector (primary classification), 1976-2025. The data reveal a structural crossover around the mid-1990s, with electrical engineering overtaking first chemistry (1994) and then mechanical engineering (1995) to become the leading sector."
+        insight="The mid-1990s crossover in which electrical engineering surpassed first chemistry and then mechanical engineering constitutes one of the most significant structural shifts in the history of patenting, driven by advances in computing and telecommunications."
         loading={secL}
       >
         <PWLineChart
@@ -162,26 +162,26 @@ export default function Chapter2() {
 
       <Narrative>
         <p>
-          Electrical engineering has seen explosive growth, driven by the computing,
-          telecommunications, and semiconductor revolutions. Chemistry, once the dominant
-          sector, has grown more slowly. Mechanical engineering and instruments have
-          maintained steady contributions.
+          Electrical engineering exhibits rapid growth, driven by advances in computing,
+          telecommunications, and semiconductor technologies. Chemistry, once the second-largest
+          sector, has grown at a comparatively slower rate. Mechanical engineering and instruments have
+          maintained steady contributions throughout the period.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          Electrical engineering overtook chemistry as the dominant patent sector in the early 1990s
-          and has accelerated since. This crossover marks the transition from the chemical-pharmaceutical
-          era of innovation to the digital era -- one of the most significant structural shifts in
+          Electrical engineering rose to surpass first chemistry (1994) and then mechanical engineering (1995),
+          becoming the dominant patent sector. This crossover marks the transition from the mechanical-chemical
+          era of innovation to the digital era, representing one of the most consequential structural shifts in
           the history of patenting.
         </p>
       </KeyInsight>
 
       <ChartContainer
-        title="CPC Technology Sections: Share Over Time"
-        caption="Share of utility patents by CPC section (primary classification). Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity."
-        insight="The 100% stacked view makes relative shifts visible. Digital technology sections (G, H) have gained nearly 18 percentage points of share over five decades, while chemistry and operations have contracted proportionally."
+        title="CPC Sections G and H Gained Roughly 30 Percentage Points of Share Over Five Decades"
+        caption="Share of utility patents by CPC section (primary classification), 1976-2025. Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity. The stacked area visualization reveals a sustained reallocation of patent activity toward digital technology sections."
+        insight="Digital technology sections (G, H) gained roughly 30 percentage points of share over five decades, while chemistry and operations contracted proportionally. This redistribution is consistent with the economy-wide shift toward information-intensive industries."
         loading={cpcL}
         height={650}
       >
@@ -199,18 +199,18 @@ export default function Chapter2() {
 
       <Narrative>
         <p>
-          The 100% stacked view reveals the relative shifts more clearly. Section H
-          (Electricity) and G (Physics) -- which cover computing, semiconductors, optics,
-          and measurement -- have grown from roughly 30% of patents in the 1970s to over
-          45% today. Meanwhile, traditional sections like C (Chemistry) and B (Operations)
-          have seen their share decline.
+          The proportional view reveals relative shifts with greater clarity. Section H
+          (Electricity) and G (Physics), which encompass computing, semiconductors, optics,
+          and measurement, have grown from about 27% of patents in the 1970s to over
+          57% in recent years. By contrast, traditional sections such as C (Chemistry) and B (Operations)
+          have experienced a proportional decline in share.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          Sections G (Physics) and H (Electricity) have grown from roughly 30% of patents in the
-          1970s to nearly 48% today. This structural shift reflects the economy-wide digital
+          Sections G (Physics) and H (Electricity) have grown from about 27% of patents in the
+          1970s to over 57% in recent years. This structural shift reflects the economy-wide digital
           transformation: computing, semiconductors, and telecommunications technologies now
           pervade virtually every industry, from manufacturing to healthcare.
         </p>
@@ -218,9 +218,9 @@ export default function Chapter2() {
 
       {treemap && treemap.length > 0 && (
         <ChartContainer
-          title="Technology Landscape: CPC Class Treemap"
-          caption="Proportional breakdown of patents by CPC technology class. Each rectangle's area represents the number of patents in that class. Colors correspond to CPC sections."
-          insight="Within each CPC section, patent activity is heavily concentrated in a few dominant classes — digital communication and computing dominate Electricity, while pharmaceutical and organic chemistry lead Chemistry."
+          title="Patent Activity Is Concentrated in a Few Dominant CPC Classes Within Each Section"
+          caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while pharmaceutical and organic chemistry lead section C (Chemistry)."
+          insight="Within each CPC section, patent activity is concentrated in a small number of dominant classes. This concentration pattern suggests that a limited set of technology subfields drives the majority of inventive output within each broader domain."
           loading={tmL}
           height={850}
         >
@@ -230,10 +230,10 @@ export default function Chapter2() {
 
       <KeyInsight>
         <p>
-          The treemap reveals that within each CPC section, patent activity is heavily concentrated
-          in a few dominant classes. In Electricity (H), digital communication and computing
-          classes dwarf all others, while in Chemistry (C), pharmaceutical and organic chemistry
-          classes lead.
+          The treemap demonstrates that within each CPC section, patent activity is concentrated
+          in a small number of dominant classes. In Electricity (H), digital communication and computing
+          classes account for the largest share, while in Chemistry (C), pharmaceutical and organic chemistry
+          classes constitute the leading subfields.
         </p>
       </KeyInsight>
 
@@ -241,9 +241,9 @@ export default function Chapter2() {
 
       {changeData.length > 0 && (
         <ChartContainer
-          title="Fastest Growing and Declining Technology Classes"
-          caption="Percent change in patent counts: 2000-2010 vs. 2015-2025. Fastest growing (positive) and declining (negative) CPC classes with at least 100 patents in each period."
-          insight="The creative destruction of the digital revolution is visible here: entire categories of analog-era invention have been rendered obsolete as their digital replacements surge ahead."
+          title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Up to 84%"
+          caption="Percent change in patent counts comparing 2000-2010 to 2015-2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
+          insight="This pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
           loading={chgL}
           height={900}
         >
@@ -259,27 +259,28 @@ export default function Chapter2() {
 
       <Narrative>
         <p>
-          The magnitude of these structural shifts is striking. The fastest-growing classes
-          show increases of several hundred percent, while declining classes have contracted
-          by similar margins. These are not small adjustments at the margin -- they represent
-          fundamental reorientation of inventive activity.
+          The magnitude of these structural shifts is substantial. The fastest-growing classes
+          exhibit increases exceeding 1,000%, while declining classes have contracted
+          by up to 84%. These figures do not represent marginal adjustments; rather, they indicate
+          a fundamental reorientation of inventive activity across technology domains.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
           The growing classes are dominated by digital technologies (data processing, digital
-          communication, image analysis), while declining classes tend to involve analog-era
-          technologies (typewriters, photographic processes, traditional printing). This
-          reflects the creative destruction of the digital revolution: entire categories of
-          invention have been rendered obsolete as their digital replacements surge ahead.
+          communication, image analysis), while declining classes include both superseded digital standards and specialized semiconductor
+          processes. This pattern
+          is consistent with the process of creative destruction associated with the digital transition:
+          entire categories of invention have been rendered obsolete as their digital replacements
+          have expanded.
         </p>
       </KeyInsight>
 
       <ChartContainer
-        title="Technology Diversity Index"
-        caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration. Higher values indicate more diverse technology output."
-        insight="Despite the explosive growth of electrical engineering, the patent system's technology mix has not narrowed dramatically. Innovation continues broadly across established fields."
+        title="Technology Diversity Declined from Its Mid-1980s Peak Through 2009 Before Stabilizing at a Lower Level"
+        caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976-2025. Higher values indicate more diverse technology output. The index declined notably as digital technologies concentrated activity, then stabilized after 2009."
+        insight="Technology diversity declined notably from its mid-1980s peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
         loading={divL}
       >
         <PWLineChart
@@ -292,20 +293,20 @@ export default function Chapter2() {
 
       <KeyInsight>
         <p>
-          Despite the explosive growth of electrical engineering, overall technology diversity has
-          remained relatively stable. Innovation is not narrowing to a single domain -- rather,
-          established fields continue to produce patents even as new digital technologies surge ahead.
+          Technology diversity declined notably from its mid-1980s peak through 2009 as digital technologies concentrated
+          patent activity in sections G and H. Since then, diversity has stabilized at a lower level, indicating
+          that while the concentration shift has not reversed, it has at least ceased accelerating.
         </p>
       </KeyInsight>
 
       <SectionDivider label="The Half-Life of Technology" />
       <Narrative>
         <p>
-          How quickly does a technology become obsolete? By measuring when a patent
-          receives the bulk of its forward citations, we can estimate the &quot;half-life&quot;
-          of knowledge in each technology area — the time it takes for 50% of all
-          citations to accumulate. Shorter half-lives indicate rapidly evolving fields;
-          longer ones suggest foundational knowledge with lasting relevance.
+          The rate at which a technology becomes obsolete can be measured through citation dynamics.
+          By examining when a patent receives the majority of its forward citations, it is possible to
+          estimate the &quot;half-life&quot; of knowledge in each technology area, defined as the time required
+          for 50% of all citations to accumulate. Shorter half-lives indicate rapidly evolving fields,
+          while longer half-lives suggest foundational knowledge with lasting relevance.
         </p>
       </Narrative>
       {halfLife && halfLife.length > 0 && (
@@ -330,9 +331,9 @@ export default function Chapter2() {
         </div>
       )}
       <ChartContainer
-        title="Citation Decay Curves by Technology Area"
-        caption="Distribution of forward citations by years after grant. Each line shows what percentage of a technology area's total citations arrive in each year."
-        insight="Fast-moving fields like computing (H) and physics (G) have short citation half-lives, meaning knowledge becomes obsolete quickly. Chemistry and pharma innovations remain relevant for much longer."
+        title="Computing and Electronics Patents Exhibit the Shortest Citation Half-Lives Across Technology Areas"
+        caption="Distribution of forward citations by years after grant, by CPC section. Each line indicates the percentage of a technology area's total citations arriving in each post-grant year. Sections H (Electricity) and G (Physics) exhibit the steepest early peaks, while Chemistry (C) and Human Necessities (A) demonstrate more gradual accumulation."
+        insight="Rapidly evolving fields such as computing (H) and physics (G) exhibit short citation half-lives, indicating that knowledge in these domains becomes superseded more quickly. Chemistry and pharmaceutical innovations, by contrast, maintain relevance over substantially longer periods."
         loading={dcL}
       >
         {decayPivot.length > 0 && (
@@ -352,29 +353,28 @@ export default function Chapter2() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Electricity (H) and Physics (G) patents have the shortest half-lives,
-          consistent with the rapid innovation cycles in computing and electronics where
-          today&apos;s breakthrough quickly becomes tomorrow&apos;s baseline. Chemistry (C) and
-          Human Necessities (A) show the longest half-lives, reflecting the enduring
-          relevance of pharmaceutical and chemical innovations that take years to develop
-          and often represent fundamental scientific advances with lasting impact.
+          Electricity (H) and Physics (G) patents exhibit the shortest half-lives,
+          consistent with the rapid innovation cycles in computing and electronics in which
+          current advances are quickly superseded by subsequent developments. Human Necessities (A) and
+          Fixed Constructions (E) show the longest half-lives, reflecting the enduring
+          relevance of innovations in these domains that often represent fundamental advances with lasting impact.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Technology Life Cycle S-Curves" />
       <Narrative>
         <p>
-          Fitting logistic S-curves to cumulative patent counts by CPC section reveals where
-          each technology sits in its innovation lifecycle. Mature technologies like mechanical
-          engineering and chemistry show slowing growth rates, while computing-related sections
-          continue their steep ascent.
+          Fitting logistic S-curves to cumulative patent counts by CPC section indicates where
+          each technology domain resides within its innovation lifecycle. Mature technologies such as mechanical
+          engineering and chemistry exhibit decelerating growth rates, while computing-related sections
+          continue along a steep upward trajectory.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Technology Maturity by CPC Section"
-        caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts 1976–2025."
-        insight="Textiles (D) and Fixed Constructions (E) have reached over 70% of their estimated carrying capacity, suggesting maturation. Physics (G) and Electricity (H) — home to computing, AI, and semiconductors — still have significant room to grow."
+        title="Textiles Has Reached Over 97% of Estimated Carrying Capacity While Computing Sections Continue to Grow"
+        caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts, 1976-2025. Higher values indicate greater technological maturity as measured by proximity to the estimated saturation point."
+        insight="Textiles (D) has reached over 97% of estimated carrying capacity, while Fixed Constructions (E) is approaching 60%, suggesting maturation. Physics (G) and Electricity (H), which encompass computing, AI, and semiconductors, appear to retain substantial growth potential."
         loading={scL}
         height={400}
       >
@@ -417,17 +417,16 @@ export default function Chapter2() {
 
       <KeyInsight>
         <p>
-          The S-curve analysis reveals a patent system in transition. Traditional engineering
-          fields are approaching saturation, while computing and electronics continue their
-          exponential expansion. The cross-sectional class Y (which includes green and AI tags)
-          remains in early growth — consistent with these technologies&apos; recent emergence as
-          major patenting categories.
+          The S-curve analysis indicates a patent system in transition. Traditional engineering
+          fields appear to be approaching saturation, while computing and electronics continue their
+          rapid expansion. It should be noted that cross-sectional class Y (which includes green technology and AI tags)
+          is excluded from the S-curve analysis because its tagging conventions differ from primary CPC sections.
         </p>
       </KeyInsight>
 
       <Narrative>
-        Having explored which technologies have driven the patent explosion, the next chapter asks who is doing the patenting.
-        The shift from chemistry to digital technology has reshaped not just what gets patented but which organizations dominate -- from American industrial conglomerates to Asian electronics giants.
+        Having examined the technologies that have driven the growth in patent activity, the following chapter investigates the organizations responsible for this output.
+        The shift from chemistry to digital technology has reshaped not only the composition of patent grants but also the organizational landscape of innovation, from American industrial conglomerates to Asian firms.
       </Narrative>
 
       <DataNote>

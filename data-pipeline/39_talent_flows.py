@@ -128,6 +128,18 @@ flow_df = con.execute(f"""
 
 log(f"  Talent flow query done in {time.time()-t0:.1f}s ({len(flow_df):,} flows)")
 
+# Filter out intra-company flows (e.g. Microsoft -> Microsoft Technology Licensing)
+# Two raw org names that map to the same (or related) clean display name are the
+# same corporate entity; these are patent reassignments, not real talent moves.
+_before_filter = len(flow_df)
+flow_df = flow_df[
+    flow_df.apply(
+        lambda r: display_name(r['from_org']) != display_name(r['to_org']),
+        axis=1,
+    )
+].reset_index(drop=True)
+log(f"  Filtered intra-company flows: {_before_filter} -> {len(flow_df)} flows")
+
 # Build Sankey nodes and links
 # Collect all organisations that appear in flows
 all_orgs_in_flows = set(flow_df['from_org'].tolist() + flow_df['to_org'].tolist())

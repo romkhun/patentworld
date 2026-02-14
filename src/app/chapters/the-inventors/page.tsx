@@ -151,37 +151,37 @@ export default function Chapter4() {
       <ChapterHeader
         number={4}
         title="The Inventors"
-        subtitle="The people behind the patents"
+        subtitle="Demographic composition, career trajectories, and productivity patterns among patent inventors"
       />
 
       <KeyFindings>
-        <li>Inventor team sizes have grown dramatically — the average patent now lists 2-3 inventors, up from predominantly solo inventions in the 1970s.</li>
-        <li>Women&apos;s share of patents has increased but remains below 15%, indicating a persistent gender gap in patented innovation.</li>
-        <li>The most prolific inventors hold hundreds of patents each, concentrated in electronics and computing fields.</li>
-        <li>First-time inventor rates have declined, suggesting the patent system increasingly favors experienced, repeat inventors within organizations.</li>
+        <li>Average patent team size increased from about 1.7 inventors in the late 1970s to over 3 by 2025, while the solo-inventor share declined from above 50% to under 25%.</li>
+        <li>The female share of inventor instances has risen steadily but remains below 15%, indicating a persistent gender gap in patented innovation.</li>
+        <li>The most prolific inventors hold thousands of patents each, concentrated in electronics and computing fields, and the top 5% of inventors account for a growing share of total output.</li>
+        <li>The share of patents including first-time inventors has declined, suggesting the patent system increasingly favors experienced, repeat inventors within organizations.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Average patent team size has grown from roughly 1.5 inventors in the late 1970s to over 2.5 today, while the solo-inventor share has fallen from over 50% to under 20%. Women&apos;s share of inventor instances has increased but remains below 15%, with chemistry and pharma leading and electrical engineering lagging. The top 5% of inventors account for a growing share of total output, and mobile inventors who move between organizations consistently produce higher-citation patents than their non-mobile peers.
+          Average patent team size increased from about 1.7 inventors in the late 1970s to over 3 by 2025, while the solo-inventor share declined from above 50% to under 25%. The average patent now lists more than 3 inventors. The female share of inventor instances has risen but remains below 15%, with chemistry and pharmaceuticals exhibiting the highest representation and electrical engineering the lowest. The top 5% of inventors account for a growing proportion of total output, and mobile inventors who patent across multiple organizations consistently produce higher-citation patents than their non-mobile counterparts.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Behind every patent is at least one inventor. Over the past five decades,
-          inventing has become increasingly collaborative. Solo inventors have given
-          way to larger teams, and the gender composition of the inventor workforce
-          has slowly shifted. <StatCallout value={topInventorName} /> holds the record
-          for most patents granted to a single inventor.
+          Every patent lists at least one inventor. Over the past five decades,
+          the process of invention has become increasingly collaborative, as solo inventors have yielded
+          to larger teams and the gender composition of the inventor workforce
+          has shifted gradually. <StatCallout value={topInventorName} /> holds the record
+          for the most patents granted to a single inventor.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Team Size Over Time"
-        caption="Average team size, solo-inventor share, and large-team (5+) share. Values share the same y-axis."
-        insight="The shift from solo invention to team-based R&D is one of the defining trends of modern innovation, reflecting the increasing complexity of technology."
+        title="Average Patent Team Size Increased from 1.7 to Over 3 Inventors, 1976–2025"
+        caption="This chart displays three concurrent trends in inventor team composition: average team size per patent, the percentage of solo-inventor patents, and the share of large-team (5+ inventor) patents. The most prominent pattern is the steady rise in average team size alongside a corresponding decline in solo invention from above 50% to under 25%."
+        insight="The transition from solo invention to team-based research and development constitutes one of the defining structural shifts in modern innovation, reflecting the increasing complexity and interdisciplinarity of technology development."
         loading={tmL}
       >
         <PWLineChart
@@ -198,29 +198,29 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          The average team size has grown from roughly 1.5 inventors per patent in
-          the late 1970s to over 2.5 today. The share of solo-inventor patents has
-          dropped considerably, while patents with five or more inventors have become
-          more common -- reflecting the increasing complexity and interdisciplinarity
-          of modern innovation.
+          Average team size increased from approximately 1.7 inventors per patent in
+          the late 1970s to over 3 by 2025. The share of solo-inventor patents has
+          declined substantially, while patents listing five or more inventors have become
+          increasingly prevalent, a pattern consistent with the growing complexity and interdisciplinarity
+          of contemporary technological development.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          The shift from solo to team invention mirrors broader trends in science and engineering.
-          The solo-inventor share has fallen from over 50% to under 20%, while patents with five or more
-          inventors have tripled. Complex modern technologies increasingly require diverse expertise
-          that no single inventor can provide.
+          The transition from solo to team invention mirrors broader trends in science and engineering.
+          The solo-inventor share declined from above 50% to under 25%, while the share of patents listing five or more
+          inventors has grown more than eightfold, from about 2.5% to over 21%. This pattern suggests that contemporary technologies increasingly
+          require diverse expertise that exceeds the capacity of any individual inventor.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Gender" />
 
       <ChartContainer
-        title="Female Inventor Share Over Time"
-        caption="Percentage of inventor-patent instances attributed to female inventors."
-        insight="The persistent gender gap in patenting reflects broader systemic barriers in STEM fields, from educational pipelines to workplace culture."
+        title="Female Inventor Share Rose Steadily but Remains Below 15%, 1976–2025"
+        caption="This chart tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from approximately 3% in the late 1970s, though the female share has not yet reached 15% as of the most recent data."
+        insight="The persistent gender gap in patenting appears to reflect broader systemic barriers in STEM fields, spanning educational pipelines, workplace culture, and institutional support structures."
         loading={gnL}
       >
         <PWLineChart
@@ -237,18 +237,18 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          Progress on gender diversity in patenting has been real but slow. Despite decades of
+          Progress on gender diversity in patenting has been measurable but gradual. Despite decades of
           initiatives to broaden participation in STEM, the female share of inventors on US
-          patents remains well below parity. At the current rate of change, achieving equal
-          representation would take many more decades.
+          patents remains well below parity. At the observed rate of change, achieving equal
+          representation would require several additional decades.
         </p>
       </Narrative>
 
       {genderBySector.length > 0 && (
         <ChartContainer
-          title="Female Inventor Share by WIPO Sector"
-          caption="Percentage of inventor instances that are female, by technology sector."
-          insight="Gender diversity varies significantly across technology sectors, with chemistry and pharmaceuticals leading while electrical and mechanical engineering lag behind."
+          title="Chemistry and Pharmaceuticals Lead in Female Inventor Representation; Electrical Engineering Lags"
+          caption="This chart displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while electrical and mechanical engineering demonstrate the lowest shares."
+          insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, suggesting that educational pipeline differences constitute a primary driver of the gender gap in patenting."
           loading={gsL}
           height={500}
         >
@@ -264,9 +264,9 @@ export default function Chapter4() {
 
       <KeyInsight>
         <p>
-          Female representation among US patent inventors has grown steadily but remains below 15%.
-          Chemistry and pharmaceutical fields lead in gender diversity, while electrical engineering
-          and mechanical engineering lag behind -- a pattern that closely mirrors the gender
+          Female representation among US patent inventors has increased steadily but remains below 15%.
+          Chemistry and pharmaceutical fields exhibit the highest gender diversity, while electrical engineering
+          and mechanical engineering demonstrate the lowest representation -- a pattern that closely mirrors the gender
           composition of STEM degree programs.
         </p>
       </KeyInsight>
@@ -274,9 +274,9 @@ export default function Chapter4() {
       <SectionDivider label="Top Inventors" />
 
       <ChartContainer
-        title="Most Prolific Inventors"
-        caption="Inventors ranked by total utility patents granted, 1976-2025."
-        insight="The concentration of patents among a small number of prolific inventors raises questions about whether the patent system rewards individual genius or institutional resources."
+        title="The Most Prolific Inventors Each Hold Thousands of Patents, Concentrated in Electronics"
+        caption="This chart ranks inventors by total utility patents granted from 1976 to 2025. The distribution is heavily right-skewed, with the top-ranked inventors holding thousands of patents each, predominantly in electronics and semiconductor fields."
+        insight="The concentration of patents among a small number of prolific inventors raises questions regarding whether the patent system disproportionately rewards institutional resources rather than individual inventive capacity."
         loading={prL}
         height={1800}
       >
@@ -290,17 +290,17 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          The most prolific inventors are overwhelmingly concentrated in electronics and
-          semiconductor fields, where rapid design iteration and modular innovation enable
-          extraordinarily high patent output. Many top inventors are associated with large
+          The most prolific inventors are disproportionately concentrated in electronics and
+          semiconductor fields, where rapid design iteration and modular innovation facilitate
+          high patent output. Many of the top-ranked inventors are associated with large
           Japanese and Korean electronics firms that emphasize systematic patent generation.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="New Inventors Entering the System"
-        caption="Number of inventors filing their first US patent each year."
-        insight="The steady inflow of new inventors is a barometer for the health of the innovation ecosystem, indicating continued broadening of the inventor base despite increasing specialization."
+        title="Annual First-Time Inventor Entries Increased Substantially Through 2025"
+        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from approximately 35,000–59,000 in the late 1970s to peaks exceeding 140,000 in recent years."
+        insight="The sustained inflow of new inventors serves as an indicator of the innovation ecosystem's capacity for renewal, demonstrating continued broadening of the inventor base despite increasing specialization."
         loading={enL}
       >
         <PWAreaChart
@@ -313,20 +313,19 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          The flow of new inventors into the patent system has grown dramatically,
-          peaking in recent years. This reflects both the expansion of technology
-          industries and the increasing globalization of R&D, as inventors from
+          The flow of new inventors into the patent system has expanded substantially,
+          reaching its highest levels in recent years. This growth reflects both the expansion of technology
+          industries and the increasing globalization of research and development, as inventors from
           around the world file patents through the US system.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          The number of new inventors entering the patent system each year has outpaced the
-          growth in patent grants, suggesting that the inventor base is broadening even as
-          individual patent output varies widely. This expanding base of first-time inventors
-          is a healthy sign for the innovation ecosystem, indicating continued inflows of
-          fresh talent and new ideas.
+          While the number of new inventors entering the patent system has grown substantially,
+          patent grants have grown even faster (5.3-fold versus 2.8-fold since 1980), indicating that rising team sizes and repeat
+          inventors drive much of the expansion. This growing base of first-time inventors
+          indicates continued inflows of new talent and perspectives into the innovation ecosystem.
         </p>
       </KeyInsight>
 
@@ -336,16 +335,16 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          Being prolific does not necessarily mean being impactful. <GlossaryTooltip term="forward citations">Forward citations</GlossaryTooltip> --
-          how often an inventor&apos;s patents are cited by others -- reveal whether their
-          innovations serve as <StatCallout value="building blocks" /> for future inventions.
+          Prolificacy does not necessarily correspond to impact. <GlossaryTooltip term="forward citations">Forward citations</GlossaryTooltip> --
+          the frequency with which an inventor&apos;s patents are cited by subsequent patents -- indicate whether their
+          innovations serve as <StatCallout value="foundational contributions" /> to future inventions.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Star Inventor Impact by Citation Average"
-        caption="Average and median forward citations per patent for the top 100 prolific inventors. Limited to patents granted through 2020."
-        insight="Prolificacy and impact are distinct dimensions of inventor performance. Some high-volume inventors generate modest citations per patent, while others achieve exceptional influence with fewer patents."
+        title="Citation Impact Varies Widely Among the 100 Most Prolific Inventors"
+        caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
+        insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
         loading={siL}
         height={1800}
       >
@@ -363,9 +362,9 @@ export default function Chapter4() {
 
       <KeyInsight>
         <p>
-          Being prolific and being impactful are not the same thing. Some inventors with
-          fewer total patents generate significantly higher citation impact per patent,
-          suggesting deeper influence on their fields.
+          Prolificacy and impact constitute distinct dimensions of performance. Some inventors with
+          fewer total patents generate substantially higher citation impact per patent,
+          suggesting a more pronounced influence on their respective fields.
         </p>
       </KeyInsight>
 
@@ -373,16 +372,15 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          How long do inventors remain active in the patent system? Career survival curves
-          show what fraction of inventors who entered in each 5-year cohort continue
-          patenting over time -- revealing patterns of <StatCallout value="persistence and attrition" />.
+          Career survival curves indicate the fraction of inventors who entered the patent system in each 5-year cohort and continue
+          patenting over subsequent years, thereby revealing patterns of <StatCallout value="persistence and attrition" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Inventor Career Survival by Entry Cohort"
-        caption="Percentage of inventors still active (with at least one patent) at each career length, by 5-year entry cohort."
-        insight="The steep initial drop in survival curves reveals that most inventors patent only once. Those who persist beyond the first few years tend to have long, productive careers."
+        title="Inventor Attrition Is Steepest in the First Five Career Years"
+        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with approximately 38–43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
+        insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
         <PWLineChart
@@ -402,26 +400,25 @@ export default function Chapter4() {
       <KeyInsight>
         <p>
           The survival curves reveal a bimodal inventor population: a large group of
-          &quot;one-shot&quot; inventors who patent once and never return (the steep initial
-          drop), and a smaller group of persistent innovators who remain active for decades.
+          single-patent inventors who do not return to the system (reflected in the steep initial
+          decline), and a smaller group of persistent innovators who remain active for decades.
           This pattern is consistent across all entry cohorts, suggesting a fundamental
-          division between occasional and career inventors.
+          structural division between occasional and career inventors.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Superstar Inventor Concentration" />
       <Narrative>
         <p>
-          What share of all patents comes from the most prolific inventors? Tracking the
-          concentration of patenting activity among the top 1% and top 5% of inventors
-          by cumulative patent count reveals whether innovation is becoming more or less
-          democratized over time.
+          Tracking the concentration of patenting activity among the top 1% and top 5% of inventors
+          by cumulative patent count reveals whether innovation output is becoming more concentrated
+          or more broadly distributed over time.
         </p>
       </Narrative>
       <ChartContainer
-        title="Share of Patents by Top Inventors"
-        caption="Percentage of patents each year from the top 1% and top 5% of inventors (by cumulative patent count)."
-        insight="Rising concentration of patents among top inventors suggests that innovation is increasingly driven by professional, repeat inventors rather than one-time contributors."
+        title="The Top 5% of Inventors Account for a Growing Share of Annual Patent Output"
+        caption="This chart tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
+        insight="Rising concentration of patents among top inventors suggests that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
         loading={ssL}
       >
         {superstar && (
@@ -440,27 +437,26 @@ export default function Chapter4() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Superstar concentration has increased substantially over the decades. The top 5%
-          of inventors now account for a growing share of total patent output, suggesting
-          that patenting is increasingly the province of repeat, professional inventors
-          rather than one-time innovators. This parallels trends in academic publishing
+          Superstar concentration has increased substantially over the period studied. The top 5%
+          of inventors account for a growing share of total patent output, suggesting
+          that patenting is increasingly the domain of repeat, professional inventors
+          rather than occasional contributors. This pattern parallels analogous trends in academic publishing
           and other knowledge-intensive fields.
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Solo Inventors: An Endangered Species?" />
+      <SectionDivider label="The Decline of Solo Invention" />
       <Narrative>
         <p>
-          The lone inventor working in a garage is a powerful cultural archetype. But is
-          solo invention actually disappearing? Tracking the share of patents with a
-          single inventor reveals how the nature of innovation has shifted toward
+          The lone inventor working independently remains a prominent cultural archetype. The data, however,
+          reveal a sustained structural shift in the nature of innovation toward
           team-based approaches.
         </p>
       </Narrative>
       <ChartContainer
-        title="Solo Inventor Share Over Time"
-        caption="Percentage of utility patents with a single named inventor."
-        insight="The decline of solo invention underscores how modern technology development increasingly demands diverse, interdisciplinary expertise that no single person can provide."
+        title="Solo-Inventor Patents Declined from Over 50% to Under 25% of All Grants, 1976–2025"
+        caption="This chart displays the percentage of utility patents listing a single named inventor. The persistent downward trend from above 50% in the late 1970s to under 25% by 2025 demonstrates the structural shift toward collaborative invention."
+        insight="The decline of solo invention underscores the extent to which modern technology development demands diverse, interdisciplinary expertise that exceeds the capacity of any single individual."
         loading={soloL}
       >
         {solo && (
@@ -478,11 +474,11 @@ export default function Chapter4() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Solo invention has declined dramatically from over half of all patents in the
-          late 1970s to a small minority today. The complexity of modern technology
-          increasingly requires diverse expertise that no single person can master. Yet
-          solo inventors persist, particularly in areas like Textiles and Fixed
-          Constructions where individual craftspeople and architects continue to innovate
+          Solo invention declined from over half of all patents in the
+          late 1970s to a distinct minority by 2025. The complexity of modern technology
+          increasingly requires diverse expertise that exceeds the scope of individual mastery. Nevertheless,
+          solo inventors persist in certain fields, particularly in areas such as Textiles and Fixed
+          Constructions, where individual practitioners and architects continue to innovate
           independently.
         </p>
       </KeyInsight>
@@ -490,15 +486,15 @@ export default function Chapter4() {
       <SectionDivider label="First-Time Inventors" />
       <Narrative>
         <p>
-          Is the patent system bringing in fresh talent, or is it increasingly dominated
-          by repeat players? We track the share of patents each year that include at
+          A central question concerns whether the patent system continues to attract new entrants
+          or is increasingly dominated by repeat filers. The following analysis tracks the share of patents each year that include at
           least one inventor filing for the first time.
         </p>
       </Narrative>
       <ChartContainer
-        title="Share of Patents with First-Time Inventors"
-        caption="Percentage of patents each year with at least one inventor who has never appeared on a prior patent."
-        insight="The declining share of first-time inventors suggests the patent system increasingly favors experienced, repeat inventors, raising questions about barriers to entry for newcomers."
+        title="The Share of Patents Including a First-Time Inventor Has Declined Over Five Decades"
+        caption="This chart displays the percentage of patents each year listing at least one inventor who has not appeared on a prior patent. The downward trend suggests a growing concentration of patenting activity among experienced, repeat inventors."
+        insight="The declining share of first-time inventors suggests the patent system increasingly favors experienced, repeat filers, raising questions regarding potential barriers to entry for newcomers."
         loading={ftL}
       >
         {firstTime && (
@@ -516,26 +512,25 @@ export default function Chapter4() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Despite the growing dominance of repeat inventors, a substantial share of patents
-          each year still includes at least one newcomer. This pipeline of first-time
-          inventors is critical for the health of the innovation system, ensuring that
-          fresh perspectives and new ideas continue to enter the patent landscape.
+          Despite the growing prevalence of repeat inventors, a substantial share of patents
+          each year continues to include at least one first-time filer. This sustained inflow of first-time
+          inventors remains important for the renewal capacity of the innovation system, ensuring that
+          new perspectives and ideas continue to enter the patent landscape.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Inventor Mobility" />
       <Narrative>
         <p>
-          Do inventors who move between organizations produce higher-impact work?
-          Comparing forward citation counts for mobile inventors (those who have patented
-          at multiple organizations) versus non-mobile inventors reveals whether career
-          mobility is associated with innovation quality.
+          A comparison of forward citation counts for mobile inventors (those who have patented
+          at multiple organizations) versus non-mobile inventors indicates whether career
+          mobility is associated with higher innovation quality.
         </p>
       </Narrative>
       <ChartContainer
-        title="Inventor Mobility Rate by Decade"
-        caption="Percentage of prolific inventors (5+ patents per decade) who patented at multiple organizations."
-        insight="Rising inventor mobility reflects the growing fluidity of the technology labor market, where career moves between organizations serve as channels for knowledge transfer."
+        title="Inventor Mobility Rates Have Risen Across Successive Decades"
+        caption="This chart displays the percentage of prolific inventors (those with 5 or more patents per decade) who patented at multiple organizations. The upward trend across decades indicates growing inter-organizational mobility among active inventors."
+        insight="Rising inventor mobility is consistent with the growing fluidity of the technology labor market, where career transitions between organizations appear to serve as channels for knowledge transfer."
         loading={mbdL}
       >
         {mobilityByDecade && (
@@ -577,9 +572,9 @@ export default function Chapter4() {
       <KeyInsight>
         <p>
           Mobile inventors consistently produce patents with higher citation impact than
-          their non-mobile peers. This suggests that exposure to multiple organizational
-          contexts enriches an inventor&apos;s knowledge base and leads to more impactful
-          innovations. The mobility rate has increased over time, driven by the growing
+          their non-mobile counterparts. This finding is consistent with the hypothesis that exposure to multiple organizational
+          contexts enriches an inventor&apos;s knowledge base and contributes to more impactful
+          innovations. The mobility rate has also increased over time, reflecting the growing
           fluidity of the technology labor market.
         </p>
       </KeyInsight>
@@ -587,15 +582,15 @@ export default function Chapter4() {
       <SectionDivider label="The Gender Innovation Gap" />
       <Narrative>
         <p>
-          Beyond overall gender trends, deeper analysis reveals important differences in
-          where women innovate, how gender-diverse teams perform, and how female
-          participation varies across technology fields.
+          Disaggregated analysis beyond aggregate gender trends reveals substantive differences in
+          the technology areas where women innovate, the performance of gender-diverse teams, and the variation in female
+          participation across technology fields.
         </p>
       </Narrative>
       <ChartContainer
-        title="Female Inventor Share by Technology Area"
-        caption="Percentage of inventors who are female, by CPC section, in 5-year periods."
-        insight="The technology-specific gender gap mirrors the composition of STEM degree pipelines. Fields with higher female enrollment — chemistry, life sciences — show higher female inventor representation."
+        title="Female Inventor Shares Vary Widely Across CPC Sections, with Chemistry Leading"
+        caption="This chart displays the percentage of inventors who are female within each CPC section, measured in 5-year periods. Chemistry and Human Necessities consistently exhibit the highest female representation, while Electricity and Mechanical Engineering demonstrate the lowest."
+        insight="The technology-specific gender gap mirrors the composition of STEM degree pipelines. Fields with higher female enrollment, such as chemistry and life sciences, demonstrate correspondingly higher female inventor representation."
         loading={gstL}
       >
         {genderTrendPivot.length > 0 && (
@@ -639,23 +634,22 @@ export default function Chapter4() {
       )}
       <KeyInsight>
         <p>
-          Female inventor participation has grown across all technology areas, but
-          significant gaps remain. Chemistry &amp; Metallurgy and Human Necessities show the
-          highest female inventor shares, while Electricity and Mechanical Engineering lag
-          behind. Gender-diverse teams produce patents with citation impact comparable to
-          or exceeding all-male teams, suggesting that diversity in inventor teams is
-          not just an equity issue but an innovation imperative.
+          Female inventor participation has increased across all technology areas, though
+          significant disparities persist. Chemistry &amp; Metallurgy and Human Necessities exhibit the
+          highest female inventor shares, while Electricity and Mechanical Engineering demonstrate
+          the lowest representation. Gender-diverse teams produce patents with citation impact comparable to
+          or exceeding that of all-male teams, suggesting that diversity in inventor teams
+          may contribute to innovation quality as well as equity.
         </p>
       </KeyInsight>
 
-      <SectionDivider label="Serial Inventors vs. One-Hit Wonders" />
+      <SectionDivider label="Serial Inventors and Single-Patent Filers" />
 
       <Narrative>
         <p>
-          How much of the patent stock is produced by repeat inventors versus one-time filers?
-          Segmenting inventors by their total patent count reveals a highly skewed distribution:
-          most inventors file only a single patent, but a small group of prolific &quot;mega-inventors&quot;
-          accounts for a disproportionate share of total output.
+          Segmenting inventors by total patent count reveals a markedly skewed distribution:
+          a plurality of inventors (43%) file only a single patent, while a small group of prolific inventors
+          with 100 or more patents accounts for a disproportionate share of total output.
         </p>
       </Narrative>
 
@@ -692,9 +686,9 @@ export default function Chapter4() {
       )}
 
       <ChartContainer
-        title="Patent Share by Inventor Segment"
-        caption="Share of total patents produced by each inventor segment."
-        insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while the majority of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality in creative work."
+        title="Prolific and Mega-Inventors Produce a Disproportionate Share of Total Patent Output"
+        caption="This chart compares the share of total patents produced by each inventor segment against the share of inventors in that segment. The data demonstrate extreme skewness: single-patent inventors constitute the largest segment by headcount but contribute a comparatively small share of total output."
+        insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while a plurality of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality observed in scientific publishing and other creative fields."
         loading={segL}
         height={350}
       >
@@ -710,15 +704,15 @@ export default function Chapter4() {
       </ChartContainer>
 
       <ChartContainer
-        title="One-Hit Wonder Share Over Time"
-        caption="Percentage of active inventors each year who have filed exactly one patent in the dataset. Declining share suggests increasing professionalization of patenting."
-        insight="The share of one-hit wonder inventors has fluctuated over time but shows a gradual decline, suggesting that patenting is becoming more concentrated among repeat filers as the patent system grows more complex and costly to navigate."
+        title="The Share of Single-Patent Inventors Has Gradually Declined Over Time"
+        caption="This chart displays the percentage of active inventors each year who have filed exactly one patent in the dataset. The gradual decline suggests increasing professionalization of patenting activity over the study period."
+        insight="The declining share of single-patent inventors suggests that patenting has become increasingly concentrated among repeat filers, a pattern consistent with the growing complexity and cost of navigating the patent system."
         loading={stL}
       >
         <PWLineChart
           data={segTrend ?? []}
           xKey="year"
-          lines={[{ key: 'one_hit_pct', name: 'One-Hit Wonder Share (%)', color: CHART_COLORS[3] }]}
+          lines={[{ key: 'one_hit_pct', name: 'Single-Patent Inventor Share (%)', color: CHART_COLORS[3] }]}
           yLabel="Percent"
           yFormatter={(v) => `${v.toFixed(0)}%`}
         />
@@ -729,7 +723,7 @@ export default function Chapter4() {
           The skewed distribution of inventive output has important implications for innovation
           policy. If a small number of prolific inventors drive a disproportionate share of
           patenting activity, policies that support inventor retention, mobility, and productivity
-          may have outsized effects on the overall innovation system.
+          may have disproportionate effects on the overall innovation system.
         </p>
       </KeyInsight>
 
@@ -737,17 +731,17 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          How does inventive productivity evolve over a career? By tracking inventors with at least
-          5 patents, we can reconstruct the typical <StatCallout value="career productivity curve" /> --
-          from the first patent through peak output and eventual decline. These curves reveal
-          universal patterns in how inventive careers unfold.
+          Tracking inventors with at least
+          5 patents enables reconstruction of the typical <StatCallout value="career productivity curve" /> --
+          from the first patent through peak output and eventual decline. These curves exhibit
+          consistent patterns in how inventive careers develop across cohorts and technology fields.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Average Productivity by Career Year"
-        caption="Average patents per year at each career year (years since first patent) for inventors with 5+ lifetime patents. Shaded band shows 25th–75th percentile range."
-        insight="Inventor productivity typically peaks 5–10 years into a career, then gradually declines. The wide interquartile range suggests enormous heterogeneity — some inventors sustain high output for decades while others taper off quickly."
+        title="Inventor Productivity Rises Steeply in Early Career Years Before Plateauing"
+        caption="This chart presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at approximately 2.1–2.3 patents per year through the remainder of the career, with substantial variation across individuals."
+        insight="Inventor productivity rises steeply in the first five career years, then plateaus without significant decline. The wide interquartile range indicates substantial heterogeneity: some inventors sustain high output for decades while others taper off within a few years."
         loading={cdL}
       >
         {careerData?.curves ? (
@@ -766,9 +760,9 @@ export default function Chapter4() {
       </ChartContainer>
 
       <ChartContainer
-        title="Career Duration Distribution"
-        caption="Distribution of career durations (years between first and last patent) for inventors with 5+ patents."
-        insight="Most prolific inventor careers span 5–15 years, but a long tail of inventors sustain 30+ year careers. These ultra-long careers are disproportionately found in pharmaceutical and semiconductor companies."
+        title="Most Prolific Inventor Careers Span 5–15 Years, with a Long Tail Exceeding 30 Years"
+        caption="This chart displays the distribution of career durations (years between first and last patent) for inventors with 5 or more patents. The modal duration falls between 5 and 15 years, though a notable long tail of inventors maintains careers exceeding 30 years."
+        insight="The majority of prolific inventor careers span 5 to 15 years, though a long tail of inventors sustain careers exceeding 30 years. These extended careers are disproportionately concentrated in pharmaceutical and semiconductor firms."
         loading={cdL}
         height={400}
       >
@@ -786,17 +780,17 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          Do inventors become more specialized or more general over time? Using the{' '}
+          An important dimension of inventor careers concerns whether individuals become more specialized or more general over time. Using the{' '}
           <GlossaryTooltip term="Shannon entropy">Shannon entropy</GlossaryTooltip> of
-          each inventor&apos;s CPC section distribution, we classify prolific inventors (10+ patents)
+          each inventor&apos;s CPC section distribution, prolific inventors (those with 10 or more patents) are classified
           as <StatCallout value="specialists, moderates, or generalists" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Inventor Specialization by Decade"
-        caption="Share of prolific inventors (10+ patents) classified as specialist, moderate, or generalist by the decade of their first patent."
-        insight="The share of specialist inventors has increased over time, consistent with the growing complexity and depth of modern technology fields. However, generalists — inventors who span multiple CPC sections — remain a persistent minority."
+        title="The Share of Specialist Inventors Has Increased Across Successive Decades"
+        caption="This chart displays the share of prolific inventors (those with 10 or more patents) classified as specialist, moderate, or generalist by the decade of their first patent. The proportion of specialists has risen over time, while generalists have declined as a share of the total."
+        insight="The increasing share of specialist inventors is consistent with the growing complexity and depth of modern technology fields. Nevertheless, generalists who span multiple CPC sections remain a persistent minority across all decades."
         loading={drL}
       >
         {driftData ? (
@@ -819,16 +813,16 @@ export default function Chapter4() {
 
       <Narrative>
         <p>
-          Some inventors disappear from the patent record for years, only to return with new
-          inventions. These &quot;comeback&quot; inventors — with gaps of 5+ years between patents —
-          offer insights into <StatCallout value="career interruptions and reinventions" />.
+          A subset of inventors exhibit extended absences from the patent record before resuming patenting activity.
+          These &quot;comeback&quot; inventors -- those with gaps of 5 or more years between patents --
+          provide insights into <StatCallout value="career interruptions and reinventions" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Comeback Inventors by Gap Duration"
-        caption="Number of inventors returning to patenting after gaps of 5+ years, by gap length."
-        insight="Most comebacks occur after 5–7 year gaps, with the number declining sharply for longer absences. Notably, a significant fraction of returning inventors change both their employer and technology field, suggesting these gaps often coincide with career pivots."
+        title="Most Inventor Comebacks Occur After Gaps of 5–7 Years, Declining Sharply for Longer Absences"
+        caption="This chart displays the number of inventors returning to patenting after gaps of 5 or more years, categorized by gap duration. The highest frequency of returns occurs at the 5- to 7-year mark, with the count declining substantially for longer absences."
+        insight="Notably, a significant fraction of returning inventors change both their employer and technology field upon re-entry, suggesting that extended gaps frequently coincide with career transitions or pivots."
         loading={cbL}
         height={400}
       >
@@ -842,30 +836,36 @@ export default function Chapter4() {
         ) : <div />}
       </ChartContainer>
 
-      {comebackData && comebackData.length > 0 && (
+      {comebackData && comebackData.length > 0 && (() => {
+        const totalCount = comebackData.reduce((s: number, d: any) => s + d.count, 0);
+        const wtdAssignee = comebackData.reduce((s: number, d: any) => s + d.changed_assignee_pct * d.count, 0) / totalCount;
+        const wtdCpc = comebackData.reduce((s: number, d: any) => s + d.changed_cpc_pct * d.count, 0) / totalCount;
+        const wtdPatents = comebackData.reduce((s: number, d: any) => s + d.avg_patents_after * d.count, 0) / totalCount;
+        return (
         <div className="my-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="rounded-lg border bg-card p-4 text-center">
-            <div className="text-2xl font-bold">{comebackData.reduce((s, d) => s + d.count, 0).toLocaleString()}</div>
+            <div className="text-2xl font-bold">{totalCount.toLocaleString()}</div>
             <div className="text-xs text-muted-foreground mt-1">Total Comeback Inventors</div>
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
-            <div className="text-2xl font-bold">{comebackData[0]?.changed_assignee_pct?.toFixed(0) ?? '—'}%</div>
+            <div className="text-2xl font-bold">{wtdAssignee.toFixed(0)}%</div>
             <div className="text-xs text-muted-foreground mt-1">Changed Employer</div>
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
-            <div className="text-2xl font-bold">{comebackData[0]?.changed_cpc_pct?.toFixed(0) ?? '—'}%</div>
+            <div className="text-2xl font-bold">{wtdCpc.toFixed(0)}%</div>
             <div className="text-xs text-muted-foreground mt-1">Changed Tech Field</div>
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
-            <div className="text-2xl font-bold">{comebackData[0]?.avg_patents_after?.toFixed(1) ?? '—'}</div>
+            <div className="text-2xl font-bold">{wtdPatents.toFixed(1)}</div>
             <div className="text-xs text-muted-foreground mt-1">Avg Patents After Return</div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       <Narrative>
-        Having explored the people behind the patents -- their teams, careers, and demographics -- the next chapter examines where these inventors are located.
-        The geography of innovation is far from uniform: a handful of cities, states, and countries account for a disproportionate share of patent output, and inventor mobility creates critical channels for knowledge diffusion between these hubs.
+        Having examined the demographic composition, career trajectories, and productivity patterns of patent inventors, the subsequent chapter addresses the geography of innovation.
+        The spatial distribution of patent activity is markedly uneven: a small number of cities, states, and countries account for a disproportionate share of output, and inventor mobility creates important channels for knowledge diffusion between these hubs.
       </Narrative>
 
       <DataNote>

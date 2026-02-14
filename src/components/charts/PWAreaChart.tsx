@@ -55,7 +55,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
             />
           )}
         </XAxis>
@@ -74,7 +74,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
               offset={-5}
             />
           )}
@@ -97,7 +97,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             x={ref.x}
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 10, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: 12, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {areas.map((area, i) => (

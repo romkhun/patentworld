@@ -4,7 +4,7 @@ import { CHAPTERS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'About PatentWorld — Data, Methodology & Sources',
-  description: 'Learn about PatentWorld\'s data sources, methodology, and technology. Built on 9.36 million US patents from PatentsView / USPTO, covering 1976 to 2025.',
+  description: 'Data sources, methodology, and analytical approach for PatentWorld. Built on 9.36 million US patents from PatentsView / USPTO, covering 1976 to 2025.',
   openGraph: {
     type: 'website',
     title: 'About PatentWorld',
@@ -16,6 +16,71 @@ export const metadata: Metadata = {
     canonical: 'https://patentworld.vercel.app/about/',
   },
 };
+
+const FAQ_ITEMS = [
+  {
+    question: 'How many US patents have been granted since 1976?',
+    answer: 'The USPTO granted approximately 9.36 million patents between 1976 and 2025. Annual grants increased from approximately 70,000 in the late 1970s to over 350,000 per year by the 2020s, representing a five-fold increase over five decades.',
+  },
+  {
+    question: 'Which company holds the most US patents?',
+    answer: 'IBM has been the most prolific US patent filer for most of the past three decades, consistently ranking first or second in annual grants. Samsung, Canon, Intel, and TSMC are among the other top patent holders. The top 100 firms collectively hold approximately 30% of all US patents.',
+  },
+  {
+    question: 'How long does it take to obtain a US patent?',
+    answer: 'The average time from application filing to patent grant (grant lag or pendency) peaked above 3 years in the early 2010s before declining to approximately 2 years by the 2020s. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
+  },
+  {
+    question: 'What are the fastest-growing patent technology areas?',
+    answer: 'Computing and electronics have grown from approximately 12–15% of all US patents in 1976 to approximately 33–40% by 2025. Within this broad category, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates in recent years.',
+  },
+  {
+    question: 'Is artificial intelligence patenting increasing?',
+    answer: 'AI patent filings grew approximately six-fold during the deep learning era (2012-2025). The acceleration began after breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
+  },
+  {
+    question: 'What is the gender gap in US patenting?',
+    answer: 'Women represent approximately 15% of all US patent inventors as of the most recent data. While the share has grown from under 5% in the 1970s, the gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
+  },
+  {
+    question: 'Which countries file the most US patents?',
+    answer: 'The United States accounts for the largest share of US patent grants, followed by Japan, South Korea, China, and Germany. Foreign-origin patents now constitute over 50% of all US grants, reflecting the global nature of innovation. China has been the fastest-growing source of US patents since 2010.',
+  },
+  {
+    question: 'How has patent quality changed over time?',
+    answer: 'Median forward citations (a common proxy for patent quality) declined approximately 40% as patent volume increased substantially. However, originality and generality scores have remained relatively stable, and the patents in the upper tail of the citation distribution continue to receive high citation counts, suggesting that the average has declined while top-quality innovation persists.',
+  },
+  {
+    question: 'What was the impact of the America Invents Act?',
+    answer: 'The America Invents Act (AIA) of 2011 was the most significant US patent reform in decades. It shifted the US from a first-to-invent to a first-to-file system, created new post-grant review proceedings, and expanded prior art definitions. Inter partes review has since become a major mechanism for challenging patent validity.',
+  },
+  {
+    question: 'How many patents does the average inventor hold?',
+    answer: 'The majority of patent inventors hold only one or two patents. The median inventor has approximately 2 patents, while the mean is higher due to prolific inventors. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
+  },
+];
+
+function FAQJsonLd() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
 
 function DatasetJsonLd() {
   const jsonLd = {
@@ -73,6 +138,7 @@ export default function AboutPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 lg:px-8">
       <DatasetJsonLd />
+      <FAQJsonLd />
 
       <h1 className="font-serif text-4xl font-bold tracking-tight">About PatentWorld</h1>
       <p className="mt-3 text-sm text-muted-foreground">
@@ -85,32 +151,36 @@ export default function AboutPage() {
 
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
         <p>
-          PatentWorld is an interactive data exploration project that visualizes 50 years
-          of global innovation through US patent data. Our goal is to make the rich,
-          complex world of patents accessible and engaging through data-driven storytelling.
+          PatentWorld is an interactive data exploration platform that presents 50 years
+          of United States patent activity through quantitative visualizations. The project
+          aims to render the complex dynamics of the patent system accessible to students,
+          researchers, policymakers, and the broader public through rigorous, data-driven analysis.
         </p>
 
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">About the Author</h2>
           <p>
             <strong><a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">Saerom (Ronnie) Lee</a></strong> is an Assistant Professor of Management
-            at The Wharton School, University of Pennsylvania, where he studies organizational
-            design, human capital, and high-growth entrepreneurship. He built PatentWorld to
-            make half a century of US patent data accessible and interactive for students,
-            researchers, policymakers, and the public.
+            at The Wharton School, University of Pennsylvania. His research examines
+            organizational design, human capital allocation, and the scaling of high-growth
+            ventures. Additional information is available on his{' '}
+            <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              faculty page
+            </a>. PatentWorld was developed to provide a rigorous, interactive platform
+            for examining half a century of US patent data.
           </p>
           <p>
-            Reach him at{' '}
+            Correspondence:{' '}
             <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
               saeroms@upenn.edu
             </a>
-            {' '}&mdash; feedback, collaboration ideas, and feature requests are welcome.
+            . Feedback, collaboration inquiries, and suggestions are welcome.
           </p>
         </section>
 
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Explore the Chapters</h2>
-          <p>PatentWorld is organized into {CHAPTERS.length} chapters, each exploring a different dimension of the US patent system:</p>
+          <p>PatentWorld is organized into {CHAPTERS.length} chapters, each examining a different dimension of the US patent system:</p>
           <ol className="list-decimal pl-6 space-y-1 mt-2">
             {CHAPTERS.map((ch) => (
               <li key={ch.slug}>
@@ -126,7 +196,7 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Data Source</h2>
           <p>
-            All data comes from{' '}
+            All data are derived from{' '}
             <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
               PatentsView
             </a>
@@ -181,12 +251,14 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Methodology</h2>
           <p>
-            Raw data was downloaded as tab-separated value (TSV) files from PatentsView&apos;s
-            bulk data downloads. We processed these files using DuckDB, an analytical SQL
+            Raw data were obtained as tab-separated value (TSV) files from PatentsView&apos;s
+            bulk data downloads. These files were processed using DuckDB, an analytical SQL
             database engine, to compute aggregated statistics for each visualization.
+            The analysis encompasses all USPTO-granted patents from January 1976 through
+            September 2025, including utility, design, plant, and reissue patents.
           </p>
           <p>
-            Key processing steps include:
+            Principal data processing steps include:
           </p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Joining patent records with inventor, assignee, location, and classification data</li>
@@ -211,9 +283,9 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">Technology</h2>
           <p>
-            The website is built with Next.js 14 and uses Recharts for interactive
-            visualizations. All data is pre-computed and served as static JSON files,
-            requiring no backend server. The design uses Tailwind CSS with dark/light
+            The platform is built with Next.js 14 and employs Recharts for interactive
+            visualizations. All data are pre-computed and served as static JSON files,
+            requiring no backend server. The interface uses Tailwind CSS with dark and light
             theme support.
           </p>
         </section>
@@ -221,14 +293,34 @@ export default function AboutPage() {
         <section>
           <h2 className="font-serif text-2xl font-bold pt-4">AI-Assisted Development</h2>
           <p>
-            The data analyses, visualizations, and website development for PatentWorld
+            The data analyses, visualizations, and platform development for PatentWorld
             were conducted with the assistance of{' '}
             <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
               Claude AI
             </a>{' '}
-            (Anthropic). Claude was used for data pipeline development, statistical
+            (Anthropic). Claude was employed for data pipeline development, statistical
             computations, analytical writing, and front-end implementation. All analytical
-            insights and interpretations were reviewed for accuracy and scholarly rigor.
+            findings and interpretations were reviewed for accuracy and scholarly rigor.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-2xl font-bold pt-4">Frequently Asked Questions</h2>
+          <dl className="space-y-6 mt-4">
+            {FAQ_ITEMS.map((item, i) => (
+              <div key={i} className="border-l-2 border-primary/20 pl-4">
+                <dt className="font-semibold text-foreground">{item.question}</dt>
+                <dd className="mt-1 text-muted-foreground">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
+          <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
+            Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Innovation.&rdquo;
+            The Wharton School, University of Pennsylvania. Available at: https://patentworld.vercel.app/
           </p>
         </section>
 

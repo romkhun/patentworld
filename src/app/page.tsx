@@ -50,7 +50,7 @@ const FAQ_JSONLD = {
       name: 'How has the geography of US patent innovation changed?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'California dominates US patent output, with Silicon Valley as the leading innovation hub. Internationally, Japan dominated foreign patenting in the 1980s-90s, while South Korea, China, and Taiwan have surged since 2000.',
+        text: 'California accounts for the largest share of US patent output, with Silicon Valley serving as the leading innovation cluster. Internationally, Japan accounted for the largest share of foreign-origin US patents in the 1980s and 1990s, while South Korea, China, and Taiwan have grown substantially since 2000.',
       },
     },
     {
@@ -66,7 +66,7 @@ const FAQ_JSONLD = {
       name: 'What are the fastest-growing patent technology areas?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Computing, semiconductors, and AI have seen the most dramatic growth. AI patent filings have grown exponentially since 2010, driven by deep learning breakthroughs.',
+        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent filings have increased approximately six-fold since 2010, driven by advances in deep learning.',
       },
     },
     {
@@ -74,7 +74,7 @@ const FAQ_JSONLD = {
       name: 'Is AI patenting growing?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, AI-related patent filings have surged, especially since 2012. IBM, Samsung, Google, and Microsoft are among the top AI patent filers. AI now appears across virtually every technology domain.',
+        text: 'AI-related patent filings have grown substantially, particularly since 2012. IBM, Samsung, Google, and Microsoft are among the leading AI patent filers. AI-related claims now appear across virtually every technology domain.',
       },
     },
     {
@@ -90,7 +90,7 @@ const FAQ_JSONLD = {
       name: 'Which countries file the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'After the United States, Japan, South Korea, Germany, and China are the top countries of origin for US patent inventors. China\'s share has grown rapidly since 2010.',
+        text: 'After the United States, Japan, South Korea, Germany, and China are the leading countries of origin for US patent inventors. China\'s share has increased substantially since 2010.',
       },
     },
   ],

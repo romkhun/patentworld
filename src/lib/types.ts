@@ -381,7 +381,7 @@ export interface BreakthroughPatent {
   breakthrough_pct: number;
 }
 
-// Chapter 11: AI Patents types
+// Chapter 11 (AI Patents) types
 export interface AIPatentsPerYear {
   year: number;
   total_patents: number;
@@ -686,7 +686,7 @@ export interface BridgeInventor {
   total_patents: number;
 }
 
-// Chapter 12: Topic Modeling types
+// Chapter 13 (Topic Modeling) types
 export interface TopicDefinition {
   id: number;
   name: string;

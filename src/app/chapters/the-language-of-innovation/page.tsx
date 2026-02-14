@@ -18,6 +18,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { TOPIC_COLORS, CHART_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import type {
   TopicDefinition, TopicPrevalence, TopicCPCMatrix,
@@ -96,32 +97,32 @@ export default function Chapter13() {
       <ChapterHeader
         number={13}
         title="The Language of Innovation"
-        subtitle="What patents talk about and how it has changed"
+        subtitle="Thematic structure and evolution of patent language over 50 years"
       />
 
       <KeyFindings>
         <li>
           <GlossaryTooltip term="topic modeling">Topic modeling</GlossaryTooltip> of {formatCompact(totalPatents)} patent abstracts reveals 25 distinct technology themes spanning computing, chemistry, biotechnology, and engineering.
         </li>
-        <li>Computing and semiconductor-related topics have grown from under 10% to over 30% of all patents since 1976, mirroring the digital revolution.</li>
+        <li>Computing and semiconductor-related topics have grown from approximately 12% to over 33% of all patents since 1976, mirroring the digital revolution.</li>
         <li>Patents that span multiple topics — measured by Shannon entropy — tend to be the most novel inventions, often sitting at the intersection of technologies.</li>
         <li>The semantic landscape of patents, visualized via <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip>, shows clear clustering by technology area with growing overlap between computational and scientific domains.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          NMF topic modeling on {formatCompact(totalPatents)} patent abstracts (1976-2025) reveals 25 latent themes; computing and semiconductor topics grew from under 10% to over 30% of all patents. A UMAP projection of 15,000 patents shows clear clustering by technology area with meaningful spatial relationships. Patent novelty -- measured by Shannon entropy of topic distributions -- has risen steadily since the 1990s, with the highest-entropy patents sitting at the intersection of computing, biology, chemistry, and engineering.
+          NMF topic modeling applied to {formatCompact(totalPatents)} patent abstracts (1976-2025) reveals 25 latent themes; computing and semiconductor topics grew from approximately 12% to over 33% of all patents. A UMAP projection of 5,000 patents exhibits clear clustering by technology area with meaningful spatial relationships. Patent novelty, measured by Shannon entropy of topic distributions, has risen steadily since the 1990s, with the highest-entropy patents situated at the intersection of computing, biology, chemistry, and engineering.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          What do 9.36 million patents actually talk about? By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
-          modeling to every patent abstract filed with the USPTO since 1976, we can uncover the hidden themes of American
+          Approximately 8.45 million patent abstracts provide a rich corpus for examining the thematic structure of American innovation. By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
+          modeling to every utility patent abstract filed with the USPTO since 1976, this analysis uncovers the latent themes of American
           innovation. Using <GlossaryTooltip term="TF-IDF">TF-IDF</GlossaryTooltip> to convert raw text into numerical
-          features, and non-negative matrix factorization to discover 25 latent topics, this analysis reveals which themes
-          are rising, which are declining, and how they map onto the formal technology classification system.
+          features, and non-negative matrix factorization to discover 25 latent topics, the results indicate which themes
+          are rising, which are declining, and how they correspond to the formal technology classification system.
         </p>
       </Narrative>
 
@@ -130,16 +131,16 @@ export default function Chapter13() {
 
       <Narrative>
         <p>
-          The stacked area chart below shows how the share of each topic has evolved over time. Computing,
-          semiconductor, and communications topics have expanded dramatically, while traditional mechanical
-          and chemical engineering topics have seen their relative share decline — though not necessarily
+          The stacked area chart below illustrates how the share of each topic has evolved over time. Computing,
+          semiconductor, and communications topics have expanded substantially, while traditional mechanical
+          and chemical engineering topics have experienced a decline in relative share, though not necessarily
           in absolute volume.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Topic Prevalence Over Time"
-        caption="Share of patents belonging to each of 25 NMF-derived topics, 1976–2025. Topics sorted by total patent count."
+        title="Computing and Semiconductor Topics Grew From Approximately 12% to Over 33% of All Patents Since 1976"
+        caption="Share of patents belonging to each of 25 NMF-derived topics, 1976–2025, sorted by total patent count. The most prominent trend is the expansion of computing, semiconductor, and communications topics, which grew from approximately 12% to over 33% of the total."
         insight="The language of innovation has shifted decisively toward computing and digital technology over 50 years. Topics related to software, semiconductors, and wireless communications now dominate patent abstracts."
         loading={prevL || defL}
         height={650}
@@ -150,6 +151,7 @@ export default function Chapter13() {
           xKey="year"
           areas={topicAreas}
           stackedPercent
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008] })}
         />
       </ChartContainer>
 
@@ -199,17 +201,17 @@ export default function Chapter13() {
 
       <Narrative>
         <p>
-          To visualize the full semantic landscape of patents, we project a stratified sample of 15,000 patents
-          from high-dimensional TF-IDF space into two dimensions using UMAP. Each dot represents a patent,
-          colored by its dominant topic. Clusters reveal families of related inventions; overlapping regions
-          reveal technology convergence.
+          To visualize the full semantic landscape of patents, a stratified sample of 5,000 patents is projected
+          from high-dimensional TF-IDF space into two dimensions using UMAP. Each point represents a patent,
+          colored by its dominant topic. Clusters indicate families of related inventions, and overlapping regions
+          suggest technology convergence.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Semantic Map of Patents (UMAP)"
-        caption="15,000 patents projected into 2D via UMAP on TF-IDF vectors (600 per topic, stratified). Each dot = one patent, colored by dominant topic."
-        insight="The UMAP projection reveals clear topic clusters with meaningful spatial relationships — computing and electronics topics cluster together, while chemistry and biotech form their own neighborhood. Bridging patents between clusters often represent the most novel cross-domain inventions."
+        title="UMAP Projection Reveals Distinct Technology Clusters With Meaningful Spatial Relationships"
+        caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. The projection reveals clear clustering by technology area, with computing and electronics topics grouped together and chemistry and biotechnology forming a separate cluster."
+        insight="The UMAP projection reveals clear topic clusters with meaningful spatial relationships: computing and electronics topics cluster together, while chemistry and biotechnology form a distinct neighborhood. Patents bridging clusters often represent the most novel cross-domain inventions."
         loading={umapL || defL}
         height={650}
         wide
@@ -235,9 +237,9 @@ export default function Chapter13() {
 
       <KeyInsight>
         <p>
-          The semantic map reveals that the boundaries between technology domains are not sharp lines
-          but fuzzy gradients. Patents in the overlapping regions — where computing meets biology,
-          or where materials science meets electronics — often represent the cutting edge of
+          The semantic map indicates that the boundaries between technology domains are not sharp lines
+          but rather diffuse gradients. Patents in the overlapping regions, where computing meets biology
+          or where materials science meets electronics, often appear to represent the leading edge of
           interdisciplinary innovation.
         </p>
       </KeyInsight>
@@ -247,17 +249,17 @@ export default function Chapter13() {
 
       <Narrative>
         <p>
-          How do the discovered topics map onto the formal CPC classification system? The chart below
-          cross-tabulates the top 8 most prevalent topics against CPC sections. Some topics align
-          closely with a single CPC section (e.g., chemistry-related topics map to section C), while
-          others — especially computing — span multiple sections.
+          The relationship between discovered topics and the formal CPC classification system warrants examination. The chart below
+          cross-tabulates the eight most prevalent topics against CPC sections. Some topics align
+          closely with a single CPC section (for example, chemistry-related topics correspond to Section C), while
+          others, particularly computing, span multiple sections.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Topic Distribution by CPC Section"
-        caption="Share (%) of patents in each CPC section belonging to each of the top 8 topics. Sections ordered A–H."
-        insight="Topics related to computing and data processing appear across nearly all CPC sections, confirming that digital technology has become a general-purpose innovation platform that pervades every industry."
+        title="Computing-Related Topics Appear Across Nearly All CPC Sections, Confirming Their General-Purpose Nature"
+        caption="Share (%) of patents in each CPC section belonging to each of the top 8 topics, ordered A through H. The most notable pattern is that computing and data-processing topics appear across nearly all sections, suggesting that digital technology has become a general-purpose innovation platform."
+        insight="Topics related to computing and data processing appear across nearly all CPC sections, consistent with the characterization of digital technology as a general-purpose innovation platform that pervades virtually every industry."
         loading={cpcL || defL}
         height={500}
       >
@@ -276,16 +278,16 @@ export default function Chapter13() {
 
       <Narrative>
         <p>
-          How novel are today&apos;s patents compared to decades past? We measure novelty as the Shannon
-          entropy of each patent&apos;s topic distribution: patents that draw roughly equally from many topics
-          (high entropy) are more thematically diverse — and arguably more novel — than patents concentrated
+          The degree to which contemporary patents differ from those of earlier decades constitutes an important empirical question. This analysis measures novelty as the Shannon
+          entropy of each patent&apos;s topic distribution: patents that draw approximately equally from many topics
+          (high entropy) are more thematically diverse, and may be considered more novel, than patents concentrated
           in a single topic (low entropy).
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Patent Novelty Over Time"
-        caption="Median and average Shannon entropy of patent topic distributions by year. Higher entropy = more thematically diverse patents."
+        title="Patent Novelty Has Risen Steadily Since the 1990s, Suggesting Growing Interdisciplinary Combination"
+        caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the 1990s suggests that modern inventions increasingly combine ideas from multiple technology domains, with acceleration during the 2010s."
         insight="Patent novelty has risen steadily since the 1990s, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the 2010s, coinciding with the rise of AI and other general-purpose technologies."
         loading={novTL}
       >
@@ -298,15 +300,16 @@ export default function Chapter13() {
           ]}
           yLabel="Shannon Entropy (bits)"
           yFormatter={(v) => v.toFixed(2)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2014] })}
         />
       </ChartContainer>
 
       <KeyInsight>
         <p>
           Rising entropy suggests that the boundaries between technology domains are becoming
-          more porous. The most novel patents — those scoring highest on entropy — tend to
-          sit at the intersection of multiple topics, combining language from computing,
-          biology, chemistry, and engineering in ways that would have been rare just a few decades ago.
+          more porous. The most novel patents, those scoring highest on entropy, tend to
+          be situated at the intersection of multiple topics, combining language from computing,
+          biology, chemistry, and engineering in ways that were uncommon just a few decades ago.
         </p>
       </KeyInsight>
 
@@ -348,8 +351,8 @@ export default function Chapter13() {
       )}
 
       <Narrative>
-        Having uncovered the hidden thematic structure of patent language, the final chapter zooms in to the company level -- building interactive innovation profiles for 100 major patent filers.
-        The topics and trends identified here provide the foundation for understanding how individual firms have navigated the evolving technology landscape.
+        Having uncovered the latent thematic structure of patent language, the final chapter shifts focus to the company level, constructing interactive innovation profiles for 100 major patent filers.
+        The topics and trends identified in this chapter provide the foundation for understanding how individual firms have navigated the evolving technology landscape.
       </Narrative>
 
       <DataNote>
@@ -357,7 +360,7 @@ export default function Chapter13() {
           This analysis uses <GlossaryTooltip term="TF-IDF">TF-IDF</GlossaryTooltip> vectorization (10,000 features,
           unigrams + bigrams) and <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> with 25 components on {formatCompact(totalPatents)} patent
           abstracts from 1976–2025. The <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip> projection uses a
-          stratified sample of 15,000 patents (600 per topic) with cosine distance. Novelty is measured as Shannon
+          stratified sample of 5,000 patents (200 per topic) with cosine distance. Novelty is measured as Shannon
           entropy of the NMF topic weight vector. Topic names are auto-generated from the top-weighted terms and may
           not perfectly capture all nuances of each topic cluster. Source: PatentsView / USPTO.
         </p>

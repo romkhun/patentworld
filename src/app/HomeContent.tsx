@@ -70,9 +70,9 @@ export default function HomePage() {
             , The Wharton School, University of Pennsylvania
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Explore 50 years of global innovation through {HERO_STATS.totalPatents} US patents.
-            From the microchip revolution to the AI era, discover how technology, geography,
-            and human ingenuity have shaped the world.
+            An interactive exploration of 50 years of innovation through {HERO_STATS.totalPatents} US patents.
+            From the semiconductor era to the rise of artificial intelligence, examine how technology, geography,
+            and human capital have shaped the landscape of invention.
           </p>
 
           <div ref={statsRef} className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -120,20 +120,20 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
           <h2 className="mb-4 font-serif text-2xl font-bold">About the Data</h2>
           <p className="max-w-prose text-muted-foreground">
-            PatentWorld analyzes every patent granted by the United States Patent and Trademark
-            Office (USPTO) from 1976 to 2025. The data comes from{' '}
+            PatentWorld examines every patent granted by the United States Patent and Trademark
+            Office (USPTO) from 1976 to 2025. The data are derived from{' '}
             <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
               PatentsView
             </a>
             , a platform supported by the USPTO that disambiguates and links patent data.
-            Our analysis covers 9.36 million US patents, their inventors, assignees, technology
+            The analysis covers 9.36 million US patents, their inventors, assignees, technology
             classifications, geographic origins, and citation networks.
           </p>
           <Link
             href="/about/"
             className="mt-4 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
-            Learn more about our methodology <ArrowRight className="h-3 w-3" />
+            Data sources and methodology <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
       </section>

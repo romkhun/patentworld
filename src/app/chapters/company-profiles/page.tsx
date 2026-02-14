@@ -21,6 +21,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS, CPC_SECTION_COLORS, ARCHETYPE_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { formatCompact } from '@/lib/formatters';
 import type {
   CompanyProfile,
@@ -266,172 +267,106 @@ export default function Chapter14() {
       />
 
       <KeyFindings>
-        <li>Corporate patent strategies vary dramatically: some firms maintain broad, diversified portfolios while others concentrate in narrow technology niches.</li>
-        <li>Six distinct trajectory archetypes emerge from patent output histories, from Steady Climbers to Fading Giants, revealing the lifecycle patterns of corporate innovation.</li>
-        <li>Only a small fraction of top patent filers have maintained a continuous top-100 presence across all five decades, highlighting the volatility of innovation leadership.</li>
-        <li>Technology pivots -- sudden shifts in a company&apos;s patent portfolio -- often precede major business transformations and can be detected years in advance through CPC distribution analysis.</li>
+        <li>Corporate patent strategies vary substantially: some firms maintain broad, diversified portfolios while others concentrate in narrow technology niches.</li>
+        <li>Six distinct trajectory archetypes emerge from patent output histories, ranging from Steady Climbers to Boom &amp; Bust patterns, revealing characteristic lifecycle patterns of corporate innovation.</li>
+        <li>Only a small fraction of top patent filers have maintained a continuous top-50 presence across all five decades, underscoring the volatility of innovation leadership.</li>
+        <li>Technology pivots, defined as sudden shifts in a company&apos;s patent portfolio, often precede major business transformations and can be detected years in advance through CPC distribution analysis.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Interactive profiles of 100 major patent filers reveal six distinct trajectory archetypes -- from Steady Climbers to Fading Giants. Only a handful of companies have maintained a top-100 ranking across all five decades (1970s-2020s). Technology pivots detected via Jensen-Shannon divergence of CPC distributions often precede major strategic shifts by years. Portfolio diversification, measured by Shannon entropy, varies dramatically: conglomerates like Samsung achieve high entropy while pharmaceutical firms stay focused in narrow domains.
+          Interactive profiles of 100 major patent filers reveal six distinct trajectory archetypes, ranging from Steady Climbers to Boom &amp; Bust patterns. Only a small number of companies have maintained a top-50 ranking across all five decades (1970s-2020s). Technology pivots detected via Jensen-Shannon divergence of CPC distributions often precede major strategic shifts by several years. Portfolio diversification, measured by Shannon entropy, varies substantially: conglomerates such as Samsung achieve high entropy while pharmaceutical firms remain concentrated in narrow domains.
         </p>
       </aside>
 
-      {/* ── Section A1: Interactive Company Profiles ── */}
-      <SectionDivider label="Interactive Company Profiles" />
+      {/* ── Section A3: Corporate Mortality (broad overview) ── */}
+      <SectionDivider label="Corporate Mortality" />
 
       <Narrative>
         <p>
-          Select a company below to explore its complete innovation profile. Each dashboard
-          shows patent output, technology portfolio evolution, citation impact, team composition,
-          and breadth of innovation over time. These profiles reveal the <StatCallout value="strategic fingerprint" /> of
-          each organization&apos;s R&amp;D investment.
+          The persistence of corporate patent leadership over extended time horizons represents
+          a central question in the study of innovation. The rank heatmap below tracks corporate
+          presence in the top patent rankings across five decades, revealing the
+          considerable <StatCallout value="volatility of innovation leadership" />.
         </p>
       </Narrative>
 
-      {companyList.length > 0 && (
-        <div className="my-6 flex items-center gap-3">
-          <span className="text-sm font-medium text-muted-foreground">Company:</span>
-          <PWCompanySelector
-            companies={companyList}
-            selected={activeCompany}
-            onSelect={setSelectedCompany}
-          />
-        </div>
-      )}
-
-      {companySummary && (
-        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {mortality && (
+        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
           <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Total Patents</div>
-            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.totalPatents)}</div>
+            <div className="text-xs text-muted-foreground">Continuous Survivors</div>
+            <div className="mt-1 text-2xl font-bold">{continuousCount}</div>
+            <div className="text-xs text-muted-foreground">companies in top 50 every decade</div>
           </div>
           <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Active Years</div>
-            <div className="mt-1 text-2xl font-bold">{companySummary.firstYear}&ndash;{companySummary.lastYear}</div>
+            <div className="text-xs text-muted-foreground">Decades Tracked</div>
+            <div className="mt-1 text-2xl font-bold">{mortality.decades.length}</div>
           </div>
           <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Peak Year</div>
-            <div className="mt-1 text-2xl font-bold">{companySummary.peakYear}</div>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Peak Output</div>
-            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.peakCount)}</div>
+            <div className="text-xs text-muted-foreground">Survival Rates</div>
+            <div className="mt-1 space-y-1">
+              {(Array.isArray(mortality.survival_rates) ? mortality.survival_rates : []).slice(0, 3).map((sr: any, i: number) => (
+                <div key={i} className="text-xs">
+                  <span className="text-muted-foreground">{sr.from_decade}&rarr;{sr.to_decade}:</span>{' '}
+                  <span className="font-mono font-medium">{sr.survival_rate?.toFixed(0) ?? '?'}%</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
       <ChartContainer
-        title={`Annual Patent Output: ${activeCompany || 'Loading...'}`}
-        caption="Utility patents granted per year for the selected company."
-        insight="Annual patent counts reveal growth phases, strategic shifts, and the impact of economic cycles on corporate R&D output."
-        loading={prL}
+        title="High Turnover in Top Patent Rankings Demonstrates That Sustained Innovation Leadership Is Rare"
+        caption="Rank heatmap showing how top patent-holding companies shifted in ranking across decades. Darker cells indicate higher rank (more patents). The most notable pattern is the high degree of turnover, with most firms that dominated one era being displaced by new entrants in the next."
+        insight="The high turnover in top rankings demonstrates that sustained innovation leadership is exceptionally rare. Most firms that dominated one era were displaced by new entrants in the subsequent decade."
+        loading={moL}
+        height={900}
       >
-        {companyData ? (
-          <PWBarChart
-            data={annualPatentData}
-            xKey="year"
-            bars={[{ key: 'patent_count', name: 'Patents', color: CHART_COLORS[0] }]}
-            yLabel="Patents"
+        {mortalityHeatmapData.length > 0 ? (
+          <PWRankHeatmap
+            data={mortalityHeatmapData}
+            nameKey="company"
+            yearKey="year"
+            rankKey="rank"
+            maxRank={50}
+            yearInterval={10}
           />
         ) : <div />}
       </ChartContainer>
 
-      <ChartContainer
-        title={`Technology Portfolio: ${activeCompany || 'Loading...'}`}
-        caption="CPC section distribution over time showing how the company's technology focus has evolved."
-        insight="Shifts in the CPC distribution signal strategic pivots -- a growing share in section H (Electricity) or G (Physics) often indicates a move toward digital and computing technologies."
-        loading={prL}
-      >
-        {companyData ? (
-          <PWAreaChart
-            data={cpcDistributionData}
-            xKey="year"
-            areas={CPC_SECTIONS.map((sec) => ({
-              key: sec,
-              name: `${sec}: ${CPC_SECTION_NAMES[sec]}`,
-              color: CPC_SECTION_COLORS[sec],
-            }))}
-            stackedPercent
-            yLabel="Share"
-          />
-        ) : <div />}
-      </ChartContainer>
-
-      <ChartContainer
-        title={`Citation Impact: ${activeCompany || 'Loading...'}`}
-        caption="Median 5-year forward citations per patent over time."
-        insight="Citation trends reveal whether a company's patents are becoming more or less influential -- declining citations despite rising volume may signal a shift toward defensive or incremental patenting."
-        loading={prL}
-      >
-        {companyData ? (
-          <PWLineChart
-            data={citationsData}
-            xKey="year"
-            lines={[
-              { key: 'median_citations_5yr', name: 'Median Citations (5yr)', color: CHART_COLORS[0] },
-            ]}
-            yLabel="Citations"
-          />
-        ) : <div />}
-      </ChartContainer>
-
-      <ChartContainer
-        title={`Team Size & Inventor Pool: ${activeCompany || 'Loading...'}`}
-        caption="Average team size (left axis) and total active inventors (right axis) over time."
-        insight="Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with flat inventor counts indicate deepening specialization."
-        loading={prL}
-      >
-        {companyData ? (
-          <PWLineChart
-            data={teamInventorData}
-            xKey="year"
-            lines={[
-              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
-              { key: 'inventor_count', name: 'Inventor Count', color: CHART_COLORS[3], yAxisId: 'right' },
-            ]}
-            yLabel="Team Size"
-            rightYLabel="Inventors"
-          />
-        ) : <div />}
-      </ChartContainer>
-
-      <ChartContainer
-        title={`Technology Breadth: ${activeCompany || 'Loading...'}`}
-        caption="Number of distinct CPC subclasses with patent activity each year."
-        insight="Rising CPC breadth indicates a company is diversifying its innovation portfolio across more technology domains, while declining breadth signals increasing specialization."
-        loading={prL}
-      >
-        {companyData ? (
-          <PWLineChart
-            data={cpcBreadthData}
-            xKey="year"
-            lines={[
-              { key: 'cpc_breadth', name: 'CPC Breadth', color: CHART_COLORS[4] },
-            ]}
-            yLabel="Distinct Subclasses"
-          />
-        ) : <div />}
-      </ChartContainer>
+      {continuousNames.length > 0 && (
+        <div className="max-w-2xl mx-auto my-6">
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">
+            Companies in the Top 50 Every Decade
+          </h3>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {continuousNames.map((name: string) => (
+              <span key={name} className="rounded-full border bg-card px-3 py-1 text-xs font-medium">
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       <KeyInsight>
         <p>
-          Company innovation profiles reveal distinct strategic signatures. Some firms like Samsung
-          show rapid portfolio expansion across many technology domains, while others like pharmaceutical
-          companies maintain deep but narrow portfolios. The relationship between patent volume,
-          citation impact, and technology breadth tells a nuanced story about each firm&apos;s
-          approach to R&amp;D investment.
+          Innovation leadership appears to be considerably more volatile than commonly assumed. Only a small number of
+          companies have maintained a top-50 patent ranking across all five decades. The remainder
+          have either risen, fallen, or been replaced entirely, a pattern that underscores
+          the persistent pace of technological change and the difficulty of sustaining corporate
+          R&amp;D investment over extended time horizons.
         </p>
       </KeyInsight>
 
-      {/* ── Section A2: Trajectory Archetypes ── */}
+      {/* ── Section A2: Trajectory Archetypes (primary decomposition) ── */}
       <SectionDivider label="Innovation Trajectory Archetypes" />
 
       <Narrative>
         <p>
-          By analyzing the normalized patent output trajectories of 200 major filers,
+          By analyzing the normalized patent output trajectories of the 200 largest filers,
           six distinct <StatCallout value="archetypes" /> emerge. Each archetype captures a
           characteristic pattern of innovation growth, decline, or stability that reflects
           the underlying corporate strategy and market dynamics.
@@ -466,8 +401,8 @@ export default function Chapter14() {
 
       <Narrative>
         <p>
-          The table below lists all companies with their archetype classification. Use the
-          filter to focus on a specific trajectory pattern and explore which firms share
+          The table below lists all companies with their archetype classification. The
+          filter allows focus on a specific trajectory pattern, facilitating exploration of which firms share
           similar innovation dynamics.
         </p>
       </Narrative>
@@ -529,112 +464,30 @@ export default function Chapter14() {
 
       <KeyInsight>
         <p>
-          The trajectory archetypes reveal that corporate innovation rarely follows a simple
-          growth curve. &quot;Steady Climbers&quot; like Samsung show decades of sustained growth,
-          while &quot;Boom &amp; Bust&quot; firms experience dramatic peaks followed by sharp declines --
-          often tied to the rise and fall of specific technology markets. &quot;Late Bloomers&quot;
-          demonstrate that major patent activity can emerge suddenly, even from established firms
-          entering new technology domains.
+          The trajectory archetypes indicate that corporate innovation rarely follows a simple
+          growth curve. &quot;Late Bloomer&quot; companies such as Samsung exhibit rapid growth after an extended
+          period of lower activity, while &quot;Boom &amp; Bust&quot; firms experience pronounced peaks followed by sharp declines,
+          often tied to the rise and fall of specific technology markets. &quot;Steady Climbers&quot;
+          demonstrate consistent, sustained growth in patent output over extended periods.
         </p>
       </KeyInsight>
 
-      {/* ── Section A3: Corporate Mortality ── */}
-      <SectionDivider label="Corporate Mortality" />
-
-      <Narrative>
-        <p>
-          Of the companies that ranked among the top patent filers in the 1970s,
-          how many survived to the 2020s? The rank heatmap below tracks corporate
-          presence in the top patent rankings across five decades, revealing the
-          remarkable <StatCallout value="volatility of innovation leadership" />.
-        </p>
-      </Narrative>
-
-      {mortality && (
-        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Continuous Survivors</div>
-            <div className="mt-1 text-2xl font-bold">{continuousCount}</div>
-            <div className="text-xs text-muted-foreground">companies in top 100 every decade</div>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Decades Tracked</div>
-            <div className="mt-1 text-2xl font-bold">{mortality.decades.length}</div>
-          </div>
-          <div className="rounded-lg border bg-card p-4">
-            <div className="text-xs text-muted-foreground">Survival Rates</div>
-            <div className="mt-1 space-y-1">
-              {(Array.isArray(mortality.survival_rates) ? mortality.survival_rates : []).slice(0, 3).map((sr: any, i: number) => (
-                <div key={i} className="text-xs">
-                  <span className="text-muted-foreground">{sr.from_decade}&rarr;{sr.to_decade}:</span>{' '}
-                  <span className="font-mono font-medium">{sr.survival_rate?.toFixed(0) ?? '?'}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <ChartContainer
-        title="Corporate Patent Ranking Over Decades"
-        caption="Rank heatmap showing how top patent-holding companies shifted in ranking across decades. Darker cells indicate higher rank (more patents)."
-        insight="The high turnover in top rankings demonstrates that sustained innovation leadership is exceptionally rare. Most firms that dominated one era were displaced by new entrants in the next."
-        loading={moL}
-        height={900}
-      >
-        {mortalityHeatmapData.length > 0 ? (
-          <PWRankHeatmap
-            data={mortalityHeatmapData}
-            nameKey="company"
-            yearKey="year"
-            rankKey="rank"
-            maxRank={50}
-            yearInterval={10}
-          />
-        ) : <div />}
-      </ChartContainer>
-
-      {continuousNames.length > 0 && (
-        <div className="max-w-2xl mx-auto my-6">
-          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">
-            Companies in the Top 100 Every Decade
-          </h3>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {continuousNames.map((name: string) => (
-              <span key={name} className="rounded-full border bg-card px-3 py-1 text-xs font-medium">
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <KeyInsight>
-        <p>
-          Innovation leadership is far more volatile than commonly assumed. Only a handful of
-          companies have maintained a top-100 patent ranking across all five decades. The rest
-          have either risen, fallen, or been replaced entirely -- a pattern that underscores
-          the relentless pace of technological change and the difficulty of sustaining corporate
-          R&amp;D investment over long horizons.
-        </p>
-      </KeyInsight>
-
-      {/* ── Section B1: Portfolio Diversification ── */}
+      {/* ── Section B1: Portfolio Diversification (secondary decomposition) ── */}
       <SectionDivider label="Portfolio Diversification" />
 
       <Narrative>
         <p>
-          How diversified are the patent portfolios of major filers? <GlossaryTooltip term="Shannon entropy">Shannon
-          entropy</GlossaryTooltip> across CPC subclasses measures whether a company spreads its
+          The degree of portfolio diversification among major filers varies substantially. <GlossaryTooltip term="Shannon entropy">Shannon
+          entropy</GlossaryTooltip> across CPC subclasses measures whether a company distributes its
           innovation across many technology areas or concentrates in a few domains.
           Higher entropy indicates a broader, more diversified portfolio.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Portfolio Diversity: Top 10 Companies"
-        caption="Shannon entropy across CPC subclasses over time for the 10 most diversified patent filers."
-        insight="Technology conglomerates like Samsung and Hitachi maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization -- reflecting fundamentally different innovation strategies."
+        title="Technology Conglomerates Such as Samsung and Hitachi Maintain the Highest Portfolio Diversity"
+        caption="Shannon entropy across CPC subclasses over time for the 10 most diversified patent filers. The data indicate that technology conglomerates maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization."
+        insight="Technology conglomerates such as Samsung and Hitachi maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization, reflecting fundamentally different innovation strategies."
         loading={diL}
       >
         {divPivot.length > 0 ? (
@@ -648,14 +501,15 @@ export default function Chapter14() {
             }))}
             yLabel="Shannon Entropy"
             yFormatter={(v: number) => v.toFixed(1)}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
           />
         ) : <div />}
       </ChartContainer>
 
       <ChartContainer
-        title="Diversification vs. Citation Impact"
-        caption="Shannon entropy (x) vs. median 5-year forward citations (y) for the latest period. Each dot is a company."
-        insight="The scatter reveals no simple trade-off between breadth and quality: some highly diversified firms also achieve strong citation impact, suggesting that diversification and excellence are not mutually exclusive."
+        title="No Clear Trade-Off Between Portfolio Diversification and Citation Impact Is Observed"
+        caption="Shannon entropy (x-axis) vs. median 5-year forward citations (y-axis) for the latest period. Each point represents a company. The scatter indicates no simple trade-off between breadth and quality, as some highly diversified firms also achieve strong citation impact."
+        insight="The scatter plot reveals no simple trade-off between breadth and quality: some highly diversified firms also achieve strong citation impact, suggesting that diversification and research excellence are not mutually exclusive."
         loading={diL || prL}
       >
         {diversityScatterData.length > 0 ? (
@@ -680,14 +534,60 @@ export default function Chapter14() {
       <KeyInsight>
         <p>
           Portfolio diversification is not simply a function of company size. Some mid-sized
-          filers achieve remarkably high entropy through deliberate cross-domain R&amp;D strategies,
+          filers achieve notably high entropy through deliberate cross-domain R&amp;D strategies,
           while some of the largest filers maintain focused portfolios. The relationship between
-          diversification and citation impact suggests that breadth and quality can coexist --
-          companies with diverse portfolios are not necessarily sacrificing depth for coverage.
+          diversification and citation impact suggests that breadth and quality can coexist:
+          companies with diverse portfolios do not necessarily sacrifice depth for coverage.
         </p>
       </KeyInsight>
 
-      {/* ── Section B2: Technology Pivot Detection ── */}
+      {/* ── Section B3: Patent Market Concentration (secondary decomposition) ── */}
+      <SectionDivider label="Patent Market Concentration" />
+
+      <Narrative>
+        <p>
+          The concentration of patent activity within each technology sector provides insight into competitive dynamics. The <GlossaryTooltip term="HHI">Herfindahl-Hirschman
+          Index</GlossaryTooltip> (HHI) measures the degree to which patenting in a CPC section is
+          dominated by a few large filers versus distributed across many organizations. Higher HHI
+          indicates greater concentration.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        title="Patent Concentration Has Increased in Electricity and Physics Sections, Reflecting Technology Firm Dominance"
+        caption="Herfindahl-Hirschman Index for each CPC technology section over time. Higher values indicate greater concentration of patent activity among fewer firms. The most notable pattern is the rising concentration in Sections H (Electricity) and G (Physics), while more applied fields such as E (Fixed Constructions) remain comparatively fragmented."
+        insight="Rising concentration in Sections H (Electricity) and G (Physics) reflects the dominance of a few technology firms, while more applied fields such as E (Fixed Constructions) remain fragmented across many smaller filers."
+        loading={coL}
+        wide
+      >
+        {concPivot.length > 0 ? (
+          <PWLineChart
+            data={concPivot}
+            xKey="year"
+            lines={concSections.map((sec) => ({
+              key: sec,
+              name: `${sec}: ${CPC_SECTION_NAMES[sec] ?? sec}`,
+              color: CPC_SECTION_COLORS[sec],
+            }))}
+            yLabel="HHI"
+            yFormatter={(v: number) => v.toFixed(4)}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2011] })}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Patent market concentration varies substantially across technology sectors and has
+          evolved considerably over time. Sectors dominated by large-scale electronics and
+          computing firms exhibit the highest concentration, while more traditional fields remain
+          comparatively fragmented. The trend toward rising concentration in high-technology
+          sectors raises important questions about competitive dynamics and whether the patent
+          system may be reinforcing the market power of dominant firms.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B2: Technology Pivot Detection (analytical deep dive) ── */}
       <SectionDivider label="Technology Pivot Detection" />
 
       <Narrative>
@@ -695,16 +595,16 @@ export default function Chapter14() {
           Technology pivots occur when a company&apos;s patent portfolio shifts significantly
           between consecutive time windows. Using <GlossaryTooltip term="Jensen-Shannon divergence">Jensen-Shannon
           divergence</GlossaryTooltip> (JSD) to measure the distance between CPC distributions
-          across windows, we can detect and characterize these pivots -- often years before they
+          across windows, it is possible to detect and characterize these pivots, often years before they
           become visible in business strategy announcements.
         </p>
       </Narrative>
 
       {pivotCompanyData.length > 0 && (
         <ChartContainer
-          title={`JSD Score Over Time: ${activePivotCompany}`}
-          caption="Jensen-Shannon divergence between consecutive 5-year windows. Higher values indicate larger shifts in technology portfolio composition."
-          insight="Spikes in JSD pinpoint moments when a company's innovation strategy underwent significant reorientation, often driven by acquisitions, market shifts, or deliberate R&D pivots."
+          title={`JSD Scores for ${activePivotCompany} Identify Periods of Significant Portfolio Reorientation`}
+          caption="Jensen-Shannon divergence between consecutive 5-year windows. Higher values indicate larger shifts in technology portfolio composition. Spikes in JSD correspond to periods when the company's innovation strategy underwent significant reorientation."
+          insight="Elevated JSD scores identify periods when a company's innovation strategy underwent significant reorientation, often driven by acquisitions, market shifts, or deliberate R&D pivots."
           loading={pvL}
         >
           <PWBarChart
@@ -752,69 +652,173 @@ export default function Chapter14() {
 
       <KeyInsight>
         <p>
-          Technology pivot detection reveals that major corporate transformations often begin
+          Technology pivot detection suggests that major corporate transformations often begin
           in the patent portfolio years before they become visible in product announcements or
-          financial reports. The highest JSD scores correspond to well-known strategic shifts --
-          such as IBM&apos;s move from hardware to services, or Nokia&apos;s pivot from mobile
-          hardware to telecommunications infrastructure. This makes patent portfolio analysis a
-          powerful leading indicator of corporate strategy.
+          financial reports. The highest JSD scores correspond to well-documented strategic shifts,
+          such as IBM&apos;s transition from hardware to services, or Nokia&apos;s pivot from mobile
+          hardware to telecommunications infrastructure. These findings indicate that patent portfolio analysis
+          may serve as a leading indicator of corporate strategy.
         </p>
       </KeyInsight>
 
-      {/* ── Section B3: Patent Market Concentration ── */}
-      <SectionDivider label="Patent Market Concentration" />
+      {/* ── Section A1: Interactive Company Profiles (interactive deep dive) ── */}
+      <SectionDivider label="Interactive Company Profiles" />
 
       <Narrative>
         <p>
-          How concentrated is patent activity within each technology sector? The <GlossaryTooltip term="HHI">Herfindahl-Hirschman
-          Index</GlossaryTooltip> (HHI) measures the degree to which patenting in a CPC section is
-          dominated by a few large filers versus spread across many organizations. Higher HHI
-          indicates greater concentration.
+          The selector below provides access to the complete innovation profile for each company. Each dashboard
+          presents patent output, technology portfolio evolution, citation impact, team composition,
+          and breadth of innovation over time. These profiles reveal the <StatCallout value="strategic fingerprint" /> of
+          each organization&apos;s R&amp;D investment.
         </p>
       </Narrative>
 
+      {companyList.length > 0 && (
+        <div className="my-6 flex items-center gap-3">
+          <span className="text-sm font-medium text-muted-foreground">Company:</span>
+          <PWCompanySelector
+            companies={companyList}
+            selected={activeCompany}
+            onSelect={setSelectedCompany}
+          />
+        </div>
+      )}
+
+      {companySummary && (
+        <div className="my-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Total Patents</div>
+            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.totalPatents)}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Active Years</div>
+            <div className="mt-1 text-2xl font-bold">{companySummary.firstYear}&ndash;{companySummary.lastYear}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Peak Year</div>
+            <div className="mt-1 text-2xl font-bold">{companySummary.peakYear}</div>
+          </div>
+          <div className="rounded-lg border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Peak Output</div>
+            <div className="mt-1 text-2xl font-bold">{formatCompact(companySummary.peakCount)}</div>
+          </div>
+        </div>
+      )}
+
       <ChartContainer
-        title="Patent Concentration (HHI) by CPC Section"
-        caption="Herfindahl-Hirschman Index for each CPC technology section over time. Higher values indicate greater concentration of patent activity among fewer firms."
-        insight="Rising concentration in sections like H (Electricity) and G (Physics) reflects the dominance of a few technology giants, while more applied fields like E (Fixed Constructions) remain fragmented across many smaller filers."
-        loading={coL}
-        wide
+        title={`Annual Patent Output for ${activeCompany || 'Loading...'} Reveals Growth Phases and Strategic Shifts`}
+        caption="Utility patents granted per year for the selected company. Annual patent counts indicate growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
+        insight="Annual patent counts reveal growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
+        loading={prL}
       >
-        {concPivot.length > 0 ? (
-          <PWLineChart
-            data={concPivot}
+        {companyData ? (
+          <PWBarChart
+            data={annualPatentData}
             xKey="year"
-            lines={concSections.map((sec) => ({
+            bars={[{ key: 'patent_count', name: 'Patents', color: CHART_COLORS[0] }]}
+            yLabel="Patents"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Technology Portfolio Evolution for ${activeCompany || 'Loading...'}`}
+        caption="CPC section distribution over time illustrating how the company's technology focus has evolved. Shifts in the distribution signal strategic pivots; a growing share in Section H (Electricity) or G (Physics) often indicates a move toward digital and computing technologies."
+        insight="Shifts in the CPC distribution signal strategic pivots: a growing share in Section H (Electricity) or G (Physics) often indicates a transition toward digital and computing technologies."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWAreaChart
+            data={cpcDistributionData}
+            xKey="year"
+            areas={CPC_SECTIONS.map((sec) => ({
               key: sec,
-              name: `${sec}: ${CPC_SECTION_NAMES[sec] ?? sec}`,
+              name: `${sec}: ${CPC_SECTION_NAMES[sec]}`,
               color: CPC_SECTION_COLORS[sec],
             }))}
-            yLabel="HHI"
-            yFormatter={(v: number) => v.toFixed(4)}
+            stackedPercent
+            yLabel="Share"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Citation Impact Over Time for ${activeCompany || 'Loading...'}`}
+        caption="Median 5-year forward citations per patent over time. Citation trends indicate whether a company's patents are becoming more or less influential; declining citations despite rising volume may suggest a shift toward defensive or incremental patenting."
+        insight="Citation trends indicate whether a company's patents are becoming more or less influential. Declining citations despite rising volume may suggest a shift toward defensive or incremental patenting."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={citationsData}
+            xKey="year"
+            lines={[
+              { key: 'median_citations_5yr', name: 'Median Citations (5yr)', color: CHART_COLORS[0] },
+            ]}
+            yLabel="Citations"
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Team Size and Inventor Pool for ${activeCompany || 'Loading...'}`}
+        caption="Average team size (left axis) and total active inventors (right axis) over time. Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with stable inventor counts indicate deepening specialization."
+        insight="Growing team sizes alongside expanding inventor pools suggest increasing R&D investment, while rising team sizes with stable inventor counts indicate deepening specialization."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={teamInventorData}
+            xKey="year"
+            lines={[
+              { key: 'avg_team_size', name: 'Avg Team Size', color: CHART_COLORS[1] },
+              { key: 'inventor_count', name: 'Inventor Count', color: CHART_COLORS[3], yAxisId: 'right' },
+            ]}
+            yLabel="Team Size"
+            rightYLabel="Inventors"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        title={`Technology Breadth Over Time for ${activeCompany || 'Loading...'}`}
+        caption="Number of distinct CPC subclasses with patent activity each year. Rising CPC breadth indicates diversification of the innovation portfolio across more technology domains, while declining breadth suggests increasing specialization."
+        insight="Rising CPC breadth indicates that a company is diversifying its innovation portfolio across more technology domains, while declining breadth suggests increasing specialization."
+        loading={prL}
+      >
+        {companyData ? (
+          <PWLineChart
+            data={cpcBreadthData}
+            xKey="year"
+            lines={[
+              { key: 'cpc_breadth', name: 'CPC Breadth', color: CHART_COLORS[4] },
+            ]}
+            yLabel="Distinct Subclasses"
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
           />
         ) : <div />}
       </ChartContainer>
 
       <KeyInsight>
         <p>
-          Patent market concentration varies dramatically across technology sectors and has
-          evolved significantly over time. Sectors dominated by large-scale electronics and
-          computing firms show the highest concentration, while more traditional fields remain
-          comparatively fragmented. The trend toward rising concentration in high-technology
-          sectors raises important questions about competitive dynamics and whether the patent
-          system is reinforcing the market power of dominant firms.
+          Company innovation profiles reveal distinct strategic signatures. Some firms, such as Samsung,
+          exhibit rapid portfolio expansion across many technology domains, while others, particularly pharmaceutical
+          companies, maintain deep but narrow portfolios. The relationship between patent volume,
+          citation impact, and technology breadth provides a nuanced perspective on each firm&apos;s
+          approach to R&amp;D investment.
         </p>
       </KeyInsight>
 
       <Narrative>
-        This concludes PatentWorld&apos;s exploration of 50 years of US patent innovation.
+        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation.
       </Narrative>
 
       <DataNote>
         Company profiles are constructed from PatentsView data for the top 100 patent filers by
         total utility patent count, 1976-2025. CPC distribution uses the primary CPC classification
         of each patent. Trajectory archetypes are computed via time-series clustering of
-        normalized annual patent counts. Corporate mortality tracks presence in the top 100 per
+        normalized annual patent counts. Corporate mortality tracks presence in the top 50 per
         decade. Shannon entropy is computed across CPC subclasses. Technology pivots use
         Jensen-Shannon divergence between consecutive 5-year windows of CPC distributions.
         Patent concentration (HHI) is computed at the CPC section level using assignee patent

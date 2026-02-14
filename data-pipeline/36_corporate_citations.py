@@ -44,11 +44,12 @@ t0 = time.time()
 
 # Step 1: Identify top 30 assignees by all-time utility patent count
 top30_rows = con.execute(f"""
-    SELECT disambig_assignee_organization AS organization, COUNT(DISTINCT patent_id) AS total
-    FROM {ASSIGNEE_TSV()}
-    WHERE disambig_assignee_organization IS NOT NULL
-      AND TRIM(disambig_assignee_organization) != ''
-      AND assignee_sequence = 0
+    SELECT a.disambig_assignee_organization AS organization, COUNT(DISTINCT p.patent_id) AS total
+    FROM {PATENT_TSV()} p
+    JOIN {ASSIGNEE_TSV()} a ON p.patent_id = a.patent_id AND a.assignee_sequence = 0
+    WHERE p.patent_type = 'utility'
+      AND a.disambig_assignee_organization IS NOT NULL
+      AND TRIM(a.disambig_assignee_organization) != ''
     GROUP BY organization
     ORDER BY total DESC
     LIMIT 30
@@ -173,6 +174,7 @@ leadership_df = con.execute(f"""
         CAST(rank AS INTEGER) AS rank
     FROM ranked
     WHERE rank <= 5
+      AND window_start <= 2020
     ORDER BY window_start, section, rank
 """).fetchdf()
 log(f"  Leadership query: {time.time()-t0:.1f}s ({len(leadership_df):,} rows)")
@@ -202,11 +204,12 @@ t0 = time.time()
 
 # Step 1: Identify top 50 assignees
 top50_rows = con.execute(f"""
-    SELECT disambig_assignee_organization AS organization, COUNT(DISTINCT patent_id) AS total
-    FROM {ASSIGNEE_TSV()}
-    WHERE disambig_assignee_organization IS NOT NULL
-      AND TRIM(disambig_assignee_organization) != ''
-      AND assignee_sequence = 0
+    SELECT a.disambig_assignee_organization AS organization, COUNT(DISTINCT p.patent_id) AS total
+    FROM {PATENT_TSV()} p
+    JOIN {ASSIGNEE_TSV()} a ON p.patent_id = a.patent_id AND a.assignee_sequence = 0
+    WHERE p.patent_type = 'utility'
+      AND a.disambig_assignee_organization IS NOT NULL
+      AND TRIM(a.disambig_assignee_organization) != ''
     GROUP BY organization
     ORDER BY total DESC
     LIMIT 50

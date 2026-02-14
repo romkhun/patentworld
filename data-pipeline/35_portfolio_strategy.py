@@ -45,11 +45,12 @@ t0 = time.time()
 
 # Step 1: Identify top 50 assignees by total utility-patent count
 top50_rows = con.execute(f"""
-    SELECT disambig_assignee_organization AS organization, COUNT(DISTINCT patent_id) AS total
-    FROM {ASSIGNEE_TSV()}
-    WHERE disambig_assignee_organization IS NOT NULL
-      AND TRIM(disambig_assignee_organization) != ''
-      AND assignee_sequence = 0
+    SELECT a.disambig_assignee_organization AS organization, COUNT(DISTINCT p.patent_id) AS total
+    FROM {PATENT_TSV()} p
+    JOIN {ASSIGNEE_TSV()} a ON p.patent_id = a.patent_id AND a.assignee_sequence = 0
+    WHERE p.patent_type = 'utility'
+      AND a.disambig_assignee_organization IS NOT NULL
+      AND TRIM(a.disambig_assignee_organization) != ''
     GROUP BY organization
     ORDER BY total DESC
     LIMIT 50

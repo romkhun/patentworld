@@ -46,7 +46,7 @@ export function PWScatterChart({
           tickLine={false}
           axisLine={{ stroke: 'hsl(var(--border))' }}
           name={xLabel ?? xKey}
-          label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -5, fontSize: 11, fill: 'hsl(var(--muted-foreground))' } : undefined}
+          label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -5, fontSize: 13, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
         />
         <YAxis
@@ -58,7 +58,7 @@ export function PWScatterChart({
           axisLine={false}
           width={60}
           name={yLabel ?? yKey}
-          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', offset: 10, fontSize: 11, fill: 'hsl(var(--muted-foreground))' } : undefined}
+          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', offset: 10, fontSize: 13, fill: 'hsl(var(--muted-foreground))' } : undefined}
           domain={['auto', 'auto']}
         />
         <ZAxis range={[20, 20]} />
@@ -90,9 +90,9 @@ export function PWScatterChart({
           }}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: 11 }}
+          wrapperStyle={{ paddingTop: 12, fontSize: 12 }}
           iconType="circle"
-          iconSize={6}
+          iconSize={8}
         />
         {grouped.map((group) => (
           <Scatter

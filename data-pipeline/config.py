@@ -10,7 +10,7 @@ import time
 import orjson
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-DATA_DIR = "/media/saerom/saerom-ssd/Dropbox (Penn)/Research/PatentsView"
+DATA_DIR = "/media/saerom/saerom-ssd/Penn Dropbox/Saerom (Ronnie) Lee/Research/PatentsView"
 OUTPUT_DIR = "/home/saerom/projects/patentworld/public/data"
 TEMP_DIR = "/tmp/patentview"
 

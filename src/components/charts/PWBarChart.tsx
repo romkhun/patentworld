@@ -64,14 +64,14 @@ export function PWBarChart({
                   value={yLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
                 />
               )}
             </XAxis>
             <YAxis
               type="category"
               dataKey={xKey}
-              tick={{ fontSize: 11.5, fill: 'hsl(var(--muted-foreground))' }}
+              tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
               tickLine={false}
               axisLine={false}
               width={labelWidth}
@@ -81,7 +81,7 @@ export function PWBarChart({
                   value={xLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
                   offset={-5}
                 />
               )}
@@ -100,7 +100,7 @@ export function PWBarChart({
                   value={xLabel}
                   position="insideBottom"
                   offset={-2}
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
                 />
               )}
             </XAxis>
@@ -116,7 +116,7 @@ export function PWBarChart({
                   value={yLabel}
                   angle={-90}
                   position="insideLeft"
-                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                  style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
                   offset={-5}
                 />
               )}

@@ -27,6 +27,7 @@ export const CHAPTERS: ChapterMeta[] = [
     description: 'Which technologies are rising, and which are fading?',
     relatedChapters: [1, 7, 11, 12],
   },
+
   {
     number: 3,
     slug: 'who-innovates',
@@ -65,7 +66,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Knowledge Network',
     subtitle: 'How ideas build on ideas',
     description: 'Citations, government funding, and the flow of knowledge.',
-    relatedChapters: [2, 9, 10, 11],
+    relatedChapters: [2, 9, 10, 12],
   },
   {
     number: 8,
@@ -89,23 +90,23 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'Patent Law & Policy',
     subtitle: 'The rules that shape innovation',
     description: 'Major legislation, Supreme Court decisions, and policy changes that have shaped the US patent system.',
-    relatedChapters: [7, 9, 12],
+    relatedChapters: [7, 9, 11],
   },
   {
     number: 11,
-    slug: 'green-innovation',
-    title: 'The Green Innovation Race',
-    subtitle: 'Climate technology patents from niche to mainstream',
-    description: 'Green patents grew from a trickle to a torrent. Who leads the race to decarbonize, and where is AI meeting climate?',
-    relatedChapters: [2, 5, 12, 13],
-  },
-  {
-    number: 12,
     slug: 'ai-patents',
     title: 'Artificial Intelligence',
     subtitle: 'The rise of AI in the patent system',
     description: 'How AI patenting has evolved from early expert systems to the deep learning and generative AI era.',
-    relatedChapters: [2, 4, 10, 11],
+    relatedChapters: [2, 4, 10, 12],
+  },
+  {
+    number: 12,
+    slug: 'green-innovation',
+    title: 'The Green Innovation Race',
+    subtitle: 'Climate technology patents from niche to mainstream',
+    description: 'Green patents grew from a trickle to a torrent. Who leads the race to decarbonize, and where is AI meeting climate?',
+    relatedChapters: [2, 5, 11, 13],
   },
   {
     number: 13,
@@ -113,7 +114,7 @@ export const CHAPTERS: ChapterMeta[] = [
     title: 'The Language of Innovation',
     subtitle: 'What patents talk about and how it has changed',
     description: 'Topic modeling and semantic analysis of 9.36 million patent abstracts reveals emerging themes, technology convergence, and the novelty of invention.',
-    relatedChapters: [2, 7, 11],
+    relatedChapters: [2, 7, 12],
   },
   {
     number: 14,
@@ -143,5 +144,5 @@ export const HERO_STATS = {
   startYear: 1976,
   endYear: 2025,
   chapters: 14,
-  visualizations: 120,
+  visualizations: 121,
 };

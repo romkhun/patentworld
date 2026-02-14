@@ -44,7 +44,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               value={xLabel}
               position="insideBottom"
               offset={-2}
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
             />
           )}
         </XAxis>
@@ -61,7 +61,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
               value={yLabel}
               angle={-90}
               position="insideLeft"
-              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+              style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
               offset={-5}
             />
           )}
@@ -81,7 +81,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
                 value={rightYLabel}
                 angle={90}
                 position="insideRight"
-                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: 13 }}
                 offset={-5}
               />
             )}
@@ -108,7 +108,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, rig
             yAxisId="left"
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 10, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: 12, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {lines.map((line, i) => {

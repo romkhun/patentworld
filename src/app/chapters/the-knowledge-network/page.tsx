@@ -99,38 +99,38 @@ export default function Chapter7() {
       <ChapterHeader
         number={7}
         title="The Knowledge Network"
-        subtitle="How patents build on prior knowledge"
+        subtitle="Citation networks, knowledge diffusion, and the role of public funding"
       />
 
       <KeyFindings>
-        <li>Patent citations have grown exponentially — the average patent now cites significantly more prior art than in the 1970s, reflecting denser knowledge networks.</li>
+        <li>Patent citations have grown substantially -- the average patent now cites considerably more prior art than in the 1970s, reflecting denser knowledge networks.</li>
         <li>Government-funded patents receive more <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> on average, suggesting that public R&D investment generates higher-impact innovations.</li>
         <li>Cross-technology citation flows have intensified, with patents increasingly building on knowledge from distant fields.</li>
-        <li>Citation patterns reveal that knowledge diffuses across geographic and organizational boundaries more readily than in earlier decades.</li>
+        <li>Citation patterns indicate that knowledge diffuses across geographic and organizational boundaries more readily than in earlier decades.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The average citation lag now reaches back over 10 years, up from roughly 7 years in the 1980s, reflecting an expanding base of relevant prior art. Government-funded patents -- driven by the Bayh-Dole Act of 1980 -- receive substantially more forward citations than privately funded patents, with the Department of Defense, Department of Energy, and NIH as the top funding agencies. Citation lag has generally decreased over time, suggesting faster knowledge diffusion, while corporate citation flows reveal asymmetric knowledge dependencies among the top patent filers.
+          The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period, reflecting the expanding body of relevant prior art that newer patents must reference. Government-funded patents -- facilitated by the Bayh-Dole Act of 1980 -- receive substantially more forward citations than privately funded patents, with the Department of Health and Human Services/NIH, Department of Defense, and Department of Energy constituting the leading funding agencies. The lengthening citation lag suggests that the growing cumulative stock of prior art requires newer patents to reach further back in time, and corporate citation flows reveal asymmetric knowledge dependencies among the most prolific patent filers.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Every patent sits within a web of prior art. Citations connect new inventions
-          to the knowledge they build upon, creating a vast network of technological
-          lineage. The citation system also reveals the role of government funding in
-          driving <StatCallout value="foundational research" /> that later becomes
+          Each patent is situated within an extensive web of prior art. Citations connect new inventions
+          to the knowledge upon which they build, forming a dense network of technological
+          lineage. The citation system further illuminates the role of government funding in
+          supporting <StatCallout value="foundational research" /> that subsequently serves as
           the basis for commercial innovation.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Citations Per Patent Over Time"
-        caption="Average and median number of US patent citations per utility patent, by grant year."
+        title="Average Backward Citations Per Patent Have Increased Steadily Since the 1970s"
+        caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
         loading={ciL}
-        insight="The growth in backward citations reflects both the expanding knowledge base and changes in patent office practices encouraging more thorough prior art disclosure."
+        insight="The growth in backward citations reflects both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
       >
         <PWLineChart
           data={cites ?? []}
@@ -156,11 +156,11 @@ export default function Chapter7() {
 
       <KeyInsight>
         <p>
-          The growing gap between mean and median citations is a key structural feature of
-          the knowledge network. While the median patent receives modest citation, a growing
-          tail of highly-cited &quot;landmark&quot; patents drives the mean upward. This
+          The widening divergence between mean and median citations constitutes a notable structural feature of
+          the knowledge network. Although the median patent receives modest citation counts, a growing
+          tail of highly cited &quot;landmark&quot; patents elevates the mean. This
           increasing skewness suggests that the distribution of inventive value is becoming
-          more unequal over time -- a few breakthrough inventions generate disproportionate
+          more concentrated over time, with a small number of breakthrough inventions generating disproportionate
           downstream impact.
         </p>
       </KeyInsight>
@@ -168,10 +168,10 @@ export default function Chapter7() {
       <SectionDivider label="Citation Patterns" />
 
       <ChartContainer
-        title="Citation Lag"
-        caption="Average and median time (in years) between a cited patent's date and the citing patent's grant date."
+        title="Citation Lag Has Lengthened as Patents Reference Increasingly Older Prior Art"
+        caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
         loading={laL}
-        insight="The lengthening citation lag shows that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
+        insight="The lengthening citation lag indicates that foundational knowledge has an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
       >
         <PWLineChart
           data={lagYears}
@@ -188,28 +188,28 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          The citation lag -- how far back in time patents cite -- has been growing,
-          indicating that the useful life of patented knowledge is extending. Modern
-          patents draw on an increasingly deep well of prior art.
+          The citation lag -- the temporal distance over which patents cite prior art -- has increased steadily,
+          indicating that the useful life of patented knowledge continues to extend. Contemporary
+          patents draw on an increasingly expansive base of prior art.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
-          The growing citation lag suggests that foundational knowledge has an increasingly
-          long useful life. The average citation now reaches back over 10 years, compared to
-          roughly 7 years in the 1980s. This widening time window reflects both the cumulative
-          nature of technological progress and the expanding searchability of prior art databases.
+          The lengthening citation lag -- from approximately 3 years in the early 1980s to over 16 years
+          in the most recent period -- indicates that the expanding body of relevant prior art requires newer patents
+          to reach further back in time. This widening temporal window reflects both the cumulative
+          nature of technological progress and the increasing searchability of prior art databases.
         </p>
       </KeyInsight>
 
       <SectionDivider label="Government Funding" />
 
       <ChartContainer
-        title="Government-Funded Patents Over Time"
-        caption="Number of utility patents acknowledging government funding interest, by year."
+        title="Government-Funded Patent Counts Rose Sharply Following the 1980 Bayh-Dole Act"
+        caption="Number of utility patents acknowledging government funding interest, by year. A marked increase is evident after the 1980 Bayh-Dole Act, which permitted universities and small businesses to retain patent rights on federally funded inventions."
         loading={goL}
-        insight="Government-funded patents consistently outperform private patents in citation impact, validating the role of public R&D investment in generating foundational innovations."
+        insight="Government-funded patents consistently exhibit higher citation impact than privately funded patents, supporting the role of public R&D investment in generating foundational innovations."
       >
         <PWLineChart
           data={gov ?? []}
@@ -223,20 +223,20 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> of 1980 fundamentally changed the landscape of government-funded
-          patenting by allowing universities and small businesses to retain rights to inventions
+          The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> of 1980 fundamentally altered the landscape of government-funded
+          patenting by permitting universities and small businesses to retain rights to inventions
           developed with federal support. The resulting acceleration in government-acknowledged
-          patents is clearly visible in the data, with recent years showing further growth as
+          patents is evident in the data, with recent years exhibiting further growth as
           federal R&D budgets have expanded.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Top Government Funding Agencies"
-        caption="Agencies with the most associated patents (all time)."
+        title="NIH, Department of Defense, and DOE Lead Federal Patent-Generating Agencies"
+        caption="Federal agencies ranked by total number of associated patents (all time). The Department of Health and Human Services/NIH, Department of Defense, and Department of Energy account for the largest share of government-interest patents."
         loading={agL}
         height={750}
-        insight="Federal agencies like DoD, DOE, and NIH fund research that leads to thousands of patents, often representing foundational technologies enabling subsequent waves of commercial innovation."
+        insight="Federal agencies such as NIH/HHS, the DoD, and DOE fund research that leads to thousands of patents, often representing foundational technologies that enable subsequent waves of commercial innovation."
       >
         <PWBarChart
           data={topAgencies}
@@ -248,9 +248,9 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          Government agencies -- particularly the Department of Defense, the Department
-          of Energy, and the National Institutes of Health -- fund research that leads
-          to thousands of patents each year. These government-interest patents often
+          Federal agencies -- particularly the Department of Health and Human Services/National Institutes of Health, the Department
+          of Defense, and the Department of Energy -- fund research that results
+          in thousands of patents each year. These government-interest patents frequently
           represent foundational technologies that enable subsequent waves of
           commercial innovation.
         </p>
@@ -268,18 +268,17 @@ export default function Chapter7() {
       <SectionDivider label="Citation Lag Analysis" />
       <Narrative>
         <p>
-          How quickly does knowledge flow through the patent system? The citation lag --
-          the time between when a patent is granted and when it is cited by a subsequent
-          patent -- measures the speed of knowledge diffusion. Shorter lags suggest faster
-          uptake of ideas, while longer lags may indicate foundational work that takes
-          years to be recognized.
+          The pace at which patents reference prior art can be measured by the citation lag --
+          the time between when a cited patent was granted and when the citing patent is granted.
+          The increasing lag over time reflects the growing body of prior art that newer patents
+          must reference, as the cumulative stock of patented knowledge expands.
         </p>
       </Narrative>
       <ChartContainer
-        title="Median Citation Lag Over Time"
-        caption="Median time (in years) between a cited patent's grant date and the citing patent's grant date."
+        title="Median Citation Lag Has Increased as Patents Reference an Expanding Body of Prior Art"
+        caption="Median time (in years) between a cited patent's grant date and the citing patent's grant date. The increasing lag reflects the growing body of relevant prior art that newer patents must reference."
         loading={cltL}
-        insight="The declining citation lag suggests knowledge is flowing faster through the patent system, likely driven by digital search tools that make prior art easier to discover."
+        insight="The increasing citation lag indicates that the expanding body of relevant prior art requires newer patents to reach further back in time, as the cumulative stock of patented knowledge continues to grow."
       >
         {citeLagTrend && (
           <PWLineChart
@@ -296,10 +295,10 @@ export default function Chapter7() {
         )}
       </ChartContainer>
       <ChartContainer
-        title="Median Citation Lag by Technology Area"
-        caption="Median citation lag in years by CPC section and decade."
+        title="Physics and Electricity Exhibit Shorter Citation Lags Than Chemistry and Life Sciences"
+        caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."
         loading={clsL}
-        insight="The increasing density of the citation network means that modern inventions build on a broader base of prior knowledge, accelerating the pace of cumulative innovation."
+        insight="The increasing density of the citation network indicates that modern inventions build on a broader base of prior knowledge, which appears to accelerate the pace of cumulative innovation."
       >
         {lagBySectionPivot.length > 0 && (
           <PWLineChart
@@ -317,13 +316,13 @@ export default function Chapter7() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          Citation lag has generally decreased over time, suggesting that knowledge is
-          flowing faster through the patent system. The decline accelerated in the 2000s,
-          likely driven by digital search tools that make prior art easier to discover.
-          Technology areas like Physics and Electricity tend to have shorter citation lags,
-          consistent with rapid innovation cycles in computing and electronics, while
-          Chemistry and Human Necessities (including pharmaceuticals) show longer lags
-          reflecting the extended development timelines in those fields.
+          Citation lag has increased over time, reflecting the expanding body of relevant
+          prior art that newer patents must reference. The growth in lag has been most pronounced
+          since the 2000s, as the cumulative stock of patented knowledge has grown substantially.
+          Technology areas such as Physics and Electricity tend to exhibit shorter citation lags,
+          consistent with rapid innovation cycles in computing and electronics, whereas
+          Chemistry and Human Necessities (including pharmaceuticals) demonstrate longer lags,
+          reflecting the extended development timelines characteristic of those fields.
         </p>
       </KeyInsight>
 
@@ -331,10 +330,10 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          How do major companies cite each other&apos;s patents? The{' '}
+          The pattern of inter-firm patent citations reveals structural knowledge dependencies. The{' '}
           <GlossaryTooltip term="chord diagram">chord diagram</GlossaryTooltip> below maps directed
-          citation flows between the top patent-filing organizations. Wider ribbons indicate more
-          citations flowing from one company to another, revealing{' '}
+          citation flows among the most prolific patent-filing organizations. Wider ribbons indicate a greater volume of
+          citations flowing from one firm to another, illustrating{' '}
           <StatCallout value="knowledge dependencies" /> across the corporate landscape.
         </p>
       </Narrative>
@@ -355,9 +354,9 @@ export default function Chapter7() {
       </div>
 
       <ChartContainer
-        title={`Corporate Citation Network (${selectedDecade})`}
-        caption="Directed citation flows between top patent filers. Arc size = total citations. Ribbon width = flow volume. Hover for details."
-        insight="Citation flows reveal asymmetric knowledge dependencies. Some companies are primarily knowledge producers (heavily cited but cite few peers), while others are integrators (drawing broadly from multiple sources)."
+        title={`Corporate Citation Flows Reveal Asymmetric Knowledge Dependencies (${selectedDecade})`}
+        caption="Directed citation flows between the most prolific patent filers. Arc size represents total citations; ribbon width indicates flow volume. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others serve as integrators (drawing broadly from multiple sources)."
+        insight="Citation flows reveal asymmetric knowledge dependencies. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others operate as integrators (drawing broadly from multiple sources)."
         loading={cfL}
         height={700}
         wide
@@ -374,8 +373,8 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          Within each technology area, a few companies consistently receive the most citations
-          from peers — these are the <StatCallout value="technology leaders" /> whose patents
+          Within each technology area, a small number of firms consistently receive the most citations
+          from peers. These constitute the <StatCallout value="technology leaders" /> whose patents
           form the foundation for subsequent innovation.
         </p>
       </Narrative>
@@ -411,17 +410,17 @@ export default function Chapter7() {
 
       <Narrative>
         <p>
-          How quickly do a company&apos;s patents accumulate their citations? The{' '}
-          <GlossaryTooltip term="citation half-life">citation half-life</GlossaryTooltip> — the
-          time to accumulate 50% of total citations — distinguishes companies whose patents
-          have <StatCallout value="immediate vs. foundational impact" />.
+          The rate at which a firm&apos;s patents accumulate citations varies considerably. The{' '}
+          <GlossaryTooltip term="citation half-life">citation half-life</GlossaryTooltip> -- the
+          time required to accumulate 50% of total citations -- distinguishes firms whose patents
+          have <StatCallout value="immediate versus foundational impact" />.
         </p>
       </Narrative>
 
       <ChartContainer
-        title="Citation Half-Life by Company"
-        caption="Years until a company's patents accumulate 50% of their total forward citations. Only patents 15+ years old are included to ensure a full citation window."
-        insight="Pharmaceutical and chemical companies tend to have longer citation half-lives, reflecting the slow but steady accumulation of citations in science-intensive fields. Electronics and IT companies show shorter half-lives, with citations peaking shortly after grant."
+        title="Pharmaceutical Firms Exhibit Longer Citation Half-Lives Than Electronics Companies"
+        caption="Years until a firm's patents accumulate 50% of their total forward citations. Only patents 15 or more years old are included to ensure a complete citation window. Pharmaceutical and chemical firms demonstrate longer half-lives, whereas electronics and IT firms exhibit shorter ones."
+        insight="Pharmaceutical and chemical firms tend to exhibit longer citation half-lives, reflecting the gradual accumulation of citations in science-intensive fields. Electronics and IT firms demonstrate shorter half-lives, with citations peaking shortly after grant."
         loading={chlL}
         height={600}
       >
@@ -435,6 +434,10 @@ export default function Chapter7() {
           />
         ) : <div />}
       </ChartContainer>
+
+      <Narrative>
+        The knowledge network reveals the underlying structure of cumulative innovation. Citation patterns, government funding pathways, and technology leadership transitions collectively demonstrate that innovation is an inherently social and cumulative process. The following chapter examines the dynamics of the innovation process itself, including the tempo of patent examination, cross-domain convergence, and the velocity of technological change.
+      </Narrative>
 
       <DataNote>
         Citation data from PatentsView includes US patent citations only. Government

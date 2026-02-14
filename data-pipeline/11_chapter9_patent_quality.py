@@ -270,11 +270,11 @@ query_to_json(con, f"""
     SELECT
         CAST(ws.period_start AS INT) || '-' || CAST(ws.period_start + 4 AS INT) AS period,
         ws.sector,
-        ROUND(AVG(fc.forward_citations_5yr), 2) AS avg_forward_cites,
+        ROUND(AVG(fc.forward_citations_5yr) FILTER (WHERE ws.year <= 2020), 2) AS avg_forward_cites,
         ROUND(AVG(ws.num_claims), 2) AS avg_claims,
         ROUND(AVG(sc.patent_scope), 2) AS avg_scope
     FROM with_sector ws
-    LEFT JOIN forward_cites_5yr fc ON ws.patent_id = fc.patent_id AND ws.year <= 2020
+    LEFT JOIN forward_cites_5yr fc ON ws.patent_id = fc.patent_id
     LEFT JOIN scope sc ON ws.patent_id = sc.patent_id
     GROUP BY ws.period_start, ws.sector
     ORDER BY ws.period_start, ws.sector
