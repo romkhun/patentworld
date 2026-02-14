@@ -158,7 +158,7 @@ export default function Chapter3() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={3}
+        number={6}
         title="The Language of Innovation"
         subtitle="Thematic structure and evolution of patent language over 50 years"
       />
@@ -175,7 +175,7 @@ export default function Chapter3() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that US patenting has undergone a pronounced reorientation toward <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most notable is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that US patenting has undergone a pronounced reorientation toward <Link href="/chapters/technology-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most notable is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/citation-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/innovation-tempo" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
@@ -308,7 +308,7 @@ export default function Chapter3() {
         id="fig-language-innovation-umap"
         subtitle="UMAP projection of 5,000 patent abstracts from TF-IDF space into 2D, colored by dominant topic, revealing semantic clustering and overlap."
         title="UMAP Projection of 5,000 Patents Reveals 25 Distinct Technology Clusters With Meaningful Spatial Relationships"
-        caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. Note: UMAP axes are unitless projections — only the relative distances between points are meaningful, not the absolute positions. Source: PatentsView / USPTO."
+        caption="5,000 patents projected into 2D via UMAP on TF-IDF vectors (200 per topic, stratified). Each point represents one patent, colored by dominant topic. UMAP axes are unitless projections — only the relative distances between points are meaningful, not the absolute positions. Source: PatentsView / USPTO."
         insight="The UMAP projection reveals clear topic clusters with meaningful spatial relationships: computing and electronics topics cluster together, while chemistry and biotechnology form a distinct neighborhood. Patents bridging clusters often represent the most novel cross-domain inventions."
         loading={umapL || defL}
         height={650}
@@ -480,8 +480,8 @@ export default function Chapter3() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={3} />
-      <ChapterNavigation currentChapter={3} />
+      <RelatedChapters currentChapter={6} />
+      <ChapterNavigation currentChapter={6} />
     </div>
   );
 }

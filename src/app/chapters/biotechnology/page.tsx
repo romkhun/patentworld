@@ -232,7 +232,7 @@ export default function Chapter15() {
   return (
     <div>
       <ChapterHeader
-        number={15}
+        number={36}
         title="Biotechnology &amp; Gene Editing"
         subtitle="Engineering life at the molecular level"
       />
@@ -913,8 +913,8 @@ export default function Chapter15() {
         co-occurrence of biotech CPC codes with non-biotech CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={15} />
-      <ChapterNavigation currentChapter={15} />
+      <RelatedChapters currentChapter={36} />
+      <ChapterNavigation currentChapter={36} />
     </div>
   );
 }

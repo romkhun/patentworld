@@ -232,7 +232,7 @@ export default function Chapter18() {
   return (
     <div>
       <ChapterHeader
-        number={18}
+        number={39}
         title="Digital Health & Medical Devices"
         subtitle="Technology transforming healthcare delivery"
       />
@@ -434,7 +434,7 @@ export default function Chapter18() {
           importance of software, connectivity, and data analytics in healthcare. The
           convergence of medical device expertise with digital technology capabilities is
           reshaping competitive dynamics in ways that parallel the broader transformation
-          documented in the chapter on the <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link>.
+          documented in the chapter on the <Link href="/chapters/technology-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link>.
         </p>
       </KeyInsight>
 
@@ -782,7 +782,7 @@ export default function Chapter18() {
           collectively point toward a future in which the boundaries between medical devices
           and computing platforms become increasingly indistinct. The organizational strategies
           documented here are explored further in{' '}
-          <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
+          <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
             Firm Innovation
           </Link>, while the broader relationship between digital health and artificial
           intelligence is examined in the chapter on{' '}
@@ -857,8 +857,8 @@ export default function Chapter18() {
         CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={18} />
-      <ChapterNavigation currentChapter={18} />
+      <RelatedChapters currentChapter={39} />
+      <ChapterNavigation currentChapter={39} />
     </div>
   );
 }

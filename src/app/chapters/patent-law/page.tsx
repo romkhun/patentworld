@@ -372,7 +372,7 @@ export default function Chapter4() {
   return (
     <div>
       <ChapterHeader
-        number={4}
+        number={7}
         title="Patent Law & Policy"
         subtitle="The legal and institutional framework governing patent rights"
       />
@@ -387,7 +387,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility contributed to the volume growth documented in <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility contributed to the volume growth documented in <Link href="/chapters/patent-volume" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 
@@ -517,7 +517,7 @@ export default function Chapter4() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the legal and policy framework that governs the patent system, the analysis shifts from the system itself to the actors within it. The <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates which organizations drive patent activity, how corporate leadership has shifted across geographies and industries, and what the concentration of patenting reveals about the structure of modern innovation.
+        Having examined the legal and policy framework that governs the patent system, the analysis shifts from the system itself to the actors within it. The <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates which organizations drive patent activity, how corporate leadership has shifted across geographies and industries, and what the concentration of patenting reveals about the structure of modern innovation.
       </Narrative>
 
       <DataNote>
@@ -534,8 +534,8 @@ export default function Chapter4() {
         submissions to the USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={4} />
-      <ChapterNavigation currentChapter={4} />
+      <RelatedChapters currentChapter={7} />
+      <ChapterNavigation currentChapter={7} />
     </div>
   );
 }

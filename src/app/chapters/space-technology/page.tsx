@@ -232,7 +232,7 @@ export default function Chapter22() {
   return (
     <div>
       <ChapterHeader
-        number={22}
+        number={43}
         title="Space Technology"
         subtitle="Patenting the final frontier"
       />
@@ -863,8 +863,8 @@ export default function Chapter22() {
         diffusion measures co-occurrence of space CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={22} />
-      <ChapterNavigation currentChapter={22} />
+      <RelatedChapters currentChapter={43} />
+      <ChapterNavigation currentChapter={43} />
     </div>
   );
 }

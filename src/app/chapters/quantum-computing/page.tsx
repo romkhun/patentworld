@@ -234,7 +234,7 @@ export default function Chapter20() {
   return (
     <div>
       <ChapterHeader
-        number={20}
+        number={41}
         title="Quantum Computing"
         subtitle="From theoretical foundations to practical hardware"
       />
@@ -249,7 +249,7 @@ export default function Chapter20() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures this transition clearly: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a tiny fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures this transition clearly: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a tiny fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -822,7 +822,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter. The next chapter examines <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link>, a domain where quantum computing poses both a fundamental threat to existing cryptographic systems and a potential source of new post-quantum security methods.
+        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter. The next chapter examines <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link>, a domain where quantum computing poses both a fundamental threat to existing cryptographic systems and a potential source of new post-quantum security methods.
       </Narrative>
 
       <DataNote>
@@ -835,8 +835,8 @@ export default function Chapter20() {
         with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={20} />
-      <ChapterNavigation currentChapter={20} />
+      <RelatedChapters currentChapter={41} />
+      <ChapterNavigation currentChapter={41} />
     </div>
   );
 }

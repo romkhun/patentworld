@@ -262,7 +262,7 @@ export default function Chapter19() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
       <ChapterHeader
-        number={19}
+        number={40}
         title="Green Innovation"
         subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
       />
@@ -279,7 +279,7 @@ export default function Chapter19() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into nearly one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement and the broader <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> reshaping patenting activity. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Of particular significance, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link>, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
+          Climate technology has undergone a structural transformation within the patent system, evolving from a peripheral category of activity into nearly one of every ten utility patents granted annually. The internal composition of green patenting has shifted decisively: whereas renewable energy generation led the early expansion, the electrification of transportation and advances in battery chemistry have become the primary engines of growth -- a shift that aligns with the policy acceleration observed after the 2015 Paris Agreement and the broader <Link href="/chapters/technology-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> reshaping patenting activity. The organizational landscape reveals a notable convergence between East Asian electronics conglomerates and Western industrial incumbents, each leveraging distinct strengths in energy systems, materials science, and vehicle engineering. Of particular significance, the emerging intersection of artificial intelligence with climate technology, documented in the preceding chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link>, points toward a new frontier in which computational methods amplify the pace of clean energy innovation.
         </p>
       </aside>
 
@@ -767,7 +767,7 @@ export default function Chapter19() {
       </ChartContainer>
 
       <Narrative>
-        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/the-innovation-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents a significant frontier of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
+        This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/patent-volume" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents a significant frontier of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
         Across the twelve technology domains examined in ACT 5 -- from <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> through <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and green innovation -- several cross-cutting themes emerge: the concentration of patent activity among a small number of resource-intensive firms, the accelerating convergence of formerly distinct technology fields, and the growing role of international competition in shaping domestic innovation trajectories. These domain-level patterns reinforce and extend the structural insights developed in the preceding acts, confirming that the US patent system is simultaneously becoming more specialized in its technical content and more interconnected in its organizational and geographic character.
       </Narrative>
 
@@ -783,8 +783,8 @@ export default function Chapter19() {
         </p>
       </DataNote>
 
-      <RelatedChapters currentChapter={19} />
-      <ChapterNavigation currentChapter={19} />
+      <RelatedChapters currentChapter={40} />
+      <ChapterNavigation currentChapter={40} />
     </div>
   );
 }

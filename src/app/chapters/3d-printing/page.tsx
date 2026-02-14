@@ -232,7 +232,7 @@ export default function Chapter11() {
   return (
     <div>
       <ChapterHeader
-        number={11}
+        number={32}
         title="3D Printing & Additive Manufacturing"
         subtitle="Layer-by-layer transformation in manufacturing"
       />
@@ -247,7 +247,7 @@ export default function Chapter11() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing expansion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>.
+          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing expansion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/technology-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>.
         </p>
       </aside>
 
@@ -827,7 +827,7 @@ export default function Chapter11() {
       </ChartContainer>
 
       <Narrative>
-        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/the-technology-revolution" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/technology-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         The next chapter examines <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain and distributed ledger technology</Link>, a domain that, like 3D printing, experienced a rapid expansion in patent filings driven by speculative enthusiasm and the expiration of foundational intellectual property.
       </Narrative>
 
@@ -842,8 +842,8 @@ export default function Chapter11() {
         co-occurrence of AM CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={11} />
-      <ChapterNavigation currentChapter={11} />
+      <RelatedChapters currentChapter={32} />
+      <ChapterNavigation currentChapter={32} />
     </div>
   );
 }

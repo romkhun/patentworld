@@ -233,7 +233,7 @@ export default function Chapter21() {
   return (
     <div>
       <ChapterHeader
-        number={21}
+        number={42}
         title="Semiconductors"
         subtitle="The silicon foundation of modern technology"
       />
@@ -249,7 +249,7 @@ export default function Chapter21() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -811,7 +811,7 @@ export default function Chapter21() {
         Having documented the landscape of semiconductor patenting, the analysis
         demonstrates the foundational role of chip technology in the broader innovation
         system. The organizational strategies behind semiconductor portfolios are explored
-        further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
+        further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
         while the interaction between semiconductor and artificial intelligence patents is
         examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. The next chapter turns to <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link>, a domain that builds directly on semiconductor fabrication expertise while pursuing fundamentally different computational paradigms.
       </Narrative>
@@ -830,8 +830,8 @@ export default function Chapter21() {
         contains the core semiconductor classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={21} />
-      <ChapterNavigation currentChapter={21} />
+      <RelatedChapters currentChapter={42} />
+      <ChapterNavigation currentChapter={42} />
     </div>
   );
 }

@@ -232,7 +232,7 @@ export default function Chapter16() {
   return (
     <div>
       <ChapterHeader
-        number={16}
+        number={37}
         title="Blockchain & Decentralized Systems"
         subtitle="Distributed trust in the digital economy"
       />
@@ -774,7 +774,7 @@ export default function Chapter16() {
       </Narrative>
 
       <Narrative>
-        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         The next chapter turns to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, the largest technology domain by patent volume in this study, where the growth trajectory has proven more durable than blockchain&apos;s and where cross-domain diffusion reaches into nearly every other field examined in ACT 5.
       </Narrative>
 
@@ -842,8 +842,8 @@ export default function Chapter16() {
         CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={16} />
-      <ChapterNavigation currentChapter={16} />
+      <RelatedChapters currentChapter={37} />
+      <ChapterNavigation currentChapter={37} />
     </div>
   );
 }

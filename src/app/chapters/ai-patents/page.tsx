@@ -247,7 +247,7 @@ export default function Chapter13() {
   return (
     <div>
       <ChapterHeader
-        number={13}
+        number={34}
         title="Artificial Intelligence"
         subtitle="The growth of AI-related patenting activity in the United States"
       />
@@ -262,7 +262,7 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -820,7 +820,7 @@ export default function Chapter13() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 5 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 5 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
 
       <DataNote>
@@ -832,8 +832,8 @@ export default function Chapter13() {
         on more specific CPC group codes within G06N. AI patenting strategies present patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={13} />
-      <ChapterNavigation currentChapter={13} />
+      <RelatedChapters currentChapter={34} />
+      <ChapterNavigation currentChapter={34} />
     </div>
   );
 }

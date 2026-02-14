@@ -234,7 +234,7 @@ export default function Chapter17() {
   return (
     <div>
       <ChapterHeader
-        number={17}
+        number={38}
         title="Cybersecurity"
         subtitle="Defending digital infrastructure through innovation"
       />
@@ -249,7 +249,7 @@ export default function Chapter17() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/sector-dynamics" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> chapter.
+          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/innovation-tempo" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Sector Dynamics</Link> chapter.
         </p>
       </aside>
 
@@ -611,7 +611,7 @@ export default function Chapter17() {
           architecture, threat intelligence, and regulatory compliance -- necessitating
           larger and more diverse research teams. This trend parallels the broader pattern
           observed across technology-intensive patents, as documented in the{' '}
-          <Link href="/chapters/collaboration-networks" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">collaboration networks</Link> chapter.
+          <Link href="/chapters/network-structure" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">collaboration networks</Link> chapter.
         </p>
       </KeyInsight>
 
@@ -784,7 +784,7 @@ export default function Chapter17() {
       </KeyInsight>
 
       <Narrative>
-        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/firm-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
+        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
@@ -852,8 +852,8 @@ export default function Chapter17() {
         Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={17} />
-      <ChapterNavigation currentChapter={17} />
+      <RelatedChapters currentChapter={38} />
+      <ChapterNavigation currentChapter={38} />
     </div>
   );
 }
