@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
 export const metadata: Metadata = {
   title: '9.36M US Patents Analyzed: Data & Methodology',
-  description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, metrics (citations, HHI, CPC), and FAQs.',
+  description: 'PatentWorld analyzes 9.36M US patents (1976\u20132025) from PatentsView. Learn about data sources, methodology, limitations, and FAQs.',
   openGraph: {
     type: 'website',
     title: '9.36M US Patents Analyzed: Data & Methodology | PatentWorld',
-    description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, and key metrics.',
+    description: 'PatentWorld analyzes 9.36M US patents (1976\u20132025) from PatentsView. Learn about data sources, methodology, and key metrics.',
     url: `${BASE_URL}/about/`,
     siteName: 'PatentWorld',
     images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'About PatentWorld' }],
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '9.36M US Patents Analyzed: Data & Methodology | PatentWorld',
-    description: 'PatentWorld analyzes 9.36M US patents (1976-2025) from PatentsView. Learn about data sources, methodology, and key metrics.',
+    description: 'PatentWorld analyzes 9.36M US patents (1976\u20132025) from PatentsView. Learn about data sources, methodology, and key metrics.',
     images: [`${BASE_URL}/og/home.png`],
   },
   alternates: {
@@ -47,7 +48,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Is artificial intelligence patenting increasing?',
-    answer: 'AI patent filings grew approximately six-fold during the deep learning era (2012-2025). The acceleration began after breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
+    answer: 'AI patent filings grew approximately six-fold during the deep learning era (2012\u20132025). The acceleration began after breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
   },
   {
     question: 'What is the gender gap in US patenting?',
@@ -73,7 +74,9 @@ const FAQ_ITEMS = [
 
 const TOC_ITEMS = [
   { id: 'author', label: 'Author' },
-  { id: 'data-methodology', label: 'Data & Methodology' },
+  { id: 'chapters', label: 'Chapters' },
+  { id: 'data', label: 'Data Source' },
+  { id: 'methodology', label: 'Methodology' },
   { id: 'faq', label: 'FAQ' },
   { id: 'citation', label: 'Citation' },
 ];
@@ -106,7 +109,7 @@ function DatasetJsonLd() {
     '@type': 'Dataset',
     name: 'PatentWorld \u2014 US Patent Data (1976\u20132025)',
     description:
-      'Interactive analysis of 9.36 million US utility patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
+      'Interactive analysis of 9.36 million US patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
     url: `${BASE_URL}/about/`,
     license: 'https://creativecommons.org/licenses/by/4.0/',
     temporalCoverage: '1976/2025',
@@ -199,6 +202,8 @@ export default function AboutPage() {
       </nav>
 
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
+
+        {/* 1. Opening paragraph */}
         <p>
           PatentWorld is an interactive data exploration platform that presents 50 years
           of United States patent activity through quantitative visualizations. The project
@@ -206,7 +211,7 @@ export default function AboutPage() {
           researchers, policymakers, and the broader public through rigorous, data-driven analysis.
         </p>
 
-        {/* ── About the Author ── */}
+        {/* 2. About the Author */}
         <section id="author">
           <h2 className="font-serif text-2xl font-bold pt-4">About the Author</h2>
           <p>
@@ -228,21 +233,32 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* ── Data & Methodology ── */}
-        <section id="data-methodology">
-          <h2 className="font-serif text-2xl font-bold pt-4">Data &amp; Methodology</h2>
+        {/* 3. Chapter Overview */}
+        <section id="chapters">
+          <h2 className="font-serif text-2xl font-bold pt-4">Chapters</h2>
+          <p>
+            PatentWorld presents 43 chapters organized into five acts, each examining a different
+            dimension of the US patent system. Browse all chapters on the{' '}
+            <Link href="/explore/" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Explore
+            </Link>{' '}
+            page.
+          </p>
+        </section>
 
-          <h3 className="font-serif text-lg font-semibold mt-6">Data Source</h3>
+        {/* 4. Data Source & Attribution */}
+        <section id="data">
+          <h2 className="font-serif text-2xl font-bold pt-4">Data Source &amp; Attribution</h2>
           <p>
             All data are derived from{' '}
             <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
               PatentsView
             </a>
             , a patent data platform supported by the United States Patent and Trademark
-            Office (USPTO). PatentsView provides disambiguated and linked patent data covering:
+            Office (USPTO). The dataset covers 9.36 million granted patents from 1976 to 2025.
+            PatentsView provides disambiguated and linked patent data covering:
           </p>
           <ul className="list-disc pl-6 space-y-1">
-            <li>9.36 million granted patents (1976&ndash;2025)</li>
             <li>Disambiguated inventor and assignee identities</li>
             <li>Cooperative Patent Classification (CPC) technology categories</li>
             <li>WIPO technology field classifications</li>
@@ -250,8 +266,20 @@ export default function AboutPage() {
             <li>Patent citation networks</li>
             <li>Government interest statements</li>
           </ul>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Data attribution: PatentsView (
+            <a href="https://www.patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
+              www.patentsview.org
+            </a>
+            ), USPTO. PatentsView is a tool built to increase the usability and transparency of US
+            patent data. The database is derived from the USPTO examination and granting
+            of patents.
+          </p>
+        </section>
 
-          <h3 className="font-serif text-lg font-semibold mt-6">Methodology</h3>
+        {/* 5. Methodology */}
+        <section id="methodology">
+          <h2 className="font-serif text-2xl font-bold pt-4">Methodology</h2>
           <p>
             Raw data were obtained as tab-separated value (TSV) files from PatentsView&apos;s
             bulk data downloads. These files were processed using DuckDB, an analytical SQL
@@ -280,7 +308,7 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        {/* ── FAQ Accordion ── */}
+        {/* 6. FAQ Accordion */}
         <section id="faq">
           <h2 className="font-serif text-2xl font-bold pt-4">Frequently Asked Questions</h2>
           <div className="mt-4 divide-y divide-border">
@@ -298,26 +326,17 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Citation & Attribution ── */}
+        {/* 7. Suggested Citation */}
         <section id="citation">
-          <h2 className="font-serif text-2xl font-bold pt-4">Citation &amp; Attribution</h2>
+          <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
             Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
             The Wharton School, University of Pennsylvania.
             Available at: https://patentworld.vercel.app/
           </p>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Data attribution: PatentsView (
-            <a href="https://www.patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
-              www.patentsview.org
-            </a>
-            ), USPTO. PatentsView is a tool built to increase the usability and transparency of US
-            patent data. The database is derived from the USPTO examination and granting
-            of patents.
-          </p>
         </section>
 
-        {/* ── Technical Details (collapsible) ── */}
+        {/* 8. Technical Details (collapsed) */}
         <details className="rounded-lg border bg-muted/20 mt-6">
           <summary className="cursor-pointer px-5 py-4 text-sm font-semibold hover:text-foreground transition-colors">
             Technical Details

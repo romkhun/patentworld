@@ -4,23 +4,23 @@ import HomeContent from './HomeContent';
 const BASE_URL = 'https://patentworld.vercel.app';
 
 export const metadata: Metadata = {
-  title: '50 Years of US Patents: 9.36M Grants Visualized',
-  description: 'Explore 9.36M US patents (1976-2025): IBM leads with 100K+ patents, AI grew 10x since 2012, women at 15% of inventors, computing rose from 10% to 55% of all patents.',
+  title: 'PatentWorld \u2014 50 Years of US Patent Data',
+  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
     type: 'website',
-    title: '50 Years of US Patents: 9.36M Grants Visualized | PatentWorld',
-    description: 'Explore 9.36M US patents (1976-2025): IBM leads, AI grew 10x, women at 15% of inventors, computing rose to 55%.',
+    title: 'PatentWorld \u2014 50 Years of US Patent Data',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
     url: BASE_URL,
     siteName: 'PatentWorld',
-    images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'PatentWorld — 50 Years of US Patent Data' }],
+    images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'PatentWorld \u2014 50 Years of US Patent Data' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '50 Years of US Patents: 9.36M Grants Visualized | PatentWorld',
-    description: 'Explore 9.36M US patents (1976-2025): IBM leads, AI grew 10x, women at 15% of inventors, computing rose to 55%.',
+    title: 'PatentWorld \u2014 50 Years of US Patent Data',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
     images: [`${BASE_URL}/og/home.png`],
   },
   robots: {
@@ -39,7 +39,7 @@ const WEBSITE_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'PatentWorld',
-  description: 'Interactive exploration of 9.36 million US patents spanning 50 years of innovation data, from 1976 to 2025.',
+  description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
   url: BASE_URL,
   author: {
     '@type': 'Person',

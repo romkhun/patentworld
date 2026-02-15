@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { HERO_STATS } from '@/lib/constants';
 
 export function Footer() {
   return (
@@ -16,7 +15,7 @@ export function Footer() {
             >
               PatentsView
             </a>
-            {' '}(USPTO). {HERO_STATS.totalPatents} US patents, {HERO_STATS.startYear}-{HERO_STATS.endYear}.
+            {' '}(USPTO).
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link href="/about/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>

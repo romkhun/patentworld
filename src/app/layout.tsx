@@ -28,29 +28,29 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PatentWorld — 50 Years of US Patent Data Visualized',
+    default: 'PatentWorld \u2014 50 Years of US Patent Data',
     template: '%s | PatentWorld',
   },
-  description: 'Explore 9.36 million US patents from 1976 to 2025. Interactive visualizations of patent trends, technology sectors, inventor demographics, geographic clusters, citation networks, and patent quality indicators.',
+  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
   keywords: ['patents', 'innovation', 'USPTO', 'patent data', 'patent analytics', 'technology trends', 'patent visualization', 'PatentsView', 'patent quality', 'patent citations', 'US patents', 'patent statistics'],
   authors: [{ name: 'Saerom (Ronnie) Lee', url: 'https://www.saeromlee.com' }],
   openGraph: {
     type: 'website',
-    title: 'PatentWorld — 50 Years of US Patent Data Visualized',
-    description: 'Interactive analysis of 9.36M US patents (1976-2025). Explore trends in technology, company portfolios, inventor demographics, and geographic concentration.',
+    title: 'PatentWorld \u2014 50 Years of US Patent Data',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
     siteName: 'PatentWorld',
     url: 'https://patentworld.vercel.app',
     images: [{
       url: 'https://patentworld.vercel.app/og/home.png',
       width: 1200,
       height: 630,
-      alt: 'PatentWorld — 50 Years of US Patent Data Visualized',
+      alt: 'PatentWorld \u2014 50 Years of US Patent Data',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PatentWorld — 50 Years of US Patent Data Visualized',
-    description: 'Interactive analysis of 9.36M US patents (1976-2025). Explore trends in technology, company portfolios, inventor demographics, and geographic concentration.',
+    title: 'PatentWorld \u2014 50 Years of US Patent Data',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
     images: ['https://patentworld.vercel.app/og/home.png'],
   },
   robots: {
@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
                 name: 'PatentWorld',
-                description: 'An interactive exploration of 9.36 million US patents spanning 50 years of US patent data.',
+                description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
                 url: 'https://patentworld.vercel.app',
                 author: {
                   '@type': 'Person',
@@ -97,10 +97,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 about: {
                   '@type': 'Dataset',
                   name: 'US Patent Data (1976-2025)',
-                  description: 'Comprehensive analysis of 9.36 million US utility patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
+                  description: 'Analysis of 9.36 million US patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
                   creator: { '@type': 'Organization', name: 'USPTO / PatentsView' },
                   temporalCoverage: '1976/2025',
-                  spatialCoverage: 'Global',
+                  spatialCoverage: 'United States',
                   variableMeasured: [
                     'Patent grants per year',
                     'Technology classifications (CPC)',
