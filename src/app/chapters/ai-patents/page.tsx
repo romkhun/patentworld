@@ -247,7 +247,7 @@ export default function Chapter13() {
   return (
     <div>
       <ChapterHeader
-        number={34}
+        number={25}
         title="Artificial Intelligence"
         subtitle="The growth of AI-related patenting activity in the United States"
       />
@@ -262,13 +262,13 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 5.
+          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 6.
         </p>
         <p>
           Artificial intelligence has evolved from a specialized academic pursuit to one of
@@ -775,7 +775,7 @@ export default function Chapter13() {
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in AI patenting."
         title="Top-4 Concentration in AI Patents Declined Steadily From 25.2% in 1984 to 10.9% by 2025, Reflecting Democratization"
         caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual AI patent counts divided by total AI patents. The steady decline from 25% to 11% reflects the democratization of AI research, with an accelerating drop after 2015 as cloud computing and open-source frameworks lowered barriers to AI innovation."
-        insight="AI exhibits the most pronounced concentration decline among ACT 5 domains, consistent with the technology's transition from specialized research labs to a general-purpose capability accessible to organizations across all sectors."
+        insight="AI exhibits the most pronounced concentration decline among ACT 6 domains, consistent with the technology's transition from specialized research labs to a general-purpose capability accessible to organizations across all sectors."
         loading={ootL || pyL}
       >
         <PWLineChart
@@ -789,7 +789,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across AI subfields."
-        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, the Most Dramatic Diversification Among ACT 5 Domains"
+        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, the Most Dramatic Diversification Among ACT 6 Domains"
         caption="Normalized Shannon entropy of AI subfield patent distributions. The dramatic increase from 0.40 (highly concentrated in symbolic AI) to 0.84 (broadly distributed across machine learning, computer vision, NLP, robotics, and other subfields) represents the most striking diversification trajectory among all technology domains studied."
         insight="The entropy trajectory mirrors AI's intellectual evolution: from narrow expert systems in the 1970s-80s through the statistical learning revolution of the 2000s to the current era of deep learning, generative AI, and domain-specific applications spanning virtually every CPC section."
         loading={sfL}
@@ -820,7 +820,7 @@ export default function Chapter13() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 5 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 6 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
 
       <DataNote>
@@ -832,8 +832,8 @@ export default function Chapter13() {
         on more specific CPC group codes within G06N. AI patenting strategies present patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={34} />
-      <ChapterNavigation currentChapter={34} />
+      <RelatedChapters currentChapter={25} />
+      <ChapterNavigation currentChapter={25} />
     </div>
   );
 }

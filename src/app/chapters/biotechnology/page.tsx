@@ -232,7 +232,7 @@ export default function Chapter15() {
   return (
     <div>
       <ChapterHeader
-        number={36}
+        number={27}
         title="Biotechnology &amp; Gene Editing"
         subtitle="Engineering life at the molecular level"
       />
@@ -855,7 +855,7 @@ export default function Chapter15() {
         id="fig-biotech-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in biotechnology patenting."
         title="Top-4 Concentration in Biotechnology Patents Peaked at 13.5% in 2007 Before Declining to 4.6% by 2025"
-        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. Biotechnology exhibits the lowest peak concentration among ACT 5 domains, reflecting the highly distributed nature of life sciences research across universities, startups, and pharmaceutical firms."
+        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. Biotechnology exhibits the lowest peak concentration among ACT 6 domains, reflecting the highly distributed nature of life sciences research across universities, startups, and pharmaceutical firms."
         insight="The low and declining concentration is consistent with the Bayh-Dole Act&apos;s legacy of distributed university patenting and the biotech sector&apos;s reliance on specialized startups rather than large vertically integrated firms."
         loading={ootL || pyL}
       >
@@ -888,7 +888,7 @@ export default function Chapter15() {
         id="fig-biotech-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a biotechnology patent."
         title="Later Biotech Entrants Patent at Modestly Higher Velocity: 2000s Cohort Averages 26.9 Patents per Year Versus 19.2 for 1970s Entrants"
-        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.7x increase is the smallest among mature ACT 5 domains, suggesting that biotechnology patenting has not become dramatically easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
+        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.7x increase is the smallest among mature ACT 6 domains, suggesting that biotechnology patenting has not become dramatically easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
         insight="The modest velocity increase contrasts with AI&apos;s 2.0x and green innovation&apos;s 5.5x ratios, reflecting the persistent barriers to biotech patenting imposed by regulatory requirements, clinical validation timelines, and the fundamental complexity of biological systems."
         loading={taL}
       >
@@ -913,8 +913,8 @@ export default function Chapter15() {
         co-occurrence of biotech CPC codes with non-biotech CPC sections. Source: PatentsView / USPTO.
       </DataNote>
 
-      <RelatedChapters currentChapter={36} />
-      <ChapterNavigation currentChapter={36} />
+      <RelatedChapters currentChapter={27} />
+      <ChapterNavigation currentChapter={27} />
     </div>
   );
 }

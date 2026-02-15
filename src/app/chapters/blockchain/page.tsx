@@ -232,7 +232,7 @@ export default function Chapter16() {
   return (
     <div>
       <ChapterHeader
-        number={37}
+        number={28}
         title="Blockchain & Decentralized Systems"
         subtitle="Distributed trust in the digital economy"
       />
@@ -774,8 +774,8 @@ export default function Chapter16() {
       </Narrative>
 
       <Narrative>
-        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
-        The next chapter turns to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, the largest technology domain by patent volume in this study, where the growth trajectory has proven more durable than blockchain&apos;s and where cross-domain diffusion reaches into nearly every other field examined in ACT 5.
+        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        The next chapter turns to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, the largest technology domain by patent volume in this study, where the growth trajectory has proven more durable than blockchain&apos;s and where cross-domain diffusion reaches into nearly every other field examined in ACT 6.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
@@ -802,7 +802,7 @@ export default function Chapter16() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across blockchain subfields."
         title="Blockchain Subfield Diversity Remains Constrained by the Domain&apos;s Narrow CPC Classification, With Entropy Reaching 0.65 Across 2 Subfields"
         caption="Normalized Shannon entropy of blockchain subfield distributions. Unlike domains such as AI (10 subfields) or semiconductors (7 subfields), blockchain is classified under only 2 CPC subfields (distributed ledger and cryptocurrency), limiting the diversity index&apos;s range. The 0.65 value indicates moderate but not extreme concentration."
-        insight="The narrow subfield structure distinguishes blockchain from other ACT 5 domains and may reflect the CPC system&apos;s lag in creating detailed classifications for emerging technologies, rather than an inherent lack of technological diversity within blockchain systems."
+        insight="The narrow subfield structure distinguishes blockchain from other ACT 6 domains and may reflect the CPC system&apos;s lag in creating detailed classifications for emerging technologies, rather than an inherent lack of technological diversity within blockchain systems."
         loading={sfL}
       >
         <PWLineChart
@@ -842,8 +842,8 @@ export default function Chapter16() {
         CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={37} />
-      <ChapterNavigation currentChapter={37} />
+      <RelatedChapters currentChapter={28} />
+      <ChapterNavigation currentChapter={28} />
     </div>
   );
 }

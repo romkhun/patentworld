@@ -1,0 +1,397 @@
+'use client';
+
+import { useMemo } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { StatCallout } from '@/components/chapter/StatCallout';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CHART_COLORS } from '@/lib/colors';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const PWNetworkGraph = dynamic(
+  () => import('@/components/charts/PWNetworkGraph').then(m => ({ default: m.PWNetworkGraph })),
+  { ssr: false, loading: () => <div /> }
+);
+const PWSankeyDiagram = dynamic(
+  () => import('@/components/charts/PWSankeyDiagram').then(m => ({ default: m.PWSankeyDiagram })),
+  { ssr: false, loading: () => <div /> }
+);
+const PWWorldFlowMap = dynamic(
+  () => import('@/components/charts/PWWorldFlowMap').then(m => ({ default: m.PWWorldFlowMap })),
+  { ssr: false }
+);
+
+import type {
+  NetworkData,
+  NetworkMetricsByDecade,
+  BridgeInventor,
+  TalentFlowData,
+  InventorFlow,
+  InventorMobilityTrend,
+} from '@/lib/types';
+
+export default function MechInventorsChapter() {
+  // Section A: Interpersonal Collaborations
+  const { data: inventorNetwork, loading: inL } = useChapterData<NetworkData>('chapter5/inventor_collaboration_network.json');
+  const { data: networkMetrics, loading: nmL } = useChapterData<NetworkMetricsByDecade[]>('chapter3/network_metrics_by_decade.json');
+  const { data: bridgeInventors } = useChapterData<BridgeInventor[]>('chapter3/bridge_inventors.json');
+
+  // Section B: Inter-Firm Mobility
+  const { data: talentFlows, loading: tfL } = useChapterData<TalentFlowData>('company/talent_flows.json');
+  const { data: mobilityTrend, loading: mtL } = useChapterData<InventorMobilityTrend[]>('chapter4/inventor_mobility_trend.json');
+  const { data: stateFlows, loading: sfL } = useChapterData<InventorFlow[]>('chapter4/inventor_state_flows.json');
+  const { data: countryFlows, loading: cfL } = useChapterData<InventorFlow[]>('chapter4/inventor_country_flows.json');
+
+  const topStateFlows = useMemo(() => {
+    if (!stateFlows) return [];
+    return stateFlows.slice(0, 30).map((d) => ({
+      ...d,
+      label: `${d.from_state} → ${d.to_state}`,
+    }));
+  }, [stateFlows]);
+
+  return (
+    <div>
+      <ChapterHeader
+        number={21}
+        title="Inventor Mechanics"
+        subtitle="Co-invention networks, bridge inventors, and inter-firm mobility"
+      />
+
+      <KeyFindings>
+        <li>632 prolific inventors form 1,236 co-invention ties in a fragmented network of small, tightly connected teams.</li>
+        <li>Average inventor degree rose 2.5 times, from 2.7 in the 1980s to 6.8 in the 2020s, reflecting a progressively more collaborative innovation ecosystem.</li>
+        <li>143,524 inventor movements flow among 50 major patent-filing organizations, with large technology companies tending to be net talent importers.</li>
+        <li>International inventor mobility rose from 1.3% in 1980 to 5.1% in 2024, surpassing domestic interstate mobility rates of 3.5%.</li>
+        <li>The United States is involved in 77.6% of all international inventor migration flows (509,639 of 656,397 moves).</li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Individual inventors form fragmented co-invention networks of small, tightly connected teams, while bridge inventors who span 30 or more organizations create potential channels for cross-firm knowledge transfer. Average co-inventor counts have risen 2.5x since the 1980s, reflecting a sustained shift toward team-based invention. Beyond collaboration, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel, and international inventor mobility -- now surpassing domestic rates -- positions the United States at the center of 77.6% of all cross-border inventor flows.
+        </p>
+      </aside>
+
+      <Narrative>
+        <p>
+          Innovation is shaped not only by what is patented but by the people who patent it -- how inventors collaborate, how they move between firms, and how they migrate across borders. This chapter examines the interpersonal and inter-firm dimensions of inventor activity: the co-invention networks that reveal stable research teams, the bridge inventors who connect otherwise separate organizations, and the mobility patterns through which talent and tacit knowledge circulate across firms, states, and countries.
+        </p>
+      </Narrative>
+
+      {/* ================================================================== */}
+      {/* SECTION A: Interpersonal Collaborations                            */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Inventor Co-Invention" />
+
+      <Narrative>
+        <p>
+          In addition to organizational partnerships, individual inventors form collaborative
+          networks. When the same inventors repeatedly appear together on patents, this indicates
+          stable <StatCallout value="research teams" /> that persist across projects and years.
+          These co-invention ties constitute some of the most productive relationships in the
+          innovation ecosystem.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-collaboration-inventor-network"
+        subtitle="Co-invention network among prolific inventors, with edges representing shared patents and node size indicating total patent count."
+        title="632 Prolific Inventors Form 1,236 Co-Invention Ties in Fragmented Team Clusters"
+        caption="Co-invention network among inventors with significant collaboration ties. Edges represent shared patents; node size indicates total patent count. The network is more fragmented than the organizational co-patenting network, with many small, tightly connected teams."
+        insight="The increasing connectivity of the co-invention network is consistent with potentially faster knowledge diffusion, though it may simultaneously create path dependencies in innovation direction."
+        loading={inL}
+        height={900}
+        wide
+      >
+        {inventorNetwork?.nodes && inventorNetwork?.edges ? (
+          <PWNetworkGraph
+            nodes={inventorNetwork.nodes}
+            edges={inventorNetwork.edges}
+            nodeColor={CHART_COLORS[4]}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Inventor collaboration networks tend to be more fragmented than organizational
+          networks, comprising many small, closely connected teams that operate in relative isolation. The most
+          stable long-term collaborations -- pairs or trios of inventors who co-patent over
+          decades -- are concentrated in fields such as semiconductors and pharmaceuticals, where
+          deep domain expertise and established laboratory relationships confer durable advantages.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Collaboration Network Structure" />
+
+      <Narrative>
+        <p>
+          The structure of innovation collaboration has evolved considerably over the study period.
+          By analyzing co-inventor relationships as a network, it is possible to measure the connectedness
+          of the innovation ecosystem. The average degree (number of collaborators per inventor) and network
+          density indicate whether innovation is becoming more or less collaborative over time.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-collaboration-network-metrics"
+        title="Average Inventor Degree Rose 2.5x, From 2.7 in the 1980s to 6.8 in the 2020s"
+        subtitle="Average co-inventors per inventor and average team size by decade, measuring collaboration network connectivity"
+        caption="Summary statistics of the inventor collaboration network by decade. Average degree measures the typical number of co-inventors per active inventor. Both metrics exhibit sustained increases, indicating a progressively more collaborative innovation ecosystem."
+        insight="Rising average inventor degree reflects both larger team sizes and more extensive cross-organizational collaboration, resulting in a more interconnected innovation network over time."
+        loading={nmL}
+      >
+        {networkMetrics && (
+          <PWLineChart
+            data={networkMetrics}
+            xKey="decade_label"
+            lines={[
+              { key: 'avg_degree', name: 'Average Co-Inventors (Degree)', color: CHART_COLORS[0] },
+              { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[1], dashPattern: '8 4' },
+            ]}
+            yLabel="Average per Inventor"
+            yFormatter={(v: number) => v.toFixed(1)}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The innovation network has become substantially more interconnected. Average inventor
+          degree has risen steadily since the 1980s, reflecting both larger team sizes and more
+          extensive cross-organizational collaboration. This &quot;small world&quot; property suggests that knowledge
+          may diffuse more rapidly through the network, and is consistent with the broader trend
+          toward team-based rather than individual invention.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Bridge Inventors" />
+
+      <Narrative>
+        <p>
+          Certain inventors serve as critical bridges connecting otherwise separate organizations
+          and technology communities. These &quot;bridge inventors&quot; have patented at 30 or more
+          distinct organizations, potentially facilitating the transfer of knowledge and practices between firms.
+        </p>
+      </Narrative>
+
+      {bridgeInventors && bridgeInventors.length > 0 && (
+        <div className="max-w-3xl mx-auto my-8 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-3 font-medium text-muted-foreground">Inventor</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Organizations</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Total Patents</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bridgeInventors.slice(0, 15).map((inv, i) => (
+                <tr key={i} className="border-b border-border/50">
+                  <td className="py-2 px-3">{inv.first_name} {inv.last_name}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.num_orgs}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.total_patents.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          Bridge inventors who span multiple organizations may play a disproportionate role in the
+          innovation ecosystem. Their movement between firms creates potential channels for knowledge
+          transfer beyond patent citations alone, which may help explain observed patterns in which
+          geographic and organizational proximity are associated with innovation diffusion.
+        </p>
+      </KeyInsight>
+
+      {/* ================================================================== */}
+      {/* SECTION B: Inter-Firm Mobility                                     */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Inter-Firm Mobility" />
+
+      <Narrative>
+        <p>
+          Beyond the structure of co-invention networks, the movement of inventors between organizations, across state lines, and across national borders constitutes a parallel channel for knowledge diffusion. Tracking these mobility patterns reveals how talent and tacit knowledge circulate through the innovation ecosystem.
+        </p>
+      </Narrative>
+
+      {/* --- B.i: Talent Flows Between Companies --- */}
+      <SectionDivider label="Talent Flows Between Companies" />
+
+      <Narrative>
+        <p>
+          When inventors file patents at different organizations over their careers, they generate{' '}
+          <GlossaryTooltip term="talent flow">talent flows</GlossaryTooltip> that transfer
+          knowledge between companies. The{' '}
+          <GlossaryTooltip term="Sankey diagram">Sankey diagram</GlossaryTooltip> below maps
+          these inventor movements between major patent filers.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-collaboration-talent-flows"
+        subtitle="Inventor movements between top 50 patent-filing organizations, based on consecutive patents with different assignees within 5 years."
+        title="143,524 Inventor Movements Flow Among 50 Major Patent-Filing Organizations"
+        caption="Movement of inventors between top patent-filing organizations, based on consecutive patents with different assignees (gap of 5 years or fewer). Blue nodes indicate net talent importers; red nodes indicate net exporters. The bidirectional nature of many flows suggests active talent cycling within industry clusters."
+        insight="Large technology companies tend to be net talent importers, drawing inventors from smaller firms and universities. The bidirectional nature of many flows is consistent with active talent cycling within industry clusters."
+        loading={tfL}
+        height={700}
+        wide
+      >
+        {talentFlows?.nodes && talentFlows?.links ? (
+          <PWSankeyDiagram
+            nodes={talentFlows.nodes}
+            links={talentFlows.links}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      {/* --- B.ii: International Inventor Mobility --- */}
+      <SectionDivider label="International Inventor Mobility" />
+
+      <Narrative>
+        <p>
+          Inventor mobility data reveal how researchers and engineers move across national borders over the course of their careers. International mobility rates have risen steadily and now surpass domestic interstate rates, reflecting the increasingly global nature of innovation talent flows.
+        </p>
+      </Narrative>
+
+      {mobilityTrend && mobilityTrend.length > 0 && (
+        <ChartContainer
+          id="fig-geography-inventor-mobility-trend"
+          subtitle="Domestic and international inventor mobility rates over time, measured as the share of patents filed by inventors who changed location since their prior patent."
+          title="International Inventor Mobility Rose from 1.3% (1980) to 5.1% (2024), Surpassing Domestic Rates of 3.5%"
+          caption="This chart displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
+          insight="Inventor mobility represents a potential mechanism for knowledge diffusion, as mobile inventors may carry tacit knowledge and professional networks from one region to another."
+          loading={mtL}
+        >
+          <PWLineChart
+            data={mobilityTrend}
+            xKey="year"
+            lines={[
+              { key: 'domestic_mobility_pct', name: 'Domestic Mobility (% Interstate)', color: CHART_COLORS[0] },
+              { key: 'intl_mobility_pct', name: 'International Mobility (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+            ]}
+            yLabel="Mobility Rate (%)"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          Inventor mobility patterns illuminate the dynamic nature of innovation geography.
+          While the majority of inventors remain in the same location throughout their patenting
+          careers, a significant minority relocates between countries, carrying
+          knowledge and professional networks with them. International mobility has surpassed domestic interstate mobility in recent years, reflecting the increasingly global circulation of inventive talent.
+        </p>
+      </KeyInsight>
+
+      {/* --- B.iii: Domestic Inventor Mobility --- */}
+      <SectionDivider label="Domestic Inventor Mobility" />
+
+      <Narrative>
+        <p>
+          The static snapshots of state and city patent output presented above capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
+          <StatCallout value="geographic mobility" /> -- the manner in which innovators relocate between states, carrying tacit knowledge and professional networks with them.
+        </p>
+      </Narrative>
+
+      {topStateFlows.length > 0 && (
+        <ChartContainer
+          id="fig-geography-state-flows"
+          subtitle="Top 30 state-to-state inventor migration corridors, measured by sequential patents filed from different states."
+          title="California Accounts for 54.9% of All Interstate Inventor Migration, with 127,466 Inflows and 118,630 Outflows"
+          caption="This chart displays the most common state-to-state inventor moves, based on sequential patents filed from different states. California-linked corridors dominate, reflecting the state's role as the primary hub for inventor talent flows."
+          insight="The dominant migration corridors reveal the gravitational pull of major technology clusters, with California functioning as both the largest source and destination of inventor talent."
+          loading={sfL}
+          height={900}
+        >
+          <PWBarChart
+            data={topStateFlows}
+            xKey="label"
+            bars={[{ key: 'flow_count', name: 'Moves', color: CHART_COLORS[0] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The dominant domestic migration corridors reflect the gravitational pull of major
+          technology clusters. California functions as both the largest source and destination
+          of inventor migration within the United States, with corridors linking it to Texas, New York, and Washington among the most heavily traveled. These flows suggest that the same agglomeration forces driving geographic concentration also shape the pathways through which inventor talent circulates across the country.
+        </p>
+      </KeyInsight>
+
+      {/* --- B.iv: Global Inventor Migration Flows --- */}
+      <SectionDivider label="Global Inventor Migration Flows" />
+
+      <Narrative>
+        <p>
+          Beyond country-level filing volumes, the map below visualizes the dominant cross-border migration corridors that connect national innovation ecosystems. The United States emerges as the central node, linking East Asian, European, and other innovation systems through flows of researchers and engineers.
+        </p>
+      </Narrative>
+
+      {countryFlows && countryFlows.length > 0 && (
+        <ChartContainer
+          id="fig-geography-global-flows"
+          subtitle="Global inventor migration flows between countries, with arc width proportional to the volume of moves and country shading indicating total movement."
+          title="The United States Is Involved in 77.6% of All International Inventor Migration Flows (509,639 of 656,397 Moves)"
+          caption="This map displays global inventor migration flows between countries, with arc width representing the volume of moves and country shading indicating total inventor movement. The United States emerges as the central node, connecting East Asian, European, and other innovation ecosystems."
+          insight="The United States functions as the primary global hub for inventor migration, connecting East Asian, European, and other innovation ecosystems through flows of researchers and engineers."
+          loading={cfL}
+          height={650}
+          wide
+        >
+          <PWWorldFlowMap data={countryFlows} maxFlows={25} />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          Internationally, the United States serves as the primary hub connecting inventors from East Asia,
+          Europe, and other regions. Its involvement in more than three-quarters of all cross-border inventor moves underscores
+          its role not only as a destination for global talent but also as a gateway through which knowledge circulates among
+          national innovation systems. These mobility patterns complement the domestic flows above, illustrating
+          how the US patent system functions as both a legal institution and a nexus for the global circulation of inventive talent.
+        </p>
+      </KeyInsight>
+
+      {/* ================================================================== */}
+      {/* Closing                                                            */}
+      {/* ================================================================== */}
+
+      <Narrative>
+        The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
+        <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geography Mechanics</Link>,
+        examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
+      </Narrative>
+
+      <DataNote>
+        Co-invention identifies inventors who share multiple patents. Edge weights represent the number of shared patents. Only connections above significance thresholds are shown to reduce visual clutter. Bridge inventors are those who have patented at 30 or more distinct organizations. Talent flows track inventor movements between assignees based on consecutive patent filings with a gap of 5 years or fewer. Inventor mobility is inferred from changes in reported location between sequential patents by the same disambiguated inventor. International flows track cross-border moves based on sequential patents filed from different countries.
+      </DataNote>
+
+      <RelatedChapters currentChapter={21} />
+      <ChapterNavigation currentChapter={21} />
+    </div>
+  );
+}

@@ -1166,7 +1166,7 @@ export interface FirmAmbidexterityRecord {
   median_fwd_cites: number;
 }
 
-// ── Deep Dive Domain Types (shared by all ACT 5 deep-dive chapters) ──────────
+// ── Deep Dive Domain Types (shared by all ACT 6 deep-dive chapters) ──────────
 
 /** Annual domain patent counts + share of total */
 export interface DomainPerYear {

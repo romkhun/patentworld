@@ -1,0 +1,392 @@
+'use client';
+
+import { useMemo } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { StatCallout } from '@/components/chapter/StatCallout';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CHART_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import type {
+  TeamSizePerYear,
+  SoloInventorTrend,
+  SoloInventorBySection,
+} from '@/lib/types';
+import Link from 'next/link';
+
+export default function InvTeamSizeChapter() {
+  /* ── data hooks ── */
+  const { data: team, loading: tmL } =
+    useChapterData<TeamSizePerYear[]>('chapter5/team_size_per_year.json');
+  const { data: solo, loading: soL } =
+    useChapterData<SoloInventorTrend[]>('chapter5/solo_inventors.json');
+  const { data: soloBySection, loading: sbsL } =
+    useChapterData<SoloInventorBySection[]>('chapter5/solo_inventors_by_section.json');
+  const { data: qualityByTeam, loading: qtL } =
+    useChapterData<any[]>('computed/quality_by_team_size.json');
+  const { data: prodByTeam, loading: ptL } =
+    useChapterData<any[]>('computed/inventor_productivity_by_team_size.json');
+
+  /* ── derived data ── */
+  const soloBySectionLabeled = useMemo(() => {
+    if (!soloBySection) return [];
+    return soloBySection.map((d) => ({
+      ...d,
+      label: `${d.section} - ${CPC_SECTION_NAMES[d.section] ?? d.section}`,
+    }));
+  }, [soloBySection]);
+
+  /* ── pivot helper for team-size quality charts ── */
+  const pivotData = (raw: any[] | null, metric: string) => {
+    if (!raw) return [];
+    const byYear: Record<number, any> = {};
+    for (const r of raw) {
+      if (!byYear[r.year]) byYear[r.year] = { year: r.year };
+      byYear[r.year][r.group] = r[metric];
+    }
+    return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
+  };
+
+  /* ── shared line config for team-size charts ── */
+  const teamLines = [
+    { key: 'Solo', name: 'Solo Inventor', color: CHART_COLORS[0] },
+    { key: '2-3', name: '2-3 Inventors', color: CHART_COLORS[1] },
+    { key: '4-6', name: '4-6 Inventors', color: CHART_COLORS[2] },
+    { key: '7+', name: '7+ Inventors', color: CHART_COLORS[3] },
+  ];
+
+  return (
+    <div>
+      <ChapterHeader
+        number={17}
+        title="Team Size"
+        subtitle="The collaborative turn and team size effects on quality"
+      />
+
+      <KeyFindings>
+        <li>
+          Average patent team size increased from approximately 1.7 inventors per patent in the
+          late 1970s to over 3 by 2025, while the solo-inventor share declined from above 50%
+          to under 25%.
+        </li>
+        <li>
+          The share of patents listing five or more inventors has grown more than eightfold,
+          from about 2.5% to over 21%, reflecting the increasing complexity and
+          interdisciplinarity of contemporary technology development.
+        </li>
+        <li>
+          Solo invention rates vary substantially across technology fields: chemistry and
+          metallurgy (CPC Section C) has the lowest solo-inventor share at 13%, while fixed
+          constructions (Section E) retains the highest at nearly 39%.
+        </li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          TL;DR
+        </h2>
+        <p className="text-sm leading-relaxed">
+          The transition from solo to team-based invention is one of the defining structural
+          shifts in modern innovation: average team size rose from 1.7 to over 3 inventors per
+          patent, while the solo share fell from above 50% to under 25%. Chemistry and
+          biotech-adjacent fields have the lowest solo rates, while traditional mechanical
+          fields retain higher shares of individual invention. Quality metrics across team
+          size categories reveal how collaboration relates to patent characteristics.
+        </p>
+      </aside>
+
+      <Narrative>
+        <p>
+          The previous chapter,{' '}
+          <Link
+            href="/chapters/inv-gender"
+            className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
+          >
+            Gender
+          </Link>
+          , examined how gender composition in patenting has evolved. This chapter turns to the
+          structural organization of inventive activity itself: the shift from solo to
+          team-based patenting, the distribution of solo invention across technology fields,
+          and the relationship between team size and patent quality.
+        </p>
+        <p>
+          The most consequential structural shift in modern invention has been the transition
+          from individual to collaborative patenting, reflecting the growing complexity and
+          interdisciplinarity of contemporary technology development. This chapter traces that
+          shift and explores whether team composition correlates with measurable differences
+          in patent quality.
+        </p>
+      </Narrative>
+
+      {/* ── Section A: The Collaborative Turn ── */}
+      <SectionDivider label="The Collaborative Turn" />
+
+      <ChartContainer
+        id="fig-team-size-trend"
+        title="Average Patent Team Size Increased from 1.7 to Over 3 Inventors, 1976-2025"
+        subtitle="Average team size, solo-inventor share, and large-team (5+) share per patent, tracking the shift from solo to collaborative invention, 1976-2025"
+        caption="This chart displays three concurrent trends in inventor team composition: average team size per patent, the percentage of solo-inventor patents, and the share of large-team (5+ inventor) patents. The most prominent pattern is the steady rise in average team size alongside a corresponding decline in solo invention from above 50% to under 25%."
+        insight="The transition from solo invention to team-based research and development constitutes one of the defining structural shifts in modern innovation, reflecting the increasing complexity and interdisciplinarity of technology development."
+        loading={tmL}
+      >
+        <PWLineChart
+          data={team ?? []}
+          xKey="year"
+          lines={[
+            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2] },
+            { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3] },
+            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0] },
+          ]}
+          yLabel="Percentage / Team Size"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          Average team size increased from approximately <StatCallout value="1.7" /> inventors
+          per patent in the late 1970s to over <StatCallout value="3" /> by 2025. The share of
+          solo-inventor patents has declined substantially, while patents listing five or more
+          inventors have become increasingly prevalent.
+        </p>
+      </Narrative>
+
+      <KeyInsight>
+        <p>
+          The transition from solo to team invention mirrors broader trends in science and
+          engineering. The solo-inventor share declined from above 50% to under 25%, while the
+          share of patents listing five or more inventors has grown more than eightfold, from
+          about 2.5% to over 21%. This pattern suggests that contemporary technologies
+          increasingly require diverse expertise that exceeds the capacity of any individual
+          inventor.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-solo-inventor-trend"
+        title="Solo Inventor Patents Declined from 58% to 23% of All Grants, 1976-2025"
+        subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976-2025"
+        caption="This chart tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
+        insight="Solo invention has not disappeared in absolute terms -- solo patent counts have roughly doubled -- but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
+        loading={soL}
+      >
+        <PWLineChart
+          data={solo ?? []}
+          xKey="year"
+          lines={[
+            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[0] },
+          ]}
+          yLabel="Solo Inventor Share (%)"
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-solo-by-section"
+        title="Solo Invention Rates Vary Widely Across Technology Fields"
+        subtitle="Share of solo-inventor patents by CPC section, 1976-2025"
+        caption="This chart compares the solo-inventor share across CPC technology sections. Fields requiring complex laboratory or multidisciplinary approaches (such as Chemistry and Electricity) show markedly lower solo rates than traditional mechanical and construction fields."
+        insight="The variation in solo-inventor rates across technology fields reflects the differing knowledge requirements of each domain. Laboratory-intensive fields like chemistry and biotechnology rely more heavily on team-based approaches."
+        loading={sbsL}
+      >
+        <PWBarChart
+          data={soloBySectionLabeled}
+          xKey="label"
+          bars={[{ key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[0] }]}
+          layout="vertical"
+          yLabel="Solo Inventor Share (%)"
+        />
+      </ChartContainer>
+
+      <Narrative>
+        <p>
+          Solo invention rates vary substantially across technology fields. Chemistry and
+          metallurgy (CPC Section C) has the lowest solo-inventor share at approximately{' '}
+          <StatCallout value="13%" />, reflecting the laboratory-intensive, multidisciplinary
+          nature of chemical and pharmaceutical innovation. Fixed constructions (Section E)
+          retains the highest solo share at nearly <StatCallout value="39%" />, consistent with
+          fields where individual craftsmen and small-firm inventors remain more prevalent.
+          Physics (Section G) and Electricity (Section H), the two largest and fastest-growing
+          technology domains, both exhibit solo rates below 26%.
+        </p>
+      </Narrative>
+
+      {/* ── Section B: Quality Metrics — By Team Size ── */}
+      <SectionDivider label="Quality Metrics by Team Size" />
+      <Narrative>
+        <p>
+          Team size categories are defined as: Solo (1 inventor), Small (2-3 inventors),
+          Medium (4-6 inventors), and Large (7+ inventors). The following quality indicators
+          reveal how team composition correlates with patent characteristics.
+        </p>
+      </Narrative>
+      {/* B.i — Forward Citations */}
+      <ChartContainer
+        id="fig-team-fwd-citations"
+        title="Larger Teams Produce Higher-Impact Patents Measured by Forward Citations"
+        subtitle="Average forward citations per patent by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_forward_citations')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Forward Citations"
+        />
+      </ChartContainer>
+
+      {/* B.ii — Claims */}
+      <ChartContainer
+        id="fig-team-claims"
+        title="Team-Authored Patents List More Claims Than Solo Inventions"
+        subtitle="Average number of claims per patent by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_num_claims')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Claims"
+        />
+      </ChartContainer>
+
+      {/* B.iii — Scope */}
+      <ChartContainer
+        id="fig-team-scope"
+        title="Larger Teams File Patents Spanning More Technology Subclasses"
+        subtitle="Average patent scope (CPC subclass count) by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_scope')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. CPC Subclasses"
+        />
+      </ChartContainer>
+
+      {/* B.iv — Originality */}
+      <ChartContainer
+        id="fig-team-originality"
+        title="Multi-Inventor Teams Draw on More Diverse Prior Art Sources"
+        subtitle="Average originality index by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_originality')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Originality Index"
+        />
+      </ChartContainer>
+
+      {/* B.v — Generality */}
+      <ChartContainer
+        id="fig-team-generality"
+        title="Team Size Shows Little Differentiation in Citation Generality"
+        subtitle="Average generality index by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_generality')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Generality Index"
+        />
+      </ChartContainer>
+
+      {/* B.vi — Self-Citation Rate */}
+      <ChartContainer
+        id="fig-team-self-citation"
+        title="Larger Teams Exhibit Higher Self-Citation Rates Than Solo Inventors"
+        subtitle="Average self-citation rate by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_self_citation_rate')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Self-Citation Rate"
+          yFormatter={(v: number) => `${(v * 100).toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      {/* B.vii — Grant Lag */}
+      <ChartContainer
+        id="fig-team-grant-lag"
+        title="Grant Processing Time Increases with Team Size Across All Periods"
+        subtitle="Average grant lag in days by team size category, 1976-2025"
+        loading={qtL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualityByTeam, 'avg_grant_lag_days')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Grant Lag (days)"
+        />
+      </ChartContainer>
+
+      {/* B.viii — Inventor Productivity */}
+      <ChartContainer
+        id="fig-team-productivity"
+        title="Mid-Size Teams (4-6) Show the Highest Per-Inventor Patent Productivity"
+        subtitle="Average patents per inventor by team size category, 1976-2025"
+        loading={ptL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(prodByTeam, 'avg_patents_per_inventor')}
+          xKey="year"
+          lines={teamLines}
+          yLabel="Avg. Patents per Inventor"
+        />
+      </ChartContainer>
+
+      {/* ── Closing Transition ── */}
+      <Narrative>
+        <p>
+          The team-based structure of modern invention documented in this chapter concludes
+          ACT 3: The Inventors. Having examined who invents -- from top inventors and
+          specialization patterns to career trajectories, gender composition, and team
+          structure -- the analysis now shifts to <em>where</em> innovation happens. ACT 4:
+          The Geography begins with{' '}
+          <Link
+            href="/chapters/geo-domestic"
+            className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
+          >
+            Domestic Geography
+          </Link>
+          , which maps the concentration of patent activity across US states and cities,
+          revealing the spatial clustering that shapes the American innovation landscape.
+        </p>
+      </Narrative>
+
+      <DataNote>
+        Team size counts all listed inventors per patent. Solo inventor share is computed as
+        the percentage of patents with exactly one listed inventor. CPC section-level solo
+        rates use the primary CPC classification of each patent. Inventor disambiguation is
+        provided by PatentsView.
+      </DataNote>
+
+      <RelatedChapters currentChapter={17} />
+      <ChapterNavigation currentChapter={17} />
+    </div>
+  );
+}

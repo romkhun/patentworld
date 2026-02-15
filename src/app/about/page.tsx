@@ -237,7 +237,7 @@ export default function AboutPage() {
         <section id="chapters">
           <h2 className="font-serif text-2xl font-bold pt-4">Chapters</h2>
           <p>
-            PatentWorld presents 43 chapters organized into five acts, each examining a different
+            PatentWorld presents 34 chapters organized into six acts, each examining a different
             dimension of the US patent system. Browse all chapters on the{' '}
             <Link href="/explore/" className="underline underline-offset-2 hover:text-foreground transition-colors">
               Explore

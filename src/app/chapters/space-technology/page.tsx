@@ -232,7 +232,7 @@ export default function Chapter22() {
   return (
     <div>
       <ChapterHeader
-        number={43}
+        number={34}
         title="Space Technology"
         subtitle="Patenting the final frontier"
       />
@@ -791,7 +791,7 @@ export default function Chapter22() {
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in space technology patenting."
         title="Top-4 Concentration in Space Technology Patents Fluctuated Between 4.9% and 36.7%, Reflecting the Sector's Transition From Government to Commercial Innovation"
         caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total space patents. The wide fluctuation reflects structural shifts: early government-funded concentration, a fragmented middle period, and recent reconsolidation as SpaceX, Boeing, and satellite communication firms scaled patent portfolios."
-        insight="The space sector's concentration dynamics are unique among ACT 5 domains, reflecting the fundamental tension between government-funded basic research (distributed across contractors) and commercial space ventures (consolidated among a few well-funded firms)."
+        insight="The space sector's concentration dynamics are unique among ACT 6 domains, reflecting the fundamental tension between government-funded basic research (distributed across contractors) and commercial space ventures (consolidated among a few well-funded firms)."
         loading={ootL || pyL}
       >
         <PWLineChart
@@ -807,7 +807,7 @@ export default function Chapter22() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across space technology subfields."
         title="Space Technology Subfield Diversity Fluctuated Between 0.69 and 0.93, With Recent Decline Suggesting Increasing Specialization"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The fluctuation reflects shifting emphasis: early diversity across communications, propulsion, and guidance gave way to increasing specialization, with satellite communications dominating recent patenting."
-        insight="The recent entropy decline contrasts with most ACT 5 domains where diversity increased, suggesting that space technology is concentrating around satellite communications and LEO constellation systems at the expense of traditional propulsion and guidance subfields."
+        insight="The recent entropy decline contrasts with most ACT 6 domains where diversity increased, suggesting that space technology is concentrating around satellite communications and LEO constellation systems at the expense of traditional propulsion and guidance subfields."
         loading={sfL}
       >
         <PWLineChart
@@ -824,7 +824,7 @@ export default function Chapter22() {
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a space technology patent."
         title="Space Technology Patenting Velocity Has Remained Relatively Stable Across Entry Cohorts, Averaging 4-8 Patents per Year"
         caption="Mean patents per active year for top space organizations grouped by entry decade. Unlike domains where velocity increased dramatically for later entrants, space technology shows relatively stable per-year patenting rates, reflecting the domain's high technical barriers and long development cycles."
-        insight="The stable velocity across cohorts distinguishes space from most other ACT 5 domains and is consistent with the fundamental physics constraints on spacecraft innovation, where development cycles of 5-10 years limit the rate at which any organization can patent productively."
+        insight="The stable velocity across cohorts distinguishes space from most other ACT 6 domains and is consistent with the fundamental physics constraints on spacecraft innovation, where development cycles of 5-10 years limit the rate at which any organization can patent productively."
         loading={taL}
       >
         <PWBarChart
@@ -863,8 +863,8 @@ export default function Chapter22() {
         diffusion measures co-occurrence of space CPC codes with other CPC sections.
       </DataNote>
 
-      <RelatedChapters currentChapter={43} />
-      <ChapterNavigation currentChapter={43} />
+      <RelatedChapters currentChapter={34} />
+      <ChapterNavigation currentChapter={34} />
     </div>
   );
 }

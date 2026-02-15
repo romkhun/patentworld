@@ -235,7 +235,7 @@ export default function Chapter12() {
   return (
     <div>
       <ChapterHeader
-        number={33}
+        number={24}
         title="Agricultural Technology"
         subtitle="Innovation feeding a growing world"
       />
@@ -250,7 +250,7 @@ export default function Chapter12() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a substantial structural change, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a substantial structural change, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -808,7 +808,7 @@ export default function Chapter12() {
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in agricultural technology patenting."
         title="Top-4 Concentration in Agricultural Technology Patents Peaked at 46.7% in 2014 Before Declining to 32.8% by 2025"
         caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2014 peak reflects the dominance of large agricultural conglomerates. Concentration has decreased modestly as biotechnology and precision agriculture attracted new entrants."
-        insight="Agricultural technology exhibits the highest peak organizational concentration among ACT 5 domains, consistent with the capital-intensive nature of agricultural R&amp;D and the dominance of vertically integrated seed and agrochemical firms."
+        insight="Agricultural technology exhibits the highest peak organizational concentration among ACT 6 domains, consistent with the capital-intensive nature of agricultural R&amp;D and the dominance of vertically integrated seed and agrochemical firms."
         loading={ootL || pyL}
       >
         <PWLineChart
@@ -883,8 +883,8 @@ export default function Chapter12() {
         &quot;Non-AgTech&quot; based on patent classification.
       </DataNote>
 
-      <RelatedChapters currentChapter={33} />
-      <ChapterNavigation currentChapter={33} />
+      <RelatedChapters currentChapter={24} />
+      <ChapterNavigation currentChapter={24} />
     </div>
   );
 }

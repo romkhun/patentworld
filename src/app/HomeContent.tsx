@@ -141,7 +141,7 @@ export default function HomePage() {
         </ChartContainer>
         <div className="mt-4 text-center">
           <Link
-            href="/chapters/patent-volume/"
+            href="/chapters/system-patent-count/"
             className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             See the full analysis <ArrowRight className="h-3 w-3" />

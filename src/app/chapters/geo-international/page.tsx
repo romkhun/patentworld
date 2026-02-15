@@ -1,0 +1,415 @@
+'use client';
+
+import { useMemo } from 'react';
+import Link from 'next/link';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { CHART_COLORS } from '@/lib/colors';
+import { formatCompact } from '@/lib/formatters';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import type { CountryPerYear, QualityByCountry } from '@/lib/types';
+
+export default function GeoInternationalChapter() {
+  /* ── Data loading ── */
+  const { data: countriesPerYear, loading: cpyL } = useChapterData<CountryPerYear[]>('chapter4/countries_per_year.json');
+  const { data: qualByCountry, loading: qcL } = useChapterData<QualityByCountry[]>('chapter9/quality_by_country.json');
+  const { data: qualByDomIntl, loading: qdiL } = useChapterData<any[]>('computed/quality_by_domestic_intl.json');
+  const { data: qualByCountryTs, loading: qctL } = useChapterData<any[]>('computed/quality_by_country.json');
+  const { data: topCountries } = useChapterData<string[]>('computed/top_countries.json');
+
+  /* ── Pivot helper: reshape [{year, group, metric}] -> [{year, group1: val, group2: val}] ── */
+  const pivotData = (raw: any[] | null, metric: string) => {
+    if (!raw) return [];
+    const byYear: Record<number, any> = {};
+    for (const r of raw) {
+      if (!byYear[r.year]) byYear[r.year] = { year: r.year };
+      byYear[r.year][r.group] = r[metric];
+    }
+    return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
+  };
+
+  /* ── Country-level chart helpers ── */
+  const countryColors = [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[2], CHART_COLORS[3], CHART_COLORS[4]];
+  const topCountriesForChart = topCountries?.slice(0, 5) ?? [];
+  const countryLines = topCountriesForChart.map((c: string, i: number) => ({ key: c, name: c, color: countryColors[i] }));
+
+  /* ── Country filing trends: pivot top countries into line-chart format ── */
+  const { countryTimePivot, countryTimeNames } = useMemo(() => {
+    if (!countriesPerYear) return { countryTimePivot: [], countryTimeNames: [] };
+    const totals: Record<string, number> = {};
+    countriesPerYear.forEach((d) => { totals[d.country] = (totals[d.country] || 0) + d.count; });
+    const topCountryNames = Object.entries(totals)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([c]) => c);
+    const years = [...new Set(countriesPerYear.map((d) => d.year))].sort();
+    const pivoted = years.map((year) => {
+      const row: Record<string, number> = { year };
+      countriesPerYear
+        .filter((d) => d.year === year && topCountryNames.includes(d.country))
+        .forEach((d) => { row[d.country] = d.count; });
+      return row;
+    });
+    return { countryTimePivot: pivoted, countryTimeNames: topCountryNames };
+  }, [countriesPerYear]);
+
+  /* ── Quality vs. Quantity by Country: latest decade ── */
+  const latestDecadeCountry = useMemo(() => {
+    if (!qualByCountry) return [];
+    const maxDecade = Math.max(...qualByCountry.map(d => d.decade));
+    return qualByCountry
+      .filter(d => d.decade === maxDecade)
+      .sort((a, b) => b.avg_claims - a.avg_claims)
+      .slice(0, 15);
+  }, [qualByCountry]);
+
+  return (
+    <div>
+      <ChapterHeader
+        number={19}
+        title="International Geography"
+        subtitle="Cross-border filing patterns and country-level quality metrics"
+      />
+
+      <KeyFindings>
+        <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
+        <li>The United States leads with 164,000 patents and 18.4 average claims in the 2020s, while rapidly growing patent origins such as China exhibit lower average claims, suggesting a quality-quantity tradeoff.</li>
+        <li>US-domestic patents and international patents may differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <p className="text-sm leading-relaxed">
+          Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, but China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 has transformed the competitive landscape. Countries with smaller portfolios occasionally achieve higher average claims, suggesting a quality-oriented approach, while rapidly growing patent origins exhibit lower average claims consistent with early-stage patent system development.
+        </p>
+      </aside>
+
+      <Narrative>
+        <p>
+          The domestic concentration documented in <Link href="/chapters/geo-domestic" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> is paralleled by a transformation in the international origins of US patent filings. Successive waves of foreign filings from Japan, South Korea, and more recently China have reshaped the composition of the US patent system, while the relationship between patent volume and quality varies substantially across countries.
+        </p>
+        <p>
+          This chapter examines the international dimension of innovation geography through three lenses: how domestic and international patents may differ in quality indicators, how patent quality and quantity relate across countries, and how country-level filing trends reveal the evolving composition of foreign patent activity in the US system.
+        </p>
+      </Narrative>
+
+      {/* ── Section A: Domestic vs. International Quality ── */}
+      <SectionDivider label="Domestic vs. International Patent Quality" />
+      <Narrative>
+        <p>
+          US-domestic patents (where all listed inventors reside in the United States) and international patents (with at least one non-US inventor) may differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.
+        </p>
+      </Narrative>
+      {/* A.i — Forward Citations */}
+      <ChartContainer
+        id="fig-geo-intl-dom-fwd-citations"
+        title="Domestic Patents Consistently Receive More Forward Citations Than International Patents"
+        subtitle="Average forward citations per patent by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_forward_citations')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Forward Citations"
+        />
+      </ChartContainer>
+
+      {/* A.ii — Claim Count */}
+      <ChartContainer
+        id="fig-geo-intl-dom-claims"
+        title="Domestic Patents Contain More Claims on Average, Reflecting Broader Scope"
+        subtitle="Average number of claims per patent by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_num_claims')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Claims"
+        />
+      </ChartContainer>
+
+      {/* A.iii — Scope */}
+      <ChartContainer
+        id="fig-geo-intl-dom-scope"
+        title="Technology Scope Has Risen for Both Groups, with Domestic Patents Slightly Ahead"
+        subtitle="Average patent scope (CPC subclass count) by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_scope')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. CPC Subclasses"
+        />
+      </ChartContainer>
+
+      {/* A.iv — Originality */}
+      <ChartContainer
+        id="fig-geo-intl-dom-originality"
+        title="Domestic Patents Draw on More Diverse Prior Art Sources Than International Patents"
+        subtitle="Average originality index by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_originality')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Originality Index"
+        />
+      </ChartContainer>
+
+      {/* A.v — Generality */}
+      <ChartContainer
+        id="fig-geo-intl-dom-generality"
+        title="Domestic Patents Are Cited Across a Wider Range of Technology Fields"
+        subtitle="Average generality index by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_generality')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Generality Index"
+        />
+      </ChartContainer>
+
+      {/* A.vi — Self-Citation Rate */}
+      <ChartContainer
+        id="fig-geo-intl-dom-self-citation"
+        title="International Teams Exhibit Higher Self-Citation Rates Than Domestic Teams"
+        subtitle="Average self-citation rate by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_self_citation_rate')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Self-Citation Rate"
+          yFormatter={(v) => `${((v as number) * 100).toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      {/* A.vii — Grant Lag */}
+      <ChartContainer
+        id="fig-geo-intl-dom-grant-lag"
+        title="International Patents Face Longer Grant Lags, Reflecting Cross-Border Filing Complexity"
+        subtitle="Average grant lag in days by domestic vs. international inventor teams, 1976-2025"
+        loading={qdiL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByDomIntl, 'avg_grant_lag_days')}
+          xKey="year"
+          lines={[
+            { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
+            { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Grant Lag (days)"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Comparing domestic and international patents across multiple quality dimensions will illuminate whether the growing internationalization of the US patent system has affected the distribution of patent quality. These comparisons may reveal differences in filing strategies, research intensity, and the types of inventions that cross national borders to enter the US system.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B: By Country ── */}
+      <SectionDivider label="Patent Quality and Filing Patterns by Country" />
+
+      <Narrative>
+        <p>
+          The relationship between patent quantity and quality across countries warrants examination. Comparing average patent claims -- a rough proxy for patent scope -- across countries indicates that volume and quality do not necessarily correspond. Meanwhile, country-level filing trends over time reveal the evolving composition of foreign patent activity in the US system.
+        </p>
+      </Narrative>
+
+      {/* B.i: Quality vs. Quantity by Country (moved from knowledge-flow-indicators) */}
+      <ChartContainer
+        id="fig-geo-intl-claims-by-country"
+        subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
+        title="The United States Leads with 164,000 Patents and 18.4 Average Claims in the 2020s, While China's 19,200 Patents Average 14.7 Claims"
+        caption="This chart displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
+        insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented approach. The lower average claims from rapidly growing patent origins such as China are consistent with research on early-stage patent system development."
+        loading={qcL}
+        height={550}
+      >
+        <PWBarChart
+          data={latestDecadeCountry}
+          xKey="country"
+          bars={[{ key: 'avg_claims', name: 'Average Claims', color: CHART_COLORS[2] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The cross-country comparison reveals that patent volume and quality do not necessarily align. Countries with smaller portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented filing strategy. The lower average claims from rapidly growing patent origins such as China are consistent with patterns observed in early-stage patent system development, where volume expansion often precedes convergence in quality metrics.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        <p>
+          Beyond the snapshot comparison above, tracking quality metrics over time for the top patent-filing countries reveals how national innovation systems have evolved. The following charts compare the top five countries across four key quality indicators, showing long-run trends in citation impact, patent scope, research originality, and examination timelines.
+        </p>
+      </Narrative>
+
+      {/* B.ii — Forward Citations by Country */}
+      <ChartContainer
+        id="fig-geo-intl-country-fwd-citations"
+        title="The US and Japan Lead in Forward Citations, but All Top Countries Have Converged Downward"
+        subtitle="Average forward citations per patent for the top 5 filing countries, 1976-2025"
+        loading={qctL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByCountryTs, 'avg_forward_citations')}
+          xKey="year"
+          lines={countryLines}
+          yLabel="Avg. Forward Citations"
+        />
+      </ChartContainer>
+
+      {/* B.iii — Claim Count Trends by Country */}
+      <ChartContainer
+        id="fig-geo-intl-country-claims"
+        title="US Patents Contain Substantially More Claims Than Other Top Filing Countries"
+        subtitle="Average number of claims per patent for the top 5 filing countries, 1976-2025"
+        loading={qctL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByCountryTs, 'avg_num_claims')}
+          xKey="year"
+          lines={countryLines}
+          yLabel="Avg. Claims"
+        />
+      </ChartContainer>
+
+      {/* B.iv — Originality by Country */}
+      <ChartContainer
+        id="fig-geo-intl-country-originality"
+        title="Originality Indices Reveal Divergent Research Strategies Across Countries"
+        subtitle="Average originality index for the top 5 filing countries, 1976-2025"
+        loading={qctL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByCountryTs, 'avg_originality')}
+          xKey="year"
+          lines={countryLines}
+          yLabel="Avg. Originality Index"
+        />
+      </ChartContainer>
+
+      {/* B.v — Grant Lag by Country */}
+      <ChartContainer
+        id="fig-geo-intl-country-grant-lag"
+        title="Grant Lag Has Risen Across All Top Countries, with International Filers Waiting Longest"
+        subtitle="Average grant lag in days for the top 5 filing countries, 1976-2025"
+        loading={qctL}
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(qualByCountryTs, 'avg_grant_lag_days')}
+          xKey="year"
+          lines={countryLines}
+          yLabel="Avg. Grant Lag (days)"
+        />
+      </ChartContainer>
+
+      {/* ── Country-Level Filing Trends (from international-geography) ── */}
+      <SectionDivider label="Country-Level Filing Trends" />
+
+      <Narrative>
+        <p>
+          Beyond quality metrics, the volume and trajectory of patent filings from different countries reveal the shifting composition of foreign inventive activity within the US patent system. Japan, long the dominant foreign filer, has been joined by South Korea and China as major sources of patent applications, while European countries have maintained steady but less rapidly growing filing volumes.
+        </p>
+      </Narrative>
+
+      {countryTimePivot.length > 0 && (
+        <ChartContainer
+          id="fig-geo-intl-country-filing-trends"
+          subtitle="Annual patent grants by inventor country for the top 10 foreign filing countries, 1976-2024."
+          title="Japan Leads Foreign Filings with 1.45M US Patents, While China Grew from 299 (2000) to 30,695 (2024)"
+          caption="This chart displays annual patent grant counts for the top 10 countries by inventor location. Japan has dominated foreign filings throughout the study period, while South Korea and China have exhibited rapid growth since the 2000s, fundamentally reshaping the composition of foreign patent activity in the US system."
+          insight="Successive waves of foreign patent filings -- first from Japan, then South Korea, and most recently China -- have progressively diversified the international composition of the US patent system."
+          loading={cpyL}
+        >
+          <PWLineChart
+            data={countryTimePivot}
+            xKey="year"
+            lines={countryTimeNames.map((name, i) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="Patents Granted"
+            yFormatter={(v) => formatCompact(v as number)}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The trajectory of country-level filing reveals distinct phases in the internationalization of the US patent system. Japan&apos;s sustained dominance in foreign filings, South Korea&apos;s rapid ascent through the 1990s and 2000s, and China&apos;s explosive recent growth together illustrate how successive waves of industrialization and technology development translate into patent activity in the world&apos;s largest innovation market.
+        </p>
+      </KeyInsight>
+
+      <Narrative>
+        <p>
+          The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens -- from state-level domestic concentration to global filing patterns and cross-country quality comparisons -- the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
+        </p>
+      </Narrative>
+
+      <DataNote>
+        Geographic data uses the primary inventor (sequence 0) location from PatentsView
+        disambiguated records. Only utility patents with valid location data are included.
+        Country-level filing trends are based on inventor country of residence. Quality by country
+        uses average claims per patent by primary assignee country for the most recent decade.
+        Domestic vs. international classification assigns patents based on whether all listed
+        inventors reside in the United States (domestic) or at least one inventor resides outside
+        the United States (international).
+      </DataNote>
+
+      <RelatedChapters currentChapter={19} />
+      <ChapterNavigation currentChapter={19} />
+    </div>
+  );
+}

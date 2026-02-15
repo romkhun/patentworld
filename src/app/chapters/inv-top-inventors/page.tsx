@@ -1,0 +1,460 @@
+'use client';
+
+import { useMemo } from 'react';
+import { useChapterData } from '@/hooks/useChapterData';
+import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { Narrative } from '@/components/chapter/Narrative';
+import { StatCallout } from '@/components/chapter/StatCallout';
+import { DataNote } from '@/components/chapter/DataNote';
+import { ChartContainer } from '@/components/charts/ChartContainer';
+import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
+import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
+import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { RankingTable } from '@/components/chapter/RankingTable';
+import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CHART_COLORS } from '@/lib/colors';
+import type {
+  SuperstarConcentration,
+  ProlificInventor,
+  StarInventorImpact,
+  InventorSegment,
+  InventorSegmentTrend,
+  InventorDrift,
+} from '@/lib/types';
+import Link from 'next/link';
+import { formatCompact } from '@/lib/formatters';
+
+export default function InvTopInventorsChapter() {
+  /* ── data hooks ── */
+  const { data: superstar, loading: ssL } =
+    useChapterData<SuperstarConcentration[]>('chapter5/superstar_concentration.json');
+  const { data: prolific, loading: prL } =
+    useChapterData<ProlificInventor[]>('chapter5/prolific_inventors.json');
+  const { data: starImpact, loading: siL } =
+    useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
+  const { data: segments, loading: segL } =
+    useChapterData<InventorSegment[]>('chapter5/inventor_segments.json');
+  const { data: segTrend, loading: stL } =
+    useChapterData<InventorSegmentTrend[]>('chapter5/inventor_segments_trend.json');
+  const { data: driftData, loading: drL } =
+    useChapterData<InventorDrift[]>('company/inventor_drift.json');
+  const { data: qualityRank, loading: qrL } =
+    useChapterData<any[]>('computed/quality_by_inventor_rank.json');
+  const { data: prodRank } =
+    useChapterData<any[]>('computed/inventor_productivity_by_rank.json');
+
+  /* ── derived data ── */
+  const topInventors = useMemo(() => {
+    if (!prolific) return [];
+    return prolific.map((d) => ({
+      ...d,
+      label: `${d.first_name} ${d.last_name}`.trim(),
+    }));
+  }, [prolific]);
+
+  const topInventorName = prolific?.[0]
+    ? `${prolific[0].first_name} ${prolific[0].last_name}`.trim()
+    : 'Shunpei Yamazaki';
+
+  const starData = useMemo(() => {
+    if (!starImpact) return [];
+    return starImpact.slice(0, 100).map((d) => ({
+      ...d,
+      label: `${d.first_name} ${d.last_name}`.trim(),
+    }));
+  }, [starImpact]);
+
+  const pivotData = (raw: any[] | null, metric: string) => {
+    if (!raw) return [];
+    const byYear: Record<number, any> = {};
+    for (const r of raw) {
+      if (!byYear[r.year]) byYear[r.year] = { year: r.year };
+      byYear[r.year][r.group] = r[metric];
+    }
+    return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
+  };
+
+  return (
+    <div>
+      <ChapterHeader
+        number={13}
+        title="Top Inventors"
+        subtitle="Superstar concentration, prolific inventors, and citation impact"
+      />
+
+      <KeyFindings>
+        <li>
+          The top 5% of inventors by cumulative patent count grew from accounting for 26% to
+          60% of annual patent output between 1976 and 2025, indicating rising concentration
+          among repeat inventors.
+        </li>
+        <li>
+          The most prolific inventor, {topInventorName}, holds 6,709 patents, and the top 100
+          inventors each exceed 760 patents, predominantly concentrated in electronics and
+          semiconductor fields.
+        </li>
+        <li>
+          Citation impact among the 100 most prolific inventors ranges from 10 to 965 average
+          citations per patent, demonstrating that prolificacy and impact are distinct dimensions
+          of inventor performance.
+        </li>
+      </KeyFindings>
+
+      <aside className="my-8 rounded-lg border bg-muted/30 p-5">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+          TL;DR
+        </h2>
+        <p className="text-sm leading-relaxed">
+          Innovation output is increasingly concentrated among a small elite of repeat
+          inventors. The top 5% grew from 26% to 60% of annual output over five decades, and
+          the single most prolific inventor holds 6,709 patents. Yet prolificacy and citation
+          impact are only weakly correlated -- some high-volume filers average fewer than 10
+          citations per patent while others exceed 900.
+        </p>
+      </aside>
+
+      <Narrative>
+        <p>
+          This chapter consolidates the evidence on top inventors -- their growing concentration
+          of patent output, their individual rankings, and the distinction between quantity and
+          quality. Together, these perspectives illuminate the outsized role that a small cohort
+          of professional inventors plays in the modern innovation system.
+        </p>
+      </Narrative>
+
+      {/* ── Section A: Superstar Inventor Concentration ── */}
+      <SectionDivider label="Superstar Inventor Concentration" />
+
+      <Narrative>
+        <p>
+          The skewed distribution of individual productivity raises a broader structural question:
+          is innovation output becoming more concentrated among a small elite, or more broadly
+          distributed over time? Tracking the share of patents attributable to the top 1% and
+          top 5% of inventors by cumulative patent count provides an answer.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-inventors-superstar-concentration"
+        title="The Top 5% of Inventors Grew from 26% to 60% of Annual Patent Output, 1976-2025"
+        subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
+        caption="This chart tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
+        insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
+        loading={ssL}
+      >
+        {superstar && (
+          <PWLineChart
+            data={superstar}
+            xKey="year"
+            lines={[
+              { key: 'top1pct_share', name: 'Top 1% Share', color: CHART_COLORS[0] },
+              { key: 'top5pct_share', name: 'Top 5% Share', color: CHART_COLORS[1] },
+            ]}
+            yLabel="Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(0)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The skewed distribution of inventive output has important implications for innovation
+          policy. The top 5% of inventors account for a growing share of total patent output,
+          and this concentration has increased substantially over the study period. Patenting is
+          increasingly the domain of repeat, professional inventors, a pattern that parallels
+          analogous trends in academic publishing and other knowledge-intensive fields. Policies
+          that support inventor retention, mobility, and productivity may therefore have
+          disproportionate effects on the overall innovation system.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section B: Top Inventors (Number of Patents) ── */}
+      <SectionDivider label="Top Inventors" />
+
+      <Narrative>
+        <p>
+          Within this increasingly collaborative landscape, a small number of individuals are
+          distinguished by their exceptionally high volume of patent output.{' '}
+          <StatCallout value={topInventorName} /> holds the record for the most patents granted
+          to a single inventor, but prolificacy alone does not fully characterize inventor
+          performance.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-inventors-prolific-ranking"
+        title="The Most Prolific Inventor Holds 6,709 Patents; Top 100 Each Exceed 760"
+        subtitle="Top 100 inventors ranked by total utility patents granted, 1976-2025"
+        caption="This chart ranks inventors by total utility patents granted from 1976 to 2025. The distribution is heavily right-skewed, with the top-ranked inventors holding thousands of patents each, predominantly in electronics and semiconductor fields."
+        insight="The concentration of patents among a small number of prolific inventors raises questions regarding whether the patent system disproportionately rewards institutional resources rather than individual inventive capacity."
+        loading={prL}
+        height={1800}
+      >
+        <PWBarChart
+          data={topInventors}
+          xKey="label"
+          bars={[{ key: 'total_patents', name: 'Total Patents', color: CHART_COLORS[0] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <RankingTable
+        title="View top inventors as a data table"
+        headers={['Inventor', 'Total Patents']}
+        rows={(prolific ?? []).slice(0, 15).map((d) => [
+          `${d.first_name} ${d.last_name}`.trim(),
+          d.total_patents,
+        ])}
+        caption="Top 15 inventors by cumulative utility patent grants, 1976-2025. Source: PatentsView."
+      />
+
+      <Narrative>
+        <p>
+          The most prolific inventors are disproportionately concentrated in electronics and
+          semiconductor fields, where rapid design iteration and modular innovation facilitate
+          high patent output. Many of the top-ranked inventors are associated with large
+          Japanese and Korean electronics firms that emphasize systematic patent generation.
+        </p>
+      </Narrative>
+
+      {/* ── Section C: Inventor Impact ── */}
+      <SectionDivider label="Inventor Impact" />
+
+      <Narrative>
+        <p>
+          Prolificacy does not necessarily correspond to impact.{' '}
+          <GlossaryTooltip term="forward citations">Forward citations</GlossaryTooltip> --
+          the frequency with which an inventor&apos;s patents are cited by subsequent patents --
+          indicate whether their innovations serve as{' '}
+          <StatCallout value="foundational contributions" /> to future inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-inventors-citation-impact"
+        title="Citation Impact Ranges from 10 to 965 Average Citations Among the 100 Most Prolific Inventors"
+        subtitle="Average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, based on patents granted through 2020"
+        caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
+        insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
+        loading={siL}
+        height={1800}
+      >
+        <PWBarChart
+          data={starData}
+          xKey="label"
+          bars={[
+            { key: 'avg_citations', name: 'Average Citations', color: CHART_COLORS[0] },
+            { key: 'median_citations', name: 'Median Citations', color: CHART_COLORS[2] },
+          ]}
+          layout="vertical"
+          yLabel="Citations"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Prolificacy and impact constitute distinct dimensions of performance. Some inventors
+          with fewer total patents generate substantially higher citation impact per patent,
+          suggesting a more pronounced influence on their respective fields.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section D: Quality Metrics — Top Inventors vs. Other ── */}
+      <SectionDivider label="Quality Metrics: Top Inventors vs. Other Inventors" />
+      <Narrative>
+        <p>
+          This section compares quality indicators between prolific (top 12%) and other inventors
+          over time, revealing how sustained patenting experience correlates with patent quality.
+          The metrics span productivity, citation impact, claim breadth, technological scope,
+          originality and generality of knowledge flows, self-citation behavior, and administrative
+          grant lag. Together, these dimensions provide a multifaceted picture of whether top
+          inventors produce not just more patents, but meaningfully different ones.
+        </p>
+      </Narrative>
+      {/* D.i: Productivity — Avg patents per inventor */}
+      <ChartContainer
+        id="fig-productivity-by-rank"
+        title="Top Inventors Average More Patents Per Year Than Other Inventors"
+        subtitle="Average patents per inventor per year by rank, 1976-2025"
+        height={400}
+      >
+        <PWLineChart
+          data={pivotData(prodRank, 'avg_patents_per_inventor')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Patents per Inventor"
+        />
+      </ChartContainer>
+
+      {/* D.ii: Forward Citations */}
+      <ChartContainer
+        id="fig-top-inv-fwd-citations"
+        title="Top Inventors Consistently Earn More Forward Citations Per Patent"
+        subtitle="Average forward citations per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_forward_citations')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Forward Citations"
+        />
+      </ChartContainer>
+
+      {/* D.iii: Claims */}
+      <ChartContainer
+        id="fig-top-inv-claims"
+        title="Top Inventors File Patents With More Claims on Average"
+        subtitle="Average number of claims per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_num_claims')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Claims"
+        />
+      </ChartContainer>
+
+      {/* D.iv: Scope */}
+      <ChartContainer
+        id="fig-top-inv-scope"
+        title="Top Inventor Patents Span Broader Technological Scope"
+        subtitle="Average CPC subclasses per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_scope')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. CPC Subclasses"
+        />
+      </ChartContainer>
+
+      {/* D.v: Originality */}
+      <ChartContainer
+        id="fig-top-inv-originality"
+        title="Top Inventors Draw on More Diverse Prior Art Sources"
+        subtitle="Average originality index per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_originality')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Originality Index"
+        />
+      </ChartContainer>
+
+      {/* D.vi: Generality */}
+      <ChartContainer
+        id="fig-top-inv-generality"
+        title="Top Inventor Patents Are Cited Across a Wider Range of Fields"
+        subtitle="Average generality index per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_generality')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Generality Index"
+        />
+      </ChartContainer>
+
+      {/* D.vii: Self-Citation Rate */}
+      <ChartContainer
+        id="fig-top-inv-self-citation"
+        title="Top Inventors Exhibit Higher Self-Citation Rates Over Time"
+        subtitle="Average self-citation rate per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_self_citation_rate')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Self-Citation Rate"
+          yFormatter={(v: number) => `${(v * 100).toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      {/* D.viii: Grant Lag */}
+      <ChartContainer
+        id="fig-top-inv-grant-lag"
+        title="Top Inventors Experience Similar Grant Lag to Other Inventors"
+        subtitle="Average grant lag in days per patent by inventor rank, 1976-2025"
+        height={400}
+        loading={qrL}
+      >
+        <PWLineChart
+          data={pivotData(qualityRank, 'avg_grant_lag_days')}
+          xKey="year"
+          lines={[
+            { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
+            { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
+          ]}
+          yLabel="Avg. Grant Lag (days)"
+        />
+      </ChartContainer>
+
+      {/* ── Closing Transition ── */}
+      <Narrative>
+        <p>
+          The concentration and impact patterns documented here characterize the most prolific
+          inventors as a group; the next chapter,{' '}
+          <Link
+            href="/chapters/inv-generalist-specialist"
+            className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
+          >
+            Generalist vs. Specialist Inventors
+          </Link>
+          , examines whether these top inventors tend toward deep specialization or broad
+          technological range, and how the balance between generalism and specialization has
+          shifted over time.
+        </p>
+      </Narrative>
+
+      <DataNote>
+        Superstar concentration is computed using cumulative patent counts per inventor.
+        The top inventors ranking uses total career utility patents granted, 1976-2025.
+        Citation impact uses forward citations for patents granted through 2020.
+        Inventor disambiguation is provided by PatentsView.
+      </DataNote>
+
+      <RelatedChapters currentChapter={13} />
+      <ChapterNavigation currentChapter={13} />
+    </div>
+  );
+}

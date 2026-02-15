@@ -233,7 +233,7 @@ export default function Chapter21() {
   return (
     <div>
       <ChapterHeader
-        number={42}
+        number={33}
         title="Semiconductors"
         subtitle="The silicon foundation of modern technology"
       />
@@ -249,13 +249,13 @@ export default function Chapter21() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          ACT 5 examines twelve technology domains through the lens of patent data, from semiconductors to <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>. This chapter begins with the silicon foundation underlying modern computing.
+          ACT 6 examines twelve technology domains through the lens of patent data, from semiconductors to <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>. This chapter begins with the silicon foundation underlying modern computing.
         </p>
         <p>
           The semiconductor industry occupies a unique position in the modern innovation
@@ -762,8 +762,8 @@ export default function Chapter21() {
         id="fig-semi-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in semiconductor patenting."
         title="Top-4 Concentration in Semiconductor Patents Rose From 11.3% in 1977 to 32.6% in 2023, a Sustained Consolidation Trend"
-        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total semiconductor patents. Unlike most ACT 5 domains where concentration declined, semiconductors show sustained consolidation, driven by Samsung, TSMC, and other East Asian firms scaling patent portfolios."
-        insight="The rising concentration in semiconductors is unique among ACT 5 domains and is consistent with the industry's increasing capital intensity: fabrication facilities now cost $10-20 billion, creating structural barriers that concentrate innovative activity among a diminishing number of firms capable of leading-edge manufacturing."
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total semiconductor patents. Unlike most ACT 6 domains where concentration declined, semiconductors show sustained consolidation, driven by Samsung, TSMC, and other East Asian firms scaling patent portfolios."
+        insight="The rising concentration in semiconductors is unique among ACT 6 domains and is consistent with the industry's increasing capital intensity: fabrication facilities now cost $10-20 billion, creating structural barriers that concentrate innovative activity among a diminishing number of firms capable of leading-edge manufacturing."
         loading={ootL || pyL}
       >
         <PWLineChart
@@ -811,7 +811,7 @@ export default function Chapter21() {
         Having documented the landscape of semiconductor patenting, the analysis
         demonstrates the foundational role of chip technology in the broader innovation
         system. The organizational strategies behind semiconductor portfolios are explored
-        further in <Link href="/chapters/assignee-landscape" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
+        further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
         while the interaction between semiconductor and artificial intelligence patents is
         examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. The next chapter turns to <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link>, a domain that builds directly on semiconductor fabrication expertise while pursuing fundamentally different computational paradigms.
       </Narrative>
@@ -830,8 +830,8 @@ export default function Chapter21() {
         contains the core semiconductor classifications).
       </DataNote>
 
-      <RelatedChapters currentChapter={42} />
-      <ChapterNavigation currentChapter={42} />
+      <RelatedChapters currentChapter={33} />
+      <ChapterNavigation currentChapter={33} />
     </div>
   );
 }
