@@ -223,7 +223,7 @@ export default function OrgPatentCountChapter() {
       <KeyInsight>
         <p>
           Patent concentration has remained relatively stable: the top 100 organizations consistently
-          hold roughly a third of all corporate patents. This pattern suggests that while new entrants emerge,
+          hold 32-39% of all corporate patents. This pattern suggests that while new entrants emerge,
           the patent system remains dominated by large, well-resourced entities that invest substantially
           in R&amp;D.
         </p>

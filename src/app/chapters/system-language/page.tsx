@@ -167,7 +167,7 @@ export default function Chapter3() {
         <li>
           <GlossaryTooltip term="topic modeling">Topic modeling</GlossaryTooltip> of {formatCompact(totalPatents)} patent abstracts reveals 25 distinct technology themes spanning computing, chemistry, biotechnology, and engineering.
         </li>
-        <li>Computing and semiconductor-related topics have grown from approximately 12% to over 33% of all patents since 1976, mirroring the digital revolution.</li>
+        <li>Computing and semiconductor-related topics have grown from 12% to 33% of all patents since 1976, mirroring the digital revolution.</li>
         <li>Patents that span multiple topics — measured by Shannon entropy — tend to be the most novel inventions, often sitting at the intersection of technologies.</li>
         <li>The semantic landscape of patents, visualized via <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip>, reveals clear clustering by technology area with growing overlap between computational and scientific domains.</li>
       </KeyFindings>
@@ -220,8 +220,8 @@ export default function Chapter3() {
       <ChartContainer
         id="fig-language-innovation-topic-prevalence"
         subtitle="Share of patents belonging to each of 25 NMF-derived topics by year, revealing the shift toward computing and digital technology themes."
-        title="Computing and Semiconductor Topics Grew From Approximately 12% to Over 33% of All Patents Since 1976"
-        caption="Share of patents belonging to each of 25 NMF-derived topics, 1976–2025, sorted by total patent count. The most prominent trend is the expansion of computing, semiconductor, and communications topics, which grew from approximately 12% to over 33% of the total."
+        title="Computing and Semiconductor Topics Grew From 12% to 33% of All Patents Since 1976"
+        caption="Share of patents belonging to each of 25 NMF-derived topics, 1976–2025, sorted by total patent count. The most prominent trend is the expansion of computing, semiconductor, and communications topics, which grew from 12% to 33% of the total."
         insight="The language of innovation has shifted decisively toward computing and digital technology over 50 years. Topics related to software, semiconductors, and wireless communications now dominate patent abstracts."
         loading={prevL || defL}
         height={topicView === 'multiples' ? 550 : 650}

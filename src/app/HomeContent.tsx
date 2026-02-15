@@ -90,7 +90,7 @@ export default function HomePage() {
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025.
-            Annual grants increased five-fold over this period, from approximately 70,000 to over 350,000,
+            Annual grants increased five-fold over this period, from 70,000 to 374,000,
             as computing and electronics rose from 12% to over 40% of all patent output.
           </p>
 

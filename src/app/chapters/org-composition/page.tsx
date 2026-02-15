@@ -84,7 +84,7 @@ export default function OrgCompositionChapter() {
 
       <KeyFindings>
         <li>Corporations hold the substantial majority of US patents, growing from 94% to 99% of annual grants between 1976 and 2024, while individual inventors constitute a progressively smaller fraction.</li>
-        <li>Foreign assignees surpassed US-based assignees around 2007 and now account for approximately 53% of patent grants in the 2020s, reflecting the globalization of R&amp;D.</li>
+        <li>Foreign assignees surpassed US-based assignees around 2007 and now account for 53% of patent grants in the 2020s, reflecting the globalization of R&amp;D.</li>
         <li>Japan accounts for 1.4 million US patents since 1976, with South Korea (359K) and China (222K) rising rapidly as successive waves of international entry reshape the patent system.</li>
       </KeyFindings>
 
@@ -165,7 +165,7 @@ export default function OrgCompositionChapter() {
         id="fig-org-composition-domestic-vs-foreign"
         title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
         subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976-2025"
-        caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for approximately 51-56% of grants in the 2020s."
+        caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51-56% of grants in the 2020s."
         insight="The shift to a foreign-majority patent system reflects the globalization of R&amp;D. The US patent system functions as the de facto global standard for protecting high-value inventions regardless of assignee nationality."
         loading={dvfL}
       >
@@ -184,7 +184,7 @@ export default function OrgCompositionChapter() {
       <KeyInsight>
         <p>
           Foreign assignees surpassed US-based assignees around 2007 and now account for the
-          majority of patent grants, averaging approximately 53% in the 2020s. This shift reflects the globalization of R&amp;D: multinational firms
+          majority of patent grants, averaging 53% in the 2020s. This shift reflects the globalization of R&amp;D: multinational firms
           file strategically in the US regardless of headquarter location, and the US patent
           system has become the de facto global standard for protecting high-value inventions.
         </p>
@@ -194,7 +194,7 @@ export default function OrgCompositionChapter() {
         <p>
           The national origin of US patent holders has shifted substantially over five decades.
           In the late 1970s, over 60% of US utility patents were granted to domestic assignees.
-          By the 2020s, that share had declined to below half, with foreign assignees averaging approximately 53% and the largest increases
+          By the 2020s, that share had declined to below half, with foreign assignees averaging 53% and the largest increases
           attributable to South Korean and Chinese assignees, particularly in electronics and telecommunications.
         </p>
       </Narrative>

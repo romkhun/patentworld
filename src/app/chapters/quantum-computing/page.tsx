@@ -603,7 +603,7 @@ export default function Chapter20() {
         subtitle="Distribution of quantum computing patents by assignee type (corporate, government, individual) over time."
         title="Corporate Assignees Dominate Quantum Computing Patents"
         caption="Distribution of quantum computing patent assignees by type over time. Corporate assignees account for over 98% of quantum patents, with government entities and individual inventors making up the remainder."
-        insight="Corporate assignees overwhelmingly dominate quantum computing patenting, accounting for over 98% of filings. Government entities contribute roughly 1.2% and individual inventors about 0.2%."
+        insight="Corporate assignees overwhelmingly dominate quantum computing patenting, accounting for over 98% of filings. Government entities contribute 1.2% and individual inventors 0.2%."
         loading={atL}
         height={500}
       >
@@ -623,7 +623,7 @@ export default function Chapter20() {
       <KeyInsight>
         <p>
           Corporate assignees account for over 98% of quantum computing patents, with
-          government entities contributing roughly 1.2% and individual inventors about 0.2%.
+          government entities contributing 1.2% and individual inventors 0.2%.
           While several universities appear among top individual assignees, the aggregate
           university share is minimal -- there is no separate &quot;University&quot; category in the
           assignee type data. The pronounced corporate dominance reflects the capital-intensive

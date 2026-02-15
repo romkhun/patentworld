@@ -284,7 +284,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyFindings>
         <li>Design patent share has fluctuated between 6% and 14%, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
-        <li>CPC sections G (Physics) and H (Electricity) gained roughly 30 percentage points of share over five decades, now constituting over 57% of all patent grants.</li>
+        <li>CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share over five decades, now constituting 57.3% of all patent grants.</li>
         <li>The fastest-growing digital technology classes expanded by over 1,000%, while declining classes contracted by nearly 84%, consistent with Schumpeterian creative destruction.</li>
         <li>Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold despite concentration in digital fields.</li>
         <li>Technology diversity declined from 0.848 in 1984 to 0.777 in 2009 before stabilizing at 0.789 by 2025.</li>
@@ -372,10 +372,10 @@ export default function SystemPatentFieldsChapter() {
 
       <ChartContainer
         id="fig-patent-fields-cpc-sections"
-        title="CPC Sections G and H Gained Roughly 30 Percentage Points of Share Over Five Decades"
+        title="CPC Sections G and H Gained 30 Percentage Points of Share Over Five Decades"
         subtitle="Share of utility patents by CPC section, toggling between percentage share and absolute count views, 1976-2025"
         caption="Share of utility patents by CPC section (primary classification), 1976-2025. Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity. The stacked area visualization reveals a sustained reallocation of patent activity toward digital technology sections."
-        insight="Digital technology sections (G, H) gained roughly 30 percentage points of share over five decades, while chemistry and operations contracted proportionally. This redistribution is consistent with the economy-wide shift toward information-intensive industries."
+        insight="Digital technology sections (G, H) gained 30 percentage points of share over five decades, while chemistry and operations contracted proportionally. This redistribution is consistent with the economy-wide shift toward information-intensive industries."
         loading={cpcL}
         height={650}
         interactive

@@ -66,7 +66,7 @@ export default function MechGeographyChapter() {
       />
 
       <KeyFindings>
-        <li>International co-invention increased from approximately 2% of patents in the 1980s to reaching 10% in recent years, driven by the globalization of corporate R&D and increasing talent mobility.</li>
+        <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025, driven by the globalization of corporate R&D and increasing talent mobility.</li>
         <li>US-China co-invention rates have grown substantially, surpassing 2% by 2025, though growth rates moderated across certain technology areas amid trade tensions and export controls.</li>
         <li>Innovation in AI, Biotech, and Clean Energy exhibits a consistent diffusion pattern: early concentration in a small number of pioneering cities followed by geographic spread to secondary hubs.</li>
       </KeyFindings>
@@ -74,7 +74,7 @@ export default function MechGeographyChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          This chapter examines how innovation moves across borders and diffuses across cities. International co-invention has grown from roughly 2% of all patents in the 1980s to 10% in recent years, with the US-China corridor expanding from 77 patents in 2000 to 2,749 in 2024. At the city level, emerging technologies consistently originate in a small number of pioneering locations before spreading geographically as knowledge and talent disperse.
+          This chapter examines how innovation moves across borders and diffuses across cities. International co-invention has grown from 1.0% of all patents in 1976 to 10.0% by 2025, with the US-China corridor expanding from 77 patents in 2000 to 2,749 in 2024. At the city level, emerging technologies consistently originate in a small number of pioneering locations before spreading geographically as knowledge and talent disperse.
         </p>
       </aside>
 
@@ -99,8 +99,8 @@ export default function MechGeographyChapter() {
       <ChartContainer
         id="fig-mech-geo-intl-collaboration"
         subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
-        title="International Co-Invention Increased from Approximately 2% in the 1980s to Reaching 10% of All Patents"
-        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from approximately 2% of all patents in the 1980s to reaching 10% in recent years, with the most rapid growth occurring during the 2010s."
+        title="International Co-Invention Increased from 1.0% in 1976 to 10.0% of All Patents by 2025"
+        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from 1.0% of all patents in 1976 to 10.0% by 2025, with the most rapid growth occurring during the 2010s."
         loading={icL}
         insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
@@ -126,7 +126,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          International collaboration has increased from approximately 2% of patents in the 1980s to reaching 10% in recent years. This trend is consistent with the expansion of multinational R&D operations, global talent mobility, and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
+          International collaboration has increased from 1.0% of patents in 1976 to 10.0% by 2025. This trend is consistent with the expansion of multinational R&D operations, global talent mobility, and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
         </p>
       </KeyInsight>
 

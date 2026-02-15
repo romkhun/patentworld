@@ -34,27 +34,27 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: 'The USPTO granted approximately 9.36 million patents between 1976 and 2025. Annual grants increased from approximately 70,000 in the late 1970s to over 350,000 per year by the 2020s, representing a five-fold increase over five decades.',
+    answer: 'The USPTO granted 9.36 million patents between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 in 2019, a five-fold increase over five decades.',
   },
   {
     question: 'Which company holds the most US patents?',
-    answer: 'IBM has been the most prolific US patent filer for most of the past three decades, consistently ranking first or second in annual grants. Samsung, Canon, Intel, and TSMC are among the other top patent holders. The top 100 firms collectively hold approximately 30% of all US patents.',
+    answer: 'IBM leads all organizations with 161,888 cumulative US patent grants, followed by Samsung (157,906) and Canon (88,742). The top 100 firms collectively hold 32-39% of all corporate patents.',
   },
   {
     question: 'How long does it take to obtain a US patent?',
-    answer: 'The average time from application filing to patent grant (grant lag or pendency) peaked above 3 years in the early 2010s before declining to approximately 2 years by the 2020s. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
+    answer: 'The median time from application filing to patent grant (pendency) peaked at 3.6 years (1,317 days) in 2010 before declining to 2.4 years (875 days) in 2023. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
   },
   {
     question: 'What are the fastest-growing patent technology areas?',
-    answer: 'Computing and electronics have grown from approximately 12\u201315% of all US patents in 1976 to approximately 33\u201340% by 2025. Within this broad category, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates in recent years.',
+    answer: 'CPC sections G (Physics) and H (Electricity) have grown from 27% of all US patents in 1976 to 57.3% by 2024. Within these sections, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates since 2012.',
   },
   {
     question: 'Is artificial intelligence patenting increasing?',
-    answer: 'AI patent filings grew approximately six-fold during the deep learning era (2012\u20132025). The acceleration began after breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
+    answer: 'AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. The acceleration began after breakthroughs in deep neural networks in 2012 and intensified further with the emergence of generative AI technologies after 2020.',
   },
   {
     question: 'What is the gender gap in US patenting?',
-    answer: 'Women represent approximately 15% of all US patent inventors as of the most recent data. While the share has grown from under 5% in the 1970s, the gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
+    answer: 'Women represent 14.9% of all US patent inventors as of 2025, up from 2.8% in 1976. The gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
   },
   {
     question: 'Which countries file the most US patents?',
@@ -62,7 +62,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How has patent quality changed over time?',
-    answer: 'Median forward citations (a common proxy for patent quality) declined approximately 40% as patent volume increased substantially. However, originality and generality scores have remained relatively stable, and the patents in the upper tail of the citation distribution continue to receive high citation counts, suggesting that the average has declined while top-quality innovation persists.',
+    answer: 'Average 5-year forward citations peaked at 6.4 in 2019, up from 2.5 in 1976. Average claims per patent rose from 9.4 to 16.6 over the same period. Originality increased from 0.09 to 0.25, while generality declined from 0.28 to 0.15, indicating that patents draw on more diverse sources but are cited in more specialized contexts.',
   },
   {
     question: 'What was the impact of the America Invents Act?',
@@ -70,7 +70,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How many patents does the average inventor hold?',
-    answer: 'The majority of patent inventors hold only one or two patents. The median inventor has approximately 2 patents, while the mean is higher due to prolific inventors. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
+    answer: 'The top 12% of inventors by lifetime output produce 61% of all patent grants. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
   },
 ];
 

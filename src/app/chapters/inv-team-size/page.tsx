@@ -83,13 +83,13 @@ export default function InvTeamSizeChapter() {
 
       <KeyFindings>
         <li>
-          Average patent team size increased from approximately 1.7 inventors per patent in the
-          late 1970s to over 3 by 2025, while the solo-inventor share declined from above 50%
-          to under 25%.
+          Average patent team size increased from 1.7 inventors per patent in
+          1976 to 3.2 by 2025, while the solo-inventor share declined from 58%
+          to 24%.
         </li>
         <li>
           The share of patents listing five or more inventors has grown more than eightfold,
-          from about 2.5% to over 21%, reflecting the increasing complexity and
+          from 2.5% to 21%, reflecting the increasing complexity and
           interdisciplinarity of contemporary technology development.
         </li>
         <li>
@@ -165,8 +165,8 @@ export default function InvTeamSizeChapter() {
 
       <Narrative>
         <p>
-          Average team size increased from approximately <StatCallout value="1.7" /> inventors
-          per patent in the late 1970s to over <StatCallout value="3" /> by 2025. The share of
+          Average team size increased from <StatCallout value="1.7" /> inventors
+          per patent in 1976 to <StatCallout value="3.2" /> by 2025. The share of
           solo-inventor patents has declined substantially, while patents listing five or more
           inventors have become increasingly prevalent.
         </p>
@@ -175,9 +175,9 @@ export default function InvTeamSizeChapter() {
       <KeyInsight>
         <p>
           The transition from solo to team invention mirrors broader trends in science and
-          engineering. The solo-inventor share declined from above 50% to under 25%, while the
+          engineering. The solo-inventor share declined from 58% to 24%, while the
           share of patents listing five or more inventors has grown more than eightfold, from
-          about 2.5% to over 21%. This pattern suggests that contemporary technologies
+          2.5% to 21%. This pattern suggests that contemporary technologies
           increasingly require diverse expertise that exceeds the capacity of any individual
           inventor.
         </p>

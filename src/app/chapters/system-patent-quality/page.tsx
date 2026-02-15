@@ -48,7 +48,7 @@ export default function SystemPatentQualityChapter() {
 
       <KeyFindings>
         <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005, with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
-        <li>Average patent scope grew from 1.8 to nearly 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
+        <li>Average patent scope grew from 1.8 to 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
         <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
         <li>Sleeping beauty patents -- inventions that lay dormant for years before experiencing citation bursts -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
@@ -57,7 +57,7 @@ export default function SystemPatentQualityChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent quality is inherently multidimensional, and its evolution over five decades reveals diverging trends across different indicators. Claim counts doubled before leveling off, scope broadened as technologies became more interdisciplinary, and forward citations grew increasingly skewed. Meanwhile, originality rose as inventions drew on more diverse knowledge inputs, yet generality fell as downstream applications became more concentrated. Self-citation rates declined from 35% to approximately 10% before rebounding modestly, and citation lag expanded from 3 to over 16 years as the cumulative stock of prior art deepened. Together, these patterns demonstrate that the patent system has become simultaneously more complex, more interconnected, and more unequal in the distribution of impact.
+          Patent quality is inherently multidimensional, and its evolution over five decades reveals diverging trends across different indicators. Claim counts doubled before leveling off, scope broadened as technologies became more interdisciplinary, and forward citations grew increasingly skewed. Meanwhile, originality rose as inventions drew on more diverse knowledge inputs, yet generality fell as downstream applications became more concentrated. Self-citation rates declined from 35% to 10% before rebounding modestly, and citation lag expanded from 3 to 16 years as the cumulative stock of prior art deepened. Together, these patterns demonstrate that the patent system has become simultaneously more complex, more interconnected, and more unequal in the distribution of impact.
         </p>
       </aside>
 
@@ -276,7 +276,7 @@ export default function SystemPatentQualityChapter() {
           The average number of backward citations per patent has grown substantially over the
           decades, reflecting the expanding body of prior art that new inventions must
           acknowledge. Patents increasingly build on larger bodies of prior art, with the average rising
-          from approximately 5 in the 1970s to around 19-21 in recent years. The gap between average and median
+          from 5 in the 1970s to 19-21 in recent years. The gap between average and median
           suggests a long tail of heavily-cited patents, a pattern consistent with both the expanding universe of
           prior art and more thorough examination and disclosure requirements.
         </p>
@@ -332,7 +332,7 @@ export default function SystemPatentQualityChapter() {
           Self-citation patterns indicate knowledge accumulation strategies within firms.
           Organizations that consistently cite their own prior patents are building on
           internal knowledge stocks, a characteristic of cumulative innovation within technological
-          trajectories. The long-term decline in self-citation rates from 35% to approximately 10%
+          trajectories. The long-term decline in self-citation rates from 35% to 10%
           may reflect the broadening of knowledge inputs alongside the growing accessibility of
           external prior art, though the modest rebound in the 2020s warrants continued observation.
         </p>
@@ -348,7 +348,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-citation-lag"
         subtitle="Average and median time in years between a cited patent's grant date and the citing patent's grant date, by year."
         title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
-        caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from approximately 3 years in the early 1980s to over 16 years in the most recent period."
+        caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from 3 years in the early 1980s to 16 years in the most recent period."
         loading={ltL}
         insight="The lengthening citation lag is consistent with foundational knowledge having an increasingly long useful life, with modern patents reaching further back in time to reference prior art."
       >
@@ -376,7 +376,7 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          The lengthening citation lag -- from approximately 3 years in the early 1980s to over 16 years
+          The lengthening citation lag -- from 3 years in the early 1980s to 16 years
           in the most recent period -- is consistent with the expanding body of relevant prior art requiring newer patents
           to reach further back in time. This widening temporal window is associated with both the cumulative
           nature of technological progress and the increasing searchability of prior art databases.

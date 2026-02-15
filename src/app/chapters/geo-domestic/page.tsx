@@ -164,7 +164,7 @@ export default function GeoDomesticChapter() {
       />
 
       <KeyFindings>
-        <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for approximately 46% of all grants.</li>
+        <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for 46% of all grants.</li>
         <li>California alone accounts for 23.6% of all US patent grants, producing more patents (992,708) than the bottom 30 states and territories combined (314,664).</li>
         <li>States exhibit distinctive technology specialization profiles: Michigan devotes 20.1% of its patents to Mechanical Engineering compared to California&apos;s 65.1% concentration in Physics and Electricity.</li>
         <li>City-level data reveal even more pronounced geographic concentration, with San Jose (96,068), San Diego (70,186), and Austin (53,595) leading all US cities in total patent output.</li>
@@ -174,7 +174,7 @@ export default function GeoDomesticChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent activity concentrates in a handful of coastal states, with California alone producing 992,708 patents -- exceeding the bottom 30 states and territories combined. The top five states account for approximately 46% of all US patent grants, and each has developed distinctive technology specialization profiles shaped by regional industry, universities, and talent pools. City-level analysis reveals even more extreme innovation concentration, with San Jose, San Diego, and Austin leading all US cities. California&apos;s patent output has diverged sharply from other states since the 1990s, reaching 4.0x Texas by 2024.
+          Patent activity concentrates in a handful of coastal states, with California alone producing 992,708 patents -- exceeding the bottom 30 states and territories combined. The top five states account for 46% of all US patent grants, and each has developed distinctive technology specialization profiles shaped by regional industry, universities, and talent pools. City-level analysis reveals even more extreme innovation concentration, with San Jose, San Diego, and Austin leading all US cities. California&apos;s patent output has diverged sharply from other states since the 1990s, reaching 4.0x Texas by 2024.
         </p>
       </aside>
 
@@ -255,7 +255,7 @@ export default function GeoDomesticChapter() {
       <KeyInsight>
         <p>
           The top five states (California, Texas, New York, Massachusetts, and Michigan) account
-          for approximately 46% of all US patents. This pronounced concentration reflects the self-reinforcing
+          for 46% of all US patents. This pronounced concentration reflects the self-reinforcing
           nature of innovation clusters: skilled workers, venture capital, research
           universities, and corporate research laboratories co-locate, creating ecosystems that are difficult
           for other regions to replicate.

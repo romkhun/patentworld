@@ -46,7 +46,8 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
       {loading || !inView ? (
         <div
           className="chart-container-inner relative flex items-end justify-center overflow-hidden"
-          aria-label="Loading chart"
+          role="img"
+          aria-label={`Loading chart: ${title}`}
           style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
         >
           {/* Static chart-like placeholder: faux axes + bar silhouettes */}
@@ -66,7 +67,12 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
               ))}
             </div>
           </div>
-          <p className="relative z-10 mb-4 text-xs text-muted-foreground/50">Loading interactive chart…</p>
+          <p className="relative z-10 mb-4 text-xs text-muted-foreground/50">Loading visualization…</p>
+          <noscript>
+            <p className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground px-8 text-center">
+              This interactive chart requires JavaScript. {caption ?? subtitle ?? title}
+            </p>
+          </noscript>
         </div>
       ) : (
         <div

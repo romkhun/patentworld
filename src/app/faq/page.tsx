@@ -33,11 +33,11 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: `The USPTO granted approximately ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from approximately 70,000 in 1976 to over 355,000 in 2019, representing a roughly five-fold increase over five decades. Recent annual volume has stabilized around 314,000-326,000 grants per year.`,
+    answer: `The USPTO granted ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from 70,000 in 1976 to a peak of 393,000 in 2019, a five-fold increase over five decades. Recent annual volume has stabilized at 314,000-326,000 grants per year.`,
   },
   {
     question: 'Which company has the most US patents?',
-    answer: 'IBM leads all organizations with 161,888 cumulative US patent grants over the 1976-2025 period, followed by Samsung Electronics (157,906) and Canon (88,742). The top 10 assignees collectively hold approximately 8% of all grants. Foreign-headquartered assignees first surpassed US-based assignees in annual grant volume in 2004, and the gap has widened since 2007.',
+    answer: 'IBM leads all organizations with 161,888 cumulative US patent grants over the 1976-2025 period, followed by Samsung Electronics (157,906) and Canon (88,742). The top 10 assignees collectively hold 8% of all grants. Foreign-headquartered assignees first surpassed US-based assignees in annual grant volume in 2004, and the gap has widened since 2007.',
   },
   {
     question: 'How long does it take to obtain a US patent?',
@@ -45,11 +45,11 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What are the fastest-growing patent technology areas?',
-    answer: 'Physics (CPC section G) and Electricity (section H) have exhibited the most substantial growth, rising from 27.0% to 57.3% of all annual patent grants between 1976 and 2024. In absolute terms, sections G and H grew from roughly 19,000 combined grants in 1976 to over 185,600 in 2024. Artificial intelligence, semiconductor, and software-related classifications within these sections have grown particularly rapidly since 2012.',
+    answer: 'Physics (CPC section G) and Electricity (section H) have exhibited the most substantial growth, rising from 27.0% to 57.3% of all annual patent grants between 1976 and 2024. In absolute terms, sections G and H grew from 19,000 combined grants in 1976 to 185,600 in 2024. Artificial intelligence, semiconductor, and software-related classifications within these sections have grown particularly rapidly since 2012.',
   },
   {
     question: 'Is AI patenting increasing?',
-    answer: 'AI-related patent grants grew 5.7-fold during the deep learning era, from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. Computer vision (12,093 patents in 2023), neural networks and deep learning (10,467), and machine learning (9,444) are now the three largest AI subfields. AI patenting has broadly plateaued at approximately 29,000 grants per year since 2022.',
+    answer: 'AI-related patent grants grew 5.7-fold during the deep learning era, from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. Computer vision (12,093 patents in 2023), neural networks and deep learning (10,467), and machine learning (9,444) are now the three largest AI subfields. AI patenting has broadly plateaued at 29,000 grants per year since 2022.',
   },
   {
     question: 'What is the gender gap in US patenting?',
