@@ -736,7 +736,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across green technology subfields."
-        title="Green Innovation Subfield Diversity Has Remained Remarkably Stable at 0.87-0.90 Throughout Its 50-Year History"
+        title="Green Innovation Subfield Diversity Has Remained Stable at 0.87-0.90 Throughout Its 50-Year History"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The high and stable entropy (ranging from 0.86 to 0.90) indicates that green innovation has always been distributed across battery, solar, wind, EV, and energy efficiency subfields without significant concentration shifts."
         insight="The stability of green subfield diversity contrasts with domains like AI and biotechnology, which diversified substantially from narrow bases. Green innovation appears to have emerged as an inherently multi-technology domain from its inception."
         loading={catL}

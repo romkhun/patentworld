@@ -829,9 +829,7 @@ export default function Chapter12() {
           driving renewed urgency in drought-resistant crop development, water-efficient
           irrigation, and sustainable farming practices. The convergence of precision
           agriculture with <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> suggests that
-          the next generation of agricultural patents will look fundamentally different from
-          those of the past -- bridging the farm, the laboratory, and the data center in ways
-          that earlier innovators could not have anticipated.
+          future agricultural patents will increasingly bridge the farm, the laboratory, and the data center, reflecting a convergence of precision agriculture, biotechnology, and data science.
         </p>
         <p>
           The next chapter examines <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link>, a domain where the sensor technologies and machine learning methods increasingly applied in precision agriculture are also driving one of the most capital-intensive innovation races in modern history.

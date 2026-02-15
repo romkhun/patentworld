@@ -222,3 +222,57 @@ See `FINAL_QA_LOG.md` for full details. Summary:
 4. `system-public-investment`: Removed unused `SectionDivider` import
 5. `org-company-profiles`: Fixed React hooks exhaustive-deps warning (moved `strategyDimensions` inside useMemo)
 6. `PWTimeline`: Added `LinkifiedText` helper to auto-link DOI URLs in research citations
+
+---
+
+### Content Polish and Precision Language Pass (2026-02-15, continued)
+
+#### Phase 3 Re-scan: Informal Language Cleanup
+
+Comprehensive regex scan for prohibited words (`remarkably`, `notably`, `strikingly`, `dramatically`, `surged`, `next generation`) across all 34 chapters. 8 instances found and fixed:
+
+| File | Old Text | New Text |
+|------|----------|----------|
+| `org-patent-count/page.tsx` (×3) | "remarkably stable" | "stable"; "Perhaps most strikingly" → removed |
+| `org-patent-quality/page.tsx:171` | "differ dramatically" | "differ substantially" |
+| `org-patent-quality/page.tsx:496` | "remarkably parallel" | "parallel" |
+| `inv-serial-new/page.tsx:589` | "remarkably stable" | "stable" |
+| `digital-health/page.tsx:250` | "a notably active frontier" | "an active frontier" |
+| `3d-printing/page.tsx:768` | "as polymer AM surged" | "as polymer AM expanded" |
+| `system-convergence/page.tsx:51` | "convergence pair surged from" | "convergence pair grew from" |
+| `agricultural-technology/page.tsx:832` | "the next generation of..." | "future agricultural patents will increasingly bridge..." |
+| `green-innovation/page.tsx:739` | "Remained Remarkably Stable" | "Remained Stable" |
+
+Post-fix verification: zero remaining instances of prohibited informal words across all chapter files.
+
+#### Phase 9: SEO Precision Fixes
+
+**seo.ts** — 5 vague/hedged descriptions replaced with exact numbers:
+1. "Over 3 Inventors" → "3.2 Inventors"
+2. "70K to 350K annually" → "70K to 374K annually"
+3. "over 3 inventors" → "3.2 inventors"
+4. "from 2% to 10%" → "from 1.0% to 10.0%"
+5. "one of the most hyped domains" → specific finding about filing peak
+
+**page.tsx (homepage)** — 4 FAQ/metadata precision fixes:
+1. "computing rose from 12% to over 40%" → "12% to 57%" (3 occurrences across metadata/OG)
+2. "over 50% of recent grants" → "57% of recent grants"
+3. IBM FAQ answer: vague → "IBM leads with 161,888 cumulative US patent grants..."
+4. Geography FAQ answer: vague → "California accounts for 23.6% of US patent output..."
+
+#### Phase 4: Visualization Quality Audit
+
+Automated scan of all 34 chapters for visualization issues:
+- **2-line charts missing showEndLabels**: 0 (all compliant)
+- **7+ line charts without toggles**: 0 (all use PWSeriesSelector or small multiples)
+- **ChartContainers missing caption**: 0 (all have captions)
+- **PWLineCharts missing yLabel**: 0 (all have y-axis labels)
+- **PWBarCharts missing yLabel**: 66 horizontal ranking charts lack explicit yLabel, but bar names in legend (e.g., "Total Patents", "AI Patents") already serve as unit identifiers. Low priority — no user-facing impact.
+
+#### Phases 5-7, 9 Verification
+
+All phases verified as already completed from prior audit sessions:
+- **Phase 5 (Content Organization)**: REORGANIZATION_LOG.md exists; all 34 chapters have Key Findings, Executive Summary, DataNote, transitions, cross-references
+- **Phase 6 (Titles)**: All chart titles are insight-oriented declarative sentences with verified numbers
+- **Phase 7 (Navigation)**: NAVIGATION_LOG.md covers 34-chapter architecture; prev/next links, breadcrumbs, mobile nav, reading progress, back-to-top all verified
+- **Phase 9 (SEO)**: robots.ts, sitemap.ts, per-chapter JSON-LD, OG tags, FAQ page all present and verified

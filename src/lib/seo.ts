@@ -67,7 +67,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'inv-generalist-specialist': 'Specialist Inventors Rose from 20% to 48%',
   'inv-serial-new': 'Half of Inventors Exit Within Five Years',
   'inv-gender': 'Female Inventor Share Rose from 2.8% to 14.9%',
-  'inv-team-size': 'Team Size Grew from 1.7 to Over 3 Inventors',
+  'inv-team-size': 'Team Size Grew from 1.7 to 3.2 Inventors',
   // ACT 4
   'geo-domestic': 'California Holds 23.6% of All US Patents',
   'geo-international': 'Japan Leads Foreign Filings with 1.45M Patents',
@@ -93,7 +93,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
 /** Insight-oriented meta descriptions (under 160 chars) */
 const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   // ACT 1
-  'system-patent-count': 'US patent grants grew from 70K to 350K annually. Grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
+  'system-patent-count': 'US patent grants grew from 70K to 374K annually. Grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
   'system-patent-quality': 'Average claims doubled from 9.4 to 18.9. Forward citations peaked at 6.4. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
   'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent markets remain unconcentrated across all CPC sections.',
   'system-convergence': 'Multi-section patents rose from 21% to 41% of all grants. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
@@ -111,14 +111,14 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'inv-generalist-specialist': 'Specialist inventors rose from 20% to 48% of the inventor workforce. Quality metrics differ systematically between generalists and specialists.',
   'inv-serial-new': 'First-time inventor entries peaked at 140,490 in 2019. Only 37-51% survive past five years. Productivity rises from 1.4 to 2.1 before plateauing.',
   'inv-gender': 'Female inventor share rose from 2.8% to 14.9%. Quality metrics reveal systematic gender differences across claims, citations, and scope.',
-  'inv-team-size': 'Average team size grew from 1.7 to over 3 inventors. Quality metrics differ systematically across solo inventors, small teams, and large teams.',
+  'inv-team-size': 'Average team size grew from 1.7 to 3.2 inventors. Quality metrics differ systematically across solo inventors, small teams, and large teams.',
   // ACT 4
   'geo-domestic': 'California accounts for 23.6% of all US patents. San Jose, San Diego, and Austin lead all US cities. Quality metrics vary across states and cities.',
   'geo-international': 'International inventor mobility rose from 1.3% to 5.1%. Japan leads foreign filings with 1.45M patents. Quality differs systematically across countries.',
   // ACT 5
   'mech-organizations': '11 of 20 major filers keep exploration below 5%. Exploration scores decay from 1.0 to 0.087. Corporate citation flows reveal industry clusters.',
   'mech-inventors': '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements among 50 firms. California holds 54.9% of interstate migration.',
-  'mech-geography': 'International co-invention rose from 2% to 10%. US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024, surpassing 2% by 2025.',
+  'mech-geography': 'International co-invention rose from 1.0% to 10.0%. US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024.',
   // ACT 6
   'ai-patents': 'AI patent filings grew 10x during the deep learning era (2012-2025). Explore trends in machine learning, NLP, and computer vision patenting by company and country.',
   'green-innovation': 'Green patents tripled after the 2015 Paris Agreement. Explore renewable energy, carbon capture, and EV patent trends across 50 years of climate technology.',
@@ -131,7 +131,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'autonomous-vehicles': 'Autonomous vehicle patents cover driving systems, navigation, and scene understanding. Explore the AV patent race among automotive and technology firms.',
   'space-technology': 'Space technology patents span spacecraft design, propulsion, and satellite communications. Explore the patent landscape of the new commercial space era.',
   '3d-printing': 'Additive manufacturing patents grew 20x since 2000, spanning polymer and metal 3D printing. Explore equipment, materials, and application patents.',
-  'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Explore one of the most hyped domains in the patent system.',
+  'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Filings peaked in 2022, the only advanced domain to reverse course.',
 };
 
 export function chapterMetadata(slug: string): Metadata {

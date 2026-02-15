@@ -168,7 +168,7 @@ export default function OrgPatentQualityChapter() {
 
       <Narrative>
         <p>
-          While <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Counts</Link> examined the volume of corporate patenting, raw patent counts tell only part of the story. Two firms with identical output levels can differ dramatically in the quality and influence of their inventions. This chapter consolidates the <StatCallout value="quality dimensions" /> of organizational patenting: from blockbuster rates and citation impact to self-citation behavior and the temporal durability of a firm&apos;s knowledge contributions.
+          While <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Counts</Link> examined the volume of corporate patenting, raw patent counts tell only part of the story. Two firms with identical output levels can differ substantially in the quality and influence of their inventions. This chapter consolidates the <StatCallout value="quality dimensions" /> of organizational patenting: from blockbuster rates and citation impact to self-citation behavior and the temporal durability of a firm&apos;s knowledge contributions.
         </p>
         <p>
           The analysis employs four complementary approaches: a blockbuster-versus-dud typology that classifies firms by the tails of their quality distributions; average and median forward citations to capture central tendency and skewness; self-citation rates that distinguish cumulative internal R&amp;D from broad external knowledge sourcing; and citation half-lives that measure how quickly a firm&apos;s patents accumulate their influence.
@@ -493,7 +493,7 @@ export default function OrgPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          Across four quality dimensions, the top five patent filers exhibit remarkably parallel trajectories:
+          Across four quality dimensions, the top five patent filers exhibit parallel trajectories:
           forward citations decline system-wide, claim counts rise universally, originality scores converge,
           and grant lag follows USPTO capacity cycles. These shared trends suggest that macro-level forces --
           citation dilution, prosecution norms, and examination backlogs -- shape patent quality metrics at

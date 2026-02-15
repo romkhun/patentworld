@@ -586,7 +586,7 @@ export default function InvSerialNewChapter() {
         title="Serial Inventors Produce Roughly Twice the Patents per Person as New Entrants"
         subtitle="Average patents per inventor per year by experience group, 1976-2025"
         caption="This chart compares the average number of patents filed per inventor per year for serial inventors versus new entrants."
-        insight="The roughly 2:1 productivity ratio has been remarkably stable over five decades, indicating a persistent structural difference in patenting intensity between experience groups."
+        insight="The roughly 2:1 productivity ratio has been stable over five decades, indicating a persistent structural difference in patenting intensity between experience groups."
         loading={pbL}
       >
         <PWLineChart

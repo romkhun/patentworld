@@ -765,7 +765,7 @@ export default function Chapter11() {
         id="fig-3dprint-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across 3D printing subfields."
         title="3D Printing Subfield Diversity Remained High Throughout Its History, Ranging From 0.80 to 0.95"
-        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). Values consistently above 0.85 indicate that AM innovation has been broadly distributed across equipment, processes, materials, products, and data handling subfields, with a brief dip to 0.80 in 2014 as polymer AM surged."
+        caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). Values consistently above 0.85 indicate that AM innovation has been broadly distributed across equipment, processes, materials, products, and data handling subfields, with a brief dip to 0.80 in 2014 as polymer AM expanded."
         insight="Unlike domains such as AI, which diversified substantially from a narrow base, 3D printing has maintained broad subfield diversity throughout its history, suggesting that the technology has always required simultaneous advances across multiple technical dimensions."
         loading={sfL}
       >

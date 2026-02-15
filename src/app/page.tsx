@@ -6,14 +6,14 @@ const BASE_URL = 'https://patentworld.vercel.app';
 
 export const metadata: Metadata = {
   title: 'PatentWorld \u2014 50 Years of US Patent Data',
-  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
     type: 'website',
     title: 'PatentWorld \u2014 50 Years of US Patent Data',
-    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
     url: BASE_URL,
     siteName: 'PatentWorld',
     images: [{ url: `${BASE_URL}/og/home.png`, width: 1200, height: 630, alt: 'PatentWorld \u2014 50 Years of US Patent Data' }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'PatentWorld \u2014 50 Years of US Patent Data',
-    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
     images: [`${BASE_URL}/og/home.png`],
   },
   robots: {
@@ -76,7 +76,7 @@ const FAQ_JSONLD = {
       name: 'Which technology sectors have the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, reflecting the digital transformation. Together they account for over 50% of recent grants, propelled by software, semiconductors, and telecommunications innovations.',
+        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, reflecting the digital transformation. Together they account for 57% of recent grants, propelled by software, semiconductors, and telecommunications innovations.',
       },
     },
     {
@@ -84,7 +84,7 @@ const FAQ_JSONLD = {
       name: 'Which company holds the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'IBM has historically led US patent grants for decades. Samsung, Canon, Intel, and other technology firms are also among the top holders. The landscape has shifted markedly with the rise of Asian firms.',
+        text: 'IBM leads with 161,888 cumulative US patent grants, followed by Samsung (157,906) and Canon (88,742). Samsung surpassed IBM in annual grants in 2007. The top 100 organizations hold 32-39% of all corporate patents.',
       },
     },
     {
@@ -100,7 +100,7 @@ const FAQ_JSONLD = {
       name: 'How has the geography of US patent innovation changed?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'California accounts for the largest share of US patent output, with Silicon Valley serving as the leading innovation cluster. Internationally, Japan accounted for the largest share of foreign-origin US patents in the 1980s and 1990s, while South Korea, China, and Taiwan have grown substantially since 2000.',
+        text: 'California accounts for 23.6% of US patent output, with San Jose as the leading city. Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024.',
       },
     },
     {
