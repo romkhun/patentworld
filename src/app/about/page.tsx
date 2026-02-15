@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { CHAPTERS } from '@/lib/constants';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -45,7 +43,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What are the fastest-growing patent technology areas?',
-    answer: 'Computing and electronics have grown from approximately 12–15% of all US patents in 1976 to approximately 33–40% by 2025. Within this broad category, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates in recent years.',
+    answer: 'Computing and electronics have grown from approximately 12\u201315% of all US patents in 1976 to approximately 33\u201340% by 2025. Within this broad category, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates in recent years.',
   },
   {
     question: 'Is artificial intelligence patenting increasing?',
@@ -71,6 +69,13 @@ const FAQ_ITEMS = [
     question: 'How many patents does the average inventor hold?',
     answer: 'The majority of patent inventors hold only one or two patents. The median inventor has approximately 2 patents, while the mean is higher due to prolific inventors. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
   },
+];
+
+const TOC_ITEMS = [
+  { id: 'author', label: 'Author' },
+  { id: 'data-methodology', label: 'Data & Methodology' },
+  { id: 'faq', label: 'FAQ' },
+  { id: 'citation', label: 'Citation' },
 ];
 
 function FAQJsonLd() {
@@ -99,7 +104,7 @@ function DatasetJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: 'PatentWorld — US Patent Data (1976–2025)',
+    name: 'PatentWorld \u2014 US Patent Data (1976\u20132025)',
     description:
       'Interactive analysis of 9.36 million US utility patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
     url: `${BASE_URL}/about/`,
@@ -181,6 +186,18 @@ export default function AboutPage() {
         , The Wharton School, University of Pennsylvania
       </p>
 
+      {/* Mini Table of Contents */}
+      <nav className="mt-6 flex flex-wrap gap-x-1 text-sm text-muted-foreground" aria-label="Page sections">
+        {TOC_ITEMS.map((item, i) => (
+          <span key={item.id}>
+            {i > 0 && <span className="mr-1" aria-hidden="true">&middot;</span>}
+            <a href={`#${item.id}`} className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {item.label}
+            </a>
+          </span>
+        ))}
+      </nav>
+
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
         <p>
           PatentWorld is an interactive data exploration platform that presents 50 years
@@ -189,7 +206,8 @@ export default function AboutPage() {
           researchers, policymakers, and the broader public through rigorous, data-driven analysis.
         </p>
 
-        <section>
+        {/* ── About the Author ── */}
+        <section id="author">
           <h2 className="font-serif text-2xl font-bold pt-4">About the Author</h2>
           <p>
             <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2 hover:text-foreground transition-colors">Saerom (Ronnie) Lee</a> is an Assistant Professor of Management
@@ -210,23 +228,11 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Explore the Chapters</h2>
-          <p>PatentWorld is organized into {CHAPTERS.length} chapters, each examining a different dimension of the US patent system:</p>
-          <ol className="list-decimal pl-6 space-y-1 mt-2">
-            {CHAPTERS.map((ch) => (
-              <li key={ch.slug}>
-                <Link href={`/chapters/${ch.slug}/`} className="underline underline-offset-2 hover:text-foreground transition-colors">
-                  {ch.title}
-                </Link>
-                {' '}&mdash; {ch.description}
-              </li>
-            ))}
-          </ol>
-        </section>
+        {/* ── Data & Methodology ── */}
+        <section id="data-methodology">
+          <h2 className="font-serif text-2xl font-bold pt-4">Data &amp; Methodology</h2>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Data Source</h2>
+          <h3 className="font-serif text-lg font-semibold mt-6">Data Source</h3>
           <p>
             All data are derived from{' '}
             <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
@@ -236,7 +242,7 @@ export default function AboutPage() {
             Office (USPTO). PatentsView provides disambiguated and linked patent data covering:
           </p>
           <ul className="list-disc pl-6 space-y-1">
-            <li>9.36 million granted patents (1976–2025)</li>
+            <li>9.36 million granted patents (1976&ndash;2025)</li>
             <li>Disambiguated inventor and assignee identities</li>
             <li>Cooperative Patent Classification (CPC) technology categories</li>
             <li>WIPO technology field classifications</li>
@@ -244,44 +250,8 @@ export default function AboutPage() {
             <li>Patent citation networks</li>
             <li>Government interest statements</li>
           </ul>
-        </section>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Key Metrics Defined</h2>
-          <dl className="space-y-4 pl-2">
-            <div>
-              <dt className="font-semibold">Forward Citations</dt>
-              <dd className="text-muted-foreground">The number of times a patent is cited by later patents. Widely used as a proxy for patent impact and technological importance.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Originality</dt>
-              <dd className="text-muted-foreground">Measures how broadly a patent draws on prior art across different technology classes. Based on a Herfindahl index of backward citation classes. Higher values indicate more diverse knowledge sources.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Generality</dt>
-              <dd className="text-muted-foreground">Measures how broadly a patent is cited across different technology classes. Based on a Herfindahl index of forward citation classes. Higher values indicate wider downstream influence.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Grant Lag (Pendency)</dt>
-              <dd className="text-muted-foreground">The time between a patent application filing date and the date the patent is granted, measured in days or years.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
-              <dd className="text-muted-foreground">A measure of market concentration calculated as the sum of squared market shares. Ranges from 0 (perfectly fragmented) to 10,000 (monopoly).</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">CPC (Cooperative Patent Classification)</dt>
-              <dd className="text-muted-foreground">A hierarchical classification system jointly managed by the USPTO and EPO. Sections include A (Human Necessities) through H (Electricity), plus Y (Cross-Sectional).</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">WIPO Technology Fields</dt>
-              <dd className="text-muted-foreground">A classification of patents into 35 technology fields grouped into 5 sectors: Electrical engineering, Instruments, Chemistry, Mechanical engineering, and Other fields.</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Methodology</h2>
+          <h3 className="font-serif text-lg font-semibold mt-6">Methodology</h3>
           <p>
             Raw data were obtained as tab-separated value (TSV) files from PatentsView&apos;s
             bulk data downloads. These files were processed using DuckDB, an analytical SQL
@@ -298,10 +268,8 @@ export default function AboutPage() {
             <li>Computing derived metrics: citation counts, team sizes, concentration ratios, diversity indices</li>
             <li>Filtering to primary classifications (sequence = 0) to avoid double-counting</li>
           </ul>
-        </section>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Data Limitations</h2>
+          <h3 className="font-serif text-lg font-semibold mt-6">Data Limitations</h3>
           <ul className="list-disc pl-6 space-y-1">
             <li><strong>Granted patents only:</strong> The dataset includes only granted patents, not applications that were abandoned or rejected. This introduces survivorship bias.</li>
             <li><strong>US patents only:</strong> The analysis covers patents granted by the USPTO. It does not include patents filed only at foreign patent offices (EPO, JPO, CNIPA, etc.).</li>
@@ -312,66 +280,73 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Technology</h2>
-          <p>
-            The platform is built with Next.js 14 and employs Recharts for interactive
-            visualizations. All data are pre-computed and served as static JSON files,
-            requiring no backend server. The interface uses Tailwind CSS with dark and light
-            theme support.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">AI-Assisted Development</h2>
-          <p>
-            The data analyses, visualizations, and platform development for PatentWorld
-            were conducted with the assistance of{' '}
-            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
-              Claude AI
-            </a>{' '}
-            (Anthropic). Claude was employed for data pipeline development, statistical
-            computations, analytical writing, and front-end implementation. All analytical
-            findings and interpretations were reviewed for accuracy and scholarly rigor.
-          </p>
-        </section>
-
-        <section>
+        {/* ── FAQ Accordion ── */}
+        <section id="faq">
           <h2 className="font-serif text-2xl font-bold pt-4">Frequently Asked Questions</h2>
-          <dl className="space-y-6 mt-4">
+          <div className="mt-4 divide-y divide-border">
             {FAQ_ITEMS.map((item, i) => (
-              <div key={i} className="border-l-2 border-primary/20 pl-4">
-                <dt className="font-semibold text-foreground">{item.question}</dt>
-                <dd className="mt-1 text-muted-foreground">{item.answer}</dd>
-              </div>
+              <details key={i} className="group py-4">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold leading-snug">
+                  <span className="pr-4">{item.question}</span>
+                  <span className="shrink-0 text-muted-foreground transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.answer}
+                </p>
+              </details>
             ))}
-          </dl>
+          </div>
         </section>
 
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
+        {/* ── Citation & Attribution ── */}
+        <section id="citation">
+          <h2 className="font-serif text-2xl font-bold pt-4">Citation &amp; Attribution</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
             Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
             The Wharton School, University of Pennsylvania.
             Available at: https://patentworld.vercel.app/
           </p>
-        </section>
-
-        <section>
-          <h2 className="font-serif text-2xl font-bold pt-4">Attribution</h2>
-          <p>
+          <p className="mt-3 text-sm text-muted-foreground">
             Data attribution: PatentsView (
             <a href="https://www.patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
               www.patentsview.org
             </a>
-            ), USPTO.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            PatentsView is a tool built to increase the usability and transparency of US
+            ), USPTO. PatentsView is a tool built to increase the usability and transparency of US
             patent data. The database is derived from the USPTO examination and granting
             of patents.
           </p>
         </section>
+
+        {/* ── Technical Details (collapsible) ── */}
+        <details className="rounded-lg border bg-muted/20 mt-6">
+          <summary className="cursor-pointer px-5 py-4 text-sm font-semibold hover:text-foreground transition-colors">
+            Technical Details
+          </summary>
+          <div className="px-5 pb-5 space-y-4 text-sm text-muted-foreground">
+            <div>
+              <h3 className="font-semibold text-foreground">Technology</h3>
+              <p>
+                The platform is built with Next.js 14 and employs Recharts for interactive
+                visualizations. All data are pre-computed and served as static JSON files,
+                requiring no backend server. The interface uses Tailwind CSS with dark and light
+                theme support.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground">AI-Assisted Development</h3>
+              <p>
+                The data analyses, visualizations, and platform development for PatentWorld
+                were conducted with the assistance of{' '}
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
+                  Claude AI
+                </a>{' '}
+                (Anthropic). Claude was employed for data pipeline development, statistical
+                computations, analytical writing, and front-end implementation. All analytical
+                findings and interpretations were reviewed for accuracy and scholarly rigor.
+              </p>
+            </div>
+          </div>
+        </details>
       </div>
     </article>
   );

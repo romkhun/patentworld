@@ -154,4 +154,9 @@ export const GLOSSARY: Record<string, GlossaryTerm> = {
     definition:
       'Patents classified under CPC codes Y02 (climate change mitigation) or Y04S (smart grids), covering technologies from solar and wind energy to electric vehicles and carbon capture.',
   },
+  'WIPO technology fields': {
+    term: 'WIPO technology fields',
+    definition:
+      'A classification of patents into 35 technology fields grouped into 5 sectors: Electrical engineering, Instruments, Chemistry, Mechanical engineering, and Other fields.',
+  },
 };
