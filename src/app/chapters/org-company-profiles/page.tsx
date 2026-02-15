@@ -179,11 +179,10 @@ export default function OrgCompanyProfilesChapter() {
     return [activeCompany, ...strategyCompare.slice(0, 2)];
   }, [strategyCompare, activeCompany, hasStrategyData]);
 
-  const strategyDimensions = ['breadth', 'depth', 'defensiveness', 'influence', 'science_intensity', 'speed', 'collaboration', 'freshness'];
-
   const radarData = useMemo((): { dimension: string; [company: string]: number | string }[] => {
     if (!strategyProfiles || effectiveStrategyCompare.length === 0) return [];
-    return strategyDimensions.map((dim) => {
+    const dims = ['breadth', 'depth', 'defensiveness', 'influence', 'science_intensity', 'speed', 'collaboration', 'freshness'];
+    return dims.map((dim) => {
       const row: { dimension: string; [company: string]: number | string } = {
         dimension: dim.replace('_', ' '),
       };

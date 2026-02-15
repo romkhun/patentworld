@@ -15,7 +15,6 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
-import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { DataNote } from '@/components/chapter/DataNote';
 import type { GovFundedPerYear, GovAgency } from '@/lib/types';
 

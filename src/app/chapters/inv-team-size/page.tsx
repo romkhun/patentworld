@@ -151,11 +151,14 @@ export default function InvTeamSizeChapter() {
           data={team ?? []}
           xKey="year"
           lines={[
-            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2] },
-            { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3] },
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0] },
+            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2], yAxisId: 'left' },
+            { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3], yAxisId: 'left' },
+            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0], yAxisId: 'right' },
           ]}
-          yLabel="Percentage / Team Size"
+          yLabel="Percentage (%)"
+          yFormatter={(v) => `${v.toFixed(0)}%`}
+          rightYLabel="Average Team Size"
+          rightYFormatter={(v) => v.toFixed(1)}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>

@@ -46,6 +46,31 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string
   },
 };
 
+/** Render text with URLs auto-linked */
+function LinkifiedText({ text }: { text: string }) {
+  const parts = text.split(/(https?:\/\/[^\s,)]+)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^https?:\/\//.test(part) ? (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors not-italic"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {part}
+          </a>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 export function PWTimeline({ events }: PWTimelineProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
@@ -111,7 +136,7 @@ export function PWTimeline({ events }: PWTimelineProps) {
                             {event.research.map((r, ri) => (
                               <div key={ri} className="text-sm">
                                 <p className="leading-relaxed text-foreground/80">{r.summary}</p>
-                                <p className="mt-1 text-xs text-muted-foreground italic">{r.citation}</p>
+                                <p className="mt-1 text-xs text-muted-foreground italic"><LinkifiedText text={r.citation} /></p>
                               </div>
                             ))}
                           </div>

@@ -97,9 +97,6 @@ export default function SystemPatentFieldsChapter() {
   const { data: halfLife } = useChapterData<TechnologyHalfLife[]>('chapter2/technology_halflife.json');
   const { data: decayCurves, loading: dcL } = useChapterData<TechnologyDecayCurve[]>('chapter2/technology_decay_curves.json');
 
-  // Section B.viii: Grant lag by WIPO sector (field-specific metrics from cross-field-convergence)
-  const { data: grantLag, loading: glL } = useChapterData<QualityBySector[]>('chapter9/quality_by_sector.json');
-
   // Section C: Treemap
   const { data: treemap, loading: tmL } = useChapterData<CPCTreemapEntry[]>('chapter2/cpc_treemap.json');
 

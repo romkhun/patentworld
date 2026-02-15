@@ -18,6 +18,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type {
   FirstTimeInventor,
   InventorEntry,
@@ -67,6 +68,13 @@ export default function InvSerialNewChapter() {
     }
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
+
+  const { data: fwdCitData, yLabel: fwdCitYLabel, controls: fwdCitControls } = useCitationNormalization({
+    data: pivotData(qualityByExp, 'avg_forward_citations'),
+    xKey: 'year',
+    citationKeys: ['serial', 'new_entrant'],
+    yLabel: 'Avg. Forward Citations',
+  });
 
   return (
     <div>
@@ -434,18 +442,20 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-fwd-cites"
         title="Serial Inventors Consistently Earn More Forward Citations Than New Entrants"
         subtitle="Average forward citations per patent by inventor experience group, 1976-2025"
-        caption="This chart compares the average forward citations received by patents from serial inventors versus new entrants. Higher forward citations indicate greater downstream impact."
+        caption="Average forward citations per patent by inventor experience group, 1976-2025. Recent years are affected by citation truncation; 2015 values offer the most reliable comparison. Data: PatentsView."
         insight="Serial inventors' patents attract more citations throughout the period, suggesting that experience confers an advantage in producing impactful inventions."
         loading={qbL}
+        controls={fwdCitControls}
       >
         <PWLineChart
-          data={pivotData(qualityByExp, 'avg_forward_citations')}
+          data={fwdCitData ?? []}
           xKey="year"
           lines={[
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Forward Citations"
+          yLabel={fwdCitYLabel}
+          truncationYear={2018}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>

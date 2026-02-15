@@ -22,12 +22,8 @@ import type {
   SuperstarConcentration,
   ProlificInventor,
   StarInventorImpact,
-  InventorSegment,
-  InventorSegmentTrend,
-  InventorDrift,
 } from '@/lib/types';
 import Link from 'next/link';
-import { formatCompact } from '@/lib/formatters';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 
 export default function InvTopInventorsChapter() {
@@ -38,12 +34,6 @@ export default function InvTopInventorsChapter() {
     useChapterData<ProlificInventor[]>('chapter5/prolific_inventors.json');
   const { data: starImpact, loading: siL } =
     useChapterData<StarInventorImpact[]>('chapter5/star_inventor_impact.json');
-  const { data: segments, loading: segL } =
-    useChapterData<InventorSegment[]>('chapter5/inventor_segments.json');
-  const { data: segTrend, loading: stL } =
-    useChapterData<InventorSegmentTrend[]>('chapter5/inventor_segments_trend.json');
-  const { data: driftData, loading: drL } =
-    useChapterData<InventorDrift[]>('company/inventor_drift.json');
   const { data: qualityRank, loading: qrL } =
     useChapterData<any[]>('computed/quality_by_inventor_rank.json');
   const { data: prodRank } =
