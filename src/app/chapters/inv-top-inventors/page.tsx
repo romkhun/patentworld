@@ -290,7 +290,9 @@ export default function InvTopInventorsChapter() {
         id="fig-productivity-by-rank"
         title="Top Inventors Average More Patents Per Year Than Other Inventors"
         subtitle="Average patents per inventor per year by rank, 1976-2025"
+        caption="Average number of patents per inventor per year, comparing top-ranked inventors (top 12% by cumulative patent count) to all others, 1976-2025. Data: PatentsView."
         height={400}
+        loading={qrL}
       >
         <PWLineChart
           data={pivotData(prodRank, 'avg_patents_per_inventor')}
@@ -306,8 +308,9 @@ export default function InvTopInventorsChapter() {
       {/* D.ii: Forward Citations */}
       <ChartContainer
         id="fig-top-inv-fwd-citations"
-        title="Top Inventors Consistently Earn More Forward Citations Per Patent"
+        title="Top Inventors Earned 9.8 Forward Citations Per Patent vs. 5.7 for Others (2015)"
         subtitle="Average forward citations per patent by inventor rank, 1976-2025"
+        caption="Average forward citations per patent by inventor rank, 1976-2025. Recent years are affected by citation truncation; 2015 values offer the most reliable comparison. Data: PatentsView."
         height={400}
         loading={qrL}
         controls={fwdCitControls}
@@ -327,8 +330,9 @@ export default function InvTopInventorsChapter() {
       {/* D.iii: Claims */}
       <ChartContainer
         id="fig-top-inv-claims"
-        title="Top Inventors File Patents With More Claims on Average"
+        title="Top Inventors' Patents Average 15.2 Claims vs. 12.7 for Others (2024)"
         subtitle="Average number of claims per patent by inventor rank, 1976-2025"
+        caption="Average number of claims per patent by inventor rank, 1976-2024. Higher claim counts may reflect broader patent scope or more complex inventions. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -346,8 +350,9 @@ export default function InvTopInventorsChapter() {
       {/* D.iv: Scope */}
       <ChartContainer
         id="fig-top-inv-scope"
-        title="Top Inventor Patents Span Broader Technological Scope"
+        title="Top Inventor Patents Span 2.42 CPC Subclasses vs. 2.37 for Others (2024)"
         subtitle="Average CPC subclasses per patent by inventor rank, 1976-2025"
+        caption="Average number of distinct CPC subclasses per patent by inventor rank, 1976-2024. A higher scope indicates broader technological coverage within a single patent. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -365,8 +370,9 @@ export default function InvTopInventorsChapter() {
       {/* D.v: Originality */}
       <ChartContainer
         id="fig-top-inv-originality"
-        title="Top Inventors Draw on More Diverse Prior Art Sources"
+        title="Top Inventors Score 0.197 on the Originality Index vs. 0.190 for Others (2024)"
         subtitle="Average originality index per patent by inventor rank, 1976-2025"
+        caption="Average originality index (Herfindahl-based diversity of backward citation sources) per patent by inventor rank, 1976-2024. Higher values indicate citations drawn from more diverse technology classes. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -384,8 +390,9 @@ export default function InvTopInventorsChapter() {
       {/* D.vi: Generality */}
       <ChartContainer
         id="fig-top-inv-generality"
-        title="Top Inventor Patents Are Cited Across a Wider Range of Fields"
+        title="Top Inventor Patents Score 0.035 on Generality vs. 0.031 for Others (2024)"
         subtitle="Average generality index per patent by inventor rank, 1976-2025"
+        caption="Average generality index (Herfindahl-based diversity of forward citation recipients) per patent by inventor rank, 1976-2024. Higher values indicate that a patent's influence spans more diverse technology fields. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -403,8 +410,9 @@ export default function InvTopInventorsChapter() {
       {/* D.vii: Self-Citation Rate */}
       <ChartContainer
         id="fig-top-inv-self-citation"
-        title="Top Inventors Exhibit Higher Self-Citation Rates Over Time"
+        title="Top Inventors Self-Cite at 15.0% vs. 5.5% for Others (2024)"
         subtitle="Average self-citation rate per patent by inventor rank, 1976-2025"
+        caption="Average share of backward citations that reference the same assignee's prior patents, by inventor rank, 1976-2024. Higher self-citation rates among top inventors may reflect deeper corporate patent portfolios. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -423,8 +431,9 @@ export default function InvTopInventorsChapter() {
       {/* D.viii: Grant Lag */}
       <ChartContainer
         id="fig-top-inv-grant-lag"
-        title="Top Inventors Experience Similar Grant Lag to Other Inventors"
+        title="Grant Lag Nearly Identical: 985 Days for Top Inventors vs. 989 for Others (2024)"
         subtitle="Average grant lag in days per patent by inventor rank, 1976-2025"
+        caption="Average number of days between patent filing and grant by inventor rank, 1976-2024. The convergence in grant lag suggests that prosecution timelines are driven more by USPTO capacity than inventor characteristics. Data: PatentsView."
         height={400}
         loading={qrL}
       >

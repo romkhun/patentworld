@@ -336,8 +336,9 @@ export default function InvGenderChapter() {
       {/* C.i — Forward Citations */}
       <ChartContainer
         id="fig-gender-fwd-citations"
-        title="Mixed-Gender Teams Lead in Forward Citations Through the 1990s Before Convergence"
+        title="All-Female Teams Average 1.06 Forward Citations in 2024, Double the 0.51 for All-Male Teams"
         subtitle="Average forward citations per patent by team gender composition, 1976-2025"
+        caption="Average forward citations received per patent by team gender composition, 1976-2024. Recent years are truncated due to citation lag. Data: PatentsView."
         loading={qgL}
         height={400}
         controls={fwdCitControls}
@@ -358,8 +359,9 @@ export default function InvGenderChapter() {
       {/* C.ii — Claims */}
       <ChartContainer
         id="fig-gender-claims"
-        title="Mixed-Gender Teams File Patents With the Most Claims on Average"
+        title="Mixed-Gender Teams File Patents with 16.0 Claims on Average, vs. 10.6 for All-Female Teams"
         subtitle="Average number of claims per patent by team gender composition, 1976-2025"
+        caption="Average number of claims per patent by team gender composition, 1976-2024. Mixed-gender teams consistently file the broadest claims. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -378,8 +380,9 @@ export default function InvGenderChapter() {
       {/* C.iii — Scope */}
       <ChartContainer
         id="fig-gender-scope"
-        title="Mixed-Gender Teams Produce Broader Patents Spanning More CPC Subclasses"
+        title="Mixed-Gender Teams Average 2.49 CPC Subclasses per Patent, vs. 2.29 for All-Female Teams"
         subtitle="Average patent scope (CPC subclass count) by team gender composition, 1976-2025"
+        caption="Average number of distinct CPC subclasses per patent by team gender composition, 1976-2024. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -398,8 +401,9 @@ export default function InvGenderChapter() {
       {/* C.iv — Originality */}
       <ChartContainer
         id="fig-gender-originality"
-        title="Mixed-Gender Teams Draw on the Most Diverse Prior Art Sources"
+        title="All-Male Teams Score 0.198 on Originality, Above Mixed Teams' 0.195 and All-Female Teams' 0.157"
         subtitle="Average originality index by team gender composition, 1976-2025"
+        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team gender composition, 1976-2024. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -418,8 +422,9 @@ export default function InvGenderChapter() {
       {/* C.v — Generality */}
       <ChartContainer
         id="fig-gender-generality"
-        title="Mixed-Gender Team Patents Are Cited Across a Wider Range of Technology Fields"
+        title="Mixed-Gender Teams Score 0.037 on Generality, Nearly Double All-Female Teams' 0.022"
         subtitle="Average generality index by team gender composition, 1976-2025"
+        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team gender composition, 1976-2024. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -438,8 +443,9 @@ export default function InvGenderChapter() {
       {/* C.vi — Self-Citation Rate */}
       <ChartContainer
         id="fig-gender-self-citation"
-        title="Mixed-Gender Teams Exhibit the Highest Self-Citation Rates Across All Decades"
+        title="Mixed-Gender Teams Self-Cite at 15.7%, vs. 12.0% for All-Male and 9.9% for All-Female Teams"
         subtitle="Average self-citation rate by team gender composition, 1976-2025"
+        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team gender composition, 1976-2024. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -459,8 +465,9 @@ export default function InvGenderChapter() {
       {/* C.vii — Grant Lag */}
       <ChartContainer
         id="fig-gender-grant-lag"
-        title="Mixed-Gender Teams Face the Longest Average Grant Lag Throughout the Study Period"
+        title="Mixed-Gender Teams Wait 1,027 Days for Grant, vs. 886 Days for All-Female Teams"
         subtitle="Average grant lag in days by team gender composition, 1976-2025"
+        caption="Average number of days from filing to grant by team gender composition, 1976-2024. Grant lag has increased for all groups over time. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -481,6 +488,7 @@ export default function InvGenderChapter() {
         id="fig-gender-productivity"
         title="Male Inventors Are Consistently More Productive Than Female Inventors"
         subtitle="Average patents per inventor by gender, 1976-2025"
+        caption="Average number of patents per inventor by gender, 1976-2024. Productivity is measured as career patent count divided by active years. Data: PatentsView."
         loading={pgL}
         height={400}
       >

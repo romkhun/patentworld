@@ -583,6 +583,7 @@ export default function OrgCompanyProfilesChapter() {
             title={`${activeCompany}: Blockbuster Rate (Top 1% Patents) and Dud Rate (Zero Citations) Over Time`}
             subtitle={`Annual share of top-1% blockbuster patents and zero-citation dud patents for ${activeCompany}`}
             caption={`Annual blockbuster rate (patents in top 1% of year x CPC section cohort, blue) and dud rate (zero 5-year forward citations, red) for ${activeCompany}. Dashed line at 1% marks the expected blockbuster rate under uniform quality.`}
+            insight="Diverging blockbuster and dud rate trajectories over time reveal shifts in a firm's innovation strategy, distinguishing periods of breakthrough-oriented R&D from phases of incremental or defensive patenting."
             loading={fqL}
             height={300}
             wide

@@ -138,8 +138,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.i — Forward Citations */}
       <ChartContainer
         id="fig-spec-fwd-citations"
-        title="Generalists Achieve Higher Forward Citation Counts Than Specialists"
+        title="Generalists Earned 9.3 Forward Citations Per Patent vs. 8.2 for Specialists (2015)"
         subtitle="Average forward citations per patent by inventor type, 1976-2025"
+        caption="Average forward citations per patent by inventor specialization type, 1976-2025. Recent years are affected by citation truncation; 2015 values offer the most reliable comparison. Data: PatentsView."
         loading={qsL}
         height={400}
         controls={fwdCitControls}
@@ -159,8 +160,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.ii — Claims */}
       <ChartContainer
         id="fig-spec-claims"
-        title="Specialist Patents Contain Slightly More Claims on Average"
+        title="Specialists Average 15.2 Claims Per Patent vs. 14.3 for Generalists (2024)"
         subtitle="Average number of claims per patent by inventor type, 1976-2025"
+        caption="Average number of claims per patent by inventor specialization type, 1976-2024. Specialists consistently file patents with slightly more claims, suggesting more detailed claim structures. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -178,8 +180,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.iii — Scope */}
       <ChartContainer
         id="fig-spec-scope"
-        title="Generalist Patents Span More CPC Subclasses Than Specialist Patents"
+        title="Generalist Patents Span 2.51 CPC Subclasses vs. 2.22 for Specialists (2024)"
         subtitle="Average patent scope (CPC subclass count) by inventor type, 1976-2025"
+        caption="Average number of distinct CPC subclasses per patent by inventor specialization type, 1976-2024. The persistent gap indicates that generalists produce patents with broader technological coverage. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -197,8 +200,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.iv — Originality */}
       <ChartContainer
         id="fig-spec-originality"
-        title="Generalists Draw on More Diverse Prior Art Than Specialists"
+        title="Generalists Score 0.212 on the Originality Index vs. 0.165 for Specialists (2024)"
         subtitle="Average originality index by inventor type, 1976-2025"
+        caption="Average originality index (Herfindahl-based diversity of backward citation sources) per patent by inventor specialization type, 1976-2024. Generalists consistently draw on more technologically diverse prior art. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -216,8 +220,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.v — Generality */}
       <ChartContainer
         id="fig-spec-generality"
-        title="Generalist Patents Are Cited Across a Wider Range of Fields"
+        title="Generalist Patents Score 0.040 on Generality vs. 0.024 for Specialists (2024)"
         subtitle="Average generality index by inventor type, 1976-2025"
+        caption="Average generality index (Herfindahl-based diversity of forward citation recipients) per patent by inventor specialization type, 1976-2024. Higher generality among generalist patents indicates broader downstream influence across technology fields. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -235,8 +240,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.vi — Self-Citation Rate */}
       <ChartContainer
         id="fig-spec-self-citation"
-        title="Specialists Exhibit Higher Self-Citation Rates Than Generalists"
+        title="Generalists Self-Cite at 13.7% vs. 10.7% for Specialists (2024)"
         subtitle="Average self-citation rate by inventor type, 1976-2025"
+        caption="Average share of backward citations that reference the same assignee's prior patents, by inventor specialization type, 1976-2024. Generalists' higher self-citation rate may reflect broader engagement with their organization's patent portfolio. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -255,8 +261,9 @@ export default function InvGeneralistSpecialistChapter() {
       {/* B.vii — Grant Lag */}
       <ChartContainer
         id="fig-spec-grant-lag"
-        title="Grant Lag Has Converged Between Generalists and Specialists Over Time"
+        title="Specialists Wait 1,011 Days for Grant vs. 973 for Generalists (2024)"
         subtitle="Average grant lag in days by inventor type, 1976-2025"
+        caption="Average number of days between patent filing and grant by inventor specialization type, 1976-2024. The gap has narrowed considerably from earlier decades when specialists faced substantially longer prosecution times. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -276,6 +283,7 @@ export default function InvGeneralistSpecialistChapter() {
         id="fig-spec-productivity"
         title="Specialists Are More Productive Than Generalists in Patents per Inventor"
         subtitle="Average patents per inventor by type, 1976-2025"
+        caption="Average number of patents per inventor per year by specialization type, 1976-2025. Specialists consistently produce more patents per person, consistent with the efficiency gains of focused domain expertise. Data: PatentsView."
         loading={psL}
         height={400}
       >

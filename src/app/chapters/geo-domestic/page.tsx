@@ -357,7 +357,7 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-state-forward-citations"
         subtitle="Average forward citations per patent for the top 5 states by total output, 1976-2025."
-        title="California and New Jersey Patents Attract More Forward Citations, Reflecting Higher Downstream Impact"
+        title="California and Massachusetts Patents Attract More Forward Citations, Reflecting Higher Downstream Impact"
         caption="Average forward citations per patent by year for the five leading US states. Higher values indicate greater downstream influence on subsequent inventions."
         insight="Forward citation rates vary meaningfully across states, suggesting that geographic ecosystems differ not only in the volume but also in the downstream impact of their patent output."
         loading={qsL}

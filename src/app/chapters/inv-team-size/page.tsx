@@ -241,8 +241,9 @@ export default function InvTeamSizeChapter() {
       {/* B.i — Forward Citations */}
       <ChartContainer
         id="fig-team-fwd-citations"
-        title="Larger Teams Produce Higher-Impact Patents Measured by Forward Citations"
+        title="Solo Inventors Average 0.88 Forward Citations in 2024, More Than Double the 0.32 for Teams of 4-6"
         subtitle="Average forward citations per patent by team size category, 1976-2025"
+        caption="Average forward citations received per patent by team size category, 1976-2024. Recent years are truncated due to citation lag. Data: PatentsView."
         loading={qtL}
         height={400}
         controls={fwdCitControls}
@@ -259,8 +260,9 @@ export default function InvTeamSizeChapter() {
       {/* B.ii — Claims */}
       <ChartContainer
         id="fig-team-claims"
-        title="Team-Authored Patents List More Claims Than Solo Inventions"
+        title="Teams of 7+ Average 16.7 Claims per Patent, vs. 11.6 for Solo Inventors"
         subtitle="Average number of claims per patent by team size category, 1976-2025"
+        caption="Average number of claims per patent by team size category, 1976-2024. Larger teams consistently file patents with more claims. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -275,8 +277,9 @@ export default function InvTeamSizeChapter() {
       {/* B.iii — Scope */}
       <ChartContainer
         id="fig-team-scope"
-        title="Larger Teams File Patents Spanning More Technology Subclasses"
+        title="Teams of 7+ Span 2.58 CPC Subclasses on Average, vs. 2.30 for Solo Inventors"
         subtitle="Average patent scope (CPC subclass count) by team size category, 1976-2025"
+        caption="Average number of distinct CPC subclasses per patent by team size category, 1976-2024. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -293,6 +296,7 @@ export default function InvTeamSizeChapter() {
         id="fig-team-originality"
         title="Multi-Inventor Teams Draw on More Diverse Prior Art Sources"
         subtitle="Average originality index by team size category, 1976-2025"
+        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team size category, 1976-2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -309,6 +313,7 @@ export default function InvTeamSizeChapter() {
         id="fig-team-generality"
         title="Team Size Shows Little Differentiation in Citation Generality"
         subtitle="Average generality index by team size category, 1976-2025"
+        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team size category, 1976-2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -323,8 +328,9 @@ export default function InvTeamSizeChapter() {
       {/* B.vi — Self-Citation Rate */}
       <ChartContainer
         id="fig-team-self-citation"
-        title="Larger Teams Exhibit Higher Self-Citation Rates Than Solo Inventors"
+        title="Teams of 7+ Self-Cite at 16.8%, Nearly Double Solo Inventors' 8.8%"
         subtitle="Average self-citation rate by team size category, 1976-2025"
+        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team size category, 1976-2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -340,8 +346,9 @@ export default function InvTeamSizeChapter() {
       {/* B.vii — Grant Lag */}
       <ChartContainer
         id="fig-team-grant-lag"
-        title="Grant Processing Time Increases with Team Size Across All Periods"
+        title="Teams of 4-6 Wait 1,024 Days for Grant, vs. 905 Days for Solo Inventors"
         subtitle="Average grant lag in days by team size category, 1976-2025"
+        caption="Average number of days from filing to grant by team size category, 1976-2024. Grant lag generally increases with team size. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -358,6 +365,7 @@ export default function InvTeamSizeChapter() {
         id="fig-team-productivity"
         title="Mid-Size Teams (4-6) Show the Highest Per-Inventor Patent Productivity"
         subtitle="Average patents per inventor by team size category, 1976-2025"
+        caption="Average number of patents per inventor by team size category, 1976-2024. Productivity is measured as career patent count divided by active years. Data: PatentsView."
         loading={ptL}
         height={400}
       >
