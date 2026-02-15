@@ -28,6 +28,7 @@ import type {
 } from '@/lib/types';
 import Link from 'next/link';
 import { formatCompact } from '@/lib/formatters';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 
 export default function InvTopInventorsChapter() {
   /* ── data hooks ── */
@@ -79,6 +80,13 @@ export default function InvTopInventorsChapter() {
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
 
+  const { data: fwdCitData, yLabel: fwdCitYLabel, controls: fwdCitControls } = useCitationNormalization({
+    data: pivotData(qualityRank, 'avg_forward_citations'),
+    xKey: 'year',
+    citationKeys: ['top_inventor', 'other_inventor'],
+    yLabel: 'Avg. Forward Citations',
+  });
+
   return (
     <div>
       <ChapterHeader
@@ -107,7 +115,7 @@ export default function InvTopInventorsChapter() {
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-          TL;DR
+          Executive Summary
         </h2>
         <p className="text-sm leading-relaxed">
           Innovation output is increasingly concentrated among a small elite of repeat
@@ -302,15 +310,17 @@ export default function InvTopInventorsChapter() {
         subtitle="Average forward citations per patent by inventor rank, 1976-2025"
         height={400}
         loading={qrL}
+        controls={fwdCitControls}
       >
         <PWLineChart
-          data={pivotData(qualityRank, 'avg_forward_citations')}
+          data={fwdCitData ?? []}
           xKey="year"
           lines={[
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Forward Citations"
+          yLabel={fwdCitYLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 

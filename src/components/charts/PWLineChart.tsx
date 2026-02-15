@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, Text,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, ReferenceArea, Text,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -31,9 +31,10 @@ interface PWLineChartProps {
   referenceLines?: ReferenceEvent[];
   annotations?: TimeEventKey[];
   showEndLabels?: boolean;
+  truncationYear?: number;
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels, truncationYear }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
   const [hoveredLine, setHoveredLine] = useState<string | null>(null);
 
@@ -105,6 +106,25 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             )}
           </YAxis>
         )}
+        {truncationYear != null && data.length > 0 && (
+          <ReferenceArea
+            x1={truncationYear}
+            x2={data[data.length - 1]?.[xKey]}
+            yAxisId="left"
+            fill="currentColor"
+            fillOpacity={0.04}
+            strokeOpacity={0}
+          />
+        )}
+        {truncationYear != null && (
+          <ReferenceLine
+            x={truncationYear}
+            yAxisId="left"
+            stroke="#999"
+            strokeDasharray="6 4"
+            label={{ value: 'Citation data incomplete', position: 'insideTopRight', fontSize: 10, fill: '#999' }}
+          />
+        )}
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
           cursor={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1, strokeDasharray: '4 4' }}
@@ -113,6 +133,31 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             const fmt = line?.yAxisId === 'right' ? (rightYFormatter ?? formatCompact) : (yFormatter ?? formatCompact);
             return [fmt(Number(value)), name];
           }}
+          content={truncationYear != null ? (props: any) => {
+            const { payload, label } = props;
+            if (!payload || payload.length === 0) return null;
+            const yr = Number(label);
+            const inTruncation = yr >= truncationYear;
+            return (
+              <div style={{ ...TOOLTIP_STYLE }}>
+                <p style={{ fontWeight: 600, marginBottom: 4 }}>{label}</p>
+                {payload.map((entry: any, i: number) => {
+                  const line = lines.find((l) => l.key === entry.dataKey || l.name === entry.name);
+                  const fmt = line?.yAxisId === 'right' ? (rightYFormatter ?? formatCompact) : (yFormatter ?? formatCompact);
+                  return (
+                    <p key={i} style={{ color: entry.color, margin: '2px 0' }}>
+                      {entry.name}: {fmt(Number(entry.value))}
+                    </p>
+                  );
+                })}
+                {inTruncation && (
+                  <p style={{ fontSize: 11, color: '#999', marginTop: 6, borderTop: '1px solid hsl(var(--border))', paddingTop: 4 }}>
+                    ⚠ Citation counts for patents granted after {truncationYear} are subject to truncation: these patents have had fewer years to accumulate citations.
+                  </p>
+                )}
+              </div>
+            );
+          } : undefined}
         />
         <Legend
           wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
@@ -129,7 +174,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             yAxisId="left"
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 11, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: chartTheme.fontSize.tickLabel, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {lines.map((line, i) => {

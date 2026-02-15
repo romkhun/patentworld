@@ -17,6 +17,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type { CountryPerYear, QualityByCountry } from '@/lib/types';
 
 export default function GeoInternationalChapter() {
@@ -42,6 +43,20 @@ export default function GeoInternationalChapter() {
   const countryColors = [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[2], CHART_COLORS[3], CHART_COLORS[4]];
   const topCountriesForChart = topCountries?.slice(0, 5) ?? [];
   const countryLines = topCountriesForChart.map((c: string, i: number) => ({ key: c, name: c, color: countryColors[i] }));
+
+  // Citation truncation normalization for forward-citation charts
+  const domIntlNorm = useCitationNormalization({
+    data: qualByDomIntl,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg. Forward Citations',
+  });
+  const countryNorm = useCitationNormalization({
+    data: qualByCountryTs,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg. Forward Citations',
+  });
 
   /* ── Country filing trends: pivot top countries into line-chart format ── */
   const { countryTimePivot, countryTimeNames } = useMemo(() => {
@@ -88,7 +103,7 @@ export default function GeoInternationalChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, but China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 has transformed the competitive landscape. Countries with smaller portfolios occasionally achieve higher average claims, suggesting a quality-oriented approach, while rapidly growing patent origins exhibit lower average claims consistent with early-stage patent system development.
         </p>
@@ -117,15 +132,17 @@ export default function GeoInternationalChapter() {
         subtitle="Average forward citations per patent by domestic vs. international inventor teams, 1976-2025"
         loading={qdiL}
         height={400}
+        controls={domIntlNorm.controls}
       >
         <PWLineChart
-          data={pivotData(qualByDomIntl, 'avg_forward_citations')}
+          data={pivotData(domIntlNorm.data, 'avg_forward_citations')}
           xKey="year"
           lines={[
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Forward Citations"
+          yLabel={domIntlNorm.yLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 
@@ -296,12 +313,14 @@ export default function GeoInternationalChapter() {
         subtitle="Average forward citations per patent for the top 5 filing countries, 1976-2025"
         loading={qctL}
         height={400}
+        controls={countryNorm.controls}
       >
         <PWLineChart
-          data={pivotData(qualByCountryTs, 'avg_forward_citations')}
+          data={pivotData(countryNorm.data, 'avg_forward_citations')}
           xKey="year"
           lines={countryLines}
-          yLabel="Avg. Forward Citations"
+          yLabel={countryNorm.yLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 

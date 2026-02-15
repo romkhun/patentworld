@@ -134,7 +134,7 @@ export default function MechOrganizationsChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Most large patent filers are overwhelmingly exploitative, with 11 of 20 keeping exploration below 5%. When firms do enter new domains, exploration scores decay from 1.0 to below 0.1 within 5 years -- yet balanced firms that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms. Inter-firm knowledge flows, mapped through co-patenting networks and directed citation flows among the top 30 filers, reveal asymmetric dependencies that shift by decade and cluster by industry.
         </p>

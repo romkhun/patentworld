@@ -89,7 +89,7 @@ export default function OrgCompositionChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Corporate assignees now account for 99% of US patent grants, up from 94% in 1976. Foreign assignees surpassed domestic filers around 2007, driven by Japan (1.4 million cumulative patents), South Korea, and China. The US patent system has become the de facto global standard for protecting high-value inventions regardless of assignee nationality.
         </p>
@@ -104,9 +104,9 @@ export default function OrgCompositionChapter() {
         </p>
       </Narrative>
 
-      {/* ── Section A: Type ── */}
+      {/* ── Section A: Organization Types ── */}
 
-      <SectionDivider label="A: Type" />
+      <SectionDivider label="Organization Types" />
 
       <Narrative>
         <p>
@@ -157,9 +157,9 @@ export default function OrgCompositionChapter() {
         </p>
       </KeyInsight>
 
-      {/* ── Section B: Location ── */}
+      {/* ── Section B: Geographic Distribution of Assignees ── */}
 
-      <SectionDivider label="B: Location" />
+      <SectionDivider label="Geographic Distribution of Assignees" />
 
       <ChartContainer
         id="fig-org-composition-domestic-vs-foreign"

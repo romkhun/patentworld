@@ -121,7 +121,7 @@ export default function OrgPatentPortfolioChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Patent portfolio analysis reveals that 248 companies cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple clusters. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, often years before strategic shifts become publicly visible.
         </p>

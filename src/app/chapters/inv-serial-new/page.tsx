@@ -84,7 +84,7 @@ export default function InvSerialNewChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           The patent system is shaped by a fundamental tension between continuity and renewal. The absolute number of first-time
           inventors peaked at 140,490 in 2019, but their share of total patent activity has declined from 71% to 26%, indicating the
@@ -611,7 +611,7 @@ export default function InvSerialNewChapter() {
           The patterns documented here -- rising new-entrant inflow alongside declining newcomer prevalence,
           extreme concentration of output among serial inventors, bimodal career survival, and the persistence
           of comeback inventors -- reveal a patent system increasingly shaped by a professional, repeat-inventor
-          core. The next chapter, <Link href="/chapters/inv-gender" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Gender</Link>,
+          core. The next chapter, <Link href="/chapters/inv-gender" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Gender and Patenting</Link>,
           examines how these career and productivity patterns differ across gender lines, including the
           gender innovation gap and the quality implications of team composition.
         </p>

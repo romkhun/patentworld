@@ -575,26 +575,6 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-av-team-size"
-        subtitle="Average number of named inventors per AV-related patent by year, reflecting the growing complexity of autonomous vehicle systems."
-        title="Average AV Patent Team Size Has Grown Consistently, Indicating Increasing System Complexity"
-        caption="Average number of inventors per AV-related patent by year. The upward trend is consistent with the interpretation that modern autonomous driving systems require expertise spanning control theory, machine learning, sensor engineering, and software architecture."
-        insight="Growing team sizes reflect the increasing complexity of autonomous driving systems, which require expertise spanning control theory, machine learning, sensor engineering, software architecture, and safety validation."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={AV_EVENTS}
-        />
-      </ChartContainer>
-
       {/* -- Section 9: AV Patenting Strategies -------------------------------- */}
       <SectionDivider label="AV Patenting Strategies" />
       <Narrative>

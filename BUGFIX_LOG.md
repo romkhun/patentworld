@@ -257,3 +257,39 @@ Comprehensive audit covering console errors, hero counters, links, data integrit
 - **File(s) changed:** `src/components/charts/PWSankeyDiagram.tsx`
 - **Fix applied:** Two-phase cycle resolution in `useMemo` before passing to d3-sankey: (1) Resolve bidirectional pairs into net flows (A→B: 100 and B→A: 80 becomes A→B: 20). (2) Break remaining multi-node cycles via DFS back-edge removal.
 - **Verified:** Page loads fully with all 10 figures rendering (1,267 circles, 756 Sankey paths, 1,757 edge lines). Zero JS errors in headless Chrome. Regression check on firm-innovation, the-inventors, and patent-quality pages shows no issues.
+
+## 1.10 Phase 1 Re-Audit (2026-02-15, 34-Chapter Architecture)
+
+### Runtime Safety Fixes
+
+#### Fix: PWChoroplethMap — Math.log10(0) guard
+- **File:** `src/components/charts/PWChoroplethMap.tsx:72`
+- **Bug:** When all map values are 0, `Math.log10(0)` produces `-Infinity`, breaking color scale
+- **Fix:** Added `if (max === 0)` early return with fallback domain [0, 1]
+
+#### Fix: PWBarChart — Division by zero guard
+- **File:** `src/components/charts/PWBarChart.tsx:50`
+- **Bug:** Empty data array with `showAvgLine` causes `0/0 = NaN`
+- **Fix:** Added `vals.length > 0` guard, returns `undefined` for empty arrays
+
+### Dead Code Removal
+- Removed `ARCHETYPE_COLORS` from `src/lib/colors.ts` (never imported)
+- Removed `formatNumber`, `formatPercent`, `formatDays`, `computeRollingAverage` from `src/lib/formatters.ts` (never imported)
+- Removed `addOrgLabel` from `src/lib/orgNames.ts` (never imported)
+
+### Consistency Fixes
+- Standardized 17 chapters from "TL;DR" to "Executive Summary" for academic tone consistency
+- Changed HomeContent.tsx "Browse all 34 chapters" → "Explore the Data" (link goes to data explorer, not chapter listing)
+
+### Company Profiles Data Gap (Ch 2.5)
+- **Issue:** 5 specialized datasets only included subsets of 99 companies
+  - strategy_profiles.json: 30 companies
+  - corporate_speed.json: 50 companies
+  - firm_quality_distribution.json: 50 companies
+  - firm_claims_distribution.json: 50 companies
+  - firm_tech_evolution.json: 10 companies
+- **Fix:** Computing all 5 datasets for all 99 companies from raw PatentsView tables using Polars
+
+### Build Verification
+- `npx next build`: zero errors, all 34 chapters prerendered
+- HERO_STATS verified: 9.36M patents, 50 years, 34 chapters, 359 visualizations

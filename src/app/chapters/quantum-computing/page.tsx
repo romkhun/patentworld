@@ -565,37 +565,6 @@ export default function Chapter20() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-quantum-patents-team-size"
-        subtitle="Average number of named inventors per quantum computing patent by year, reflecting the collaborative nature of quantum research."
-        title="Quantum Computing Patent Teams Are Large and Growing, Reflecting the Multidisciplinary Expertise Required"
-        caption="Average number of inventors per quantum computing patent by year. The consistently large team sizes reflect the broad range of expertise required, spanning quantum physics, cryogenic engineering, microwave electronics, and software development."
-        insight="Growing team sizes reflect the increasing complexity of quantum computing systems, which require expertise spanning quantum physics, cryogenic engineering, microwave electronics, materials science, and software development."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={QUANTUM_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The large and growing team sizes for quantum computing patents underscore the
-          broad range of expertise required to advance the field. Building a quantum
-          computer demands contributions from quantum physicists, cryogenic engineers,
-          microwave electronics specialists, materials scientists, and software developers --
-          a breadth of expertise that necessitates large, multidisciplinary research teams
-          and is reflected in the patent record.
-        </p>
-      </KeyInsight>
-
       <SectionDivider label="Team Size Comparison" />
 
       <Narrative>

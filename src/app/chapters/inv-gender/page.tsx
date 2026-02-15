@@ -16,6 +16,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type {
   GenderByTech,
   GenderTeamQuality,
@@ -123,12 +124,19 @@ export default function InvGenderChapter() {
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
 
+  const { data: fwdCitData, yLabel: fwdCitYLabel, controls: fwdCitControls } = useCitationNormalization({
+    data: pivotData(qualityByGender, 'avg_forward_citations'),
+    xKey: 'year',
+    citationKeys: ['all_female', 'all_male', 'mixed'],
+    yLabel: 'Avg. Forward Citations',
+  });
+
   /* ── render ── */
   return (
     <div>
       <ChapterHeader
         number={16}
-        title="Gender"
+        title="Gender and Patenting"
         subtitle="Gender composition and the gender innovation gap"
       />
 
@@ -139,7 +147,7 @@ export default function InvGenderChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Female inventor representation has increased 5.3-fold from 2.8% to 14.9% over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering lagging. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
         </p>
@@ -332,16 +340,18 @@ export default function InvGenderChapter() {
         subtitle="Average forward citations per patent by team gender composition, 1976-2025"
         loading={qgL}
         height={400}
+        controls={fwdCitControls}
       >
         <PWLineChart
-          data={pivotData(qualityByGender, 'avg_forward_citations')}
+          data={fwdCitData ?? []}
           xKey="year"
           lines={[
             { key: 'all_female', name: 'All-Female Teams', color: CHART_COLORS[0] },
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Forward Citations"
+          yLabel={fwdCitYLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 
@@ -489,7 +499,7 @@ export default function InvGenderChapter() {
       <Narrative>
         <p>
           The gender composition of the inventor workforce reveals persistent disparities across technology
-          fields and meaningful differences in patent quality by team composition. The next chapter, <Link href="/chapters/inv-team-size" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Team Size</Link>, examines how team structures have evolved over time and how team size relates to patent quality and innovation outcomes.
+          fields and meaningful differences in patent quality by team composition. The next chapter, <Link href="/chapters/inv-team-size" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Team Size and Collaboration</Link>, examines how team structures have evolved over time and how team size relates to patent quality and innovation outcomes.
         </p>
       </Narrative>
 

@@ -591,39 +591,6 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-agtech-team-size"
-        subtitle="Average number of named inventors per agricultural patent by year, reflecting the evolving complexity of agricultural research."
-        title="Average Agricultural Patent Team Size Has Grown, Reflecting the Increasing Multidisciplinarity of Modern Farm Technology"
-        caption="Average number of inventors per agricultural patent by year. The upward trend is consistent with the growing complexity of agricultural innovation, which increasingly requires collaboration across mechanical engineering, biology, chemistry, and computer science."
-        insight="Growing team sizes in agricultural patents reflect the sector's evolution from individual mechanical inventions to multidisciplinary systems that combine hardware, biology, and software."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={AGTECH_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The increase in average team size for agricultural patents mirrors trends observed
-          across other technology domains but carries particular significance for agriculture.
-          Historically, agricultural inventions were often the product of individual farmers
-          or small engineering teams. The growing team sizes reflect the sector&apos;s
-          transformation into a multidisciplinary field where plant geneticists, software
-          engineers, hardware designers, and agronomists collaborate on integrated systems --
-          from genetically modified seeds paired with specific herbicides to autonomous
-          tractors guided by satellite imagery and machine learning algorithms.
-        </p>
-      </KeyInsight>
-
       {/* ── Section 7: Patenting Strategies ── */}
       <SectionDivider label="AgTech Patenting Strategies" />
       <Narrative>

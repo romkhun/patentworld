@@ -11,7 +11,7 @@ export function ChapterNavigation({ currentChapter }: ChapterNavigationProps) {
   const next = CHAPTERS.find((c) => c.number === currentChapter + 1);
 
   return (
-    <div className="mt-16 flex items-stretch gap-4">
+    <nav aria-label="Chapter navigation" className="mt-16 flex items-stretch gap-4">
       {prev ? (
         <Link
           href={`/chapters/${prev.slug}/`}
@@ -49,6 +49,6 @@ export function ChapterNavigation({ currentChapter }: ChapterNavigationProps) {
           <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
         </Link>
       )}
-    </div>
+    </nav>
   );
 }

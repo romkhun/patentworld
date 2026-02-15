@@ -568,36 +568,6 @@ export default function Chapter18() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-digihealth-team-size"
-        subtitle="Average number of named inventors per digital health patent by year, reflecting the growing complexity and multidisciplinarity of healthcare technology research."
-        title="Average Digital Health Patent Team Size Has Grown Over Time, Indicating Increasing Research Complexity"
-        caption="Average number of inventors per digital health patent by year. The upward trend is consistent with the interpretation that modern healthcare technology requires expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
-        insight="Growing team sizes reflect the increasing complexity of digital health innovation, which now requires expertise spanning biomedical engineering, software development, clinical validation, and regulatory compliance."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={DIGIHEALTH_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for digital health patents reflects the multidisciplinary
-          nature of healthcare technology. Modern digital health systems require expertise
-          across biomedical engineering, signal processing, software development, clinical
-          science, and regulatory affairs -- necessitating larger and more diverse research
-          teams than earlier generations of medical devices.
-        </p>
-      </KeyInsight>
-
       {/* ── Section 7: Digital Health Strategies ──────────────────────────── */}
       <SectionDivider label="Digital Health Patenting Strategies" />
 

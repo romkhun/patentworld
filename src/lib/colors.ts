@@ -118,16 +118,6 @@ export const INDUSTRY_COLORS: Record<string, string> = {
   'Other': '#999999',
 };
 
-// Trajectory archetype colors for company innovation profiles
-export const ARCHETYPE_COLORS: Record<string, string> = {
-  'Steady Climber': '#0072B2',
-  'Boom & Bust': '#D55E00',
-  'Late Bloomer': '#009E73',
-  'Fading Giant': '#E69F00',
-  'Volatile': '#332288',
-  'Plateau': '#56B4E9',
-};
-
 // Consistent entity-to-color map for top assignees across all chapters
 export const ENTITY_COLORS: Record<string, string> = {
   'IBM': '#0072B2',

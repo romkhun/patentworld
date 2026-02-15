@@ -1,219 +1,144 @@
-# AUDIT_LOG — PatentWorld Site Audit (Session 5-6)
+# PatentWorld Audit Log
 
-Audit started: 2026-02-14
-Site: patentworld.vercel.app
-Structure: 22 chapters across 5 ACTs, 259 visualizations
-
----
-
-## Phase 1: Content Accuracy Audit (COMPLETED)
-
-All 22 chapter pages audited for data accuracy against JSON source files. Discrepancies between narrative text/captions and actual data values were identified and corrected.
-
-### Summary by Chapter
-
-| Chapter | Issues Found | Issues Fixed |
-|---------|:---:|:---:|
-| 1. Innovation Landscape | 5 | 5 |
-| 2. Technology Revolution | 4 | 4 |
-| 3. The Inventors | 3 | 3 |
-| 4. Geography of Innovation | 2 | 2 |
-| 5. Firm Innovation | 6 | 6 |
-| 6. Collaboration Networks | 3 | 3 |
-| 7. Language of Innovation | 2 | 2 |
-| 8. Patent Law & Policy | 4 | 4 |
-| 9. Patent Quality | 3 | 3 |
-| 10. Sector Dynamics | 2 | 2 |
-| 11. AI Patents | 4 | 4 |
-| 12. Green Innovation | 3 | 3 |
-| 13. Semiconductors | 5 | 5 |
-| 14. Quantum Computing | 4 | 4 |
-| 15. Cybersecurity | 3 | 3 |
-| 16. Biotechnology | 4 | 4 |
-| 17. Digital Health | 2 | 2 |
-| 18. Agricultural Technology | 3 | 3 |
-| 19. Autonomous Vehicles | 3 | 3 |
-| 20. Space Technology | 2 | 2 |
-| 21. 3D Printing | 3 | 3 |
-| 22. Blockchain | 2 | 2 |
-
-Non-chapter pages (About, FAQ, Homepage) also audited and corrected.
-
-Academic paper references verified across all chapters: titles, authors, years, and journal names cross-checked.
+**Audit started:** 2026-02-15
+**Site:** patentworld.vercel.app
+**Structure:** 34 chapters across 6 ACTs, ~359 visualizations
 
 ---
 
-## Phase 2: Tone and Language (COMPLETED)
+## Tech Stack and Project Layout
 
-All 22 chapter pages and non-chapter pages audited for academic tone. Informal, journalistic, or hyperbolic language replaced with precise, measured academic language.
+- **Framework:** Next.js 14.2 (App Router) with static export (`output: 'export'`)
+- **Styling:** Tailwind CSS 3.4, PostCSS, Autoprefixer
+- **Charts:** Recharts 3.7, D3 modules (d3-force, d3-geo, d3-chord, d3-sankey, d3-scale, d3-shape)
+- **UI:** Lucide React icons, class-variance-authority, clsx, tailwind-merge
+- **Themes:** next-themes (dark/light mode)
+- **Maps:** topojson-client, d3-geo (Albers USA, world-110m)
+- **TypeScript:** 5.9, ESLint with next config
+- **Deployment:** Vercel (primary), GitHub Pages (optional via DEPLOY_TARGET env)
+- **Trailing slash:** enabled (`trailingSlash: true`)
+- **Images:** unoptimized (static export constraint)
 
-### Changes by Category
+### Directory Structure
 
-| Category | Count | Examples |
-|----------|:---:|---------|
-| Hyperbolic adjectives | ~20 | "extraordinary"→"substantial", "enormous"→"substantial", "unprecedented"→"notably accelerated" |
-| Informal verbs | ~15 | "Surged"→"Grew", "racing"→"competing", "disrupting"→"altering" |
-| Colloquial expressions | ~10 | "arms race"→"contest", "floodgates"→"substantial expansion", "frenzy"→"surge" |
-| Imprecise language | ~10 | "about"→"approximately", "get"→"obtain", "shows"→"exhibits" |
-| Journalistic metaphors | ~8 | "revolution"→"transformation", "explosion"→"expansion", "renaissance"→"resurgence" |
+```
+src/
+  app/
+    page.tsx                    # Home page
+    layout.tsx                  # Root layout
+    HomeContent.tsx             # Home page client component
+    globals.css                 # Global styles
+    robots.ts                   # robots.txt generator
+    sitemap.ts                  # sitemap.xml generator
+    about/page.tsx              # About page
+    explore/page.tsx            # Explore page
+    faq/page.tsx                # FAQ page
+    chapters/
+      layout.tsx                # Shared chapter layout (sidebar, nav, breadcrumbs)
+      [34 chapter dirs]/        # Each with page.tsx + layout.tsx
+  components/
+    charts/                     # 22 chart components
+      ChartContainer.tsx        # Wrapper with figure/figcaption/lazy loading
+      PWLineChart, PWAreaChart, PWBarChart, PWScatterChart,
+      PWBubbleScatter, PWBumpChart, PWChordDiagram, PWChoroplethMap,
+      PWCompanySelector, PWConvergenceMatrix, PWFanChart,
+      PWNetworkGraph, PWRadarChart, PWRankHeatmap, PWSankeyDiagram,
+      PWSmallMultiples, PWTimeline, PWTreemap, PWWorldFlowMap,
+      PWSeriesSelector, TimeAnnotations
+    chapter/                    # 13 chapter content components
+      ChapterHeader, ChapterTableOfContents, DataNote,
+      GlossaryTooltip, KeyFindings, KeyInsight, Narrative,
+      RankingTable, RelatedChapters, SectionDivider,
+      StatCallout, StatCard, StatGrid
+    layout/                     # 9 layout/navigation components
+      BackToTop, Breadcrumb, ChapterNavigation,
+      ChapterSidebar, Footer, Header, MobileNav,
+      ReadingProgress, ThemeToggle
+    ui/                         # UI primitives
+    explore/                    # Explore page components
+  lib/
+    constants.ts                # CHAPTERS array (34), ACT_GROUPINGS (6), HERO_STATS
+    seo.ts                      # Per-chapter SEO metadata (titles, descriptions, keywords)
+    types.ts                    # TypeScript interfaces
+    colors.ts                   # Color palette definitions
+    chartTheme.ts               # Shared chart theming
+    formatters.ts               # Number/date formatting utilities
+    glossary.ts                 # Glossary tooltip definitions
+    orgNames.ts                 # Organization name mappings
+    referenceEvents.ts          # Timeline reference events
+public/
+  data/
+    chapter1-12/                # Legacy chapter data JSON files
+    computed/                   # 19 computed quality metric JSON files
+    company/                    # Company profile data
+    explore/                    # Explore page data
+    green/, 3dprint/, agtech/, av/, biotech/, blockchain/,
+    cyber/, digihealth/, quantum/, semiconductors/, space/
+  geo/                          # TopoJSON maps (us-states.json, world-110m.json)
+```
 
-Total: ~63 edits across all pages.
+### 6-ACT Architecture Verification
 
----
+34 chapter directories confirmed in `src/app/chapters/`:
 
-## Phase 3: Figure and Visualization Quality (COMPLETED)
+| ACT | Title | Chapters | Count |
+|-----|-------|----------|-------|
+| 1 | The System | system-patent-count, system-patent-quality, system-patent-fields, system-convergence, system-language, system-patent-law, system-public-investment | 7 |
+| 2 | The Organizations | org-composition, org-patent-count, org-patent-quality, org-patent-portfolio, org-company-profiles | 5 |
+| 3 | The Inventors | inv-top-inventors, inv-generalist-specialist, inv-serial-new, inv-gender, inv-team-size | 5 |
+| 4 | The Geography | geo-domestic, geo-international | 2 |
+| 5 | The Mechanics | mech-organizations, mech-inventors, mech-geography | 3 |
+| 6 | Deep Dives | 3d-printing, agricultural-technology, ai-patents, autonomous-vehicles, biotechnology, blockchain, cybersecurity, digital-health, green-innovation, quantum-computing, semiconductors, space-technology | 12 |
 
-### Chart Components Audit
-
-All chart components (PWLineChart, PWAreaChart, PWBarChart, PWRankHeatmap, ChartContainer) reviewed:
-- Axis formatting: consistent use of `formatCompact` for numeric axes
-- Legend positioning: consistent `paddingTop: 12`, `iconType: "circle"`, `iconSize: 8`
-- Responsive containers: all charts wrapped in `ResponsiveContainer`
-- Color accessibility: CHART_COLORS palette with sufficient contrast
-- Consistent styling via shared `chartTheme` object
-
-### Accessibility Audit
-
-- All 259 `ChartContainer` instances have meaningful `title`, `subtitle`, and/or `aria-label`
-- Heading hierarchy (`h1` > `h2` > `h3`) correct across all 22 chapters
-- `ChartContainer` uses semantic `<figure>` element with `<figcaption>` and appropriate ARIA attributes
-- Interactive charts: `role="group"` + `aria-live="polite"`
-- Non-interactive charts: `role="img"`
-- Lazy loading via `useInView({ threshold: 0.05, rootMargin: '200px' })`
-
-No code changes required — charts already well-structured.
-
----
-
-## Phase 4: Content Organization and Flow (COMPLETED)
-
-- All 22 chapters follow correct section progression (overview → trends → decompositions → deep dives)
-- ACT sequence verified: System → Actors → Structure → Mechanics → Deep Dives
-- Cross-ACT transitions present at all 4 boundaries
-- All internal links valid — zero links to deleted chapters
-
-### Fix Applied
-- `HERO_STATS.visualizations` updated from 237 to 259 in `constants.ts`
-
----
-
-## Phase 5: SEO, GenAI Optimization, and Performance (COMPLETED)
-
-### Technical SEO
-- Root layout: title template, OG tags, Twitter Card tags, robots directives, canonical URLs
-- JSON-LD structured data: `WebSite`, `BreadcrumbList`, `Dataset` on homepage; `Article` on chapter pages
-- `sitemap.ts`: 26 URLs covering all pages
-- `robots.ts`: allows all crawlers + explicitly allows GenAI crawlers (GPTBot, ClaudeBot, PerplexityBot)
-- All 22 chapter layouts have per-chapter meta tags via `seo.ts`
-
-### GenAI Optimization
-- Executive summaries at top of every chapter page
-- Descriptive, self-contained section headings
-- All key data points stated in plain text (not only in charts)
-
-### Performance
-- Lazy loading via `useInView` for below-fold charts
-- Google Fonts with `display: 'swap'`
-- Explicit chart heights for CLS prevention
-- Code splitting via Next.js App Router
-
-### Fixes Applied
-- `/about/page.tsx`: Added `twitter` card metadata and `openGraph.images`
-- `/faq/page.tsx`: Added complete `openGraph` and `twitter` metadata (were missing)
-
----
-
-## Phase 6: Navigation (COMPLETED)
-
-- CHAPTERS array: 22 chapters, numbered 1–22, correct slugs
-- ChapterNavigation prev/next logic verified (uses `c.number === currentChapter ± 1`)
-- Breadcrumbs present on all chapters via shared layout
-- Sidebar and MobileNav both use `ACT_GROUPINGS` for act-grouped navigation
-- All internal links resolve to valid pages — zero 404s
-
-No changes required.
+All 34 page.tsx files exist. Constants.ts CHAPTERS array has 34 entries. ACT_GROUPINGS has 6 entries.
 
 ---
 
-## Phase 7: About the Author (COMPLETED)
+## Phase-by-Phase Changes
 
-Updated `/about/page.tsx`:
-- Research areas: "human capital acquisition, startup scaling, and high-growth entrepreneurship"
-- "faculty page" → "personal website"
-- Both "Saerom (Ronnie) Lee" name and "personal website" link to saeromlee.com
+### Phase 1 — Bug Fixes and Baseline Verification (COMPLETED)
 
----
+See `BUGFIX_LOG.md` for full details. Key fixes:
+- Hero counters verified: 9.36M patents, 50 years (1976-2025), 34 chapters, 359 visualizations
+- Console errors fixed: null guards added for data loading edge cases
+- Links and redirects verified: all 34 chapter URLs resolve, all old URLs redirect correctly
+- Data integrity quick pass: no NaN/undefined/Infinity in chart data
+- Company profiles (Ch 2.5): computed all 5 datasets for all 99 companies from raw PatentsView data
+- Redundancy pass: removed unused old chapter artifacts
 
-## Phase 8: Bug Fixes and Final QA (COMPLETED)
+### Phase 2 — Content Accuracy Audit (COMPLETED)
 
-### TypeScript Errors Fixed
-- `PWAreaChart.tsx:112`: Recharts `Legend` `payload` prop type mismatch — fixed with conditional spread + type assertion
-- `PWBarChart.tsx:173`: Same fix applied
+See `ACCURACY_AUDIT.md` for full details. Key actions:
+- Numerical claims verified across all 34 chapters against source data files
+- Quality-metric figures verified: correct data sources, correct grouping variables, spot-checked values
+- Takeaways and captions reviewed: overstated claims revised, vague language replaced with specific figures
+- Trend/causal claims audited: "caused" → "coincided with" / "is consistent with" where appropriate
+- Terminology corrections applied (Phase 2e): "American innovation" → "US patents", "innovation hub" → "region with high patent concentration", "transformative patents" → "highly cited patents", "dramatically" → "substantially", TL;DR → Executive Summary
+- Paper references verified in Patent Law chapter (Ch 1.6) using 7-test protocol; 9 papers removed for failing tests
+- Paper references in all other chapters verified
 
-### Lint Warnings Fixed
-- `patent-quality/page.tsx`: Removed unused imports (`CPC_SECTION_COLORS`, `CPC_SECTION_NAMES`)
+### Phase 3 — Tone and Language (COMPLETED)
 
-### Final Verification
-- `npx tsc --noEmit`: zero errors
-- `npm run build`: zero errors, all 22 chapter routes + supporting pages prerendered
-- `npx next lint`: zero warnings, zero errors
+See `TONE_AUDIT.md` for full details. Key actions:
+- Phase 3a: Scanned all 34 chapters for informal language — no remaining instances found
+- Phase 3b: Verified all hedging corrections from Phase 2d survived intact
+- Phase 3c: Terminology standardization verified
+- Phase 3d: All chart titles confirmed as insight-oriented declarative sentences with specific numbers
+- Phase 3e: All charts have formal figcaptions with verified findings
+- Phase 3f: Executive Summary and Key Findings sections verified — no verbatim repetition
 
----
+### Phase 8 — About the Author (COMPLETED)
 
-## Phase 9: Title Audit and Standardization (COMPLETED)
+- Author bio updated to match exact specified text (removed extra sentence about PatentWorld development)
+- Methodology section already present and comprehensive — covers all 7 quality metrics, data source, coverage, limitations
+- Suggested citation block already present with correct text
+- Chapter groupings correctly organized by ACT using ACT_GROUPINGS from constants.ts
 
-Full inventory of all ACT, chapter, and section titles documented in `TITLE_REVISIONS.md`.
+### Phase 9d — robots.txt & Sitemap
 
-### Naming Conventions Established
+- Updated `robots.ts` to match Phase 9d specification: removed `Bytespider` entry; kept `*`, `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Amazonbot`, `CCBot` — all with `Allow: /`.
+- Verified `sitemap.ts` includes home, about, explore, FAQ, and all 34 chapter URLs (dynamically from `CHAPTERS` array).
 
-- **ACT titles:** "The [Noun]" pattern (2-3 words) — all OK
-- **Chapter titles:** 2-5 word noun phrases — all OK
-- **Section titles:** Standardized labels for equivalent analyses across Act 5 deep dives
+**ACTION REQUIRED BY AUTHOR:** Review robots.txt AI bot policy — currently allows all AI bots. Change Google-Extended and CCBot to Disallow: / if you prefer to block AI training crawlers.
 
-### Changes by Category
-
-| Category | Count | Examples |
-|----------|:---:|---------|
-| Vague section labels (Ch 3) | 3 | "Emerging Themes"→"Topic Trends Over Time", "The Patent Landscape"→"Topic Map", "Topics and Technology"→"Topics Across Technology Sections" |
-| Generic labels standardized (Act 5) | 33 | "Organizations"→"Leading Organizations" (×11), "Inventors"→"Top Inventors" (×11), "Geography"→"Geographic Distribution" (×11) |
-| Missing domain prefix (Act 5) | 2 | "Subfields"→"Semiconductor Subfields", "Subfields"→"Quantum Computing Subfields" |
-| Inconsistent labels (Act 5) | 2 | "Team Size"→"Team Composition", "Assignee Type"→"Assignee Type Distribution" |
-| Overlapping names clarified (Ch 5-6) | 2 | "Knowledge Flows & Citations"→"Citation Networks", "Firm Quality Typology"→"Quality Typology", "Gender"→"Gender Composition" |
-
-Total: 42 section title updates across 15 chapter files.
-
-### Terminology Standardization
-
-- "Firms" / "companies" / "assignees" usage reviewed — all used correctly in distinct contexts (no blanket replacement needed)
-- "Forward citations" / "citations received" — consistent and contextually correct
-- "Grant lag" / "pendency" — both terms defined in glossary, used interchangeably as intended
-- "CPC" / "IPC" — only IPC reference is in correct context (WIPO field mapping)
-- No terminology changes required
-
-### Verification
-
-- `npx tsc --noEmit`: zero errors
-- `npm run build`: zero errors, all routes prerendered
-- `npx next lint`: zero warnings, zero errors
-- No internal links referenced old anchor IDs
-
----
-
-## Final Summary
-
-| Metric | Value |
-|--------|-------|
-| Total phases completed | 9 of 9 |
-| Chapter pages audited | 22 |
-| Non-chapter pages audited | 4 (Home, About, FAQ, Explore) |
-| Total visualizations | 259 |
-| Data accuracy fixes | ~72 across all chapters |
-| Tone/language edits | ~63 across all pages |
-| Title standardization edits | 42 across 15 files |
-| SEO fixes | 2 (About + FAQ meta tags) |
-| TypeScript errors fixed | 2 |
-| Lint warnings fixed | 2 |
-| Build errors | 0 |
-| Known remaining issues | 0 |
-
-All phases of the audit plan (`fix.md`) have been executed. The site compiles, lints, and type-checks cleanly.
+**ACTION REQUIRED BY AUTHOR:** After deployment, submit sitemap to Google Search Console and Bing Webmaster Tools.

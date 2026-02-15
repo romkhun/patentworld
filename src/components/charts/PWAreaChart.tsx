@@ -117,7 +117,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
             x={ref.x}
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
-            label={{ value: ref.label, position: 'top', fontSize: 11, fill: ref.color ?? '#9ca3af' }}
+            label={{ value: ref.label, position: 'top', fontSize: chartTheme.fontSize.tickLabel, fill: ref.color ?? '#9ca3af' }}
           />
         ))}
         {areas.map((area, i) => (

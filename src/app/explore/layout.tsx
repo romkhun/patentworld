@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/JsonLd';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -40,10 +41,7 @@ const BREADCRUMB_JSONLD = {
 export default function ExploreLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSONLD) }}
-      />
+      <JsonLd data={BREADCRUMB_JSONLD} />
       {children}
     </>
   );

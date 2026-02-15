@@ -14,7 +14,7 @@ export function Header() {
           PatentWorld
         </Link>
 
-        <nav className="hidden items-center gap-4 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-4 md:flex">
           <Link
             href="/explore/"
             className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary"

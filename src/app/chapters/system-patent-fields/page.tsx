@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
@@ -266,6 +267,12 @@ export default function SystemPatentFieldsChapter() {
   }));
 
   const fwdCitePivot = useMemo(() => pivotData(qualityCpc, 'avg_forward_citations'), [qualityCpc]);
+  const { data: fwdCiteNormalized, yLabel: fwdCiteYLabel, controls: fwdCiteControls } = useCitationNormalization({
+    data: fwdCitePivot,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg Forward Citations',
+  });
   const originalityPivot = useMemo(() => pivotData(qualityCpc, 'avg_originality'), [qualityCpc]);
   const generalityPivot = useMemo(() => pivotData(qualityCpc, 'avg_generality'), [qualityCpc]);
   const scopePivot = useMemo(() => pivotData(qualityCpc, 'avg_scope'), [qualityCpc]);
@@ -838,13 +845,15 @@ export default function SystemPatentFieldsChapter() {
         caption="Average number of forward citations received per patent, disaggregated by CPC section and year. Early decades show large inter-section variation, with Human Necessities (A) and Fixed Constructions (E) leading. By the 2020s, citation counts converge substantially as the patent corpus expands and citation practices mature."
         insight="The convergence in forward citations across technology sections is consistent with the densification of citation networks and the maturation of the patent system. Early-era patents in smaller fields attracted disproportionate citations relative to later cohorts."
         loading={qcL}
+        controls={fwdCiteControls}
       >
         <PWLineChart
-          data={fwdCitePivot}
+          data={fwdCiteNormalized ?? []}
           xKey="year"
           lines={cpcQualityLines}
-          yLabel="Avg Forward Citations"
+          yLabel={fwdCiteYLabel}
           yFormatter={(v: number) => v.toFixed(1)}
+          truncationYear={2018}
         />
       </ChartContainer>
 

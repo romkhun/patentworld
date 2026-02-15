@@ -600,38 +600,6 @@ export default function Chapter15() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-biotech-team-size"
-        subtitle="Average number of named inventors per biotechnology patent by year, reflecting the collaborative nature of life sciences research."
-        title="Biotech Patent Team Sizes Have Grown Steadily, Reflecting the Multidisciplinary Nature of Modern Life Sciences Research"
-        caption="Average number of inventors per biotechnology-related patent by year. The upward trend is consistent with the growing complexity of biotech research, which requires expertise spanning molecular biology, bioinformatics, clinical science, and regulatory affairs."
-        insight="Growing team sizes in biotech patents reflect the increasingly multidisciplinary nature of life sciences innovation, where successful inventions require collaboration across molecular biology, bioinformatics, chemistry, and clinical expertise."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={BIOTECH_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for biotechnology patents reflects the increasingly
-          multidisciplinary nature of life sciences research. Modern biotech inventions frequently
-          require collaboration among molecular biologists, bioinformaticians, chemical engineers,
-          clinicians, and regulatory specialists. The Bayh-Dole Act further encouraged
-          collaborative teams by incentivizing university-industry partnerships, while the
-          complexity of gene editing technologies and mRNA platforms has necessitated even larger
-          and more diverse research groups.
-        </p>
-      </KeyInsight>
-
       {/* == Section 7: Patenting Strategies =================================== */}
       <SectionDivider label="Biotech Patenting Strategies" />
       <Narrative>
@@ -888,7 +856,7 @@ export default function Chapter15() {
         id="fig-biotech-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a biotechnology patent."
         title="Later Biotech Entrants Patent at Modestly Higher Velocity: 2000s Cohort Averages 26.9 Patents per Year Versus 19.2 for 1970s Entrants"
-        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.7x increase is the smallest among mature ACT 6 domains, suggesting that biotechnology patenting has not become dramatically easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
+        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.7x increase is the smallest among mature ACT 6 domains, suggesting that biotechnology patenting has not become substantially easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
         insight="The modest velocity increase contrasts with AI&apos;s 2.0x and green innovation&apos;s 5.5x ratios, reflecting the persistent barriers to biotech patenting imposed by regulatory requirements, clinical validation timelines, and the fundamental complexity of biological systems."
         loading={taL}
       >

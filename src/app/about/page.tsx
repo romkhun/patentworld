@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { CHAPTERS, ACT_GROUPINGS } from '@/lib/constants';
+import { JsonLd } from '@/components/JsonLd';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -81,30 +83,8 @@ const TOC_ITEMS = [
   { id: 'citation', label: 'Citation' },
 ];
 
-function FAQJsonLd() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
-}
-
-function DatasetJsonLd() {
-  const jsonLd = {
+const ABOUT_JSONLD = [
+  {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
     name: 'PatentWorld \u2014 US Patent Data (1976\u20132025)',
@@ -145,40 +125,33 @@ function DatasetJsonLd() {
       'CPC technology classifications',
       'Geographic location of inventors',
     ],
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
-}
-
-function BreadcrumbJsonLd() {
-  const jsonLd = {
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  },
+  {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
       { '@type': 'ListItem', position: 2, name: 'About', item: `${BASE_URL}/about/` },
     ],
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
-}
+  },
+];
 
 export default function AboutPage() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 lg:px-8">
-      <DatasetJsonLd />
-      <FAQJsonLd />
-      <BreadcrumbJsonLd />
+      <JsonLd data={ABOUT_JSONLD} />
 
       <h1 className="font-serif text-4xl font-bold tracking-tight">About PatentWorld</h1>
       <p className="mt-3 text-sm text-muted-foreground">
@@ -221,10 +194,7 @@ export default function AboutPage() {
             high-growth entrepreneurship. Additional information is available on his{' '}
             <a href="https://www.saeromlee.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
               personal website
-            </a>. PatentWorld was developed to provide a rigorous, interactive platform
-            for examining half a century of US patent data.
-          </p>
-          <p>
+            </a>.
             Correspondence:{' '}
             <a href="mailto:saeroms@upenn.edu" className="underline underline-offset-2 hover:text-foreground transition-colors">
               saeroms@upenn.edu
@@ -237,13 +207,36 @@ export default function AboutPage() {
         <section id="chapters">
           <h2 className="font-serif text-2xl font-bold pt-4">Chapters</h2>
           <p>
-            PatentWorld presents 34 chapters organized into six acts, each examining a different
-            dimension of the US patent system. Browse all chapters on the{' '}
-            <Link href="/explore/" className="underline underline-offset-2 hover:text-foreground transition-colors">
-              Explore
-            </Link>{' '}
-            page.
+            PatentWorld presents {CHAPTERS.length} chapters organized into six acts, each examining a different
+            dimension of the US patent system.
           </p>
+          <div className="mt-4 space-y-4">
+            {ACT_GROUPINGS.map((act) => {
+              const actChapters = act.chapters.map(
+                (n) => CHAPTERS.find((c) => c.number === n)!
+              );
+              return (
+                <div key={act.act}>
+                  <h3 className="text-sm font-semibold">
+                    Act {act.act}: {act.title}
+                    <span className="ml-2 font-normal text-muted-foreground">&mdash; {act.subtitle}</span>
+                  </h3>
+                  <ul className="mt-1 grid gap-x-4 gap-y-0.5 sm:grid-cols-2 pl-4 text-sm text-muted-foreground">
+                    {actChapters.map((ch) => (
+                      <li key={ch.slug}>
+                        <Link
+                          href={`/chapters/${ch.slug}/`}
+                          className="hover:text-foreground transition-colors"
+                        >
+                          {ch.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         {/* 4. Data Source & Attribution */}
@@ -295,6 +288,22 @@ export default function AboutPage() {
             <li>Aggregating by year, technology category, geography, and organization</li>
             <li>Computing derived metrics: citation counts, team sizes, concentration ratios, diversity indices</li>
             <li>Filtering to primary classifications (sequence = 0) to avoid double-counting</li>
+          </ul>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Standard Quality Metrics Suite</h3>
+          <p>
+            Chapters across multiple acts present a consistent set of seven patent quality metrics,
+            computed for different grouping variables (by technology field, by assignee, by inventor
+            category, by geography). These metrics enable cross-chapter comparisons:
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Patent count:</strong> Number of granted patents in the group per year.</li>
+            <li><strong>Claims per patent:</strong> Number of independent and dependent claims, measuring the scope of legal protection sought.</li>
+            <li><strong>Patent scope:</strong> Number of distinct CPC subclasses assigned to each patent, measuring technological breadth.</li>
+            <li><strong>Forward citations:</strong> Number of subsequent patents citing a given patent, a widely used proxy for technological impact. Subject to truncation bias for recently granted patents.</li>
+            <li><strong>Backward citations:</strong> Number of prior patents cited by a given patent, reflecting the extent to which the invention builds on prior art.</li>
+            <li><strong>Self-citation rate:</strong> Fraction of backward citations directed to the citing entity&apos;s own prior patents, indicating internal knowledge reuse.</li>
+            <li><strong>Grant lag:</strong> Number of days between patent application filing and grant, measuring prosecution speed.</li>
           </ul>
 
           <h3 className="font-serif text-lg font-semibold mt-6">Data Limitations</h3>

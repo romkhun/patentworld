@@ -1,15 +1,14 @@
 import { chapterMetadata, chapterJsonLd } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 
 const SLUG = 'quantum-computing';
 export const metadata = chapterMetadata(SLUG);
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const jsonLd = chapterJsonLd(SLUG);
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(chapterJsonLd(SLUG)) }}
-      />
+      {jsonLd && <JsonLd data={jsonLd} />}
       {children}
     </>
   );

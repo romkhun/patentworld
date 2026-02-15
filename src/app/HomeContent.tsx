@@ -158,7 +158,7 @@ export default function HomePage() {
               href="/explore/"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
             >
-              Browse all {CHAPTERS.length} chapters <ArrowRight className="h-3 w-3" />
+              Explore the Data <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
           <div className="space-y-12">

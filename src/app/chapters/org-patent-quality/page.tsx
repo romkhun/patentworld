@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
@@ -132,6 +133,17 @@ export default function OrgPatentQualityChapter() {
     [topCompanies],
   );
 
+  const companyFwdCitePivot = useMemo(
+    () => pivotCompanyMetric(qualityByCompany, 'avg_forward_citations', topCompanies),
+    [qualityByCompany, topCompanies],
+  );
+  const { data: normalizedCompanyFwdCite, yLabel: companyFwdCiteYLabel, controls: controlsCompanyFwdCite } = useCitationNormalization({
+    data: companyFwdCitePivot,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg Forward Citations',
+  });
+
   return (
     <div>
       <ChapterHeader
@@ -142,13 +154,13 @@ export default function OrgPatentQualityChapter() {
 
       <KeyFindings>
         <li>Amazon&apos;s 6.7% blockbuster rate leads the field for 2010-2019, while 18 of 50 firms exceed a 50% dud rate, revealing sharply divergent quality strategies.</li>
-        <li>Microsoft leads in average forward citations (30.7) while IBM&apos;s 5.6x average-to-median ratio reveals a highly skewed portfolio with a few transformative patents alongside many incremental ones.</li>
+        <li>Microsoft leads in average forward citations (30.7) while IBM&apos;s 5.6x average-to-median ratio reveals a highly skewed portfolio with a few highly cited patents alongside many incremental ones.</li>
         <li>Canon (47.6%), TSMC (38.4%), and Micron (25.3%) exhibit the highest self-citation rates among top assignees, reflecting deep cumulative R&amp;D programs.</li>
         <li>Citation half-lives range from 6.3 years (Huawei) to 14.3 years (US Air Force), with pharmaceutical firms exhibiting longer half-lives than electronics and IT firms.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Patent quantity alone does not capture an organization&apos;s technological influence. This chapter brings together four complementary quality lenses -- blockbuster-versus-dud typologies, forward citation distributions, self-citation patterns, and citation half-lives -- to reveal how leading firms differ not just in the volume of patents they produce, but in the impact, durability, and cumulative nature of their innovation portfolios.
         </p>
@@ -413,12 +425,14 @@ export default function OrgPatentQualityChapter() {
         loading={qbcL}
         height={400}
         wide
+        controls={controlsCompanyFwdCite}
       >
         <PWLineChart
-          data={pivotCompanyMetric(qualityByCompany, 'avg_forward_citations', topCompanies)}
+          data={normalizedCompanyFwdCite ?? []}
           xKey="year"
           lines={companyLines}
-          yLabel="Avg Forward Citations"
+          yLabel={companyFwdCiteYLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 

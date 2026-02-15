@@ -17,6 +17,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type {
   TeamSizePerYear,
   SoloInventorTrend,
@@ -57,6 +58,13 @@ export default function InvTeamSizeChapter() {
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
 
+  const { data: fwdCitData, yLabel: fwdCitYLabel, controls: fwdCitControls } = useCitationNormalization({
+    data: pivotData(qualityByTeam, 'avg_forward_citations'),
+    xKey: 'year',
+    citationKeys: ['Solo', '2-3', '4-6', '7+'],
+    yLabel: 'Avg. Forward Citations',
+  });
+
   /* ── shared line config for team-size charts ── */
   const teamLines = [
     { key: 'Solo', name: 'Solo Inventor', color: CHART_COLORS[0] },
@@ -69,7 +77,7 @@ export default function InvTeamSizeChapter() {
     <div>
       <ChapterHeader
         number={17}
-        title="Team Size"
+        title="Team Size and Collaboration"
         subtitle="The collaborative turn and team size effects on quality"
       />
 
@@ -93,7 +101,7 @@ export default function InvTeamSizeChapter() {
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-          TL;DR
+          Executive Summary
         </h2>
         <p className="text-sm leading-relaxed">
           The transition from solo to team-based invention is one of the defining structural
@@ -112,7 +120,7 @@ export default function InvTeamSizeChapter() {
             href="/chapters/inv-gender"
             className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
           >
-            Gender
+            Gender and Patenting
           </Link>
           , examined how gender composition in patenting has evolved. This chapter turns to the
           structural organization of inventive activity itself: the shift from solo to
@@ -237,12 +245,14 @@ export default function InvTeamSizeChapter() {
         subtitle="Average forward citations per patent by team size category, 1976-2025"
         loading={qtL}
         height={400}
+        controls={fwdCitControls}
       >
         <PWLineChart
-          data={pivotData(qualityByTeam, 'avg_forward_citations')}
+          data={fwdCitData ?? []}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Forward Citations"
+          yLabel={fwdCitYLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 
@@ -374,7 +384,7 @@ export default function InvTeamSizeChapter() {
             Domestic Geography
           </Link>
           , which maps the concentration of patent activity across US states and cities,
-          revealing the spatial clustering that shapes the American innovation landscape.
+          revealing the spatial clustering that shapes patenting activity in the United States.
         </p>
       </Narrative>
 

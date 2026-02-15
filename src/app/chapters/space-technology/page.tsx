@@ -566,36 +566,6 @@ export default function Chapter22() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-space-team-size"
-        subtitle="Average number of named inventors per space-related patent by year, reflecting the collaborative nature of spacecraft engineering."
-        title="Average Space Patent Team Size Has Grown Over Time, Indicating Increasing Systems Complexity"
-        caption="Average number of inventors per space-related patent by year. The upward trend is consistent with the increasing complexity of modern spacecraft systems, which require expertise spanning propulsion, structures, electronics, thermal management, and software."
-        insight="Growing team sizes reflect the increasing systems complexity of modern spacecraft, which require expertise spanning propulsion, structures, electronics, thermal management, communications, and software engineering."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={SPACE_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for space patents reflects the increasing complexity and systems
-          integration challenges of modern spacecraft. Contemporary satellites and launch vehicles
-          require expertise across multiple engineering disciplines -- propulsion, structures,
-          thermal management, power systems, communications, and flight software -- necessitating
-          larger and more diverse inventor teams than in earlier eras of space technology.
-        </p>
-      </KeyInsight>
-
       {/* ── Section 7: Strategies ─────────────────────────────────────────── */}
       <SectionDivider label="Space Patenting Strategies" />
 
@@ -823,7 +793,7 @@ export default function Chapter22() {
         id="fig-space-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a space technology patent."
         title="Space Technology Patenting Velocity Has Remained Relatively Stable Across Entry Cohorts, Averaging 4-8 Patents per Year"
-        caption="Mean patents per active year for top space organizations grouped by entry decade. Unlike domains where velocity increased dramatically for later entrants, space technology shows relatively stable per-year patenting rates, reflecting the domain's high technical barriers and long development cycles."
+        caption="Mean patents per active year for top space organizations grouped by entry decade. Unlike domains where velocity increased substantially for later entrants, space technology shows relatively stable per-year patenting rates, reflecting the domain's high technical barriers and long development cycles."
         insight="The stable velocity across cohorts distinguishes space from most other ACT 6 domains and is consistent with the fundamental physics constraints on spacecraft innovation, where development cycles of 5-10 years limit the rate at which any organization can patent productively."
         loading={taL}
       >

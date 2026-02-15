@@ -249,18 +249,3 @@ export function cleanOrgName(raw: string, maxLen?: number): string {
   }
   return titled;
 }
-
-/**
- * Convenience: clean all organization names in an array of objects.
- * Mutates the data by adding a `label` field with the cleaned name.
- */
-export function addOrgLabel<T extends Record<string, unknown>>(
-  data: T[],
-  orgKey: string = 'organization',
-  maxLen?: number,
-): (T & { label: string })[] {
-  return data.map((d) => ({
-    ...d,
-    label: cleanOrgName(d[orgKey] as string, maxLen),
-  }));
-}

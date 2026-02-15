@@ -327,7 +327,7 @@ export default function OrgCompanyProfilesChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           This chapter provides unified interactive company dashboards combining five dimensions of innovation for each of the top patent filers. Select a company below to explore its annual patent output, CPC technology composition, citation quality distribution, innovation strategy profile, and patent prosecution speed -- all in a single view.
         </p>

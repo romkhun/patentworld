@@ -46,7 +46,7 @@ export default function SystemConvergenceChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Technology domains that were once largely separate have become increasingly intertwined. Multi-section patents rose from 21% to 41% of all grants, while the G-H (Physics-Electricity) convergence pair surged from 12.5% to 37.5% of cross-section patents. These patterns reflect a fundamental structural shift: modern invention increasingly occurs at the intersection of multiple fields, driven by the pervasiveness of digital technology and the growing interdisciplinarity of research.
         </p>

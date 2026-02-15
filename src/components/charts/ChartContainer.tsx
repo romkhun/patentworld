@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { useInView } from '@/hooks/useInView';
+import { CiteThisFigure } from './CiteThisFigure';
 
 interface ChartContainerProps {
   title: string;
@@ -16,10 +17,11 @@ interface ChartContainerProps {
   interactive?: boolean;
   statusText?: string;
   flexHeight?: boolean;
+  controls?: ReactNode;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, children }: ChartContainerProps) {
+export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
 
   return (
@@ -40,20 +42,35 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
       )}
       {!subtitle && <div className="mb-3" />}
+      {controls && <div className="mb-3 flex justify-end">{controls}</div>}
       {loading || !inView ? (
         <div
-          className="chart-container-inner flex flex-col gap-3 justify-center"
+          className="chart-container-inner relative flex items-end justify-center overflow-hidden"
           aria-label="Loading chart"
           style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
         >
-          <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
-          <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />
-          <div className="h-4 w-5/6 animate-pulse rounded bg-muted" />
-          <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
+          {/* Static chart-like placeholder: faux axes + bar silhouettes */}
+          <div className="absolute inset-0 flex items-end px-12 pb-10 pt-8" aria-hidden="true">
+            {/* Y-axis line */}
+            <div className="absolute left-10 top-6 bottom-8 w-px bg-muted-foreground/15" />
+            {/* X-axis line */}
+            <div className="absolute left-10 right-6 bottom-8 h-px bg-muted-foreground/15" />
+            {/* Faux data bars */}
+            <div className="flex items-end gap-[3%] w-full h-full">
+              {[35, 45, 50, 60, 72, 68, 80, 75, 65, 55, 40, 30].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-t bg-muted/60 animate-pulse"
+                  style={{ height: `${h}%`, animationDelay: `${i * 80}ms` }}
+                />
+              ))}
+            </div>
+          </div>
+          <p className="relative z-10 mb-4 text-xs text-muted-foreground/50">Loading interactive chart…</p>
         </div>
       ) : (
         <div
-          className="chart-container-inner w-full"
+          className="chart-container-inner w-full animate-in fade-in duration-200"
           style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
           role={interactive ? 'group' : 'img'}
           aria-label={ariaLabel ?? title}
@@ -72,6 +89,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
           {insight}
         </div>
       )}
+      <CiteThisFigure title={title} figureId={id} />
     </figure>
   );
 }

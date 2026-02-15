@@ -122,14 +122,14 @@ export const CHAPTERS: ChapterMeta[] = [
   {
     number: 16,
     slug: 'inv-gender',
-    title: 'Gender',
+    title: 'Gender and Patenting',
     subtitle: 'Gender composition and the gender innovation gap',
     description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025. Quality metrics reveal systematic differences between women and men inventors.',
   },
   {
     number: 17,
     slug: 'inv-team-size',
-    title: 'Team Size',
+    title: 'Team Size and Collaboration',
     subtitle: 'The collaborative turn and team size effects on quality',
     description: 'Average patent team size increased from 1.7 to over 3 inventors. Quality metrics differ systematically across solo inventors, small teams, and large teams.',
   },

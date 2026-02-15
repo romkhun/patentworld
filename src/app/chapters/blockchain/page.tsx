@@ -569,26 +569,6 @@ export default function Chapter16() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-blockchain-team-size"
-        subtitle="Average number of named inventors per blockchain-related patent by year, reflecting team composition trends."
-        title="Blockchain Patent Team Sizes Have Grown Modestly, Reflecting Increasing Complexity of Enterprise Implementations"
-        caption="Average number of inventors per blockchain-related patent by year. The upward trend is consistent with the shift from simple cryptocurrency applications to more complex enterprise blockchain systems requiring multidisciplinary teams."
-        insight="Growing team sizes reflect blockchain's maturation from relatively simple cryptocurrency applications to complex enterprise systems spanning cryptography, distributed systems, and domain-specific expertise."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={BLOCKCHAIN_EVENTS}
-        />
-      </ChartContainer>
-
       {/* ── Section 7: Patenting Strategies ── */}
       <SectionDivider label="Blockchain Patenting Strategies" />
       <Narrative>

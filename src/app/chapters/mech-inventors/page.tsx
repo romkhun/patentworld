@@ -17,6 +17,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
+import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
@@ -62,6 +63,44 @@ export default function MechInventorsChapter() {
     }));
   }, [stateFlows]);
 
+  // Net flow summary: top importers and exporters from talent flow nodes
+  const { topImporters, topExporters } = useMemo(() => {
+    if (!talentFlows?.nodes) return { topImporters: [] as { name: string; net_flow: number }[], topExporters: [] as { name: string; net_flow: number }[] };
+    const sorted = [...talentFlows.nodes].sort((a, b) => b.net_flow - a.net_flow);
+    return {
+      topImporters: sorted.filter(n => n.net_flow > 0).slice(0, 10),
+      topExporters: sorted.filter(n => n.net_flow < 0).slice(-10).reverse().sort((a, b) => a.net_flow - b.net_flow),
+    };
+  }, [talentFlows]);
+
+  // International Sankey: convert country flow records to Sankey nodes + links
+  const internationalSankey = useMemo(() => {
+    if (!countryFlows || countryFlows.length === 0) return null;
+    const topFlows = [...countryFlows].sort((a, b) => b.flow_count - a.flow_count).slice(0, 30);
+    const countrySet = new Set<string>();
+    topFlows.forEach(f => { countrySet.add(f.from_country!); countrySet.add(f.to_country!); });
+    const countries = [...countrySet];
+
+    // Compute net_flow for each country
+    const netMap = new Map<string, number>();
+    countries.forEach(c => netMap.set(c, 0));
+    topFlows.forEach(f => {
+      netMap.set(f.to_country!, (netMap.get(f.to_country!) ?? 0) + f.flow_count);
+      netMap.set(f.from_country!, (netMap.get(f.from_country!) ?? 0) - f.flow_count);
+    });
+
+    const sankeyNodes = countries.map(c => ({ name: c, net_flow: netMap.get(c) ?? 0 }));
+    const sankeyLinks = topFlows
+      .map(f => ({
+        source: countries.indexOf(f.from_country!),
+        target: countries.indexOf(f.to_country!),
+        value: f.flow_count,
+      }))
+      .filter(l => l.source !== l.target && l.source >= 0 && l.target >= 0);
+
+    return { nodes: sankeyNodes, links: sankeyLinks };
+  }, [countryFlows]);
+
   return (
     <div>
       <ChapterHeader
@@ -79,7 +118,7 @@ export default function MechInventorsChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Individual inventors form fragmented co-invention networks of small, tightly connected teams, while bridge inventors who span 30 or more organizations create potential channels for cross-firm knowledge transfer. Average co-inventor counts have risen 2.5x since the 1980s, reflecting a sustained shift toward team-based invention. Beyond collaboration, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel, and international inventor mobility -- now surpassing domestic rates -- positions the United States at the center of 77.6% of all cross-border inventor flows.
         </p>
@@ -264,6 +303,58 @@ export default function MechInventorsChapter() {
         ) : <div />}
       </ChartContainer>
 
+      {(topImporters.length > 0 || topExporters.length > 0) && (
+        <ChartContainer
+          id="fig-net-talent-flow-summary"
+          title="Microsoft Is the Largest Net Talent Exporter With 6,629 Net Inventor Departures, While Panasonic Leads Net Imports at 3,015"
+          caption="Inventor mobility is inferred from tracking disambiguated inventor IDs across sequential patent assignments, not from HR data. Net flow is the difference between inventors entering and leaving each organization."
+          flexHeight
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-4">
+            {/* Top 10 Net Importers */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Top 10 Net Importers</h3>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-2 px-2 font-medium text-muted-foreground">Organization</th>
+                    <th className="text-right py-2 px-2 font-medium text-muted-foreground">Net Gain</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topImporters.map((node, i) => (
+                    <tr key={i} className="border-b border-border/50">
+                      <td className="py-2 px-2">{cleanOrgName(node.name)}</td>
+                      <td className="text-right py-2 px-2 font-mono text-emerald-600">+{node.net_flow.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {/* Top 10 Net Exporters */}
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Top 10 Net Exporters</h3>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-2 px-2 font-medium text-muted-foreground">Organization</th>
+                    <th className="text-right py-2 px-2 font-medium text-muted-foreground">Net Loss</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topExporters.map((node, i) => (
+                    <tr key={i} className="border-b border-border/50">
+                      <td className="py-2 px-2">{cleanOrgName(node.name)}</td>
+                      <td className="text-right py-2 px-2 font-mono text-red-500">{node.net_flow.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </ChartContainer>
+      )}
+
       {/* --- B.ii: International Inventor Mobility --- */}
       <SectionDivider label="International Inventor Mobility" />
 
@@ -375,6 +466,24 @@ export default function MechInventorsChapter() {
           how the US patent system functions as both a legal institution and a nexus for the global circulation of inventive talent.
         </p>
       </KeyInsight>
+
+      {internationalSankey && (
+        <ChartContainer
+          id="fig-international-talent-sankey"
+          title="The United States Dominates International Inventor Flows, Appearing in 77.6% of All Cross-Border Migration Corridors"
+          subtitle="Top 30 country-to-country inventor migration corridors by flow volume, showing dominant US bilateral patterns."
+          caption="Inventor mobility is inferred by tracking disambiguated inventor IDs that appear on patents filed from different countries on sequential patent filings. This approach captures cross-border knowledge transfer but may overcount moves by prolific international collaborators."
+          insight="The US serves as a global hub for inventor mobility, with substantial bilateral flows to and from China, Japan, the United Kingdom, Canada, and Germany. Cross-border inventor migration increased from 1.3% to 5.4% of all patenting inventors between 1980 and 2025."
+          loading={cfL}
+          height={700}
+          wide
+        >
+          <PWSankeyDiagram
+            nodes={internationalSankey.nodes}
+            links={internationalSankey.links}
+          />
+        </ChartContainer>
+      )}
 
       {/* ================================================================== */}
       {/* Closing                                                            */}

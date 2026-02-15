@@ -19,6 +19,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { RankingTable } from '@/components/chapter/RankingTable';
 import Link from 'next/link';
 import type { StateSummary, StateSpecialization, StatePerYear, TopCity, RegionalSpecialization } from '@/lib/types';
@@ -140,6 +141,20 @@ export default function GeoDomesticChapter() {
   const topCitiesForChart = topCitiesRank?.slice(0, 5) ?? [];
   const cityLines = topCitiesForChart.map((c: string, i: number) => ({ key: c, name: c, color: cityColors[i] }));
 
+  // Citation truncation normalization for forward-citation charts
+  const stateNorm = useCitationNormalization({
+    data: qualityByState,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg Forward Citations',
+  });
+  const cityNorm = useCitationNormalization({
+    data: qualityByCity,
+    xKey: 'year',
+    citationKeys: ['avg_forward_citations'],
+    yLabel: 'Avg Forward Citations',
+  });
+
   return (
     <div>
       <ChapterHeader
@@ -157,7 +172,7 @@ export default function GeoDomesticChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Patent activity concentrates in a handful of coastal states, with California alone producing 992,708 patents -- exceeding the bottom 30 states and territories combined. The top five states account for approximately 46% of all US patent grants, and each has developed distinctive technology specialization profiles shaped by regional industry, universities, and talent pools. City-level analysis reveals even more extreme innovation concentration, with San Jose, San Diego, and Austin leading all US cities. California&apos;s patent output has diverged sharply from other states since the 1990s, reaching 4.0x Texas by 2024.
         </p>
@@ -347,13 +362,15 @@ export default function GeoDomesticChapter() {
         insight="Forward citation rates vary meaningfully across states, suggesting that geographic ecosystems differ not only in the volume but also in the downstream impact of their patent output."
         loading={qsL}
         height={400}
+        controls={stateNorm.controls}
       >
         <PWLineChart
-          data={pivotData(qualityByState, 'avg_forward_citations')}
+          data={pivotData(stateNorm.data, 'avg_forward_citations')}
           xKey="year"
           lines={stateLines}
-          yLabel="Avg Forward Citations"
+          yLabel={stateNorm.yLabel}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          truncationYear={2018}
         />
       </ChartContainer>
 
@@ -523,18 +540,20 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-city-forward-citations"
         subtitle="Average forward citations per patent for the top 5 cities by total output, 1976-2025."
-        title="Silicon Valley Cities Attract Substantially More Forward Citations Than Other Innovation Hubs"
+        title="Silicon Valley Cities Attract Substantially More Forward Citations Than Other Regions with High Patent Concentration"
         caption="Average forward citations per patent by year for the five leading US cities. Higher values indicate greater downstream influence on subsequent inventions."
         insight="The elevated forward citation rates of Silicon Valley cities suggest that geographic proximity to the densest innovation cluster confers advantages in producing high-impact inventions."
         loading={qcL}
         height={400}
+        controls={cityNorm.controls}
       >
         <PWLineChart
-          data={pivotData(qualityByCity, 'avg_forward_citations')}
+          data={pivotData(cityNorm.data, 'avg_forward_citations')}
           xKey="year"
           lines={cityLines}
-          yLabel="Avg Forward Citations"
+          yLabel={cityNorm.yLabel}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          truncationYear={2018}
         />
       </ChartContainer>
 
@@ -542,7 +561,7 @@ export default function GeoDomesticChapter() {
         id="fig-geography-city-claims"
         subtitle="Average number of claims per patent for the top 5 cities by total output, 1976-2025."
         title="Claim Counts Have Expanded Across All Leading Cities, Reflecting System-Wide Scope Expansion"
-        caption="Average number of claims per patent by year for the five leading US cities. Rising claim counts reflect broader patent scope across all major innovation hubs."
+        caption="Average number of claims per patent by year for the five leading US cities. Rising claim counts reflect broader patent scope across all major regions with high patent concentration."
         insight="The secular rise in claim counts is evident across all leading cities, indicating that the trend toward broader patent scope is a system-wide phenomenon rather than a city-specific strategy."
         loading={qcL}
         height={400}

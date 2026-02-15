@@ -178,7 +178,7 @@ export function chapterJsonLd(slug: string): object[] | null {
   return [
     {
       '@context': 'https://schema.org',
-      '@type': 'Article',
+      '@type': 'ScholarlyArticle',
       headline: CHAPTER_SEO_TITLES[slug] ?? ch.title,
       description: CHAPTER_SEO_DESCRIPTIONS[slug] ?? `${ch.subtitle}. ${ch.description}`,
       author: {

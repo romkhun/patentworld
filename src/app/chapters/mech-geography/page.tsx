@@ -72,7 +72,7 @@ export default function MechGeographyChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           This chapter examines how innovation moves across borders and diffuses across cities. International co-invention has grown from roughly 2% of all patents in the 1980s to 10% in recent years, with the US-China corridor expanding from 77 patents in 2000 to 2,749 in 2024. At the city level, emerging technologies consistently originate in a small number of pioneering locations before spreading geographically as knowledge and talent disperse.
         </p>

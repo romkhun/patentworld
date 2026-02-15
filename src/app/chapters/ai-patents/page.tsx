@@ -574,36 +574,6 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-ai-patents-team-size"
-        subtitle="Average number of named inventors per AI-related patent by year, reflecting the growing complexity and multidisciplinarity of AI research."
-        title="Average AI Patent Team Size Has Grown Over Time, Indicating Increasing Research Complexity"
-        caption="Average number of inventors per AI-related patent by year. The upward trend is consistent with the interpretation that modern AI research requires expertise spanning machine learning, domain knowledge, hardware optimization, and software engineering."
-        insight="Growing team sizes reflect the increasing complexity of AI research, which now necessitates expertise spanning machine learning, domain knowledge, hardware optimization, and software engineering."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for AI patents reflects the increasing complexity and
-          interdisciplinarity of AI research. Modern AI systems require expertise across
-          multiple domains -- machine learning, domain-specific knowledge, hardware
-          optimization, and software engineering -- necessitating larger and more diverse
-          research teams.
-        </p>
-      </KeyInsight>
-
       <SectionDivider label="AI Patenting Strategies" />
       <Narrative>
         <p>
@@ -789,8 +759,8 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across AI subfields."
-        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, the Most Dramatic Diversification Among ACT 6 Domains"
-        caption="Normalized Shannon entropy of AI subfield patent distributions. The dramatic increase from 0.40 (highly concentrated in symbolic AI) to 0.84 (broadly distributed across machine learning, computer vision, NLP, robotics, and other subfields) represents the most striking diversification trajectory among all technology domains studied."
+        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, Representing the Largest Diversification Among ACT 6 Domains"
+        caption="Normalized Shannon entropy of AI subfield patent distributions. The increase from 0.40 (highly concentrated in symbolic AI) to 0.84 (broadly distributed across machine learning, computer vision, NLP, robotics, and other subfields) represents the largest diversification trajectory among all technology domains studied."
         insight="The entropy trajectory mirrors AI's intellectual evolution: from narrow expert systems in the 1970s-80s through the statistical learning revolution of the 2000s to the current era of deep learning, generative AI, and domain-specific applications spanning virtually every CPC section."
         loading={sfL}
       >

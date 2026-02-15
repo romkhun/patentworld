@@ -572,38 +572,6 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-3dprint-team-size"
-        subtitle="Average number of named inventors per 3D printing patent by year, reflecting the growing complexity of AM research teams."
-        title="Average AM Patent Team Size Has Grown Steadily, Indicating Increasing Multidisciplinary Collaboration in Additive Manufacturing R&D"
-        caption="Average number of inventors per additive manufacturing patent by year. The upward trend reflects the growing complexity of AM systems, which require expertise spanning materials science, process engineering, software control, and application-specific domain knowledge."
-        insight="Growing AM team sizes reflect the multidisciplinary nature of additive manufacturing, which requires simultaneous expertise in materials, process physics, equipment design, and end-use application engineering."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={filterEvents(PRINT3D_EVENTS)}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for AM patents reflects the increasing complexity of additive
-          manufacturing systems. Modern AM platforms require integrated expertise across
-          materials science (powder metallurgy, polymer chemistry), process engineering
-          (thermal management, laser optics), software (slicing algorithms, process
-          monitoring), and application engineering (design for AM, qualification and
-          certification). This multidisciplinary requirement drives larger, more diverse
-          inventor teams.
-        </p>
-      </KeyInsight>
-
       {/* ── Section 8: AM Patent Strategies ────────────────────────────── */}
       <SectionDivider label="AM Patenting Strategies" />
       <Narrative>
@@ -798,7 +766,7 @@ export default function Chapter11() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across 3D printing subfields."
         title="3D Printing Subfield Diversity Remained High Throughout Its History, Ranging From 0.80 to 0.95"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). Values consistently above 0.85 indicate that AM innovation has been broadly distributed across equipment, processes, materials, products, and data handling subfields, with a brief dip to 0.80 in 2014 as polymer AM surged."
-        insight="Unlike domains such as AI, which diversified dramatically from a narrow base, 3D printing has maintained broad subfield diversity throughout its history, suggesting that the technology has always required simultaneous advances across multiple technical dimensions."
+        insight="Unlike domains such as AI, which diversified substantially from a narrow base, 3D printing has maintained broad subfield diversity throughout its history, suggesting that the technology has always required simultaneous advances across multiple technical dimensions."
         loading={sfL}
       >
         <PWLineChart

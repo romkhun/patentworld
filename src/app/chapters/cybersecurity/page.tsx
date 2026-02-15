@@ -583,38 +583,6 @@ export default function Chapter17() {
         </p>
       </KeyInsight>
 
-      <ChartContainer
-        id="fig-cyber-patents-team-size"
-        subtitle="Average number of named inventors per cybersecurity-related patent by year, reflecting the growing complexity of security research."
-        title="Average Cybersecurity Patent Team Size Has Grown Steadily, Indicating Increasing Research Complexity and Multidisciplinarity"
-        caption="Average number of inventors per cybersecurity-related patent by year. The upward trend is consistent with the interpretation that modern cybersecurity research requires expertise spanning cryptography, software engineering, network architecture, and domain-specific knowledge."
-        insight="Growing team sizes reflect the increasing complexity of cybersecurity research, which now requires expertise spanning cryptography, software engineering, network architecture, and domain-specific threat intelligence."
-        loading={qL}
-      >
-        <PWLineChart
-          data={quality ?? []}
-          xKey="year"
-          lines={[
-            { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[5] },
-          ]}
-          yLabel="Average Team Size"
-          yFormatter={(v) => v.toFixed(1)}
-          referenceLines={CYBER_EVENTS}
-        />
-      </ChartContainer>
-
-      <KeyInsight>
-        <p>
-          The growing team size for cybersecurity patents reflects the increasing complexity
-          and interdisciplinarity of security research. Modern cybersecurity systems require
-          expertise across multiple domains -- cryptography, software engineering, network
-          architecture, threat intelligence, and regulatory compliance -- necessitating
-          larger and more diverse research teams. This trend parallels the broader pattern
-          observed across technology-intensive patents, as documented in the{' '}
-          <Link href="/chapters/mech-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">collaboration networks</Link> chapter.
-        </p>
-      </KeyInsight>
-
       <SectionDivider label="Cybersecurity Patenting Strategies" />
       <Narrative>
         <p>

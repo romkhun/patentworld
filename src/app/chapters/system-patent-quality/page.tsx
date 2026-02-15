@@ -55,7 +55,7 @@ export default function SystemPatentQualityChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Patent quality is inherently multidimensional, and its evolution over five decades reveals diverging trends across different indicators. Claim counts doubled before leveling off, scope broadened as technologies became more interdisciplinary, and forward citations grew increasingly skewed. Meanwhile, originality rose as inventions drew on more diverse knowledge inputs, yet generality fell as downstream applications became more concentrated. Self-citation rates declined from 35% to approximately 10% before rebounding modestly, and citation lag expanded from 3 to over 16 years as the cumulative stock of prior art deepened. Together, these patterns demonstrate that the patent system has become simultaneously more complex, more interconnected, and more unequal in the distribution of impact.
         </p>

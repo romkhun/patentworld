@@ -738,7 +738,7 @@ export default function Chapter19() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across green technology subfields."
         title="Green Innovation Subfield Diversity Has Remained Remarkably Stable at 0.87-0.90 Throughout Its 50-Year History"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The high and stable entropy (ranging from 0.86 to 0.90) indicates that green innovation has always been distributed across battery, solar, wind, EV, and energy efficiency subfields without significant concentration shifts."
-        insight="The stability of green subfield diversity contrasts with domains like AI and biotechnology, which diversified dramatically from narrow bases. Green innovation appears to have emerged as an inherently multi-technology domain from its inception."
+        insight="The stability of green subfield diversity contrasts with domains like AI and biotechnology, which diversified substantially from narrow bases. Green innovation appears to have emerged as an inherently multi-technology domain from its inception."
         loading={catL}
       >
         <PWLineChart
@@ -754,8 +754,8 @@ export default function Chapter19() {
         id="fig-green-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a green patent."
         title="Green Innovation Entrants Show the Largest Velocity Increase Among ACT 6 Domains: 2020s Cohort at 375 Patents per Year Versus 68 for 1970s Entrants"
-        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 5.5x velocity increase reflects the dramatic acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
-        insight="The 5.5x velocity ratio is the highest among all ACT 6 domains, suggesting that green innovation has become dramatically more accessible to productive patenting, consistent with the proliferation of standardized clean energy technologies and supportive policy frameworks."
+        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 5.5x velocity increase reflects the acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
+        insight="The 5.5x velocity ratio is the highest among all ACT 6 domains, suggesting that green innovation has become substantially more accessible to productive patenting, consistent with the proliferation of standardized clean energy technologies and supportive policy frameworks."
         loading={taL}
       >
         <PWBarChart

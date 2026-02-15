@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ReadingProgress } from '@/components/layout/ReadingProgress';
 import { BackToTop } from '@/components/layout/BackToTop';
+import { JsonLd } from '@/components/JsonLd';
 import { CHAPTERS } from '@/lib/constants';
 import './globals.css';
 
@@ -74,59 +75,54 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="google-site-verification" content="El4nzV7RYgAGJl6KI74cX-Hj3LNkzQamTYyudkoF0es" />
         <meta name="msvalidate.01" content="AFA1EA03BEF26C7EAF46830EC6A92A41" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              {
-                '@context': 'https://schema.org',
-                '@type': 'WebSite',
-                name: 'PatentWorld',
-                description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
-                url: 'https://patentworld.vercel.app',
-                author: {
-                  '@type': 'Person',
-                  name: 'Saerom (Ronnie) Lee',
-                  jobTitle: 'Assistant Professor of Management',
-                  affiliation: {
-                    '@type': 'Organization',
-                    name: 'The Wharton School, University of Pennsylvania',
-                  },
-                  url: 'https://www.saeromlee.com',
-                },
-                about: {
-                  '@type': 'Dataset',
-                  name: 'US Patent Data (1976-2025)',
-                  description: 'Analysis of 9.36 million US patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
-                  creator: { '@type': 'Organization', name: 'USPTO / PatentsView' },
-                  temporalCoverage: '1976/2025',
-                  spatialCoverage: 'United States',
-                  variableMeasured: [
-                    'Patent grants per year',
-                    'Technology classifications (CPC)',
-                    'Inventor demographics and collaboration',
-                    'Geographic distribution',
-                    'Citation networks and patent quality',
-                  ],
-                },
-                hasPart: CHAPTERS.map((ch) => ({
-                  '@type': 'Article',
-                  name: ch.title,
-                  description: ch.description,
-                  url: `https://patentworld.vercel.app/chapters/${ch.slug}/`,
-                  position: ch.number,
-                })),
+        <JsonLd data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'PatentWorld',
+            description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
+            url: 'https://patentworld.vercel.app',
+            author: {
+              '@type': 'Person',
+              name: 'Saerom (Ronnie) Lee',
+              jobTitle: 'Assistant Professor of Management',
+              affiliation: {
+                '@type': 'Organization',
+                name: 'The Wharton School, University of Pennsylvania',
               },
-              {
-                '@context': 'https://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://patentworld.vercel.app' },
-                ],
-              },
-            ]),
-          }}
-        />
+              url: 'https://www.saeromlee.com',
+            },
+            about: {
+              '@type': 'Dataset',
+              name: 'US Patent Data (1976-2025)',
+              description: 'Analysis of 9.36 million US patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
+              creator: { '@type': 'Organization', name: 'USPTO / PatentsView' },
+              temporalCoverage: '1976/2025',
+              spatialCoverage: 'United States',
+              variableMeasured: [
+                'Patent grants per year',
+                'Technology classifications (CPC)',
+                'Inventor demographics and collaboration',
+                'Geographic distribution',
+                'Citation networks and patent quality',
+              ],
+            },
+            hasPart: CHAPTERS.map((ch) => ({
+              '@type': 'ScholarlyArticle',
+              name: ch.title,
+              description: ch.description,
+              url: `https://patentworld.vercel.app/chapters/${ch.slug}/`,
+              position: ch.number,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://patentworld.vercel.app' },
+            ],
+          },
+        ]} />
       </head>
       <body className="font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

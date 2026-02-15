@@ -15,6 +15,7 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS } from '@/lib/colors';
+import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type { InventorDrift } from '@/lib/types';
 import Link from 'next/link';
 
@@ -33,6 +34,13 @@ export default function InvGeneralistSpecialistChapter() {
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
 
+  const { data: fwdCitData, yLabel: fwdCitYLabel, controls: fwdCitControls } = useCitationNormalization({
+    data: pivotData(qualitySpec, 'avg_forward_citations'),
+    xKey: 'year',
+    citationKeys: ['specialist', 'generalist'],
+    yLabel: 'Avg. Forward Citations',
+  });
+
   return (
     <div>
       <ChapterHeader
@@ -48,7 +56,7 @@ export default function InvGeneralistSpecialistChapter() {
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">TL;DR</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
           Innovation is increasingly the domain of specialist inventors: their share rose from 20% to 48% over five decades, while generalists declined. Yet generalists persist as a meaningful minority, and the quality implications of this shift warrant systematic investigation.
         </p>
@@ -134,15 +142,17 @@ export default function InvGeneralistSpecialistChapter() {
         subtitle="Average forward citations per patent by inventor type, 1976-2025"
         loading={qsL}
         height={400}
+        controls={fwdCitControls}
       >
         <PWLineChart
-          data={pivotData(qualitySpec, 'avg_forward_citations')}
+          data={fwdCitData ?? []}
           xKey="year"
           lines={[
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Forward Citations"
+          yLabel={fwdCitYLabel}
+          truncationYear={2018}
         />
       </ChartContainer>
 

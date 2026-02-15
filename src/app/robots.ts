@@ -28,10 +28,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
       {
-        userAgent: 'Bytespider',
-        allow: '/',
-      },
-      {
         userAgent: 'CCBot',
         allow: '/',
       },

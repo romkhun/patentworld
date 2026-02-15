@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
+import { JsonLd } from '@/components/JsonLd';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -148,10 +149,7 @@ const FAQ_JSONLD = {
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([WEBSITE_JSONLD, FAQ_JSONLD]) }}
-      />
+      <JsonLd data={[WEBSITE_JSONLD, FAQ_JSONLD]} />
       <HomeContent />
     </>
   );

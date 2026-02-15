@@ -47,7 +47,7 @@ export function PWBarChart({
     if (!showAvgLine || bars.length === 0) return undefined;
     const key = bars[0].key;
     const vals = data.map((d) => Number(d[key]) || 0);
-    return vals.reduce((a, b) => a + b, 0) / vals.length;
+    return vals.length > 0 ? vals.reduce((a, b) => a + b, 0) / vals.length : undefined;
   }, [showAvgLine, data, bars]);
 
   // For stacked bar charts, reverse legend order so it matches visual stacking (top of stack = top of legend)
@@ -116,7 +116,7 @@ export function PWBarChart({
               )}
             </YAxis>
             {avgValue !== undefined && (
-              <ReferenceLine x={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'top', fontSize: 11, fill: '#9ca3af' }} />
+              <ReferenceLine x={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'top', fontSize: chartTheme.fontSize.tickLabel, fill: '#9ca3af' }} />
             )}
           </>
         ) : (
@@ -154,7 +154,7 @@ export function PWBarChart({
               )}
             </YAxis>
             {avgValue !== undefined && (
-              <ReferenceLine y={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'right', fontSize: 11, fill: '#9ca3af' }} />
+              <ReferenceLine y={avgValue} stroke="#9ca3af" strokeDasharray="4 4" label={{ value: 'Average', position: 'right', fontSize: chartTheme.fontSize.tickLabel, fill: '#9ca3af' }} />
             )}
           </>
         )}
