@@ -24,6 +24,8 @@ import { RankingTable } from '@/components/chapter/RankingTable';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { ConcentrationPanel } from '@/components/chapter/ConcentrationPanel';
 import type { StateSummary, StateSpecialization, StatePerYear, TopCity, RegionalSpecialization } from '@/lib/types';
 
 export default function GeoDomesticChapter() {
@@ -264,6 +266,10 @@ export default function GeoDomesticChapter() {
           for other regions to replicate.
         </p>
       </KeyInsight>
+
+      <ConcentrationPanel outcome="Patent Grants" entity="States" top1={23.6} top5={46.0} gini={0.731} />
+
+      <DescriptiveGapNote variant="domestic" />
 
       <SectionDivider label="Technology Specialization" />
 

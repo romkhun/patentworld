@@ -28,6 +28,7 @@ import type {
 import Link from 'next/link';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { ConcentrationPanel } from '@/components/chapter/ConcentrationPanel';
 
 export default function InvTopInventorsChapter() {
   /* ── data hooks ── */
@@ -175,6 +176,8 @@ export default function InvTopInventorsChapter() {
           disproportionate effects on the overall innovation system.
         </p>
       </KeyInsight>
+
+      <ConcentrationPanel outcome="Patent Output" entity="Inventors" top1={27.8} top5={63.2} gini={0.856} />
 
       <DescriptiveGapNote variant="top-inventors" />
 

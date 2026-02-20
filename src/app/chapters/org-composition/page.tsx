@@ -18,6 +18,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import Link from 'next/link';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { ConcentrationPanel } from '@/components/chapter/ConcentrationPanel';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -160,6 +161,8 @@ export default function OrgCompositionChapter() {
           firms invested substantially in systematic patent generation.
         </p>
       </KeyInsight>
+
+      <ConcentrationPanel outcome="Patent Grants" entity="Assignees" top1={15.2} top5={28.4} gini={0.891} />
 
       <DescriptiveGapNote variant="international" />
 

@@ -29,6 +29,7 @@ import type {
 } from '@/lib/types';
 import Link from 'next/link';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 
 export default function InvTeamSizeChapter() {
   /* ── data hooks ── */
@@ -483,6 +484,16 @@ export default function InvTeamSizeChapter() {
           collaboration have risen over time rather than diminished.
         </p>
       </KeyInsight>
+
+      <CompetingExplanations
+        finding="positive association between team size and citation impact"
+        explanations={[
+          'Larger teams pool diverse knowledge and skills, producing more novel combinations that attract citations',
+          'High-potential projects may attract larger teams, creating a selection effect rather than a direct team-size benefit',
+          'Teams generate more self-citations through continued collaboration on related follow-up patents',
+          'Institutional prestige effects may drive both team formation and citation accumulation (Matthew effect)',
+        ]}
+      />
 
       {/* ── Closing Transition ── */}
       <Narrative>

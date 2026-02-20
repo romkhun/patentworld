@@ -20,10 +20,18 @@ const VARIANT_TEXT: Record<string, { title: string; body: string }> = {
     title: 'Why can\'t we infer causation from superstar inventor patterns?',
     body: 'Prolific inventors work at elite firms, in high-citation fields, and with larger teams. Their outsized citation impact may reflect institutional advantages (access to resources, networks, and complementary talent) rather than individual ability alone. Survivorship bias also plays a role: we observe inventors who remained prolific, not those who left patenting.',
   },
+  'serial-new': {
+    title: 'Why can\'t we infer causation from serial vs. new entrant differences?',
+    body: 'Serial inventors and new entrants differ systematically in firm affiliation, technology domain, team size, and access to prior art. Higher productivity and citation rates among serial inventors may reflect accumulated human capital, but also survivorship bias (only successful inventors continue patenting), firm-level resources, and network advantages. Without controlling for these factors, the observed differences are descriptive.',
+  },
+  domestic: {
+    title: 'Why can\'t we infer causation from state-level differences?',
+    body: 'State-level patent differences reflect industry composition, university density, federal lab presence, venture capital availability, and historical agglomeration effects. California\'s dominance stems partly from its concentration of semiconductor, software, and biotechnology firms rather than any inherent state-level advantage. Without controlling for industry mix and firm characteristics, cross-state comparisons are descriptive.',
+  },
 };
 
 interface DescriptiveGapNoteProps {
-  variant: 'gender' | 'team-size' | 'international' | 'top-inventors';
+  variant: 'gender' | 'team-size' | 'international' | 'top-inventors' | 'serial-new' | 'domestic';
   alwaysVisible?: boolean;
 }
 

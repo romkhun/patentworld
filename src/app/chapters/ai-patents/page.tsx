@@ -355,7 +355,7 @@ export default function Chapter13() {
 
       <ChartContainer
         id="fig-ai-entrant-incumbent"
-        title="AI Patent Growth Is Dominated by Incumbents, Though Entrants Surged After 2015"
+        title="AI Patent Growth Is Dominated by Incumbents, Though Entrant Growth Accelerated After 2015"
         subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
         caption="Entrants are assignees filing their first AI patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
@@ -608,7 +608,7 @@ export default function Chapter13() {
 
       <ChartContainer
         id="fig-ai-quality-bifurcation"
-        title="AI Patent Top-Decile Citation Share Declined as Volume Exploded"
+        title="AI Patent Top-Decile Citation Share Declined as Volume Expanded Rapidly"
         subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
         caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
         loading={qbL}

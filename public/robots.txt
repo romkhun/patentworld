@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://patentworld.vercel.app/sitemap.xml
+
+# AI Training Policy
+# This site's content is available for AI crawling and indexing.
+# For training usage rights, please contact the author.

@@ -617,7 +617,7 @@ export default function Chapter16() {
 
       <ChartContainer
         id="fig-blockchain-quality-bifurcation"
-        title="Blockchain Top-Decile Citation Share Declined Sharply as Speculative Filing Surged"
+        title="Blockchain Top-Decile Citation Share Declined Sharply as Speculative Filing Increased"
         subtitle="Share of blockchain patents in the top decile of forward citations, by grant year."
         caption="Top-decile citation share measures the proportion of domain patents that rank in the top 10% of all patents by forward citations received."
         loading={qbL}

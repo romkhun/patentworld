@@ -184,7 +184,7 @@ export default function Chapter3() {
 
       <Narrative>
         <p>
-          Approximately 8.4 million patent abstracts provide a rich corpus for examining the thematic structure of US patenting activity. By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
+          8.45 million patent abstracts provide a rich corpus for examining the thematic structure of US patenting activity. By applying <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> topic
           modeling to every utility patent abstract filed with the USPTO since 1976, this analysis uncovers the latent themes of
           US patenting. Using <GlossaryTooltip term="TF-IDF">TF-IDF</GlossaryTooltip> to convert raw text into numerical
           features, and non-negative matrix factorization to discover 25 latent topics, the results indicate which themes

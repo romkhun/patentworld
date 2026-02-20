@@ -21,6 +21,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS } from '@/lib/colors';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 import type { CrossDomain, ConvergenceEntry, ConvergenceDecomp, ConvergenceNearFar, ConvergenceTopAssignee, InterdisciplinarityTrend } from '@/lib/types';
 
 export default function SystemConvergenceChapter() {
@@ -191,6 +192,16 @@ export default function SystemConvergenceChapter() {
         </p>
       </KeyInsight>
 
+      <CompetingExplanations
+        finding="rising share of multi-section patents"
+        explanations={[
+          'AI and digital technologies may function as general-purpose technologies that naturally span traditional classification boundaries',
+          'CPC reclassification updates may retroactively assign additional sections to older patents, inflating apparent convergence',
+          'Deliberate corporate diversification strategies may drive firms to file patents spanning multiple technology domains',
+          'Increasing complexity of modern inventions may inherently require components from multiple technology fields',
+        ]}
+      />
+
       {/* ------------------------------------------------------------------ */}
       {/* 3. Convergence Decomposition: Within-Firm vs. Between-Firm */}
       {/* ------------------------------------------------------------------ */}
@@ -296,7 +307,7 @@ export default function SystemConvergenceChapter() {
 
       <ChartContainer
         id="fig-interdisciplinarity-composite"
-        title="Interdisciplinarity Has Surged Since 2014"
+        title="Interdisciplinarity Has Increased Substantially Since 2014"
         subtitle="Z-scored composite index: mean scope, CPC sections per patent, and multi-section share, 1976–2024"
         loading={itL}
       >

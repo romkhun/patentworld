@@ -553,7 +553,7 @@ export default function MechOrganizationsChapter() {
           rate across successive 5-year windows, the trajectory scatter reveals how organizations
           navigate the exploration-exploitation trade-off over decades. Some firms trace stable
           orbits -- consistently exploitative or consistently exploratory -- while others undergo
-          dramatic strategic pivots, shifting from deep exploitation to broad exploration or vice
+          substantial strategic pivots, shifting from deep exploitation to broad exploration or vice
           versa. These trajectories illuminate the path-dependent nature of corporate innovation
           strategy, where each period&apos;s positioning constrains the feasible moves in the next.
         </p>
