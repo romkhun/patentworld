@@ -111,7 +111,7 @@ export default function InvGeneralistSpecialistChapter() {
         id="fig-specialization-trend"
         title="The Share of Specialist Inventors Rose from 20% in the 1970s to 48% in the 2020s"
         subtitle="Share of prolific inventors (10+ patents) classified as specialist, moderate, or generalist by Shannon entropy, by entry decade"
-        caption="This chart displays the share of prolific inventors (those with 10 or more patents) classified as specialist, moderate, or generalist by the decade of their first patent. The proportion of specialists has risen over time, while generalists have declined as a share of the total."
+        caption="The figure displays the share of prolific inventors (those with 10 or more patents) classified as specialist, moderate, or generalist by the decade of their first patent. The proportion of specialists has risen over time, while generalists have declined as a share of the total."
         insight="The increasing share of specialist inventors is consistent with the growing complexity and depth of modern technology fields. Nevertheless, generalists who span multiple CPC sections remain a persistent minority across all decades."
         loading={drL}
       >
@@ -331,7 +331,7 @@ export default function InvGeneralistSpecialistChapter() {
         id="fig-npl-by-inventor-type"
         title="Specialist Inventors Cite 12.3 Non-Patent References on Average vs. 10.9 for Generalists"
         subtitle="Average and median non-patent literature (NPL) citations per patent by inventor type (specialist vs. generalist), among prolific inventors with 10+ patents"
-        caption="This chart compares the average non-patent literature citation count per patent between specialist and generalist inventors. Specialists cite slightly more scientific literature per patent on average, though the median for both groups is 1, reflecting the highly skewed distribution of NPL citations."
+        caption="The figure compares the average non-patent literature citation count per patent between specialist and generalist inventors. Specialists cite slightly more scientific literature per patent on average, though the median for both groups is 1, reflecting the highly skewed distribution of NPL citations."
         insight="The higher average NPL citation count for specialists suggests that deeper domain focus is associated with greater engagement with the scientific literature, though the skewed distribution (median of 1 for both groups) indicates that most patents cite very few non-patent references regardless of inventor type."
         loading={nplL}
       >

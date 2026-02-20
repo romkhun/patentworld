@@ -63,30 +63,9 @@ const pivotCompanyMetric = (
   return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
 };
 
-/** Abbreviate long PatentsView company names for chart legends */
-const shortName = (name: string): string => {
-  if (name.includes('International Business Machines')) return 'IBM';
-  if (name.includes('SAMSUNG')) return 'Samsung';
-  if (name.includes('Canon')) return 'Canon';
-  if (name.includes('General Electric')) return 'GE';
-  if (name.includes('Microsoft')) return 'Microsoft';
-  if (name.includes('Intel')) return 'Intel';
-  if (name.includes('Apple')) return 'Apple';
-  if (name.includes('Qualcomm')) return 'Qualcomm';
-  if (name.includes('Google')) return 'Google';
-  if (name.includes('SONY')) return 'Sony';
-  if (name.includes('FUJITSU')) return 'Fujitsu';
-  if (name.includes('LG ELEC')) return 'LG';
-  if (name.includes('HITACHI')) return 'Hitachi';
-  if (name.includes('Toshiba')) return 'Toshiba';
-  if (name.includes('Huawei')) return 'Huawei';
-  if (name.length > 25) return name.substring(0, 22) + '...';
-  return name;
-};
-
 /** Map a full company name to an ENTITY_COLORS key, falling back to CHART_COLORS */
 const companyColor = (name: string, idx: number): string => {
-  const short = shortName(name);
+  const short = cleanOrgName(name);
   return ENTITY_COLORS[short] ?? CHART_COLORS[idx % CHART_COLORS.length];
 };
 
@@ -132,7 +111,7 @@ export default function OrgPatentQualityChapter() {
   const companyLines = useMemo(
     () => topCompanies.map((name, i) => ({
       key: name,
-      name: shortName(name),
+      name: cleanOrgName(name),
       color: companyColor(name, i),
     })),
     [topCompanies],
@@ -363,7 +342,7 @@ export default function OrgPatentQualityChapter() {
         id="fig-org-patent-quality-self-citation-by-assignee"
         subtitle="Self-citation rate (fraction of backward citations to same assignee) for the 20 most-cited assignees, revealing knowledge recycling patterns."
         title="Canon (47.6%), TSMC (38.4%), and Micron (25.3%) Exhibit the Highest Self-Citation Rates Among Top Assignees"
-        caption="This chart displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Canon (47.6%), TSMC (38.4%), and Micron (25.3%) exhibit the highest self-citation rates, reflecting deep cumulative R&D programs in imaging and semiconductor technologies."
+        caption="The figure displays the fraction of all backward citations that are self-citations (citing the same assignee's earlier patents), for the 20 most-cited assignees. Canon (47.6%), TSMC (38.4%), and Micron (25.3%) exhibit the highest self-citation rates, reflecting deep cumulative R&D programs in imaging and semiconductor technologies."
         insight="Elevated self-citation rates among firms with cumulative R&D programs are consistent with long-term knowledge building on internal prior art, though strategic considerations may also contribute."
         loading={scaL}
         height={700}

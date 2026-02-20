@@ -422,7 +422,7 @@ export default function MechInventorsChapter() {
           id="fig-geography-inventor-mobility-trend"
           subtitle="Domestic and international inventor mobility rates over time, measured as the share of patents filed by inventors who changed location since their prior patent."
           title="International Inventor Mobility Rose from 1.3% (1980) to 5.1% (2024), Surpassing Domestic Rates of 3.5%"
-          caption="This chart displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
+          caption="The figure displays the percentage of patents filed by inventors who relocated from a different state or country since their previous patent. Both domestic (interstate) and international mobility rates exhibit upward trends over the study period."
           insight="Inventor mobility represents a potential mechanism for knowledge diffusion, as mobile inventors may carry tacit knowledge and professional networks from one region to another."
           loading={mtL}
         >
@@ -464,7 +464,7 @@ export default function MechInventorsChapter() {
           id="fig-geography-state-flows"
           subtitle="Top 30 state-to-state inventor migration corridors, measured by sequential patents filed from different states."
           title="California Accounts for 54.9% of All Interstate Inventor Migration, with 127,466 Inflows and 118,630 Outflows"
-          caption="This chart displays the most common state-to-state inventor moves, based on sequential patents filed from different states. California-linked corridors dominate, reflecting the state's role as the primary hub for inventor talent flows."
+          caption="The figure displays the most common state-to-state inventor moves, based on sequential patents filed from different states. California-linked corridors dominate, reflecting the state's role as the primary hub for inventor talent flows."
           insight="The dominant migration corridors reveal the gravitational pull of major technology clusters, with California functioning as both the largest source and destination of inventor talent."
           loading={sfL}
           height={900}
@@ -500,7 +500,7 @@ export default function MechInventorsChapter() {
           id="fig-geography-global-flows"
           subtitle="Global inventor migration flows between countries, with arc width proportional to the volume of moves and country shading indicating total movement."
           title="The United States Is Involved in 77.6% of All International Inventor Migration Flows (509,639 of 656,397 Moves)"
-          caption="This map displays global inventor migration flows between countries, with arc width representing the volume of moves and country shading indicating total inventor movement. The United States emerges as the central node, connecting East Asian, European, and other innovation ecosystems."
+          caption="The map displays global inventor migration flows between countries, with arc width representing the volume of moves and country shading indicating total inventor movement. The United States emerges as the central node, connecting East Asian, European, and other innovation ecosystems."
           insight="The United States functions as the primary global hub for inventor migration, connecting East Asian, European, and other innovation ecosystems through flows of researchers and engineers."
           loading={cfL}
           height={650}
@@ -658,7 +658,7 @@ export default function MechInventorsChapter() {
           id="fig-mech-inventors-intl-mobility-rate"
           subtitle="International inventor mobility rate by 5-year period, measured as the share of active inventors who changed country between successive patents."
           title="International Inventor Mobility Peaked at 20.2% in the 1980s Before Declining to 8.9% in the 2020s"
-          caption="This chart displays the share of active patent inventors who filed from a different country than their previous patent, aggregated in 5-year windows. The decline in the mobility rate from ~20% in the early periods to ~9% in the 2020s may reflect the growing size of the inventor population (denominator effect) rather than a decrease in absolute cross-border movement."
+          caption="The figure displays the share of active patent inventors who filed from a different country than their previous patent, aggregated in 5-year windows. The decline in the mobility rate from ~20% in the early periods to ~9% in the 2020s may reflect the growing size of the inventor population (denominator effect) rather than a decrease in absolute cross-border movement."
           insight="The declining mobility rate likely reflects the rapid growth of the total inventor population rather than reduced international movement, as the absolute number of mobile inventors has continued to increase even as the rate has fallen."
           loading={imL}
         >
@@ -677,7 +677,7 @@ export default function MechInventorsChapter() {
           id="fig-mech-inventors-top-mobility-flows"
           subtitle="Top 20 country-to-country inventor migration corridors by total move count."
           title="US-China Inventor Flows Dominate International Mobility with 100,934 Bidirectional Moves"
-          caption="This chart displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US. US-South Korea (22,246 bidirectional), India-US (20,568), and US-Japan (18,644) follow."
+          caption="The figure displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US. US-South Korea (22,246 bidirectional), India-US (20,568), and US-Japan (18,644) follow."
           insight="The dominance of the US-China corridor in inventor mobility flows reflects the deep integration of US and Chinese innovation ecosystems, with nearly balanced bidirectional flows suggesting reciprocal talent circulation rather than one-way brain drain."
           loading={mfL}
           height={700}

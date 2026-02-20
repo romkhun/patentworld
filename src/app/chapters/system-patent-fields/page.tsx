@@ -263,11 +263,9 @@ export default function SystemPatentFieldsChapter() {
     return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
   };
 
-  const cpcQualityNames: Record<string, string> = {
-    A: 'A \u2013 Human Necessities', B: 'B \u2013 Operations/Transport', C: 'C \u2013 Chemistry',
-    D: 'D \u2013 Textiles/Paper', E: 'E \u2013 Fixed Constructions', F: 'F \u2013 Mechanical Eng.',
-    G: 'G \u2013 Physics', H: 'H \u2013 Electricity',
-  };
+  const cpcQualityNames: Record<string, string> = Object.fromEntries(
+    Object.entries(CPC_SECTION_NAMES).map(([k, v]) => [k, `${k}: ${v}`])
+  );
   const cpcQualitySections = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   const cpcQualityLines = cpcQualitySections.map((s) => ({
     key: s,
@@ -352,7 +350,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-design-trends"
         subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
         title="Design Patent Share Has Fluctuated Between 6% and 14%, With Peaks in 2008 and 2025"
-        caption="This chart displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by growth in consumer electronics, automotive design, and fashion-related filings."
+        caption="The figure displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by growth in consumer electronics, automotive design, and fashion-related filings."
         insight="The increasing share of design patents suggests a structural shift in innovation strategy toward design-driven product differentiation, reflecting broader economic trends in which aesthetic and user-experience considerations have become central to competitive advantage."
         loading={deL}
       >
@@ -459,7 +457,7 @@ export default function SystemPatentFieldsChapter() {
           title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Nearly 84%"
           subtitle="Percentage change in patent counts by CPC class, comparing 2000-2010 to 2015-2025, for classes with 100+ patents in each period"
           caption="Percent change in patent counts comparing 2000-2010 to 2015-2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
-          insight="This pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
+          insight="The pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
           loading={chgL}
           height={900}
         >
@@ -491,7 +489,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-hhi-by-section"
         subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
         title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below 1,500"
-        caption="This chart displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration."
+        caption="The figure displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration."
         insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
         loading={hhiL}
       >
@@ -551,7 +549,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-velocity"
         subtitle="Year-over-year percentage change in patent grants by WIPO technology sector, revealing synchronized cyclical patterns."
         title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Dot-Com Bust (2004-2005) and Financial Crisis (2007)"
-        caption="This chart presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
+        caption="The figure presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors is consistent with macroeconomic conditions and patent policy exerting stronger influence on patenting rates than sector-specific technology cycles."
       >
@@ -587,7 +585,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-friction-map"
         subtitle="Median time from application filing to patent grant by CPC section and 5-year period, measuring technology-specific examination friction."
         title="Since the Mid-2000s, Chemistry (C) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,293 Days in the 2010-2014 Period"
-        caption="This chart presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
+        caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns are consistent with institutional constraints that shape innovation timelines, with technology-specific backlogs associated with the USPTO's resource allocation across its technology centers."
       >
@@ -827,7 +825,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="This chart displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the range widening from 1 to 4 across decades, reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the range widening from 1 to 4 across decades, reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -848,7 +846,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-quality-by-sector"
         subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to illustrate cross-sector trends."
         title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Reflecting Broad Increases Across Sectors"
-        caption="This chart displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
+        caption="The figure displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
         insight="Electrical engineering patents tend to exhibit higher citation impact per patent than Chemistry patents, a pattern consistent with rapid innovation cycles and dense citation networks in computing and electronics."
       >

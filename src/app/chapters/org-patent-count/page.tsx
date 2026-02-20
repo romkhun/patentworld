@@ -133,7 +133,7 @@ export default function OrgPatentCountChapter() {
 
       <Narrative>
         <p>
-          While the <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">previous chapter</Link> examined the system-level composition of patent assignees, this chapter focuses on the individual organizations that drive these aggregate patterns. The cumulative rankings, annual trajectories, and sequential transitions in leadership reveal how corporate patent strategies have evolved over five decades.
+          While the <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">previous chapter</Link> examined the system-level composition of patent assignees, the present chapter focuses on the individual organizations that drive these aggregate patterns. The cumulative rankings, annual trajectories, and sequential transitions in leadership reveal how corporate patent strategies have evolved over five decades.
         </p>
         <p>
           The rankings are dominated by technology firms and Asian corporations. Organizations such as Samsung, Canon, and LG have risen substantially since the 1990s, challenging the traditional dominance of US-based firms such as {topOrgName} and General Electric. Asian firms now account for over half of the top 25 patent holders.
@@ -209,7 +209,7 @@ export default function OrgPatentCountChapter() {
         id="fig-org-patent-count-design-top-filers"
         subtitle="Organizations ranked by total design patents granted, showing which firms lead in design-driven intellectual property."
         title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Automotive Firms"
-        caption="This chart displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
+        caption="The figure displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
         loading={deL}
         height={500}
       >

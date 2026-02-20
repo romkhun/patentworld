@@ -335,7 +335,7 @@ export default function GeoInternationalChapter() {
         id="fig-geo-intl-claims-by-country"
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
         title="The United States Leads with 164,000 Patents and 18.4 Average Claims in the 2020s, While China's 19,200 Patents Average 14.7 Claims"
-        caption="This chart displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
+        caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented approach. The lower average claims from rapidly growing patent origins such as China are consistent with research on early-stage patent system development."
         loading={qcL}
         height={550}
@@ -444,7 +444,7 @@ export default function GeoInternationalChapter() {
           id="fig-geo-intl-country-filing-trends"
           subtitle="Annual patent grants by inventor country for the top 10 foreign filing countries, 1976-2024."
           title="Japan Leads Foreign Filings with 1.45M US Patents, While China Grew from 299 (2000) to 30,695 (2024)"
-          caption="This chart displays annual patent grant counts for the top 10 countries by inventor location. Japan has dominated foreign filings throughout the study period, while South Korea and China have exhibited rapid growth since the 2000s, fundamentally reshaping the composition of foreign patent activity in the US system."
+          caption="The figure displays annual patent grant counts for the top 10 countries by inventor location. Japan has dominated foreign filings throughout the study period, while South Korea and China have exhibited rapid growth since the 2000s, fundamentally reshaping the composition of foreign patent activity in the US system."
           insight="Successive waves of foreign patent filings -- first from Japan, then South Korea, and most recently China -- have progressively diversified the international composition of the US patent system."
           loading={cpyL}
         >
@@ -483,7 +483,7 @@ export default function GeoInternationalChapter() {
           id="fig-geo-intl-priority-country-composition"
           subtitle="Annual patent counts by priority country for the top 8 filing origins, 1976-2025."
           title="US Priority Filings Declined from 70% to 55% of Grants as China Rose from 53 (1993) to 25,029 (2024)"
-          caption="This chart displays annual patent grant counts by priority country for the top 8 filing origins. The US remains the dominant priority country but its share has declined steadily as Japan, South Korea, and more recently China have expanded their filing volumes. China surpassed several European countries to become the third-largest priority country by 2021."
+          caption="The figure displays annual patent grant counts by priority country for the top 8 filing origins. The US remains the dominant priority country but its share has declined steadily as Japan, South Korea, and more recently China have expanded their filing volumes. China surpassed several European countries to become the third-largest priority country by 2021."
           insight="The shifting composition of priority countries reflects the globalization of inventive activity, with East Asian economies accounting for an increasing share of the inventions entering the US patent system."
           loading={pccL}
         >
@@ -521,7 +521,7 @@ export default function GeoInternationalChapter() {
           id="fig-geo-intl-pct-share-by-country"
           subtitle="PCT route share by country for major filing origins, 1990-2025."
           title="France Leads PCT Usage at 53-57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
-          caption="This chart displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share rose from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
+          caption="The figure displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share rose from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
           insight="PCT usage patterns reflect national filing strategies: European and East Asian filers rely heavily on the PCT route, while US domestic filers use it less frequently, consistent with direct filing at the home office."
           loading={pctL}
         >

@@ -131,7 +131,7 @@ export default function SystemConvergenceChapter() {
         id="fig-cross-field-convergence-matrix"
         subtitle="Percentage of multi-section patents spanning each CPC section pair by era, measuring how technology boundaries have become more permeable."
         title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976-1995 and 2011-2025"
-        caption="This chart displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
+        caption="The figure displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
         insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}
         height={700}
@@ -165,7 +165,7 @@ export default function SystemConvergenceChapter() {
         id="fig-patent-quality-cross-domain"
         subtitle="Annual patent counts by number of CPC sections spanned (1, 2, or 3+), shown as a stacked area to illustrate growing cross-domain convergence."
         title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2025), Indicating Increasing Technological Convergence"
-        caption="This chart presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
+        caption="The figure presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
         insight="The rising share of cross-domain innovation suggests that technological boundaries are increasingly permeable, with inventions more frequently occurring at the intersection of multiple fields."
@@ -264,7 +264,7 @@ export default function SystemConvergenceChapter() {
         id="fig-convergence-near-far"
         subtitle="Share of multi-section patents involving near-field (adjacent CPC sections) vs. far-field (distant CPC sections) combinations over time."
         title="Near-Field Combinations Dominate But Far-Field Convergence Is Growing Faster"
-        caption="This chart tracks the share of multi-section patents classified as near-field (spanning closely related CPC sections) versus far-field (spanning distant or traditionally unrelated sections). While near-field convergence accounts for the majority of cross-domain activity, far-field convergence has grown at a faster rate, suggesting that increasingly radical combinations of technology domains are becoming more common."
+        caption="The figure tracks the share of multi-section patents classified as near-field (spanning closely related CPC sections) versus far-field (spanning distant or traditionally unrelated sections). While near-field convergence accounts for the majority of cross-domain activity, far-field convergence has grown at a faster rate, suggesting that increasingly radical combinations of technology domains are becoming more common."
         insight="The accelerating growth of far-field convergence indicates that inventors are increasingly bridging distant technology domains, a pattern consistent with the hypothesis that the most novel innovations arise at the intersection of previously unconnected fields."
         loading={nfL}
         height={500}
@@ -297,7 +297,7 @@ export default function SystemConvergenceChapter() {
         id="fig-convergence-top-assignees"
         subtitle="Annual multi-section patent counts for the five organizations with the highest total multi-section patent output."
         title="Leading Organizations Account for a Growing Share of Multi-Section Patents"
-        caption="This chart tracks the annual volume of multi-section patents filed by the top five assignees ranked by cumulative multi-section patent count. The trajectories reveal which organizations have most aggressively expanded their technological breadth over time and how the concentration of convergent innovation among leading firms has evolved."
+        caption="The figure tracks the annual volume of multi-section patents filed by the top five assignees ranked by cumulative multi-section patent count. The trajectories reveal which organizations have most aggressively expanded their technological breadth over time and how the concentration of convergent innovation among leading firms has evolved."
         insight="The concentration of multi-section patenting among a small number of large technology firms suggests that organizational scale and breadth of R&D capability are important enablers of cross-domain innovation."
         loading={ctaL}
         height={500}

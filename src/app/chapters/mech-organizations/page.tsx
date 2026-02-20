@@ -624,7 +624,7 @@ export default function MechOrganizationsChapter() {
           id="fig-mech-org-citation-category-distribution"
           subtitle="Distribution of patent citations by category across all US utility patents."
           title="Applicant-Cited References Account for 56.0% of All Patent Citations, Followed by Examiner-Cited at 24.3%"
-          caption="This chart displays the distribution of patent citation references by category. Applicant-cited references (56.0%) constitute the majority of all citations, followed by examiner-cited (24.3%) and cited by other (19.7%). The distinction between applicant and examiner citations has implications for how citation counts should be interpreted as quality indicators."
+          caption="The figure displays the distribution of patent citation references by category. Applicant-cited references (56.0%) constitute the majority of all citations, followed by examiner-cited (24.3%) and cited by other (19.7%). The distinction between applicant and examiner citations has implications for how citation counts should be interpreted as quality indicators."
           insight="The predominance of applicant-cited references (56%) over examiner-cited references (24.3%) suggests that the majority of prior art connections in the patent system reflect the applicant's own knowledge of the relevant prior art landscape, rather than new references discovered during examination."
           loading={ccatL}
           height={400}

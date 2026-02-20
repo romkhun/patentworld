@@ -106,7 +106,7 @@ export default function MechGeographyChapter() {
         id="fig-mech-geo-intl-collaboration"
         subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
         title="International Co-Invention Increased from 1.0% in 1976 to 10.0% of All Patents by 2025"
-        caption="This chart displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from 1.0% of all patents in 1976 to 10.0% by 2025, with the most rapid growth occurring during the 2010s."
+        caption="The figure displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from 1.0% of all patents in 1976 to 10.0% by 2025, with the most rapid growth occurring during the 2010s."
         loading={icL}
         insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
@@ -244,7 +244,7 @@ export default function MechGeographyChapter() {
           id="fig-mech-geo-citation-localization"
           subtitle="Share of patent citation pairs where citing and cited patents originate from the same country, by 5-year period."
           title="Home-Country Citation Bias Remains Persistent at 60-64%, Despite Rising International Collaboration"
-          caption="This chart displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained stable at 60-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
+          caption="The figure displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained stable at 60-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
           insight="The persistence of home-country citation bias at 60-64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
           loading={clcL}
         >

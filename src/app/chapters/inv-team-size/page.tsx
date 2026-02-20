@@ -70,7 +70,7 @@ export default function InvTeamSizeChapter() {
     if (!soloBySection) return [];
     return soloBySection.map((d) => ({
       ...d,
-      label: `${d.section} - ${CPC_SECTION_NAMES[d.section] ?? d.section}`,
+      label: `${d.section}: ${CPC_SECTION_NAMES[d.section] ?? d.section}`,
     }));
   }, [soloBySection]);
 
@@ -190,7 +190,7 @@ export default function InvTeamSizeChapter() {
         id="fig-team-size-trend"
         title="Average Patent Team Size Increased from 1.7 to Over 3 Inventors, 1976-2025"
         subtitle="Average team size, solo-inventor share, and large-team (5+) share per patent, tracking the shift from solo to collaborative invention, 1976-2025"
-        caption="This chart displays three concurrent trends in inventor team composition: average team size per patent, the percentage of solo-inventor patents, and the share of large-team (5+ inventor) patents. The most prominent pattern is the steady rise in average team size alongside a corresponding decline in solo invention from above 50% to under 25%."
+        caption="The figure displays three concurrent trends in inventor team composition: average team size per patent, the percentage of solo-inventor patents, and the share of large-team (5+ inventor) patents. The most prominent pattern is the steady rise in average team size alongside a corresponding decline in solo invention from above 50% to under 25%."
         insight="The transition from solo invention to team-based research and development constitutes one of the defining structural shifts in modern innovation, reflecting the increasing complexity and interdisciplinarity of technology development."
         loading={tmL}
       >
@@ -237,7 +237,7 @@ export default function InvTeamSizeChapter() {
         id="fig-solo-inventor-trend"
         title="Solo Inventor Patents Declined from 58% to 23% of All Grants, 1976-2025"
         subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976-2025"
-        caption="This chart tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
+        caption="The figure tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
         insight="Solo invention has not disappeared in absolute terms -- solo patent counts have roughly doubled -- but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
         loading={soL}
       >
@@ -256,7 +256,7 @@ export default function InvTeamSizeChapter() {
         id="fig-solo-by-section"
         title="Solo Invention Rates Vary Widely Across Technology Fields"
         subtitle="Share of solo-inventor patents by CPC section, 1976-2025"
-        caption="This chart compares the solo-inventor share across CPC technology sections. Fields requiring complex laboratory or multidisciplinary approaches (such as Chemistry and Electricity) show markedly lower solo rates than traditional mechanical and construction fields."
+        caption="The figure compares the solo-inventor share across CPC technology sections. Fields requiring complex laboratory or multidisciplinary approaches (such as Chemistry and Electricity) show markedly lower solo rates than traditional mechanical and construction fields."
         insight="The variation in solo-inventor rates across technology fields reflects the differing knowledge requirements of each domain. Laboratory-intensive fields like chemistry and biotechnology rely more heavily on team-based approaches."
         loading={sbsL}
       >
@@ -437,7 +437,7 @@ export default function InvTeamSizeChapter() {
         <p>
           The descriptive quality comparisons above reveal suggestive patterns but cannot
           isolate the independent effect of team size from confounding factors such as
-          technology field, grant year, and assignee characteristics. To address this, the
+          technology field, grant year, and assignee characteristics. To address the limitation, the
           following analysis applies a Frisch-Waugh-Lovell (FWL) OLS regression that demeans
           cohort-normalized 5-year forward citations within grant year, CPC section, and
           assignee-size groups. Team size dummies (2-3, 4-6, 7+ inventors) are estimated
@@ -531,7 +531,7 @@ export default function InvTeamSizeChapter() {
         id="fig-cross-institutional-rate"
         title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
         subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
-        caption="This chart tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (e.g., corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
+        caption="The figure tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (e.g., corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
         insight="The five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
         loading={crL}
       >
@@ -553,7 +553,7 @@ export default function InvTeamSizeChapter() {
         id="fig-cross-institutional-by-cpc"
         title="Chemistry & Metallurgy Leads Cross-Institutional Collaboration at 8.6%; Fixed Constructions Lowest at 2.2%"
         subtitle="Cross-institutional patent share by CPC section, 2010-2025"
-        caption="This chart compares the share of cross-institutional patents across CPC technology sections. Chemistry & Metallurgy (Section C) exhibits the highest rate, consistent with the strong university-industry linkages in pharmaceutical and chemical research, while Fixed Constructions (Section E) has the lowest rate."
+        caption="The figure compares the share of cross-institutional patents across CPC technology sections. Chemistry & Metallurgy (Section C) exhibits the highest rate, consistent with the strong university-industry linkages in pharmaceutical and chemical research, while Fixed Constructions (Section E) has the lowest rate."
         insight="The concentration of cross-institutional collaboration in chemistry-related fields reflects the well-established pipelines between academic research labs and corporate R&D in pharmaceuticals, materials science, and biotechnology."
         loading={cbcL}
       >

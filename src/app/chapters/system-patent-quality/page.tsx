@@ -187,7 +187,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-claims-trends"
         subtitle="Median and 90th percentile claim counts for utility patents by grant year, measuring the evolution of patent scope over time."
         title="Median Claims Doubled from 8 to 18 (1976-2025) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025"
-        caption="This chart displays the median and 90th percentile claim counts for utility patents by grant year. The gap between median and 90th percentile widened through the mid-2000s (peak gap of 19 in 2005) but has since narrowed substantially to 3 by 2025, indicating that the most extreme claim inflation has moderated."
+        caption="The figure displays the median and 90th percentile claim counts for utility patents by grant year. The gap between median and 90th percentile widened through the mid-2000s (peak gap of 19 in 2005) but has since narrowed substantially to 3 by 2025, indicating that the most extreme claim inflation has moderated."
         insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
         loading={clL2}
       >
@@ -223,7 +223,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-scope"
         subtitle="Average and median number of distinct CPC subclasses assigned per patent, measuring technological breadth over time."
         title="Average Patent Scope Grew from 1.8 to Nearly 2.5 CPC Subclasses as Technologies Became More Interdisciplinary"
-        caption="This chart displays the average and median number of distinct CPC subclasses per patent, measuring technological breadth. The steady increase indicates growing convergence of once-separate technology domains, particularly in areas such as IoT, biotechnology, and AI."
+        caption="The figure displays the average and median number of distinct CPC subclasses per patent, measuring technological breadth. The steady increase indicates growing convergence of once-separate technology domains, particularly in areas such as IoT, biotechnology, and AI."
         loading={trL}
         insight="Broadening patent scope is consistent with the convergence of once-separate technology domains, with contemporary inventions in areas such as IoT, biotechnology, and AI spanning multiple classification categories."
       >
@@ -268,7 +268,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-forward-citations"
         subtitle="Average and median forward citations received within 5 years of grant, by grant year. The gap between the two measures reveals the skewness of the citation distribution."
         title="Average Forward Citations per Patent Rose from 2.5 to a Peak of 6.4 in 2019 While the Median Oscillated Between 2 and 3, Revealing Growing Skewness"
-        caption="This chart displays average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020). The persistent gap between average and median reveals a highly skewed distribution, with most patents receiving modest citations whereas a small fraction becomes heavily cited."
+        caption="The figure displays average and median forward citations received within 5 years of grant, by grant year (limited to patents through 2020). The persistent gap between average and median reveals a highly skewed distribution, with most patents receiving modest citations whereas a small fraction becomes heavily cited."
         loading={trL}
         insight="The increase in average citations alongside relatively flat median citations indicates growing skewness: a small fraction of patents captures a disproportionate share of total citations."
       >
@@ -415,7 +415,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-self-citation-rate"
         subtitle="Average and median self-citation rate per patent (fraction of backward citations to the same assignee's earlier patents), by year."
         title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13-16% in the 2020s"
-        caption="This chart displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
+        caption="The figure displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
         loading={scL}
         insight="Self-citation patterns indicate knowledge accumulation strategies within firms, with temporal changes potentially reflecting shifts between exploration of new domains and exploitation of established competencies."
       >
@@ -517,7 +517,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-originality-generality"
         subtitle="Average originality (diversity of backward citation fields) and generality (diversity of forward citation fields), measured as 1 minus the HHI of CPC sections."
         title="Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
-        caption="This chart displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
+        caption="The figure displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
         loading={ogL}
         insight="Rising originality scores indicate that contemporary inventions increasingly synthesize knowledge from diverse technology fields, a pattern consistent with growing interdisciplinary research."
       >
@@ -653,7 +653,7 @@ export default function SystemPatentQualityChapter() {
           colorKey="cpc_section"
           nameKey="section_name"
           categories={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']}
-          categoryLabels={Object.fromEntries(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(s => [s, `${s} – ${CPC_SECTION_NAMES[s]}`]))}
+          categoryLabels={Object.fromEntries(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(s => [s, `${s}: ${CPC_SECTION_NAMES[s]}`]))}
           colors={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(s => CPC_SECTION_COLORS[s])}
           xLabel="Median Citation Half-Life (Years)"
           yLabel="Sleeping Beauty Rate (%)"
@@ -707,7 +707,7 @@ export default function SystemPatentQualityChapter() {
         <PWBarChart
           data={(nplByCpc ?? []).map((d) => ({
             ...d,
-            label: `${d.cpc_section} — ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            label: `${d.cpc_section}: ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
             color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
           }))}
           xKey="label"
@@ -792,7 +792,7 @@ export default function SystemPatentQualityChapter() {
         <PWBarChart
           data={(figuresByCpc ?? []).map((d) => ({
             ...d,
-            label: `${d.cpc_section} — ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            label: `${d.cpc_section}: ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
             color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
           }))}
           xKey="label"

@@ -134,7 +134,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-first-time-entries"
         title="Annual First-Time Inventor Entries Rose from 35,126 in 1979 to a Peak of 140,490 in 2019"
         subtitle="Number of inventors filing their first US patent each year, measuring new entrant inflow, 1976-2025"
-        caption="This chart displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from 35,126 in 1979 to a peak of 140,490 in 2019."
+        caption="The figure displays the number of inventors filing their first US patent in each year. The data indicate a sustained upward trend, with annual first-time entries rising from 35,126 in 1979 to a peak of 140,490 in 2019."
         insight="The sustained inflow of new inventors serves as an indicator of the innovation ecosystem's capacity for renewal, demonstrating continued broadening of the inventor base despite increasing specialization."
         loading={enL}
       >
@@ -160,7 +160,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-first-time-share"
         title="The Share of Patents Including a First-Time Inventor Fell from 71% to 26%, 1977-2025"
         subtitle="Percentage of patents each year listing at least one first-time inventor, measuring newcomer prevalence, 1977-2025"
-        caption="This chart displays the percentage of patents each year listing at least one inventor who has not appeared on a prior patent. The downward trend suggests a growing concentration of patenting activity among experienced, repeat inventors."
+        caption="The figure displays the percentage of patents each year listing at least one inventor who has not appeared on a prior patent. The downward trend suggests a growing concentration of patenting activity among experienced, repeat inventors."
         insight="The declining share of first-time inventors suggests the patent system increasingly favors experienced, repeat filers, raising questions regarding potential barriers to entry for newcomers."
         loading={ftL}
       >
@@ -239,7 +239,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-segment-shares"
         title="12% of Inventors (Prolific, Superstar, and Mega) Produce 61% of Total Patent Output"
         subtitle="Patent share vs. inventor share by productivity segment (One-Hit, Occasional, Prolific, Superstar, Mega), measuring output concentration"
-        caption="This chart compares the share of total patents produced by each inventor segment against the share of inventors in that segment. The data demonstrate extreme skewness: single-patent inventors constitute the largest segment by headcount but contribute a comparatively small share of total output."
+        caption="The figure compares the share of total patents produced by each inventor segment against the share of inventors in that segment. The data demonstrate extreme skewness: single-patent inventors constitute the largest segment by headcount but contribute a comparatively small share of total output."
         insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while a plurality of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality observed in scientific publishing and other creative fields."
         loading={segL}
         height={350}
@@ -282,7 +282,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-survival"
         title="Only 37-51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
         subtitle="Percentage of inventors remaining active at each career year, stratified by 5-year entry cohort, measuring career persistence"
-        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
+        caption="The figure displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
         insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
@@ -329,7 +329,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-curve"
         title="Inventor Productivity Rises from 1.4 to 2.1 Patents per Year in Early Career Before Plateauing"
         subtitle="Average and median patents per year at each career year for inventors with 5+ lifetime patents, measuring productivity trajectory"
-        caption="This chart presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at 2.1-2.3 patents per year through the remainder of the career, with substantial variation across individuals."
+        caption="The figure presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at 2.1-2.3 patents per year through the remainder of the career, with substantial variation across individuals."
         insight="Inventor productivity rises steeply in the first five career years, then plateaus without significant decline. The wide interquartile range indicates substantial heterogeneity: some inventors sustain high output for decades while others taper off within a few years."
         loading={cdL}
       >
@@ -352,7 +352,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-duration"
         title="Most Prolific Inventor Careers Span 5-15 Years, with a Long Tail Exceeding 30 Years"
         subtitle="Distribution of career durations (years between first and last patent) for inventors with 5+ patents"
-        caption="This chart displays the distribution of career durations (years between first and last patent) for inventors with 5 or more patents. The modal duration falls between 5 and 15 years, though a notable long tail of inventors maintains careers exceeding 30 years."
+        caption="The figure displays the distribution of career durations (years between first and last patent) for inventors with 5 or more patents. The modal duration falls between 5 and 15 years, though a notable long tail of inventors maintains careers exceeding 30 years."
         insight="The majority of prolific inventor careers span 5 to 15 years, though a long tail of inventors sustain careers exceeding 30 years. These extended careers are disproportionately concentrated in pharmaceutical and semiconductor firms."
         loading={cdL}
         height={400}
@@ -468,7 +468,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-claims"
         title="Serial Inventors File Patents with Substantially More Claims"
         subtitle="Average number of claims per patent by inventor experience group, 1976-2025"
-        caption="This chart compares the average claim count per patent between serial inventors and new entrants. Claim count serves as a proxy for patent breadth."
+        caption="The figure compares the average claim count per patent between serial inventors and new entrants. Claim count serves as a proxy for patent breadth."
         insight="The persistent gap in claim counts suggests serial inventors draft broader patents, potentially reflecting greater familiarity with patent prosecution strategy."
         loading={qbL}
       >
@@ -488,7 +488,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-scope"
         title="Serial Inventors Patent Across a Wider Technology Scope"
         subtitle="Average technology scope (distinct CPC subclasses) per patent by experience group, 1976-2025"
-        caption="This chart compares the average technology scope of patents filed by serial inventors versus new entrants. Scope measures the number of distinct technology classes assigned to each patent."
+        caption="The figure compares the average technology scope of patents filed by serial inventors versus new entrants. Scope measures the number of distinct technology classes assigned to each patent."
         insight="The broader scope of serial inventor patents reflects their tendency to work across multiple technology domains, leveraging cross-disciplinary knowledge accumulated over longer careers."
         loading={qbL}
       >
@@ -508,7 +508,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-originality"
         title="Originality Scores Converge Between Serial and New-Entrant Inventors"
         subtitle="Average originality score per patent by experience group, 1976-2025"
-        caption="This chart compares the average originality score (diversity of backward citation sources) for patents from serial inventors versus new entrants."
+        caption="The figure compares the average originality score (diversity of backward citation sources) for patents from serial inventors versus new entrants."
         insight="The near-convergence in originality scores suggests that while serial inventors produce more impactful patents by citation count, new entrants draw from comparably diverse knowledge bases."
         loading={qbL}
       >
@@ -528,7 +528,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-generality"
         title="Patent Generality Has Declined for Both Groups Since the Mid-1990s"
         subtitle="Average generality score per patent by experience group, 1976-2025"
-        caption="This chart compares the average generality score (diversity of forward citation destinations) for patents from serial inventors versus new entrants."
+        caption="The figure compares the average generality score (diversity of forward citation destinations) for patents from serial inventors versus new entrants."
         insight="The declining generality for both groups reflects increasing technological specialization, with patents being cited within narrower technology domains over time."
         loading={qbL}
       >
@@ -548,7 +548,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-self-cite"
         title="Serial Inventors Self-Cite at 4-5x the Rate of New Entrants"
         subtitle="Average self-citation rate per patent by experience group, 1976-2025"
-        caption="This chart compares the average self-citation rate (share of backward citations to the inventor's own prior patents) for serial versus new-entrant inventors."
+        caption="The figure compares the average self-citation rate (share of backward citations to the inventor's own prior patents) for serial versus new-entrant inventors."
         insight="The large self-citation gap is structurally expected -- serial inventors have a larger body of prior work to reference -- but it also suggests they build more cumulatively on their own research trajectories."
         loading={qbL}
       >
@@ -569,7 +569,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-grant-lag"
         title="Grant Lag Rose for Both Groups Through 2010 Before Partially Recovering"
         subtitle="Average days from application to grant by experience group, 1976-2025"
-        caption="This chart compares the average grant lag (days from filing to patent grant) for patents by serial inventors and new entrants."
+        caption="The figure compares the average grant lag (days from filing to patent grant) for patents by serial inventors and new entrants."
         insight="The parallel trajectories indicate that prosecution delays affect both groups similarly, driven by USPTO workload rather than inventor experience level."
         loading={qbL}
       >
@@ -589,7 +589,7 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-productivity"
         title="Serial Inventors Produce 1.8 Times the Patents per Person as New Entrants"
         subtitle="Average patents per inventor per year by experience group, 1976-2025"
-        caption="This chart compares the average number of patents filed per inventor per year for serial inventors versus new entrants."
+        caption="The figure compares the average number of patents filed per inventor per year for serial inventors versus new entrants."
         insight="The 1.8:1 productivity ratio has been stable over five decades, indicating a persistent structural difference in patenting intensity between experience groups."
         loading={pbL}
       >

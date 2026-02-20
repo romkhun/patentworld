@@ -200,7 +200,7 @@ export default function InvGenderChapter() {
         id="fig-gender-female-share"
         title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025"
         subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976-2025"
-        caption="This chart tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025, an increase of 5.3-fold over the study period."
+        caption="The figure tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025, an increase of 5.3-fold over the study period."
         insight="The persistent gender gap in patenting reflects broader systemic barriers in STEM fields, spanning educational pipelines, workplace culture, and institutional support structures."
         loading={gnL}
       >
@@ -231,7 +231,7 @@ export default function InvGenderChapter() {
           id="fig-gender-by-sector"
           title="Chemistry Leads Female Inventor Representation at 14.6%; Mechanical Engineering Lowest at 5.4%"
           subtitle="Female inventor share by WIPO technology sector, showing cross-sector variation in gender representation"
-          caption="This chart displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while mechanical engineering and other fields demonstrate the lowest shares."
+          caption="The figure displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while mechanical engineering and other fields demonstrate the lowest shares."
           insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, indicating that educational pipeline differences are strongly associated with the gender gap in patenting."
           loading={gsL}
           height={500}
@@ -251,7 +251,7 @@ export default function InvGenderChapter() {
           id="fig-gender-by-cpc-section"
           title="Female Inventor Share Ranges from 8.2% to 23.4% Across CPC Sections"
           subtitle="Female inventor share by CPC technology section, aggregated over the full study period"
-          caption="This chart displays the percentage of inventor instances attributed to female inventors across CPC technology sections. Chemistry and Human Necessities exhibit the highest female representation, while Fixed Constructions and Mechanical Engineering demonstrate the lowest shares."
+          caption="The figure displays the percentage of inventor instances attributed to female inventors across CPC technology sections. Chemistry and Human Necessities exhibit the highest female representation, while Fixed Constructions and Mechanical Engineering demonstrate the lowest shares."
           insight="CPC-level analysis confirms the same pipeline-driven pattern seen at the WIPO sector level, with life-science-adjacent fields consistently attracting higher female participation."
           loading={gbtL}
           height={500}
@@ -296,7 +296,7 @@ export default function InvGenderChapter() {
         id="fig-gender-by-cpc-trend"
         title="Female Inventor Shares Range from 8.2% (Fixed Constructions) to 23.4% (Chemistry) Across CPC Sections"
         subtitle="Female inventor share by CPC section and 5-year period, showing technology-specific gender variation over time"
-        caption="This chart displays the percentage of inventors who are female within each CPC section, measured in 5-year periods. Chemistry and Human Necessities consistently exhibit the highest female representation, while Electricity and Mechanical Engineering demonstrate the lowest."
+        caption="The figure displays the percentage of inventors who are female within each CPC section, measured in 5-year periods. Chemistry and Human Necessities consistently exhibit the highest female representation, while Electricity and Mechanical Engineering demonstrate the lowest."
         insight="The technology-specific gender gap mirrors the composition of STEM degree pipelines. Fields with higher female enrollment, such as chemistry and life sciences, demonstrate correspondingly higher female inventor representation."
         loading={gstL}
       >
@@ -552,7 +552,7 @@ export default function InvGenderChapter() {
         id="fig-gender-by-filing-route"
         title="Foreign-Origin Patents Show 16.4% Female Inventor Share vs. 13.8% for Domestic in 2025"
         subtitle="Female inventor share by filing route (domestic vs. foreign-origin patents), 1976-2025"
-        caption="This chart tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
+        caption="The figure tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
         insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- suggests that non-US innovation systems have made faster progress on gender diversity in recent decades, particularly in fields like pharmaceuticals and chemistry where foreign applicants are well-represented."
         loading={gbrL}
       >

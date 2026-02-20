@@ -166,7 +166,7 @@ export default function InvTopInventorsChapter() {
         id="fig-inventors-superstar-concentration"
         title="The Top 5% of Inventors Grew from 26% to 60% of Annual Patent Output, 1976-2025"
         subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
-        caption="This chart tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
+        caption="The figure tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
         insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
         loading={ssL}
       >
@@ -218,7 +218,7 @@ export default function InvTopInventorsChapter() {
         id="fig-inventors-prolific-ranking"
         title="The Most Prolific Inventor Holds 6,709 Patents; Top 100 Each Exceed 760"
         subtitle="Top 100 inventors ranked by total utility patents granted, 1976-2025"
-        caption="This chart ranks inventors by total utility patents granted from 1976 to 2025. The distribution is heavily right-skewed, with the top-ranked inventors holding thousands of patents each, predominantly in electronics and semiconductor fields."
+        caption="The figure ranks inventors by total utility patents granted from 1976 to 2025. The distribution is heavily right-skewed, with the top-ranked inventors holding thousands of patents each, predominantly in electronics and semiconductor fields."
         insight="The concentration of patents among a small number of prolific inventors raises questions regarding whether the patent system disproportionately rewards institutional resources rather than individual inventive capacity."
         loading={prL}
         height={1800}
@@ -268,7 +268,7 @@ export default function InvTopInventorsChapter() {
         id="fig-inventors-citation-impact"
         title="Citation Impact Ranges from 10 to 965 Average Citations Among the 100 Most Prolific Inventors"
         subtitle="Average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, based on patents granted through 2020"
-        caption="This chart presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
+        caption="The figure presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
         loading={siL}
         height={1800}
@@ -483,7 +483,7 @@ export default function InvTopInventorsChapter() {
         id="fig-examiner-inventor-overlap"
         title="An Estimated 5,785 Individuals Appear as Both Patent Examiner and Inventor -- an Upper Bound Based on Name Matching"
         subtitle="Count of unique names appearing in both the examiner and inventor records, based on exact first-name and last-name matching"
-        caption="This table reports the number of unique names found in both the patent examiner and inventor records. Because name matching does not use disambiguated identifiers, this figure represents an upper bound that likely includes false positives from common names."
+        caption="The table reports the number of unique names found in both the patent examiner and inventor records. Because name matching does not use disambiguated identifiers, this figure represents an upper bound that likely includes false positives from common names."
         insight="Even under generous name-matching assumptions, the overlap between examiners and inventors is small relative to the 4.1 million unique inventor names in the database."
         loading={eoL}
       >
@@ -540,7 +540,7 @@ export default function InvTopInventorsChapter() {
         id="fig-multi-type-inventors"
         title="30.7% of Inventors with 10+ Patents Have Patented Under Multiple Institution Types"
         subtitle="Share of inventors who have patented under more than one assignee type (e.g., corporation and university), by career length bin"
-        caption="This chart displays the percentage of inventors who have filed patents under more than one assignee type over their career, grouped by career length (number of patents). Multi-type patenting is negligible among single-patent inventors but rises to 30.7% among those with 10 or more patents."
+        caption="The figure displays the percentage of inventors who have filed patents under more than one assignee type over their career, grouped by career length (number of patents). Multi-type patenting is negligible among single-patent inventors but rises to 30.7% among those with 10 or more patents."
         insight="The prevalence of multi-type inventor trajectories among prolific inventors suggests that institutional mobility -- between firms, universities, and government -- is a common feature of sustained patenting careers."
         loading={mtL}
       >

@@ -243,7 +243,7 @@ export default function GeoDomesticChapter() {
         id="fig-geography-state-choropleth"
         subtitle="Total utility patents by primary inventor state (1976-2025), displayed as a choropleth map with darker shading for higher counts."
         title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States and Territories Combined (314,664)"
-        caption="This choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
+        caption="The choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
         insight="The coastal concentration of patent activity is associated with the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
         loading={stL}
         height={650}
@@ -263,7 +263,7 @@ export default function GeoDomesticChapter() {
         id="fig-geography-state-rankings"
         subtitle="US states ranked by total utility patents from primary inventors (1976-2025)."
         title="California Accounts for Nearly One-Quarter (23.6%) of All US Patent Grants, 1976-2025"
-        caption="This chart ranks US states by total utility patents attributed to primary inventors from 1976 to 2025. California leads by a substantial margin, followed by Texas, New York, Massachusetts, and Michigan."
+        caption="The figure ranks US states by total utility patents attributed to primary inventors from 1976 to 2025. California leads by a substantial margin, followed by Texas, New York, Massachusetts, and Michigan."
         insight="California accounts for nearly one-quarter (23.6%) of all US patent activity, a concentration driven by the Silicon Valley ecosystem of venture capital, research universities, and technology firms."
         loading={stL}
         height={1200}
@@ -314,7 +314,7 @@ export default function GeoDomesticChapter() {
           id="fig-geography-state-specialization"
           subtitle="CPC technology section distribution by state, shown as 100% stacked bars to reveal distinctive regional specialization patterns."
           title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering vs. California's 65.1% in Physics and Electricity"
-          caption="This chart displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
+          caption="The figure displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
           insight="Geographic concentration of innovation is associated with self-reinforcing patterns, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
           loading={spL}
           height={1200}
@@ -357,7 +357,7 @@ export default function GeoDomesticChapter() {
           id="fig-geography-state-trends"
           subtitle="Annual patent grants for the top 10 states by total output, showing diverging trajectories over time."
           title="California's Patent Output Has Diverged Sharply from Other Leading States, Reaching 4.0x Texas by 2024"
-          caption="This chart displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the mid-1990s, with the gap widening in each subsequent decade."
+          caption="The figure displays annual patent grants for the 10 leading states by total output from 1976 to 2025. California exhibits an accelerating divergence from the second-ranked state beginning in the mid-1990s, with the gap widening in each subsequent decade."
           insight="California's accelerating divergence from other states since the 1990s is consistent with compounding advantages observed in self-reinforcing innovation ecosystems."
           loading={spyL}
         >
@@ -489,7 +489,7 @@ export default function GeoDomesticChapter() {
         id="fig-geography-city-rankings"
         subtitle="US cities ranked by total utility patents from primary inventors (1976-2025), revealing finer-grained concentration patterns."
         title="San Jose (96,068), San Diego (70,186), and Austin (53,595) Lead All US Cities in Total Patent Output"
-        caption="This chart ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
+        caption="The figure ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
         insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national innovation output."
         loading={ciL}
         height={1400}
@@ -673,7 +673,7 @@ export default function GeoDomesticChapter() {
           id="fig-geography-top-counties"
           subtitle="Top 20 US counties by total utility patents from primary inventors (1976-2025)."
           title={`Santa Clara County Leads with 327,700 Patents — Five Counties Account for ${top5CountiesShare}% of Top-50 County Output`}
-          caption="This chart ranks the top 20 US counties by total utility patents attributed to primary inventors from 1976 to 2025. Santa Clara County (home to Silicon Valley) leads by a wide margin, followed by Los Angeles, King (Seattle), San Diego, and Alameda counties."
+          caption="The figure ranks the top 20 US counties by total utility patents attributed to primary inventors from 1976 to 2025. Santa Clara County (home to Silicon Valley) leads by a wide margin, followed by Los Angeles, King (Seattle), San Diego, and Alameda counties."
           insight="County-level data reveal that patent concentration is even more pronounced than state-level figures suggest, with Santa Clara County alone producing nearly three times the output of the second-ranked county."
           loading={tcL}
           height={700}
@@ -692,7 +692,7 @@ export default function GeoDomesticChapter() {
           id="fig-geography-county-concentration"
           subtitle="Share of US patents concentrated in the top 50 counties by 5-year period, measuring geographic concentration over time."
           title="Top-50 County Concentration Rose from 43.3% in 1990 to 56.8% in 2020, Indicating Increasing Geographic Clustering"
-          caption="This chart tracks the share of total US patents accounted for by the top 50 counties over successive 5-year periods. The steady increase from 43-47% in the 1970s-1980s to nearly 57% by 2020 indicates that patent activity has become more rather than less geographically concentrated over time."
+          caption="The figure tracks the share of total US patents accounted for by the top 50 counties over successive 5-year periods. The steady increase from 43-47% in the 1970s-1980s to nearly 57% by 2020 indicates that patent activity has become more rather than less geographically concentrated over time."
           insight="The rising concentration of patents in the top 50 counties is consistent with the strengthening of agglomeration economies in leading technology hubs over the digital era."
           loading={ccL}
         >
@@ -725,7 +725,7 @@ export default function GeoDomesticChapter() {
           id="fig-geography-innovation-clusters"
           subtitle="Top 30 global cities by total utility patents in the US patent system (1976-2025)."
           title="Tokyo Leads Global Innovation Clusters with 263,010 Patents, Followed by Yokohama (196,841) and Seoul (102,646)"
-          caption="This chart ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, reflecting Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
+          caption="The figure ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, reflecting Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
           insight="The global innovation cluster landscape is dominated by East Asian and US West Coast cities, reflecting the concentration of electronics, semiconductor, and software R&D in these regions."
           loading={clL}
           height={1000}
