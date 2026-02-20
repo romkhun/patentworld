@@ -551,7 +551,7 @@ export default function InvGenderChapter() {
         id="fig-gender-by-filing-route"
         title="Foreign-Origin Patents Show 16.4% Female Inventor Share vs. 13.8% for Domestic in 2025"
         subtitle="Female inventor share by filing route (domestic vs. foreign-origin patents), 1976-2025"
-        caption="This chart tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since approximately 2010, a reversal of the pattern observed in earlier decades."
+        caption="This chart tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
         insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- suggests that non-US innovation systems have made faster progress on gender diversity in recent decades, particularly in fields like pharmaceuticals and chemistry where foreign applicants are well-represented."
         loading={gbrL}
       >
@@ -573,7 +573,7 @@ export default function InvGenderChapter() {
       <KeyInsight>
         <p>
           Female inventor representation on foreign-origin patents has surpassed that on domestic
-          patents since approximately 2010. By 2025, foreign-origin patents show a 16.4% female
+          patents since 2010. By 2025, foreign-origin patents show a 16.5% female
           inventor share compared to 13.8% for domestic patents. This reversal from the early
           decades -- when domestic patents had higher female representation -- suggests that
           non-US innovation systems, particularly in fields like chemistry and pharmaceuticals,

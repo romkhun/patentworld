@@ -413,7 +413,7 @@ export default function OrgPatentCountChapter() {
         <p>
           Continuation and continuation-in-part filings allow applicants to extend patent families
           by filing related applications based on a parent filing. The share of patents that are
-          continuations varies dramatically across firms, reflecting differences in prosecution
+          continuations varies substantially across firms, reflecting differences in prosecution
           strategy, portfolio management, and the degree to which firms build incrementally on
           prior inventions.
         </p>

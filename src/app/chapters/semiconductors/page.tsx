@@ -331,7 +331,7 @@ export default function Chapter21() {
           the boundaries of transistor density, power efficiency, and manufacturing yield.
           Unlike many technology domains that exhibit sudden exponential growth, semiconductor
           after rapid growth through the 1990s and 2000s, semiconductor patent volume
-          stabilized at approximately 6-7% of all utility patents.
+          stabilized at 6-7% of all utility patents.
         </p>
       </KeyInsight>
 
@@ -699,7 +699,7 @@ export default function Chapter21() {
 
       <KeyInsight>
         <p>
-          Corporate assignees account for approximately 99% of semiconductor patents,
+          Corporate assignees account for 99% of semiconductor patents,
           more so than in many other technology domains. This concentration reflects the
           capital-intensive nature of the semiconductor industry, where building a
           leading-edge fabrication facility requires investments exceeding $20 billion.
@@ -856,7 +856,7 @@ export default function Chapter21() {
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a semiconductor patent."
         title="Semiconductor Patenting Velocity Peaked for 1990s Entrants at 197 Patents per Year, Reflecting the Golden Age of East Asian Fab Investment"
         caption="Mean patents per active year for top semiconductor organizations grouped by entry decade. The 1990s cohort's peak velocity reflects the rapid scaling of Samsung, TSMC, and other East Asian firms that entered semiconductor patenting during the DRAM and foundry expansion era."
-        insight="The plateau of velocity at approximately 197 patents per year for both 1990s and 2010s entrants suggests a structural ceiling on organizational patenting capacity in semiconductors, possibly reflecting the finite number of novel process and device innovations achievable per year."
+        insight="The plateau of velocity at 197 patents per year for both 1990s and 2010s entrants suggests a structural ceiling on organizational patenting capacity in semiconductors, possibly reflecting the finite number of novel process and device innovations achievable per year."
         loading={taL}
       >
         <PWBarChart

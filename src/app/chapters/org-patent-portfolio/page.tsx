@@ -109,16 +109,6 @@ export default function OrgPatentPortfolioChapter() {
       .sort((a, b) => a.window_start - b.window_start);
   }, [pivots, activePivotCompany]);
 
-  const wipoScatterData = useMemo(() => {
-    if (!wipoDiversity) return [];
-    return wipoDiversity.map((d) => ({
-      company: cleanOrgName(d.organization),
-      x: d.num_wipo_fields,
-      y: d.wipo_shannon_entropy,
-      size: d.total_patents,
-    }));
-  }, [wipoDiversity]);
-
   const wipoDiversityBars = useMemo(() => {
     if (!wipoDiversity) return [];
     return wipoDiversity.map((d) => ({

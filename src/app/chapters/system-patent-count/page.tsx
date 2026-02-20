@@ -295,7 +295,7 @@ export default function SystemPatentCountChapter() {
 
       <Narrative>
         <p>
-          Beyond the overall volume and pendency of patents, the structure of patent filings has changed dramatically. The rise of continuation applications, divisionals, and continuation-in-part (CIP) filings reflects a strategic shift in how applicants use the patent system — not merely to protect individual inventions, but to build layered portfolios of related claims.
+          Beyond the overall volume and pendency of patents, the structure of patent filings has changed substantially. The rise of continuation applications, divisionals, and continuation-in-part (CIP) filings reflects a strategic shift in how applicants use the patent system — not merely to protect individual inventions, but to build layered portfolios of related claims.
         </p>
       </Narrative>
 

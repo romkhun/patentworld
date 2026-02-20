@@ -474,7 +474,7 @@ export default function GeoInternationalChapter() {
 
       <Narrative>
         <p>
-          The priority country of a patent reveals where the invention was first filed, providing a complementary lens to inventor location. Tracking priority country composition over time illuminates the shifting national origins of inventions entering the US patent system, including the dramatic rise of East Asian filing activity.
+          The priority country of a patent reveals where the invention was first filed, providing a complementary lens to inventor location. Tracking priority country composition over time illuminates the shifting national origins of inventions entering the US patent system, including the rapid rise of East Asian filing activity.
         </p>
       </Narrative>
 
@@ -504,7 +504,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from roughly 70% in the 1970s to approximately 55% by the 2020s. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most dramatic shifts in the history of the US patent system.
+          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from 70% in the 1970s to 55% by the 2020s. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most significant shifts in the history of the US patent system.
         </p>
       </KeyInsight>
 
@@ -521,7 +521,7 @@ export default function GeoInternationalChapter() {
           id="fig-geo-intl-pct-share-by-country"
           subtitle="PCT route share by country for major filing origins, 1990-2025."
           title="France Leads PCT Usage at 53-57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
-          caption="This chart displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share surged from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
+          caption="This chart displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share rose from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
           insight="PCT usage patterns reflect national filing strategies: European and East Asian filers rely heavily on the PCT route, while US domestic filers use it less frequently, consistent with direct filing at the home office."
           loading={pctL}
         >
@@ -542,7 +542,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s dramatic increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage due to its unique geopolitical status, underscores how institutional and political factors shape international filing behavior.
+          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage due to its unique geopolitical status, underscores how institutional and political factors shape international filing behavior.
         </p>
       </KeyInsight>
 

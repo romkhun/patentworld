@@ -319,7 +319,7 @@ export default function OrgCompositionChapter() {
 
       <ChartContainer
         id="fig-org-composition-law-firm-concentration"
-        title="Top 4 Law Firms' Market Share Declined From 12.7% to 5.8% Between 1976 and 2024"
+        title="Top 4 Law Firms' Market Share Declined From 11.7% to 5.8% Between 1976 and 2024"
         subtitle="CR4 and CR10 concentration ratios among patent prosecution law firms, by year, 1976-2025"
         caption="Market concentration among patent prosecution firms, measured by the share of patents handled by the top 4 (CR4) and top 10 (CR10) firms. Both ratios have declined substantially since the mid-1990s, indicating a more fragmented prosecution market."
         insight="The declining concentration in the patent prosecution market suggests that barriers to entry for law firms have fallen, or that the growth of international filings has diversified the firm landscape."

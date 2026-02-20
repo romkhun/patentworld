@@ -889,7 +889,7 @@ export default function Chapter16() {
         id="fig-blockchain-filing-vs-grant"
         title="Blockchain Filings Peaked at 1,017 in 2019 Then Declined, While Grants Rose to 991 in 2022 — a 3-Year Pipeline Delay"
         subtitle="Annual patent filings vs. grants for blockchain, showing the boom-bust filing cycle and lagged grant output."
-        caption="Blockchain's filing-vs-grant divergence is among the most dramatic of all ACT 6 domains. Filings peaked in 2019 and declined sharply, but grants continued rising through 2022 as the examination pipeline processed boom-era applications. This pattern visually captures the hype cycle in blockchain patenting."
+        caption="Blockchain's filing-vs-grant divergence is among the most pronounced of all ACT 6 domains. Filings peaked in 2019 and declined sharply, but grants continued rising through 2022 as the examination pipeline processed boom-era applications. This pattern visually captures the hype cycle in blockchain patenting."
         loading={fgL}
       >
         <PWLineChart

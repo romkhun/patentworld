@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     default: 'PatentWorld \u2014 50 Years of US Patent Data',
     template: '%s | PatentWorld',
   },
-  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+  description: 'Interactive analysis of 9.36 million US patents (1976\u20132025) from PatentsView. Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
   keywords: ['patents', 'innovation', 'USPTO', 'patent data', 'patent analytics', 'technology trends', 'patent visualization', 'PatentsView', 'patent quality', 'patent citations', 'US patents', 'patent statistics'],
   authors: [{ name: 'Saerom (Ronnie) Lee', url: 'https://www.saeromlee.com' }],
   openGraph: {
     type: 'website',
     title: 'PatentWorld \u2014 50 Years of US Patent Data',
-    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
     siteName: 'PatentWorld',
     url: 'https://patentworld.vercel.app',
     images: [{
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'PatentWorld \u2014 50 Years of US Patent Data',
-    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to over 40% of all output.',
+    description: 'Interactive analysis of 9.36M US patents (1976\u20132025). Annual grants grew five-fold; computing rose from 12% to 57% of all output.',
     images: ['https://patentworld.vercel.app/og/home.png'],
   },
   robots: {

@@ -76,7 +76,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       },
       {
         citation: 'Hall, B. H., & Ziedonis, R. H. (2001). The patent paradox revisited: An empirical study of patenting in the U.S. semiconductor industry, 1979\u20131995. RAND Journal of Economics, 32(1), 101\u2013128. https://doi.org/10.2307/2696400',
-        summary: 'Stronger patent rights ushered in by the CAFC reshaped incentives to patent in the semiconductor industry, increasing patent propensity by approximately 10 percent per year after 1986. The strengthening of patent rights spawned \u201Cpatent portfolio races\u201D among capital-intensive firms but also facilitated entry by specialized design firms.',
+        summary: 'Stronger patent rights ushered in by the CAFC reshaped incentives to patent in the semiconductor industry, increasing patent propensity by 10 percent per year after 1986. The strengthening of patent rights spawned \u201Cpatent portfolio races\u201D among capital-intensive firms but also facilitated entry by specialized design firms.',
       },
       {
         citation: 'Somaya, D., & McDaniel, C. A. (2012). Tribunal specialization and institutional targeting in patent enforcement. Organization Science, 23(3), 869\u2013887. https://doi.org/10.1287/orsc.1110.0669',
@@ -247,7 +247,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     research: [
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
-        summary: 'Screening is highly imperfect, with almost half of all patents issued on inventions that do not require the patent incentive. The introduction of cheaper validity challenge mechanisms like PTAB results in welfare increases of approximately 0.8%.',
+        summary: 'Screening is highly imperfect, with almost half of all patents issued on inventions that do not require the patent incentive. The introduction of cheaper validity challenge mechanisms like PTAB results in welfare increases of 0.8%.',
       },
       {
         citation: 'Gaessler, F., Harhoff, D., Sorg, S., & von Graevenitz, G. (2025). Patents, freedom to operate, and follow-on innovation: Evidence from post-grant opposition. Management Science, 71(2), 1315\u20131334. https://doi.org/10.1287/mnsc.2019.02294',

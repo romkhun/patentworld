@@ -5,14 +5,12 @@ import { useChapterData } from '@/hooks/useChapterData';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
-import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { DataNote } from '@/components/chapter/DataNote';
 import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import Link from 'next/link';
-import { PWLineChart } from '@/components/charts/PWLineChart';
 import type {
   Act6DomainSummary,
   Act6TimeSeries,

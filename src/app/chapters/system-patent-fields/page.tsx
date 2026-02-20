@@ -374,7 +374,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Design patent share peaked at approximately 14% in 2008, declined to 7% by 2014, and returned to approximately 14% by 2025. This pattern reflects a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
+          Design patent share peaked at 14% in 2008, declined to 7% by 2014, and returned to 14% by 2025. This pattern reflects a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
         </p>
       </KeyInsight>
 
@@ -1018,10 +1018,10 @@ export default function SystemPatentFieldsChapter() {
 
       <ChartContainer
         id="fig-patent-fields-reclass-rate"
-        title="Approximately 4% of Patents Granted in the 2010s Were Later Reclassified to a Different CPC Section"
+        title="4% of Patents Granted in the 2010s Were Later Reclassified to a Different CPC Section"
         subtitle="CPC reclassification rate by decade, measuring the share of patents whose primary CPC section changed between issue and current classification"
         caption="Reclassification data only available for patents with both cpc_at_issue and current CPC records (2010s-2020s). The reclassification rate is computed as the share of patents whose primary CPC section at issue differs from the current primary CPC section."
-        insight="The stability of the reclassification rate at approximately 4% across both decades suggests that taxonomy evolution proceeds at a roughly constant pace, even as the technological landscape undergoes rapid structural change."
+        insight="The stability of the reclassification rate at 4% across both decades suggests that taxonomy evolution proceeds at a constant pace, even as the technological landscape undergoes rapid structural change."
         loading={rcDecL}
       >
         {reclassByDecade && reclassByDecade.length > 0 ? (

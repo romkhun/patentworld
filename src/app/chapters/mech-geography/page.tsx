@@ -244,8 +244,8 @@ export default function MechGeographyChapter() {
           id="fig-mech-geo-citation-localization"
           subtitle="Share of patent citation pairs where citing and cited patents originate from the same country, by 5-year period."
           title="Home-Country Citation Bias Remains Persistent at 60-64%, Despite Rising International Collaboration"
-          caption="This chart displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained remarkably stable at 60-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
-          insight="The persistence of home-country citation bias at approximately 60-64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
+          caption="This chart displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained stable at 60-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
+          insight="The persistence of home-country citation bias at 60-64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
           loading={clcL}
         >
           <PWLineChart
@@ -260,7 +260,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          The remarkably stable home-country citation bias -- hovering between 58% and 64% across five decades -- is one of the most striking findings in the geography of knowledge flows. Despite the dramatic increase in international co-invention (from 1% to 10% of patents) and the globalization of corporate R&D, inventors continue to cite patents from their own country at roughly the same rate as in the 1980s. This persistence suggests that tacit knowledge, language, institutional proximity, and local knowledge networks continue to shape how inventors identify and build upon prior art.
+          The stable home-country citation bias -- hovering between 58% and 64% across five decades -- is one of the most notable findings in the geography of knowledge flows. Despite the substantial increase in international co-invention (from 1% to 10% of patents) and the globalization of corporate R&D, inventors continue to cite patents from their own country at the same rate as in the 1980s. This persistence suggests that tacit knowledge, language, institutional proximity, and local knowledge networks continue to shape how inventors identify and build upon prior art.
         </p>
       </KeyInsight>
 

@@ -874,7 +874,7 @@ export default function Chapter20() {
         id="fig-quantum-filing-vs-grant"
         title="Quantum Filing Peaked at 579 in 2021 While Grants Reached 660 in 2024 — Rapid Growth on a Small Base"
         subtitle="Annual patent filings vs. grants for quantum computing, showing the field's recent acceleration."
-        caption="Quantum computing exhibits dramatic recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019-2021 filing surge."
+        caption="Quantum computing exhibits rapid recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019-2021 filing surge."
         loading={fgL}
       >
         <PWLineChart

@@ -282,7 +282,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-survival"
         title="Only 37-51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
         subtitle="Percentage of inventors remaining active at each career year, stratified by 5-year entry cohort, measuring career persistence"
-        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with approximately 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
+        caption="This chart displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
         insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
@@ -329,7 +329,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-curve"
         title="Inventor Productivity Rises from 1.4 to 2.1 Patents per Year in Early Career Before Plateauing"
         subtitle="Average and median patents per year at each career year for inventors with 5+ lifetime patents, measuring productivity trajectory"
-        caption="This chart presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at approximately 2.1-2.3 patents per year through the remainder of the career, with substantial variation across individuals."
+        caption="This chart presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at 2.1-2.3 patents per year through the remainder of the career, with substantial variation across individuals."
         insight="Inventor productivity rises steeply in the first five career years, then plateaus without significant decline. The wide interquartile range indicates substantial heterogeneity: some inventors sustain high output for decades while others taper off within a few years."
         loading={cdL}
       >

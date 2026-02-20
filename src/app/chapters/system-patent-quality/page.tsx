@@ -703,7 +703,7 @@ export default function SystemPatentQualityChapter() {
         title="Average NPL Citations per Patent Rose 54-Fold from 0.23 in 1976 to 12.5 in 2024"
         subtitle="Average non-patent literature citations per utility patent by grant year, 1976–2025"
         caption="NPL citations include references to scientific journals, conference papers, and technical reports. The sustained rise indicates an increasingly science-intensive patent system."
-        insight="The dramatic growth in NPL citations reflects a structural shift in patenting toward science-intensive domains. Patents granted in 2024 cite, on average, more than fifty times as many scientific publications as those from the late 1970s."
+        insight="The sustained growth in NPL citations reflects a structural shift in patenting toward science-intensive domains. Patents granted in 2024 cite, on average, more than fifty times as many scientific publications as those from the late 1970s."
         loading={nplL}
       >
         <PWLineChart
@@ -720,9 +720,9 @@ export default function SystemPatentQualityChapter() {
 
       <ChartContainer
         id="fig-npl-citations-by-cpc"
-        title="Chemistry & Metallurgy Leads NPL Citations at 32.3 per Patent, Triple the System Average"
+        title="Chemistry & Metallurgy Leads NPL Citations at 32.3 per Patent, 2.7 Times the System Average"
         subtitle="Average non-patent literature citations per patent by CPC section, 2010–2025"
-        caption="NPL citation intensity varies dramatically by technology field. Chemistry (C) and Human Necessities (A) -- which include pharmaceuticals and biotechnology -- cite the scientific literature most heavily, reflecting the tight science-invention link in these domains."
+        caption="NPL citation intensity varies substantially by technology field. Chemistry (C) and Human Necessities (A) -- which include pharmaceuticals and biotechnology -- cite the scientific literature most heavily, reflecting the tight science-invention link in these domains."
         loading={nplCpcL}
       >
         <PWBarChart
