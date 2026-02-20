@@ -264,7 +264,7 @@ export default function Chapter17() {
       <MeasurementSidebar slug="cybersecurity" />
 
       <KeyFindings>
-        <li>Cybersecurity patent filings have grown alongside the expansion of the digital economy, with notable acceleration in filings observed following major data breaches and ransomware campaigns such as the Snowden disclosures (2013), WannaCry (2017), and SolarWinds (2020).</li>
+        <li>Cybersecurity patent filings have grown alongside the expansion of the digital economy, with notable acceleration in filings observed following major security incidents such as the Snowden disclosures (2013), the WannaCry ransomware campaign (2017), and the SolarWinds supply-chain compromise (2020).</li>
         <li>Network security constitutes the largest cybersecurity subfield by patent volume, having surpassed cryptography around 2003, coinciding with the expansion of cloud computing and distributed network architectures.</li>
         <li>Data protection, system security, and authentication technologies have all exhibited rapid growth rates, particularly since the mid-2010s, coinciding with the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
         <li>A small number of large technology firms -- IBM, Intel, Microsoft, and Cisco -- dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
@@ -856,7 +856,7 @@ export default function Chapter17() {
         id="fig-cyber-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a cybersecurity patent."
         title="Later Cybersecurity Entrants Patent at Modestly Higher Velocity: 2010s Cohort Averages 105.8 Patents per Year Versus 77.9 for 1970s Entrants"
-        caption="Mean patents per active year for top cybersecurity organizations grouped by entry decade. The 1.7x increase from 1970s to 2020s entrants is moderate, reflecting the domain&apos;s sustained high barriers to entry due to the specialized expertise required for security research."
+        caption="Mean patents per active year for top cybersecurity organizations grouped by entry decade. The 1.4x increase from 1970s to 2010s entrants is moderate, reflecting the domain&apos;s sustained high barriers to entry due to the specialized expertise required for security research."
         insight="The velocity dip for 1980s entrants (44.1/yr) is notable, suggesting that mid-period entrants during the personal computing era patented less intensively than both early cryptographic pioneers and later cloud-security specialists."
         loading={taL}
       >

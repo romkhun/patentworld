@@ -140,7 +140,7 @@ export default function OrgPatentQualityChapter() {
   const { data: normalizedCompanyFwdCite, yLabel: companyFwdCiteYLabel, controls: controlsCompanyFwdCite } = useCitationNormalization({
     data: companyFwdCitePivot,
     xKey: 'year',
-    citationKeys: ['avg_forward_citations'],
+    citationKeys: topCompanies,
     yLabel: 'Avg Forward Citations',
   });
 

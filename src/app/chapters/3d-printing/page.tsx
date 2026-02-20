@@ -257,7 +257,7 @@ export default function Chapter11() {
       <ChapterHeader
         number={23}
         title="3D Printing & Additive Manufacturing"
-        subtitle="Layer-by-layer transformation in manufacturing"
+        subtitle="Layer-by-layer revolution in manufacturing"
       />
       <MeasurementSidebar slug="3d-printing" />
 

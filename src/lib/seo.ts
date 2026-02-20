@@ -26,7 +26,7 @@ const CHAPTER_KEYWORDS: Record<string, string[]> = {
   'inv-team-size': ['team size innovation', 'solo inventors', 'collaborative turn', 'patent team collaboration', 'team size quality'],
   // ACT 4: The Geography
   'geo-domestic': ['Silicon Valley patents', 'patent geography', 'state patent activity', 'California patents', 'geographic concentration', 'patent cities', 'San Jose patents'],
-  'geo-international': ['international patents', 'cross-border inventors', 'Japan patent filings', 'global inventor mobility', 'international assignees', 'quality by country'],
+  'geo-international': ['international patents', 'cross-border filings', 'Japan patent filings', 'China patent growth', 'international assignees', 'quality by country'],
   // ACT 5: The Mechanics
   'mech-organizations': ['exploration exploitation', 'new technology patents', 'technological exploration', 'citation networks', 'inter-firm citations', 'corporate knowledge flows'],
   'mech-inventors': ['co-invention networks', 'co-patenting', 'collaboration networks', 'inventor mobility', 'talent flows', 'bridge inventors', 'inventor migration'],
@@ -76,8 +76,8 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'mech-inventors': '143,524 Inventor Moves Among 50 Top Firms',
   'mech-geography': 'US-China Co-Invention Surpassed 2% by 2025',
   // ACT 6
-  'ai-patents': 'AI Patents Grew 10x in the Deep Learning Era',
-  'green-innovation': 'Green Patents Tripled After Paris Agreement',
+  'ai-patents': 'AI Patents Grew 5.7-Fold in the Deep Learning Era',
+  'green-innovation': 'Green Patents Rose to 10% of All US Grants',
   'semiconductors': 'Semiconductor Patents Drive the Silicon Age',
   'quantum-computing': 'Quantum Computing Patents Surged After 2015',
   'cybersecurity': 'Cybersecurity Patents Grew With Digital Threats',
@@ -86,7 +86,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'agricultural-technology': 'AgTech Patents Modernize Global Farming',
   'autonomous-vehicles': 'AV Patents Accelerated in the 2010s',
   'space-technology': 'Space Patents Reflect Commercial Frontier',
-  '3d-printing': '3D Printing Patents Grew 20x Since 2000',
+  '3d-printing': 'AM Concentration Fell From 36% to 11% by 2024',
   'blockchain': 'Blockchain Patents Track a Hype Cycle',
 };
 
@@ -94,10 +94,10 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
 const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   // ACT 1
   'system-patent-count': 'US patent grants grew from 70K to 374K annually. Grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
-  'system-patent-quality': 'Average claims doubled from 9.4 to 18.9. Forward citations peaked at 6.4. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
+  'system-patent-quality': 'Average claims doubled from 9.4 to a peak of 18.9 in 2005. Forward citations peaked at 6.4. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
   'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent grant concentration by assignee remains below conventional thresholds across all CPC sections.',
   'system-convergence': 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
-  'system-language': 'NLP topic modeling of 9.36M patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
+  'system-language': 'NLP topic modeling of 8.45 million patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
   'system-patent-law': 'From Bayh-Dole (1980) to Alice Corp. (2014), twenty-one landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
   'system-public-investment': 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 government-funded patents.',
   // ACT 2
@@ -114,14 +114,14 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'inv-team-size': 'Average team size grew from 1.7 to 3.2 inventors. Quality metrics differ systematically across solo inventors, small teams, and large teams.',
   // ACT 4
   'geo-domestic': 'California accounts for 23.6% of all US patents. San Jose, San Diego, and Austin lead all US cities. Quality metrics vary across states and cities.',
-  'geo-international': 'International inventor mobility rose from 1.3% to 5.1%. Japan leads foreign filings with 1.45M patents. Quality differs systematically across countries.',
+  'geo-international': 'Japan leads foreign filings with 1.45M US patents, while China grew from 299 in 2000 to 30,695 in 2024. Quality metrics differ systematically across countries of origin.',
   // ACT 5
   'mech-organizations': '11 of 20 major filers keep exploration below 5%. Exploration scores decay from 1.0 to 0.087. Corporate citation flows reveal industry clusters.',
   'mech-inventors': '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements among 50 firms. California holds 54.9% of interstate migration.',
   'mech-geography': 'International co-invention rose from 1.0% to 10.0%. US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024.',
   // ACT 6
-  'ai-patents': 'AI patent filings grew 10x during the deep learning era (2012-2025). Explore trends in machine learning, NLP, and computer vision patenting by company and country.',
-  'green-innovation': 'Green patents tripled after the 2015 Paris Agreement. Explore renewable energy, carbon capture, and EV patent trends across 50 years of climate technology.',
+  'ai-patents': 'AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all US patent grants. Explore trends in machine learning, NLP, and computer vision patenting.',
+  'green-innovation': 'Green patents rose from 3,000 per year in the late 1970s to a peak of 35,693 in 2019, reaching 9-10% of all utility patents. Explore renewable energy, battery, and EV patent trends.',
   'semiconductors': 'Semiconductor patents span IC design, packaging, manufacturing, and optoelectronics. Explore how TSMC, Samsung, and Intel compete in the silicon age.',
   'quantum-computing': 'Quantum computing patents surged after 2015, covering algorithms, hardware, error correction. Explore IBM, Google, and emerging players in quantum innovation.',
   'cybersecurity': 'Cybersecurity patents span cryptography, authentication, and network security. Explore how digital threats drive patenting in data protection and system security.',
@@ -130,7 +130,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'agricultural-technology': 'Agricultural technology patents span precision agriculture, plant breeding, and soil science. Explore how innovation is modernizing global food production.',
   'autonomous-vehicles': 'Autonomous vehicle patents cover driving systems, navigation, and scene understanding. Explore the AV patent race among automotive and technology firms.',
   'space-technology': 'Space technology patents span spacecraft design, propulsion, and satellite communications. Explore the patent landscape of the new commercial space era.',
-  '3d-printing': 'Additive manufacturing patents grew 20x since 2000, spanning polymer and metal 3D printing. Explore equipment, materials, and application patents.',
+  '3d-printing': 'Top-four concentration in 3D printing patents fell from 36% to 11% by 2024 as FDM patent expirations opened the field. Explore polymer and metal AM patent trends.',
   'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Filings peaked in 2022, the only advanced domain to reverse course.',
 };
 

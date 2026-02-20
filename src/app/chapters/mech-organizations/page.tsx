@@ -296,9 +296,8 @@ export default function MechOrganizationsChapter() {
 
       <KeyInsight>
         <p>
-          The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
-          exploitative, with exploration shares typically below 5%. The finding is consistent with the theoretical
-          prediction that large, established organizations tend to favor exploitation of existing
+          Most large patent filers maintain exploration shares below 5%, consistent with the theoretical
+          prediction that established organizations tend to favor exploitation of existing
           competencies over exploration of new domains.
         </p>
       </KeyInsight>
@@ -376,7 +375,7 @@ export default function MechOrganizationsChapter() {
           The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
           exploitative, with exploration shares typically below 5%. The exploration decay curves show that even when
           firms do enter new technology areas, they transition to exploitation rapidly -- typically within
-          5 years of entry. Yet balanced firms that maintain ambidexterity produce blockbuster patents at more than twice the rate of specialized firms.
+          5 years of entry. Yet balanced firms that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms.
         </p>
       </KeyInsight>
 
@@ -648,7 +647,7 @@ export default function MechOrganizationsChapter() {
 
       <Narrative>
         <p>
-          The organizational mechanics documented across this chapter -- from the overwhelming exploitation bias and rapid exploration decay to the co-patenting clusters and asymmetric citation dependencies -- paint a nuanced picture of how firms navigate the innovation landscape. While most organizations deepen established domains, the minority that maintain ambidexterity produce blockbuster patents at more than twice the rate of specialized firms, even as within-firm quality concentration continues to rise. These firm-level patterns set the stage for the next chapter, <Link href="/chapters/mech-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Inventor Mechanics</Link>, which shifts from organizational strategies to the individual inventors and collaborative networks that ultimately produce the patents.
+          The organizational mechanics documented across this chapter -- from the overwhelming exploitation bias and rapid exploration decay to the co-patenting clusters and asymmetric citation dependencies -- paint a nuanced picture of how firms navigate the innovation landscape. While most organizations deepen established domains, the minority that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms, even as within-firm quality concentration continues to rise. These firm-level patterns set the stage for the next chapter, <Link href="/chapters/mech-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Inventor Mechanics</Link>, which shifts from organizational strategies to the individual inventors and collaborative networks that ultimately produce the patents.
         </p>
       </Narrative>
 

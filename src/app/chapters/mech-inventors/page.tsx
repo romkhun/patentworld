@@ -454,7 +454,7 @@ export default function MechInventorsChapter() {
 
       <Narrative>
         <p>
-          The static snapshots of state and city patent output presented above capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
+          The state and city patent output documented in the <Link href="/chapters/geo-domestic" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> chapter capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
           <StatCallout value="geographic mobility" /> -- the manner in which innovators relocate between states, carrying tacit knowledge and professional networks with them.
         </p>
       </Narrative>
@@ -702,14 +702,16 @@ export default function MechInventorsChapter() {
       {/* ================================================================== */}
 
       <Narrative>
-        The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
-        <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
-        examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
+        <p>
+          The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
+          <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
+          examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
+        </p>
       </Narrative>
 
       <InsightRecap
         learned={[
-          "632 prolific inventors form 1,236 co-invention ties, creating a dense knowledge-sharing network among the most productive patent holders.",
+          "632 prolific inventors form 1,236 co-invention ties in a fragmented network of small, tightly connected teams among the most productive patent holders.",
           "143,524 inventor movements flow among 50 major organizations, with California accounting for 54.9% of interstate inventor migration.",
         ]}
         falsifiable="If inventor mobility transfers knowledge between firms, then the receiving firm's patent quality in the mover's technology area should increase after the move, controlling for pre-existing trends."

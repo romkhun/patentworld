@@ -329,9 +329,9 @@ export default function Chapter21() {
           Semiconductor patent filings have maintained consistently high volumes over
           several decades, reflecting the sustained capital investment required to push
           the boundaries of transistor density, power efficiency, and manufacturing yield.
-          Unlike many technology domains that exhibit sudden exponential growth, semiconductor
-          after rapid growth through the 1990s and 2000s, semiconductor patent volume
-          stabilized at 6-7% of all utility patents.
+          Unlike many technology domains that exhibit sudden exponential growth,
+          semiconductor patent volume stabilized at 6-7% of all utility patents after
+          rapid growth through the 1990s and 2000s.
         </p>
       </KeyInsight>
 
@@ -613,8 +613,9 @@ export default function Chapter21() {
       <KeyInsight>
         <p>
           Semiconductor patents exhibit distinctive quality characteristics that reflect the
-          engineering complexity of the field. The growing number of backward citations
-          indicates an increasingly dense web of prior art, consistent with an industry where
+          engineering complexity of the field. Backward citations rose through the early 2010s
+          before declining, a pattern consistent with broader shifts in citation practices, though the
+          earlier rise reflected the increasingly dense web of prior art in an industry where
           each new advance builds incrementally on a vast body of existing knowledge. The
           expanding technology scope suggests that semiconductor patents are becoming more
           interdisciplinary -- spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>{' '}

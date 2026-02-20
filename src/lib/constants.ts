@@ -24,7 +24,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-quality',
     title: 'Patent Quality',
     subtitle: 'Claims, scope, citations, originality, and knowledge flow indicators',
-    description: 'Average claims per patent doubled from 9.4 to 18.9. Forward citations rose to a peak of 6.4 in 2019. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
+    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
   },
   {
     number: 3,
@@ -88,14 +88,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-portfolio',
     title: 'Patent Portfolio',
     subtitle: 'Diversification, competitive proximity, and portfolio transitions',
-    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching Shannon entropy of 7.05 across 293 CPC subclasses. 51 technology pivots detected across 20 companies, often years before strategic shifts become publicly visible.',
+    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, often years before strategic shifts become publicly visible.',
   },
   {
     number: 12,
     slug: 'org-company-profiles',
     title: 'Interactive Company Profiles',
     subtitle: 'Unified patent histories, portfolios, quality trends, and strategy profiles',
-    description: 'Amazon achieves the highest blockbuster patent rate at 6.7%, while IBM leads in cumulative output with 161,888 grants across 311 CPC subclasses. Five interactive views per organization cover output trajectories, technology portfolios, citation quality, innovation strategy, and grant lag.',
+    description: 'Amazon achieves the highest blockbuster patent rate at 6.7%, while IBM leads in cumulative output with 161,888 grants. Five interactive views per organization cover output trajectories, technology portfolios, citation quality, innovation strategy, and grant lag.',
   },
   // ── ACT 3: The Inventors ──
   {
@@ -232,7 +232,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'green-innovation',
     title: 'Green Innovation',
     subtitle: 'Climate technology patents from niche to mainstream',
-    description: 'Green patents show the highest entry velocity multiplier (5.5-fold) among all technology domains studied. Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453. Samsung (13,771), Toyota (12,636), and GE (10,812) lead.',
+    description: 'Green patents show a 1.8-fold velocity increase from 1970s to 2000s entrants (68 to 122 patents per year). Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453. Samsung (13,771), Toyota (12,636), and GE (10,812) lead.',
   },
   {
     number: 32,

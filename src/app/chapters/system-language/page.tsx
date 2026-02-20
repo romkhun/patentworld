@@ -158,7 +158,7 @@ export default function Chapter3() {
     : 8450000;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+    <div>
       <ChapterHeader
         number={5}
         title="The Language of Innovation"

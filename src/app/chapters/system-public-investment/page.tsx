@@ -306,10 +306,6 @@ export default function SystemPublicInvestmentChapter() {
         />
       </ChartContainer>
 
-      <Narrative>
-        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
-      </Narrative>
-
       {/* ── Analysis 16: Government Contract Patent Concentration ─────── */}
 
       <SectionDivider label="Government Contract Patent Concentration" />
@@ -349,6 +345,10 @@ export default function SystemPublicInvestmentChapter() {
           programs, which generate cumulative patent portfolios spanning decades.
         </p>
       </KeyInsight>
+
+      <Narrative>
+        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
+      </Narrative>
 
       <InsightRecap
         learned={[

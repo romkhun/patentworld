@@ -395,7 +395,7 @@ export default function GeoDomesticChapter() {
 
       <Narrative>
         <p>
-          Beyond patent volume, states differ systematically in the quality characteristics of their patent output. The following charts will compare the top US states across seven quality dimensions over time, revealing how regional innovation ecosystems produce patents with distinctive quality profiles.
+          Beyond patent volume, states differ systematically in the quality characteristics of their patent output. The following charts compare the top US states across four quality dimensions over time, revealing how regional innovation ecosystems produce patents with distinctive quality profiles.
         </p>
       </Narrative>
 
@@ -578,7 +578,7 @@ export default function GeoDomesticChapter() {
 
       <Narrative>
         <p>
-          Just as states differ in quality profiles, city-level analysis reveals even finer-grained variation in patent quality characteristics. The following charts will compare the top US cities across seven quality dimensions over time, illuminating how local innovation ecosystems shape the quality of their patent output.
+          Just as states differ in quality profiles, city-level analysis reveals even finer-grained variation in patent quality characteristics. The following charts compare the top US cities across four quality dimensions over time, illuminating how local innovation ecosystems shape the quality of their patent output.
         </p>
       </Narrative>
 

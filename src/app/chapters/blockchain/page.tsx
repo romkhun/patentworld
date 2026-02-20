@@ -305,7 +305,7 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-blockchain-annual-count"
         subtitle="Annual count of utility patents classified under blockchain-related CPC codes, tracking the growth and contraction of blockchain patenting."
-        title="Blockchain Patent Filings Increased Rapidly After 2016, Peaked in 2022, and Declined With the Crypto Market Correction"
+        title="Blockchain Patent Grants Increased Rapidly After 2016, Peaked in 2022, and Declined With the Crypto Market Correction"
         caption="Annual count and share of utility patents classified under blockchain-related CPC codes, illustrating the pronounced hype-cycle pattern. The acceleration beginning in 2016 coincides with increasing enterprise interest in distributed ledger technology and the ICO boom of 2017. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The boom-and-bust pattern in blockchain patents closely mirrors the cryptocurrency market cycle, suggesting that patent filing behavior in this domain is unusually sensitive to market sentiment."
         loading={pyL}

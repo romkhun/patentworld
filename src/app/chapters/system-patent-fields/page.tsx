@@ -998,7 +998,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Self-citation patterns reveal meaningful differences in how firms and sectors accumulate knowledge. In patent-dense fields such as semiconductors and electronics, elevated self-citation rates may reflect genuine cumulative innovation, with each patent building upon the firm&apos;s previous work. However, these rates may also signal strategic behavior, as firms cite their own patents to construct defensive thickets that may raise barriers to entry for competitors.
+          The field-level variation in self-citation rates carries two distinct interpretations. On one hand, elevated rates in patent-dense fields such as semiconductors and electronics may reflect genuine cumulative innovation, with each patent building upon the firm&apos;s previous work. On the other hand, high self-citation rates may also signal strategic behavior, as firms cite their own patents to construct defensive patent thickets that raise barriers to entry. Disentangling these mechanisms requires firm-level analysis of the relationship between self-citation intensity and subsequent market entry, a question explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
         </p>
       </KeyInsight>
 
@@ -1137,7 +1137,7 @@ export default function SystemPatentFieldsChapter() {
       <InsightRecap
         learned={[
           "CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share, rising from 27% to 57% of all grants.",
-          "Patent grant concentration by assignee remains below conventional thresholds across CPC sections, with no single section exceeding 35% share.",
+          "Patent grant concentration by assignee remains below conventional thresholds across all CPC sections, with HHI values well below 1,500 even in the most concentrated technology domains.",
         ]}
         falsifiable="If the G/H shift reflects genuine invention rather than expanded software patentability, then the trend should survive controlling for the State Street Bank (1998) and Alice (2014) decisions."
         nextAnalysis={{

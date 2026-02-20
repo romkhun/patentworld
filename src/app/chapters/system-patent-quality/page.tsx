@@ -251,10 +251,7 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          Patent scope has broadened as technologies become more interdisciplinary. The number
-          of distinct CPC subclasses assigned to each patent has increased steadily, indicating
-          the convergence of once-separate technology domains. Contemporary inventions in areas such as
-          IoT, biotechnology, and AI inherently span multiple classification categories.
+          The steady growth in average patent scope from 1.8 to nearly 2.5 CPC subclasses per patent is consistent with the increasing convergence of once-separate technology domains. This trend accelerated after 2000, coinciding with the rise of inherently cross-disciplinary technologies such as IoT, computational biology, and AI-driven engineering, and is further documented in the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Convergence chapter</Link>.
         </p>
       </KeyInsight>
 

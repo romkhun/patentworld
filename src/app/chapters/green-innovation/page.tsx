@@ -285,11 +285,11 @@ export default function Chapter19() {
   }, [filingVsGrant]);
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+    <div>
       <ChapterHeader
         number={31}
         title="Green Innovation"
-        subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
+        subtitle="Climate technology patents from niche to mainstream"
       />
       <MeasurementSidebar slug="green-innovation" />
 
@@ -868,7 +868,7 @@ export default function Chapter19() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Green patents show the highest entry velocity multiplier (5.5-fold) among all technology domains studied, indicating explosive growth in clean technology innovation.", "Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453."]}
+        learned={["Green patents show a 1.8-fold velocity increase from 1970s entrants (68 patents per year) to 2000s entrants (122 patents per year), reflecting accelerating clean technology innovation.", "Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453."]}
         falsifiable="If green patent growth is driven by policy incentives (IRA, EU Green Deal) rather than technology push, then patent filings should show discontinuous increases following major policy announcements."
         nextAnalysis={{ label: "Quantum Computing", description: "From theoretical foundations to practical hardware — the most concentrated technology domain", href: "/chapters/quantum-computing" }}
       />

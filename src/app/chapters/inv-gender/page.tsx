@@ -593,7 +593,7 @@ export default function InvGenderChapter() {
       <InsightRecap
         learned={[
           "Female inventor share rose from 2.8% in 1976 to 14.9% in 2025, but the pace of growth has slowed in recent years.",
-          "All-male teams average 14.2 forward citations while all-female teams average 9.5, but this gap reflects field composition and institutional factors rather than individual capability.",
+          "All-male teams average 14.2 forward citations while all-female teams average 9.5; this gap is consistent with differences in field composition and institutional factors rather than individual capability.",
         ]}
         falsifiable="If the gender citation gap is driven by field composition, then within narrow CPC subclasses the gap should shrink substantially or disappear."
         nextAnalysis={{

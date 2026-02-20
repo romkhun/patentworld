@@ -268,7 +268,7 @@ export default function InvTopInventorsChapter() {
         id="fig-inventors-citation-impact"
         title="Citation Impact Ranges from Approximately 10 to 965 Average Citations Among the 100 Highest-Citation Inventors"
         subtitle="Average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, based on patents granted through 2020"
-        caption="The figure presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 50."
+        caption="The figure presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 900."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
         loading={siL}
         height={1800}
@@ -588,7 +588,7 @@ export default function InvTopInventorsChapter() {
 
       <InsightRecap
         learned={[
-          "The top 12% of inventors by lifetime output produce 61% of all patent grants, indicating extreme concentration of inventive output.",
+          "The top 5% of inventors by cumulative patent count account for 60% of annual patent output, indicating extreme concentration of inventive output.",
           "The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents — nearly nine times the output of the median prolific inventor in the top 100.",
         ]}
         falsifiable="If superstar concentration reflects individual talent rather than institutional resources, then prolific inventors should maintain high citation impact even when they change employers."

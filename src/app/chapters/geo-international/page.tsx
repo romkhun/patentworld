@@ -144,7 +144,7 @@ export default function GeoInternationalChapter() {
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
         <li>The United States leads with 164,000 patents (cumulative in the 2020s decade, by primary assignee country) and 18.4 average claims, while rapidly growing patent origins such as China exhibit lower average claims, suggesting a quality-quantity tradeoff.</li>
-        <li>US-domestic patents and international patents may differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
+        <li>US-domestic patents and international patents differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -167,7 +167,7 @@ export default function GeoInternationalChapter() {
       <SectionDivider label="Domestic versus International Patent Quality" />
       <Narrative>
         <p>
-          US-domestic patents (where all listed inventors reside in the United States) and international patents (with at least one non-US inventor) may differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.
+          US-domestic patents (where all listed inventors reside in the United States) and international patents (with at least one non-US inventor) differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.
         </p>
       </Narrative>
       {/* A.i — Forward Citations */}
@@ -315,7 +315,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          Comparing domestic and international patents across multiple quality dimensions will illuminate whether the growing internationalization of the US patent system has affected the distribution of patent quality. These comparisons may reveal differences in filing strategies, research intensity, and the types of inventions that cross national borders to enter the US system.
+          The comparison of domestic and international patents across multiple quality dimensions illuminates the extent to which the growing internationalization of the US patent system has affected the distribution of patent quality. These patterns reveal differences in filing strategies, research intensity, and the types of inventions that cross national borders to enter the US system.
         </p>
       </KeyInsight>
 
