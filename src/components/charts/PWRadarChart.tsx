@@ -49,7 +49,7 @@ export function PWRadarChart({
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend }}
+          wrapperStyle={{ paddingTop: 8, fontSize: chartTheme.fontSize.legend }}
           iconType="circle"
           iconSize={8}
         />

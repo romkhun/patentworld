@@ -96,10 +96,10 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <p className="sr-only" aria-live="polite">{statusText}</p>
       )}
       {caption && (
-        <figcaption className="mt-4 text-[13px] leading-relaxed text-muted-foreground/80">{caption}</figcaption>
+        <figcaption className="mt-2 text-[13px] leading-relaxed text-muted-foreground/80">{caption}</figcaption>
       )}
       {insight && (
-        <div className="mt-4 border-l-2 border-primary/30 pl-4 text-sm leading-relaxed text-foreground/80">
+        <div className="mt-2 border-l-2 border-primary/30 pl-4 text-sm leading-relaxed text-foreground/80">
           {insight}
         </div>
       )}

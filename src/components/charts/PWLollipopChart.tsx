@@ -144,7 +144,7 @@ export function PWLollipopChart({
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
+          wrapperStyle={{ paddingTop: 8, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
           {...{ payload: [{ value: displayName, type: 'circle' as const, id: valueKey, color: colorByValue ? CHART_COLORS[0] : accentColor }] as any }}

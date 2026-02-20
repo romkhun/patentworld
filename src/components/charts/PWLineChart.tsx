@@ -179,7 +179,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
           />
         )}
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
+          wrapperStyle={{ paddingTop: 8, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
           onMouseEnter={handleLegendEnter}

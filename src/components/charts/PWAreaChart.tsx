@@ -106,7 +106,7 @@ export function PWAreaChart({ data, xKey, areas, stacked = false, stackedPercent
           ]}
         />
         <Legend
-          wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
+          wrapperStyle={{ paddingTop: 8, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"
           iconSize={8}
           {...(reversedLegendPayload ? { payload: reversedLegendPayload as any } : {})}
