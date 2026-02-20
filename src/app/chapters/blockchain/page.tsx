@@ -27,7 +27,8 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
-  DomainStrategy, DomainDiffusion,
+  DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
+  DomainQualityBifurcation, BlockchainHypeCycle,
 } from '@/lib/types';
 
 export default function Chapter16() {
@@ -42,6 +43,9 @@ export default function Chapter16() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('blockchain/blockchain_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('blockchain/blockchain_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('blockchain/blockchain_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('blockchain/blockchain_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('blockchain/blockchain_quality_bifurcation.json');
+  const { data: hypeCycle, loading: hcL } = useChapterData<BlockchainHypeCycle[]>('blockchain/blockchain_hype_cycle.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -181,6 +185,11 @@ export default function Chapter16() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !perYear) return [];
@@ -256,7 +265,7 @@ export default function Chapter16() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing</Link> and how the expiration of foundational patents triggered a wave of follow-on innovation, this chapter turns to blockchain, a domain where patent filing activity has tracked speculative market cycles with unusual fidelity.
+          Having examined <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> and the intersection of molecular biology with patent strategy, this chapter turns to blockchain, a domain whose patent trajectory is uniquely shaped by speculative market cycles and the cryptocurrency boom-bust pattern.
         </p>
         <p>
           Blockchain technology -- originally conceived as the infrastructure underlying Bitcoin --
@@ -285,7 +294,7 @@ export default function Chapter16() {
         id="fig-blockchain-annual-count"
         subtitle="Annual count of utility patents classified under blockchain-related CPC codes, tracking the growth and contraction of blockchain patenting."
         title="Blockchain Patent Filings Increased Rapidly After 2016, Peaked in 2022, and Declined With the Crypto Market Correction"
-        caption="Annual count and share of utility patents classified under blockchain-related CPC codes, illustrating the pronounced hype-cycle pattern. The acceleration beginning in 2016 coincides with increasing enterprise interest in distributed ledger technology and the ICO boom of 2017."
+        caption="Annual count and share of utility patents classified under blockchain-related CPC codes, illustrating the pronounced hype-cycle pattern. The acceleration beginning in 2016 coincides with increasing enterprise interest in distributed ledger technology and the ICO boom of 2017. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The boom-and-bust pattern in blockchain patents closely mirrors the cryptocurrency market cycle, suggesting that patent filing behavior in this domain is unusually sensitive to market sentiment."
         loading={pyL}
       >
@@ -309,6 +318,40 @@ export default function Chapter16() {
           ecosystem. Filings declined after 2022 as crypto market valuations fell and corporate enthusiasm waned.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-blockchain-entrant-incumbent"
+        title="Blockchain Patent Growth Was Dominated by New Entrants During the 2017–2020 Boom"
+        subtitle="Annual patent counts from entrant and incumbent assignees in the blockchain domain."
+        caption="Entrants are organizations filing their first blockchain patent in a given year; incumbents are those with prior filings."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[1] },
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+          ]}
+          stacked
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-blockchain-hype-cycle"
+        title="One-and-Done Entrant Share Reveals the Blockchain Hype Cycle"
+        subtitle="Percentage of new blockchain assignees who file exactly one patent and never return, by entry cohort year."
+        caption="One-and-done share above 80% suggests speculative patenting by firms with no sustained commitment to the technology. The peak around 2017–2019 coincides with the cryptocurrency boom."
+        loading={hcL}
+      >
+        <PWLineChart
+          data={hypeCycle ?? []}
+          xKey="cohort_year"
+          lines={[{ key: 'one_and_done_pct', name: 'One-and-Done Share (%)', color: CHART_COLORS[1] }]}
+          yLabel="% One-and-Done"
+        />
+      </ChartContainer>
 
       <ChartContainer
         id="fig-blockchain-share"
@@ -572,6 +615,21 @@ export default function Chapter16() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-blockchain-quality-bifurcation"
+        title="Blockchain Top-Decile Citation Share Declined Sharply as Speculative Filing Surged"
+        subtitle="Share of blockchain patents in the top decile of forward citations, by grant year."
+        caption="Top-decile citation share measures the proportion of domain patents that rank in the top 10% of all patents by forward citations received."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="year"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="Top-Decile Share (%)"
+        />
+      </ChartContainer>
+
       {/* ── Section 7: Patenting Strategies ── */}
       <SectionDivider label="Blockchain Patenting Strategies" />
       <Narrative>
@@ -757,12 +815,14 @@ export default function Chapter16() {
       </Narrative>
 
       <Narrative>
-        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the following chapter examines <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, a domain that shares blockchain&apos;s rapid growth but exhibits a more sustained trajectory. The organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
-        The next chapter turns to <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, the largest technology domain by patent volume in this study, where the growth trajectory has proven more durable than blockchain&apos;s and where cross-domain diffusion reaches into nearly every other field examined in ACT 6.
+        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-blockchain-cr4"

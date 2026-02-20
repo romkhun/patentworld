@@ -28,6 +28,8 @@ import type {
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
+  DigihealthRegulatorySplit,
 } from '@/lib/types';
 
 export default function Chapter18() {
@@ -42,6 +44,9 @@ export default function Chapter18() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('digihealth/digihealth_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('digihealth/digihealth_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('digihealth/digihealth_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('digihealth/digihealth_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('digihealth/digihealth_quality_bifurcation.json');
+  const { data: regSplit, loading: rsL } = useChapterData<DigihealthRegulatorySplit[]>('digihealth/digihealth_regulatory_split.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -181,6 +186,22 @@ export default function Chapter18() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
+  const regSplitPivot = useMemo(() => {
+    if (!regSplit) return [];
+    const years = [...new Set(regSplit.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: any = { year };
+      regSplit.filter(d => d.year === year).forEach(d => { row[d.category] = d.patent_count; });
+      return row;
+    });
+  }, [regSplit]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !perYear) return [];
@@ -256,7 +277,7 @@ export default function Chapter18() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link> patenting at the molecular level, this chapter turns to digital health and medical devices, where biological insights are translated into clinical technologies through computing, sensors, and data analytics.
+          Having examined <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link> and the escalating arms race between digital threats and defensive innovation, this chapter turns to digital health, a domain where data security considerations increasingly intersect with patient monitoring and clinical decision support.
         </p>
         <p>
           Digital health bridges the worlds of medicine and computing, encompassing a broad
@@ -284,7 +305,7 @@ export default function Chapter18() {
         id="fig-digihealth-annual-count"
         subtitle="Annual count of utility patents classified under digital health CPC codes, tracking the growth trajectory of digital health patenting."
         title="Digital Health Patent Filings Have Grown Substantially Since 2009, Driven by the HITECH Act and COVID-19 Pandemic"
-        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption."
+        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth trajectory of digital health patents coincides with regulatory mandates (HITECH Act), public health emergencies (COVID-19), and advances in sensor technology, wireless connectivity, and cloud computing."
         loading={pyL}
       >
@@ -745,6 +766,26 @@ export default function Chapter18() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-digihealth-regulatory-split"
+        title="Traditional Medical Device Firms Dominate Digital Health Patenting, but Big Tech Is Growing"
+        subtitle="Patent counts by assignee category: traditional med-device firms, Big Tech entrants, and all others."
+        caption="Med-device category includes Medtronic, Becton Dickinson, Boston Scientific, Stryker, Siemens Healthineers, Philips, Abbott, Edwards, Baxter, Intuitive Surgical. Big Tech includes Apple, Google, Microsoft, Amazon, Samsung, Meta."
+        loading={rsL}
+      >
+        <PWAreaChart
+          data={regSplitPivot}
+          xKey="year"
+          areas={[
+            { key: 'Med Device', name: 'Med Device', color: CHART_COLORS[0] },
+            { key: 'Big Tech', name: 'Big Tech', color: CHART_COLORS[1] },
+            { key: 'Other', name: 'Other', color: CHART_COLORS[3] },
+          ]}
+          stacked
+          yLabel="Patents"
+        />
+      </ChartContainer>
+
       {/* ── Section 11: Closing Narrative ─────────────────────────────────── */}
       <Narrative>
         <p>
@@ -761,12 +802,49 @@ export default function Chapter18() {
           intelligence is examined in the chapter on{' '}
           <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
             Artificial Intelligence
-          </Link>. The next chapter examines <Link href="/chapters/agricultural-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link>, a domain where the integration of sensors, data analytics, and biological innovation parallels the convergence observed in digital health.
+          </Link>.
         </p>
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
+
+      <ChartContainer
+        id="fig-digihealth-entrant-incumbent"
+        title="Digital Health Patent Growth Is Driven Primarily by Incumbent Medical Device and Technology Firms"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first digital health patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-digihealth-quality-bifurcation"
+        title="Digital Health Top-Decile Citation Share Remained Relatively Stable Despite Volume Growth"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
 
       <ChartContainer
         id="fig-digihealth-cr4"

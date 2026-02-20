@@ -29,7 +29,8 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
-  DomainStrategy, DomainDiffusion,
+  DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
+  DomainQualityBifurcation, QuantumSemiDependence,
 } from '@/lib/types';
 
 export default function Chapter20() {
@@ -44,6 +45,14 @@ export default function Chapter20() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('quantum/quantum_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('quantum/quantum_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('quantum/quantum_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('quantum/quantum_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('quantum/quantum_quality_bifurcation.json');
+  const { data: semiDep, loading: sdL } = useChapterData<QuantumSemiDependence[]>('quantum/quantum_semiconductor_dependence.json');
+
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -258,7 +267,7 @@ export default function Chapter20() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductor</Link> patenting trends and the silicon foundation of modern computing, this chapter turns to the closely related field of quantum computing, where advances in qubit hardware depend on the same fabrication expertise documented in the preceding chapter.
+          Having examined <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link> and the patent system&apos;s response to climate technology across energy, transport, and industrial production, this chapter turns to quantum computing, a domain at the opposite end of the maturity spectrum — small in volume but growing rapidly as hardware implementations move from theory to engineering.
         </p>
         <p>
           Quantum computing represents one of the most technically demanding frontiers in
@@ -284,7 +293,7 @@ export default function Chapter20() {
         id="fig-quantum-patents-annual-count"
         subtitle="Annual count of utility patents classified under quantum computing-related CPC codes, tracking the growth trajectory of quantum computing patenting."
         title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Reflecting the Field's Transition to Engineering"
-        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019."
+        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in quantum computing patents coincides with increased corporate investment in quantum hardware and software, following milestones in qubit performance and error correction demonstrated in the late 2010s."
         loading={pyL}
       >
@@ -327,6 +336,25 @@ export default function Chapter20() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={QUANTUM_EVENTS}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-quantum-entrant-incumbent"
+        title="Quantum Computing Patenting Is Increasingly Driven by New Entrants as the Field Matures"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first quantum computing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -405,6 +433,21 @@ export default function Chapter20() {
           among the top assignees underscores the strategic significance of quantum computing.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-quantum-semi-dependence"
+        title="A Declining Share of Quantum Computing Entrants Have Prior Semiconductor Experience"
+        subtitle="Percentage of quantum computing assignees with prior semiconductor patents, by 5-year entry cohort."
+        caption="Prior semiconductor experience measured by whether the assignee filed at least one H01L/H10 patent before their first quantum computing patent. Declining share suggests quantum is attracting new entrants from software and cloud computing rather than traditional semiconductor firms."
+        loading={sdL}
+      >
+        <PWBarChart
+          data={semiDep ?? []}
+          xKey="cohort"
+          bars={[{ key: 'pct_with_semi', name: '% With Semiconductor Experience', color: CHART_COLORS[0] }]}
+          yLabel="% of Entrants"
+        />
+      </ChartContainer>
 
       {orgRankData.length > 0 && (
         <ChartContainer
@@ -567,6 +610,21 @@ export default function Chapter20() {
           core quantum information theory.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-quantum-quality-bifurcation"
+        title="Quantum Computing Maintained High Top-Decile Citation Share, Consistent With a Frontier Domain"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
 
       <SectionDivider label="Team Size Comparison" />
 
@@ -743,6 +801,9 @@ export default function Chapter20() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-quantum-cr4"
@@ -794,7 +855,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter. The next chapter examines <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link>, a domain where quantum computing poses both a fundamental threat to existing cryptographic systems and a potential source of new post-quantum security methods.
+        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter.
       </Narrative>
 
       <InsightRecap

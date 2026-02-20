@@ -29,7 +29,8 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
-  DomainStrategy, DomainDiffusion,
+  DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
+  DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter14() {
@@ -44,6 +45,8 @@ export default function Chapter14() {
   const { data: avDiffusion, loading: adL } = useChapterData<DomainDiffusion[]>('av/av_diffusion.json');
   const { data: avTeam, loading: atcL } = useChapterData<DomainTeamComparison[]>('av/av_team_comparison.json');
   const { data: avAssignType, loading: aatL } = useChapterData<DomainAssigneeType[]>('av/av_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('av/av_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('av/av_quality_bifurcation.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -183,6 +186,11 @@ export default function Chapter14() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [avAssignType]);
 
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !perYear) return [];
@@ -258,7 +266,7 @@ export default function Chapter14() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/agricultural-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link> and the growing role of sensors and data analytics in precision farming, this chapter turns to autonomous vehicles, where many of the same perception and machine learning technologies are applied to the challenges of self-driving transportation.
+          Having examined <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and its role as a general-purpose technology across the patent system, this chapter turns to autonomous vehicles, a domain where AI-driven perception and decision-making systems constitute the core of inventive activity.
         </p>
         <p>
           Autonomous vehicles and advanced driver-assistance systems (ADAS) represent a convergence
@@ -286,7 +294,7 @@ export default function Chapter14() {
         id="fig-av-annual-count"
         subtitle="Annual count of utility patents classified under AV-related CPC codes, tracking the growth trajectory of autonomous vehicle patenting."
         title="AV Patent Filings Increased Rapidly Through the 2010s, Driven by the Entry of Technology Companies Into the Transportation Sector"
-        caption="Annual count and share of utility patents classified under AV-related CPC codes (G05D1, B60W, G08G), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs."
+        caption="Annual count and share of utility patents classified under AV-related CPC codes (G05D1, B60W, G08G), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AV patents mirrors the broader industry transformation, driven by advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
         loading={pyL}
       >
@@ -310,6 +318,25 @@ export default function Chapter14() {
           technologies.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-av-entrant-incumbent"
+        title="Autonomous Vehicle Patent Growth Is Driven by Both New Entrants and Expanding Incumbents"
+        subtitle="Annual patent counts from entrant and incumbent assignees in the autonomous vehicle domain."
+        caption="Entrants are organizations filing their first AV patent in a given year; incumbents are those with prior filings."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[1] },
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+          ]}
+          stacked
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       {/* -- Section 2: AV Share of All Patents --------------------------------- */}
       <ChartContainer
@@ -578,6 +605,21 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-av-quality-bifurcation"
+        title="Autonomous Vehicle Top-Decile Citation Share Has Declined Amid Rapid Volume Growth"
+        subtitle="Share of AV patents in the top decile of forward citations, by grant year."
+        caption="Top-decile citation share measures the proportion of domain patents that rank in the top 10% of all patents by forward citations received."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="year"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="Top-Decile Share (%)"
+        />
+      </ChartContainer>
+
       {/* -- Section 9: AV Patenting Strategies -------------------------------- */}
       <SectionDivider label="AV Patenting Strategies" />
       <Narrative>
@@ -753,6 +795,9 @@ export default function Chapter14() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-av-cr4"
@@ -812,7 +857,6 @@ export default function Chapter14() {
         <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
         while the AI foundations that underpin autonomous driving are examined in the{' '}
         <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
-        The next chapter examines <Link href="/chapters/space-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">space technology</Link>, a domain where autonomous navigation, sensor fusion, and systems integration challenges parallel those encountered in self-driving vehicles but are extended to the orbital environment.
       </Narrative>
 
       <InsightRecap

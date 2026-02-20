@@ -1525,6 +1525,108 @@ export interface BridgeCentralityQuintile {
   mean_patent_count: number;
 }
 
+// ── ACT 6 Cross-Domain Overview Types ────────────────────────────────────────
+
+export interface Act6DomainSummary {
+  domain: string;
+  slug: string;
+  total_patents: number;
+  recent_5yr: number;
+  cagr_5yr: number | null;
+  share_2024: number | null;
+  mean_citations: number;
+  mean_claims: number;
+  mean_scope: number;
+  mean_team_size: number;
+}
+
+export interface Act6TimeSeries {
+  domain: string;
+  slug: string;
+  year: number;
+  count: number;
+}
+
+export interface Act6QualityPeriod {
+  domain: string;
+  slug: string;
+  period: number;
+  patent_count: number;
+  mean_citations: number;
+  mean_claims: number;
+  mean_scope: number;
+  mean_team_size: number;
+}
+
+export interface Act6Spillover {
+  domain_a: string;
+  domain_b: string;
+  observed: number;
+  expected: number;
+  lift: number;
+}
+
+// ── ACT 6 Enrichment Types ──────────────────────────────────────────────────
+
+export interface DomainEntrantIncumbent {
+  year: number;
+  entrant_count: number;
+  incumbent_count: number;
+}
+
+export interface DomainQualityBifurcation {
+  period: number;
+  patent_count: number;
+  top_decile_share: number;
+  median_claims: number;
+}
+
+export interface AiGptKpi {
+  year: number;
+  distinct_sections: number;
+  ai_patents_with_other: number;
+  hhi: number;
+}
+
+export interface GreenEvBatteryCoupling {
+  year: number;
+  total_green: number;
+  green_ev: number;
+  green_battery: number;
+  green_ev_battery: number;
+  lift: number | null;
+}
+
+export interface QuantumSemiDependence {
+  cohort: number;
+  total_assignees: number;
+  with_semi_experience: number;
+  pct_with_semi: number;
+}
+
+export interface SystemsComplexity {
+  domain: string;
+  period: number;
+  mean_team_size: number;
+  mean_claims: number;
+  patent_count: number;
+  team_size_index: number | null;
+  claims_index: number | null;
+}
+
+export interface BlockchainHypeCycle {
+  cohort_year: number;
+  total_entrants: number;
+  one_and_done: number;
+  one_and_done_pct: number;
+}
+
+export interface DigihealthRegulatorySplit {
+  year: number;
+  category: string;
+  patent_count: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

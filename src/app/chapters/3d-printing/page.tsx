@@ -28,6 +28,7 @@ import type {
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter11() {
@@ -42,6 +43,14 @@ export default function Chapter11() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('3dprint/3dprint_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('3dprint/3dprint_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('3dprint/3dprint_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('3dprint/3dprint_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('3dprint/3dprint_quality_bifurcation.json');
+
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -256,7 +265,7 @@ export default function Chapter11() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/space-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">space technology</Link> and the commercialization of the aerospace sector, this chapter turns to 3D printing, a manufacturing technology whose earliest production-grade applications emerged in aerospace and whose patent landscape reflects a parallel trajectory from government-funded research to commercially driven innovation.
+          Having examined the geographic mechanics of innovation in the previous act, this chapter opens ACT 6 with 3D printing, a manufacturing technology whose patent landscape reveals how foundational patent expirations can democratize an entire field and whose earliest production-grade applications emerged in aerospace before spreading to consumer and industrial markets.
         </p>
         <p>
           3D printing, more formally known as additive manufacturing (AM), builds objects
@@ -285,7 +294,7 @@ export default function Chapter11() {
         id="fig-3dprint-annual-count"
         subtitle="Annual count of utility patents classified under additive manufacturing CPC codes (B33Y, B29C64, B22F10), tracking the growth trajectory of 3D printing patenting."
         title="3D Printing Patent Filings Grew Substantially Since 2000, With Acceleration After the 2009 FDM Patent Expiration"
-        caption="Annual count and share of utility patents classified under additive manufacturing CPC codes, 1990-2025. The sharp acceleration after 2009 coincides with the expiration of Stratasys's foundational FDM patent, which opened the technology to widespread adoption and new entrants."
+        caption="Annual count and share of utility patents classified under additive manufacturing CPC codes, 1990-2025. The sharp acceleration after 2009 coincides with the expiration of Stratasys's foundational FDM patent, which opened the technology to widespread adoption and new entrants. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in 3D printing patents is associated with the broader expansion of additive manufacturing, coinciding with patent expirations, falling hardware costs, and expanding material capabilities."
         loading={pyL}
       >
@@ -328,6 +337,25 @@ export default function Chapter11() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PRINT3D_EVENTS)}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-3dprint-entrant-incumbent"
+        title="3D Printing Growth Is Driven Primarily by New Entrants After the 2009 FDM Patent Expiration"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first 3D printing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -575,6 +603,21 @@ export default function Chapter11() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-3dprint-quality-bifurcation"
+        title="3D Printing Top-Decile Citation Share Has Declined as the Field Expanded"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
+
       {/* ── Section 8: AM Patent Strategies ────────────────────────────── */}
       <SectionDivider label="AM Patenting Strategies" />
       <Narrative>
@@ -747,6 +790,9 @@ export default function Chapter11() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-3dprint-cr4"
@@ -799,7 +845,6 @@ export default function Chapter11() {
 
       <Narrative>
         Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
-        The next chapter examines <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain and distributed ledger technology</Link>, a domain that, like 3D printing, experienced a rapid expansion in patent filings driven by speculative enthusiasm and the expiration of foundational intellectual property.
       </Narrative>
 
       <InsightRecap

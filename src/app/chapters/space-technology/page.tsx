@@ -27,7 +27,8 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
-  DomainStrategy, DomainDiffusion,
+  DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
+  DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter22() {
@@ -42,6 +43,13 @@ export default function Chapter22() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('space/space_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('space/space_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('space/space_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('space/space_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('space/space_quality_bifurcation.json');
+
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -256,7 +264,7 @@ export default function Chapter22() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link> and the convergence of AI, sensor fusion, and systems engineering in self-driving technology, this chapter turns to space technology, where many of the same navigation and autonomy challenges are extended to the orbital domain.
+          Having examined <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and the concentrated landscape of advanced chip fabrication, this chapter turns to space technology, a domain whose transition from government-funded to commercially driven innovation parallels the broader structural shifts documented throughout ACT 6.
         </p>
         <p>
           Space technology has undergone a fundamental transformation over the past two decades,
@@ -284,7 +292,7 @@ export default function Chapter22() {
         id="fig-space-annual-count"
         subtitle="Annual count of utility patents classified under space technology CPC codes, tracking the growth trajectory of space-related patenting."
         title="Space Patent Filings Have Grown Substantially Since 2015, Reflecting the Commercialization of the Space Industry"
-        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs."
+        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in space patents coincides with the broader commercialization of the space industry, including reusable launch vehicles, satellite constellations, and increasing private-sector investment."
         loading={pyL}
       >
@@ -327,6 +335,25 @@ export default function Chapter22() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={SPACE_EVENTS}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-space-entrant-incumbent"
+        title="Space Technology Patenting Shows Accelerating Entrant Contributions as Commercial Space Expands"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first space technology patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -569,6 +596,21 @@ export default function Chapter22() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-space-quality-bifurcation"
+        title="Space Technology Top-Decile Citation Share Has Fluctuated, Reflecting the Domain's Structural Transition"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
+
       {/* ── Section 7: Strategies ─────────────────────────────────────────── */}
       <SectionDivider label="Space Patenting Strategies" />
 
@@ -758,6 +800,9 @@ export default function Chapter22() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-space-cr4"
@@ -819,9 +864,6 @@ export default function Chapter22() {
           funded, and deployed. As satellite communications become central to global connectivity
           and commercial space stations enter development, the pace of space-related patenting
           appears likely to accelerate further.
-        </p>
-        <p>
-          The next chapter examines <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing and additive manufacturing</Link>, a domain where aerospace applications have been among the earliest and most consequential use cases for production-grade metal printing technologies.
         </p>
       </Narrative>
 

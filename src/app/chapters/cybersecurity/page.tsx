@@ -30,6 +30,7 @@ import type {
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter17() {
@@ -44,6 +45,8 @@ export default function Chapter17() {
   const { data: cyberDiffusion, loading: cdL } = useChapterData<DomainDiffusion[]>('cyber/cyber_diffusion.json');
   const { data: cyberTeam, loading: ctcL } = useChapterData<DomainTeamComparison[]>('cyber/cyber_team_comparison.json');
   const { data: cyberAssignType, loading: catL } = useChapterData<DomainAssigneeType[]>('cyber/cyber_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('cyber/cyber_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('cyber/cyber_quality_bifurcation.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -183,6 +186,12 @@ export default function Chapter17() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [cyberAssignType]);
 
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !perYear) return [];
@@ -258,7 +267,7 @@ export default function Chapter17() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> patenting and its implications for future cryptographic systems, this chapter turns to cybersecurity, a domain whose reliance on encryption and authentication makes it directly sensitive to advances in quantum hardware.
+          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to cybersecurity, a domain whose growth trajectory is shaped by escalating digital threats and regulatory mandates.
         </p>
         <p>
           As the digital economy has expanded, so too has the attack surface that threatens it.
@@ -288,7 +297,7 @@ export default function Chapter17() {
         id="fig-cyber-patents-annual-count"
         subtitle="Annual count of utility patents classified under cybersecurity-related CPC codes, tracking the growth trajectory of cybersecurity patenting."
         title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Driven by Data Breaches, Ransomware, and Regulatory Compliance"
-        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020)."
+        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020). Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in cybersecurity patents coincides with the expansion of the digital economy, with acceleration observed following major security incidents such as the Snowden disclosures (2013), WannaCry ransomware campaign (2017), and SolarWinds attack (2020)."
         loading={pyL}
       >
@@ -755,11 +764,48 @@ export default function Chapter17() {
       </KeyInsight>
 
       <Narrative>
-        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter. The next chapter examines <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology and gene editing</Link>, a domain where data security and privacy concerns intersect with the protection of genomic information and patient health records.
+        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
+
+      <ChartContainer
+        id="fig-cyber-entrant-incumbent"
+        title="Cybersecurity Patent Growth Reflects Balanced Contributions From Entrants and Incumbents"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first cybersecurity patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-cyber-quality-bifurcation"
+        title="Cybersecurity Top-Decile Citation Share Has Gradually Declined as the Field Matured"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
 
       <ChartContainer
         id="fig-cyber-cr4"

@@ -27,7 +27,8 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
-  DomainStrategy, DomainDiffusion,
+  DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
+  DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter15() {
@@ -42,6 +43,8 @@ export default function Chapter15() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('biotech/biotech_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('biotech/biotech_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('biotech/biotech_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('biotech/biotech_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('biotech/biotech_quality_bifurcation.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -181,6 +184,11 @@ export default function Chapter15() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: categories };
   }, [assigneeType]);
 
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !perYear) return [];
@@ -268,7 +276,7 @@ export default function Chapter15() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link> patenting and the defense of digital infrastructure, this chapter shifts from the digital domain to the life sciences, where biotechnology patents address a fundamentally different set of challenges in molecular biology and genetic engineering.
+          Having examined <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link> and the convergence of AI, sensing, and control systems in transportation, this chapter turns to biotechnology, a domain defined by fundamentally different innovation dynamics rooted in molecular biology and regulatory constraints.
         </p>
         <p>
           Biotechnology occupies a distinctive position within the patent system. Unlike most
@@ -300,7 +308,7 @@ export default function Chapter15() {
         id="fig-biotech-annual-count"
         subtitle="Annual count of utility patents classified under biotechnology-related CPC codes, tracking the growth trajectory of biotech patenting."
         title="Biotechnology Patent Filings Have Grown Substantially Since the 1980s, With Notable Fluctuations"
-        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976-2025. The growth trajectory reflects successive waves driven by the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012)."
+        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976-2025. The growth trajectory reflects successive waves driven by the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012). Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The sustained growth of biotech patents reflects the expanding commercial potential of molecular biology, with each major scientific breakthrough triggering a new wave of inventive activity."
         loading={pyL}
       >
@@ -326,6 +334,25 @@ export default function Chapter15() {
           frontier of precision genetic engineering.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-biotech-entrant-incumbent"
+        title="Biotechnology Patenting Shows Persistent Incumbent Strength With Steady Entrant Inflows"
+        subtitle="Annual patent counts from entrant and incumbent assignees in the biotechnology domain."
+        caption="Entrants are organizations filing their first biotech patent in a given year; incumbents are those with prior filings."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[1] },
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+          ]}
+          stacked
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <ChartContainer
         id="fig-biotech-share"
@@ -603,6 +630,21 @@ export default function Chapter15() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-biotech-quality-bifurcation"
+        title="Biotechnology Maintained Above-Average Top-Decile Citation Share Throughout Its History"
+        subtitle="Share of biotech patents in the top decile of forward citations, by grant year."
+        caption="Top-decile citation share measures the proportion of domain patents that rank in the top 10% of all patents by forward citations received."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="year"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="Top-Decile Share (%)"
+        />
+      </ChartContainer>
+
       {/* == Section 7: Patenting Strategies =================================== */}
       <SectionDivider label="Biotech Patenting Strategies" />
       <Narrative>
@@ -778,7 +820,7 @@ export default function Chapter15() {
         </p>
       </KeyInsight>
 
-      {/* == Section 11: Ethical and Regulatory Dimensions ==================== */}
+      {/* ── Section 10.5: Ethical/Regulatory bridge ── */}
       <SectionDivider label="Ethical and Regulatory Considerations" />
 
       <Narrative>
@@ -815,12 +857,15 @@ export default function Chapter15() {
           tension between incentivizing innovation and ensuring equitable access to
           life-saving technologies -- exemplified by debates over mRNA vaccine patents during the
           COVID-19 pandemic -- remains one of the most consequential policy questions in the
-          modern patent system. The next chapter examines <Link href="/chapters/digital-health" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital health and medical devices</Link>, a domain where biotechnology innovations increasingly converge with computing and sensor technologies to transform healthcare delivery.
+          modern patent system.
         </p>
       </KeyInsight>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-biotech-cr4"

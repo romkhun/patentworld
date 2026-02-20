@@ -29,6 +29,7 @@ import type {
   AIPatentsPerYear, AIBySubfield, AITopAssignee,
   AITopInventor, AIGeography, AIQuality, AIOrgOverTime,
   AIStrategy, AIGPTDiffusion, AITeamComparison, AIAssigneeType,
+  DomainEntrantIncumbent, DomainQualityBifurcation, AiGptKpi,
 } from '@/lib/types';
 
 const SUBFIELD_COLORS: Record<string, string> = {
@@ -57,6 +58,15 @@ export default function Chapter13() {
   const { data: aiGptDiffusion, loading: agdL } = useChapterData<AIGPTDiffusion[]>('chapter11/ai_gpt_diffusion.json');
   const { data: aiTeam, loading: atcL } = useChapterData<AITeamComparison[]>('chapter11/ai_team_comparison.json');
   const { data: aiAssignType, loading: aatL } = useChapterData<AIAssigneeType[]>('chapter11/ai_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('chapter11/ai_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('chapter11/ai_quality_bifurcation.json');
+  const { data: gptKpi, loading: gptL } = useChapterData<AiGptKpi[]>('chapter11/ai_gpt_kpi.json');
+
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -271,7 +281,7 @@ export default function Chapter13() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 6.
+          Having examined <Link href="/chapters/agricultural-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link> and the transformation of food production through precision agriculture, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 6.
         </p>
         <p>
           Artificial intelligence has evolved from a specialized academic pursuit to one of
@@ -298,7 +308,7 @@ export default function Chapter13() {
         id="fig-ai-patents-annual-count"
         subtitle="Annual count of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), tracking the growth trajectory of AI patenting."
         title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, Reflecting Deep Learning Advances"
-        caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing."
+        caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, driven by advances in deep learning frameworks, GPU computing, and large-scale data availability."
         loading={pyL}
       >
@@ -340,6 +350,25 @@ export default function Chapter13() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2008, 2014, 2020] })}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-ai-entrant-incumbent"
+        title="AI Patent Growth Is Dominated by Incumbents, Though Entrants Surged After 2015"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first AI patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -577,6 +606,21 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-ai-quality-bifurcation"
+        title="AI Patent Top-Decile Citation Share Declined as Volume Exploded"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
+
       <SectionDivider label="AI Patenting Strategies" />
       <Narrative>
         <p>
@@ -675,6 +719,25 @@ export default function Chapter13() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-ai-gpt-kpi"
+        title="AI Patents Span an Increasing Number of Technology Domains, Confirming GPT Status"
+        subtitle="Distinct non-AI CPC sections co-occurring with AI patents, and HHI of their distribution, by year."
+        caption="Distinct sections measures breadth of AI application; falling HHI indicates increasingly even distribution across technology domains. Both trends are consistent with AI functioning as a general-purpose technology."
+        loading={gptL}
+      >
+        <PWLineChart
+          data={gptKpi ?? []}
+          xKey="year"
+          lines={[
+            { key: 'distinct_sections', name: 'Distinct CPC Sections', color: CHART_COLORS[0] },
+            { key: 'hhi', name: 'HHI', color: CHART_COLORS[1], yAxisId: 'right' },
+          ]}
+          yLabel="Sections"
+          rightYLabel="HHI"
+        />
+      </ChartContainer>
+
       <SectionDivider label="The Attribution Challenge in AI Patenting" />
 
       <Narrative>
@@ -742,6 +805,9 @@ export default function Chapter13() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-ai-cr4"
@@ -793,7 +859,7 @@ export default function Chapter13() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 6 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having documented the growth of artificial intelligence in the patent system, the organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
 
       <InsightRecap

@@ -31,6 +31,7 @@ import type {
   DomainOrgOverTime, DomainTopInventor, DomainGeography,
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter12() {
@@ -45,6 +46,14 @@ export default function Chapter12() {
   const { data: diffusion, loading: diffL } = useChapterData<DomainDiffusion[]>('agtech/agtech_diffusion.json');
   const { data: teamComparison, loading: tcL } = useChapterData<DomainTeamComparison[]>('agtech/agtech_team_comparison.json');
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('agtech/agtech_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('agtech/agtech_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('agtech/agtech_quality_bifurcation.json');
+
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -259,7 +268,7 @@ export default function Chapter12() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/digital-health" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital health and medical devices</Link>, where sensor technologies and data analytics are transforming healthcare, this chapter turns to agricultural technology, a domain where similar digital and biological innovations are reshaping food production.
+          Having examined <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing</Link> and the role of patent expirations in democratizing manufacturing technology, this chapter turns to agricultural technology, a domain where biological and digital innovations are reshaping food production through precision agriculture and biotechnology.
         </p>
         <p>
           Agriculture is one of the oldest areas of innovation in the United States patent
@@ -289,7 +298,7 @@ export default function Chapter12() {
         id="fig-agtech-annual-count"
         subtitle="Annual count of utility patents classified under agricultural technology CPC codes, tracking the growth trajectory of agricultural patenting."
         title="Agricultural Patent Filings Reflect Steady Growth With Accelerations Following GM Crop Adoption and the Precision Agriculture Expansion"
-        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976-2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture expansion accelerating markedly from 2018."
+        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976-2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture expansion accelerating markedly from 2018. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="Agricultural patent growth reflects the sector's ongoing transformation from mechanization to biotechnology and digital farming, with each technological wave generating new categories of inventive activity."
         loading={pyL}
       >
@@ -334,6 +343,25 @@ export default function Chapter12() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={AGTECH_EVENTS}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-agtech-entrant-incumbent"
+        title="Agricultural Technology Patenting Shows Steady Incumbent Dominance With Gradual Entrant Growth"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first agricultural technology patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -594,6 +622,21 @@ export default function Chapter12() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-agtech-quality-bifurcation"
+        title="Agricultural Technology Maintained Stable Top-Decile Citation Share Over Time"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
+
       {/* ── Section 7: Patenting Strategies ── */}
       <SectionDivider label="AgTech Patenting Strategies" />
       <Narrative>
@@ -772,6 +815,9 @@ export default function Chapter12() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-agtech-cr4"
@@ -833,9 +879,6 @@ export default function Chapter12() {
           irrigation, and sustainable farming practices. The convergence of precision
           agriculture with <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> suggests that
           future agricultural patents will increasingly bridge the farm, the laboratory, and the data center, reflecting a convergence of precision agriculture, biotechnology, and data science.
-        </p>
-        <p>
-          The next chapter examines <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link>, a domain where the sensor technologies and machine learning methods increasingly applied in precision agriculture are also driving one of the most capital-intensive innovation races in modern history.
         </p>
       </Narrative>
 

@@ -30,6 +30,8 @@ import type {
   DomainTopAssignee, DomainTopInventor, DomainOrgOverTime, DomainQuality,
   DomainTeamComparison, DomainAssigneeType, DomainStrategy,
   DomainDiffusion,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
+  GreenEvBatteryCoupling,
 } from '@/lib/types';
 
 export default function Chapter19() {
@@ -49,6 +51,9 @@ export default function Chapter19() {
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('green/green_assignee_type.json');
   const { data: strategies } = useChapterData<DomainStrategy[]>('green/green_strategies.json');
   const { data: diffusion, loading: dfL } = useChapterData<DomainDiffusion[]>('green/green_diffusion.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('green/green_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('green/green_quality_bifurcation.json');
+  const { data: evBattery, loading: evbL } = useChapterData<GreenEvBatteryCoupling[]>('green/green_ev_battery_coupling.json');
 
   // Pivot category data for stacked area chart
   const { categoryPivot, categoryAreas } = useMemo(() => {
@@ -207,6 +212,12 @@ export default function Chapter19() {
     return { assigneeTypePivot: pivoted, assigneeTypeNames: names };
   }, [assigneeType]);
 
+  // Pivot entrant/incumbent data
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
+
   // ── Analytical Deep Dive computations ──────────────────────────────
   const cr4Data = useMemo(() => {
     if (!orgOverTime || !volume) return [];
@@ -288,7 +299,7 @@ export default function Chapter19() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and its expanding role as a general-purpose technology across the patent system, this final chapter of ACT 6 turns to green innovation, a domain where AI-driven optimization is increasingly converging with climate technology to accelerate progress in renewable energy, battery chemistry, and carbon capture.
+          Having examined <Link href="/chapters/digital-health" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital health</Link> and the convergence of medical devices with health informatics, this chapter turns to green innovation, a domain that spans the broadest range of technology areas in ACT 6 and whose growth trajectory is increasingly intertwined with AI-driven optimization.
         </p>
         <p>
           Climate change constitutes one of the defining challenges of the 21st century, and the
@@ -316,7 +327,7 @@ export default function Chapter19() {
         id="fig-green-innovation-volume"
         subtitle="Annual count and share of utility patents with at least one Y02/Y04S CPC code, tracking the growth of climate technology patenting."
         title={`Green Patent Volume Rose to ${peakYear ? formatCompact(peakYear.green_count) : '—'} by ${peakYear?.year ?? '—'}, Reaching ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of All Utility Patents`}
-        caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '—'} in ${peakYear?.year ?? '—'}, representing ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of all utility patents.`}
+        caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '—'} in ${peakYear?.year ?? '—'}, representing ${peakYear?.green_pct?.toFixed(1) ?? '—'}% of all utility patents. Grant year shown. Application dates are typically 2–3 years earlier.`}
         insight="Green patenting has evolved from a specialized activity to nearly one in ten US patents, reflecting substantial corporate and government investment in climate technology. The growth trajectory mirrors, and in certain periods exceeds, the broader expansion of the patent system."
         loading={volL}
       >
@@ -378,6 +389,21 @@ export default function Chapter19() {
           automaker electrification strategies, and supportive policies such as the Inflation Reduction Act.
         </p>
       </KeyInsight>
+
+      <ChartContainer
+        id="fig-green-ev-battery"
+        title="EV-Battery Co-Classification Lift Reveals Increasing Technology Integration"
+        subtitle="Lift of co-occurrence between EV (B60L/B60W) and battery (H01M/H02J) CPC codes among green patents."
+        caption="Lift above 1.0 means EV and battery patents co-occur more often than random chance on the same green patent. Rising lift indicates tighter technological coupling between electric vehicle drivetrains and energy storage systems."
+        loading={evbL}
+      >
+        <PWLineChart
+          data={evBattery ?? []}
+          xKey="year"
+          lines={[{ key: 'lift', name: 'EV-Battery Lift', color: CHART_COLORS[2] }]}
+          yLabel="Lift"
+        />
+      </ChartContainer>
 
       {/* ── Section 3: Who Leads the Green Race ───────────────────────────── */}
       <SectionDivider label="Leading Organizations in Green Patenting" />
@@ -719,6 +745,43 @@ export default function Chapter19() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
+
+      <ChartContainer
+        id="fig-green-entrant-incumbent"
+        title="Green Innovation Shows Broad-Based Growth With Strong Entrant Contributions"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first green patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-green-quality-bifurcation"
+        title="Green Innovation Top-Decile Citation Share Has Declined Modestly as Volume Expanded"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
 
       <ChartContainer
         id="fig-green-cr4"

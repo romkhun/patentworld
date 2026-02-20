@@ -29,6 +29,7 @@ import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
   DomainTopInventor, DomainGeography, DomainQuality, DomainOrgOverTime,
   DomainStrategy, DomainDiffusion, DomainTeamComparison, DomainAssigneeType,
+  DomainEntrantIncumbent, DomainQualityBifurcation,
 } from '@/lib/types';
 
 export default function Chapter21() {
@@ -43,6 +44,13 @@ export default function Chapter21() {
   const { data: semiDiffusion, loading: sdL } = useChapterData<DomainDiffusion[]>('semiconductors/semi_diffusion.json');
   const { data: semiTeam, loading: stcL } = useChapterData<DomainTeamComparison[]>('semiconductors/semi_team_comparison.json');
   const { data: semiAssignType, loading: satL } = useChapterData<DomainAssigneeType[]>('semiconductors/semi_assignee_type.json');
+  const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('semiconductors/semi_entrant_incumbent.json');
+  const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('semiconductors/semi_quality_bifurcation.json');
+
+  const eiPivot = useMemo(() => {
+    if (!entrantIncumbent) return [];
+    return entrantIncumbent.map((d) => ({ year: d.year, Entrant: d.entrant_count, Incumbent: d.incumbent_count }));
+  }, [entrantIncumbent]);
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -258,7 +266,7 @@ export default function Chapter21() {
 
       <Narrative>
         <p>
-          ACT 6 examines twelve technology domains through the lens of patent data, from semiconductors to <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>. This chapter begins with the silicon foundation underlying modern computing.
+          Having examined <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> and the emerging competition to build fault-tolerant quantum hardware, this chapter turns to semiconductors, the foundational technology domain whose fabrication expertise underpins both classical and quantum computing.
         </p>
         <p>
           The semiconductor industry occupies a unique position in the modern innovation
@@ -289,7 +297,7 @@ export default function Chapter21() {
         id="fig-semi-patents-annual-count"
         subtitle="Annual count of utility patents classified under semiconductor-related CPC codes (H01L), tracking the growth trajectory of semiconductor patenting."
         title="Semiconductor Patent Filings Reflect Decades of Sustained Investment in Fabrication and Device Innovation"
-        caption="Annual count and share of utility patents classified under semiconductor-related CPC codes (H01L), 1976-2025. H01L is one of the most heavily used CPC classes in the entire patent system, corresponding to the substantial R&D investment required to advance semiconductor manufacturing."
+        caption="Annual count and share of utility patents classified under semiconductor-related CPC codes (H01L), 1976-2025. H01L is one of the most heavily used CPC classes in the entire patent system, corresponding to the substantial R&D investment required to advance semiconductor manufacturing. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The sustained volume of semiconductor patents corresponds to the continued pace of process node advancement, where each new process node requires billions of dollars in R&D investment and is associated with thousands of patent filings."
         loading={pyL}
       >
@@ -332,6 +340,25 @@ export default function Chapter21() {
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(SEMI_EVENTS, { only: [2000, 2011, 2022] })}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-semi-entrant-incumbent"
+        title="Semiconductor Patenting Shows Sustained Incumbent Dominance With Limited New Entry"
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        caption="Entrants are assignees filing their first semiconductor patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
+        loading={eiL}
+      >
+        <PWAreaChart
+          data={eiPivot}
+          xKey="year"
+          areas={[
+            { key: 'Incumbent', name: 'Incumbent', color: CHART_COLORS[0] },
+            { key: 'Entrant', name: 'Entrant', color: CHART_COLORS[4] },
+          ]}
+          stacked
+          yLabel="Patents"
         />
       </ChartContainer>
 
@@ -584,6 +611,21 @@ export default function Chapter21() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-semi-quality-bifurcation"
+        title="Semiconductor Patents Show Declining Top-Decile Citation Share, Consistent With Field Maturation"
+        subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
+        caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
+        loading={qbL}
+      >
+        <PWLineChart
+          data={qualityBif ?? []}
+          xKey="period"
+          lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
+          yLabel="% in Top Decile"
+        />
+      </ChartContainer>
+
       <SectionDivider label="Team Composition" />
 
       <ChartContainer
@@ -760,6 +802,9 @@ export default function Chapter21() {
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
+      <p className="text-sm text-muted-foreground mt-4">
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+      </p>
 
       <ChartContainer
         id="fig-semi-cr4"
@@ -816,7 +861,7 @@ export default function Chapter21() {
         system. The organizational strategies behind semiconductor portfolios are explored
         further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>,
         while the interaction between semiconductor and artificial intelligence patents is
-        examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. The next chapter turns to <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link>, a domain that builds directly on semiconductor fabrication expertise while pursuing fundamentally different computational paradigms.
+        examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>.
       </Narrative>
 
       <InsightRecap
