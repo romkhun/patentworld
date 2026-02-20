@@ -17,8 +17,8 @@ ACT 6 – Deep Dives (12 chapters: 6.1–6.12)
 
 **Tech stack:** Next.js 14 App Router with static export, Recharts chart library, Tailwind CSS, deployed on Vercel. Chapter pages at `src/app/chapters/[slug]/page.tsx`. Chapter registry in `src/lib/constants.ts` (CHAPTERS array, ACT_GROUPINGS). Data loaded via `useChapterData<T[]>('chapterN/file.json')` hook from `public/data/`.
 
-**Current state (as of commit 21454847):**
-- 459 visualizations across 44 static pages
+**Current state (as of commit 660e9e19):**
+- 460 visualizations across 44 static pages
 - `npx tsc --noEmit` passes with zero errors
 - `npm run build` passes with zero errors
 - Zero ESLint warnings
@@ -73,30 +73,30 @@ The following work has been completed across 10+ sessions executing fix.md, fix_
 ### new_analysis_4.md (39 PatentsView Analyses)
 - 33 of 39 analyses completed (6 skipped: g_examiner, g_patent_abstract, g_foreign_citation, g_attorney missing)
 - 46 JSON data files generated, 59 new charts integrated
-- HERO_STATS.visualizations = 459
+- HERO_STATS.visualizations updated (459 chapter + 1 homepage = 460 total)
 - PWValueHeatmap component added
 
 ### Post-Analysis Audit (fix.md final execution)
 - 59 chart titles verified against JSON data (3 mismatches fixed: NPL 2.7x, CR4 11.7%, gender 16.5%)
 - Tone sweep: 30 edits across 12 files
-- Hero stats verified: 459 visualizations, 9.36M patents, 50 years, 34 chapters
+- Hero stats verified: 460 visualizations (459 chapter + 1 homepage), 9.36M patents, 50 years, 34 chapters
 - HomeContent.tsx: "over 40%" → "57%"
 - 6 chapter descriptions updated to finding-first format (Ch 6, 7, 13, 19, 20, 21)
 - Ch 7 InsightRecap stale numbers corrected
 - ESLint: all unused imports removed
 - Navigation: 34/34 correct prev/next links
 - Cross-stat consistency: all key statistics consistent site-wide
-- 24 untracked files committed (6 components + 18 JSON data files)
+- 24 untracked files committed (8 components/hooks + 16 JSON data files)
 
 ---
 
-## PHASE 1: Remaining Fixes
+## PHASE 1: Fixes (All Completed)
 
-### 1a. Standardize "fivefold" vs "five-fold"
+### 1a. Standardize "fivefold" vs "five-fold" — COMPLETED (commit 660e9e19)
 
-Two instances use "fivefold" (one word) while 10+ use "five-fold" (hyphenated). Standardize all to "five-fold":
-- `src/app/chapters/inv-team-size/page.tsx:534` — "fivefold increase"
-- `src/app/chapters/system-patent-count/page.tsx:101` — "fivefold increase"
+Two instances used "fivefold" (one word) while 10+ used "five-fold" (hyphenated). Both standardized to "five-fold":
+- `src/app/chapters/inv-team-size/page.tsx` — "fivefold increase" → "five-fold increase"
+- `src/app/chapters/system-patent-count/page.tsx` — "fivefold increase" → "five-fold increase"
 
 ### 1b. Hedging Language — Final Disposition
 
@@ -146,7 +146,7 @@ Verify these key statistics appear identically everywhere:
 - "9.36" (total patents)
 - "161,888" (IBM cumulative)
 - "five-fold" (growth multiple — now standardized)
-- "459" (visualizations count)
+- "460" (visualizations count)
 - "34" (chapters count)
 - "57%" (computing/electronics share)
 - "14.9%" (female inventor share)
