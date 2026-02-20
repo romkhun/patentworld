@@ -100,13 +100,13 @@ export default function SystemPatentCountChapter() {
       <KeyFindings>
         <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a more than five-fold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, while design patents constitute the principal secondary category.</li>
-        <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010, creating uncertainty during a period of rapid technological change in computing and telecommunications.</li>
+        <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010 (measured by grant year), creating uncertainty during a period of rapid technological change in computing and telecommunications.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Half a century of USPTO data reveals a patent system that has expanded substantially in scale. What began as an annual output of 66,000 grants per year in the late 1970s had escalated to 374,000 by 2024, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly. Average grant pendency peaked at 3.8 years in 2010 before the USPTO undertook initiatives to reduce processing times.
+          Half a century of USPTO data reveals a patent system that has expanded substantially in scale. What began as an annual output of 66,000 grants per year (average, 1976-1979) had escalated to 374,000 by 2024, an expansion driven overwhelmingly by utility patents and coinciding with successive waves of technological transformation from personal computing through artificial intelligence. This growth has not come without friction: prolonged examination backlogs during the late 2000s imposed years of legal uncertainty on applicants at precisely the moment when computing and telecommunications innovation was accelerating most rapidly. Average grant pendency peaked at 3.8 years in 2010 (measured by grant year) before the USPTO undertook initiatives to reduce processing times.
         </p>
       </aside>
 
@@ -155,8 +155,8 @@ export default function SystemPatentCountChapter() {
 
       <Narrative>
         <p>
-          Annual patent grants averaged 66,000 per year in the late
-          1970s, rising to 374,000 by 2024. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
+          Annual patent grants averaged 66,000 per year (late 1970s average),
+          rising to 374,000 by 2024. <GlossaryTooltip term="utility patent">Utility patents</GlossaryTooltip> — which protect
           novel inventions and processes — constitute over 90% of all grants. Design patents,
           which cover ornamental appearance, have also exhibited sustained growth.
         </p>

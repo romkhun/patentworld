@@ -202,11 +202,11 @@ export default function MechOrganizationsChapter() {
         <p>
           The exploration/exploitation framework (March, 1991) provides a lens for examining
           whether firms are entering new technology domains (exploration) or deepening established
-          ones (exploitation). Each patent from a top-50 assignee is scored on three indicators:
-          technology newness (whether the firm has prior presence in the patent&apos;s CPC subclass),
-          citation newness (whether backward citations point to unfamiliar technology areas),
-          and external knowledge sourcing (the inverse of self-citation rate). The composite
-          exploration score averages these three indicators on a 0-1 scale.
+          ones (exploitation). Each patent from a top-50 assignee is scored on three equally weighted indicators:
+          (1) technology newness (1 if the firm has no prior patents in the patent&apos;s CPC subclass within the preceding 5 years, 0 otherwise),
+          (2) citation newness (the share of backward citations pointing to CPC subclasses outside the firm&apos;s existing portfolio),
+          and (3) external knowledge sourcing (1 minus the self-citation rate, i.e., the share of backward citations directed to other assignees&apos; patents).
+          The composite exploration score is the unweighted arithmetic mean of these three indicators, yielding a value on a 0-1 scale where higher values indicate more exploratory behavior.
         </p>
       </Narrative>
 

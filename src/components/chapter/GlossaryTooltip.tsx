@@ -23,8 +23,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
         role="tooltip"
         className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-md border bg-card px-3 py-2 text-xs leading-relaxed text-foreground shadow-lg opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
       >
-        <strong className="font-semibold">{entry.term}</strong>
-        <span className="mt-1 block text-muted-foreground">{entry.definition}</span>
+        <span className="block text-muted-foreground">{entry.definition}</span>
       </span>
     </span>
   );

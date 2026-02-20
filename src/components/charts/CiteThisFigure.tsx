@@ -56,7 +56,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="mt-2 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
+        className="mt-4 block text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
         aria-expanded="false"
       >
         Cite this figure
@@ -65,7 +65,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
   }
 
   return (
-    <div className="mt-3 rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200">
+    <div className="mt-4 rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200">
       <div className="flex items-center justify-between mb-2">
         <div className="flex gap-1">
           <button

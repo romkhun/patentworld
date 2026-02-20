@@ -52,9 +52,9 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'system-patent-count': 'US Patent Grants Grew 5x Since 1976',
   'system-patent-quality': 'Patent Claims Doubled; Citations Rose to 6.4',
   'system-patent-fields': 'CPC Sections G and H Rose From 27% to 57%',
-  'system-convergence': 'Multi-Section Patents Rose from 21% to 41%',
+  'system-convergence': 'Multi-Section Patents Rose from 21% to 40%',
   'system-language': 'Computing Topics Now Dominate Patent Language',
-  'system-patent-law': '50 Years of Patent Law Shaped by 7 Key Events',
+  'system-patent-law': '50 Years of Patent Law Shaped by 21 Key Events',
   'system-public-investment': 'NIH Leads Government Patents with 55,587',
   // ACT 2
   'org-composition': 'Foreign Assignees Surpassed US Filers in 2007',
@@ -95,10 +95,10 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   // ACT 1
   'system-patent-count': 'US patent grants grew from 70K to 374K annually. Grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
   'system-patent-quality': 'Average claims doubled from 9.4 to 18.9. Forward citations peaked at 6.4. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
-  'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent markets remain unconcentrated across all CPC sections.',
-  'system-convergence': 'Multi-section patents rose from 21% to 41% of all grants. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
+  'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent grant concentration by assignee remains below conventional thresholds across all CPC sections.',
+  'system-convergence': 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
   'system-language': 'NLP topic modeling of 9.36M patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
-  'system-patent-law': 'From Bayh-Dole (1980) to Alice Corp. (2014), seven landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
+  'system-patent-law': 'From Bayh-Dole (1980) to Alice Corp. (2014), twenty-one landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
   'system-public-investment': 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 government-funded patents.',
   // ACT 2
   'org-composition': 'Corporate assignees grew from 94% to 99% of grants. Foreign assignees surpassed US-based filers in 2007. Japan accounts for 1.4M US patents.',
@@ -107,7 +107,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'org-patent-portfolio': 'Portfolio diversity rose across leading firms. 248 companies cluster into 8 industries by portfolio similarity. JSD identifies strategic portfolio shifts.',
   'org-company-profiles': 'Interactive profiles combining annual output, technology composition, citation impact, innovation strategy, and portfolio analysis for individual companies.',
   // ACT 3
-  'inv-top-inventors': '12% of inventors produce 61% of total output. The top 5% grew from 26% to 60% of annual output. The most prolific inventor holds 6,709 patents.',
+  'inv-top-inventors': 'The top 5% of inventors grew from 26% to 60% of annual patent output. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 among top 100.',
   'inv-generalist-specialist': 'Specialist inventors rose from 20% to 48% of the inventor workforce. Quality metrics differ systematically between generalists and specialists.',
   'inv-serial-new': 'First-time inventor entries peaked at 140,490 in 2019. Only 37-51% survive past five years. Productivity rises from 1.4 to 2.1 before plateauing.',
   'inv-gender': 'Female inventor share rose from 2.8% to 14.9%. Quality metrics reveal systematic gender differences across claims, citations, and scope.',

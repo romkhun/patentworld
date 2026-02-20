@@ -131,7 +131,7 @@ export default function InvTeamSizeChapter() {
       <KeyFindings>
         <li>
           Average patent team size increased from 1.7 inventors per patent in
-          1976 to 3.2 by 2025, while the solo-inventor share declined from 58%
+          1976 to 3.2 by 2025 (through September), while the solo-inventor share declined from 58%
           to 23%.
         </li>
         <li>
@@ -532,7 +532,7 @@ export default function InvTeamSizeChapter() {
         title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
         subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
         caption="The figure tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (such as corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
-        insight="The five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
+        insight="The more than five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
         loading={crL}
       >
         {crossRate && (

@@ -28,10 +28,14 @@ const VARIANT_TEXT: Record<string, { title: string; body: string }> = {
     title: 'Why can\'t we infer causation from state-level differences?',
     body: 'State-level patent differences reflect industry composition, university density, federal lab presence, venture capital availability, and historical agglomeration effects. California\'s dominance stems partly from its concentration of semiconductor, software, and biotechnology firms rather than any inherent state-level advantage. Without controlling for industry mix and firm characteristics, cross-state comparisons are descriptive.',
   },
+  composition: {
+    title: 'Why can\'t we infer causation from assignee composition trends?',
+    body: 'The correlation between foreign assignee growth and various patent metrics — such as citation rates, technology concentration, or filing routes — does not establish a causal relationship. Foreign assignees differ systematically from domestic assignees in firm size, technology specialization, industry composition, and strategic filing behavior. The shift toward foreign-majority patenting coincided with globalization, trade liberalization, and the rise of East Asian R&D investment, all of which independently affect patent outcomes. Without controlling for these confounders, the observed associations between assignee origin and patent characteristics are descriptive.',
+  },
 };
 
 interface DescriptiveGapNoteProps {
-  variant: 'gender' | 'team-size' | 'international' | 'top-inventors' | 'serial-new' | 'domestic';
+  variant: 'gender' | 'team-size' | 'international' | 'top-inventors' | 'serial-new' | 'domestic' | 'composition';
   alwaysVisible?: boolean;
 }
 

@@ -565,7 +565,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-applications-vs-grants"
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
-        title="Applications Grew from 66,000 to 349,000 (1976-2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
+        title="Applications Grew from 66,000 (Average, 1976-1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="The figure displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}

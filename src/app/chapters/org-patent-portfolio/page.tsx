@@ -438,7 +438,7 @@ export default function OrgPatentPortfolioChapter() {
       />
 
       <DataNote>
-        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP for 248 companies across 8 industry clusters. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 5-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 90th percentile threshold across all firm-windows. Source: PatentsView.
+        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP for 248 companies across 8 industry clusters. The 8 industry clusters were identified by applying HDBSCAN (hierarchical density-based spatial clustering) to the pairwise cosine distance matrix of CPC subclass distributions; the number of clusters was determined automatically by the algorithm rather than pre-specified, yielding 8 dense groups plus an unclustered set. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 5-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 90th percentile threshold across all firm-windows, yielding 51 detected pivots across 20 companies. Source: PatentsView.
       </DataNote>
 
       <RelatedChapters currentChapter={11} />

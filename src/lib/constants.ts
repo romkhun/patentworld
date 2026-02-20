@@ -31,14 +31,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-fields',
     title: 'Patent Fields',
     subtitle: 'Technology classes, field-level dynamics, and quality by technology area',
-    description: 'CPC sections G and H gained 30 percentage points of share over five decades, rising from 27% to 57% of all grants. The fastest digital technology classes grew by more than 1,000%. Patent markets remain unconcentrated across CPC sections.',
+    description: 'CPC sections G and H gained 30 percentage points of share over five decades, rising from 27% to 57% of all grants. The fastest digital technology classes grew by more than 1,000%. Patent grant concentration by assignee remains below conventional thresholds across CPC sections.',
   },
   {
     number: 4,
     slug: 'system-convergence',
     title: 'Convergence',
     subtitle: 'Cross-domain technology convergence',
-    description: 'Multi-section patents rose from 21% to 41% of all grants. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025.',
+    description: 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025.',
   },
   {
     number: 5,
@@ -103,7 +103,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-top-inventors',
     title: 'Top Inventors',
     subtitle: 'Superstar concentration, prolific inventors, and citation impact',
-    description: 'The top 5% of inventors grew from 26% to 60% of annual patent output (1976-2025). The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
+    description: 'The top 5% of inventors (by annual output) account for 60% of annual patent grants, up from 26% in 1976. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
   },
   {
     number: 14,
@@ -131,7 +131,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-team-size',
     title: 'Team Size and Collaboration',
     subtitle: 'The collaborative turn and team size effects on quality',
-    description: 'Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 24%. Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors.',
+    description: 'Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 23% by 2025. Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors.',
   },
   // ── ACT 4: The Geography ──
   {

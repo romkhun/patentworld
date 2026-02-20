@@ -187,7 +187,7 @@ export default function OrgCompositionChapter() {
 
       <ConcentrationPanel outcome="Patent Grants" entity="Assignees" top1={15.2} top5={28.4} gini={0.891} />
 
-      <DescriptiveGapNote variant="international" />
+      <DescriptiveGapNote variant="composition" />
 
       {/* ── Section B: Geographic Distribution of Assignees ── */}
 

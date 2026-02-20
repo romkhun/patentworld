@@ -143,7 +143,7 @@ export default function GeoInternationalChapter() {
 
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
-        <li>The United States leads with 164,000 patents and 18.4 average claims in the 2020s, while rapidly growing patent origins such as China exhibit lower average claims, suggesting a quality-quantity tradeoff.</li>
+        <li>The United States leads with 164,000 patents (cumulative in the 2020s decade, by primary assignee country) and 18.4 average claims, while rapidly growing patent origins such as China exhibit lower average claims, suggesting a quality-quantity tradeoff.</li>
         <li>US-domestic patents and international patents may differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
@@ -334,7 +334,7 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-claims-by-country"
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
-        title="The United States Leads with 164,000 Patents and 18.4 Average Claims in the 2020s, While China's 19,200 Patents Average 14.7 Claims"
+        title="The United States Leads with 164,000 Patents (Cumulative 2020s, by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
         caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented approach. The lower average claims from rapidly growing patent origins such as China are consistent with research on early-stage patent system development."
         loading={qcL}

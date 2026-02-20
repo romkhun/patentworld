@@ -152,7 +152,7 @@ export default function SystemPublicInvestmentChapter() {
         <p>
           Government-funded patents are often associated with higher citation impact in the academic literature,
           suggesting that public research investments generate foundational knowledge that
-          serves as a critical input for downstream commercial innovation. This interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter.
+          serves as a critical input for downstream commercial innovation. This interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter. Key studies documenting the impact of public R&amp;D on private-sector patenting include Azoulay, Graff Zivin, Li, and Sampat (2019), &quot;Public R&amp;D Investments and Private-sector Patenting,&quot; <em>Journal of Political Economy</em> 127(4), 1640-1671; Sampat (2012), &quot;Mission-oriented biomedical research at the NIH,&quot; <em>Research Policy</em> 41(10), 1729-1741; and Mowery, Nelson, Sampat, and Ziedonis (2001), &quot;The growth of patenting and licensing by U.S. universities,&quot; <em>Research Policy</em> 30(1), 99-119.
         </p>
       </KeyInsight>
 

@@ -322,7 +322,7 @@ export default function SystemPatentFieldsChapter() {
         <li>Design patent share has fluctuated between 6% and 14% since the late 1970s, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
         <li>CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share over five decades, now constituting 57.3% of all patent grants.</li>
         <li>The fastest-growing digital technology classes expanded by over 1,000%, while declining classes contracted by nearly 84%, consistent with Schumpeterian creative destruction.</li>
-        <li>Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold despite concentration in digital fields.</li>
+        <li>Patent grant concentration by assignee remains below conventional thresholds across all CPC sections, with HHI values well below 1,500 despite concentration in digital fields. (HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.)</li>
         <li>Technology diversity declined from 0.848 in 1984 to 0.777 in 2009 before stabilizing at 0.789 by 2025.</li>
         <li>Electricity (H) and Physics (G) patents exhibit the shortest citation half-lives at 10.7 and 11.2 years, while Human Necessities (A) reaches 15.6 years.</li>
       </KeyFindings>
@@ -391,14 +391,15 @@ export default function SystemPatentFieldsChapter() {
 
       {/* ── B.i: CPC Sections G and H ── */}
 
-      <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto">
-        <span className="text-sm text-muted-foreground">View:</span>
+      <div className="my-2 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+        <span className="text-sm text-muted-foreground mr-2">View:</span>
         <button
           onClick={() => setCpcStackedPercent(true)}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
         >
           Share (%)
         </button>
+        <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
         <button
           onClick={() => setCpcStackedPercent(false)}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${!cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
@@ -488,9 +489,9 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-hhi-by-section"
         subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
-        title="Patent Markets Remain Unconcentrated Across All CPC Sections, with HHI Values Well Below 1,500"
+        title="Patent Grant Concentration by Assignee Remains Below Conventional Thresholds Across All CPC Sections, with HHI Values Well Below 1,500"
         caption="The figure displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration."
-        insight="Notwithstanding concerns about market power in technology, patent markets remain unconcentrated across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms."
+        insight="Notwithstanding concerns about market power in technology, patent grant concentration by assignee remains below conventional thresholds across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms. HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure."
         loading={hhiL}
       >
         <PWLineChart
@@ -508,7 +509,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Patent markets across all technology sectors remain unconcentrated, with HHI values well below the 1,500 threshold. Even in Electricity (H) and Physics (G) -- the sections most associated with large technology firms -- concentration remains low, though Textiles and Paper (D) has exhibited the highest concentration since 2010, consistent with its smaller inventor base and more specialized industrial structure.
+          Patent grant concentration by assignee across all technology sectors remains below conventional thresholds, with HHI values well below 1,500. Even in Electricity (H) and Physics (G) -- the sections most associated with large technology firms -- concentration remains low, though Textiles and Paper (D) has exhibited the highest concentration since 2010, consistent with its smaller inventor base and more specialized industrial structure.
         </p>
       </KeyInsight>
 
@@ -825,7 +826,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the range widening from 1 to 4 across decades, reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the gap between the highest-median and lowest-median CPC sections widening from approximately 1 claim in the 1970s to 4 claims by the 2020s, reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -1136,7 +1137,7 @@ export default function SystemPatentFieldsChapter() {
       <InsightRecap
         learned={[
           "CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share, rising from 27% to 57% of all grants.",
-          "Patent markets remain unconcentrated across CPC sections, with no single section exceeding 35% share.",
+          "Patent grant concentration by assignee remains below conventional thresholds across CPC sections, with no single section exceeding 35% share.",
         ]}
         falsifiable="If the G/H shift reflects genuine invention rather than expanded software patentability, then the trend should survive controlling for the State Street Bank (1998) and Alice (2014) decisions."
         nextAnalysis={{

@@ -26,12 +26,13 @@ interface ChartContainerProps {
 
 export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, badgeProps, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
+  const headingId = id ? `${id}-heading` : undefined;
 
   return (
     <figure
       ref={ref}
       id={id}
-      aria-label={ariaLabel ?? title}
+      aria-labelledby={headingId}
       className={`fade-in-section relative my-16 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden max-w-[960px] mx-auto ${wide ? '-mx-4 lg:-mx-8 !max-w-none' : ''} ${inView ? 'is-visible' : ''}`}
     >
       {/* Colored top-border accent */}
@@ -40,7 +41,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         style={{ background: 'linear-gradient(90deg, hsl(var(--chart-1)), hsl(var(--chart-5)))' }}
         aria-hidden="true"
       />
-      <h3 className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h3>
+      <h3 id={headingId} className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h3>
       {subtitle && (
         <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
       )}
@@ -87,7 +88,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
           className="chart-container-inner w-full animate-in fade-in duration-200"
           style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
           role={interactive ? 'group' : 'img'}
-          aria-label={ariaLabel ?? title}
+          aria-label={ariaLabel ?? `Chart: ${title}`}
         >
           {children}
         </div>

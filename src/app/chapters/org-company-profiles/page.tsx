@@ -684,8 +684,8 @@ export default function OrgCompanyProfilesChapter() {
             </div>
           )}
 
-          <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto">
-            <span className="text-sm text-muted-foreground">View:</span>
+          <div className="my-2 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+            <span className="text-sm text-muted-foreground mr-2">View:</span>
             <button
               onClick={() => setStrategyViewMode('radar')}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
@@ -696,6 +696,7 @@ export default function OrgCompanyProfilesChapter() {
             >
               Radar
             </button>
+            <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
             <button
               onClick={() => setStrategyViewMode('bar')}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${

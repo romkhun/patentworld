@@ -204,14 +204,15 @@ export default function Chapter3() {
         </p>
       </Narrative>
 
-      <div className="my-4 flex items-center gap-2 max-w-[960px] mx-auto">
-        <span className="text-sm text-muted-foreground">View:</span>
+      <div className="my-4 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+        <span className="text-sm text-muted-foreground mr-2">View:</span>
         <button
           onClick={() => setTopicView('stacked')}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'stacked' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
         >
           Stacked %
         </button>
+        <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
         <button
           onClick={() => setTopicView('multiples')}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'multiples' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
@@ -403,7 +404,7 @@ export default function Chapter3() {
       <ChartContainer
         id="fig-language-innovation-novelty"
         subtitle="Median and average Shannon entropy of patent topic distributions by year, measuring thematic diversity as a proxy for novelty."
-        title="Patent Novelty Rose 6.4% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With an Upward Trend Since the Late 1980s Despite a Dip From 2004 to 2014"
+        title="Patent Novelty Rose 6.6% From 1976 to 2025 (Median Entropy 1.97 to 2.10), With an Upward Trend Since the Late 1980s Despite a Dip From 2004 to 2014"
         caption="Median and average Shannon entropy of patent topic distributions by year; higher entropy indicates more thematically diverse patents. The upward trend since the late 1980s suggests that modern inventions increasingly combine ideas from multiple technology domains, though a dip between 2004 and 2014 preceded acceleration in the late 2010s."
         insight="Patent novelty has trended upward since the late 1980s, though with a notable dip between 2004 and 2014, suggesting that modern inventions increasingly combine ideas from multiple technology domains. This trend accelerated in the late 2010s, coinciding with the rise of AI and other general-purpose technologies."
         loading={novTL}

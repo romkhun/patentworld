@@ -303,7 +303,7 @@ export default function GeoDomesticChapter() {
         </p>
       </KeyInsight>
 
-      <ConcentrationPanel outcome="Patent Grants" entity="States" top1={23.6} top5={46.0} gini={0.731} />
+      <ConcentrationPanel outcome="Patent Grants" entity="States" top1={23.6} top5={46.0} gini={0.731} top1Label="Top State Share" top5Label="Top 5 States Share" />
 
       <DescriptiveGapNote variant="domestic" />
 

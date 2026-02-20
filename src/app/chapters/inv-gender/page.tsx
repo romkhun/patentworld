@@ -166,7 +166,7 @@ export default function InvGenderChapter() {
       <MeasurementSidebar slug="inv-gender" />
 
       <KeyFindings>
-        <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025, but remains well below parity with substantial variation across technology fields.</li>
+        <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), but remains well below parity with substantial variation across technology fields.</li>
         <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
         <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
@@ -174,7 +174,7 @@ export default function InvGenderChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering lagging. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
+          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% (through September 2025) over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering lagging. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
         </p>
       </aside>
 

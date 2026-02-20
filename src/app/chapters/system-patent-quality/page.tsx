@@ -110,7 +110,7 @@ export default function SystemPatentQualityChapter() {
         <li>Average patent scope grew from 1.8 to a peak of 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent in 2020, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
         <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
-        <li>Sleeping beauty patents -- inventions that lay dormant for years before experiencing citation bursts -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
+        <li>Sleeping beauty patents -- inventions that received fewer than 2 citations per year in their first 10 years, then experienced a burst of 10 or more citations within a 3-year window -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">

@@ -72,7 +72,7 @@ export default function MechGeographyChapter() {
       <MeasurementSidebar slug="mech-geography" />
 
       <KeyFindings>
-        <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025, driven by the globalization of corporate R&D and increasing talent mobility.</li>
+        <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025 (through September), driven by the globalization of corporate R&D and increasing talent mobility.</li>
         <li>US-China co-invention rates have grown substantially, surpassing 2% by 2025, though growth rates moderated across certain technology areas amid trade tensions and export controls.</li>
         <li>Innovation in AI, Biotech, and Clean Energy exhibits a consistent diffusion pattern: early concentration in a small number of pioneering cities followed by geographic spread to secondary hubs.</li>
       </KeyFindings>
@@ -80,7 +80,7 @@ export default function MechGeographyChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          This chapter examines how innovation moves across borders and diffuses across cities. International co-invention has grown from 1.0% of all patents in 1976 to 10.0% by 2025, with the US-China corridor expanding from 77 patents in 2000 to 2,749 in 2024. At the city level, emerging technologies consistently originate in a small number of pioneering locations before spreading geographically as knowledge and talent disperse.
+          This chapter examines how innovation moves across borders and diffuses across cities. International co-invention has grown from 1.0% of all patents in 1976 to 10.0% by 2025 (through September), with the US-China corridor expanding from 77 patents in 2000 to 2,749 in 2024. At the city level, emerging technologies consistently originate in a small number of pioneering locations before spreading geographically as knowledge and talent disperse.
         </p>
       </aside>
 
