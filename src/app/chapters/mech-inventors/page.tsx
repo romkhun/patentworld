@@ -65,6 +65,10 @@ export default function MechInventorsChapter() {
   // Bridge Centrality
   const { data: bridgeCentrality, loading: bcL } = useChapterData<BridgeCentralityQuintile[]>('chapter5/bridge_centrality.json');
 
+  // Analysis 35: International Inventor Mobility
+  const { data: intlMobility, loading: imL } = useChapterData<any[]>('chapter21/inventor_international_mobility.json');
+  const { data: mobilityFlows, loading: mfL } = useChapterData<any[]>('chapter21/inventor_mobility_flows.json');
+
   const topStateFlows = useMemo(() => {
     if (!stateFlows) return [];
     return stateFlows.slice(0, 30).map((d) => ({
@@ -110,6 +114,15 @@ export default function MechInventorsChapter() {
 
     return { nodes: sankeyNodes, links: sankeyLinks };
   }, [countryFlows]);
+
+  // Analysis 35: Top mobility flows
+  const topMobilityFlows = useMemo(() => {
+    if (!mobilityFlows) return [];
+    return mobilityFlows.slice(0, 20).map((d: any) => ({
+      ...d,
+      label: `${d.from_country} \u2192 ${d.to_country}`,
+    }));
+  }, [mobilityFlows]);
 
   // Analysis 4: Pivot by_direction data for multi-line chart
   const mobilityByDirectionData = useMemo(() => {
@@ -625,6 +638,62 @@ export default function MechInventorsChapter() {
           This asymmetry suggests that access to better resources, stronger peer networks, and
           more productive organizational routines amplifies individual inventive output -- a finding
           with implications for both firm talent strategy and innovation policy.
+        </p>
+      </KeyInsight>
+
+      {/* ================================================================== */}
+      {/* Analysis 35: International Inventor Mobility Deep Dive             */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="International Mobility: Rates and Flows" />
+
+      <Narrative>
+        <p>
+          A deeper look at international inventor mobility reveals both the aggregate rate of cross-border movement over time and the specific bilateral corridors through which inventors circulate. The following analyses track the share of inventors who change country across successive 5-year windows and identify the dominant country-pair flows.
+        </p>
+      </Narrative>
+
+      {intlMobility && intlMobility.length > 0 && (
+        <ChartContainer
+          id="fig-mech-inventors-intl-mobility-rate"
+          subtitle="International inventor mobility rate by 5-year period, measured as the share of active inventors who changed country between successive patents."
+          title="International Inventor Mobility Peaked at 20.2% in the 1980s Before Declining to 8.9% in the 2020s"
+          caption="This chart displays the share of active patent inventors who filed from a different country than their previous patent, aggregated in 5-year windows. The decline in the mobility rate from ~20% in the early periods to ~9% in the 2020s may reflect the growing size of the inventor population (denominator effect) rather than a decrease in absolute cross-border movement."
+          insight="The declining mobility rate likely reflects the rapid growth of the total inventor population rather than reduced international movement, as the absolute number of mobile inventors has continued to increase even as the rate has fallen."
+          loading={imL}
+        >
+          <PWLineChart
+            data={intlMobility}
+            xKey="period_start"
+            lines={[{ key: 'mobility_rate', name: 'Mobility Rate (%)', color: CHART_COLORS[3] }]}
+            yLabel="Mobility Rate (%)"
+            yFormatter={(v) => `${(v as number).toFixed(1)}%`}
+          />
+        </ChartContainer>
+      )}
+
+      {topMobilityFlows.length > 0 && (
+        <ChartContainer
+          id="fig-mech-inventors-top-mobility-flows"
+          subtitle="Top 20 country-to-country inventor migration corridors by total move count."
+          title="US-China Inventor Flows Dominate International Mobility with 100,934 Bidirectional Moves"
+          caption="This chart displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US. US-South Korea (22,246 bidirectional), India-US (20,568), and US-Japan (18,644) follow."
+          insight="The dominance of the US-China corridor in inventor mobility flows reflects the deep integration of US and Chinese innovation ecosystems, with nearly balanced bidirectional flows suggesting reciprocal talent circulation rather than one-way brain drain."
+          loading={mfL}
+          height={700}
+        >
+          <PWBarChart
+            data={topMobilityFlows}
+            xKey="label"
+            bars={[{ key: 'move_count', name: 'Inventor Moves', color: CHART_COLORS[3] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The bilateral inventor flow data reveal that US-China mobility is nearly balanced, with 52,143 moves from US to China and 48,791 from China to US. This approximate symmetry suggests reciprocal talent circulation rather than unidirectional brain drain, and highlights the deep integration of these two innovation ecosystems. The Taiwan-China corridor (16,917 bidirectional moves) further underscores the interconnected nature of East Asian innovation networks.
         </p>
       </KeyInsight>
 

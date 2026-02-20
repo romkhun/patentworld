@@ -28,6 +28,7 @@ import type {
   PortfolioDiversificationB3,
   CorpDiversification,
   PivotDetection,
+  WIPOPortfolioDiversity,
 } from '@/lib/types';
 
 export default function OrgPatentPortfolioChapter() {
@@ -36,6 +37,7 @@ export default function OrgPatentPortfolioChapter() {
   const { data: diversification, loading: diL } = useChapterData<PortfolioDiversificationB3[]>('company/portfolio_diversification_b3.json');
   const { data: corpDiv, loading: cpL } = useChapterData<CorpDiversification[]>('chapter7/corp_diversification.json');
   const { data: pivots, loading: pvL } = useChapterData<PivotDetection[]>('company/pivot_detection.json');
+  const { data: wipoDiversity, loading: wdL } = useChapterData<WIPOPortfolioDiversity[]>('chapter11/wipo_portfolio_diversity.json');
 
   /* ── Constants ── */
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
@@ -106,6 +108,24 @@ export default function OrgPatentPortfolioChapter() {
       .filter((p) => p.company === activePivotCompany)
       .sort((a, b) => a.window_start - b.window_start);
   }, [pivots, activePivotCompany]);
+
+  const wipoScatterData = useMemo(() => {
+    if (!wipoDiversity) return [];
+    return wipoDiversity.map((d) => ({
+      company: cleanOrgName(d.organization),
+      x: d.num_wipo_fields,
+      y: d.wipo_shannon_entropy,
+      size: d.total_patents,
+    }));
+  }, [wipoDiversity]);
+
+  const wipoDiversityBars = useMemo(() => {
+    if (!wipoDiversity) return [];
+    return wipoDiversity.map((d) => ({
+      ...d,
+      label: cleanOrgName(d.organization),
+    }));
+  }, [wipoDiversity]);
 
   return (
     <div>
@@ -360,6 +380,49 @@ export default function OrgPatentPortfolioChapter() {
           such as IBM&apos;s transition from hardware to services, or Nokia&apos;s pivot from mobile
           hardware to telecommunications infrastructure. These findings indicate that patent portfolio analysis
           may serve as a leading indicator of corporate strategy.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section e: WIPO Portfolio Diversity ── */}
+
+      <SectionDivider label="WIPO Portfolio Diversity" />
+
+      <Narrative>
+        <p>
+          While CPC-based entropy captures granular subclass-level diversity, the WIPO technology
+          classification offers a complementary perspective organized around 35 technology fields.
+          WIPO-level Shannon entropy measures how evenly a firm distributes its patents across
+          these broader technology domains, distinguishing diversified conglomerates from
+          narrowly focused specialists.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-portfolio-wipo-diversity"
+        title="US Air Force Leads WIPO Diversity at 3.14 Entropy Across 35 Fields, While Ericsson Concentrates at 1.40"
+        subtitle="50 firms ranked by Shannon entropy across WIPO technology fields, measuring breadth of patent portfolio at the technology domain level"
+        caption="Firms ranked by Shannon entropy computed across 35 WIPO technology fields. Higher entropy indicates a more evenly distributed portfolio across technology domains. Government and industrial conglomerates lead, while telecommunications and semiconductor firms concentrate in fewer fields."
+        insight="The WIPO-level entropy ranking reveals a striking contrast between diversified industrial conglomerates (US Air Force, Mitsubishi Electric, GE) and focused technology firms (Ericsson, Cisco, Huawei), reflecting fundamentally different innovation strategies."
+        loading={wdL}
+        height={1400}
+      >
+        <PWBarChart
+          data={wipoDiversityBars}
+          xKey="label"
+          bars={[{ key: 'wipo_shannon_entropy', name: 'Shannon Entropy (WIPO)', color: CHART_COLORS[4] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          WIPO-level portfolio diversity reveals a more than twofold range in Shannon entropy across
+          the top 50 patent holders — from 3.14 (US Air Force, spanning all 35 WIPO fields) down to
+          1.40 (Ericsson, concentrated in telecommunications). This pattern is consistent with the
+          CPC-based analysis but highlights how mission-driven organizations (defense, national labs)
+          and industrial conglomerates (Mitsubishi Electric, GE, Hitachi) achieve the broadest
+          technology coverage, while firms with focused competitive strategies maintain deliberately
+          narrow portfolios.
         </p>
       </KeyInsight>
 

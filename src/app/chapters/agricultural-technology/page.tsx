@@ -32,6 +32,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
   DomainEntrantIncumbent, DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter12() {
@@ -48,6 +49,7 @@ export default function Chapter12() {
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('agtech/agtech_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('agtech/agtech_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('agtech/agtech_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot entrant/incumbent data
   const eiPivot = useMemo(() => {
@@ -242,6 +244,16 @@ export default function Chapter12() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'AgTech' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'AgTech' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -881,6 +893,24 @@ export default function Chapter12() {
           future agricultural patents will increasingly bridge the farm, the laboratory, and the data center, reflecting a convergence of precision agriculture, biotechnology, and data science.
         </p>
       </Narrative>
+
+      <ChartContainer
+        id="fig-agtech-filing-vs-grant"
+        title="AgTech Filings Peaked in 2019 at 3,351 While Grants Peaked at 2,980 in 2020 — the Tightest Lag Among ACT 6 Domains"
+        subtitle="Annual patent filings vs. grants for agricultural technology, showing the filing-to-grant pipeline."
+        caption="Agricultural technology exhibits one of the tightest filing-to-grant lags among ACT 6 domains, with grant peaks closely following filing peaks. This pattern reflects relatively shorter examination times for agricultural patents compared to software-heavy domains."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), driven by the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025, reflecting broader entry into agricultural innovation."]}

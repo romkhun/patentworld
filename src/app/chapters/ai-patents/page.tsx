@@ -30,6 +30,7 @@ import type {
   AITopInventor, AIGeography, AIQuality, AIOrgOverTime,
   AIStrategy, AIGPTDiffusion, AITeamComparison, AIAssigneeType,
   DomainEntrantIncumbent, DomainQualityBifurcation, AiGptKpi,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 const SUBFIELD_COLORS: Record<string, string> = {
@@ -61,6 +62,7 @@ export default function Chapter13() {
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('chapter11/ai_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('chapter11/ai_quality_bifurcation.json');
   const { data: gptKpi, loading: gptL } = useChapterData<AiGptKpi[]>('chapter11/ai_gpt_kpi.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot entrant/incumbent data
   const eiPivot = useMemo(() => {
@@ -255,6 +257,16 @@ export default function Chapter13() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'AI' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'AI' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -861,6 +873,24 @@ export default function Chapter13() {
       <Narrative>
         Having documented the growth of artificial intelligence in the patent system, the organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
+
+      <ChartContainer
+        id="fig-ai-filing-vs-grant"
+        title="AI Filings Peaked at 25,853 in 2020 While Grants Reached 26,001 in 2023 — a 3-Year Examination Lag"
+        subtitle="Annual patent filings vs. grants for artificial intelligence, revealing the USPTO examination pipeline."
+        caption="The substantial gap between AI filing and grant curves during 2015-2020 reflects the rapid acceleration of AI patent applications that overwhelmed examination capacity. Grants continued climbing through 2023 as the backlog was processed."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all US patent grants.", "IBM leads with 16,781 AI patents, followed by Google (7,775) and Samsung (6,195), but the field is rapidly deconcentrating."]}

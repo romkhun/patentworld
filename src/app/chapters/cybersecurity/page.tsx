@@ -31,6 +31,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
   DomainEntrantIncumbent, DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter17() {
@@ -47,6 +48,7 @@ export default function Chapter17() {
   const { data: cyberAssignType, loading: catL } = useChapterData<DomainAssigneeType[]>('cyber/cyber_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('cyber/cyber_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('cyber/cyber_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -241,6 +243,16 @@ export default function Chapter17() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Cyber' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Cyber' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -853,6 +865,24 @@ export default function Chapter17() {
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
           yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-cyber-filing-vs-grant"
+        title="Cybersecurity Filings Peaked at 18,090 in 2019 While Grants Reached 17,323 in 2022 — a 3-Year Pipeline"
+        subtitle="Annual patent filings vs. grants for cybersecurity, showing the examination lag during peak growth."
+        caption="Cybersecurity patent filings peaked in 2019 and have since moderated, while grants continued climbing through 2022. The multi-year gap reflects both the volume of applications and the technical complexity of security-related patent examination."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 

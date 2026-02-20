@@ -22,9 +22,11 @@ import { ConcentrationPanel } from '@/components/chapter/ConcentrationPanel';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import type {
   AssigneeTypePerYear, TopAssignee, DomesticVsForeign,
   NonUSBySection,
+  FilingRouteOverTime, LawFirmConcentration, TopLawFirm,
 } from '@/lib/types';
 
 function pivotByCategory(data: AssigneeTypePerYear[]) {
@@ -50,6 +52,9 @@ export default function OrgCompositionChapter() {
   const { data: top } = useChapterData<TopAssignee[]>('chapter3/top_assignees.json');
   const { data: dvf, loading: dvfL } = useChapterData<DomesticVsForeign[]>('chapter3/domestic_vs_foreign.json');
   const { data: nonUS, loading: nuL } = useChapterData<NonUSBySection[]>('chapter3/non_us_by_section.json');
+  const { data: filingRoute, loading: frL } = useChapterData<FilingRouteOverTime[]>('chapter8/filing_route_over_time.json');
+  const { data: lawFirmConc, loading: lfcL } = useChapterData<LawFirmConcentration[]>('chapter8/law_firm_concentration.json');
+  const { data: topLawFirms, loading: tlfL } = useChapterData<TopLawFirm[]>('chapter8/top_law_firms.json');
 
   const typePivot = useMemo(() => types ? pivotByCategory(types) : [], [types]);
   const categories = useMemo(() => types ? [...new Set(types.map((d) => d.category))] : [], [types]);
@@ -77,6 +82,24 @@ export default function OrgCompositionChapter() {
     }));
     return { nonUSPivot: pivoted, nonUSCountryAreas: areas };
   }, [nonUS]);
+
+  const filingRoutePivot = useMemo(() => {
+    if (!filingRoute) return [];
+    return filingRoute.map((d) => ({
+      year: d.year,
+      'PCT Route': d.pct_share_pct,
+      'Direct Foreign': d.direct_foreign_share_pct,
+      'Domestic': d.domestic_share_pct,
+    }));
+  }, [filingRoute]);
+
+  const topLawFirmData = useMemo(() => {
+    if (!topLawFirms) return [];
+    return topLawFirms.slice(0, 20).map((d) => ({
+      ...d,
+      label: d.firm.length > 40 ? d.firm.slice(0, 37) + '...' : d.firm,
+    }));
+  }, [topLawFirms]);
 
   return (
     <div>
@@ -234,6 +257,110 @@ export default function OrgCompositionChapter() {
           East Asian economies (Japan, South Korea, China) now exceeds the US share in
           several technology areas. This shift has been most pronounced in semiconductors
           and display technology, where Korean and Japanese firms hold dominant positions.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section C: Filing Routes ── */}
+
+      <SectionDivider label="Filing Routes Over Time" />
+
+      <Narrative>
+        <p>
+          The route by which a patent application reaches the USPTO — domestic filing, direct foreign
+          filing, or the Patent Cooperation Treaty (PCT) route — reveals the internationalization of
+          patent prosecution strategy. The PCT route, which entered force in 1978, has grown from
+          negligible use to over one-fifth of all US patent grants by 2024.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-org-composition-filing-route"
+        title="PCT Route Grew From 0% to 22.2% of Patent Grants Between 1980 and 2024"
+        subtitle="Share of US patent grants by filing route (PCT, direct foreign, domestic), 1976-2025"
+        caption="Share of US patent grants by filing route over time. The PCT route, introduced in 1978, has steadily displaced direct foreign filings as the preferred international prosecution pathway, rising from 0% in 1980 to 22.2% in 2024."
+        insight="The growth of the PCT route reflects the globalization of patent prosecution. Foreign applicants increasingly use PCT as a single-entry mechanism, while direct foreign filings have declined proportionally."
+        loading={frL}
+      >
+        <PWAreaChart
+          data={filingRoutePivot}
+          xKey="year"
+          areas={[
+            { key: 'PCT Route', name: 'PCT Route', color: CHART_COLORS[0] },
+            { key: 'Direct Foreign', name: 'Direct Foreign', color: CHART_COLORS[3] },
+            { key: 'Domestic', name: 'Domestic', color: CHART_COLORS[1] },
+          ]}
+          stacked
+          yLabel="Share of Patents (%)"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The PCT route has grown from 0% of US patent grants in 1980 to 22.2% in 2024, displacing
+          a substantial portion of direct foreign filings. This shift reflects the growing preference
+          among international applicants for the PCT&apos;s streamlined multi-country filing mechanism.
+          Meanwhile, the domestic share has gradually declined from 69% to 53%, consistent with the
+          broader internationalization of the patent system documented earlier in this chapter.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section D: Law Firm Concentration ── */}
+
+      <SectionDivider label="Law Firm Market Concentration" />
+
+      <Narrative>
+        <p>
+          The patent prosecution market is served by specialized law firms that prepare and file
+          applications on behalf of inventors and assignees. The degree of concentration among these
+          firms — measured by the CR4 and CR10 ratios (the share of patents handled by the top 4 and
+          top 10 firms) — reveals whether the market is becoming more or less concentrated over time.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-org-composition-law-firm-concentration"
+        title="Top 4 Law Firms' Market Share Declined From 12.7% to 5.8% Between 1976 and 2024"
+        subtitle="CR4 and CR10 concentration ratios among patent prosecution law firms, by year, 1976-2025"
+        caption="Market concentration among patent prosecution firms, measured by the share of patents handled by the top 4 (CR4) and top 10 (CR10) firms. Both ratios have declined substantially since the mid-1990s, indicating a more fragmented prosecution market."
+        insight="The declining concentration in the patent prosecution market suggests that barriers to entry for law firms have fallen, or that the growth of international filings has diversified the firm landscape."
+        loading={lfcL}
+      >
+        <PWLineChart
+          data={lawFirmConc ?? []}
+          xKey="year"
+          lines={[
+            { key: 'cr4_pct', name: 'CR4 (%)', color: CHART_COLORS[0] },
+            { key: 'cr10_pct', name: 'CR10 (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+          ]}
+          yLabel="Market Share (%)"
+          yFormatter={(v: number) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-org-composition-top-law-firms"
+        title="Sughrue Mion Leads With 90,279 Patents, Followed by Fish & Richardson (75,528) and Birch Stewart (71,132)"
+        subtitle="Top 20 patent prosecution law firms ranked by total patents handled, all years"
+        caption="Patent prosecution law firms ranked by total patents handled across all years. Firms specializing in Japanese and Korean client portfolios (e.g., Sughrue Mion, Birch Stewart) rank among the largest, reflecting the influence of foreign assignees on US patent prosecution."
+        insight="The dominance of firms specializing in foreign client portfolios among top patent prosecution firms reinforces the international character of the US patent system."
+        loading={tlfL}
+        height={650}
+      >
+        <PWBarChart
+          data={topLawFirmData}
+          xKey="label"
+          bars={[{ key: 'total_patents', name: 'Total Patents', color: CHART_COLORS[0] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The patent prosecution market has become significantly less concentrated over five decades.
+          The CR4 ratio fell from a peak of 13.2% in 1985 to 5.8% in 2024, and the CR10 from 22.6%
+          to 11.9%. This fragmentation coincides with the growth of international filings and the
+          emergence of new specialized firms serving Asian client portfolios. Sughrue Mion, which leads
+          all firms with 90,279 cumulative patents, exemplifies this pattern.
         </p>
       </KeyInsight>
 

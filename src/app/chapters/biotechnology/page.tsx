@@ -29,6 +29,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
   DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter15() {
@@ -45,6 +46,7 @@ export default function Chapter15() {
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('biotech/biotech_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('biotech/biotech_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('biotech/biotech_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -238,6 +240,16 @@ export default function Chapter15() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Biotech' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Biotech' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -913,6 +925,24 @@ export default function Chapter15() {
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
           yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-biotech-filing-vs-grant"
+        title="Biotech Filings Peaked at 4,763 in 2018 While Grants Reached 4,360 in 2020 — Reflecting Lengthy Examination Times"
+        subtitle="Annual patent filings vs. grants for biotechnology, showing the filing-to-grant pipeline."
+        caption="Biotechnology patents exhibit a moderate filing-to-grant lag. Filings peaked in 2018 and have since declined, while grants peaked in 2020. The relatively stable grant output despite declining filings reflects the deep pipeline of biotech applications undergoing examination."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 

@@ -1566,6 +1566,20 @@ export interface Act6Spillover {
   lift: number;
 }
 
+export interface Act6ContinuationRate {
+  domain: string;
+  total_patents: number;
+  related_filings: number;
+  continuation_share_pct: number;
+}
+
+export interface Act6DomainFilingVsGrant {
+  domain: string;
+  series: string;
+  year: number;
+  count: number;
+}
+
 // ── ACT 6 Enrichment Types ──────────────────────────────────────────────────
 
 export interface DomainEntrantIncumbent {
@@ -1625,6 +1639,71 @@ export interface DigihealthRegulatorySplit {
   year: number;
   category: string;
   patent_count: number;
+}
+
+// Analysis 16: Government Contract Patent Concentration
+export interface TopGovernmentContract {
+  contract_award_number: string;
+  agency: string;
+  patent_count: number;
+}
+
+// Analysis 18: Filing Route
+export interface FilingRouteOverTime {
+  year: number;
+  total: number;
+  pct_route: number;
+  direct_foreign: number;
+  domestic: number;
+  pct_share_pct: number;
+  direct_foreign_share_pct: number;
+  domestic_share_pct: number;
+}
+
+// Analysis 19: Law Firm Concentration
+export interface LawFirmConcentration {
+  year: number;
+  total_with_firm: number;
+  cr4_pct: number;
+  cr10_pct: number;
+}
+
+export interface TopLawFirm {
+  firm: string;
+  total_patents: number;
+  first_year: number;
+  last_year: number;
+}
+
+// Analysis 20: Continuation Share by Firm
+export interface ContinuationShareByFirm {
+  organization: string;
+  total_patents: number;
+  related_filings: number;
+  continuation_share_pct: number;
+}
+
+// Analysis 21: NPL Citation by Firm
+export interface NPLByFirm {
+  organization: string;
+  total_patents: number;
+  avg_npl_citations: number;
+  median_npl_citations: number;
+}
+
+// Analysis 22: Foreign Citation by Firm
+export interface ForeignCitationByFirm {
+  organization: string;
+  total_patents: number;
+  foreign_citation_share_pct: number;
+}
+
+// Analysis 23: WIPO Portfolio Diversity
+export interface WIPOPortfolioDiversity {
+  organization: string;
+  total_patents: number;
+  num_wipo_fields: number;
+  wipo_shannon_entropy: number;
 }
 
 // Generic data wrapper

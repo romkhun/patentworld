@@ -3,6 +3,8 @@
 import { ReactNode } from 'react';
 import { useInView } from '@/hooks/useInView';
 import { CiteThisFigure } from './CiteThisFigure';
+import { DataBadge } from '@/components/chapter/DataBadge';
+import type { DataBadgeProps } from '@/lib/types';
 
 interface ChartContainerProps {
   title: string;
@@ -18,10 +20,11 @@ interface ChartContainerProps {
   statusText?: string;
   flexHeight?: boolean;
   controls?: ReactNode;
+  badgeProps?: DataBadgeProps;
   children: ReactNode;
 }
 
-export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, children }: ChartContainerProps) {
+export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, badgeProps, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
 
   return (
@@ -42,7 +45,12 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
       )}
       {!subtitle && <div className="mb-3" />}
-      {controls && <div className="mb-3 flex justify-end">{controls}</div>}
+      {(controls || badgeProps) && (
+        <div className="mb-3 flex items-center justify-between gap-2">
+          {badgeProps ? <DataBadge {...badgeProps} /> : <div />}
+          {controls && <div className="flex justify-end">{controls}</div>}
+        </div>
+      )}
       {loading || !inView ? (
         <div
           className="chart-container-inner relative flex items-end justify-center overflow-hidden"

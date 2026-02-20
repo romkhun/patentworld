@@ -29,6 +29,9 @@ export default function MechGeographyChapter() {
   const { data: coInventionBySec, loading: cisL } = useChapterData<CoInventionBySection[]>('chapter6/co_invention_us_china_by_section.json');
   const { data: diffusionSummary } = useChapterData<{ tech_area: string; periods: { period: string; total_cities: number; total_patents: number }[] }[]>('chapter4/innovation_diffusion_summary.json');
 
+  // Analysis 36: Citation Localization
+  const { data: citationLocalization, loading: clcL } = useChapterData<any[]>('chapter22/citation_localization.json');
+
   // ── Derived state: co-invention rates pivot ───────────────────────────
   const { coInventionPivot, coInventionPartners } = useMemo(() => {
     if (!coInvention) return { coInventionPivot: [], coInventionPartners: [] };
@@ -224,6 +227,40 @@ export default function MechGeographyChapter() {
       <KeyInsight>
         <p>
           All three technology areas exhibit a consistent diffusion pattern: early concentration in a small number of pioneering cities followed by geographic spread. AI patenting was predominantly concentrated in Silicon Valley and several East Coast hubs in the 1990s but has since spread to dozens of cities worldwide. Biotech demonstrates a similar pattern anchored by Boston, San Francisco, and San Diego. Clean energy patenting remains more geographically dispersed, reflecting the heterogeneous nature of renewable technologies.
+        </p>
+      </KeyInsight>
+
+      {/* ── Analysis 36: Citation Localization ────────────────────────────── */}
+      <SectionDivider label="Citation Localization" />
+
+      <Narrative>
+        <p>
+          Citation localization measures the degree to which patents cite other patents from the same country. A high same-country citation share indicates persistent home-country bias in knowledge flows, while a declining share would suggest increasing internationalization of the knowledge base that inventors draw upon.
+        </p>
+      </Narrative>
+
+      {citationLocalization && citationLocalization.length > 0 && (
+        <ChartContainer
+          id="fig-mech-geo-citation-localization"
+          subtitle="Share of patent citation pairs where citing and cited patents originate from the same country, by 5-year period."
+          title="Home-Country Citation Bias Remains Persistent at 60-64%, Despite Rising International Collaboration"
+          caption="This chart displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained remarkably stable at 60-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
+          insight="The persistence of home-country citation bias at approximately 60-64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
+          loading={clcL}
+        >
+          <PWLineChart
+            data={citationLocalization}
+            xKey="period"
+            lines={[{ key: 'same_country_pct', name: 'Same-Country Citation Share (%)', color: CHART_COLORS[0] }]}
+            yLabel="Same-Country Citation Share (%)"
+            yFormatter={(v) => `${(v as number).toFixed(1)}%`}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The remarkably stable home-country citation bias -- hovering between 58% and 64% across five decades -- is one of the most striking findings in the geography of knowledge flows. Despite the dramatic increase in international co-invention (from 1% to 10% of patents) and the globalization of corporate R&D, inventors continue to cite patents from their own country at roughly the same rate as in the 1980s. This persistence suggests that tacit knowledge, language, institutional proximity, and local knowledge networks continue to shape how inventors identify and build upon prior art.
         </p>
       </KeyInsight>
 

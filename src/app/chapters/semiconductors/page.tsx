@@ -30,6 +30,7 @@ import type {
   DomainTopInventor, DomainGeography, DomainQuality, DomainOrgOverTime,
   DomainStrategy, DomainDiffusion, DomainTeamComparison, DomainAssigneeType,
   DomainEntrantIncumbent, DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter21() {
@@ -46,6 +47,7 @@ export default function Chapter21() {
   const { data: semiAssignType, loading: satL } = useChapterData<DomainAssigneeType[]>('semiconductors/semi_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('semiconductors/semi_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('semiconductors/semi_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   const eiPivot = useMemo(() => {
     if (!entrantIncumbent) return [];
@@ -239,6 +241,16 @@ export default function Chapter21() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Semiconductor' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Semiconductor' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -863,6 +875,24 @@ export default function Chapter21() {
         while the interaction between semiconductor and artificial intelligence patents is
         examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>.
       </Narrative>
+
+      <ChartContainer
+        id="fig-semi-filing-vs-grant"
+        title="Semiconductor Filings Peaked at 24,463 in 2019 While Grants Reached 22,511 in 2020 — the Shortest Lag Among Large Domains"
+        subtitle="Annual patent filings vs. grants for semiconductors, showing the mature examination pipeline."
+        caption="Semiconductors exhibit the tightest filing-to-grant alignment among large ACT 6 domains, with filing and grant peaks separated by only one year. This reflects the mature and well-established examination processes for semiconductor patents at the USPTO, a domain with decades of prior art and classification history."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Semiconductor patents uniquely exhibit rising concentration, with top-four share increasing from 11.3% to 32.6% — the only domain showing sustained consolidation.", "Entry velocity plateaued at 197 patents/year for both 1990s and 2010s cohorts, suggesting that scale barriers have stabilized."]}

@@ -29,6 +29,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
   DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter22() {
@@ -45,6 +46,7 @@ export default function Chapter22() {
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('space/space_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('space/space_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('space/space_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   const eiPivot = useMemo(() => {
     if (!entrantIncumbent) return [];
@@ -238,6 +240,16 @@ export default function Chapter22() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Space' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Space' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -866,6 +878,24 @@ export default function Chapter22() {
           appears likely to accelerate further.
         </p>
       </Narrative>
+
+      <ChartContainer
+        id="fig-space-filing-vs-grant"
+        title="Space Technology Filings Peaked at 977 in 2020 While Grants Reached 1,069 in 2024 — a 4-Year Lag"
+        subtitle="Annual patent filings vs. grants for space technology, showing the filing-to-grant pipeline during the commercial space boom."
+        caption="Space technology filings peaked in 2020, coinciding with the commercial space investment boom (SpaceX, Blue Origin, satellite mega-constellations). Grants continued rising through 2024, reflecting the processing of this filing surge. The growing gap indicates the transformation of space from a government-dominated to a commercially driven patent domain."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Space technology top-four concentration fluctuated between 4.9% and 36.7%, the widest range among all domains, reflecting the government-to-commercial transition.", "Satellite communications now dominates space technology patenting, with Boeing, ViaSat, and Lockheed Martin as leading filers."]}

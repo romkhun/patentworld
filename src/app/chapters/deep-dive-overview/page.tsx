@@ -12,11 +12,14 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import Link from 'next/link';
+import { PWLineChart } from '@/components/charts/PWLineChart';
 import type {
   Act6DomainSummary,
   Act6TimeSeries,
   Act6QualityPeriod,
   Act6Spillover,
+  Act6ContinuationRate,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 const DOMAIN_CHAPTERS: Record<string, { slug: string; title: string }> = {
@@ -39,6 +42,8 @@ export default function DeepDiveOverview() {
   const { data: timeseries, loading: tsL } = useChapterData<Act6TimeSeries[]>('act6/act6_timeseries.json');
   const { data: quality, loading: qL } = useChapterData<Act6QualityPeriod[]>('act6/act6_quality.json');
   const { data: spillover, loading: spL } = useChapterData<Act6Spillover[]>('act6/act6_spillover.json');
+  const { data: continuationRates, loading: crL } = useChapterData<Act6ContinuationRate[]>('act6/act6_continuation_rates.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Sort domains by total patents for bar chart
   const sortedDomains = useMemo(() => {
@@ -96,6 +101,38 @@ export default function DeepDiveOverview() {
         domain_b: d.domain_b,
       }));
   }, [spillover]);
+
+  // Continuation rates sorted descending by share
+  const continuationBar = useMemo(() => {
+    if (!continuationRates) return [];
+    return [...continuationRates].sort((a, b) => b.continuation_share_pct - a.continuation_share_pct);
+  }, [continuationRates]);
+
+  // Filing-vs-grant small-multiples panels
+  const filingGrantPanels = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const domains = [...new Set(filingVsGrant.map((d) => d.domain))];
+    return domains.map((domain) => {
+      const filingData = filingVsGrant
+        .filter((d) => d.domain === domain && d.series === 'filing_year' && d.year >= 1990)
+        .map((d) => ({ x: d.year, y: d.count }));
+      const grantData = filingVsGrant
+        .filter((d) => d.domain === domain && d.series === 'grant_year' && d.year >= 1990)
+        .map((d) => ({ x: d.year, y: d.count, ref: d.count }));
+      // Merge into a single array with filing as y and grant as ref
+      const years = [...new Set([...filingData.map((d) => d.x), ...grantData.map((d) => d.x)])].sort();
+      const filingMap = Object.fromEntries(filingData.map((d) => [d.x, d.y]));
+      const grantMap = Object.fromEntries(grantData.map((d) => [d.x, d.y]));
+      return {
+        name: domain,
+        data: years.map((year) => ({
+          x: year,
+          y: filingMap[year] ?? 0,
+          ref: grantMap[year] ?? 0,
+        })),
+      };
+    });
+  }, [filingVsGrant]);
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
@@ -299,6 +336,65 @@ export default function DeepDiveOverview() {
         to also file patents in the related domain. Green innovation shows broad but low-lift
         connections across many domains, consistent with its role as a cross-cutting
         classification applied alongside primary technology codes.
+      </KeyInsight>
+
+      {/* ── Figure 5: Continuation Rates by Domain ──────────────────────── */}
+      <SectionDivider label="Continuation Filing Rates" />
+
+      <ChartContainer
+        id="fig-act6-continuation-rates"
+        title="Biotech Leads Domain Continuation Filing at 48.9% — Nearly Double the AgTech Rate of 25.2%"
+        subtitle="Share of patents with continuation, division, or CIP related filings by domain"
+        caption="Continuation filing rates vary substantially across domains. Biotechnology's 48.9% rate reflects the regulatory complexity and long development timelines of life sciences patents, where continuation filings are used to extend protection across related claims. Agricultural technology's 25.2% rate is the lowest, consistent with more straightforward patent protection strategies in precision agriculture."
+        loading={crL}
+      >
+        <PWBarChart
+          data={continuationBar}
+          xKey="domain"
+          bars={[{ key: 'continuation_share_pct', name: 'Continuation Share (%)', color: CHART_COLORS[3] }]}
+          layout="vertical"
+          yFormatter={(v) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        Continuation filing rates reveal fundamental differences in patent strategy across technology
+        domains. Biotechnology (48.9%), digital health (44.3%), and blockchain (40.0%) exhibit the
+        highest continuation rates, reflecting the need for layered patent protection in fields with
+        long development timelines, evolving regulatory landscapes, or rapidly shifting technology
+        standards. At the other end, agricultural technology (25.2%) and 3D printing (28.5%) show
+        lower rates, suggesting more straightforward paths from invention to commercialization.
+      </KeyInsight>
+
+      {/* ── Figure 6: Filing vs Grant Trends by Domain ──────────────────── */}
+      <SectionDivider label="Filing vs. Grant Timelines" />
+
+      <ChartContainer
+        id="fig-act6-filing-vs-grant"
+        title="Filing-to-Grant Lag Varies Across Domains, With AI and Green Showing the Widest Gaps"
+        subtitle="Annual patent filings (solid) vs. grants (dashed) per domain, 1990–2025. Each panel is independently scaled."
+        caption="The gap between filing and grant curves reflects patent examination backlogs and processing times. AI and green innovation show substantial filing-grant lags during peak growth years (2015–2020), while mature domains like semiconductors show tighter alignment. Blockchain's filing decline after 2019 is visible before the grant peak, indicating a multi-year pipeline of pending applications."
+        loading={fgL}
+        flexHeight
+      >
+        <PWSmallMultiples
+          panels={filingGrantPanels}
+          xLabel="Year"
+          yLabel="Patents"
+          yFormatter={formatCompact}
+          columns={4}
+          referenceLabel="Grants (dashed) vs. Filings (solid)"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        The filing-versus-grant comparison reveals important temporal dynamics in technology
+        patenting. In rapidly growing domains like AI and cybersecurity, filing curves peak
+        years before grant curves, creating a substantial pipeline of pending applications.
+        This lag means that patent statistics based solely on grant year may understate the
+        true pace of innovation during boom periods and overstate it during slowdowns. Blockchain
+        is particularly notable: filings peaked around 2019 and declined sharply, but grants
+        continued climbing through 2022, reflecting the multi-year examination pipeline.
       </KeyInsight>
 
       {/* ── Data Note ────────────────────────────────────────────────────── */}

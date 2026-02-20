@@ -42,6 +42,14 @@ interface GenderSectorRow {
   count: number;
 }
 
+interface GenderByFilingRoute {
+  year: number;
+  origin: string;
+  total_inventors: number;
+  female_inventors: number;
+  female_share_pct: number;
+}
+
 /* ── Utility: pivot gender-per-year into one row per year ──────────── */
 
 function pivotGender(data: GenderRow[]) {
@@ -67,6 +75,7 @@ export default function InvGenderChapter() {
   const { data: genderTeamQuality } = useChapterData<GenderTeamQuality[]>('chapter5/gender_team_quality.json');
   const { data: qualityByGender, loading: qgL } = useChapterData<any[]>('computed/quality_by_gender.json');
   const { data: prodByGender, loading: pgL } = useChapterData<any[]>('computed/inventor_productivity_by_gender.json');
+  const { data: genderByRoute, loading: gbrL } = useChapterData<GenderByFilingRoute[]>('chapter16/gender_by_filing_route.json');
 
   /* ── derived data ── */
   const genderPivot = useMemo(() => gender ? pivotGender(gender) : [], [gender]);
@@ -116,6 +125,17 @@ export default function InvGenderChapter() {
     });
     return { genderTrendPivot: pivoted, genderTrendSections: sections };
   }, [genderSectionTrend]);
+
+  /* ── pivot gender by filing route into one row per year ──────────── */
+  const genderByRoutePivot = useMemo(() => {
+    if (!genderByRoute) return [];
+    const byYear: Record<number, any> = {};
+    for (const d of genderByRoute) {
+      if (!byYear[d.year]) byYear[d.year] = { year: d.year };
+      byYear[d.year][d.origin] = d.female_share_pct;
+    }
+    return Object.values(byYear).sort((a: any, b: any) => a.year - b.year);
+  }, [genderByRoute]);
 
   /* ── pivot helper for quality/productivity charts ──────────── */
   const pivotData = (raw: any[] | null, metric: string) => {
@@ -514,6 +534,52 @@ export default function InvGenderChapter() {
           yLabel="Avg. Patents per Inventor"
         />
       </ChartContainer>
+
+      {/* ── Section D: Female Inventor Share by Filing Route ── */}
+      <SectionDivider label="Female Inventor Share by Filing Route" />
+
+      <Narrative>
+        <p>
+          The gender composition of the inventor workforce may differ between patents filed
+          through domestic routes and those originating from foreign applicants. Comparing female
+          inventor share across filing routes reveals whether the gender gap varies by the
+          geographic origin of patent applications.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-gender-by-filing-route"
+        title="Foreign-Origin Patents Show 16.4% Female Inventor Share vs. 13.8% for Domestic in 2025"
+        subtitle="Female inventor share by filing route (domestic vs. foreign-origin patents), 1976-2025"
+        caption="This chart tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since approximately 2010, a reversal of the pattern observed in earlier decades."
+        insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- suggests that non-US innovation systems have made faster progress on gender diversity in recent decades, particularly in fields like pharmaceuticals and chemistry where foreign applicants are well-represented."
+        loading={gbrL}
+      >
+        {genderByRoutePivot.length > 0 && (
+          <PWLineChart
+            data={genderByRoutePivot}
+            xKey="year"
+            lines={[
+              { key: 'domestic', name: 'Domestic Patents', color: CHART_COLORS[0] },
+              { key: 'foreign_origin', name: 'Foreign-Origin Patents', color: CHART_COLORS[2] },
+            ]}
+            yLabel="Female Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Female inventor representation on foreign-origin patents has surpassed that on domestic
+          patents since approximately 2010. By 2025, foreign-origin patents show a 16.4% female
+          inventor share compared to 13.8% for domestic patents. This reversal from the early
+          decades -- when domestic patents had higher female representation -- suggests that
+          non-US innovation systems, particularly in fields like chemistry and pharmaceuticals,
+          have made faster progress on gender diversity in recent years.
+        </p>
+      </KeyInsight>
 
       {/* ── Closing transition ── */}
       <Narrative>

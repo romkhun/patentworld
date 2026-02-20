@@ -25,6 +25,30 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import type { PatentsPerYear, HeroStats, GrantLag } from '@/lib/types';
 
+interface FilingVsGrant {
+  series: string;
+  year: number;
+  count: number;
+}
+
+interface PendencyByFiling {
+  year: number;
+  avg_pendency_years: number;
+  median_pendency_years: number;
+  patent_count: number;
+}
+
+interface ContinuationChain {
+  year: number;
+  total_patents: number;
+  originals: number;
+  continuations: number;
+  divisions: number;
+  cips: number;
+  related_filings: number;
+  related_share_pct: number;
+}
+
 function pivotByType(data: PatentsPerYear[]) {
   const years = [...new Set(data.map((d) => d.year))].sort();
   return years.map((year) => {
@@ -40,8 +64,25 @@ export default function SystemPatentCountChapter() {
   const { data: ppy, loading: ppyL } = useChapterData<PatentsPerYear[]>('chapter1/patents_per_year.json');
   const { data: hero } = useChapterData<HeroStats>('chapter1/hero_stats.json');
   const { data: lag, loading: lagL } = useChapterData<GrantLag[]>('chapter1/grant_lag.json');
+  const { data: filingVsGrant, loading: fvgL } = useChapterData<FilingVsGrant[]>('chapter1/filing_vs_grant_year.json');
+  const { data: pendency, loading: penL } = useChapterData<PendencyByFiling[]>('chapter1/pendency_by_filing_year.json');
+  const { data: contChains, loading: ccL } = useChapterData<ContinuationChain[]>('chapter1/continuation_chains.json');
 
   const pivotedPatents = useMemo(() => ppy ? pivotByType(ppy) : [], [ppy]);
+
+  const pivotedFilingVsGrant = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const years = [...new Set(filingVsGrant.map((d) => d.year))].sort();
+    return years.map((year) => {
+      const filing = filingVsGrant.find((d) => d.year === year && d.series === 'filing_year');
+      const grant = filingVsGrant.find((d) => d.year === year && d.series === 'grant_year');
+      return {
+        year,
+        filing_count: filing?.count ?? null,
+        grant_count: grant?.count ?? null,
+      };
+    });
+  }, [filingVsGrant]);
 
   const totalPatents = hero ? formatCompact(hero.total_patents) : '9.36M';
   const peakYear = hero?.peak_year ?? 2019;
@@ -192,6 +233,112 @@ export default function SystemPatentCountChapter() {
           was most consequential.
         </p>
       </KeyInsight>
+
+      {/* ── Analysis 1: Filing vs Grant Year ── */}
+
+      <SectionDivider label="Filing vs. Grant Year" />
+
+      <Narrative>
+        <p>
+          Counting patents by filing year versus grant year yields fundamentally different pictures of innovative activity. Filing-year counts capture when applications entered the system, while grant-year counts reflect when the USPTO completed examination. The gap between these two series reveals the lag and backlog dynamics inherent in the patent system.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-filing-vs-grant"
+        title="Filing-Year Counts Peaked at 349,093 in 2019, Matching the Grant-Year Peak of 355,923 in the Same Year"
+        subtitle="Utility patent counts by filing year vs. grant year, 1976–2025"
+        caption="Filing-year counts understate recent activity because many applications remain pending. The sharp drop in filing-year counts after 2019 reflects the truncation bias of pending applications, not a decline in filing activity."
+        insight="The divergence between filing and grant year trends reveals that recent filing-year declines are an artifact of examination lag — applications filed in recent years have not yet been granted, creating the appearance of decline."
+        loading={fvgL}
+      >
+        <PWLineChart
+          data={pivotedFilingVsGrant}
+          xKey="year"
+          lines={[
+            { key: 'filing_count', name: 'By Filing Year', color: CHART_COLORS[0] },
+            { key: 'grant_count', name: 'By Grant Year', color: CHART_COLORS[5], dashPattern: '8 4' },
+          ]}
+          yLabel="Number of Patents"
+          referenceLines={[
+            { x: 2019, label: 'Filing & Grant Peak', color: '#6366f1' },
+          ]}
+        />
+      </ChartContainer>
+
+      {/* ── Analysis 1b: Pendency Trend ── */}
+
+      <ChartContainer
+        id="fig-pendency-trend"
+        title="Median Time from Filing to Grant Rose from 1.6 to 3.8 Years, Peaking at 3.8 in 2006"
+        subtitle="Median pendency in years by filing year, 1976–2022"
+        caption="Pendency is measured from the filing date of the earliest US application in the family. Recent filing years have incomplete data due to pending applications, which is why the series ends at 2022."
+        insight="The pendency peak in the mid-2000s coincided with the surge in computing and telecommunications filings, creating years of legal uncertainty for applicants in precisely the fastest-moving technology domains."
+        loading={penL}
+      >
+        <PWLineChart
+          data={pendency ?? []}
+          xKey="year"
+          lines={[
+            { key: 'median_pendency_years', name: 'Median Pendency', color: CHART_COLORS[0] },
+            { key: 'avg_pendency_years', name: 'Average Pendency', color: CHART_COLORS[2] },
+          ]}
+          yLabel="Years"
+          yFormatter={(v) => `${v.toFixed(1)}y`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2011] })}
+        />
+      </ChartContainer>
+
+      {/* ── Analysis 2: Continuation Chains ── */}
+
+      <SectionDivider label="Continuation & Related Filings" />
+
+      <Narrative>
+        <p>
+          Beyond the overall volume and pendency of patents, the structure of patent filings has changed dramatically. The rise of continuation applications, divisionals, and continuation-in-part (CIP) filings reflects a strategic shift in how applicants use the patent system — not merely to protect individual inventions, but to build layered portfolios of related claims.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-continuation-stacked"
+        title="96.3% of 2024 Patents Had Related Filings — Original Filings Without Continuations Have Nearly Disappeared"
+        subtitle="Patent grants by filing type, 1976–2025"
+        caption="Related filings include continuations, divisionals, and continuation-in-part (CIP) applications. The 0% related filing share for 1976–2001 reflects a data limitation: the PatentsView g_us_related_documents table does not capture continuation relationships for patents granted before 2002, not an actual absence of related filings."
+        insight="The near-complete dominance of continuation-related patents by the 2020s indicates that the patent system has evolved from protecting discrete inventions to enabling layered, portfolio-based IP strategies."
+        loading={ccL}
+      >
+        <PWAreaChart
+          data={contChains ?? []}
+          xKey="year"
+          areas={[
+            { key: 'originals', name: 'Originals', color: CHART_COLORS[0] },
+            { key: 'continuations', name: 'Continuations', color: CHART_COLORS[1] },
+            { key: 'divisions', name: 'Divisions', color: CHART_COLORS[2] },
+            { key: 'cips', name: 'CIPs', color: CHART_COLORS[3] },
+          ]}
+          stacked
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-continuation-share"
+        title="Related Filing Share Rose from 36% in 2002 to 96% by 2024 as Continuation Strategies Became Universal"
+        subtitle="Share of annual grants with continuation, division, or CIP filings, 2002–2025"
+        caption="The share is computed only from 2002 onward due to the data limitation noted above. The rapid ascent from 36% to above 95% in under a decade reflects both genuine strategic adoption and the phased availability of related-document data."
+        insight="The universality of related filings by the 2020s suggests that virtually all patents are now part of broader filing families, making the concept of a standalone patent increasingly anachronistic."
+        loading={ccL}
+      >
+        <PWLineChart
+          data={(contChains ?? []).filter((d) => d.year >= 2002)}
+          xKey="year"
+          lines={[
+            { key: 'related_share_pct', name: 'Related Filing Share (%)', color: CHART_COLORS[5] },
+          ]}
+          yLabel="Percent"
+          yFormatter={(v) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
 
       {/* ── Chapter Closing ── */}
 

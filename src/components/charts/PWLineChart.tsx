@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, ReferenceArea, Text,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, ReferenceArea, Text, Area,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -16,6 +16,13 @@ interface LineConfig {
   color?: string;
   yAxisId?: 'left' | 'right';
   dashPattern?: string;
+}
+
+interface BandConfig {
+  upperKey: string;
+  lowerKey: string;
+  color?: string;
+  opacity?: number;
 }
 
 interface PWLineChartProps {
@@ -32,9 +39,10 @@ interface PWLineChartProps {
   annotations?: TimeEventKey[];
   showEndLabels?: boolean;
   truncationYear?: number;
+  bands?: BandConfig[];
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels, truncationYear }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels, truncationYear, bands }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
   const [hoveredLine, setHoveredLine] = useState<string | null>(null);
 
@@ -175,6 +183,19 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             stroke={ref.color ?? '#9ca3af'}
             strokeDasharray="4 4"
             label={{ value: ref.label, position: 'top', fontSize: chartTheme.fontSize.tickLabel, fill: ref.color ?? '#9ca3af' }}
+          />
+        ))}
+        {bands?.map((band, i) => (
+          <Area
+            key={`band-${i}`}
+            dataKey={band.upperKey}
+            stroke="none"
+            fill={band.color ?? CHART_COLORS[i % CHART_COLORS.length]}
+            fillOpacity={band.opacity ?? 0.15}
+            yAxisId="left"
+            isAnimationActive={false}
+            baseLine={data.map((d) => d[band.lowerKey] ?? 0)}
+            type="monotone"
           />
         ))}
         {lines.map((line, i) => {

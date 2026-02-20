@@ -23,8 +23,10 @@ import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 import { PWValueHeatmap } from '@/components/charts/PWValueHeatmap';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { useThresholdFilter } from '@/hooks/useThresholdFilter';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { CPC_SECTION_COLORS } from '@/lib/colors';
 import type {
   ClaimsPerYear,
   ClaimsAnalysis,
@@ -40,6 +42,43 @@ import type {
   SleepingBeautyHalflife,
 } from '@/lib/types';
 
+interface NplCitationsPerYear {
+  year: number;
+  avg_npl_citations: number;
+  median_npl_citations: number;
+  total_patents: number;
+  patents_with_npl: number;
+}
+
+interface NplCitationsByCpc {
+  cpc_section: string;
+  avg_npl_citations: number;
+  patent_count: number;
+}
+
+interface ForeignCitationShare {
+  year: number;
+  total_patents: number;
+  avg_foreign_citations: number;
+  avg_us_citations: number;
+  avg_foreign_share_pct: number;
+}
+
+interface FiguresPerPatent {
+  year: number;
+  avg_figures: number;
+  avg_sheets: number;
+  median_figures: number;
+  patent_count: number;
+}
+
+interface FiguresByCpc {
+  cpc_section: string;
+  avg_figures: number;
+  avg_sheets: number;
+  patent_count: number;
+}
+
 export default function SystemPatentQualityChapter() {
   const { data: claims, loading: clL } = useChapterData<ClaimsPerYear[]>('chapter1/claims_per_year.json');
   const { data: claimsData, loading: clL2 } = useChapterData<{ trends: ClaimsAnalysis[] }>('company/claims_analysis.json');
@@ -54,6 +93,11 @@ export default function SystemPatentQualityChapter() {
   const { data: origGenFiltered, loading: ogfL } = useChapterData<OrigGenFiltered[]>('computed/originality_generality_filtered.json');
   const { data: sbHalflife, loading: sbhL } = useChapterData<SleepingBeautyHalflife[]>('computed/sleeping_beauty_halflife.json');
   const { data: filteredOG, controls: ogControls } = useThresholdFilter({ data: origGenFiltered, thresholdKey: 'threshold' });
+  const { data: nplPerYear, loading: nplL } = useChapterData<NplCitationsPerYear[]>('chapter2/npl_citations_per_year.json');
+  const { data: nplByCpc, loading: nplCpcL } = useChapterData<NplCitationsByCpc[]>('chapter2/npl_citations_by_cpc.json');
+  const { data: foreignShare, loading: fsL } = useChapterData<ForeignCitationShare[]>('chapter2/foreign_citation_share.json');
+  const { data: figuresPerYear, loading: figL } = useChapterData<FiguresPerPatent[]>('chapter2/figures_per_patent.json');
+  const { data: figuresByCpc, loading: figCpcL } = useChapterData<FiguresByCpc[]>('chapter2/figures_by_cpc_section.json');
 
   return (
     <div>
@@ -641,6 +685,149 @@ export default function SystemPatentQualityChapter() {
           ]}
         />
       </ChartContainer>
+
+      {/* ================================================================== */}
+      {/* 9. Non-Patent Literature (NPL) Citations                           */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Non-Patent Literature Citations" />
+
+      <Narrative>
+        <p>
+          Non-patent literature (NPL) citations -- references to journal articles, conference proceedings, technical reports, and other scientific publications -- provide a window into how closely patent activity is linked to the underlying science base. Rising NPL citation counts indicate a tightening relationship between scientific discovery and commercial invention.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-npl-citations-trend"
+        title="Average NPL Citations per Patent Rose 54-Fold from 0.23 in 1976 to 12.5 in 2024"
+        subtitle="Average non-patent literature citations per utility patent by grant year, 1976–2025"
+        caption="NPL citations include references to scientific journals, conference papers, and technical reports. The sustained rise indicates an increasingly science-intensive patent system."
+        insight="The dramatic growth in NPL citations reflects a structural shift in patenting toward science-intensive domains. Patents granted in 2024 cite, on average, more than fifty times as many scientific publications as those from the late 1970s."
+        loading={nplL}
+      >
+        <PWLineChart
+          data={nplPerYear ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_npl_citations', name: 'Average NPL Citations', color: CHART_COLORS[0] },
+          ]}
+          yLabel="NPL Citations"
+          yFormatter={(v) => v.toFixed(1)}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2014] })}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-npl-citations-by-cpc"
+        title="Chemistry & Metallurgy Leads NPL Citations at 32.3 per Patent, Triple the System Average"
+        subtitle="Average non-patent literature citations per patent by CPC section, 2010–2025"
+        caption="NPL citation intensity varies dramatically by technology field. Chemistry (C) and Human Necessities (A) -- which include pharmaceuticals and biotechnology -- cite the scientific literature most heavily, reflecting the tight science-invention link in these domains."
+        loading={nplCpcL}
+      >
+        <PWBarChart
+          data={(nplByCpc ?? []).map((d) => ({
+            ...d,
+            label: `${d.cpc_section} — ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
+          }))}
+          xKey="label"
+          bars={[{ key: 'avg_npl_citations', name: 'Avg NPL Citations' }]}
+          layout="vertical"
+          yLabel="Average NPL Citations"
+          colorByValue
+          showAvgLine
+        />
+      </ChartContainer>
+
+      {/* ================================================================== */}
+      {/* 10. Foreign Citation Share                                          */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Foreign Citation Share" />
+
+      <Narrative>
+        <p>
+          The share of backward citations directed to foreign (non-US) patents reveals the growing internationalization of the knowledge base upon which US patents are built. A rising foreign citation share indicates that US inventors are increasingly building on innovations from abroad.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-foreign-citation-share"
+        title="Foreign Citation Share Rose from 7% in 1976 to 48% by 2025, Reflecting Globalization of Innovation"
+        subtitle="Average share of backward citations to foreign patents, by grant year, 1976–2025"
+        caption="Foreign citation share is computed as the average across patents of the ratio of foreign patent citations to total patent citations (US + foreign). The steady rise reflects both the growing volume of non-US patent filings and the increasing accessibility of international prior art databases."
+        insight="The near-doubling of foreign citation share since the early 2000s indicates that the knowledge base underlying US patents has become fundamentally international. By the mid-2020s, nearly half of all cited prior art originates from outside the United States."
+        loading={fsL}
+      >
+        <PWLineChart
+          data={foreignShare ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_foreign_share_pct', name: 'Foreign Citation Share (%)', color: CHART_COLORS[6] },
+          ]}
+          yLabel="Percent"
+          yFormatter={(v) => `${v.toFixed(1)}%`}
+          referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
+        />
+      </ChartContainer>
+
+      {/* ================================================================== */}
+      {/* 11. Patent Figures                                                  */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Patent Figures & Visual Complexity" />
+
+      <Narrative>
+        <p>
+          The number of figures per patent provides an indicator of visual and technical complexity. More figures typically correspond to more elaborate inventions that require extensive illustration to describe, including circuit diagrams, flowcharts, molecular structures, and mechanical drawings.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-figures-per-patent"
+        title="Average Figures per Patent More Than Doubled from 6.9 in 1976 to 15.8 in 2024"
+        subtitle="Average number of figures per utility patent by grant year, 1976–2025"
+        caption="Figure counts include all drawings, diagrams, charts, and illustrations in the patent document. The steady increase reflects growing technical complexity and the adoption of more elaborate patent drafting practices."
+        insight="The doubling of average figures per patent parallels the growth in claims and scope, indicating that patents have become more complex across multiple dimensions simultaneously."
+        loading={figL}
+      >
+        <PWLineChart
+          data={figuresPerYear ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_figures', name: 'Average Figures', color: CHART_COLORS[0] },
+          ]}
+          yLabel="Figures per Patent"
+          yFormatter={(v) => v.toFixed(1)}
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-figures-by-cpc"
+        title="Human Necessities (A) Leads with 22.2 Figures per Patent, Reflecting Complex Biomedical Illustrations"
+        subtitle="Average figures per patent by CPC section, 2010–2025"
+        caption="CPC Section A (Human Necessities) includes pharmaceuticals, biotechnology, and medical devices, which require extensive illustrations of molecular structures, anatomical diagrams, and device configurations."
+        loading={figCpcL}
+      >
+        <PWBarChart
+          data={(figuresByCpc ?? []).map((d) => ({
+            ...d,
+            label: `${d.cpc_section} — ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
+          }))}
+          xKey="label"
+          bars={[{ key: 'avg_figures', name: 'Avg Figures' }]}
+          layout="vertical"
+          yLabel="Average Figures"
+          colorByValue
+          showAvgLine
+        />
+      </ChartContainer>
+
+      {/* ================================================================== */}
+      {/* Closing                                                            */}
+      {/* ================================================================== */}
 
       <Narrative>
         Having examined patent quality across eight complementary dimensions -- from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents -- the next chapter turns to the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.

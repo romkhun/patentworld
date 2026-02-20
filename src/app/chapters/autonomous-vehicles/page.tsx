@@ -31,6 +31,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
   DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter14() {
@@ -47,6 +48,7 @@ export default function Chapter14() {
   const { data: avAssignType, loading: aatL } = useChapterData<DomainAssigneeType[]>('av/av_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('av/av_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('av/av_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -240,6 +242,16 @@ export default function Chapter14() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'AV' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'AV' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -858,6 +870,24 @@ export default function Chapter14() {
         while the AI foundations that underpin autonomous driving are examined in the{' '}
         <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
       </Narrative>
+
+      <ChartContainer
+        id="fig-av-filing-vs-grant"
+        title="AV Filings Peaked at 5,260 in 2019 While Grants Reached 5,300 in 2024 — a 5-Year Examination Lag"
+        subtitle="Annual patent filings vs. grants for autonomous vehicles, showing the filing-to-grant pipeline."
+        caption="Autonomous vehicle patents exhibit a substantial filing-to-grant lag, with filings peaking in 2019 while grants continued rising through 2024. The growing divergence reflects both the technical complexity of AV patent examination and the surge of applications during the 2016-2019 autonomous vehicle investment boom."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Autonomous vehicle patent velocity rose from 15.9 patents/year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase.", "Subfield diversity reached near-maximum entropy of 0.97 by 2025, indicating that AV innovation now spans virtually all relevant technology domains."]}

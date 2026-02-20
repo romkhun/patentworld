@@ -17,8 +17,18 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { CHART_COLORS } from '@/lib/colors';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type { InventorDrift } from '@/lib/types';
+
+/* ── Local row types for new analyses ─────────────────────────── */
+
+interface NplByInventorType {
+  inventor_type: string;
+  patent_count: number;
+  avg_npl: number;
+  median_npl: number;
+}
 import Link from 'next/link';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 
@@ -26,6 +36,7 @@ export default function InvGeneralistSpecialistChapter() {
   const { data: driftData, loading: drL } = useChapterData<InventorDrift[]>('company/inventor_drift.json');
   const { data: qualitySpec, loading: qsL } = useChapterData<any[]>('computed/quality_by_specialization.json');
   const { data: prodSpec, loading: psL } = useChapterData<any[]>('computed/inventor_productivity_by_specialization.json');
+  const { data: nplByType, loading: nplL } = useChapterData<NplByInventorType[]>('chapter14/npl_by_inventor_type.json');
 
   const pivotData = (raw: any[] | null, metric: string) => {
     if (!raw) return [];
@@ -303,6 +314,54 @@ export default function InvGeneralistSpecialistChapter() {
           yLabel="Avg. Patents per Inventor"
         />
       </ChartContainer>
+
+      {/* ── Section C: Science Linkage by Inventor Type ── */}
+      <SectionDivider label="Science Linkage by Inventor Type" />
+
+      <Narrative>
+        <p>
+          Non-patent literature (NPL) citations in a patent&apos;s references provide a measure of
+          the extent to which an invention draws on scientific knowledge. Comparing NPL citation
+          rates between specialist and generalist inventors reveals whether deeper domain focus
+          corresponds to greater reliance on the scientific literature.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-npl-by-inventor-type"
+        title="Specialist Inventors Cite 12.3 Non-Patent References on Average vs. 10.9 for Generalists"
+        subtitle="Average and median non-patent literature (NPL) citations per patent by inventor type (specialist vs. generalist), among prolific inventors with 10+ patents"
+        caption="This chart compares the average non-patent literature citation count per patent between specialist and generalist inventors. Specialists cite slightly more scientific literature per patent on average, though the median for both groups is 1, reflecting the highly skewed distribution of NPL citations."
+        insight="The higher average NPL citation count for specialists suggests that deeper domain focus is associated with greater engagement with the scientific literature, though the skewed distribution (median of 1 for both groups) indicates that most patents cite very few non-patent references regardless of inventor type."
+        loading={nplL}
+      >
+        {nplByType && (
+          <PWBarChart
+            data={nplByType.map(d => ({
+              ...d,
+              label: d.inventor_type.charAt(0).toUpperCase() + d.inventor_type.slice(1),
+            }))}
+            xKey="label"
+            bars={[
+              { key: 'avg_npl', name: 'Average NPL Citations', color: CHART_COLORS[0] },
+              { key: 'median_npl', name: 'Median NPL Citations', color: CHART_COLORS[2] },
+            ]}
+            yLabel="NPL Citations per Patent"
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Specialist inventors cite non-patent literature at a slightly higher rate than
+          generalists (12.3 vs. 10.9 average NPL citations per patent), consistent with the
+          interpretation that deeper domain focus is associated with greater reliance on scientific
+          knowledge. However, the median for both groups is just 1, indicating that most patents
+          cite very few non-patent references regardless of inventor type. The science linkage
+          gap between specialists and generalists is modest and driven by the right tail of the
+          distribution.
+        </p>
+      </KeyInsight>
 
       <Narrative>
         <p>

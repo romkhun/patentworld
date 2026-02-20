@@ -25,7 +25,7 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import chartTheme from '@/lib/chartTheme';
-import type { GovFundedPerYear, GovAgency, GovAgencyField, GovAgencyBreadthDepth, GovImpactComparison } from '@/lib/types';
+import type { GovFundedPerYear, GovAgency, GovAgencyField, GovAgencyBreadthDepth, GovImpactComparison, TopGovernmentContract } from '@/lib/types';
 
 export default function SystemPublicInvestmentChapter() {
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
@@ -33,6 +33,7 @@ export default function SystemPublicInvestmentChapter() {
   const { data: agencyField, loading: afL } = useChapterData<GovAgencyField[]>('chapter1/gov_agency_field_matrix.json');
   const { data: agencyBreadth, loading: abL } = useChapterData<GovAgencyBreadthDepth[]>('chapter1/gov_agency_breadth_depth.json');
   const { data: govImpact, loading: giL } = useChapterData<GovImpactComparison[]>('chapter1/gov_impact_comparison.json');
+  const { data: govContracts, loading: gcL } = useChapterData<TopGovernmentContract[]>('chapter7/top_government_contracts.json');
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
@@ -54,6 +55,14 @@ export default function SystemPublicInvestmentChapter() {
         n_sections: d.n_sections,
       }));
   }, [agencyBreadth]);
+
+  const topContracts = useMemo(() => {
+    if (!govContracts) return [];
+    return govContracts.slice(0, 30).map((d) => ({
+      ...d,
+      label: `${d.contract_award_number} (${d.agency.length > 25 ? d.agency.slice(0, 22) + '...' : d.agency})`,
+    }));
+  }, [govContracts]);
 
   return (
     <div>
@@ -300,6 +309,46 @@ export default function SystemPublicInvestmentChapter() {
       <Narrative>
         This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
       </Narrative>
+
+      {/* ── Analysis 16: Government Contract Patent Concentration ─────── */}
+
+      <SectionDivider label="Government Contract Patent Concentration" />
+
+      <Narrative>
+        <p>
+          Beyond agency-level aggregates, individual government contracts reveal where public R&amp;D
+          investment concentrates most heavily. A small number of large-scale contracts — predominantly
+          from the Department of Energy&apos;s national laboratory system — account for thousands of
+          patents each, reflecting the long-term, mission-oriented nature of federally funded research.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-gov-contract-concentration"
+        title="Department of Energy Contract DE-AC04-94AL85000 Leads With 2,152 Patents, Reflecting National Laboratory Dominance"
+        subtitle="Top 30 government contracts ranked by total patent count, color-coded by sponsoring federal agency."
+        caption="Government contracts ranked by total associated patent grants. The Department of Energy dominates the top positions, with contracts supporting Sandia, Lawrence Livermore, and Argonne National Laboratories generating the largest patent portfolios."
+        loading={gcL}
+        height={900}
+        insight="The concentration of government-funded patents in a small number of DOE national laboratory contracts underscores the role of sustained, large-scale federal investment in generating foundational technologies."
+      >
+        <PWBarChart
+          data={topContracts}
+          xKey="label"
+          bars={[{ key: 'patent_count', name: 'Patents', color: CHART_COLORS[5] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The top government contracts are overwhelmingly Department of Energy awards supporting
+          national laboratories. Contract DE-AC04-94AL85000 (Sandia National Laboratories) leads
+          with 2,152 patents, followed by W-7405-ENG-48 (Lawrence Livermore) with 1,869 patents.
+          This concentration reflects the long-term, mission-oriented nature of DOE research
+          programs, which generate cumulative patent portfolios spanning decades.
+        </p>
+      </KeyInsight>
 
       <InsightRecap
         learned={[

@@ -31,6 +31,10 @@ export default function GeoInternationalChapter() {
   const { data: qualByCountryTs, loading: qctL } = useChapterData<any[]>('computed/quality_by_country.json');
   const { data: topCountries } = useChapterData<string[]>('computed/top_countries.json');
 
+  // Analysis 32, 33: Priority country composition and PCT usage
+  const { data: priorityCountryComp, loading: pccL } = useChapterData<any[]>('chapter19/priority_country_composition.json');
+  const { data: pctShareByCountry, loading: pctL } = useChapterData<any[]>('chapter19/pct_share_by_country.json');
+
   /* ── Pivot helper: reshape [{year, group, metric}] -> [{year, group1: val, group2: val}] ── */
   const pivotData = (raw: any[] | null, metric: string) => {
     if (!raw) return [];
@@ -90,6 +94,43 @@ export default function GeoInternationalChapter() {
       .sort((a, b) => b.avg_claims - a.avg_claims)
       .slice(0, 15);
   }, [qualByCountry]);
+
+  /* ── Analysis 32: Priority Country Composition pivot ── */
+  const { priorityPivot, priorityCountryNames } = useMemo(() => {
+    if (!priorityCountryComp) return { priorityPivot: [], priorityCountryNames: [] };
+    const countryTotals: Record<string, number> = {};
+    priorityCountryComp.forEach((d: any) => {
+      countryTotals[d.priority_country] = (countryTotals[d.priority_country] || 0) + d.count;
+    });
+    const topPriorityCountries = Object.entries(countryTotals)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([c]) => c);
+    const years = [...new Set(priorityCountryComp.map((d: any) => d.year))].sort((a: number, b: number) => a - b);
+    const pivoted = years.map((year: number) => {
+      const row: Record<string, number> = { year };
+      priorityCountryComp
+        .filter((d: any) => d.year === year && topPriorityCountries.includes(d.priority_country))
+        .forEach((d: any) => { row[d.priority_country] = d.count; });
+      return row;
+    });
+    return { priorityPivot: pivoted, priorityCountryNames: topPriorityCountries };
+  }, [priorityCountryComp]);
+
+  /* ── Analysis 33: PCT Share by Country pivot ── */
+  const { pctPivot, pctCountryNames } = useMemo(() => {
+    if (!pctShareByCountry) return { pctPivot: [], pctCountryNames: [] };
+    const countries = [...new Set(pctShareByCountry.map((d: any) => d.country))];
+    const years = [...new Set(pctShareByCountry.map((d: any) => d.year))].sort((a: number, b: number) => a - b);
+    const pivoted = years.map((year: number) => {
+      const row: Record<string, number> = { year };
+      pctShareByCountry
+        .filter((d: any) => d.year === year)
+        .forEach((d: any) => { row[d.country] = d.pct_share; });
+      return row;
+    });
+    return { pctPivot: pivoted, pctCountryNames: countries };
+  }, [pctShareByCountry]);
 
   return (
     <div>
@@ -425,6 +466,83 @@ export default function GeoInternationalChapter() {
       <KeyInsight>
         <p>
           The trajectory of country-level filing reveals distinct phases in the internationalization of the US patent system. Japan&apos;s sustained dominance in foreign filings, South Korea&apos;s rapid ascent through the 1990s and 2000s, and China&apos;s explosive recent growth together illustrate how successive waves of industrialization and technology development translate into patent activity in the world&apos;s largest innovation market.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section C: Priority Country Composition and PCT Usage (Analysis 32, 33) ── */}
+      <SectionDivider label="Priority Country Composition" />
+
+      <Narrative>
+        <p>
+          The priority country of a patent reveals where the invention was first filed, providing a complementary lens to inventor location. Tracking priority country composition over time illuminates the shifting national origins of inventions entering the US patent system, including the dramatic rise of East Asian filing activity.
+        </p>
+      </Narrative>
+
+      {priorityPivot.length > 0 && (
+        <ChartContainer
+          id="fig-geo-intl-priority-country-composition"
+          subtitle="Annual patent counts by priority country for the top 8 filing origins, 1976-2025."
+          title="US Priority Filings Declined from 70% to 55% of Grants as China Rose from 53 (1993) to 25,029 (2024)"
+          caption="This chart displays annual patent grant counts by priority country for the top 8 filing origins. The US remains the dominant priority country but its share has declined steadily as Japan, South Korea, and more recently China have expanded their filing volumes. China surpassed several European countries to become the third-largest priority country by 2021."
+          insight="The shifting composition of priority countries reflects the globalization of inventive activity, with East Asian economies accounting for an increasing share of the inventions entering the US patent system."
+          loading={pccL}
+        >
+          <PWLineChart
+            data={priorityPivot}
+            xKey="year"
+            lines={priorityCountryNames.map((name: string, i: number) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="Patents Granted"
+            yFormatter={(v) => formatCompact(v as number)}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from roughly 70% in the 1970s to approximately 55% by the 2020s. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most dramatic shifts in the history of the US patent system.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="PCT Route Usage by Country" />
+
+      <Narrative>
+        <p>
+          The Patent Cooperation Treaty (PCT) route provides a standardized international filing pathway. The share of a country&apos;s US patent filings that enter via the PCT route reveals differences in filing strategies across national innovation systems. Higher PCT usage generally indicates greater reliance on international filing pathways.
+        </p>
+      </Narrative>
+
+      {pctPivot.length > 0 && (
+        <ChartContainer
+          id="fig-geo-intl-pct-share-by-country"
+          subtitle="PCT route share by country for major filing origins, 1990-2025."
+          title="France Leads PCT Usage at 53-57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
+          caption="This chart displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share surged from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
+          insight="PCT usage patterns reflect national filing strategies: European and East Asian filers rely heavily on the PCT route, while US domestic filers use it less frequently, consistent with direct filing at the home office."
+          loading={pctL}
+        >
+          <PWLineChart
+            data={pctPivot}
+            xKey="year"
+            lines={pctCountryNames.map((name: string, i: number) => ({
+              key: name,
+              name,
+              color: CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            yLabel="PCT Share (%)"
+            yFormatter={(v) => `${(v as number).toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s dramatic increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage due to its unique geopolitical status, underscores how institutional and political factors shape international filing behavior.
         </p>
       </KeyInsight>
 

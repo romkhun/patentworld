@@ -32,6 +32,7 @@ import type {
   DomainDiffusion,
   DomainEntrantIncumbent, DomainQualityBifurcation,
   GreenEvBatteryCoupling,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter19() {
@@ -54,6 +55,7 @@ export default function Chapter19() {
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('green/green_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('green/green_quality_bifurcation.json');
   const { data: evBattery, loading: evbL } = useChapterData<GreenEvBatteryCoupling[]>('green/green_ev_battery_coupling.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot category data for stacked area chart
   const { categoryPivot, categoryAreas } = useMemo(() => {
@@ -271,6 +273,16 @@ export default function Chapter19() {
   // Summary stats
   const peakYear = volume ? volume.reduce((best, d) => d.green_count > best.green_count ? d : best, volume[0]) : null;
   const totalGreen = volume ? volume.reduce((s, d) => s + d.green_count, 0) : 0;
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Green' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Green' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
@@ -836,6 +848,24 @@ export default function Chapter19() {
         This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/system-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents a significant frontier of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
         Across the twelve technology domains examined in ACT 6 -- from <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> through <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and green innovation -- several cross-cutting themes emerge: the concentration of patent activity among a small number of resource-intensive firms, the accelerating convergence of formerly distinct technology fields, and the growing role of international competition in shaping domestic innovation trajectories. These domain-level patterns reinforce and extend the structural insights developed in the preceding acts, confirming that the US patent system is simultaneously becoming more specialized in its technical content and more interconnected in its organizational and geographic character.
       </Narrative>
+
+      <ChartContainer
+        id="fig-green-filing-vs-grant"
+        title="Green Innovation Filings and Grants Both Peaked Near 2019 at 34,133 and 35,693 Respectively"
+        subtitle="Annual patent filings vs. grants for green innovation, showing the tightest filing-grant alignment among large ACT 6 domains."
+        caption="Green innovation is unique among large ACT 6 domains in showing near-simultaneous filing and grant peaks. This alignment likely reflects the maturity of green technology patent examination at the USPTO, combined with the steady policy-driven demand for climate technology IP."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Green patents show the highest entry velocity multiplier (5.5-fold) among all technology domains studied, indicating explosive growth in clean technology innovation.", "Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453."]}

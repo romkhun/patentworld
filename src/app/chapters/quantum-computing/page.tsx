@@ -31,6 +31,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
   DomainQualityBifurcation, QuantumSemiDependence,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter20() {
@@ -48,6 +49,7 @@ export default function Chapter20() {
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('quantum/quantum_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('quantum/quantum_quality_bifurcation.json');
   const { data: semiDep, loading: sdL } = useChapterData<QuantumSemiDependence[]>('quantum/quantum_semiconductor_dependence.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   const eiPivot = useMemo(() => {
     if (!entrantIncumbent) return [];
@@ -241,6 +243,16 @@ export default function Chapter20() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Quantum' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Quantum' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -857,6 +869,24 @@ export default function Chapter20() {
       <Narrative>
         Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter.
       </Narrative>
+
+      <ChartContainer
+        id="fig-quantum-filing-vs-grant"
+        title="Quantum Filing Peaked at 579 in 2021 While Grants Reached 660 in 2024 — Rapid Growth on a Small Base"
+        subtitle="Annual patent filings vs. grants for quantum computing, showing the field's recent acceleration."
+        caption="Quantum computing exhibits dramatic recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019-2021 filing surge."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Quantum computing remains the most concentrated technology domain, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers to entry."]}

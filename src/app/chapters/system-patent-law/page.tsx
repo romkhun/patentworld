@@ -11,6 +11,7 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -367,6 +368,18 @@ export default function Chapter4() {
   const { data: pipelineData, loading: pipL } = useChapterData<ApplicationsVsGrants[]>('chapter10/applications_vs_grants.json');
   const { data: aliceData, loading: alL } = useChapterData<AliceEventStudy[]>('chapter10/alice_event_study.json');
 
+  // Analysis 13: Alice art group indexed grants & pendency
+  const { data: aliceIndexed, loading: aiL } = useChapterData<{ year: number; group_type: string; grant_count: number; indexed: number }[]>('chapter6/alice_art_group_indexed.json');
+  const { data: alicePendency, loading: apL } = useChapterData<{ year: number; group_type: string; avg_pendency_days: number; median_pendency_days: number }[]>('chapter6/alice_art_group_pendency.json');
+
+  // Analysis 14: Terminal disclaimers
+  const { data: tdRate, loading: tdL } = useChapterData<{ year: number; total_patents: number; with_terminal_disclaimer: number; td_rate_pct: number }[]>('chapter6/terminal_disclaimer_rate.json');
+  const { data: tdByCpc, loading: tdcL } = useChapterData<{ cpc_section: string; total_patents: number; with_td: number; td_rate_pct: number }[]>('chapter6/terminal_disclaimer_by_cpc.json');
+
+  // Analysis 15: Patent term adjustment
+  const { data: ptaData, loading: ptaL } = useChapterData<{ year: number; avg_pta_days: number; median_pta_days: number; patent_count: number }[]>('chapter6/patent_term_adjustment.json');
+  const { data: ptaByCpc, loading: ptacL } = useChapterData<{ cpc_section: string; avg_pta_days: number; median_pta_days: number; patent_count: number }[]>('chapter6/pta_by_cpc_section.json');
+
   // Filter pipeline data to exclude the last partial year (2025 has distorted ratio)
   const pipelineFiltered = useMemo(() => {
     if (!pipelineData) return [];
@@ -388,6 +401,52 @@ export default function Chapter4() {
       };
     });
   }, [aliceData]);
+
+  // Pivot Alice art group indexed data: one row per year with treatment/control columns
+  const aliceIndexedPivot = useMemo(() => {
+    if (!aliceIndexed) return [];
+    const years = [...new Set(aliceIndexed.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: Record<string, any> = { year };
+      aliceIndexed.filter(d => d.year === year).forEach(d => {
+        if (d.group_type === 'treatment') row['treatment_indexed'] = d.indexed;
+        if (d.group_type === 'control') row['control_indexed'] = d.indexed;
+      });
+      return row;
+    });
+  }, [aliceIndexed]);
+
+  // Pivot Alice art group pendency data: one row per year with treatment/control columns
+  const alicePendencyPivot = useMemo(() => {
+    if (!alicePendency) return [];
+    const years = [...new Set(alicePendency.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: Record<string, any> = { year };
+      alicePendency.filter(d => d.year === year).forEach(d => {
+        if (d.group_type === 'treatment') row['treatment_pendency'] = d.median_pendency_days;
+        if (d.group_type === 'control') row['control_pendency'] = d.median_pendency_days;
+      });
+      return row;
+    });
+  }, [alicePendency]);
+
+  // Terminal disclaimer rate filtered to exclude 2025 (0% likely incomplete)
+  const tdRateFiltered = useMemo(() => {
+    if (!tdRate) return [];
+    return tdRate.filter(d => d.year <= 2024);
+  }, [tdRate]);
+
+  // PTA by CPC sorted by median days descending
+  const ptaByCpcSorted = useMemo(() => {
+    if (!ptaByCpc) return [];
+    return [...ptaByCpc].sort((a, b) => b.median_pta_days - a.median_pta_days);
+  }, [ptaByCpc]);
+
+  // TD by CPC sorted by td_rate_pct descending
+  const tdByCpcSorted = useMemo(() => {
+    if (!tdByCpc) return [];
+    return [...tdByCpc].sort((a, b) => b.td_rate_pct - a.td_rate_pct);
+  }, [tdByCpc]);
 
   return (
     <div>
@@ -556,6 +615,182 @@ export default function Chapter4() {
           referenceLines={[{ x: 2014, label: 'Alice Corp. v. CLS Bank' }]}
         />
       </ChartContainer>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          ANALYSIS 13: ALICE ART GROUP IMPACT
+          ═══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Alice Impact by Art Group" />
+
+      <Narrative>
+        <p>
+          The Alice Corp. decision (2014) restricted patent eligibility for abstract ideas implemented on generic computers, disproportionately affecting certain USPTO art groups. To assess the impact more precisely, this section compares patent grants and examination pendency for Alice-affected art groups (treatment) against unaffected art groups (control), with values indexed to 2013 = 100 to facilitate comparison.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-law-alice-indexed"
+        title="Alice-Affected Art Groups Continued Growing Post-2014, Reaching 129.2 by 2024 vs. 102.7 for Controls"
+        subtitle="Patent grants indexed to 2013 = 100 for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
+        caption="Patent grant counts indexed to 2013 = 100 for USPTO art groups most affected by Alice Corp. v. CLS Bank (treatment) and unaffected art groups (control). The vertical reference line marks the 2014 Alice decision. Despite the eligibility restriction, treatment groups continued to grow, suggesting that the decision moderated but did not reverse the trend."
+        insight="The Alice decision did not produce a sharp decline in patent grants for affected art groups. Instead, treatment group grants continued to outpace controls, reaching 129.2 (indexed) by 2024 compared to 102.7 for controls, suggesting that applicants adapted their claims to survive Section 101 scrutiny."
+        loading={aiL}
+      >
+        {aliceIndexedPivot.length > 0 ? (
+          <PWLineChart
+            data={aliceIndexedPivot}
+            xKey="year"
+            lines={[
+              { key: 'treatment_indexed', name: 'Treatment (Alice-Affected)', color: CHART_COLORS[0] },
+              { key: 'control_indexed', name: 'Control (Unaffected)', color: CHART_COLORS[2] },
+            ]}
+            yLabel="Index (2013 = 100)"
+            referenceLines={[{ x: 2014, label: 'Alice Decision' }]}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-law-alice-pendency"
+        title="Pendency Declined Faster for Alice-Affected Art Groups, Falling to 978 Median Days by 2023 vs. 1,114 for Controls"
+        subtitle="Median examination pendency in days for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
+        caption="Median pendency (days from filing to grant) for Alice-affected and control art groups. Both groups experienced declining pendency over the period, but the treatment group declined more steeply, potentially reflecting faster resolution of Section 101 issues during prosecution."
+        insight="The faster pendency decline in Alice-affected art groups suggests that the Alice framework, while initially disruptive, may have streamlined examination by providing clearer grounds for eligibility determinations."
+        loading={apL}
+      >
+        {alicePendencyPivot.length > 0 ? (
+          <PWLineChart
+            data={alicePendencyPivot}
+            xKey="year"
+            lines={[
+              { key: 'treatment_pendency', name: 'Treatment (Alice-Affected)', color: CHART_COLORS[0] },
+              { key: 'control_pendency', name: 'Control (Unaffected)', color: CHART_COLORS[2] },
+            ]}
+            yLabel="Median Pendency (Days)"
+            referenceLines={[{ x: 2014, label: 'Alice Decision' }]}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The art-group-level analysis reveals a nuanced picture of Alice&apos;s impact. While the decision imposed a meaningful eligibility constraint, patent grants in affected art groups continued to grow -- applicants adapted their claims and prosecution strategies. Meanwhile, examination pendency declined faster in treatment groups (from 1,267 median days in 2009 to 978 in 2023) compared to controls (from 1,440 to 1,114), suggesting that the Alice framework may have streamlined examination by providing clearer eligibility criteria.
+        </p>
+      </KeyInsight>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          ANALYSIS 14: TERMINAL DISCLAIMERS
+          ═══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Terminal Disclaimers" />
+
+      <Narrative>
+        <p>
+          A <GlossaryTooltip term="terminal disclaimer">terminal disclaimer</GlossaryTooltip> is a mechanism by which a patent owner voluntarily limits the patent&apos;s enforceable life to match that of a related patent, typically filed to overcome a double-patenting rejection. The rate of terminal disclaimer usage provides insight into patent portfolio strategy: higher rates suggest more intensive efforts to obtain overlapping patent claims on related inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-law-td-rate"
+        title="Terminal Disclaimer Rate Peaked at 11.3% in 2023, Rising from Near Zero in the Late 1990s"
+        subtitle="Share of granted patents with a terminal disclaimer by grant year, 1976-2024"
+        caption="Terminal disclaimer rate computed as the percentage of granted patents that include a terminal disclaimer. The rate dropped sharply in the late 1990s (coinciding with the GATT patent term change) before rebounding and rising to record levels in the 2010s-2020s, consistent with the growth of continuation and patent family strategies."
+        insight="The secular rise in terminal disclaimer rates since the early 2000s is consistent with the increasing use of continuation applications and patent family strategies, as firms seek to maintain overlapping patent protection across related inventions."
+        loading={tdL}
+      >
+        {tdRateFiltered.length > 0 ? (
+          <PWLineChart
+            data={tdRateFiltered}
+            xKey="year"
+            lines={[{ key: 'td_rate_pct', name: 'Terminal Disclaimer Rate (%)', color: CHART_COLORS[0] }]}
+            yLabel="TD Rate (%)"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-law-td-by-cpc"
+        title="H (Electricity) and C (Chemistry) Lead Terminal Disclaimer Rates at 9.2% and 8.6%"
+        subtitle="Terminal disclaimer rate by CPC section for patents granted 2015-2024, showing technology-specific variation in portfolio strategy"
+        caption="Terminal disclaimer rates by CPC section. Electricity (H) and Chemistry (C) lead, consistent with the intense patent portfolio strategies employed in semiconductors, telecommunications, and pharmaceuticals. Mechanical engineering fields (B, F) exhibit the lowest rates."
+        insight="The technology-specific variation in terminal disclaimer rates reflects different patent strategies: electronics and pharmaceutical firms employ continuation-based portfolio building more aggressively than firms in mechanical engineering domains."
+        loading={tdcL}
+      >
+        {tdByCpcSorted.length > 0 ? (
+          <PWBarChart
+            data={tdByCpcSorted}
+            xKey="cpc_section"
+            bars={[{ key: 'td_rate_pct', name: 'TD Rate (%)', color: CHART_COLORS[1] }]}
+            layout="vertical"
+            yLabel="TD Rate (%)"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Terminal disclaimer usage varies substantially by technology area. Section H (Electricity) and Section C (Chemistry) lead at 9.2% and 8.6% respectively, reflecting the aggressive patent portfolio strategies characteristic of semiconductor, telecommunications, and pharmaceutical firms. Section B (Operations/Transport) and Section F (Mechanical Engineering) have the lowest rates at 3.6% and 3.9%, consistent with simpler patent family structures in these domains.
+        </p>
+      </KeyInsight>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          ANALYSIS 15: PATENT TERM ADJUSTMENT
+          ═══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Patent Term Adjustment" />
+
+      <Narrative>
+        <p>
+          When the USPTO delays in examining a patent application beyond statutory deadlines, the patent term is extended through <StatCallout value="Patent Term Adjustment (PTA)" />. The median PTA provides a measure of examination delay beyond what the statute envisions as timely processing. Tracking PTA over time reveals the USPTO&apos;s evolving capacity to meet statutory examination timelines.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-law-pta-over-time"
+        title="Median Patent Term Adjustment Peaked at 520 Days in 2011, Declining to 147 Days by 2025"
+        subtitle="Median patent term adjustment in days by grant year, 2002-2025, tracking USPTO examination delays"
+        caption="Median PTA in days for granted patents by year. PTA increased substantially through the 2000s as the USPTO backlog grew, peaking at 520 days in 2011. Subsequent reforms and hiring initiatives contributed to a sustained decline, though PTA remains well above zero, indicating ongoing examination delays beyond statutory timelines."
+        insight="The rise and fall of median PTA mirrors the USPTO backlog crisis and subsequent reforms. The peak of 520 days in 2011 represents nearly 1.5 years of additional patent life granted as compensation for examination delays."
+        loading={ptaL}
+      >
+        {ptaData && ptaData.length > 0 ? (
+          <PWLineChart
+            data={ptaData}
+            xKey="year"
+            lines={[{ key: 'median_pta_days', name: 'Median PTA (Days)', color: CHART_COLORS[0] }]}
+            yLabel="Median PTA (Days)"
+            yFormatter={(v) => `${Math.round(v)}`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-law-pta-by-cpc"
+        title="Section A (Human Necessities) Receives the Longest PTA at 237 Median Days"
+        subtitle="Median patent term adjustment in days by CPC section for patents granted 2002-2025, revealing technology-specific examination delays"
+        caption="Median PTA by CPC section. Human Necessities (A), which includes pharmaceuticals and biotechnology, experiences the longest delays at 237 median days, consistent with the complex examination requirements in these domains. Mechanical Engineering (F) and Electricity (H) receive the shortest adjustments."
+        insight="The technology-specific variation in PTA is consistent with differential examination complexity: pharmaceutical and biotechnology patents require more specialized review and face longer pendency, while mechanical and electrical patents benefit from more established examination practices."
+        loading={ptacL}
+      >
+        {ptaByCpcSorted.length > 0 ? (
+          <PWBarChart
+            data={ptaByCpcSorted}
+            xKey="cpc_section"
+            bars={[{ key: 'median_pta_days', name: 'Median PTA (Days)', color: CHART_COLORS[4] }]}
+            layout="vertical"
+            yLabel="Median PTA (Days)"
+            yFormatter={(v) => `${Math.round(v)}`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Patent Term Adjustment reveals the uneven distribution of examination delays across technology domains. Section A (Human Necessities) receives a median of 237 days of additional patent term, while Section F (Mechanical Engineering) receives only 143 days. This variation has direct economic consequences: longer PTA in pharmaceuticals and biotechnology effectively extends the period of market exclusivity, with implications for both innovators and consumers.
+        </p>
+      </KeyInsight>
 
       <Narrative>
         Having examined the legal and policy framework that governs the patent system, the analysis turns to the role of public investment in driving innovation. The <Link href="/chapters/system-public-investment" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates how government funding and public research expenditures have shaped patenting activity, and what the evolving relationship between federal investment and patent output reveals about the foundations of the innovation ecosystem.

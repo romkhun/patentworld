@@ -28,6 +28,7 @@ import type {
   DesignPatentTrend, DesignTopFiler,
   CorporateMortality,
   BlockbusterLorenz,
+  ContinuationShareByFirm,
 } from '@/lib/types';
 
 export default function OrgPatentCountChapter() {
@@ -38,6 +39,7 @@ export default function OrgPatentCountChapter() {
   const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
   const { data: mortality } = useChapterData<CorporateMortality>('company/corporate_mortality.json');
   const { data: lorenzData, loading: lzL } = useChapterData<BlockbusterLorenz[]>('chapter2/blockbuster_lorenz.json');
+  const { data: continuationShare, loading: csL } = useChapterData<ContinuationShareByFirm[]>('chapter9/continuation_share_by_firm.json');
 
   const [selectedOrgSeries, setSelectedOrgSeries] = useState<Set<string>>(new Set());
 
@@ -94,6 +96,14 @@ export default function OrgPatentCountChapter() {
       gini: d.gini,
     }));
   }, [lorenzData]);
+
+  const continuationData = useMemo(() => {
+    if (!continuationShare) return [];
+    return continuationShare.slice(0, 25).map((d) => ({
+      ...d,
+      label: cleanOrgName(d.organization),
+    }));
+  }, [continuationShare]);
 
   return (
     <div>
@@ -390,6 +400,51 @@ export default function OrgPatentCountChapter() {
           increasingly -- the province of a few dominant organizations. This divergence between
           extensive and intensive margins of innovation has significant implications for competition
           policy and the long-run dynamics of technological change.
+        </p>
+      </KeyInsight>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION D: CONTINUATION SHARE BY FIRM
+          ══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Continuation Filing Patterns" />
+
+      <Narrative>
+        <p>
+          Continuation and continuation-in-part filings allow applicants to extend patent families
+          by filing related applications based on a parent filing. The share of patents that are
+          continuations varies dramatically across firms, reflecting differences in prosecution
+          strategy, portfolio management, and the degree to which firms build incrementally on
+          prior inventions.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-org-patent-count-continuation-share"
+        title="Huawei Leads Continuation Filing at 80.9% — More Than 4x the System Average"
+        subtitle="Top 25 firms ranked by continuation share (percentage of patents that are continuations or continuations-in-part)"
+        caption="Firms ranked by the share of their patent portfolio consisting of continuation or continuation-in-part filings. Huawei leads at 80.9%, followed by AT&T (52.4%) and Semiconductor Energy Laboratory (50.7%). The wide variation reflects fundamentally different prosecution strategies across firms and industries."
+        insight="The wide variation in continuation share across firms — from 80.9% (Huawei) to under 2% (Motorola) — suggests that continuation filing intensity is driven by firm-level prosecution strategy rather than industry norms alone."
+        loading={csL}
+        height={800}
+      >
+        <PWBarChart
+          data={continuationData}
+          xKey="label"
+          bars={[{ key: 'continuation_share_pct', name: 'Continuation Share (%)', color: CHART_COLORS[0] }]}
+          layout="vertical"
+          yFormatter={(v: number) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Continuation filing intensity varies enormously across leading patent holders. Huawei&apos;s
+          80.9% continuation share — meaning more than four out of five patents are related filings —
+          dwarfs the system average and stands in stark contrast to firms like Robert Bosch (2.4%)
+          and Motorola (1.6%). This variation reflects fundamentally different approaches to patent
+          prosecution: some firms aggressively extend patent families through serial continuations,
+          while others file predominantly original applications.
         </p>
       </KeyInsight>
 

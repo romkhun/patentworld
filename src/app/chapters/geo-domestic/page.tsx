@@ -46,6 +46,11 @@ export default function GeoDomesticChapter() {
   const { data: topStatesRank } = useChapterData<string[]>('computed/top_states.json');
   const { data: topCitiesRank } = useChapterData<string[]>('computed/top_cities.json');
 
+  // Section D: County-Level and Innovation Clusters (Analysis 30, 31)
+  const { data: topCounties, loading: tcL } = useChapterData<any[]>('chapter18/top_counties.json');
+  const { data: countyConcentration, loading: ccL } = useChapterData<any[]>('chapter18/county_concentration_over_time.json');
+  const { data: innovationClusters, loading: clL } = useChapterData<any[]>('chapter18/innovation_clusters.json');
+
   // ── Section A derived data ──
 
   const topStates = useMemo(() => {
@@ -121,6 +126,35 @@ export default function GeoDomesticChapter() {
       .sort((a, b) => b.location_quotient - a.location_quotient)
       .slice(0, 30);
   }, [regionalSpec]);
+
+  // ── Section D derived data ──
+
+  const topCountiesChart = useMemo(() => {
+    if (!topCounties) return [];
+    return topCounties.slice(0, 20).map((d: any) => ({
+      ...d,
+      label: d.county_state,
+    }));
+  }, [topCounties]);
+
+  const topCountiesTotal = useMemo(() => {
+    if (!topCounties) return 0;
+    return topCounties.reduce((sum: number, d: any) => sum + d.patent_count, 0);
+  }, [topCounties]);
+
+  const top5CountiesShare = useMemo(() => {
+    if (!topCounties || topCountiesTotal === 0) return 0;
+    const top5Sum = topCounties.slice(0, 5).reduce((sum: number, d: any) => sum + d.patent_count, 0);
+    return +((top5Sum / topCountiesTotal) * 100).toFixed(1);
+  }, [topCounties, topCountiesTotal]);
+
+  const topClustersChart = useMemo(() => {
+    if (!innovationClusters) return [];
+    return innovationClusters.slice(0, 30).map((d: any) => ({
+      ...d,
+      label: d.location,
+    }));
+  }, [innovationClusters]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
   const topStateName = states?.[0]?.state ?? 'California';
@@ -619,6 +653,95 @@ export default function GeoDomesticChapter() {
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* Section D: County-Level and Innovation Clusters (Analysis 30, 31) */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="County-Level Patent Concentration" />
+
+      <Narrative>
+        <p>
+          Drilling below the city level to US counties reveals even finer-grained concentration patterns. County-level data capture the precise administrative geographies in which patent activity clusters, highlighting the dominance of a small number of technology-intensive counties in overall US patent output.
+        </p>
+      </Narrative>
+
+      {topCountiesChart.length > 0 && (
+        <ChartContainer
+          id="fig-geography-top-counties"
+          subtitle="Top 20 US counties by total utility patents from primary inventors (1976-2025)."
+          title={`Santa Clara County Leads with 327,700 Patents — Five Counties Account for ${top5CountiesShare}% of Top-50 County Output`}
+          caption="This chart ranks the top 20 US counties by total utility patents attributed to primary inventors from 1976 to 2025. Santa Clara County (home to Silicon Valley) leads by a wide margin, followed by Los Angeles, King (Seattle), San Diego, and Alameda counties."
+          insight="County-level data reveal that patent concentration is even more pronounced than state-level figures suggest, with Santa Clara County alone producing nearly three times the output of the second-ranked county."
+          loading={tcL}
+          height={700}
+        >
+          <PWBarChart
+            data={topCountiesChart}
+            xKey="label"
+            bars={[{ key: 'patent_count', name: 'Total Patents', color: CHART_COLORS[0] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      {countyConcentration && countyConcentration.length > 0 && (
+        <ChartContainer
+          id="fig-geography-county-concentration"
+          subtitle="Share of US patents concentrated in the top 50 counties by 5-year period, measuring geographic concentration over time."
+          title="Top-50 County Concentration Rose from 43.3% in 1990 to 56.8% in 2020, Indicating Increasing Geographic Clustering"
+          caption="This chart tracks the share of total US patents accounted for by the top 50 counties over successive 5-year periods. The steady increase from 43-47% in the 1970s-1980s to nearly 57% by 2020 indicates that patent activity has become more rather than less geographically concentrated over time."
+          insight="The rising concentration of patents in the top 50 counties is consistent with the strengthening of agglomeration economies in leading technology hubs over the digital era."
+          loading={ccL}
+        >
+          <PWLineChart
+            data={countyConcentration}
+            xKey="period"
+            lines={[{ key: 'top50_share_pct', name: 'Top 50 Counties Share (%)', color: CHART_COLORS[0] }]}
+            yLabel="Share of US Patents (%)"
+            yFormatter={(v) => `${(v as number).toFixed(1)}%`}
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The increasing concentration of patent output in the top 50 counties -- rising from 43% in 1990 to 57% by 2020 -- challenges the expectation that digital communication would distribute innovation more broadly. Instead, geographic clustering has intensified, consistent with the self-reinforcing nature of agglomeration economies in technology-intensive regions.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Global Innovation Clusters" />
+
+      <Narrative>
+        <p>
+          Extending the geographic lens beyond US borders, innovation clusters worldwide exhibit similarly pronounced concentration patterns. The following analysis ranks global cities by their total patent output in the US patent system, revealing which metropolitan areas function as the primary engines of patented invention worldwide.
+        </p>
+      </Narrative>
+
+      {topClustersChart.length > 0 && (
+        <ChartContainer
+          id="fig-geography-innovation-clusters"
+          subtitle="Top 30 global cities by total utility patents in the US patent system (1976-2025)."
+          title="Tokyo Leads Global Innovation Clusters with 263,010 Patents, Followed by Yokohama (196,841) and Seoul (102,646)"
+          caption="This chart ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, reflecting Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
+          insight="The global innovation cluster landscape is dominated by East Asian and US West Coast cities, reflecting the concentration of electronics, semiconductor, and software R&D in these regions."
+          loading={clL}
+          height={1000}
+        >
+          <PWBarChart
+            data={topClustersChart}
+            xKey="label"
+            bars={[{ key: 'patent_count', name: 'Total Patents', color: CHART_COLORS[2] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The global innovation cluster rankings reveal that the Tokyo metropolitan area -- spanning Tokyo, Yokohama, and Kawasaki -- constitutes the single largest concentration of US patent activity outside the United States. Combined, these three Japanese cities account for over 521,000 patents, underscoring the depth of Japan&apos;s contribution to the US patent system.
+        </p>
+      </KeyInsight>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/* Closing Transition                                                 */}

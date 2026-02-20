@@ -29,6 +29,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion, DomainEntrantIncumbent,
   DomainQualityBifurcation, BlockchainHypeCycle,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter16() {
@@ -46,6 +47,7 @@ export default function Chapter16() {
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('blockchain/blockchain_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('blockchain/blockchain_quality_bifurcation.json');
   const { data: hypeCycle, loading: hcL } = useChapterData<BlockchainHypeCycle[]>('blockchain/blockchain_hype_cycle.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -239,6 +241,16 @@ export default function Chapter16() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'Blockchain' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'Blockchain' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -870,6 +882,24 @@ export default function Chapter16() {
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
           yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-blockchain-filing-vs-grant"
+        title="Blockchain Filings Peaked at 1,017 in 2019 Then Declined, While Grants Rose to 991 in 2022 — a 3-Year Pipeline Delay"
+        subtitle="Annual patent filings vs. grants for blockchain, showing the boom-bust filing cycle and lagged grant output."
+        caption="Blockchain's filing-vs-grant divergence is among the most dramatic of all ACT 6 domains. Filings peaked in 2019 and declined sharply, but grants continued rising through 2022 as the examination pipeline processed boom-era applications. This pattern visually captures the hype cycle in blockchain patenting."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 

@@ -27,6 +27,21 @@ import type {
   SoloInventorBySection,
   TeamSizeCoeffData,
 } from '@/lib/types';
+
+/* ── Local row types for new analyses ─────────────────────────── */
+
+interface CrossInstitutionalRate {
+  year: number;
+  total_patents: number;
+  cross_institutional: number;
+  cross_institutional_pct: number;
+}
+
+interface CrossInstitutionalByCpc {
+  cpc_section: string;
+  total: number;
+  cross_institutional_pct: number;
+}
 import Link from 'next/link';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
@@ -45,6 +60,10 @@ export default function InvTeamSizeChapter() {
     useChapterData<any[]>('computed/inventor_productivity_by_team_size.json');
   const { data: teamCoeffs, loading: tcL } =
     useChapterData<TeamSizeCoeffData>('chapter3/team_size_coefficients.json');
+  const { data: crossRate, loading: crL } =
+    useChapterData<CrossInstitutionalRate[]>('chapter17/cross_institutional_rate.json');
+  const { data: crossByCpc, loading: cbcL } =
+    useChapterData<CrossInstitutionalByCpc[]>('chapter17/cross_institutional_by_cpc.json');
 
   /* ── derived data ── */
   const soloBySectionLabeled = useMemo(() => {
@@ -494,6 +513,74 @@ export default function InvTeamSizeChapter() {
           'Institutional prestige effects may drive both team formation and citation accumulation (Matthew effect)',
         ]}
       />
+
+      {/* ── Section D: Cross-Institutional Collaboration ── */}
+      <SectionDivider label="Cross-Institutional Collaboration" />
+
+      <Narrative>
+        <p>
+          Beyond team size, the institutional diversity of inventor teams provides an additional
+          dimension of collaboration. Cross-institutional patents -- those listing inventors from
+          more than one assignee type (e.g., a corporation and a university) -- represent a
+          distinctive form of collaboration that bridges organizational boundaries.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-cross-institutional-rate"
+        title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
+        subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
+        caption="This chart tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (e.g., corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
+        insight="The fivefold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
+        loading={crL}
+      >
+        {crossRate && (
+          <PWLineChart
+            data={crossRate}
+            xKey="year"
+            lines={[
+              { key: 'cross_institutional_pct', name: 'Cross-Institutional %', color: CHART_COLORS[0] },
+            ]}
+            yLabel="Share of Patents (%)"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+            referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          />
+        )}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-cross-institutional-by-cpc"
+        title="Chemistry & Metallurgy Leads Cross-Institutional Collaboration at 8.6%; Fixed Constructions Lowest at 2.2%"
+        subtitle="Cross-institutional patent share by CPC section, 2010-2025"
+        caption="This chart compares the share of cross-institutional patents across CPC technology sections. Chemistry & Metallurgy (Section C) exhibits the highest rate, consistent with the strong university-industry linkages in pharmaceutical and chemical research, while Fixed Constructions (Section E) has the lowest rate."
+        insight="The concentration of cross-institutional collaboration in chemistry-related fields reflects the well-established pipelines between academic research labs and corporate R&D in pharmaceuticals, materials science, and biotechnology."
+        loading={cbcL}
+      >
+        {crossByCpc && (
+          <PWBarChart
+            data={crossByCpc.map(d => ({
+              ...d,
+              label: `${d.cpc_section}: ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            }))}
+            xKey="label"
+            bars={[{ key: 'cross_institutional_pct', name: 'Cross-Institutional %', color: CHART_COLORS[0] }]}
+            layout="vertical"
+            yLabel="Cross-Institutional Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Cross-institutional collaboration has grown steadily from under 1% to over 4% of all
+          patent grants, with the most pronounced rates in Chemistry & Metallurgy (8.6%) and
+          Operations & Transport (5.0%). The variation across technology fields mirrors the
+          strength of university-industry linkages, with laboratory-intensive and
+          science-driven fields exhibiting substantially higher rates of cross-institutional
+          patenting than traditional engineering domains.
+        </p>
+      </KeyInsight>
 
       {/* ── Closing Transition ── */}
       <Narrative>

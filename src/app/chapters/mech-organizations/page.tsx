@@ -10,6 +10,7 @@ import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
+import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWBubbleScatter } from '@/components/charts/PWBubbleScatter';
 import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
@@ -48,6 +49,9 @@ export default function MechOrganizationsChapter() {
 
   /* ── Analysis 3: Exploration trajectory ── */
   const { data: explTraj, loading: etL3 } = useChapterData<Record<string, ExplorationTrajectoryPoint[]>>('chapter5/exploration_exploitation_trajectory.json');
+
+  /* ── Analysis 34: Citation Category Distribution ── */
+  const { data: citationCategories, loading: ccatL } = useChapterData<any[]>('chapter20/citation_category_distribution.json');
 
   /* ── Section B data hooks ── */
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
@@ -114,6 +118,19 @@ export default function MechOrganizationsChapter() {
       color: CHART_COLORS[i % CHART_COLORS.length],
     }));
   }, [explTraj]);
+
+  /* ── Analysis 34: Citation Categories ── */
+  const citationCategoryData = useMemo(() => {
+    if (!citationCategories) return [];
+    const total = citationCategories.reduce((sum: number, d: any) => sum + d.cnt, 0);
+    return citationCategories
+      .sort((a: any, b: any) => b.cnt - a.cnt)
+      .map((d: any) => ({
+        ...d,
+        label: d.citation_category,
+        share_pct: +((d.cnt / total) * 100).toFixed(1),
+      }));
+  }, [citationCategories]);
 
   /* ── Section B computations ── */
   const decades = useMemo(() => {
@@ -587,6 +604,43 @@ export default function MechOrganizationsChapter() {
           histories and organizational capabilities -- underscoring that innovation strategy
           is path-dependent and that the exploration-exploitation trade-off manifests
           differently across corporate contexts.
+        </p>
+      </KeyInsight>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          Analysis 34: Citation Category Distribution
+          ══════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Citation Category Distribution" />
+
+      <Narrative>
+        <p>
+          Patent citations are not a monolithic category. The USPTO distinguishes citations added by the applicant, the examiner, third parties, and other sources. Understanding the relative volume of each citation category is essential for interpreting citation-based quality metrics, as examiner-added citations may carry different informational content than applicant-supplied citations.
+        </p>
+      </Narrative>
+
+      {citationCategoryData.length > 0 && (
+        <ChartContainer
+          id="fig-mech-org-citation-category-distribution"
+          subtitle="Distribution of patent citations by category across all US utility patents."
+          title="Applicant-Cited References Account for 56.0% of All Patent Citations, Followed by Examiner-Cited at 24.3%"
+          caption="This chart displays the distribution of patent citation references by category. Applicant-cited references (56.0%) constitute the majority of all citations, followed by examiner-cited (24.3%) and cited by other (19.7%). The distinction between applicant and examiner citations has implications for how citation counts should be interpreted as quality indicators."
+          insight="The predominance of applicant-cited references (56%) over examiner-cited references (24.3%) suggests that the majority of prior art connections in the patent system reflect the applicant's own knowledge of the relevant prior art landscape, rather than new references discovered during examination."
+          loading={ccatL}
+          height={400}
+        >
+          <PWBarChart
+            data={citationCategoryData}
+            xKey="label"
+            bars={[{ key: 'cnt', name: 'Citation Count', color: CHART_COLORS[0] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The citation category distribution reveals that applicant-cited references account for more than half of all patent citations, while examiner-cited references account for approximately one-quarter. This distinction matters for interpreting citation-based quality metrics: applicant citations reflect the inventor&apos;s own knowledge of prior art, while examiner citations represent independently identified references. The substantial &quot;cited by other&quot; category (19.7%) includes references from related applications and third-party submissions, adding additional complexity to citation interpretation.
         </p>
       </KeyInsight>
 

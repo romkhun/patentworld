@@ -28,6 +28,7 @@ import type {
   FirmCitationImpact,
   FirmQualityYear, FirmQualityScatter,
   CitationHalfLife, SelfCitationByAssignee,
+  NPLByFirm, ForeignCitationByFirm,
 } from '@/lib/types';
 
 /* ── Helpers for quality_by_company charts ── */
@@ -97,6 +98,8 @@ export default function OrgPatentQualityChapter() {
   const { data: selfCiteAssignee, loading: scaL } = useChapterData<SelfCitationByAssignee[]>('chapter9/self_citation_by_assignee.json');
   const { data: citationHalfLife, loading: chlL } = useChapterData<CitationHalfLife[]>('company/citation_half_life.json');
   const { data: qualityByCompany, loading: qbcL } = useChapterData<any[]>('computed/quality_by_company.json');
+  const { data: nplByFirm, loading: nplL } = useChapterData<NPLByFirm[]>('chapter10/npl_by_firm.json');
+  const { data: foreignCiteByFirm, loading: fcL } = useChapterData<ForeignCitationByFirm[]>('chapter10/foreign_citation_by_firm.json');
 
   /* ── State ── */
   const [selectedQualityFirm, setSelectedQualityFirm] = useState<string>('IBM');
@@ -134,6 +137,22 @@ export default function OrgPatentQualityChapter() {
     })),
     [topCompanies],
   );
+
+  const nplTop20 = useMemo(() => {
+    if (!nplByFirm) return [];
+    return nplByFirm.slice(0, 20).map((d) => ({
+      ...d,
+      label: cleanOrgName(d.organization),
+    }));
+  }, [nplByFirm]);
+
+  const foreignCiteTop20 = useMemo(() => {
+    if (!foreignCiteByFirm) return [];
+    return foreignCiteByFirm.slice(0, 20).map((d) => ({
+      ...d,
+      label: cleanOrgName(d.organization),
+    }));
+  }, [foreignCiteByFirm]);
 
   const companyFwdCitePivot = useMemo(
     () => pivotCompanyMetric(qualityByCompany, 'avg_forward_citations', topCompanies),
@@ -502,6 +521,74 @@ export default function OrgPatentQualityChapter() {
           citation dilution, prosecution norms, and examination backlogs -- shape patent quality metrics at
           least as strongly as firm-specific R&amp;D strategies. The remaining firm-level variation, however,
           reveals meaningful differences in portfolio composition and drafting practices.
+        </p>
+      </KeyInsight>
+
+      {/* ── Section E: NPL and Foreign Citation Patterns ── */}
+
+      <SectionDivider label="Non-Patent Literature and Foreign Citation Patterns" />
+
+      <Narrative>
+        <p>
+          Two additional dimensions of patent quality illuminate the knowledge base underlying
+          corporate innovation: non-patent literature (NPL) citations, which capture links to
+          scientific research, and foreign prior art share, which reveals the degree to which a
+          firm&apos;s patents draw on international knowledge sources.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-org-patent-quality-npl-by-firm"
+        title="Apple Leads NPL Citation Intensity at 35.9 Average NPL Citations Per Patent"
+        subtitle="Top 20 firms ranked by average non-patent literature citations per patent, revealing science intensity of corporate R&D"
+        caption="Firms ranked by average non-patent literature (NPL) citations per patent. Apple (35.9), Microsoft Technology Licensing (21.5), and Semiconductor Energy Laboratory (21.2) lead, reflecting deep connections between corporate R&D and the scientific literature."
+        insight="High NPL citation intensity distinguishes firms whose R&D is closely connected to the scientific frontier from those pursuing more incremental, application-driven innovation."
+        loading={nplL}
+        height={650}
+      >
+        <PWBarChart
+          data={nplTop20}
+          xKey="label"
+          bars={[{ key: 'avg_npl_citations', name: 'Avg NPL Citations', color: CHART_COLORS[0] }]}
+          layout="vertical"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Apple&apos;s 35.9 average NPL citations per patent — nearly 7 times the median firm in this
+          ranking — reflects a distinctive R&amp;D strategy that draws heavily on scientific literature.
+          The wide variation across firms, from 35.9 (Apple) to 0.57 (SK hynix), distinguishes
+          science-intensive innovators from firms that rely primarily on prior patent art.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-org-patent-quality-foreign-cite-by-firm"
+        title="Huawei's Prior Art Is 78.3% Foreign — More Than 10x IBM's 11.4% Foreign Share"
+        subtitle="Top 20 firms ranked by share of backward citations to foreign (non-US) patents, revealing reliance on international knowledge sources"
+        caption="Firms ranked by the share of their backward patent citations directed to foreign (non-US) patents. Huawei (78.3%), Toyota (63.2%), and LG Electronics (61.0%) lead, consistent with their non-US headquarter locations and reliance on international prior art."
+        insight="The foreign citation share strongly correlates with the assignee's headquarter location, but also reveals the degree to which firms draw on a global versus domestic knowledge base."
+        loading={fcL}
+        height={650}
+      >
+        <PWBarChart
+          data={foreignCiteTop20}
+          xKey="label"
+          bars={[{ key: 'foreign_citation_share_pct', name: 'Foreign Citation Share (%)', color: CHART_COLORS[3] }]}
+          layout="vertical"
+          yFormatter={(v: number) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The foreign prior art share reveals a stark divide between internationally oriented firms
+          and domestically focused ones. Huawei&apos;s 78.3% foreign citation share reflects its
+          position as a Chinese firm whose patents draw heavily on global telecommunications standards,
+          while IBM&apos;s 11.4% indicates a patent portfolio primarily grounded in US-originated
+          prior art. This variation has implications for understanding knowledge flows across
+          national innovation systems.
         </p>
       </KeyInsight>
 

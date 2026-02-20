@@ -29,6 +29,7 @@ import type {
   DomainQuality, DomainTeamComparison, DomainAssigneeType,
   DomainStrategy, DomainDiffusion,
   DomainEntrantIncumbent, DomainQualityBifurcation,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter11() {
@@ -45,6 +46,7 @@ export default function Chapter11() {
   const { data: assigneeType, loading: atL } = useChapterData<DomainAssigneeType[]>('3dprint/3dprint_assignee_type.json');
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('3dprint/3dprint_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('3dprint/3dprint_quality_bifurcation.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot entrant/incumbent data
   const eiPivot = useMemo(() => {
@@ -239,6 +241,16 @@ export default function Chapter11() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === '3D Printing' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === '3D Printing' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -846,6 +858,24 @@ export default function Chapter11() {
       <Narrative>
         Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
+
+      <ChartContainer
+        id="fig-3dprint-filing-vs-grant"
+        title="3D Printing Filings Peaked in 2019 at 2,799 While Grants Continued Rising to 2,899 in 2024"
+        subtitle="Annual patent filings vs. grants for 3D printing, showing the multi-year lag between application and issuance."
+        caption="The divergence between filing and grant curves reflects the USPTO examination pipeline. Filings peaked in 2019 and have since declined, but grants continued rising through 2024 as the backlog of applications was processed."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
+        />
+      </ChartContainer>
 
       <InsightRecap
         learned={["Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, driven by the expiration of key FDM patents in 2009.", "Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants, suggesting that open-source knowledge diffusion accelerated innovation."]}

@@ -25,6 +25,21 @@ import type {
   ProlificInventor,
   StarInventorImpact,
 } from '@/lib/types';
+
+/* ── Local row types for new analyses ─────────────────────────── */
+
+interface ExaminerInventorOverlap {
+  unique_examiner_names: number;
+  unique_inventor_names: number;
+  name_matches: number;
+}
+
+interface MultiTypeInventor {
+  career_length_bin: string;
+  total_inventors: number;
+  multi_type: number;
+  multi_type_pct: number;
+}
 import Link from 'next/link';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
@@ -42,6 +57,10 @@ export default function InvTopInventorsChapter() {
     useChapterData<any[]>('computed/quality_by_inventor_rank.json');
   const { data: prodRank } =
     useChapterData<any[]>('computed/inventor_productivity_by_rank.json');
+  const { data: examinerOverlap, loading: eoL } =
+    useChapterData<ExaminerInventorOverlap[]>('chapter13/examiner_inventor_overlap.json');
+  const { data: multiType, loading: mtL } =
+    useChapterData<MultiTypeInventor[]>('chapter13/multi_type_inventors.json');
 
   /* ── derived data ── */
   const topInventors = useMemo(() => {
@@ -446,6 +465,107 @@ export default function InvTopInventorsChapter() {
           yLabel="Avg. Grant Lag (days)"
         />
       </ChartContainer>
+
+      {/* ── Section E: Examiner-Inventor Overlap ── */}
+      <SectionDivider label="Examiner-Inventor Overlap" />
+
+      <Narrative>
+        <p>
+          A natural question is whether individuals who serve as USPTO patent examiners also
+          appear in the inventor record. Using name matching -- an inherently imprecise method --
+          we estimate an upper bound on the number of individuals who have appeared in both roles.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-examiner-inventor-overlap"
+        title="An Estimated 5,785 Individuals Appear as Both Patent Examiner and Inventor -- an Upper Bound Based on Name Matching"
+        subtitle="Count of unique names appearing in both the examiner and inventor records, based on exact first-name and last-name matching"
+        caption="This table reports the number of unique names found in both the patent examiner and inventor records. Because name matching does not use disambiguated identifiers, this figure represents an upper bound that likely includes false positives from common names."
+        insight="Even under generous name-matching assumptions, the overlap between examiners and inventors is small relative to the 4.1 million unique inventor names in the database."
+        loading={eoL}
+      >
+        {examinerOverlap && examinerOverlap.length > 0 && (
+          <div className="flex items-center justify-center h-full">
+            <div className="max-w-lg w-full">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-2 px-3 font-medium text-muted-foreground">Metric</th>
+                    <th className="text-right py-2 px-3 font-medium text-muted-foreground">Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-3">Unique Examiner Names</td>
+                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_examiner_names.toLocaleString()}</td>
+                  </tr>
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-3">Unique Inventor Names</td>
+                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_inventor_names.toLocaleString()}</td>
+                  </tr>
+                  <tr className="border-b border-border/50 bg-muted/20">
+                    <td className="py-2 px-3 font-semibold">Name Matches (Upper Bound)</td>
+                    <td className="text-right py-2 px-3 font-mono font-semibold">{examinerOverlap[0].name_matches.toLocaleString()}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
+                <strong>Caveat:</strong> This estimate relies on exact first-name and last-name matching and
+                does not use disambiguated inventor or examiner identifiers. Common names will produce false
+                positives, making this a likely overcount. The true overlap is almost certainly smaller than
+                5,785 individuals.
+              </p>
+            </div>
+          </div>
+        )}
+      </ChartContainer>
+
+      {/* ── Section F: Multi-Type Inventor Trajectories ── */}
+      <SectionDivider label="Multi-Type Inventor Trajectories" />
+
+      <Narrative>
+        <p>
+          Beyond individual prolificacy, some inventors patent under multiple institution types
+          over their careers -- for example, filing patents through both a corporation and a
+          university. The prevalence of such multi-type trajectories increases sharply with
+          career length, suggesting that inventor mobility across institutional boundaries is a
+          common feature of long patenting careers.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-multi-type-inventors"
+        title="30.7% of Inventors with 10+ Patents Have Patented Under Multiple Institution Types"
+        subtitle="Share of inventors who have patented under more than one assignee type (e.g., corporation and university), by career length bin"
+        caption="This chart displays the percentage of inventors who have filed patents under more than one assignee type over their career, grouped by career length (number of patents). Multi-type patenting is negligible among single-patent inventors but rises to 30.7% among those with 10 or more patents."
+        insight="The prevalence of multi-type inventor trajectories among prolific inventors suggests that institutional mobility -- between firms, universities, and government -- is a common feature of sustained patenting careers."
+        loading={mtL}
+      >
+        {multiType && (
+          <PWBarChart
+            data={multiType.filter(d => d.career_length_bin !== '1').map(d => ({
+              ...d,
+              label: `${d.career_length_bin} patents`,
+              multi_type_pct: d.multi_type_pct,
+            }))}
+            xKey="label"
+            bars={[{ key: 'multi_type_pct', name: 'Multi-Type %', color: CHART_COLORS[0] }]}
+            yLabel="Share (%)"
+            yFormatter={(v: number) => `${v.toFixed(1)}%`}
+          />
+        )}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Multi-type inventor trajectories -- where an individual patents under more than one
+          institution type -- are concentrated among prolific inventors. Only 8.4% of inventors
+          with 2-4 patents have multi-type careers, rising to 18.4% for those with 5-9 patents
+          and 30.7% for those with 10 or more. This pattern indicates that institutional mobility
+          is closely linked to sustained inventive output.
+        </p>
+      </KeyInsight>
 
       {/* ── Closing Transition ── */}
       <Narrative>

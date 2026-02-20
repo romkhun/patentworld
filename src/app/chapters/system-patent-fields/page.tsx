@@ -17,6 +17,7 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWTreemap } from '@/components/charts/PWTreemap';
+import { PWValueHeatmap } from '@/components/charts/PWValueHeatmap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
@@ -110,6 +111,14 @@ export default function SystemPatentFieldsChapter() {
 
   // Section D.ii-D.iv: Quality metrics by CPC section
   const { data: qualityCpc, loading: qcL } = useChapterData<any[]>('computed/quality_by_cpc_section.json');
+
+  // Section E: CPC Reclassification (Analysis 9)
+  const { data: reclassByDecade, loading: rcDecL } = useChapterData<{ decade: number; total_patents: number; reclassified: number; reclass_rate_pct: number }[]>('chapter3/cpc_reclassification_by_decade.json');
+  const { data: reclassFlows, loading: rcFlL } = useChapterData<{ from_section: string; to_section: string; count: number }[]>('chapter3/cpc_reclassification_flows.json');
+
+  // Section F: WIPO Sector Shares & Growth (Analysis 10)
+  const { data: wipoShares, loading: wsL } = useChapterData<{ year: number; sector: string; patent_count: number }[]>('chapter3/wipo_sector_shares.json');
+  const { data: wipoGrowth, loading: wgL } = useChapterData<{ field: string; count_early: number; count_late: number; growth_pct: number; total: number }[]>('chapter3/wipo_field_growth.json');
 
   /* ── Toggle state for CPC area chart ── */
   const [cpcStackedPercent, setCpcStackedPercent] = useState(true);
@@ -265,6 +274,31 @@ export default function SystemPatentFieldsChapter() {
     name: cpcQualityNames[s],
     color: CPC_SECTION_COLORS[s],
   }));
+
+  // E: Reclassification flow data formatted for heatmap
+  const reclassFlowData = useMemo(() => reclassFlows ?? [], [reclassFlows]);
+
+  // F: WIPO sector shares pivot (one row per year with sector columns)
+  const wipoSharesPivot = useMemo(() => {
+    if (!wipoShares) return [];
+    const years = [...new Set(wipoShares.map(d => d.year))].sort();
+    return years.map(year => {
+      const row: Record<string, any> = { year };
+      wipoShares.filter(d => d.year === year).forEach(d => { row[d.sector] = d.patent_count; });
+      return row;
+    });
+  }, [wipoShares]);
+
+  const wipoSectorNames = useMemo(() => {
+    if (!wipoShares) return [];
+    return [...new Set(wipoShares.map(d => d.sector))];
+  }, [wipoShares]);
+
+  // F: WIPO field growth top 10 for horizontal bar
+  const wipoGrowthTop10 = useMemo(() => {
+    if (!wipoGrowth) return [];
+    return [...wipoGrowth].sort((a, b) => b.growth_pct - a.growth_pct).slice(0, 10);
+  }, [wipoGrowth]);
 
   const fwdCitePivot = useMemo(() => pivotData(qualityCpc, 'avg_forward_citations'), [qualityCpc]);
   const { data: fwdCiteNormalized, yLabel: fwdCiteYLabel, controls: fwdCiteControls } = useCitationNormalization({
@@ -969,6 +1003,128 @@ export default function SystemPatentFieldsChapter() {
       </KeyInsight>
 
       {/* Quality by CPC section charts (D.ii-D.iv) are rendered above the self-citation table */}
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION E: CPC RECLASSIFICATION (Analysis 9)
+          ═══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="E — CPC Reclassification" />
+
+      <Narrative>
+        <p>
+          Classification systems are not static. The USPTO periodically reclassifies patents into different CPC sections as taxonomy evolves. Examining the rate and direction of reclassification provides insight into how the CPC system adapts to shifting technological boundaries and whether reclassification patterns align with the convergence trends identified in earlier sections.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-fields-reclass-rate"
+        title="Approximately 4% of Patents Granted in the 2010s Were Later Reclassified to a Different CPC Section"
+        subtitle="CPC reclassification rate by decade, measuring the share of patents whose primary CPC section changed between issue and current classification"
+        caption="Reclassification data only available for patents with both cpc_at_issue and current CPC records (2010s-2020s). The reclassification rate is computed as the share of patents whose primary CPC section at issue differs from the current primary CPC section."
+        insight="The stability of the reclassification rate at approximately 4% across both decades suggests that taxonomy evolution proceeds at a roughly constant pace, even as the technological landscape undergoes rapid structural change."
+        loading={rcDecL}
+      >
+        {reclassByDecade && reclassByDecade.length > 0 ? (
+          <PWBarChart
+            data={reclassByDecade.map(d => ({ decade: `${d.decade}s`, reclass_rate_pct: d.reclass_rate_pct }))}
+            xKey="decade"
+            bars={[{ key: 'reclass_rate_pct', name: 'Reclassification Rate (%)', color: CHART_COLORS[0] }]}
+            yLabel="Reclassification Rate (%)"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-fields-reclass-flows"
+        title="The Largest Reclassification Flow Is from Section H (Electricity) to G (Physics), with 42,790 Patents Reclassified"
+        subtitle="CPC section-to-section reclassification flows, showing the number of patents reclassified from one primary section to another"
+        caption="Heatmap of reclassification flows between CPC sections. Each cell represents the number of patents whose primary CPC section changed from the row section to the column section. The dominant H-to-G flow is consistent with the evolving boundary between electronics and computing-related physics."
+        insight="The dominant H-to-G flow reflects the ongoing renegotiation of the boundary between electronics (H) and computing/physics (G), consistent with the convergence of these fields documented in earlier sections."
+        loading={rcFlL}
+        height={550}
+      >
+        {reclassFlowData.length > 0 ? (
+          <PWValueHeatmap
+            data={reclassFlowData}
+            rowKey="from_section"
+            colKey="to_section"
+            valueKey="count"
+            rowLabel="From Section"
+            colLabel="To Section"
+            valueFormatter={(v) => formatCompact(v)}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The reclassification flow matrix reveals that the largest movement of patents is from Section H (Electricity) to Section G (Physics), with over 42,000 patents reclassified. This is consistent with the well-documented convergence of electronics and computing-related physics. The reverse flow (G to H) accounts for 14,115 patents, and other significant flows include C to A (Chemistry to Human Necessities, 7,902 patents), reflecting the growth of pharmaceutical and biomedical applications of chemistry.
+        </p>
+      </KeyInsight>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION F: WIPO TECHNOLOGY SECTORS (Analysis 10)
+          ═══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="F — WIPO Technology Sectors" />
+
+      <Narrative>
+        <p>
+          While CPC sections provide one lens for examining technology composition, the <GlossaryTooltip term="WIPO">WIPO</GlossaryTooltip> technology classification offers an alternative taxonomy organized around five broad sectors: Chemistry, Electrical engineering, Instruments, Mechanical engineering, and Other fields. Tracking the evolution of these sector shares and identifying the fastest-growing WIPO fields provides a complementary perspective on the structural transformation of patent activity.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-fields-wipo-sector-shares"
+        title="Electrical Engineering Grew from 14% to 41% of Patent Grants, Surpassing All Other WIPO Sectors by the Late 1990s"
+        subtitle="Stacked area chart of patent counts by WIPO technology sector, 1976-2025, showing the structural shift toward electrical engineering"
+        caption="Annual patent counts by WIPO technology sector. Electrical engineering, which encompasses computing, telecommunications, and semiconductors, has grown from a minority share in the 1970s to the dominant sector by the late 1990s, consistent with the CPC-level trends documented in Section B."
+        insight="The WIPO sector view confirms the structural transformation visible in the CPC data: electrical engineering now accounts for the largest share of patent output, reflecting the economy-wide digital transition."
+        loading={wsL}
+        height={550}
+      >
+        {wipoSharesPivot.length > 0 ? (
+          <PWAreaChart
+            data={wipoSharesPivot}
+            xKey="year"
+            areas={wipoSectorNames.map((name, i) => ({
+              key: name,
+              name,
+              color: WIPO_SECTOR_COLORS[name] ?? CHART_COLORS[i % CHART_COLORS.length],
+            }))}
+            stacked
+            yLabel="Number of Patents"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-fields-wipo-field-growth"
+        title="IT Methods for Management Grew by 5,675% While Computer Technology and Digital Communication Each Exceeded 1,600%"
+        subtitle="Top 10 fastest-growing WIPO technology fields by percentage growth, comparing 1976-1995 to 2006-2025 patent counts"
+        caption="Percentage growth in patent counts by WIPO technology field, comparing the early period (1976-1995) to the late period (2006-2025). The fastest-growing fields are concentrated in digital and computing-related technologies, consistent with the structural shift documented throughout this chapter."
+        insight="The fastest-growing fields are overwhelmingly digital: IT methods for management, computer technology, and digital communication lead by wide margins. This concentration of growth in a small number of fields explains the declining technology diversity documented in Section B."
+        loading={wgL}
+        height={550}
+      >
+        {wipoGrowthTop10.length > 0 ? (
+          <PWBarChart
+            data={wipoGrowthTop10}
+            xKey="field"
+            bars={[{ key: 'growth_pct', name: 'Growth (%)', color: CHART_COLORS[2] }]}
+            layout="vertical"
+            yLabel="Growth (%)"
+            yFormatter={(v) => `${v.toLocaleString()}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The WIPO field-level growth data confirm that the digital transformation is concentrated in a small number of technology fields. IT methods for management, which barely existed in the early period with only 1,347 patents, grew by 5,675% to nearly 78,000 patents in the later period. Computer technology and digital communication each exceeded 1,600% growth. By contrast, traditional fields such as macromolecular chemistry and textile machines grew by under 40%, consistent with the technology diversity decline and S-curve maturation patterns documented in earlier sections.
+        </p>
+      </KeyInsight>
 
       {/* ═══════════════════════════════════════════════════════════════════════
           CHAPTER CLOSING

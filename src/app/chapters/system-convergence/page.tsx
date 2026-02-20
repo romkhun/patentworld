@@ -24,6 +24,13 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 import type { CrossDomain, ConvergenceEntry, ConvergenceDecomp, ConvergenceNearFar, ConvergenceTopAssignee, InterdisciplinarityTrend } from '@/lib/types';
 
+interface IPCvsCPCConvergence {
+  year: number;
+  total_patents: number;
+  ipc_multi_section_pct: number;
+  cpc_multi_section_pct: number;
+}
+
 export default function SystemConvergenceChapter() {
   // Cross-domain convergence (area chart from patent-scope)
   const { data: crossDomain, loading: cdL } = useChapterData<CrossDomain[]>('chapter7/cross_domain.json');
@@ -36,6 +43,9 @@ export default function SystemConvergenceChapter() {
   const { data: nearFar, loading: nfL } = useChapterData<ConvergenceNearFar[]>('chapter10/convergence_near_far.json');
   const { data: convTopAssignees, loading: ctaL } = useChapterData<ConvergenceTopAssignee[]>('chapter10/convergence_top_assignees.json');
   const { data: interTrend, loading: itL } = useChapterData<InterdisciplinarityTrend[]>('chapter10/interdisciplinarity_unified.json');
+
+  // Analysis 11: CPC vs IPC convergence robustness check
+  const { data: ipcVsCpc, loading: ivcL } = useChapterData<IPCvsCPCConvergence[]>('chapter4/ipc_vs_cpc_convergence.json');
 
   const convergenceEras = useMemo(() => {
     if (!convergenceData) return [];
@@ -370,6 +380,44 @@ export default function SystemConvergenceChapter() {
       <KeyInsight>
         <p>
           The 2&times;2 framework clarifies that not all interdisciplinary patents are alike. A patent spanning Physics and Electricity (high convergence, narrow scope) represents routine cross-domain activity, while a patent combining biotechnology, computation, and materials science (low convergence, broad scope) represents radical recombination. The data show that the fastest-growing category is broad-scope patents in established convergence zones -- platform innovations that integrate multiple well-trodden cross-domain pathways.
+        </p>
+      </KeyInsight>
+
+      {/* ── Robustness: CPC vs IPC Convergence ── */}
+
+      <SectionDivider label="Robustness Check: CPC vs. IPC Convergence" />
+
+      <Narrative>
+        <p>
+          A natural concern with the convergence findings is whether they reflect genuine technological change or artifacts of the CPC classification system. To assess robustness, this section compares multi-section patent rates under both the <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> and the older <GlossaryTooltip term="IPC">IPC</GlossaryTooltip> classification systems. If the convergence trend is driven by CPC-specific reclassification or taxonomy changes, it should not appear under IPC.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-convergence-cpc-vs-ipc"
+        title="Multi-Section Patent Share Shows Consistent Trends Under CPC (20.7% to 40.2%) and IPC (7.5% to 34.1%)"
+        subtitle="Share of patents classified in multiple technology sections by year, comparing CPC and IPC classification systems"
+        caption="The CPC multi-section rate (solid) and IPC multi-section rate (dashed) both show sustained increases over time, though at different absolute levels due to differences in classification granularity and coverage. The IPC series shows a gap during 2002-2004 when IPC data is sparse in PatentsView. Both systems confirm the convergence trend, indicating that the finding is robust to taxonomy choice."
+        insight="Both classification systems show the same convergence trend, confirming the finding is robust to taxonomy choice."
+        loading={ivcL}
+      >
+        {ipcVsCpc && ipcVsCpc.length > 0 ? (
+          <PWLineChart
+            data={ipcVsCpc}
+            xKey="year"
+            lines={[
+              { key: 'cpc_multi_section_pct', name: 'CPC Multi-Section (%)', color: CHART_COLORS[0] },
+              { key: 'ipc_multi_section_pct', name: 'IPC Multi-Section (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+            ]}
+            yLabel="Multi-Section Share (%)"
+            yFormatter={(v) => `${v.toFixed(1)}%`}
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Both classification systems show the same convergence trend, confirming that the finding is robust to taxonomy choice. The CPC system reports higher absolute multi-section rates (20.7% in 1976 rising to 40.2% by 2024) because CPC assigns more classification codes per patent than IPC. Under IPC, the multi-section rate rose from 7.5% to 34.1% over the same period. The parallel trajectories provide strong evidence that the rise in cross-domain patenting reflects genuine technological change rather than a classification artifact.
         </p>
       </KeyInsight>
 

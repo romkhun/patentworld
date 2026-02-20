@@ -30,6 +30,7 @@ import type {
   DomainStrategy, DomainDiffusion,
   DomainEntrantIncumbent, DomainQualityBifurcation,
   DigihealthRegulatorySplit,
+  Act6DomainFilingVsGrant,
 } from '@/lib/types';
 
 export default function Chapter18() {
@@ -47,6 +48,7 @@ export default function Chapter18() {
   const { data: entrantIncumbent, loading: eiL } = useChapterData<DomainEntrantIncumbent[]>('digihealth/digihealth_entrant_incumbent.json');
   const { data: qualityBif, loading: qbL } = useChapterData<DomainQualityBifurcation[]>('digihealth/digihealth_quality_bifurcation.json');
   const { data: regSplit, loading: rsL } = useChapterData<DigihealthRegulatorySplit[]>('digihealth/digihealth_regulatory_split.json');
+  const { data: filingVsGrant, loading: fgL } = useChapterData<Act6DomainFilingVsGrant[]>('act6/act6_domain_filing_vs_grant.json');
 
   // Pivot subfield data for stacked area chart
   const { subfieldPivot, subfieldNames } = useMemo(() => {
@@ -251,6 +253,16 @@ export default function Chapter18() {
         count: d.count,
       }));
   }, [topAssignees]);
+
+  const filingGrantPivot = useMemo(() => {
+    if (!filingVsGrant) return [];
+    const filing = filingVsGrant.filter((d) => d.domain === 'DigiHealth' && d.series === 'filing_year');
+    const grant = filingVsGrant.filter((d) => d.domain === 'DigiHealth' && d.series === 'grant_year');
+    const filingMap = Object.fromEntries(filing.map((d) => [d.year, d.count]));
+    const grantMap = Object.fromEntries(grant.map((d) => [d.year, d.count]));
+    const years = [...new Set([...filing.map((d) => d.year), ...grant.map((d) => d.year)])].sort();
+    return years.map((year) => ({ year, filings: filingMap[year] ?? 0, grants: grantMap[year] ?? 0 }));
+  }, [filingVsGrant]);
 
   return (
     <div>
@@ -892,6 +904,24 @@ export default function Chapter18() {
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
           yLabel="Mean Patents / Year"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-digihealth-filing-vs-grant"
+        title="Digital Health Filings Peaked at 11,827 in 2019 While Grants Reached 12,766 in 2024 — a 5-Year Lag"
+        subtitle="Annual patent filings vs. grants for digital health, showing the examination pipeline for medical device and health IT patents."
+        caption="Digital health exhibits one of the longest filing-to-grant lags among ACT 6 domains. Filings peaked in 2019 and have moderated, but grants continued climbing through 2024, surpassing the filing peak. The extended lag likely reflects the technical complexity of examining patents that span both medical device and software domains."
+        loading={fgL}
+      >
+        <PWLineChart
+          data={filingGrantPivot}
+          xKey="year"
+          lines={[
+            { key: 'filings', name: 'Filings', color: CHART_COLORS[0] },
+            { key: 'grants', name: 'Grants', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Number of Patents"
         />
       </ChartContainer>
 
