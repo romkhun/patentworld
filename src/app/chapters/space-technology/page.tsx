@@ -898,7 +898,7 @@ export default function Chapter22() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Space technology top-four concentration fluctuated between 4.9% and 36.7%, the widest range among all domains, reflecting the government-to-commercial transition.", "Satellite communications now dominates space technology patenting, with Boeing, ViaSat, and Lockheed Martin as leading filers."]}
+        learned={["Space technology top-four concentration fluctuated between 4.9% and 36.7%, the widest range among all domains, reflecting the government-to-commercial transition.", "Satellite communications now dominates space technology patenting, with Boeing, ViaSat, and Hughes Network Systems as leading filers."]}
         falsifiable="If the commercial space transition drove deconcentration, then the entry of SpaceX and other NewSpace firms should correlate with declining top-four share in launch and propulsion subfields."
         nextAnalysis={{ label: "Patent Count", description: "Return to the beginning — how has the overall patent system evolved across all the dimensions explored?", href: "/chapters/system-patent-count" }}
       />

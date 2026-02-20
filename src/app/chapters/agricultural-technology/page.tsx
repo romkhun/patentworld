@@ -851,7 +851,7 @@ export default function Chapter12() {
         id="fig-agtech-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across agricultural technology subfields."
         title="Agricultural Technology Subfield Diversity Increased From 0.73 in 1976 to 0.92 by 2025, Reflecting Broadening Innovation"
-        caption="Normalized Shannon entropy of subfield patent distributions. The steady increase from 0.73 to above 0.90 indicates that agricultural patenting has diversified from a narrow base of plant genetics into precision agriculture, soil science, and agricultural biotechnology."
+        caption="Normalized Shannon entropy of subfield patent distributions. The steady increase from 0.73 to above 0.90 indicates that agricultural patenting has diversified from a moderately diverse base into precision agriculture, soil science, and agricultural biotechnology."
         insight="The diversification trajectory is consistent with the agricultural sector's transition from chemical-intensive to data-driven farming, with new subfields emerging around sensors, automation, and genetic engineering."
         loading={sfL}
       >

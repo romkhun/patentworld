@@ -804,7 +804,7 @@ export default function Chapter16() {
           participation is minimal, reflecting the fact that blockchain emerged from the
           cryptocurrency community rather than from traditional academic computer science
           research. The pattern differs markedly from AI, where universities have played a significant
-          role in early-stage research, and with biotechnology, where government-funded research
+          role in early-stage research, and from biotechnology, where government-funded research
           contributes substantially to the patent pipeline.
         </p>
       </KeyInsight>
