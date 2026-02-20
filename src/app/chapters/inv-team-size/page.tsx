@@ -9,11 +9,14 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWCoefficientPlot } from '@/components/charts/PWCoefficientPlot';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -22,8 +25,10 @@ import type {
   TeamSizePerYear,
   SoloInventorTrend,
   SoloInventorBySection,
+  TeamSizeCoeffData,
 } from '@/lib/types';
 import Link from 'next/link';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 
 export default function InvTeamSizeChapter() {
   /* ── data hooks ── */
@@ -37,6 +42,8 @@ export default function InvTeamSizeChapter() {
     useChapterData<any[]>('computed/quality_by_team_size.json');
   const { data: prodByTeam, loading: ptL } =
     useChapterData<any[]>('computed/inventor_productivity_by_team_size.json');
+  const { data: teamCoeffs, loading: tcL } =
+    useChapterData<TeamSizeCoeffData>('chapter3/team_size_coefficients.json');
 
   /* ── derived data ── */
   const soloBySectionLabeled = useMemo(() => {
@@ -73,6 +80,25 @@ export default function InvTeamSizeChapter() {
     { key: '7+', name: '7+ Inventors', color: CHART_COLORS[3] },
   ];
 
+  /* ── by-decade coefficient data: group into per-decade arrays ── */
+  const decadeGroups = useMemo(() => {
+    if (!teamCoeffs?.by_decade) return [];
+    const grouped: Record<string, { category: string; coefficient: number; se: number; ci_lower: number; ci_upper: number }[]> = {};
+    for (const d of teamCoeffs.by_decade) {
+      if (!grouped[d.decade]) grouped[d.decade] = [];
+      grouped[d.decade].push({
+        category: d.category,
+        coefficient: d.coefficient,
+        se: d.se,
+        ci_lower: d.ci_lower,
+        ci_upper: d.ci_upper,
+      });
+    }
+    return Object.entries(grouped)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([decade, coefficients]) => ({ decade, coefficients }));
+  }, [teamCoeffs]);
+
   return (
     <div>
       <ChapterHeader
@@ -80,6 +106,7 @@ export default function InvTeamSizeChapter() {
         title="Team Size and Collaboration"
         subtitle="The collaborative turn and team size effects on quality"
       />
+      <MeasurementSidebar slug="inv-team-size" />
 
       <KeyFindings>
         <li>
@@ -182,6 +209,8 @@ export default function InvTeamSizeChapter() {
           inventor.
         </p>
       </KeyInsight>
+
+      <DescriptiveGapNote variant="team-size" />
 
       <ChartContainer
         id="fig-solo-inventor-trend"
@@ -380,6 +409,81 @@ export default function InvTeamSizeChapter() {
         />
       </ChartContainer>
 
+      {/* ── Section C: Regression Analysis — Team Size Coefficients ── */}
+      <SectionDivider label="Team Size and Citation Impact: Regression Evidence" />
+
+      <Narrative>
+        <p>
+          The descriptive quality comparisons above reveal suggestive patterns but cannot
+          isolate the independent effect of team size from confounding factors such as
+          technology field, grant year, and assignee characteristics. To address this, the
+          following analysis applies a Frisch-Waugh-Lovell (FWL) OLS regression that demeans
+          cohort-normalized 5-year forward citations within grant year, CPC section, and
+          assignee-size groups. Team size dummies (2-3, 4-6, 7+ inventors) are estimated
+          relative to the solo-inventor baseline, with standard errors clustered at the
+          assignee level.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-team-size-coefficients"
+        title="Larger Teams Produce Higher Cohort-Normalized Citations, Even After Controlling for Field and Year"
+        subtitle="FWL OLS coefficients for team size dummies relative to solo inventors, with 95% confidence intervals clustered by assignee."
+        caption="Each bar represents the marginal effect of team size (relative to solo inventors) on cohort-normalized 5-year forward citations, after absorbing year × CPC section × assignee-size fixed effects. Error bars show 95% confidence intervals with standard errors clustered at the assignee level."
+        loading={tcL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020, normalization: 'Cohort×field×assignee' }}
+        height={300}
+      >
+        <PWCoefficientPlot
+          data={teamCoeffs?.main_coefficients ?? []}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Even after controlling for grant year, technology field, and assignee size, larger
+          teams produce patents with significantly higher cohort-normalized citation impact.
+          The positive coefficients increase monotonically with team size, confirming that the
+          team-size premium is not simply an artifact of compositional differences across
+          fields or time periods.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-team-size-by-decade"
+        title="The Team-Size Premium Has Grown Over Time, Especially for Large Teams"
+        subtitle="By-decade OLS coefficients for team size dummies relative to solo inventors, with 95% confidence intervals clustered by assignee."
+        caption="Each panel shows FWL OLS coefficients estimated separately for each decade. The growing magnitude of the 7+ team coefficient over successive decades indicates that the citation premium for large teams has strengthened over time."
+        loading={tcL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020, normalization: 'Cohort×field×assignee' }}
+        height={400}
+      >
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 h-full">
+          {decadeGroups.map((group) => (
+            <div key={group.decade} className="flex flex-col">
+              <h4 className="mb-1 text-center text-xs font-semibold text-muted-foreground">
+                {group.decade}
+              </h4>
+              <div className="flex-1" style={{ minHeight: 140 }}>
+                <PWCoefficientPlot
+                  data={group.coefficients}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The team-size citation premium has not been constant: it has grown substantially
+          across decades, with the largest gains accruing to teams of 7 or more inventors.
+          This pattern is consistent with the hypothesis that the increasing complexity of
+          modern technology rewards larger, more diverse teams -- and that the returns to
+          collaboration have risen over time rather than diminished.
+        </p>
+      </KeyInsight>
+
       {/* ── Closing Transition ── */}
       <Narrative>
         <p>
@@ -399,11 +503,27 @@ export default function InvTeamSizeChapter() {
         </p>
       </Narrative>
 
+      <InsightRecap
+        learned={[
+          "Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 24%.",
+          "Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors, indicating that larger teams produce broader patent protection.",
+        ]}
+        falsifiable="If team size causally increases patent quality rather than reflecting project selection, then exogenous team expansions (e.g., due to firm mergers) should produce citation gains."
+        nextAnalysis={{
+          label: "Domestic Geography",
+          description: "Where in the United States does patenting concentrate, and how does location affect quality?",
+          href: "/chapters/geo-domestic",
+        }}
+      />
+
       <DataNote>
         Team size counts all listed inventors per patent. Solo inventor share is computed as
         the percentage of patents with exactly one listed inventor. CPC section-level solo
         rates use the primary CPC classification of each patent. Inventor disambiguation is
-        provided by PatentsView.
+        provided by PatentsView. The regression analysis uses Frisch-Waugh-Lovell OLS with
+        cohort-normalized 5-year forward citations as the dependent variable, demeaning within
+        grant year × CPC section × assignee-size groups, with standard errors clustered at
+        the assignee level.
       </DataNote>
 
       <RelatedChapters currentChapter={17} />

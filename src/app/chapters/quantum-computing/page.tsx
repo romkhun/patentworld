@@ -19,9 +19,11 @@ import { CHART_COLORS, CPC_SECTION_COLORS, QUANTUM_SUBFIELD_COLORS } from '@/lib
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { QUANTUM_EVENTS } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { cleanOrgName } from '@/lib/orgNames';
 import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
@@ -238,6 +240,7 @@ export default function Chapter20() {
         title="Quantum Computing"
         subtitle="From theoretical foundations to practical hardware"
       />
+      <MeasurementSidebar slug="quantum-computing" />
 
       <KeyFindings>
         <li>Quantum computing patents have grown rapidly from a very small base since the mid-2010s, coinciding with the transition from theoretical physics research to engineering-oriented hardware and software development.</li>
@@ -793,6 +796,12 @@ export default function Chapter20() {
       <Narrative>
         Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter. The next chapter examines <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link>, a domain where quantum computing poses both a fundamental threat to existing cryptographic systems and a potential source of new post-quantum security methods.
       </Narrative>
+
+      <InsightRecap
+        learned={["Quantum computing remains the most concentrated technology domain, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers to entry."]}
+        falsifiable="If high concentration reflects genuine technical barriers rather than strategic patent thickets, then new entrants should produce patents with lower scope and fewer claims than incumbents."
+        nextAnalysis={{ label: "Semiconductors", description: "The silicon foundation of modern technology — the only domain with rising concentration", href: "/chapters/semiconductors" }}
+      />
 
       <DataNote>
         Quantum computing patents are identified using CPC classifications related to quantum

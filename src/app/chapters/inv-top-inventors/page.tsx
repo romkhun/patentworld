@@ -11,11 +11,13 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import type {
@@ -25,6 +27,7 @@ import type {
 } from '@/lib/types';
 import Link from 'next/link';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 
 export default function InvTopInventorsChapter() {
   /* ── data hooks ── */
@@ -84,6 +87,7 @@ export default function InvTopInventorsChapter() {
         title="Top Inventors"
         subtitle="Superstar concentration, prolific inventors, and citation impact"
       />
+      <MeasurementSidebar slug="inv-top-inventors" />
 
       <KeyFindings>
         <li>
@@ -171,6 +175,8 @@ export default function InvTopInventorsChapter() {
           disproportionate effects on the overall innovation system.
         </p>
       </KeyInsight>
+
+      <DescriptiveGapNote variant="top-inventors" />
 
       {/* ── Section B: Top Inventors (Number of Patents) ── */}
       <SectionDivider label="Top Inventors" />
@@ -454,6 +460,19 @@ export default function InvTopInventorsChapter() {
           shifted over time.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "The top 12% of inventors by lifetime output produce 61% of all patent grants, indicating extreme concentration of inventive output.",
+          "The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents — more than the bottom 50% of all inventors combined.",
+        ]}
+        falsifiable="If superstar concentration reflects individual talent rather than institutional resources, then prolific inventors should maintain high citation impact even when they change employers."
+        nextAnalysis={{
+          label: "Generalist vs. Specialist",
+          description: "How technology specialization patterns affect patent quality and citation impact",
+          href: "/chapters/inv-generalist-specialist",
+        }}
+      />
 
       <DataNote>
         Superstar concentration is computed using cumulative patent counts per inventor.

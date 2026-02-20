@@ -18,9 +18,11 @@ import { CHART_COLORS, CPC_SECTION_COLORS, SEMI_SUBFIELD_COLORS } from '@/lib/co
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { SEMI_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import type {
@@ -237,6 +239,7 @@ export default function Chapter21() {
         title="Semiconductors"
         subtitle="The silicon foundation of modern technology"
       />
+      <MeasurementSidebar slug="semiconductors" />
 
       <KeyFindings>
         <li>Semiconductor patents are among the most heavily filed in the US patent system, with CPC class H01L representing one of the single largest concentrations of patenting activity across all technology domains.</li>
@@ -815,6 +818,12 @@ export default function Chapter21() {
         while the interaction between semiconductor and artificial intelligence patents is
         examined in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. The next chapter turns to <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link>, a domain that builds directly on semiconductor fabrication expertise while pursuing fundamentally different computational paradigms.
       </Narrative>
+
+      <InsightRecap
+        learned={["Semiconductor patents uniquely exhibit rising concentration, with top-four share increasing from 11.3% to 32.6% — the only domain showing sustained consolidation.", "Entry velocity plateaued at 197 patents/year for both 1990s and 2010s cohorts, suggesting that scale barriers have stabilized."]}
+        falsifiable="If rising concentration reflects genuine scale economies in semiconductor R&D, then smaller firms' citation impact should be declining relative to the top four."
+        nextAnalysis={{ label: "Space Technology", description: "Patenting the final frontier — from government-dominated to commercial-driven innovation", href: "/chapters/space-technology" }}
+      />
 
       <DataNote>
         Semiconductor patents are identified using CPC classification H01L, which covers

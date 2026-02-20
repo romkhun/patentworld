@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
@@ -16,6 +17,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS, INDUSTRY_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -112,6 +114,7 @@ export default function OrgPatentPortfolioChapter() {
         title="Patent Portfolio"
         subtitle="Diversification, competitive proximity, and portfolio transitions"
       />
+      <MeasurementSidebar slug="org-patent-portfolio" />
 
       <KeyFindings>
         <li>248 companies cluster into 8 industries by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple clusters.</li>
@@ -367,6 +370,19 @@ export default function OrgPatentPortfolioChapter() {
           Portfolio analysis reveals that firms pursue fundamentally different diversification strategies, and that portfolio shifts detected through Jensen-Shannon divergence often anticipate major business transformations. The next chapter, <Link href="/chapters/org-company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Interactive Company Profiles</Link>, combines patent output, technology portfolios, citation impact, and innovation strategy into comprehensive firm-level dashboards.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "248 companies cluster into 8 industries by patent portfolio similarity, revealing that technology strategy is structured by industry boundaries.",
+          "51 technology pivots were detected across 20 companies, often years before strategic shifts become publicly visible.",
+        ]}
+        falsifiable="If patent portfolio pivots predict corporate strategy changes, then firms showing CPC composition shifts should subsequently announce corresponding business unit expansions or acquisitions."
+        nextAnalysis={{
+          label: "Interactive Company Profiles",
+          description: "Unified dashboards integrating output, quality, portfolio, strategy, and speed for each firm",
+          href: "/chapters/org-company-profiles",
+        }}
+      />
 
       <DataNote>
         Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP for 248 companies across 8 industry clusters. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 5-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 90th percentile threshold across all firm-windows. Source: PatentsView.

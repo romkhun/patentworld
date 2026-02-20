@@ -19,9 +19,11 @@ import { CHART_COLORS, CPC_SECTION_COLORS, CYBER_SUBFIELD_COLORS } from '@/lib/c
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CYBER_EVENTS } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { cleanOrgName } from '@/lib/orgNames';
 import type {
   DomainPerYear, DomainBySubfield, DomainTopAssignee,
@@ -238,6 +240,7 @@ export default function Chapter17() {
         title="Cybersecurity"
         subtitle="Defending digital infrastructure through innovation"
       />
+      <MeasurementSidebar slug="cybersecurity" />
 
       <KeyFindings>
         <li>Cybersecurity patent filings have grown alongside the expansion of the digital economy, with notable acceleration in filings observed following major data breaches and ransomware campaigns such as the Snowden disclosures (2013), WannaCry (2017), and SolarWinds (2020).</li>
@@ -806,6 +809,12 @@ export default function Chapter17() {
           yLabel="Mean Patents / Year"
         />
       </ChartContainer>
+
+      <InsightRecap
+        learned={["Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025, reflecting broad-based entry across the security field.", "Network security surpassed cryptography as the dominant subfield around 2003, reflecting the shift from mathematical encryption to applied system protection."]}
+        falsifiable="If broad-based entry reflects genuine innovation democratization, then new entrants' patents should achieve comparable citation rates to incumbents' patents within the same subfields."
+        nextAnalysis={{ label: "Digital Health", description: "How medical device and health IT patents are transforming healthcare delivery", href: "/chapters/digital-health" }}
+      />
 
       <DataNote>
         Cybersecurity patents are identified using CPC classifications related to

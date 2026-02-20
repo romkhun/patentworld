@@ -21,6 +21,8 @@ import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import type { StateSummary, StateSpecialization, StatePerYear, TopCity, RegionalSpecialization } from '@/lib/types';
 
@@ -162,6 +164,7 @@ export default function GeoDomesticChapter() {
         title="Domestic Geography"
         subtitle="State-level and city-level patent concentration and quality"
       />
+      <MeasurementSidebar slug="geo-domestic" />
 
       <KeyFindings>
         <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for 46% of all grants.</li>
@@ -620,6 +623,19 @@ export default function GeoDomesticChapter() {
           The state-level and city-level patterns documented here reveal pronounced geographic concentration and distinctive technology specialization across the United States. The next chapter, <Link href="/chapters/geo-international" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">International Geography</Link>, extends this analysis across national borders, examining how foreign filings and international inventor mobility have transformed the US patent system into a global institution.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "California accounts for 23.6% of all US patent grants, producing 992,708 patents — more than the bottom 30 states combined.",
+          "States exhibit distinctive specialization: Michigan devotes 20.1% of patents to Mechanical Engineering vs. California's 65.1% in Physics and Electricity.",
+        ]}
+        falsifiable="If geographic concentration reflects agglomeration economies rather than mere population density, then patent-per-capita rates should be highest in clusters (Silicon Valley, Boston) even after controlling for industry composition."
+        nextAnalysis={{
+          label: "International Geography",
+          description: "Cross-border patenting patterns and how national innovation systems compare",
+          href: "/chapters/geo-international",
+        }}
+      />
 
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView

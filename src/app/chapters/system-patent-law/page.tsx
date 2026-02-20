@@ -4,9 +4,11 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
@@ -17,7 +19,8 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import type { ApplicationsVsGrants } from '@/lib/types';
+import type { ApplicationsVsGrants, AliceEventStudy } from '@/lib/types';
+import { CHART_COLORS } from '@/lib/colors';
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   {
@@ -362,12 +365,29 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
 
 export default function Chapter4() {
   const { data: pipelineData, loading: pipL } = useChapterData<ApplicationsVsGrants[]>('chapter10/applications_vs_grants.json');
+  const { data: aliceData, loading: alL } = useChapterData<AliceEventStudy[]>('chapter10/alice_event_study.json');
 
   // Filter pipeline data to exclude the last partial year (2025 has distorted ratio)
   const pipelineFiltered = useMemo(() => {
     if (!pipelineData) return [];
     return pipelineData.filter((d) => d.year <= 2024);
   }, [pipelineData]);
+
+  const alicePivot = useMemo(() => {
+    if (!aliceData) return [];
+    const years = [...new Set(aliceData.map(d => d.year))].sort();
+    return years.map(year => {
+      const sw = aliceData.find(d => d.year === year && d.group_label.startsWith('Software'));
+      const ctrl = aliceData.find(d => d.year === year && d.group_label.startsWith('Control'));
+      return {
+        year,
+        sw_idx_count: sw?.idx_count ?? null,
+        sw_idx_claims: sw?.idx_claims ?? null,
+        ctrl_idx_count: ctrl?.idx_count ?? null,
+        ctrl_idx_claims: ctrl?.idx_claims ?? null,
+      };
+    });
+  }, [aliceData]);
 
   return (
     <div>
@@ -376,6 +396,7 @@ export default function Chapter4() {
         title="Patent Law & Policy"
         subtitle="Legislation and jurisprudence shaping the patent system"
       />
+      <MeasurementSidebar slug="system-patent-law" />
 
       <KeyFindings>
         <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
@@ -516,9 +537,42 @@ export default function Chapter4() {
         </p>
       </KeyInsight>
 
+      <ChartContainer
+        id="fig-alice-event-study"
+        title="Alice Corp. Did Not Halt Software Patent Growth"
+        subtitle="Patent count and mean claims indexed to 2013 = 100: software patents vs. control group, 2008–2020"
+        loading={alL}
+      >
+        <PWLineChart
+          data={alicePivot}
+          xKey="year"
+          lines={[
+            { key: 'sw_idx_count', name: 'Software — Patent Count', color: CHART_COLORS[0] },
+            { key: 'ctrl_idx_count', name: 'Control — Patent Count', color: CHART_COLORS[2] },
+            { key: 'sw_idx_claims', name: 'Software — Claims', color: CHART_COLORS[3], dashPattern: '8 4' },
+            { key: 'ctrl_idx_claims', name: 'Control — Claims', color: CHART_COLORS[5], dashPattern: '4 4' },
+          ]}
+          yLabel="Index (2013 = 100)"
+          referenceLines={[{ x: 2014, label: 'Alice Corp. v. CLS Bank' }]}
+        />
+      </ChartContainer>
+
       <Narrative>
         Having examined the legal and policy framework that governs the patent system, the analysis turns to the role of public investment in driving innovation. The <Link href="/chapters/system-public-investment" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates how government funding and public research expenditures have shaped patenting activity, and what the evolving relationship between federal investment and patent output reveals about the foundations of the innovation ecosystem.
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Twenty-one major legislative acts and Supreme Court decisions from the Bayh-Dole Act (1980) to Arthrex (2021) have shaped the modern patent system.",
+          "The America Invents Act of 2011 shifted the US from first-to-invent to first-to-file and created inter partes review as a major validity challenge mechanism.",
+        ]}
+        falsifiable="If Alice Corp. (2014) materially reduced software patenting, then CPC subclasses most affected by the decision should show a discontinuous decline in patent grants relative to unaffected subclasses."
+        nextAnalysis={{
+          label: "Public Investment",
+          description: "How government funding shapes the direction and quality of patented innovation",
+          href: "/chapters/system-public-investment",
+        }}
+      />
 
       <DataNote>
         Legal information synthesized from primary sources including congressional records,

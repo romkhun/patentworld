@@ -12,9 +12,11 @@ import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -83,6 +85,7 @@ export default function InvSerialNewChapter() {
         title="Serial Inventors vs. New Entrants"
         subtitle="Career patterns, serial innovation, and inventor survival"
       />
+      <MeasurementSidebar slug="inv-serial-new" />
 
       <KeyFindings>
         <li>Annual first-time inventor entries rose from 35,126 in 1979 to a peak of 140,490 in 2019, yet the share of patents including a first-time inventor fell from 71% to 26%.</li>
@@ -626,6 +629,19 @@ export default function InvSerialNewChapter() {
           gender innovation gap and the quality implications of team composition.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Annual first-time inventor entries peaked at 140,490 in 2019, but only 37-51% of inventors survive past five career years.",
+          "Productivity rises from 1.4 to 2.1 patents per year as inventors gain experience, suggesting learning-by-doing effects.",
+        ]}
+        falsifiable="If rising productivity reflects learning rather than survivor bias, then inventors who remain active should show productivity gains even within the same firm and technology domain."
+        nextAnalysis={{
+          label: "Gender and Patenting",
+          description: "The gender innovation gap — composition, trends, and quality differences",
+          href: "/chapters/inv-gender",
+        }}
+      />
 
       <DataNote>
         First-time inventors are identified by their earliest patent filing date.

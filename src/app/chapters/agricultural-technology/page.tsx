@@ -19,7 +19,9 @@ import { CHART_COLORS, AGTECH_SUBFIELD_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { CPC_SECTION_COLORS } from '@/lib/colors';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { AGTECH_EVENTS } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
@@ -239,6 +241,7 @@ export default function Chapter12() {
         title="Agricultural Technology"
         subtitle="Innovation feeding a growing world"
       />
+      <MeasurementSidebar slug="agricultural-technology" />
 
       <KeyFindings>
         <li>Agricultural technology patenting reflects one of the oldest areas of continuous innovation in the US patent system, with soil working, planting, and horticulture patents tracing back to the earliest decades of patent records.</li>
@@ -835,6 +838,12 @@ export default function Chapter12() {
           The next chapter examines <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link>, a domain where the sensor technologies and machine learning methods increasingly applied in precision agriculture are also driving one of the most capital-intensive innovation races in modern history.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), driven by the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025, reflecting broader entry into agricultural innovation."]}
+        falsifiable="If precision agriculture drove the velocity increase, then patents in GPS/sensor subclasses should show faster growth than traditional agricultural chemistry patents."
+        nextAnalysis={{ label: "Artificial Intelligence", description: "AI patenting from expert systems to deep learning — the fastest-growing technology domain", href: "/chapters/ai-patents" }}
+      />
 
       <DataNote>
         Agricultural technology patents are identified using CPC classifications for soil

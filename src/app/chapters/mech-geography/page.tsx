@@ -15,6 +15,8 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import Link from 'next/link';
 
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { CHART_COLORS, CPC_SECTION_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -64,6 +66,7 @@ export default function MechGeographyChapter() {
         title="Geographic Mechanics"
         subtitle="Cross-border collaboration and innovation diffusion"
       />
+      <MeasurementSidebar slug="mech-geography" />
 
       <KeyFindings>
         <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025, driven by the globalization of corporate R&D and increasing talent mobility.</li>
@@ -227,14 +230,35 @@ export default function MechGeographyChapter() {
       {/* ── Closing Transition ────────────────────────────────────────────── */}
       <Narrative>
         <p>
-          The preceding chapters have examined the US patent system from multiple vantage points: the overall volume and composition of patent activity, the fields and technologies that drive it, the organizations and inventors who produce it, the geographic landscapes in which it concentrates and diffuses, and the mechanical processes -- knowledge flows, collaboration networks, exploration strategies -- through which innovation propagates across firms, people, and places. Together, these perspectives provide a structural map of the innovation system as a whole.
+          The cross-border collaboration and innovation diffusion patterns documented in this chapter
+          complete ACT 5: The Mechanics, which traced how knowledge flows through the innovation system
+          at the organizational, individual, and geographic levels. Chapters 20&ndash;22 revealed that
+          knowledge transfer operates through distinct but interconnected channels -- inter-firm citation
+          networks, inventor mobility and collaboration ties, and cross-border co-invention corridors --
+          each shaping how ideas propagate from their origins to new applications and locations.
         </p>
         <p>
-          The chapters that follow shift from this system-wide perspective to{' '}
+          ACT 6 shifts from these system-wide perspectives to{' '}
           <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
-          into specific technology domains -- from 3D printing and agricultural technology to AI, autonomous vehicles, biotechnology, and beyond. Each deep dive applies the analytical frameworks developed in earlier chapters to a single field, revealing how domain-specific dynamics interact with the broader patterns documented here.
+          into specific technology domains -- from 3D printing and agricultural technology to AI,
+          autonomous vehicles, biotechnology, and beyond. Each deep dive applies the analytical
+          frameworks developed across the preceding five acts to a single field, revealing how
+          domain-specific dynamics interact with the broader structural patterns documented here.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "International co-invention increased from 1.0% in 1976 to 10.0% in 2025, reflecting the globalization of R&D activity.",
+          "US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024, making it one of the fastest-growing bilateral research corridors.",
+        ]}
+        falsifiable="If cross-border co-invention reflects genuine knowledge complementarities rather than cost arbitrage, then internationally co-invented patents should have higher citation impact than purely domestic patents in the same technology and year."
+        nextAnalysis={{
+          label: "3D Printing",
+          description: "The first of twelve technology deep dives — how additive manufacturing moved from niche to mainstream",
+          href: "/chapters/3d-printing",
+        }}
+      />
 
       <DataNote>
         International co-invention identifies patents listing inventors from two or more countries. Co-invention rates measure the share of US patents with at least one US and one foreign inventor. US-China co-invention counts are disaggregated by CPC section based on the primary classification of each patent. Innovation diffusion tracks patent activity in AI, Biotech &amp; Pharma, and Clean Energy across cities with 5+ patents per period.

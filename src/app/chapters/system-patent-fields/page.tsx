@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChartContainer } from '@/components/charts/ChartContainer';
@@ -19,6 +21,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 import { CHART_COLORS, CPC_SECTION_COLORS, WIPO_SECTOR_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { formatCompact } from '@/lib/formatters';
@@ -281,6 +284,7 @@ export default function SystemPatentFieldsChapter() {
         title="Patent Fields"
         subtitle="Technology classes, field-level dynamics, and quality by technology area"
       />
+      <MeasurementSidebar slug="system-patent-fields" />
 
       <KeyFindings>
         <li>Design patent share has fluctuated between 6% and 14%, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
@@ -406,6 +410,11 @@ export default function SystemPatentFieldsChapter() {
           Sections G (Physics) and H (Electricity) have grown from about 27% of patents in the 1970s to over 57% by the 2020s. This structural shift reflects the economy-wide digital transformation: computing, semiconductors, and telecommunications technologies now pervade virtually every industry, from manufacturing to healthcare.
         </p>
       </KeyInsight>
+
+      <CompetingExplanations
+        finding="Why did Physics and Electricity dominate patent growth?"
+        explanations={['The digital revolution created genuinely new invention opportunities in computing, telecommunications, and electronics.', 'Software patentability expanded after State Street Bank (1998), inflating patent counts in G/H sections.', 'Compositional shift: R&D investment shifted from chemicals and mechanical engineering toward IT.']}
+      />
 
       {/* ── B.ii: Fastest-Growing Digital Technology Classes ── */}
 
@@ -968,6 +977,19 @@ export default function SystemPatentFieldsChapter() {
       <Narrative>
         This chapter has provided a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition revealing the digital transformation, to class-level dynamics showing creative destruction across technology areas. Market concentration remains low, technology diversity has stabilized after contraction, and field-specific metrics reveal substantially different innovation dynamics across domains. Having mapped the field-level structure, the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">next chapter</Link> examines how technology fields increasingly converge, with patents spanning multiple CPC sections and the boundaries between domains becoming more permeable over time.
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share, rising from 27% to 57% of all grants.",
+          "Patent markets remain unconcentrated across CPC sections, with no single section exceeding 35% share.",
+        ]}
+        falsifiable="If the G/H shift reflects genuine invention rather than expanded software patentability, then the trend should survive controlling for the State Street Bank (1998) and Alice (2014) decisions."
+        nextAnalysis={{
+          label: "Convergence",
+          description: "How technology domains that were once separate have become intertwined",
+          href: "/chapters/system-convergence",
+        }}
+      />
 
       <DataNote>
         Technology classifications use the primary CPC section (sequence 0) for each patent and WIPO technology fields mapped from IPC codes. Growth rates compare patent counts in 2000-2010 to 2015-2025 for CPC classes with at least 100 patents in each period. The diversity index is computed as 1 minus the Herfindahl-Hirschman Index of CPC section concentration. S-curve parameters are fitted using logistic regression on cumulative patent counts per CPC section (1976-2025). Market concentration (HHI) is computed within each CPC section by assignee market share in 5-year windows. Citation lag uses median lag in years between cited and citing patent grant dates. Technology half-life is computed as the time until 50% of cumulative forward citations are received. Self-citation rates are computed as the fraction of backward citations directed to patents held by the same assignee.

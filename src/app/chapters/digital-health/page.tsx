@@ -16,7 +16,9 @@ import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { cleanOrgName } from '@/lib/orgNames';
 import { CHART_COLORS, CPC_SECTION_COLORS, DIGIHEALTH_SUBFIELD_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -236,6 +238,7 @@ export default function Chapter18() {
         title="Digital Health & Medical Devices"
         subtitle="Technology transforming healthcare delivery"
       />
+      <MeasurementSidebar slug="digital-health" />
 
       <KeyFindings>
         <li>Digital health patent filings have grown substantially since 2009, with notable growth following the 2009 HITECH Act&apos;s mandate for electronic health record adoption and the 2020 COVID-19 pandemic, which coincided with rapid expansion of telemedicine adoption.</li>
@@ -813,6 +816,12 @@ export default function Chapter18() {
           yLabel="Mean Patents / Year"
         />
       </ChartContainer>
+
+      <InsightRecap
+        learned={["Digital health patent velocity jumped 3.4-fold from 22.5 patents/year (1970s entrants) to 77.5 (2010s entrants).", "Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field, with subfield diversity rising from 0.49 to 0.92."]}
+        falsifiable="If the velocity increase reflects genuine health-tech convergence, then digital health patents should increasingly span both medical (A61) and computing (G06) CPC subclasses."
+        nextAnalysis={{ label: "Green Innovation", description: "Climate technology patents from niche to mainstream — batteries, EVs, and renewables", href: "/chapters/green-innovation" }}
+      />
 
       <DataNote>
         Digital health patents are identified using CPC classifications spanning patient

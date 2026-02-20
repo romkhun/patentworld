@@ -79,6 +79,7 @@ const TOC_ITEMS = [
   { id: 'chapters', label: 'Chapters' },
   { id: 'data', label: 'Data Source' },
   { id: 'methodology', label: 'Methodology' },
+  { id: 'definitions', label: 'Definitions' },
   { id: 'faq', label: 'FAQ' },
   { id: 'citation', label: 'Citation' },
 ];
@@ -305,6 +306,80 @@ export default function AboutPage() {
             <li><strong>Self-citation rate:</strong> Fraction of backward citations directed to the citing entity&apos;s own prior patents, indicating internal knowledge reuse.</li>
             <li><strong>Grant lag:</strong> Number of days between patent application filing and grant, measuring prosecution speed.</li>
           </ul>
+
+          <h3 className="font-serif text-lg font-semibold mt-6" id="definitions">Measurement Definitions</h3>
+          <p>
+            The following metrics are used throughout PatentWorld. Definitions are standardized
+            across chapters to enable cross-chapter comparisons.
+          </p>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Forward citations (5-year)</dt>
+              <dd className="text-muted-foreground">Number of subsequent patents citing a given patent within 5 years of grant. A widely used proxy for technological impact. Subject to truncation bias for patents granted after 2020.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Backward citations</dt>
+              <dd className="text-muted-foreground">Number of prior patents cited by a given patent. Reflects the extent to which the invention builds on existing prior art.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Originality</dt>
+              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s backward citations. Higher values indicate the patent draws from more diverse technology sources. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Generality</dt>
+              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s forward citations. Higher values indicate the patent is cited by a broader range of technology fields. Range: 0 (all citing patents in one section) to ~1 (cited across many sections).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Self-citation rate</dt>
+              <dd className="text-muted-foreground">Fraction of backward citations directed to the same assignee&apos;s own prior patents. Higher values indicate greater internal knowledge reuse.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Claims per patent</dt>
+              <dd className="text-muted-foreground">Total number of independent and dependent claims in a patent. Measures the scope of legal protection sought.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Patent scope</dt>
+              <dd className="text-muted-foreground">Number of distinct CPC subclasses assigned to each patent. Measures technological breadth of the invention.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Grant lag</dt>
+              <dd className="text-muted-foreground">Number of days between patent application filing date and grant date. Measures prosecution speed and USPTO pendency.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Shannon entropy</dt>
+              <dd className="text-muted-foreground">-&Sigma; p<sub>i</sub> ln(p<sub>i</sub>) over category shares. Used to measure diversity of technology portfolios, geographic concentration, and topic distributions. Higher values indicate more even distribution.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
+              <dd className="text-muted-foreground">&Sigma; s<sub>i</sub><sup>2</sup> where s<sub>i</sub> is the market (or category) share. Range: 0 (perfect competition) to 10,000 (monopoly). DOJ/FTC 2023 guidelines classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Cohort normalization</dt>
+              <dd className="text-muted-foreground">Dividing a patent&apos;s citation count by the mean of its grant-year &times; CPC section cohort. A value of 1.0 means average impact for that cohort; values above 1.0 indicate above-average impact.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Blockbuster patent</dt>
+              <dd className="text-muted-foreground">A patent in the top 1% of 5-year forward citations within its grant-year &times; CPC section cohort. Under uniform quality, 1% of patents would be blockbusters; rates above 1% indicate disproportionate high-impact output.</dd>
+            </div>
+          </dl>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Disambiguation Reliability</h3>
+          <p>
+            PatentsView uses machine learning algorithms to disambiguate inventor and assignee
+            identities across patent records. This disambiguation is essential for analyses of
+            inventor productivity, mobility, and organizational patenting patterns, but it
+            introduces potential errors:
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Splitting errors:</strong> A single inventor may be assigned multiple disambiguated IDs, leading to undercounting of individual productivity.</li>
+            <li><strong>Lumping errors:</strong> Two distinct inventors may be assigned the same ID, leading to overcounting of individual productivity.</li>
+            <li><strong>Assignee disambiguation:</strong> Corporate name changes, mergers, and subsidiaries create particular challenges. A single entity may appear under multiple names, or distinct entities may be incorrectly merged.</li>
+          </ul>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Chapters that rely heavily on disambiguated identities (inventor rankings, serial vs.
+            new inventors, inventor mobility, organizational mechanics) note this limitation in
+            their measurement details panel.
+          </p>
 
           <h3 className="font-serif text-lg font-semibold mt-6">Data Limitations</h3>
           <ul className="list-disc pl-6 space-y-1">

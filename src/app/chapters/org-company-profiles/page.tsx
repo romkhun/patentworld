@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
@@ -18,6 +19,7 @@ import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
@@ -318,6 +320,7 @@ export default function OrgCompanyProfilesChapter() {
         title="Interactive Company Profiles"
         subtitle="Unified patent histories, portfolios, quality trends, and strategy profiles"
       />
+      <MeasurementSidebar slug="org-company-profiles" />
 
       <KeyFindings>
         <li>Interactive profiles spanning patent output, technology portfolio, citation impact, innovation strategy, and grant speed provide a comprehensive innovation fingerprint for each of the top patent filers.</li>
@@ -404,7 +407,7 @@ export default function OrgCompanyProfilesChapter() {
           <ChartContainer
             id="fig-org-profiles-annual-output"
             subtitle="Utility patents granted per year for the selected company, showing growth phases and strategic shifts over time."
-            title={`${activeCompany} Annual Patent Output Across ${companySummary?.activeYears ?? ''} Active Years, Peaking at ${companySummary ? formatCompact(companySummary.peakCount) : '...'} in ${companySummary?.peakYear ?? '...'}`}
+            title={`${activeCompany} Annual Patent Output Across ${companySummary?.activeYears ?? '...'} Active Years, Peaking at ${companySummary ? formatCompact(companySummary.peakCount) : '...'} in ${companySummary?.peakYear ?? '...'}`}
             caption="Utility patents granted per year for the selected company. Annual patent counts indicate growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
             insight="Annual patent counts reveal growth phases, strategic shifts, and the influence of economic cycles on corporate R&D output."
             loading={prL}
@@ -441,7 +444,7 @@ export default function OrgCompanyProfilesChapter() {
           <ChartContainer
             id="fig-org-profiles-citations"
             subtitle="Median 5-year forward citations per patent over time for the selected company."
-            title={`${activeCompany} Median 5-Year Forward Citations Track Research Influence Over ${companySummary?.activeYears ?? ''} Years`}
+            title={`${activeCompany} Median 5-Year Forward Citations Track Research Influence Over ${companySummary?.activeYears ?? '...'} Years`}
             caption="Median 5-year forward citations per patent over time. Citation trends indicate whether a company's patents are becoming more or less influential."
             insight="Citation trends indicate whether a company's patents are becoming more or less influential. Declining citations despite rising volume may suggest a shift toward defensive or incremental patenting."
             loading={prL}
@@ -480,7 +483,7 @@ export default function OrgCompanyProfilesChapter() {
           <ChartContainer
             id="fig-org-profiles-cpc-breadth"
             subtitle="Number of distinct CPC subclasses with patent activity each year for the selected company."
-            title={`${activeCompany} CPC Subclass Breadth Tracks Diversification Over ${companySummary?.activeYears ?? ''} Active Years`}
+            title={`${activeCompany} CPC Subclass Breadth Tracks Diversification Over ${companySummary?.activeYears ?? '...'} Active Years`}
             caption="Number of distinct CPC subclasses with patent activity each year. Rising CPC breadth indicates diversification across more technology domains."
             insight="Rising CPC breadth indicates that a company is diversifying its innovation portfolio across more technology domains, while declining breadth suggests increasing specialization."
             loading={prL}
@@ -835,18 +838,33 @@ export default function OrgCompanyProfilesChapter() {
 
       <Narrative>
         <p>
-          These company profiles complete ACT 2 of the analysis, which examined organizations as the
-          institutional actors in the innovation system. The interactive dashboards reveal that no single
-          metric captures the complexity of corporate innovation -- volume, quality, breadth, strategy,
-          and speed each contribute to a firm&apos;s strategic fingerprint. ACT 3 now turns from
-          organizations to the individual inventors who produce these patents. The{' '}
+          These company profiles complete ACT 2&apos;s examination of organizations as institutional
+          actors in the innovation system. The interactive dashboards reveal that no single metric
+          captures the complexity of corporate innovation -- volume, quality, breadth, strategy, and
+          speed each contribute to a firm&apos;s strategic fingerprint. But organizations do not invent;
+          individuals do. The patterns documented across Chapters 8&ndash;12 -- rising concentration,
+          portfolio diversification, and quality dispersion -- ultimately reflect the aggregate
+          contributions of the inventors who work within these firms. ACT 3 shifts from the
+          institutional to the individual level, beginning with the{' '}
           <Link href="/chapters/inv-top-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
-            following chapter
+            superstar inventors
           </Link>{' '}
-          examines how superstar concentration, prolific inventors, and citation impact patterns shape
-          the landscape of individual inventive contributions.
+          whose outsized contributions shape the distributions observed in the preceding chapters.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Interactive profiles reveal distinct strategic signatures: some firms exhibit rapid portfolio expansion across many technology domains, while others maintain deep but narrow portfolios.",
+          "The relationship between patent volume, citation impact, technology breadth, and innovation speed provides a nuanced perspective that cannot be captured by any single metric.",
+        ]}
+        falsifiable="If the five-dimensional innovation fingerprint captures meaningful strategic differences, then firms with similar profiles should be more likely to compete in the same product markets."
+        nextAnalysis={{
+          label: "Top Inventors",
+          description: "Shifting from organizations to the individuals — superstar concentration and prolific inventor impact",
+          href: "/chapters/inv-top-inventors",
+        }}
+      />
 
       <DataNote>
         Company profiles are constructed from PatentsView data for the top patent filers by total utility

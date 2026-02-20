@@ -21,6 +21,8 @@ import { GREEN_EVENTS } from '@/lib/referenceEvents';
 import { CHART_COLORS, GREEN_CATEGORY_COLORS, COUNTRY_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { formatCompact } from '@/lib/formatters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { cleanOrgName } from '@/lib/orgNames';
 import type {
   GreenVolume, GreenByCategory, GreenByCountry,
@@ -266,6 +268,7 @@ export default function Chapter19() {
         title="Green Innovation"
         subtitle="The evolution of climate technology patenting from specialized activity to mainstream innovation"
       />
+      <MeasurementSidebar slug="green-innovation" />
 
       <KeyFindings>
         <li>
@@ -770,6 +773,12 @@ export default function Chapter19() {
         This chapter concludes PatentWorld&apos;s examination of 50 years of US patent innovation. From the <Link href="/chapters/system-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">broad contours of the innovation landscape</Link> to the specific domains of AI and green technology, the preceding chapters have traced how the patent system has evolved in structure, geography, and character. The convergence of artificial intelligence and climate technology examined here represents a significant frontier of contemporary innovation -- a domain where the patterns documented throughout this book come together in the service of addressing global challenges.
         Across the twelve technology domains examined in ACT 6 -- from <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and <Link href="/chapters/quantum-computing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quantum computing</Link> through <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and green innovation -- several cross-cutting themes emerge: the concentration of patent activity among a small number of resource-intensive firms, the accelerating convergence of formerly distinct technology fields, and the growing role of international competition in shaping domestic innovation trajectories. These domain-level patterns reinforce and extend the structural insights developed in the preceding acts, confirming that the US patent system is simultaneously becoming more specialized in its technical content and more interconnected in its organizational and geographic character.
       </Narrative>
+
+      <InsightRecap
+        learned={["Green patents show the highest entry velocity multiplier (5.5-fold) among all technology domains studied, indicating explosive growth in clean technology innovation.", "Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453."]}
+        falsifiable="If green patent growth is driven by policy incentives (IRA, EU Green Deal) rather than technology push, then patent filings should show discontinuous increases following major policy announcements."
+        nextAnalysis={{ label: "Quantum Computing", description: "From theoretical foundations to practical hardware — the most concentrated technology domain", href: "/chapters/quantum-computing" }}
+      />
 
       <DataNote>
         <p>

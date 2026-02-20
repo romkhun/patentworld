@@ -18,7 +18,9 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, CPC_SECTION_COLORS, AV_SUBFIELD_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { AV_EVENTS } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
@@ -238,6 +240,7 @@ export default function Chapter14() {
         title="Autonomous Vehicles & ADAS"
         subtitle="The race toward self-driving transportation"
       />
+      <MeasurementSidebar slug="autonomous-vehicles" />
 
       <KeyFindings>
         <li>Autonomous vehicle patent filings increased rapidly in the 2010s, coinciding with competition between established automakers and technology companies entering the transportation sector.</li>
@@ -811,6 +814,12 @@ export default function Chapter14() {
         <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
         The next chapter examines <Link href="/chapters/space-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">space technology</Link>, a domain where autonomous navigation, sensor fusion, and systems integration challenges parallel those encountered in self-driving vehicles but are extended to the orbital environment.
       </Narrative>
+
+      <InsightRecap
+        learned={["Autonomous vehicle patent velocity rose from 15.9 patents/year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase.", "Subfield diversity reached near-maximum entropy of 0.97 by 2025, indicating that AV innovation now spans virtually all relevant technology domains."]}
+        falsifiable="If subfield diversification reflects genuine technology maturation, then AV patents spanning more subfields should correlate with higher citation impact."
+        nextAnalysis={{ label: "Biotechnology", description: "From recombinant DNA to CRISPR — engineering life at the molecular level", href: "/chapters/biotechnology" }}
+      />
 
       <DataNote>
         AV patents are identified using CPC classifications: G05D1 (control of position,

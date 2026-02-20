@@ -4,8 +4,10 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { DataNote } from '@/components/chapter/DataNote';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWAreaChart } from '@/components/charts/PWAreaChart';
@@ -153,7 +155,7 @@ export default function Chapter3() {
   // Summary stats
   const totalPatents = definitions
     ? definitions.reduce((s, d) => s + d.patent_count, 0)
-    : 0;
+    : 8450000;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
@@ -162,6 +164,7 @@ export default function Chapter3() {
         title="The Language of Innovation"
         subtitle="Semantic analysis of 8.45 million patent abstracts"
       />
+      <MeasurementSidebar slug="system-language" />
 
       <KeyFindings>
         <li>
@@ -468,6 +471,25 @@ export default function Chapter3() {
         Having uncovered the latent thematic structure of patent language, the analysis turns next to the <Link href="/chapters/system-patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">legal and policy framework</Link> governing the patent system.
         The topics and trends identified in this chapter provide essential context for understanding how legislative and judicial decisions have shaped the direction and character of US patenting activity.
       </Narrative>
+
+      <KeyInsight>
+        <p>
+          The semantic analysis in this chapter and the CPC-based convergence analysis in <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 4</Link> measure interdisciplinarity through complementary lenses. CPC classifications capture formal taxonomy overlap, while topic modeling recovers latent thematic structure from the language inventors use. Both approaches confirm the same directional trend: technology domains are converging. The topic-based analysis adds nuance by revealing <em>which</em> specific themes are driving convergence and how the vocabulary of innovation itself has shifted toward computational and cross-domain language.
+        </p>
+      </KeyInsight>
+
+      <InsightRecap
+        learned={[
+          "Topic modeling of 8.45 million abstracts reveals 25 distinct technology themes, with computing topics growing from 12% to 33% of all patents.",
+          "Patents spanning multiple topics tend to be the most novel inventions, as measured by Shannon entropy of topic distributions.",
+        ]}
+        falsifiable="If cross-topic patents are genuinely more novel rather than just broader in scope, they should accumulate more forward citations even after controlling for the number of CPC sections spanned."
+        nextAnalysis={{
+          label: "Patent Law & Policy",
+          description: "How legislation and Supreme Court decisions have shaped the patent landscape",
+          href: "/chapters/system-patent-law",
+        }}
+      />
 
       <DataNote>
         <p>

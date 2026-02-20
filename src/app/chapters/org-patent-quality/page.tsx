@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
@@ -19,6 +20,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import { CHART_COLORS, ENTITY_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -151,6 +153,7 @@ export default function OrgPatentQualityChapter() {
         title="Organizational Patent Quality"
         subtitle="Citation impact, blockbuster patents, self-citation dynamics, and quality metrics across leading patent holders"
       />
+      <MeasurementSidebar slug="org-patent-quality" />
 
       <KeyFindings>
         <li>Amazon&apos;s 6.7% blockbuster rate leads the field for 2010-2019, while 18 of 50 firms exceed a 50% dud rate, revealing sharply divergent quality strategies.</li>
@@ -509,6 +512,19 @@ export default function OrgPatentQualityChapter() {
           The quality analysis reveals that large patent portfolios mask enormous heterogeneity in impact. Blockbuster rates, forward citation distributions, self-citation patterns, and citation half-lives each expose a different dimension of organizational innovation strategy. The next chapter, <Link href="/chapters/org-patent-portfolio" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Portfolios</Link>, examines how firms distribute their innovation across technology domains and whether portfolio diversification strategies correlate with sustained leadership.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Amazon holds the highest blockbuster rate at 6.7%, producing top-1% patents at nearly 7 times the expected rate.",
+          "Citation half-lives range from 6.3 years (Huawei) to 14.3 years, revealing fundamentally different knowledge depreciation patterns across firms.",
+        ]}
+        falsifiable="If blockbuster rates reflect genuine innovation quality rather than citation network effects, then firms with high blockbuster rates should also rank highly on independent measures like patent scope and claims."
+        nextAnalysis={{
+          label: "Patent Portfolio",
+          description: "How firms diversify across technology domains and how portfolios evolve over time",
+          href: "/chapters/org-patent-portfolio",
+        }}
+      />
 
       <DataNote>
         Citation impact is calculated using forward citations for patents granted through 2020

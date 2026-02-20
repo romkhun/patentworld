@@ -16,7 +16,9 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, CPC_SECTION_COLORS, PRINT3D_SUBFIELD_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { PRINT3D_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -236,6 +238,7 @@ export default function Chapter11() {
         title="3D Printing & Additive Manufacturing"
         subtitle="Layer-by-layer transformation in manufacturing"
       />
+      <MeasurementSidebar slug="3d-printing" />
 
       <KeyFindings>
         <li>3D printing patent filings have grown substantially since 2000, with notable acceleration after the expiration of key FDM patents in 2009.</li>
@@ -798,6 +801,12 @@ export default function Chapter11() {
         Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Technology Revolution</Link>, while organizational strategies are examined further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         The next chapter examines <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain and distributed ledger technology</Link>, a domain that, like 3D printing, experienced a rapid expansion in patent filings driven by speculative enthusiasm and the expiration of foundational intellectual property.
       </Narrative>
+
+      <InsightRecap
+        learned={["Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, driven by the expiration of key FDM patents in 2009.", "Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants, suggesting that open-source knowledge diffusion accelerated innovation."]}
+        falsifiable="If the FDM patent expiration causally democratized the field, then concentration should have declined discontinuously around 2009 rather than gradually."
+        nextAnalysis={{ label: "Agricultural Technology", description: "How precision agriculture and biotechnology are transforming food production patents", href: "/chapters/agricultural-technology" }}
+      />
 
       <DataNote>
         3D printing patents are identified using CPC classifications: B33Y (additive

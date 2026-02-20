@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { DataNote } from '@/components/chapter/DataNote';
@@ -15,6 +16,8 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import Link from 'next/link';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, COUNTRY_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -81,6 +84,7 @@ export default function OrgCompositionChapter() {
         title="Assignee Composition"
         subtitle="Corporate, foreign, and country-level composition of patent assignees"
       />
+      <MeasurementSidebar slug="org-composition" />
 
       <KeyFindings>
         <li>Corporations hold the substantial majority of US patents, growing from 94% to 99% of annual grants between 1976 and 2024, while individual inventors constitute a progressively smaller fraction.</li>
@@ -156,6 +160,8 @@ export default function OrgCompositionChapter() {
           firms invested substantially in systematic patent generation.
         </p>
       </KeyInsight>
+
+      <DescriptiveGapNote variant="international" />
 
       {/* ── Section B: Geographic Distribution of Assignees ── */}
 
@@ -235,6 +241,19 @@ export default function OrgCompositionChapter() {
           The assignee landscape has undergone a structural transformation over five decades. Corporate entities now dominate patenting, foreign assignees have surpassed domestic filers, and sequential waves of international entry have reshaped the geographic composition of the patent system. These system-level trends set the stage for examining the <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output rankings and trajectories</Link> that drive the aggregate patterns documented here.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Corporate assignees grew from 94% to 99% of US patent grants, with individual inventors declining from 6% to under 1%.",
+          "Foreign assignees surpassed US-based assignees around 2007, with Japan accounting for 1.4 million US patents since 1976.",
+        ]}
+        falsifiable="If foreign assignee growth reflects genuine R&D globalization rather than strategic filing behavior, then the quality of foreign-origin patents (measured by cohort-normalized citations) should be comparable to domestic-origin patents."
+        nextAnalysis={{
+          label: "Organizational Patent Count",
+          description: "Which organizations dominate patent output, and how has concentration evolved?",
+          href: "/chapters/org-patent-count",
+        }}
+      />
 
       <DataNote>
         Assignee data employ disambiguated identities from PatentsView. The primary assignee

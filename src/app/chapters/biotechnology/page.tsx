@@ -14,8 +14,10 @@ import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import { CHART_COLORS, CPC_SECTION_COLORS, BIOTECH_SUBFIELD_COLORS } from '@/lib/colors';
@@ -236,6 +238,7 @@ export default function Chapter15() {
         title="Biotechnology &amp; Gene Editing"
         subtitle="Engineering life at the molecular level"
       />
+      <MeasurementSidebar slug="biotechnology" />
 
       <KeyFindings>
         <li>Biotechnology patenting has grown substantially since the 1980s, following the Bayh-Dole Act (1980) which enabled universities to patent federally funded inventions.</li>
@@ -867,6 +870,12 @@ export default function Chapter15() {
           yLabel="Mean Patents / Year"
         />
       </ChartContainer>
+
+      <InsightRecap
+        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025) among all advanced technology domains, reflecting exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, driven by successive waves from recombinant DNA to CRISPR-Cas9."]}
+        falsifiable="If CRISPR drove the latest diversity wave, then gene-editing subclass patents should show discontinuous growth after the 2012 Doudna-Charpentier publication."
+        nextAnalysis={{ label: "Blockchain", description: "Distributed trust in the digital economy — the only technology domain to reverse course", href: "/chapters/blockchain" }}
+      />
 
       <DataNote>
         Biotechnology patents are identified using CPC classifications related to genetic

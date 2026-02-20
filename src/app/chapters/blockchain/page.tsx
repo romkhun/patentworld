@@ -16,7 +16,9 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, BLOCKCHAIN_SUBFIELD_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { BLOCKCHAIN_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -236,6 +238,7 @@ export default function Chapter16() {
         title="Blockchain & Decentralized Systems"
         subtitle="Distributed trust in the digital economy"
       />
+      <MeasurementSidebar slug="blockchain" />
 
       <KeyFindings>
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
@@ -809,6 +812,12 @@ export default function Chapter16() {
           yLabel="Mean Patents / Year"
         />
       </ChartContainer>
+
+      <InsightRecap
+        learned={["Blockchain patent filings peaked in 2022 and subsequently declined — the only advanced technology domain in the study to reverse course.", "Top-four concentration rose to 26.3% during the 2018 boom before declining to 14.0% by 2024, following a boom-bust cycle."]}
+        falsifiable="If the blockchain patent decline reflects a genuine technology maturation rather than a speculative bubble bursting, then citation rates for recent blockchain patents should remain stable or increase."
+        nextAnalysis={{ label: "Cybersecurity", description: "Defending digital infrastructure through innovation — from cryptography to network security", href: "/chapters/cybersecurity" }}
+      />
 
       <DataNote>
         Blockchain patents are identified using CPC classifications for distributed ledger

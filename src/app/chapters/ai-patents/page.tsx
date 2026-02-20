@@ -17,10 +17,12 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import type {
@@ -251,6 +253,7 @@ export default function Chapter13() {
         title="Artificial Intelligence"
         subtitle="The growth of AI-related patenting activity in the United States"
       />
+      <MeasurementSidebar slug="ai-patents" />
 
       <KeyFindings>
         <li>AI patent filings have exhibited substantial growth since 2012, coinciding with advances in deep learning and the expansion of AI applications across industries.</li>
@@ -792,6 +795,12 @@ export default function Chapter13() {
       <Narrative>
         Having documented the growth of artificial intelligence in the patent system, the next and final chapter of ACT 6 examines <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link>, a domain where AI-driven optimization is accelerating progress in renewable energy, battery chemistry, and carbon capture -- illustrating the convergence between computational methods and climate technology that may define the next era of patent activity. The organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
       </Narrative>
+
+      <InsightRecap
+        learned={["AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all US patent grants.", "IBM leads with 16,781 AI patents, followed by Google (7,775) and Samsung (6,195), but the field is rapidly deconcentrating."]}
+        falsifiable="If AI patent growth reflects genuine innovation rather than classification expansion, then AI patents should show higher citation rates than non-AI patents in the same CPC sections."
+        nextAnalysis={{ label: "Autonomous Vehicles", description: "The race toward self-driving transportation and the patent landscape of ADAS technologies", href: "/chapters/autonomous-vehicles" }}
+      />
 
       <DataNote>
         AI patents are identified using CPC classifications: G06N (computational models

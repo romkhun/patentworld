@@ -15,6 +15,8 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
@@ -41,6 +43,8 @@ import type {
   TalentFlowData,
   InventorFlow,
   InventorMobilityTrend,
+  MobilityEventData,
+  BridgeCentralityQuintile,
 } from '@/lib/types';
 
 export default function MechInventorsChapter() {
@@ -54,6 +58,12 @@ export default function MechInventorsChapter() {
   const { data: mobilityTrend, loading: mtL } = useChapterData<InventorMobilityTrend[]>('chapter4/inventor_mobility_trend.json');
   const { data: stateFlows, loading: sfL } = useChapterData<InventorFlow[]>('chapter4/inventor_state_flows.json');
   const { data: countryFlows, loading: cfL } = useChapterData<InventorFlow[]>('chapter4/inventor_country_flows.json');
+
+  // Analysis 4: Inventor Mobility Event Study
+  const { data: mobilityEvent, loading: meL } = useChapterData<MobilityEventData>('chapter5/inventor_mobility_event_study.json');
+
+  // Bridge Centrality
+  const { data: bridgeCentrality, loading: bcL } = useChapterData<BridgeCentralityQuintile[]>('chapter5/bridge_centrality.json');
 
   const topStateFlows = useMemo(() => {
     if (!stateFlows) return [];
@@ -101,6 +111,35 @@ export default function MechInventorsChapter() {
     return { nodes: sankeyNodes, links: sankeyLinks };
   }, [countryFlows]);
 
+  // Analysis 4: Pivot by_direction data for multi-line chart
+  const mobilityByDirectionData = useMemo(() => {
+    if (!mobilityEvent?.by_direction) return [];
+    const directions = [...new Set(mobilityEvent.by_direction.map(d => d.direction))];
+    const years = [...new Set(mobilityEvent.by_direction.map(d => d.relative_year))].sort((a, b) => a - b);
+    return years.map(year => {
+      const row: Record<string, number> = { relative_year: year };
+      directions.forEach(dir => {
+        const match = mobilityEvent.by_direction.find(d => d.direction === dir && d.relative_year === year);
+        const key = dir.toLowerCase().replace(/[\s-]+/g, '_');
+        row[`${key}_mean`] = match?.mean_fwd_cite_5y ?? 0;
+      });
+      return row;
+    });
+  }, [mobilityEvent]);
+
+  const directionLines = useMemo(() => {
+    if (!mobilityEvent?.by_direction) return [];
+    const directions = [...new Set(mobilityEvent.by_direction.map(d => d.direction))];
+    return directions.map((dir, i) => {
+      const key = dir.toLowerCase().replace(/[\s-]+/g, '_');
+      return {
+        key: `${key}_mean`,
+        name: `${dir}`,
+        color: CHART_COLORS[i % CHART_COLORS.length],
+      };
+    });
+  }, [mobilityEvent]);
+
   return (
     <div>
       <ChapterHeader
@@ -108,6 +147,7 @@ export default function MechInventorsChapter() {
         title="Inventor Mechanics"
         subtitle="Co-invention networks, bridge inventors, and inter-firm mobility"
       />
+      <MeasurementSidebar slug="mech-inventors" />
 
       <KeyFindings>
         <li>632 prolific inventors form 1,236 co-invention ties in a fragmented network of small, tightly connected teams.</li>
@@ -485,6 +525,109 @@ export default function MechInventorsChapter() {
         </ChartContainer>
       )}
 
+      {/* ══════════════════════════════════════════════════════════════════
+          Analysis 4: Inventor Mobility Event Study
+          ══════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Inventor Mobility: Event-Study Evidence" />
+
+      <Narrative>
+        <p>
+          The preceding sections document the volume and direction of inventor mobility, but do not
+          address its consequences for individual productivity. An event-study design isolates the
+          impact of firm moves by tracking each inventor&apos;s output from t-5 to t+5 years
+          relative to the move event. By centering outcomes on the move year, this approach
+          controls for secular trends and life-cycle effects, revealing how the disruption of
+          changing organizational context affects citation impact. The panel includes inventors
+          who moved exactly once between top-50 assignees, with at least two patents in both
+          the pre- and post-move windows.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-inventor-mobility-event-overall"
+        subtitle="Mean 5-year forward citations by year relative to firm move (t=0), with 95% confidence interval, for inventors who moved once between top-50 assignees."
+        title="Citation Impact Dips at the Time of Move, Then Recovers Within 2 Years"
+        caption="Event-study design tracking inventor citation impact from t-5 to t+5 around a firm move. The shaded band represents the 95% confidence interval. The dip at t=0 reflects the disruption of changing organizational context; the recovery by t+2 suggests that mobile inventors adapt quickly and may benefit from access to new knowledge and resources."
+        insight="The transient dip in citation impact around the move year, followed by full recovery within two years, suggests that inter-firm mobility entails short-term costs but does not permanently impair inventor productivity -- and may ultimately enhance it through exposure to new organizational knowledge."
+        loading={meL}
+        badgeProps={{ outcomeWindow: '5y' }}
+        height={400}
+        wide
+      >
+        {(mobilityEvent?.overall ?? []).length > 0 ? (
+          <PWLineChart
+            data={mobilityEvent?.overall ?? []}
+            xKey="relative_year"
+            lines={[
+              { key: 'mean_fwd_cite_5y', name: 'Mean 5-Year Forward Citations', color: CHART_COLORS[0] },
+            ]}
+            bands={[{ upperKey: 'ci_upper_cites', lowerKey: 'ci_lower_cites', color: CHART_COLORS[0] }]}
+            yLabel="Mean 5-Year Forward Citations"
+            xLabel="Years Relative to Move"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The event-study reveals a distinctive V-shaped pattern: inventor citation impact dips
+          at the time of the firm move, reflecting the disruption of established routines and
+          collaborative networks, but recovers within approximately two years. This transient
+          cost is consistent with the hypothesis that inter-firm mobility requires an adjustment
+          period during which inventors rebuild their knowledge networks and adapt to new
+          organizational contexts.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-inventor-mobility-event-direction"
+        subtitle="Mean 5-year forward citations by year relative to move, stratified by move direction (up to higher-quality firm, lateral, or down to lower-quality firm)."
+        title="Moves to Higher-Quality Firms Produce Larger Post-Move Citation Gains"
+        caption="Event-study results stratified by the direction of the move relative to firm quality (measured by mean citation impact). Moves to higher-quality firms show the largest post-move gains, while moves to lower-quality firms exhibit a more muted recovery, suggesting that organizational context shapes inventor productivity."
+        insight="The direction of the move matters: inventors who move to higher-quality firms experience the largest post-move citation gains, indicating that organizational resources and peer quality amplify individual inventor productivity."
+        loading={meL}
+        height={400}
+        wide
+      >
+        {mobilityByDirectionData.length > 0 ? (
+          <PWLineChart
+            data={mobilityByDirectionData}
+            xKey="relative_year"
+            lines={directionLines}
+            yLabel="Mean 5-Year Forward Citations"
+            xLabel="Years Relative to Move"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-bridge-centrality"
+        title="Network Position and Citation Impact Among Top Inventors"
+        subtitle="Mean 5-year citations and degree centrality by quintile, top-5K most prolific inventors"
+        loading={bcL}
+      >
+        <PWBarChart
+          data={bridgeCentrality ?? []}
+          xKey="centrality_label"
+          bars={[
+            { key: 'mean_citations', name: 'Mean Citations (5yr)', color: CHART_COLORS[0] },
+            { key: 'mean_degree', name: 'Mean Degree Centrality', color: CHART_COLORS[4] },
+          ]}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Stratifying by move direction reveals that organizational context is a first-order
+          determinant of inventor productivity. Moves to higher-quality firms produce the largest
+          post-move citation gains, while moves to lower-quality firms show a more muted recovery.
+          This asymmetry suggests that access to better resources, stronger peer networks, and
+          more productive organizational routines amplifies individual inventive output -- a finding
+          with implications for both firm talent strategy and innovation policy.
+        </p>
+      </KeyInsight>
+
       {/* ================================================================== */}
       {/* Closing                                                            */}
       {/* ================================================================== */}
@@ -495,8 +638,21 @@ export default function MechInventorsChapter() {
         examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
       </Narrative>
 
+      <InsightRecap
+        learned={[
+          "632 prolific inventors form 1,236 co-invention ties, creating a dense knowledge-sharing network among the most productive patent holders.",
+          "143,524 inventor movements flow among 50 major organizations, with California accounting for 54.9% of interstate inventor migration.",
+        ]}
+        falsifiable="If inventor mobility transfers knowledge between firms, then the receiving firm's patent quality in the mover's technology area should increase after the move, controlling for pre-existing trends."
+        nextAnalysis={{
+          label: "Geographic Mechanics",
+          description: "Cross-border collaboration networks and the geography of knowledge diffusion",
+          href: "/chapters/mech-geography",
+        }}
+      />
+
       <DataNote>
-        Co-invention identifies inventors who share multiple patents. Edge weights represent the number of shared patents. Only connections above significance thresholds are shown to reduce visual clutter. Bridge inventors are those who have patented at 30 or more distinct organizations. Talent flows track inventor movements between assignees based on consecutive patent filings with a gap of 5 years or fewer. Inventor mobility is inferred from changes in reported location between sequential patents by the same disambiguated inventor. International flows track cross-border moves based on sequential patents filed from different countries.
+        Co-invention identifies inventors who share multiple patents. Edge weights represent the number of shared patents. Only connections above significance thresholds are shown to reduce visual clutter. Bridge inventors are those who have patented at 30 or more distinct organizations. Talent flows track inventor movements between assignees based on consecutive patent filings with a gap of 5 years or fewer. Inventor mobility is inferred from changes in reported location between sequential patents by the same disambiguated inventor. International flows track cross-border moves based on sequential patents filed from different countries. The inventor mobility event study tracks 5-year forward citations from t-5 to t+5 around firm moves for inventors who moved exactly once between top-50 assignees; confidence intervals are computed via clustered standard errors at the inventor level. Move direction is classified by comparing the mean citation impact of the origin and destination firms.
       </DataNote>
 
       <RelatedChapters currentChapter={21} />

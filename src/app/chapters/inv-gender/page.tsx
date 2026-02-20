@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
@@ -10,6 +11,7 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
@@ -23,6 +25,8 @@ import type {
   GenderSectionTrend,
 } from '@/lib/types';
 import Link from 'next/link';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 
 /* ── Local row types (match the JSON shapes) ─────────────────────────── */
 
@@ -139,6 +143,7 @@ export default function InvGenderChapter() {
         title="Gender and Patenting"
         subtitle="Gender composition and the gender innovation gap"
       />
+      <MeasurementSidebar slug="inv-gender" />
 
       <KeyFindings>
         <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025, but remains well below parity with substantial variation across technology fields.</li>
@@ -248,6 +253,13 @@ export default function InvGenderChapter() {
           composition of STEM degree programs.
         </p>
       </KeyInsight>
+
+      <DescriptiveGapNote variant="gender" alwaysVisible={true} />
+
+      <CompetingExplanations
+        finding="Why is the gender gap in patenting so persistent?"
+        explanations={['Pipeline effects: fewer women enter STEM fields, particularly engineering and computer science.', 'Institutional barriers: patent-intensive firms have historically underrepresented women in R&D roles.', 'Field composition: women are concentrated in lower-citation fields (chemistry, biotech) relative to men (electronics, computing).', 'Career interruptions and risk aversion may differentially affect patent output for women.']}
+      />
 
       {/* ── Section B: The Gender Innovation Gap ── */}
       <SectionDivider label="The Gender Innovation Gap" />
@@ -510,6 +522,19 @@ export default function InvGenderChapter() {
           fields and meaningful differences in patent quality by team composition. The next chapter, <Link href="/chapters/inv-team-size" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Team Size and Collaboration</Link>, examines how team structures have evolved over time and how team size relates to patent quality and innovation outcomes.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Female inventor share rose from 2.8% in 1976 to 14.9% in 2025, but the pace of growth has slowed in recent years.",
+          "All-male teams average 14.2 forward citations while all-female teams average 9.5, but this gap reflects field composition and institutional factors rather than individual capability.",
+        ]}
+        falsifiable="If the gender citation gap is driven by field composition, then within narrow CPC subclasses the gap should shrink substantially or disappear."
+        nextAnalysis={{
+          label: "Team Size and Collaboration",
+          description: "The collaborative turn in patenting — how team size affects quality and scope",
+          href: "/chapters/inv-team-size",
+        }}
+      />
 
       <DataNote>
         Gender data is based on PatentsView gender attribution using first names.

@@ -1258,6 +1258,273 @@ export interface DomainDiffusion {
   pct_of_domain: number;
 }
 
+// ── Methodological Rigor Infrastructure Types ────────────────────────────────
+
+// DataBadge props
+export interface DataBadgeProps {
+  asOf?: string;
+  outcomeWindow?: string;
+  outcomeThrough?: number;
+  normalization?: string;
+  taxonomy?: string;
+}
+
+// Cohort-normalized citation types (Analysis 1 / Part A5)
+export interface CohortNormSystem {
+  year: number;
+  mean_cohort_norm: number;
+  median_cohort_norm: number;
+  top1pct_share: number;
+}
+
+export interface CohortNormHeatmap {
+  year: number;
+  section: string;
+  mean_norm: number;
+  median_norm: number;
+  patent_count: number;
+}
+
+export interface CohortNormAssignee {
+  year: number;
+  assignee: string;
+  mean_norm: number;
+  patent_count: number;
+}
+
+export interface CohortNormInvGroup {
+  year: number;
+  gender: string;
+  team_size_cat: string;
+  mean_norm: number;
+  patent_count: number;
+}
+
+export interface CohortNormGeo {
+  year: number;
+  region: string;
+  geo_type: string;
+  mean_norm: number;
+  patent_count: number;
+}
+
+export interface CohortNormTeamSize {
+  year: number;
+  team_size_cat: string;
+  mean_norm: number;
+  median_norm: number;
+  patent_count: number;
+}
+
+// Originality/Generality filtered (Part A6)
+export interface OrigGenFiltered {
+  year: number;
+  threshold: string;
+  avg_originality: number | null;
+  median_originality: number | null;
+  n_originality: number | null;
+  avg_generality: number | null;
+  median_generality: number | null;
+  n_generality: number | null;
+}
+
+// Convergence decomposition (Analysis 2)
+export interface ConvergenceDecomp {
+  year: number;
+  overall_multi_rate: number;
+  within_firm: number;
+  between_firm: number;
+  total_change: number;
+}
+
+export interface ConvergenceNearFar {
+  year: number;
+  distance_type: string;
+  share_pct: number;
+}
+
+export interface ConvergenceTopAssignee {
+  year: number;
+  firm: string;
+  multi_count: number;
+  total_count: number;
+}
+
+// Exploration trajectory (Analysis 3)
+export interface ExplorationTrajectoryPoint {
+  period: string;
+  period_start: number;
+  exploration_index: number | null;
+  self_citation_rate: number | null;
+  exploitation_index: number | null;
+}
+
+// Inventor mobility event study (Analysis 4)
+export interface MobilityEventPoint {
+  relative_year: number;
+  n_obs: number;
+  mean_fwd_cite_5y: number;
+  ci_lower_cites: number;
+  ci_upper_cites: number;
+  mean_scope: number;
+  ci_lower_scope: number;
+  ci_upper_scope: number;
+  new_firm_share: number;
+}
+
+export interface MobilityEventDirection {
+  direction: string;
+  relative_year: number;
+  n_obs: number;
+  mean_fwd_cite_5y: number;
+  ci_lower: number;
+  ci_upper: number;
+}
+
+export interface MobilityEventData {
+  overall: MobilityEventPoint[];
+  by_direction: MobilityEventDirection[];
+  summary: {
+    total_moves: number;
+    sampled_moves: number;
+    panel_observations: number;
+  };
+}
+
+// Team size coefficients (Analysis 5)
+export interface TeamSizeCoefficient {
+  category: string;
+  coefficient: number;
+  se: number;
+  ci_lower: number;
+  ci_upper: number;
+}
+
+export interface TeamSizeDecadeCoeff {
+  decade: string;
+  category: string;
+  coefficient: number;
+  se: number;
+  ci_lower: number;
+  ci_upper: number;
+}
+
+export interface TeamSizeCoeffData {
+  main_coefficients: TeamSizeCoefficient[];
+  interaction: {
+    main_effects: Record<string, number>;
+    convergence_effect: number;
+    interactions: Record<string, number>;
+  };
+  by_decade: TeamSizeDecadeCoeff[];
+  metadata: {
+    n_patents: number;
+    n_clusters: number;
+    reference_category: string;
+    dependent_variable: string;
+    fixed_effects: string;
+  };
+}
+
+// Blockbuster Lorenz (Analysis 6)
+export interface LorenzPoint {
+  cum_patent_share: number;
+  cum_blockbuster_share: number;
+}
+
+export interface BlockbusterLorenz {
+  decade: string;
+  n_firms: number;
+  total_patents: number;
+  total_blockbusters: number;
+  gini: number;
+  lorenz: LorenzPoint[];
+}
+
+// Gov agency × field (Analysis 7)
+export interface GovAgencyField {
+  agency: string;
+  section: string;
+  patent_count: number;
+  mean_norm_citations: number | null;
+  mean_generality: number | null;
+}
+
+export interface GovAgencyBreadthDepth {
+  agency: string;
+  total_patents: number;
+  n_sections: number;
+  breadth: number;
+  depth: number | null;
+}
+
+// Measurement sidebar config type
+export interface ChapterMeasurementMeta {
+  dataVintage: string;
+  taxonomy: string;
+  outcomeWindow?: string;
+  outcomeThrough?: number;
+  normalization?: string;
+  notes?: string;
+}
+
+// Section 13a: Interdisciplinarity Trend
+export interface InterdisciplinarityTrend {
+  year: number;
+  mean_scope: number;
+  mean_cpc_sections: number;
+  multi_section_pct: number;
+  patent_count: number;
+  z_scope: number;
+  z_cpc_sections: number;
+  z_multi_section: number;
+  z_composite: number;
+}
+
+// Section 13b: Sleeping Beauty × Half-Life by CPC Section
+export interface SleepingBeautyHalflife {
+  cpc_section: string;
+  total_patents: number;
+  sleeping_beauties: number;
+  sb_rate_pct: number;
+  mean_half_life: number;
+  median_half_life: number;
+  n_patents: number;
+  section_name: string;
+}
+
+// Section 13c: Government-Interest Normalized Impact
+export interface GovImpactComparison {
+  funding_status: string;
+  patent_count: number;
+  mean_raw_citations: number;
+  mean_normalized: number;
+  top_decile_share: number;
+  top_1pct_share: number;
+}
+
+// Section 13d: Alice Event Study
+export interface AliceEventStudy {
+  year: number;
+  group_label: string;
+  patent_count: number;
+  mean_claims: number;
+  mean_scope: number;
+  idx_count: number;
+  idx_claims: number;
+  idx_scope: number;
+}
+
+// Section 13e: Bridge Inventor Centrality
+export interface BridgeCentralityQuintile {
+  centrality_quintile: number;
+  centrality_label: string;
+  n_inventors: number;
+  mean_degree: number;
+  mean_citations: number;
+  mean_patent_count: number;
+}
+
 // Generic data wrapper
 export interface ChapterData<T> {
   data: T[];

@@ -15,7 +15,9 @@ import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import { cleanOrgName } from '@/lib/orgNames';
 import { CHART_COLORS, CPC_SECTION_COLORS, SPACE_SUBFIELD_COLORS } from '@/lib/colors';
@@ -236,6 +238,7 @@ export default function Chapter22() {
         title="Space Technology"
         subtitle="Patenting the final frontier"
       />
+      <MeasurementSidebar slug="space-technology" />
 
       <KeyFindings>
         <li>Space technology patenting has experienced growth since 2015, coinciding with the emergence of commercial space ventures and shifting the competitive landscape that was previously dominated by traditional defense contractors.</li>
@@ -821,6 +824,12 @@ export default function Chapter22() {
           The next chapter examines <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing and additive manufacturing</Link>, a domain where aerospace applications have been among the earliest and most consequential use cases for production-grade metal printing technologies.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={["Space technology top-four concentration fluctuated between 4.9% and 36.7%, the widest range among all domains, reflecting the government-to-commercial transition.", "Satellite communications now dominates space technology patenting, with Boeing, ViaSat, and Lockheed Martin as leading filers."]}
+        falsifiable="If the commercial space transition drove deconcentration, then the entry of SpaceX and other NewSpace firms should correlate with declining top-four share in launch and propulsion subfields."
+        nextAnalysis={{ label: "Patent Count", description: "Return to the beginning — how has the overall patent system evolved across all the dimensions explored?", href: "/chapters/system-patent-count" }}
+      />
 
       <DataNote>
         Space patents are identified using CPC classifications related to spacecraft and

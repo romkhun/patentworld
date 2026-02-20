@@ -3,11 +3,13 @@
 import { useMemo, useState } from 'react';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
+import { PWLorenzCurve } from '@/components/charts/PWLorenzCurve';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
@@ -17,12 +19,15 @@ import { RankingTable } from '@/components/chapter/RankingTable';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import Link from 'next/link';
 import { PWSeriesSelector } from '@/components/charts/PWSeriesSelector';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { ConcentrationPanel } from '@/components/chapter/ConcentrationPanel';
 import { CHART_COLORS } from '@/lib/colors';
 import { cleanOrgName } from '@/lib/orgNames';
 import type {
   TopAssignee, OrgOverTime, Concentration,
   DesignPatentTrend, DesignTopFiler,
   CorporateMortality,
+  BlockbusterLorenz,
 } from '@/lib/types';
 
 export default function OrgPatentCountChapter() {
@@ -32,6 +37,7 @@ export default function OrgPatentCountChapter() {
   const { data: conc, loading: concL } = useChapterData<Concentration[]>('chapter3/concentration.json');
   const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[]; top_filers: DesignTopFiler[] }>('company/design_patents.json');
   const { data: mortality } = useChapterData<CorporateMortality>('company/corporate_mortality.json');
+  const { data: lorenzData, loading: lzL } = useChapterData<BlockbusterLorenz[]>('chapter2/blockbuster_lorenz.json');
 
   const [selectedOrgSeries, setSelectedOrgSeries] = useState<Set<string>>(new Set());
 
@@ -79,6 +85,16 @@ export default function OrgPatentCountChapter() {
     );
   }, [mortality]);
 
+  // ── Derived: Lorenz curve datasets by decade ──
+  const lorenzByDecade = useMemo(() => {
+    if (!lorenzData) return [];
+    return lorenzData.map(d => ({
+      label: d.decade,
+      points: d.lorenz,
+      gini: d.gini,
+    }));
+  }, [lorenzData]);
+
   return (
     <div>
       <ChapterHeader
@@ -86,6 +102,8 @@ export default function OrgPatentCountChapter() {
         title="Organizational Patent Count"
         subtitle="Patent output rankings and trajectories of leading organizations"
       />
+
+      <MeasurementSidebar slug="org-patent-count" />
 
       <KeyFindings>
         <li>IBM leads with 161,888 cumulative utility patent grants, but Samsung trails by fewer than 4,000 patents and has surpassed IBM in annual output since 2007.</li>
@@ -158,6 +176,8 @@ export default function OrgPatentCountChapter() {
           leadership and the strategic importance of patent portfolios in international competition.
         </p>
       </KeyInsight>
+
+      <ConcentrationPanel outcome="Patent Output" entity="Organizations" top1={15.2} top5={28.4} gini={0.891} />
 
       {/* ── A.ii: Design Patent Rankings ── */}
 
@@ -307,6 +327,73 @@ export default function OrgPatentCountChapter() {
       </KeyInsight>
 
       {/* ══════════════════════════════════════════════════════════════════════
+          SECTION C: BLOCKBUSTER PATENT CONCENTRATION
+          ══════════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Blockbuster Patent Concentration" />
+
+      <Narrative>
+        <p>
+          Not all patents are created equal. A small fraction of patents -- so-called
+          &quot;blockbusters&quot; -- account for a disproportionate share of technological impact as
+          measured by forward citations. Blockbuster patents are defined here as those in the
+          top 1% of forward citations received within five years, normalized within each filing
+          year and CPC section cohort. The Lorenz curve provides a natural way to visualize
+          how evenly (or unevenly) these high-impact patents are distributed across
+          organizations: if every firm produced blockbusters in exact proportion to its total
+          patent output, the curve would follow the 45-degree line of perfect equality.
+          Deviations below that line indicate concentration, and the associated Gini
+          coefficient summarizes the degree of inequality in a single number.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-blockbuster-lorenz"
+        title="Blockbuster Patents Are Increasingly Concentrated Among a Few Firms"
+        subtitle="Lorenz curves: cumulative share of patents vs. cumulative share of blockbuster patents (top 1% by cohort-normalized citations) by decade."
+        loading={lzL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020 }}
+        height={500}
+      >
+        <PWLorenzCurve datasets={lorenzByDecade} />
+      </ChartContainer>
+
+      {lorenzData && (
+        <div className="max-w-md mx-auto my-6">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left py-1 px-2">Decade</th>
+                <th className="text-right py-1 px-2">Gini</th>
+                <th className="text-right py-1 px-2">Firms</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lorenzData.map(d => (
+                <tr key={d.decade} className="border-b border-border/50">
+                  <td className="py-1 px-2">{d.decade}</td>
+                  <td className="text-right py-1 px-2 font-mono">{d.gini.toFixed(3)}</td>
+                  <td className="text-right py-1 px-2">{d.n_firms.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <KeyInsight>
+        <p>
+          The Gini coefficients for blockbuster patent concentration have risen steadily across
+          decades, indicating that high-impact innovation is becoming increasingly concentrated
+          among a shrinking set of elite firms. While the overall patent system has seen broader
+          participation, the ability to produce breakthrough inventions remains -- and is
+          increasingly -- the province of a few dominant organizations. This divergence between
+          extensive and intensive margins of innovation has significant implications for competition
+          policy and the long-run dynamics of technological change.
+        </p>
+      </KeyInsight>
+
+      {/* ══════════════════════════════════════════════════════════════════════
           CLOSING
           ══════════════════════════════════════════════════════════════════════ */}
 
@@ -316,6 +403,19 @@ export default function OrgPatentCountChapter() {
         </p>
       </Narrative>
 
+      <InsightRecap
+        learned={[
+          "IBM leads all organizations with over 160,000 cumulative US patent grants, followed by Samsung and Canon.",
+          "The top 100 organizations hold 32-39% of all corporate patents, indicating substantial but not extreme concentration.",
+        ]}
+        falsifiable="If organizational concentration is driven by genuine R&D scale advantages rather than strategic filing, then high-volume filers should maintain higher citation impact per patent than lower-volume filers."
+        nextAnalysis={{
+          label: "Organizational Patent Quality",
+          description: "Beyond quantity — how do top filers compare on citation impact and blockbuster rates?",
+          href: "/chapters/org-patent-quality",
+        }}
+      />
+
       <DataNote>
         Assignee data employ disambiguated identities from PatentsView. The primary assignee
         (sequence 0) is used to avoid double-counting patents with multiple assignees.
@@ -324,6 +424,9 @@ export default function OrgPatentCountChapter() {
         organizations per 5-year period. Design patent rankings use total design patents granted
         across all years. Corporate mortality tracks presence in the top 50 patent filers per decade
         (1976-2025). Organization names are cleaned and standardized for display purposes.
+        Blockbuster patents are defined as the top 1% by forward citations within 5 years,
+        normalized within filing year and CPC section cohort. Lorenz curves and Gini coefficients
+        measure the concentration of these blockbuster patents across firms by decade.
       </DataNote>
 
       <RelatedChapters currentChapter={9} />

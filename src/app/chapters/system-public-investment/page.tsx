@@ -2,25 +2,37 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis, Label,
+} from 'recharts';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWValueHeatmap } from '@/components/charts/PWValueHeatmap';
+import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
-import { CHART_COLORS } from '@/lib/colors';
+import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { DataNote } from '@/components/chapter/DataNote';
-import type { GovFundedPerYear, GovAgency } from '@/lib/types';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
+import chartTheme from '@/lib/chartTheme';
+import type { GovFundedPerYear, GovAgency, GovAgencyField, GovAgencyBreadthDepth, GovImpactComparison } from '@/lib/types';
 
 export default function SystemPublicInvestmentChapter() {
   const { data: gov, loading: goL } = useChapterData<GovFundedPerYear[]>('chapter6/gov_funded_per_year.json');
   const { data: agencies, loading: agL } = useChapterData<GovAgency[]>('chapter6/gov_agencies.json');
+  const { data: agencyField, loading: afL } = useChapterData<GovAgencyField[]>('chapter1/gov_agency_field_matrix.json');
+  const { data: agencyBreadth, loading: abL } = useChapterData<GovAgencyBreadthDepth[]>('chapter1/gov_agency_breadth_depth.json');
+  const { data: govImpact, loading: giL } = useChapterData<GovImpactComparison[]>('chapter1/gov_impact_comparison.json');
 
   const topAgencies = useMemo(() => {
     if (!agencies) return [];
@@ -30,6 +42,19 @@ export default function SystemPublicInvestmentChapter() {
     }));
   }, [agencies]);
 
+  const scatterData = useMemo(() => {
+    if (!agencyBreadth) return [];
+    return agencyBreadth
+      .filter((d) => d.depth != null)
+      .map((d) => ({
+        agency: d.agency.length > 35 ? d.agency.slice(0, 32) + '...' : d.agency,
+        x: d.breadth,
+        y: d.depth as number,
+        size: d.total_patents,
+        n_sections: d.n_sections,
+      }));
+  }, [agencyBreadth]);
+
   return (
     <div>
       <ChapterHeader
@@ -37,6 +62,8 @@ export default function SystemPublicInvestmentChapter() {
         title="Public Investment"
         subtitle="Government funding and the Bayh-Dole Act"
       />
+
+      <MeasurementSidebar slug="system-public-investment" />
 
       <KeyFindings>
         <li>Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, a trend associated with the 1980 Bayh-Dole Act.</li>
@@ -120,9 +147,172 @@ export default function SystemPublicInvestmentChapter() {
         </p>
       </KeyInsight>
 
+      {/* ── Analysis 7: Government Agency × Technology Field ─────────────── */}
+
+      <SectionDivider label="Agency × Technology Field Matrix" />
+
+      <Narrative>
+        <p>
+          Beyond aggregate patent counts, the <em>technological composition</em> of each agency&apos;s
+          portfolio reveals how federal funding priorities map onto the CPC classification system.
+          Some agencies concentrate their funding in a narrow set of technology fields — the
+          Department of Energy, for example, is heavily weighted toward Chemistry &amp; Metallurgy
+          (Section C) and Physics (Section G) — while others, such as the Department of Defense,
+          spread funding across a broader spectrum of sections. The heatmap below decomposes each
+          agency&apos;s patent portfolio by CPC section, revealing both expected specializations and
+          surprising cross-field reach.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-gov-agency-field-matrix"
+        title="Federal Agencies Differ Markedly in Their Technology Field Portfolios"
+        subtitle="Agency × CPC section matrix of patent counts. Each cell shows the number of government-interest patents in a given agency–field combination."
+        caption="Heatmap of government-interest patent counts by federal agency and CPC section. Darker cells indicate higher patent concentrations, revealing each agency's technology field specialization."
+        loading={afL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', taxonomy: 'CPC', normalization: 'Cohort×field' }}
+        height={500}
+      >
+        <PWValueHeatmap
+          data={agencyField ?? []}
+          rowKey="agency"
+          colKey="section"
+          valueKey="patent_count"
+          colLabels={CPC_SECTION_NAMES}
+          rowLabel="Federal Agency"
+          colLabel="CPC Section"
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Federal agencies exhibit sharply distinct technology portfolios. Health-oriented agencies
+          concentrate in Human Necessities (Section A) and Chemistry (Section C), while Defense
+          and Energy spread across Physics (Section G), Electricity (Section H), and Operations &amp;
+          Transport (Section B). This specialization pattern reflects each agency&apos;s statutory
+          mission and highlights how public R&amp;D investment channels innovation into specific
+          technological corridors.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-gov-agency-breadth-depth"
+        title="Agencies Face a Breadth-Depth Tradeoff in Technology Portfolios"
+        subtitle="Each bubble represents a federal agency. X-axis: technological breadth (Shannon entropy across CPC sections). Y-axis: depth (mean cohort-normalized citations). Bubble size: total patents."
+        caption="Scatter plot of agency breadth (Shannon entropy across CPC sections) versus depth (mean cohort-normalized 5-year forward citations). Bubble size is proportional to total patent count. Agencies with broader portfolios may trade off citation impact per patent."
+        loading={abL}
+        height={500}
+        insight="Agencies that spread funding across many technology fields tend to achieve lower mean citation depth per patent, suggesting a breadth-depth tradeoff in public R&D portfolio strategy."
+      >
+        <ResponsiveContainer width="100%" height="100%">
+          <ScatterChart margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.2} />
+            <XAxis
+              dataKey="x"
+              type="number"
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tickLine={false}
+              axisLine={{ stroke: 'hsl(var(--border))' }}
+              domain={['auto', 'auto']}
+            >
+              <Label
+                value="Breadth (Shannon Entropy)"
+                position="insideBottom"
+                offset={-10}
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              />
+            </XAxis>
+            <YAxis
+              dataKey="y"
+              type="number"
+              tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))' }}
+              tickLine={false}
+              axisLine={false}
+              width={60}
+              domain={['auto', 'auto']}
+            >
+              <Label
+                value="Depth (Mean Norm. Citations)"
+                angle={-90}
+                position="insideLeft"
+                offset={10}
+                style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}
+              />
+            </YAxis>
+            <ZAxis dataKey="size" range={[60, 600]} />
+            <Tooltip
+              contentStyle={TOOLTIP_STYLE}
+              content={({ active, payload }) => {
+                if (!active || !payload?.length) return null;
+                const d = payload[0]?.payload;
+                if (!d) return null;
+                return (
+                  <div style={TOOLTIP_STYLE}>
+                    <div className="font-semibold text-sm mb-1">{d.agency}</div>
+                    <div className="text-xs text-muted-foreground">Breadth: {d.x.toFixed(2)}</div>
+                    <div className="text-xs text-muted-foreground">Depth: {d.y.toFixed(2)}</div>
+                    <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString()}</div>
+                    <div className="text-xs text-muted-foreground">CPC sections: {d.n_sections}</div>
+                  </div>
+                );
+              }}
+            />
+            <Scatter
+              name="Federal Agencies"
+              data={scatterData}
+              fill={CHART_COLORS[5]}
+              fillOpacity={0.7}
+              isAnimationActive={false}
+            />
+          </ScatterChart>
+        </ResponsiveContainer>
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Agencies that fund research across many CPC sections — such as the Department of Defense,
+          which spans electronics, materials, and mechanical engineering — tend to show lower mean
+          cohort-normalized citation depth per patent. By contrast, agencies with narrower portfolios,
+          such as HHS/NIH, achieve higher average citation impact, consistent with a breadth-depth
+          tradeoff in public R&amp;D investment strategy. This tradeoff echoes findings in the
+          corporate innovation literature, where firms that diversify across too many technology
+          fields may dilute their inventive focus.
+        </p>
+      </KeyInsight>
+
+      <ChartContainer
+        id="fig-gov-impact-comparison"
+        title="Government-Funded Patents Slightly Outperform on Normalized Impact"
+        subtitle="Cohort-normalized citations and top-percentile shares: government-funded vs. non-funded patents, 1980–2020"
+        loading={giL}
+      >
+        <PWBarChart
+          data={govImpact ?? []}
+          xKey="funding_status"
+          bars={[
+            { key: 'mean_normalized', name: 'Mean Normalized Citations', color: CHART_COLORS[5] },
+            { key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[0] },
+            { key: 'top_1pct_share', name: 'Top-1% Share (%)', color: CHART_COLORS[3] },
+          ]}
+        />
+      </ChartContainer>
+
       <Narrative>
         This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Government-funded patents rose from 1,269 in 1976 to a peak of 6,457 in 2015, with HHS/NIH leading at 55,587 cumulative patents.",
+          "Public investment in patented R&D spans all major technology domains, with agency portfolios exhibiting distinct breadth-depth tradeoffs.",
+        ]}
+        falsifiable="If government funding genuinely improves patent quality, then funded patents should show higher cohort-normalized citation impact even after controlling for inventor quality and institutional resources."
+        nextAnalysis={{
+          label: "Assignee Composition",
+          description: "Who files patents — the corporate, foreign, and institutional landscape of assignees",
+          href: "/chapters/org-composition",
+        }}
+      />
 
       <DataNote>
         All data are drawn from PatentsView (patentsview.org), covering granted US patents

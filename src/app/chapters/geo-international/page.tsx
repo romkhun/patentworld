@@ -18,6 +18,9 @@ import { CHART_COLORS } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import type { CountryPerYear, QualityByCountry } from '@/lib/types';
 
 export default function GeoInternationalChapter() {
@@ -95,6 +98,7 @@ export default function GeoInternationalChapter() {
         title="International Geography"
         subtitle="Cross-border filing patterns and country-level quality metrics"
       />
+      <MeasurementSidebar slug="geo-international" />
 
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
@@ -274,6 +278,8 @@ export default function GeoInternationalChapter() {
         </p>
       </KeyInsight>
 
+      <DescriptiveGapNote variant="international" />
+
       {/* ── Section B: By Country ── */}
       <SectionDivider label="Patent Quality and Filing Patterns by Country" />
 
@@ -427,6 +433,19 @@ export default function GeoInternationalChapter() {
           The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens -- from state-level domestic concentration to global filing patterns and cross-country quality comparisons -- the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024.",
+          "Domestic-origin patents average 12.9 forward citations vs. 5.8 for international-origin (2015 cohort), though field composition explains much of this gap.",
+        ]}
+        falsifiable="If the domestic citation advantage reflects home-country bias rather than genuine quality differences, then the gap should narrow for patents in globally competitive fields like semiconductors and pharmaceuticals."
+        nextAnalysis={{
+          label: "Organizational Mechanics",
+          description: "How firms balance exploration and exploitation, and how knowledge flows between organizations",
+          href: "/chapters/mech-organizations",
+        }}
+      />
 
       <DataNote>
         Geographic data uses the primary inventor (sequence 0) location from PatentsView

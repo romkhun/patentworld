@@ -10,14 +10,17 @@ import { PWAreaChart } from '@/components/charts/PWAreaChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { CHART_COLORS } from '@/lib/colors';
 import { useCitationNormalization } from '@/hooks/useCitationNormalization';
 import type { InventorDrift } from '@/lib/types';
 import Link from 'next/link';
+import { DescriptiveGapNote } from '@/components/chapter/DescriptiveGapNote';
 
 export default function InvGeneralistSpecialistChapter() {
   const { data: driftData, loading: drL } = useChapterData<InventorDrift[]>('company/inventor_drift.json');
@@ -48,6 +51,7 @@ export default function InvGeneralistSpecialistChapter() {
         title="Generalist vs. Specialist"
         subtitle="Technology specialization patterns and quality differences"
       />
+      <MeasurementSidebar slug="inv-generalist-specialist" />
 
       <KeyFindings>
         <li>The share of specialist inventors rose from 20% in the 1970s to 48% in the 2020s, while the share of generalists declined correspondingly.</li>
@@ -127,6 +131,8 @@ export default function InvGeneralistSpecialistChapter() {
           patent system.
         </p>
       </KeyInsight>
+
+      <DescriptiveGapNote variant="team-size" />
 
       {/* ── Section B: Quality Metrics — Generalist vs. Specialist ── */}
       <SectionDivider label="Quality Metrics: Generalist vs. Specialist Inventors" />
@@ -305,6 +311,19 @@ export default function InvGeneralistSpecialistChapter() {
           examines career dynamics including inventor entry, survival, and attrition patterns over time.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Specialist inventors rose from 20% to 48% of the inventor workforce, reflecting the growing technical complexity of innovation.",
+          "Generalists earn 9.3 forward citations per patent vs. 8.2 for specialists and score higher on originality (0.212 vs. 0.165).",
+        ]}
+        falsifiable="If generalist advantage in citations reflects genuine breadth rather than selection into high-citation fields, then the gap should persist within technology domains."
+        nextAnalysis={{
+          label: "Serial vs. New Inventors",
+          description: "Career patterns, inventor survival rates, and the productivity lifecycle of patent inventors",
+          href: "/chapters/inv-serial-new",
+        }}
+      />
 
       <DataNote>
         Specialization analysis uses inventors with 10 or more patents and classifies them by Shannon entropy

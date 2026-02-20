@@ -17,6 +17,14 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
+import { SkewnessExplainer } from '@/components/chapter/SkewnessExplainer';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
+import { PWValueHeatmap } from '@/components/charts/PWValueHeatmap';
+import { PWScatterChart } from '@/components/charts/PWScatterChart';
+import { useThresholdFilter } from '@/hooks/useThresholdFilter';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
 import type {
   ClaimsPerYear,
   ClaimsAnalysis,
@@ -26,6 +34,10 @@ import type {
   OriginalityGenerality,
   SelfCitationRate,
   SleepingBeauty,
+  CohortNormHeatmap,
+  CohortNormSystem,
+  OrigGenFiltered,
+  SleepingBeautyHalflife,
 } from '@/lib/types';
 
 export default function SystemPatentQualityChapter() {
@@ -37,6 +49,11 @@ export default function SystemPatentQualityChapter() {
   const { data: origGen, loading: ogL } = useChapterData<OriginalityGenerality[]>('chapter9/originality_generality.json');
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
   const { data: sleepingBeauties } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
+  const { data: cohortHeatmap, loading: chL } = useChapterData<CohortNormHeatmap[]>('computed/cohort_normalized_citations_heatmap.json');
+  const { data: cohortSystem, loading: csL } = useChapterData<CohortNormSystem[]>('computed/cohort_normalized_citations_system.json');
+  const { data: origGenFiltered, loading: ogfL } = useChapterData<OrigGenFiltered[]>('computed/originality_generality_filtered.json');
+  const { data: sbHalflife, loading: sbhL } = useChapterData<SleepingBeautyHalflife[]>('computed/sleeping_beauty_halflife.json');
+  const { data: filteredOG, controls: ogControls } = useThresholdFilter({ data: origGenFiltered, thresholdKey: 'threshold' });
 
   return (
     <div>
@@ -45,6 +62,7 @@ export default function SystemPatentQualityChapter() {
         title="Patent Quality"
         subtitle="Claims, scope, citations, originality, and knowledge flow indicators"
       />
+      <MeasurementSidebar slug="system-patent-quality" />
 
       <KeyFindings>
         <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005, with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
@@ -244,6 +262,80 @@ export default function SystemPatentQualityChapter() {
         </p>
       </KeyInsight>
 
+      <CompetingExplanations
+        finding="Why are forward citations rising?"
+        explanations={['Growing citation inflation: more patents cite more prior art, mechanically inflating counts.', 'Compositional shift toward high-citation fields (computing, electronics).', 'Genuine improvement in inventive quality or broader knowledge diffusion.', 'Changes in USPTO examination standards and prior art requirements.']}
+      />
+
+      <SkewnessExplainer metric="forward citations" />
+
+      {/* ================================================================== */}
+      {/* 3b. Cohort-Normalized Citation Heatmap (Analysis 1)                */}
+      {/* ================================================================== */}
+
+      <SectionDivider label="Cohort-Normalized Citations by Field" />
+
+      <Narrative>
+        <p>
+          Raw citation counts are misleading for cross-field and cross-time comparisons because citation norms differ
+          substantially by technology field and grant year. Cohort normalization divides each patent&apos;s 5-year forward
+          citations by the average for its grant-year × CPC section cohort, yielding a field-adjusted measure of relative impact.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-patent-quality-cohort-heatmap"
+        title="Cohort-Normalized Citation Intensity Varies Substantially Across Fields and Time"
+        subtitle="Mean cohort-normalized 5-year forward citations by grant year and CPC section. Values above 1.0 indicate above-average impact within the cohort."
+        caption="Heatmap of mean cohort-normalized forward citations by year × CPC section. Each cell normalizes by the grant-year × section average, so values above 1.0 indicate above-average citation performance."
+        loading={chL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020, normalization: 'Cohort×field' }}
+        height={400}
+      >
+        <PWValueHeatmap
+          data={cohortHeatmap ?? []}
+          rowKey="year"
+          colKey="section"
+          valueKey="mean_norm"
+          colLabels={CPC_SECTION_NAMES}
+          valueFormatter={(v) => v.toFixed(2)}
+          rowLabel="Grant Year"
+          colLabel="CPC Section"
+        />
+      </ChartContainer>
+
+      <ChartContainer
+        id="fig-patent-quality-cohort-system"
+        title="System-Level Cohort-Normalized Citation Trends Show Stable Means but Rising Top-1% Concentration"
+        subtitle="Mean and median cohort-normalized 5-year forward citations across all fields, plus the share of total citations captured by the top 1% of patents."
+        caption="System-level cohort-normalized citation statistics by year."
+        loading={csL}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020, normalization: 'Cohort×field' }}
+      >
+        <PWLineChart
+          data={cohortSystem ?? []}
+          xKey="year"
+          lines={[
+            { key: 'mean_cohort_norm', name: 'Mean Cohort-Normalized', color: CHART_COLORS[0] },
+            { key: 'median_cohort_norm', name: 'Median Cohort-Normalized', color: CHART_COLORS[2] },
+            { key: 'top1pct_share', name: 'Top 1% Citation Share (%)', color: CHART_COLORS[5], yAxisId: 'right' },
+          ]}
+          yLabel="Cohort-Normalized Citations"
+          rightYLabel="Top 1% Share (%)"
+          yFormatter={(v) => v.toFixed(2)}
+          rightYFormatter={(v) => `${v.toFixed(1)}%`}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          After cohort normalization, the mean citation index is mechanically near 1.0, but the median
+          consistently falls below 1.0 -- confirming that most patents are cited below average.
+          The rising top-1% citation share indicates growing concentration of impact among a shrinking
+          elite of breakthrough patents.
+        </p>
+      </KeyInsight>
+
       {/* ================================================================== */}
       {/* 4. Backward Citations                                              */}
       {/* ================================================================== */}
@@ -431,6 +523,41 @@ export default function SystemPatentQualityChapter() {
         </p>
       </KeyInsight>
 
+      <CompetingExplanations
+        finding="Why do originality and generality diverge?"
+        explanations={['Inventors draw from broader prior art (rising originality) but their inventions serve narrower downstream applications (declining generality).', 'Computational methods enable wider prior art search, artificially broadening backward citation patterns.', 'Increasing specialization in downstream research narrows the set of fields that cite any given patent.']}
+      />
+
+      <ChartContainer
+        id="fig-patent-quality-orig-gen-filtered"
+        title="Originality and Generality Are Sensitive to Citation Count Thresholds"
+        subtitle="Average originality and generality indices filtered by minimum citation count (all patents, ≥5 citations, ≥10 citations). Diversity indices are more meaningful for patents with more citations."
+        caption="Originality and generality at three citation thresholds. Filtering to patents with ≥5 or ≥10 backward/forward citations changes the level substantially but preserves temporal trends."
+        loading={ogfL}
+        controls={ogControls}
+        badgeProps={{ asOf: 'PatentsView 2025-Q1', taxonomy: 'CPC' }}
+      >
+        <PWLineChart
+          data={filteredOG ?? []}
+          xKey="year"
+          lines={[
+            { key: 'avg_originality', name: 'Originality', color: CHART_COLORS[0] },
+            { key: 'avg_generality', name: 'Generality', color: CHART_COLORS[3] },
+          ]}
+          yLabel="Index (0-1)"
+          yFormatter={(v) => v.toFixed(3)}
+        />
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          Filtering to patents with at least 5 or 10 backward/forward citations raises the level of both
+          originality and generality substantially, since patents with more citations mechanically have more
+          opportunity for cross-field diversity. However, the temporal trends are robust across thresholds:
+          originality rises and generality falls regardless of the minimum citation filter.
+        </p>
+      </KeyInsight>
+
       {/* ================================================================== */}
       {/* 8. Sleeping Beauty Patents                                         */}
       {/* ================================================================== */}
@@ -492,9 +619,45 @@ export default function SystemPatentQualityChapter() {
       {/* Closing                                                            */}
       {/* ================================================================== */}
 
+      <ChartContainer
+        id="fig-sleeping-beauty-halflife"
+        title="Slow Fields Have More Sleeping Beauties"
+        subtitle="Sleeping beauty rate vs. median citation half-life by CPC section"
+        loading={sbhL}
+      >
+        <PWScatterChart
+          data={sbHalflife ?? []}
+          xKey="median_half_life"
+          yKey="sb_rate_pct"
+          colorKey="cpc_section"
+          nameKey="section_name"
+          categories={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']}
+          xLabel="Median Citation Half-Life (Years)"
+          yLabel="Sleeping Beauty Rate (%)"
+          tooltipFields={[
+            { key: 'section_name', label: 'Section' },
+            { key: 'total_patents', label: 'Total Patents' },
+            { key: 'mean_half_life', label: 'Mean Half-Life' },
+          ]}
+        />
+      </ChartContainer>
+
       <Narrative>
         Having examined patent quality across eight complementary dimensions -- from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents -- the next chapter turns to the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "Average claims per patent nearly doubled from 9.4 to 18.9 over five decades, while forward citations rose steadily before peaking.",
+          "Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15, indicating patents draw on more diverse sources but serve narrower applications.",
+        ]}
+        falsifiable="If rising originality reflects genuine knowledge broadening rather than citation inflation, then cohort-normalized originality (controlling for field and year) should show the same upward trend."
+        nextAnalysis={{
+          label: "Patent Fields",
+          description: "Which technology domains drive the patent surge, and how has field-level concentration evolved?",
+          href: "/chapters/system-patent-fields",
+        }}
+      />
 
       <DataNote>
         Claims analysis uses the patent_num_claims field from g_patent for utility patents only.

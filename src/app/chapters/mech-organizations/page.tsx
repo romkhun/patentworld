@@ -12,6 +12,8 @@ import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
 import { PWBubbleScatter } from '@/components/charts/PWBubbleScatter';
 import { PWCompanySelector } from '@/components/charts/PWCompanySelector';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { PWTrajectoryScatter } from '@/components/charts/PWTrajectoryScatter';
 import dynamic from 'next/dynamic';
 const PWNetworkGraph = dynamic(() => import('@/components/charts/PWNetworkGraph').then(m => ({ default: m.PWNetworkGraph })), { ssr: false, loading: () => <div /> });
 const PWChordDiagram = dynamic(() => import('@/components/charts/PWChordDiagram').then(m => ({ default: m.PWChordDiagram })), { ssr: false, loading: () => <div /> });
@@ -21,6 +23,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import Link from 'next/link';
 import { CHART_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
@@ -32,6 +35,7 @@ import type {
   FirmAmbidexterityRecord, FirmGiniYear,
   NetworkData,
   CorporateCitationFlow, TechLeadership,
+  ExplorationTrajectoryPoint,
 } from '@/lib/types';
 
 export default function MechOrganizationsChapter() {
@@ -41,6 +45,9 @@ export default function MechOrganizationsChapter() {
   const { data: lifecycleData, loading: lcL } = useChapterData<{ firms: Record<string, FirmLifecyclePoint[]>; system_average: FirmLifecyclePoint[] }>('company/firm_exploration_lifecycle.json');
   const { data: ambidexterity, loading: amL } = useChapterData<FirmAmbidexterityRecord[]>('company/firm_ambidexterity_quality.json');
   const { data: firmGini, loading: fgL } = useChapterData<Record<string, FirmGiniYear[]>>('company/firm_quality_gini.json');
+
+  /* ── Analysis 3: Exploration trajectory ── */
+  const { data: explTraj, loading: etL3 } = useChapterData<Record<string, ExplorationTrajectoryPoint[]>>('chapter5/exploration_exploitation_trajectory.json');
 
   /* ── Section B data hooks ── */
   const { data: firmNetwork, loading: fnL } = useChapterData<NetworkData>('chapter3/firm_collaboration_network.json');
@@ -91,6 +98,23 @@ export default function MechOrganizationsChapter() {
     }));
   }, [firmGini]);
 
+  /* ── Analysis 3: Exploration trajectory datasets ── */
+  const trajectoryDatasets = useMemo(() => {
+    if (!explTraj) return [];
+    return Object.entries(explTraj).map(([firm, points], i) => ({
+      name: firm,
+      points: points
+        .filter(p => p.exploration_index != null)
+        .map(p => ({
+          x: p.exploration_index as number,
+          y: p.self_citation_rate as number,
+          label: firm,
+          period: p.period,
+        })),
+      color: CHART_COLORS[i % CHART_COLORS.length],
+    }));
+  }, [explTraj]);
+
   /* ── Section B computations ── */
   const decades = useMemo(() => {
     if (!citationFlows) return [];
@@ -123,6 +147,7 @@ export default function MechOrganizationsChapter() {
         title="Organizational Mechanics"
         subtitle="Within-firm exploration, exploitation, and inter-firm knowledge flows"
       />
+      <MeasurementSidebar slug="mech-organizations" />
 
       <KeyFindings>
         <li>11 of 20 major filers keep exploration below 5%, with a median exploration share of 2.9%, indicating that the vast majority of patenting activity deepens established technology domains.</li>
@@ -180,7 +205,7 @@ export default function MechOrganizationsChapter() {
       <ChartContainer
         id="fig-mech-org-exploration-score"
         subtitle="Composite exploration score and its three components (technology newness, citation newness, external sourcing) for the selected firm by year."
-        title={`${selectedExplFirm}'s Exploration Score Averages ${selectedExplData.length > 0 ? (selectedExplData.reduce((s, d) => s + d.mean_exploration, 0) / selectedExplData.length).toFixed(2) : '—'} Across ${selectedExplData.length} Years of Patenting`}
+        title={`${selectedExplFirm}'s Exploration Score Averages ${selectedExplData.length > 0 ? (selectedExplData.reduce((s, d) => s + d.mean_exploration, 0) / selectedExplData.length).toFixed(2) : '—'} Across ${selectedExplData.length > 0 ? selectedExplData.length : '...'} Years of Patenting`}
         caption={`Mean exploration score and its three component indicators for ${selectedExplFirm} by year. The composite score (blue) averages technology newness, citation newness, and external knowledge sourcing (1 - self-citation rate). Higher values indicate more exploratory behavior.`}
         insight="Decomposing the composite score into its three indicators reveals which dimension of exploration is driving changes over time — whether the firm is entering new technology areas, citing unfamiliar prior art, or drawing on external knowledge."
         loading={feL}
@@ -464,7 +489,7 @@ export default function MechOrganizationsChapter() {
       <ChartContainer
         id="fig-mech-org-corporate-citation-flows"
         subtitle="Directed citation flows among the top 30 patent filers shown as a chord diagram, with ribbon width proportional to citation volume."
-        title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies (${effectiveDecade ?? ''}s)`}
+        title={`Corporate Citation Flows Among Top 30 Filers Reveal Asymmetric Knowledge Dependencies${effectiveDecade != null ? ` (${effectiveDecade}s)` : ''}`}
         caption="Directed citation flows between the most prolific patent filers. Arc size represents total citations; ribbon width indicates flow volume. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others serve as integrators (drawing broadly from multiple sources)."
         insight="Citation flows reveal asymmetric knowledge dependencies. Certain firms function primarily as knowledge producers (heavily cited yet citing few peers), whereas others operate as integrators (drawing broadly from multiple sources)."
         loading={cfL}
@@ -514,6 +539,57 @@ export default function MechOrganizationsChapter() {
         </div>
       )}
 
+      {/* ══════════════════════════════════════════════════════════════════
+          Analysis 3: Exploration–Exploitation Trajectories
+          ══════════════════════════════════════════════════════════════════ */}
+
+      <SectionDivider label="Exploration–Exploitation Trajectories" />
+
+      <Narrative>
+        <p>
+          The preceding analyses characterize exploration and exploitation as static shares or decay
+          curves, but firms&apos; strategies evolve dynamically over time. By plotting each firm&apos;s
+          exploration index (cosine distance from its prior CPC centroid) against its self-citation
+          rate across successive 5-year windows, the trajectory scatter reveals how organizations
+          navigate the exploration-exploitation trade-off over decades. Some firms trace stable
+          orbits -- consistently exploitative or consistently exploratory -- while others undergo
+          dramatic strategic pivots, shifting from deep exploitation to broad exploration or vice
+          versa. These trajectories illuminate the path-dependent nature of corporate innovation
+          strategy, where each period&apos;s positioning constrains the feasible moves in the next.
+        </p>
+      </Narrative>
+
+      <ChartContainer
+        id="fig-mech-org-exploration-trajectory"
+        subtitle="Each firm's exploration index plotted against self-citation rate across 5-year windows, with arrows tracing strategic evolution over time."
+        title="Top Firms Trace Distinctive Exploration–Exploitation Paths Over Time"
+        caption="Each point represents one firm in one 5-year window. The x-axis measures the exploration index (cosine distance from the firm's prior CPC centroid), while the y-axis measures the self-citation rate. Arrows connect successive periods for each firm, revealing how exploration strategies evolve. Firms in the upper-left quadrant are exploitative and self-referential; those in the lower-right are exploratory and externally oriented."
+        insight="Firms exhibit highly heterogeneous trajectories: some remain anchored in exploitation with high self-citation rates, while others progressively shift toward broader exploration. The divergence of trajectories suggests that firm-level innovation strategy is shaped by path-dependent organizational capabilities rather than converging toward a common optimum."
+        loading={etL3}
+        badgeProps={{ outcomeWindow: '5y', outcomeThrough: 2020 }}
+        height={500}
+        wide
+      >
+        {trajectoryDatasets.length > 0 ? (
+          <PWTrajectoryScatter
+            datasets={trajectoryDatasets}
+            xLabel="Exploration Index (cosine distance from prior CPC centroid)"
+            yLabel="Self-Citation Rate"
+          />
+        ) : <div />}
+      </ChartContainer>
+
+      <KeyInsight>
+        <p>
+          The trajectory scatter reveals that top patent filers follow markedly different
+          exploration-exploitation paths over time. Rather than converging toward a single
+          optimal balance, firms trace distinctive orbits shaped by their technological
+          histories and organizational capabilities -- underscoring that innovation strategy
+          is path-dependent and that the exploration-exploitation trade-off manifests
+          differently across corporate contexts.
+        </p>
+      </KeyInsight>
+
       {/* ── Closing ── */}
 
       <Narrative>
@@ -521,6 +597,19 @@ export default function MechOrganizationsChapter() {
           The organizational mechanics documented across this chapter -- from the overwhelming exploitation bias and rapid exploration decay to the co-patenting clusters and asymmetric citation dependencies -- paint a nuanced picture of how firms navigate the innovation landscape. While most organizations deepen established domains, the minority that maintain ambidexterity produce blockbuster patents at more than twice the rate of specialized firms, even as within-firm quality concentration continues to rise. These firm-level patterns set the stage for the next chapter, <Link href="/chapters/mech-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Inventor Mechanics</Link>, which shifts from organizational strategies to the individual inventors and collaborative networks that ultimately produce the patents.
         </p>
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "11 of 20 major filers keep exploration below 5%, with a median exploration share of 2.9%, confirming the exploitation bias predicted by organizational theory.",
+          "Balanced firms maintaining ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms.",
+        ]}
+        falsifiable="If ambidexterity causally improves innovation outcomes, then firms that exogenously increase their exploration (e.g., through acquisitions in new domains) should see subsequent blockbuster rate improvements."
+        nextAnalysis={{
+          label: "Inventor Mechanics",
+          description: "Co-invention networks, bridge inventors, and the impact of inter-firm mobility on productivity",
+          href: "/chapters/mech-inventors",
+        }}
+      />
 
       <DataNote>
         Exploration scores combine technology newness, citation newness, and external knowledge
@@ -536,6 +625,8 @@ export default function MechOrganizationsChapter() {
         patents with 2+ distinct organizational assignees. Corporate citation flows aggregate
         all citations between pairs of the top 30 assignees per decade. Technology leadership
         ranks firms by total citations received within each CPC section per time window.
+        Exploration-exploitation trajectories plot the cosine distance from each firm&apos;s prior
+        CPC centroid (exploration index) against the self-citation rate across 5-year windows.
         Assignee data employ disambiguated identities from PatentsView.
       </DataNote>
 

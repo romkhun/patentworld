@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { useChapterData } from '@/hooks/useChapterData';
 import { ChapterHeader } from '@/components/chapter/ChapterHeader';
+import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { Narrative } from '@/components/chapter/Narrative';
 import { StatCallout } from '@/components/chapter/StatCallout';
 import { StatCard } from '@/components/chapter/StatCard';
@@ -21,6 +22,7 @@ import { formatCompact } from '@/lib/formatters';
 import { CHART_COLORS } from '@/lib/colors';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { DataNote } from '@/components/chapter/DataNote';
+import { InsightRecap } from '@/components/chapter/InsightRecap';
 import type { PatentsPerYear, HeroStats, GrantLag } from '@/lib/types';
 
 function pivotByType(data: PatentsPerYear[]) {
@@ -41,7 +43,7 @@ export default function SystemPatentCountChapter() {
 
   const pivotedPatents = useMemo(() => ppy ? pivotByType(ppy) : [], [ppy]);
 
-  const totalPatents = hero ? formatCompact(hero.total_patents) : '9.4M';
+  const totalPatents = hero ? formatCompact(hero.total_patents) : '9.36M';
   const peakYear = hero?.peak_year ?? 2019;
   const peakCount = hero ? formatCompact(hero.peak_year_count) : '393K';
 
@@ -52,6 +54,7 @@ export default function SystemPatentCountChapter() {
         title="Patent Count"
         subtitle="Annual patent volume and grant pendency"
       />
+      <MeasurementSidebar slug="system-patent-count" />
 
       <KeyFindings>
         <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a fivefold increase in annual output over five decades.</li>
@@ -195,6 +198,19 @@ export default function SystemPatentCountChapter() {
       <Narrative>
         Having examined the overall scale of US patent activity and the examination timelines that shape it, the next chapter explores <Link href="/chapters/system-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and complexity</Link> — including claim structures, design versus utility composition, and what these patterns reveal about changing innovation strategies.
       </Narrative>
+
+      <InsightRecap
+        learned={[
+          "The US patent system granted 9.36 million patents between 1976 and 2025, with annual output increasing five-fold from 70,000 to over 370,000.",
+          "Grant pendency peaked at 3.6 years in 2010 before declining to 2.4 years by 2023, reflecting USPTO capacity adjustments.",
+        ]}
+        falsifiable="If the USPTO's capacity constraints drove the pendency peak, then future surges in application volume should reproduce the pattern — pendency should rise again when filings outpace examiner hiring."
+        nextAnalysis={{
+          label: "Patent Quality",
+          description: "Are more patents better patents? Claims, citations, and originality metrics over time",
+          href: "/chapters/system-patent-quality",
+        }}
+      />
 
       <DataNote>
         All data are drawn from PatentsView (patentsview.org), covering granted US patents
