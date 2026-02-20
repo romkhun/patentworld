@@ -143,14 +143,14 @@ export default function GeoInternationalChapter() {
 
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
-        <li>The United States leads with 164,000 patents (cumulative in the 2020s decade, by primary assignee country) and 18.4 average claims, while rapidly growing patent origins such as China exhibit lower average claims, suggesting a quality-quantity tradeoff.</li>
+        <li>The United States leads with 164,000 patents (cumulative in the 2020s decade, by primary assignee country) and 18.4 average claims, while countries with rapidly growing patent volumes, including China, tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions or technology field composition.</li>
         <li>US-domestic patents and international patents differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, but China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 has transformed the competitive landscape. Countries with smaller portfolios occasionally achieve higher average claims, suggesting a quality-oriented approach, while rapidly growing patent origins exhibit lower average claims consistent with early-stage patent system development.
+          Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, but China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 has transformed the competitive landscape. Countries with smaller portfolios occasionally achieve higher average claims, suggesting a quality-oriented approach, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect different patent drafting conventions, technology composition, or strategic filing approaches.
         </p>
       </aside>
 
@@ -336,7 +336,7 @@ export default function GeoInternationalChapter() {
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
         title="The United States Leads with 164,000 Patents (Cumulative 2020s, by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
         caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
-        insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented approach. The lower average claims from rapidly growing patent origins such as China are consistent with research on early-stage patent system development."
+        insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts. The lower average claims from countries with rapidly growing patent volumes may reflect differences in patent drafting conventions, technology composition, or strategic filing approaches."
         loading={qcL}
         height={550}
       >
@@ -350,7 +350,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The cross-country comparison reveals that patent volume and quality do not necessarily align. Countries with smaller portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented filing strategy. The lower average claims from rapidly growing patent origins such as China are consistent with patterns observed in early-stage patent system development, where volume expansion often precedes convergence in quality metrics.
+          The cross-country comparison reveals that patent volume and quality do not necessarily align. Countries with smaller portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented filing strategy. The lower average claims from countries with rapidly growing patent volumes, including China, may reflect differences in patent drafting conventions, technology field composition, or strategic filing approaches, and parallel patterns observed in other countries during periods of rapid patent volume growth.
         </p>
       </KeyInsight>
 
@@ -542,7 +542,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage due to its unique geopolitical status, underscores how institutional and political factors shape international filing behavior.
+          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting its distinctive institutional circumstances, underscores how political and treaty-access factors shape international filing behavior.
         </p>
       </KeyInsight>
 

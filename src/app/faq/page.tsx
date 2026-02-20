@@ -65,7 +65,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Do top inventors produce higher-quality patents?',
-    answer: 'Yes. The top 12% of inventors by lifetime output produce 61% of all patent grants, and their patents receive higher average forward citations (15.0 vs. 13.0 for other inventors) with more claims (15.1 vs. 12.3) and broader scope (2.14 vs. 1.98). The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents spanning 1980-2025.',
+    answer: 'Yes. The top 12% of inventors by lifetime output produce 61% of all patent grants, and their patents receive higher average forward citations (15.0 vs. 13.0 for other inventors) with more claims (15.1 vs. 12.3) and broader scope (2.14 vs. 1.98). Measured by annual output, the top 5% account for 60% of annual grants, up from 26% in 1976. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents spanning 1980-2025.',
   },
   {
     question: 'How does patent quality differ across US states?',

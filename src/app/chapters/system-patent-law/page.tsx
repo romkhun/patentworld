@@ -467,7 +467,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility contributed to the volume growth documented in <Link href="/chapters/system-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data confirm that these legal shifts produce measurable effects within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility contributed to the volume growth documented in <Link href="/chapters/system-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data are consistent with these legal shifts producing observable changes in patent filing patterns within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 
@@ -513,18 +513,18 @@ export default function Chapter4() {
         </p>
         <ul className="list-disc pl-5 space-y-2 mt-2">
           <li>
-            <strong>Bayh-Dole Act (1980):</strong> Precipitated a substantial increase in university patenting.
+            <strong>Bayh-Dole Act (1980):</strong> Coincided with a substantial increase in university patenting, though scholars debate whether the Act catalyzed the trend or formalized an existing one.
             Government-funded patents (Patent Quality) began rising in the 1980s as universities
             established technology transfer offices.
           </li>
           <li>
             <strong>Court of Appeals for the Federal Circuit (1982):</strong> Unified and strengthened patent rights,
-            contributing to the overall upward trend in patent grants through the 1990s and
+            a change widely cited as a factor in the upward trend in patent grants through the 1990s and
             2000s (The Innovation Landscape).
           </li>
           <li>
             <strong>State Street Bank v. Signature Financial Group (1998):</strong> Established the patentability of business
-            methods, precipitating a rapid expansion in software patent filings observable as
+            methods, The subsequent acceleration in software patent filings is consistent with this ruling, observable as
             the acceleration of Section G (Physics) and H (Electricity) patents in the late
             1990s (The Technology Revolution).
           </li>

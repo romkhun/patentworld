@@ -282,7 +282,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-survival"
         title="Only 37-51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
         subtitle="Percentage of inventors remaining active at each career year, stratified by 5-year entry cohort, measuring career persistence"
-        caption="The figure displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial attrition, with 37-43% of inventors not filing a second patent, while those who persist beyond the first few years tend to maintain extended careers."
+        caption="The figure displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial early-career attrition, with only 37-51% of inventors surviving past five career years, while those who persist beyond the first few years tend to maintain extended careers."
         insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
@@ -548,8 +548,8 @@ export default function InvSerialNewChapter() {
         id="fig-quality-exp-self-cite"
         title="Serial Inventors Self-Cite at 4-5x the Rate of New Entrants"
         subtitle="Average self-citation rate per patent by experience group, 1976-2025"
-        caption="The figure compares the average self-citation rate (share of backward citations to the inventor's own prior patents) for serial versus new-entrant inventors."
-        insight="The large self-citation gap is structurally expected -- serial inventors have a larger body of prior work to reference -- but it also suggests they build more cumulatively on their own research trajectories."
+        caption="The figure compares the average self-citation rate (share of backward citations to the same assignee's prior patents) for serial versus new-entrant inventors."
+        insight="The large self-citation gap is structurally expected -- serial inventors are typically associated with assignees that have larger patent portfolios to reference -- but it also suggests they build more cumulatively on their organization's prior research trajectories."
         loading={qbL}
       >
         <PWLineChart
@@ -636,7 +636,7 @@ export default function InvSerialNewChapter() {
       <InsightRecap
         learned={[
           "Annual first-time inventor entries peaked at 140,490 in 2019, but only 37-51% of inventors survive past five career years.",
-          "Productivity rises from 1.4 to 2.1 patents per year as inventors gain experience, suggesting learning-by-doing effects.",
+          "Productivity rises from 1.4 to 2.1 patents per year as inventors gain experience, consistent with learning-by-doing effects, though survivor bias may also contribute.",
         ]}
         falsifiable="If rising productivity reflects learning rather than survivor bias, then inventors who remain active should show productivity gains even within the same firm and technology domain."
         nextAnalysis={{

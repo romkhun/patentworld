@@ -586,7 +586,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-friction-map"
         subtitle="Median time from application filing to patent grant by CPC section and 5-year period, measuring technology-specific examination friction."
         title="Since the Mid-2000s, Chemistry (C) and Textiles & Paper (D) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,278 Days in the 2010-2014 Period"
-        caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
+        caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns are consistent with institutional constraints that shape innovation timelines, with technology-specific backlogs associated with the USPTO's resource allocation across its technology centers."
       >
@@ -608,7 +608,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives contributed to reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) patents have exhibited the longest examination durations, consistent with the complexity of chemical and biomedical examination.
+          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives contributed to reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, consistent with the complexity of chemical examination and the specialized nature of textile and paper technology review.
         </p>
       </KeyInsight>
 
@@ -849,7 +849,7 @@ export default function SystemPatentFieldsChapter() {
         title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Reflecting Broad Increases Across Sectors"
         caption="The figure displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
-        insight="Electrical engineering patents tend to exhibit higher citation impact per patent than Chemistry patents, a pattern consistent with rapid innovation cycles and dense citation networks in computing and electronics."
+        insight="Electrical engineering and instruments patents tend to have the most claims in recent decades, reflecting the detailed and layered claim structures characteristic of software and electronics inventions."
       >
         <PWLineChart
           data={sectorPivot}
@@ -1122,7 +1122,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          The WIPO field-level growth data confirm that the digital transformation is concentrated in a small number of technology fields. IT methods for management, which barely existed in the early period with only 1,347 patents, grew by 5,675% to nearly 78,000 patents in the later period. Computer technology and digital communication each exceeded 1,600% growth. By contrast, traditional fields such as macromolecular chemistry and textile machines grew by under 40%, consistent with the technology diversity decline and S-curve maturation patterns documented in earlier sections.
+          The WIPO field-level growth data indicate that the digital transformation is concentrated in a small number of technology fields. IT methods for management, which barely existed in the early period with only 1,347 patents, grew by 5,675% to nearly 78,000 patents in the later period. Computer technology and digital communication each exceeded 1,600% growth. By contrast, traditional fields such as macromolecular chemistry and textile machines grew by under 40%, consistent with the technology diversity decline and S-curve maturation patterns documented in earlier sections.
         </p>
       </KeyInsight>
 

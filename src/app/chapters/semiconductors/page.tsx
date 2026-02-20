@@ -800,7 +800,7 @@ export default function Chapter21() {
       </ChartContainer>
       <KeyInsight>
         <p>
-          The cross-domain diffusion data confirm the foundational nature of semiconductor
+          The cross-domain diffusion data are consistent with the foundational nature of semiconductor
           technology. Semiconductor patents exhibit substantial co-classification with
           Physics (G), Chemistry (C), and Performing Operations and Transporting (B),
           reflecting the tight integration of chip technology with measurement, optics,

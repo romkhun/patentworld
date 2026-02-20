@@ -513,7 +513,7 @@ export default function SystemPatentQualityChapter() {
       <ChartContainer
         id="fig-patent-quality-originality-generality"
         subtitle="Average originality (diversity of backward citation fields) and generality (diversity of forward citation fields), measured as 1 minus the HHI of CPC sections."
-        title="Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
+        title="System-Wide Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
         caption="The figure displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
         loading={ogL}
         insight="Rising originality scores indicate that contemporary inventions increasingly synthesize knowledge from diverse technology fields, a pattern consistent with growing interdisciplinary research. The system-wide average of 0.25 reflects the inclusion of early decades when originality was near zero; within individual CPC sections, originality has converged to 0.45-0.55 by the 2020s, as documented in the Patent Fields chapter."

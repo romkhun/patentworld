@@ -562,7 +562,7 @@ export default function MechInventorsChapter() {
         subtitle="Mean 5-year forward citations by year relative to firm move (t=0), with 95% confidence interval, for inventors who moved once between top-50 assignees."
         title="Citation Impact Dips at the Time of Move, Then Recovers Within 2 Years"
         caption="Event-study design tracking inventor citation impact from t-5 to t+5 around a firm move. The shaded band represents the 95% confidence interval. The dip at t=0 reflects the disruption of changing organizational context; the recovery by t+2 suggests that mobile inventors adapt quickly and may benefit from access to new knowledge and resources."
-        insight="The transient dip in citation impact around the move year, followed by full recovery within two years, suggests that inter-firm mobility entails short-term costs but does not permanently impair inventor productivity -- and may ultimately enhance it through exposure to new organizational knowledge."
+        insight="The transient dip in citation impact around the move year, followed by full recovery within two years, suggests that inter-firm mobility is associated with short-term productivity dips followed by recovery, and post-move citation outcomes are on average comparable to or higher than pre-move levels through exposure to new organizational knowledge."
         loading={meL}
         badgeProps={{ outcomeWindow: '5y' }}
         height={400}
@@ -633,10 +633,10 @@ export default function MechInventorsChapter() {
       <KeyInsight>
         <p>
           Stratifying by move direction reveals that organizational context is a first-order
-          determinant of inventor productivity. Moves to higher-quality firms produce the largest
+          determinant of inventor productivity. Moves to higher-quality firms are associated with the largest
           post-move citation gains, while moves to lower-quality firms show a more muted recovery.
           This asymmetry suggests that access to better resources, stronger peer networks, and
-          more productive organizational routines amplifies individual inventive output -- a finding
+          more productive organizational routines may enhance individual inventive output -- a finding
           with implications for both firm talent strategy and innovation policy.
         </p>
       </KeyInsight>
@@ -677,8 +677,8 @@ export default function MechInventorsChapter() {
           id="fig-mech-inventors-top-mobility-flows"
           subtitle="Top 20 country-to-country inventor migration corridors by total move count."
           title="US-China Inventor Flows Dominate International Mobility with 100,934 Bidirectional Moves"
-          caption="The figure displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US. US-South Korea (22,246 bidirectional), India-US (20,568), and US-Japan (18,644) follow."
-          insight="The dominance of the US-China corridor in inventor mobility flows reflects the deep integration of US and Chinese innovation ecosystems, with nearly balanced bidirectional flows suggesting reciprocal talent circulation rather than one-way brain drain."
+          caption="The figure displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US, totaling 100,934 bidirectional moves. Other major corridors include US-South Korea, India-US, and US-Japan."
+          insight="The dominance of the US-China corridor in inventor mobility flows reflects the deep integration of US and Chinese innovation ecosystems, with nearly balanced bidirectional assignee changes indicating substantial cross-border career mobility. Note that assignee-country changes may reflect organizational reassignment rather than physical relocation."
           loading={mfL}
           height={700}
         >
@@ -693,7 +693,7 @@ export default function MechInventorsChapter() {
 
       <KeyInsight>
         <p>
-          The bilateral inventor flow data reveal that US-China mobility is nearly balanced, with 52,143 moves from US to China and 48,791 from China to US. This approximate symmetry suggests reciprocal talent circulation rather than unidirectional brain drain, and highlights the deep integration of these two innovation ecosystems. The Taiwan-China corridor (16,917 bidirectional moves) further underscores the interconnected nature of East Asian innovation networks.
+          The bilateral inventor flow data reveal that US-China mobility is nearly balanced, with 52,143 moves from US to China and 48,791 from China to US. This approximate symmetry indicates substantial cross-border career mobility rather than a strongly asymmetric talent flow pattern, and highlights the deep integration of these two innovation ecosystems. The Taiwan-China corridor (16,917 bidirectional moves) further underscores the interconnected nature of East Asian innovation networks.
         </p>
       </KeyInsight>
 

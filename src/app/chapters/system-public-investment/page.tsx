@@ -89,7 +89,7 @@ export default function SystemPublicInvestmentChapter() {
 
       <Narrative>
         <p>
-          A key dimension of the patent landscape concerns the role of government funding in generating patented inventions. While earlier chapters characterized the overall volume, quality, and technological composition of US patents, the source of funding for the underlying research reveals a distinct and consequential pattern. Public investment in research and development has long served as a catalyst for innovation, and the patent system provides a window into the scale and distribution of that investment.
+          A key dimension of the patent landscape concerns the role of government funding in generating patented inventions. While earlier chapters characterized the overall volume, quality, and technological composition of US patents, the source of funding for the underlying research reveals a distinct and consequential pattern. Public investment in research and development is widely regarded as a contributor to innovation ecosystems, and the patent system provides a window into the scale and distribution of that investment.
         </p>
       </Narrative>
 
@@ -142,8 +142,8 @@ export default function SystemPublicInvestmentChapter() {
         <p>
           Federal agencies — particularly the Department of Health and Human Services/National Institutes of Health, the Department
           of Defense, and the Department of Energy — fund research that results
-          in thousands of patents each year. These government-interest patents frequently
-          represent foundational technologies that enable subsequent waves of
+          in thousands of patents each year. These government-interest patents
+          are often associated with foundational technologies that precede subsequent
           commercial innovation.
         </p>
       </Narrative>

@@ -201,7 +201,7 @@ export default function InvGenderChapter() {
         title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025"
         subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976-2025"
         caption="The figure tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025, an increase of 5.3-fold over the study period."
-        insight="The persistent gender gap in patenting reflects broader systemic barriers in STEM fields, spanning educational pipelines, workplace culture, and institutional support structures."
+        insight="The persistent gender gap in patenting is consistent with broader structural differences in STEM participation, including educational pipelines, workplace composition, and institutional factors."
         loading={gnL}
       >
         <PWLineChart
@@ -229,7 +229,7 @@ export default function InvGenderChapter() {
       {genderBySector.length > 0 && (
         <ChartContainer
           id="fig-gender-by-sector"
-          title="Chemistry Leads Female Inventor Representation at 14.6%; Mechanical Engineering Lowest at 5.4%"
+          title="Chemistry Leads Cumulative Female Inventor Representation at 14.6%; Mechanical Engineering Lowest at 5.4%"
           subtitle="Female inventor share by WIPO technology sector, showing cross-sector variation in gender representation"
           caption="The figure displays the percentage of inventor instances attributed to female inventors across WIPO technology sectors. Chemistry and pharmaceuticals exhibit the highest female representation, while mechanical engineering and other fields demonstrate the lowest shares."
           insight="The cross-sector variation in gender diversity closely mirrors the composition of STEM degree programs, indicating that educational pipeline differences are strongly associated with the gender gap in patenting."
@@ -279,7 +279,7 @@ export default function InvGenderChapter() {
 
       <CompetingExplanations
         finding="Why is the gender gap in patenting so persistent?"
-        explanations={['Pipeline effects: fewer women enter STEM fields, particularly engineering and computer science.', 'Institutional barriers: patent-intensive firms have historically underrepresented women in R&D roles.', 'Field composition: women are concentrated in lower-citation fields (chemistry, biotech) relative to men (electronics, computing).', 'Career interruptions and risk aversion may differentially affect patent output for women.']}
+        explanations={['Pipeline effects: fewer women enter STEM fields, particularly engineering and computer science.', 'Institutional barriers: patent-intensive firms have historically underrepresented women in R&D roles.', 'Field composition: women are concentrated in lower-citation fields (chemistry, biotech) relative to men (electronics, computing).', 'Differences in access to resources, funding, and institutional support may differentially affect patent output across gender lines.']}
       />
 
       {/* ── Section B: The Gender Innovation Gap ── */}
@@ -346,7 +346,7 @@ export default function InvGenderChapter() {
           Female inventor participation has increased across all technology areas, though
           significant disparities persist. Chemistry &amp; Metallurgy and Human Necessities exhibit the
           highest female inventor shares, while Electricity and Mechanical Engineering demonstrate
-          the lowest representation. All-male teams produce the highest average citation impact (14.2 citations), followed by mixed-gender teams (12.6) and all-female teams (9.5), indicating that team composition correlates with citation outcomes in complex ways.
+          the lowest representation. Average citation impact varies across team gender compositions -- 14.2 for all-male teams, 12.6 for mixed-gender, and 9.5 for all-female -- though these raw differences likely reflect underlying variation in field composition, team size, and institutional context rather than a direct effect of gender composition.
         </p>
       </KeyInsight>
 
@@ -519,9 +519,9 @@ export default function InvGenderChapter() {
       {/* C.viii — Inventor Productivity */}
       <ChartContainer
         id="fig-gender-productivity"
-        title="Male Inventors Are Consistently More Productive Than Female Inventors"
+        title="Average Patent Output per Inventor Is Higher for Male Than Female Inventors"
         subtitle="Average patents per inventor by gender, 1976-2025"
-        caption="Average number of patents per inventor by gender, 1976-2025. Productivity is measured as career patent count divided by active years. Data: PatentsView."
+        caption="Average number of patents per inventor per year by gender, 1976-2025. Data: PatentsView."
         loading={pgL}
         height={400}
       >
@@ -553,7 +553,7 @@ export default function InvGenderChapter() {
         title="Foreign-Origin Patents Show 16.5% Female Inventor Share versus 13.8% for Domestic in 2025"
         subtitle="Female inventor share by filing route (domestic versus foreign-origin patents), 1976-2025"
         caption="The figure tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
-        insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- suggests that non-US innovation systems have made faster progress on gender diversity in recent decades, particularly in fields like pharmaceuticals and chemistry where foreign applicants are well-represented."
+        insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- may reflect field-composition differences in the types of patents filed through foreign versus domestic routes, though it is also consistent with differing rates of change in female STEM participation across countries."
         loading={gbrL}
       >
         {genderByRoutePivot.length > 0 && (

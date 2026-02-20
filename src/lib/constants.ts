@@ -17,14 +17,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-count',
     title: 'Patent Count',
     subtitle: 'Annual patent volume and grant pendency',
-    description: 'Annual US patent grants increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Grant pendency peaked at 3.8 years in 2010 before moderating.',
+    description: 'Annual US patent grants increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Average grant pendency peaked at 3.8 years in 2010 before moderating.',
   },
   {
     number: 2,
     slug: 'system-patent-quality',
     title: 'Patent Quality',
     subtitle: 'Claims, scope, citations, originality, and knowledge flow indicators',
-    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
+    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
   },
   {
     number: 3,
@@ -124,7 +124,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-gender',
     title: 'Gender and Patenting',
     subtitle: 'Gender composition and the gender innovation gap',
-    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025. All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads female representation at 14.6%.',
+    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025. All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025).',
   },
   {
     number: 17,

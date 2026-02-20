@@ -167,7 +167,7 @@ export default function InvTopInventorsChapter() {
         title="The Top 5% of Inventors Grew from 26% to 60% of Annual Patent Output, 1976-2025"
         subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
         caption="The figure tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
-        insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly driven by professional, repeat inventors rather than occasional contributors."
+        insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly concentrated among professional, repeat inventors rather than occasional contributors."
         loading={ssL}
       >
         {superstar && (
@@ -268,7 +268,7 @@ export default function InvTopInventorsChapter() {
         id="fig-inventors-citation-impact"
         title="Citation Impact Ranges from Approximately 10 to 965 Average Citations Among the 100 Highest-Citation Inventors"
         subtitle="Average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, based on patents granted through 2020"
-        caption="The figure presents the average and median forward citations per patent for the top 100 most prolific inventors, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 900."
+        caption="The figure presents the average and median forward citations per patent for the top 100 highest-citation inventors among prolific filers, limited to patents granted through 2020. The data reveal substantial variation in citation impact, with some high-volume inventors averaging fewer than 10 citations per patent while others exceed 900."
         insight="Prolificacy and citation impact constitute distinct dimensions of inventor performance. Some high-volume inventors generate modest per-patent citations, while others achieve disproportionate influence, suggesting that patent quantity and quality are only weakly correlated at the individual level."
         loading={siL}
         height={1800}

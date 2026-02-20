@@ -418,7 +418,7 @@ export default function InvTeamSizeChapter() {
         id="fig-team-productivity"
         title="Mid-Size Teams (4-6) Show the Highest Per-Inventor Patent Productivity"
         subtitle="Average patents per inventor by team size category, 1976-2025"
-        caption="Average number of patents per inventor by team size category, 1976-2024. Productivity is measured as career patent count divided by active years. Data: PatentsView."
+        caption="Average number of patents per inventor per year by team size category, 1976-2024. Data: PatentsView."
         loading={ptL}
         height={400}
       >

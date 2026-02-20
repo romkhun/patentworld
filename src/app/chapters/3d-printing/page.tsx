@@ -609,7 +609,7 @@ export default function Chapter11() {
         <p>
           AM patents exhibit distinctive quality characteristics. Backward citations peaked around 2013 and have since declined,
           while technology scope has shown a long-term increase. The expanding technology
-          scope -- measured by the number of distinct CPC subclasses per patent -- confirms
+          scope -- measured by the number of distinct CPC subclasses per patent -- indicates
           that AM inventions increasingly bridge multiple technology domains, consistent with
           the systems-level complexity of modern additive manufacturing platforms.
         </p>
@@ -724,7 +724,7 @@ export default function Chapter11() {
           guides, dental prosthetics, and bioprinting. Co-occurrence with Performing
           Operations and Transporting (Section B) captures AM&apos;s integration with
           traditional manufacturing and aerospace applications. The broad upward trend
-          across multiple CPC sections confirms that additive manufacturing is expanding
+          across multiple CPC sections indicates that additive manufacturing is expanding
           well beyond its origins as a standalone prototyping technique to become an
           embedded capability within diverse industrial workflows.
         </p>

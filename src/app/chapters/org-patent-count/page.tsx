@@ -118,7 +118,7 @@ export default function OrgPatentCountChapter() {
 
       <KeyFindings>
         <li>IBM leads with 161,888 cumulative utility patent grants, but Samsung trails by fewer than 4,000 patents and has surpassed IBM in annual output since 2007.</li>
-        <li>Samsung (13,094), Nike (9,189), and LG (6,720) lead design patent filings, revealing how consumer electronics and fashion firms leverage ornamental innovation as a competitive tool.</li>
+        <li>Samsung (13,094), Nike (9,189), and LG (6,720) lead design patent filings, revealing how consumer electronics and consumer brands leverage ornamental innovation as a competitive tool.</li>
         <li>The top 100 organizations consistently hold 32-39% of all corporate patents, a concentration ratio that has remained stable across five decades despite the entry of new organizations.</li>
         <li>Samsung peaked at 9,716 annual grants in 2024, overtaking IBM which peaked at 9,257 in 2019, illustrating divergent corporate patent strategies.</li>
         <li>Only 9 of 50 top patent filers survived all five decades in the top rankings, an 18% cumulative survival rate that underscores the extraordinary volatility of innovation leadership.</li>
@@ -201,15 +201,15 @@ export default function OrgPatentCountChapter() {
           become an increasingly important element of corporate intellectual property strategy.
           The organizations that lead in design patent filings reveal how firms leverage ornamental
           and aesthetic innovation as a competitive tool, particularly in consumer electronics,
-          automotive, and fashion industries where product appearance is a key differentiator.
+          consumer brands, and fashion industries where product appearance is a key differentiator.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-org-patent-count-design-top-filers"
         subtitle="Organizations ranked by total design patents granted, showing which firms lead in design-driven intellectual property."
-        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Consumer Brands"
-        caption="The figure displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and consumer brands account for the majority of top design patent filers."
+        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics Firms and Consumer Brands"
+        caption="The figure displays the organizations with the most design patents granted across all years. Consumer electronics firms and consumer brands account for the majority of top design patent filers."
         loading={deL}
         height={500}
       >
@@ -398,11 +398,11 @@ export default function OrgPatentCountChapter() {
           The Gini coefficients for blockbuster patent concentration have decreased steadily across
           decades -- from 0.161 in 1976-1989 to -0.069 in 2010-2020 -- indicating that high-impact
           innovation has become more evenly distributed across organizations over time. As more
-          firms have entered the patent system, the ability to produce breakthrough inventions has
-          spread beyond the traditional elite, narrowing the gap between large and small patent
+          firms have entered the patent system, the distribution of blockbuster patents has
+          become more even across organizations, narrowing the gap between large and small patent
           holders. This convergence between the extensive and intensive margins of innovation
-          suggests that the patent system has become more competitive in generating high-impact
-          inventions.
+          narrowing the gap between large and small patent holders in the share of high-impact
+          inventions they produce.
         </p>
       </KeyInsight>
 
@@ -427,7 +427,7 @@ export default function OrgPatentCountChapter() {
         title="Huawei Leads Continuation Filing at 80.9% — More Than 4x the System Average"
         subtitle="Top 25 firms ranked by continuation share (percentage of patents that are continuations or continuations-in-part)"
         caption="Firms ranked by the share of their patent portfolio consisting of continuation or continuation-in-part filings. Huawei leads at 80.9%, followed by AT&T (52.4%) and Semiconductor Energy Laboratory (50.7%). The wide variation reflects fundamentally different prosecution strategies across firms and industries."
-        insight="The wide variation in continuation share across firms — from 80.9% (Huawei) to under 2% (Motorola) — suggests that continuation filing intensity is driven by firm-level prosecution strategy rather than industry norms alone."
+        insight="The wide variation in continuation share across firms — from 80.9% (Huawei) to under 2% (Motorola) — suggests that the wide variation in continuation filing intensity is consistent with firm-level prosecution strategy differences, though technology composition and regulatory factors may also contribute."
         loading={csL}
         height={800}
       >

@@ -195,7 +195,7 @@ export default function OrgPatentQualityChapter() {
         title="Amazon's 6.7% Blockbuster Rate Leads the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
         subtitle="Blockbuster rate versus dud rate for the top 50 assignees (2010-2019), with bubble size proportional to patent count and color by primary CPC section"
         caption="Each bubble represents one of the top 50 assignees in the decade 2010-2019. X-axis: share of patents in the top 1% of their year x CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
-        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms, predominantly Japanese electronics companies, cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
+        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms -- predominantly those with large electronics and component portfolios -- cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}
         height={500}
         wide
@@ -479,7 +479,7 @@ export default function OrgPatentQualityChapter() {
         title="Grant Lag Doubled From ~600 Days to Over 1,200 Days Before Declining After USPTO Reforms"
         subtitle="Average days from filing to grant per year for the top 5 assignees by total patent count"
         caption="Average grant lag (days from application filing to patent grant) for the five most prolific assignees, plotted annually. The rise and subsequent decline reflect USPTO examination backlog dynamics and procedural reforms."
-        insight="The parallel trajectories across firms indicate that grant lag is driven primarily by USPTO capacity and policy rather than firm-specific prosecution strategies, though Japanese firms historically faced slightly longer waits."
+        insight="The parallel trajectories across firms indicate that grant lag is driven primarily by USPTO capacity and policy rather than firm-specific prosecution strategies, though firms filing in certain technology-dense classifications historically experienced slightly longer prosecution times."
         loading={qbcL}
         height={400}
         wide

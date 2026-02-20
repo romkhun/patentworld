@@ -131,7 +131,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'autonomous-vehicles': 'Autonomous vehicle patents cover driving systems, navigation, and scene understanding. Explore the AV patent race among automotive and technology firms.',
   'space-technology': 'Space technology patents span spacecraft design, propulsion, and satellite communications. Explore the patent landscape of the new commercial space era.',
   '3d-printing': 'Top-four concentration in 3D printing patents fell from 36% to 11% by 2024 as FDM patent expirations opened the field. Explore polymer and metal AM patent trends.',
-  'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Filings peaked in 2022, the only advanced domain to reverse course.',
+  'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Grants peaked in 2022, the only advanced domain to reverse course.',
 };
 
 export function chapterMetadata(slug: string): Metadata {
