@@ -292,7 +292,7 @@ export default function SystemPublicInvestmentChapter() {
       <ChartContainer
         id="fig-gov-impact-comparison"
         title="Government-Funded Patents Slightly Outperform on Normalized Impact"
-        subtitle="Cohort-normalized citations and top-percentile shares: government-funded vs. non-funded patents, 1980–2020"
+        subtitle="Cohort-normalized citations and top-percentile shares: government-funded versus non-funded patents, 1980–2020"
         loading={giL}
       >
         <PWBarChart

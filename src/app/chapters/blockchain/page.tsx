@@ -756,9 +756,9 @@ export default function Chapter16() {
 
       <ChartContainer
         id="fig-blockchain-team-comparison"
-        subtitle="Average inventors per patent for blockchain vs. non-blockchain utility patents by year, showing relative team complexity."
+        subtitle="Average inventors per patent for blockchain versus non-blockchain utility patents by year, showing relative team complexity."
         title="Blockchain Patent Teams Are Generally Smaller Than Non-Blockchain Averages"
-        caption="Average number of inventors per patent for blockchain-related vs. non-blockchain utility patents. Blockchain teams are generally smaller than non-blockchain patent teams, distinguishing blockchain from domains like AI where specialized patents tend to involve larger teams."
+        caption="Average number of inventors per patent for blockchain-related versus non-blockchain utility patents. Blockchain teams are generally smaller than non-blockchain patent teams, distinguishing blockchain from domains like AI where specialized patents tend to involve larger teams."
         insight="The persistently smaller team sizes for blockchain patents may reflect the domain's software-centric nature and its roots in cryptography and distributed systems, which require fewer collaborators than hardware-intensive or laboratory-based fields."
         loading={tcL}
       >
@@ -888,7 +888,7 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-blockchain-filing-vs-grant"
         title="Blockchain Filings Peaked at 1,017 in 2019 Then Declined, While Grants Rose to 991 in 2022 — a 3-Year Pipeline Delay"
-        subtitle="Annual patent filings vs. grants for blockchain, showing the boom-bust filing cycle and lagged grant output."
+        subtitle="Annual patent filings versus grants for blockchain, showing the boom-bust filing cycle and lagged grant output."
         caption="Blockchain's filing-vs-grant divergence is among the most pronounced of all ACT 6 domains. Filings peaked in 2019 and declined sharply, but grants continued rising through 2022 as the examination pipeline processed boom-era applications. This pattern visually captures the hype cycle in blockchain patenting."
         loading={fgL}
       >

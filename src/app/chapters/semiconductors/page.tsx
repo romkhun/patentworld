@@ -358,7 +358,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-entrant-incumbent"
         title="Semiconductor Patenting Shows Sustained Incumbent Dominance With Limited New Entry"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first semiconductor patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -378,7 +378,7 @@ export default function Chapter21() {
 
       <ChartContainer
         id="fig-semi-patents-subfields"
-        subtitle="Patent counts by semiconductor subfield (manufacturing processes, semiconductor devices, organic semiconductors, packaging and interconnects, etc.) over time, based on specific CPC group codes within H01L."
+        subtitle="Patent counts by semiconductor subfield (manufacturing processes, semiconductor devices, organic semiconductors, and packaging) over time, based on specific CPC group codes within H01L."
         title="Manufacturing Processes and Semiconductor Devices Dominate Semiconductor Patenting, With Organic Semiconductors and Packaging Emerging as Growing Subfields"
         caption="Patent counts by semiconductor subfield over time, based on CPC classifications within H01L. Manufacturing processes and semiconductor devices have historically dominated, while organic semiconductors and packaging and interconnects have grown substantially, reflecting the industry's expansion into new device architectures and advanced packaging techniques."
         insight="The subfield composition reveals the dual nature of semiconductor innovation: sustained investment in core manufacturing processes and semiconductor devices alongside the growth of application-driven subfields such as organic semiconductors and packaging and interconnects."
@@ -642,9 +642,9 @@ export default function Chapter21() {
 
       <ChartContainer
         id="fig-semi-patents-team-comparison"
-        subtitle="Average inventors per patent for semiconductor vs. non-semiconductor utility patents by year, showing the complexity gap between the two categories."
+        subtitle="Average inventors per patent for semiconductor versus non-semiconductor utility patents by year, showing the complexity gap between the two categories."
         title="Semiconductor Patents Consistently Involve Larger Teams Than Non-Semiconductor Patents, Reflecting the Collaborative Nature of Fab R&D"
-        caption="Average number of inventors per patent for semiconductor-related vs. non-semiconductor utility patents, 1976-2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
+        caption="Average number of inventors per patent for semiconductor-related versus non-semiconductor utility patents, 1976-2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
         insight="Semiconductor patents involve larger inventor teams than non-semiconductor patents, consistent with the multidisciplinary nature of fabrication R&D, which requires expertise in materials science, physics, chemistry, and electrical engineering."
         loading={stcL}
       >
@@ -879,7 +879,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-filing-vs-grant"
         title="Semiconductor Filings Peaked at 24,463 in 2019 While Grants Reached 22,511 in 2020 — the Shortest Lag Among Large Domains"
-        subtitle="Annual patent filings vs. grants for semiconductors, showing the mature examination pipeline."
+        subtitle="Annual patent filings versus grants for semiconductors, showing the mature examination pipeline."
         caption="Semiconductors exhibit the tightest filing-to-grant alignment among large ACT 6 domains, with filing and grant peaks separated by only one year. The alignment reflects the mature and well-established examination processes for semiconductor patents at the USPTO, a domain with decades of prior art and classification history."
         loading={fgL}
       >

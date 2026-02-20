@@ -776,9 +776,9 @@ export default function Chapter15() {
 
       <ChartContainer
         id="fig-biotech-team-comparison"
-        subtitle="Average inventors per patent for biotech vs. non-biotech utility patents by year, showing the widening collaboration gap."
+        subtitle="Average inventors per patent for biotech versus non-biotech utility patents by year, showing the widening collaboration gap."
         title="Biotech Patents Consistently Involve Larger Teams Than Non-Biotech Patents, Reflecting the Multidisciplinary Demands of Life Sciences"
-        caption="Average number of inventors per patent for biotechnology-related vs. non-biotech utility patents, 1976-2025. The data indicate that biotech patents have consistently involved larger teams, and the gap has widened as the complexity of genetic engineering, genomics, and clinical development has increased."
+        caption="Average number of inventors per patent for biotechnology-related versus non-biotech utility patents, 1976-2025. The data indicate that biotech patents have consistently involved larger teams, and the gap has widened as the complexity of genetic engineering, genomics, and clinical development has increased."
         insight="Biotech patents consistently involve larger teams than non-biotech patents, and the gap has widened over time. This pattern reflects the inherent multidisciplinarity of life sciences innovation, which requires collaboration across molecular biology, chemistry, clinical medicine, and increasingly computational science."
         loading={tcL}
       >
@@ -931,7 +931,7 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-filing-vs-grant"
         title="Biotech Filings Peaked at 4,763 in 2018 While Grants Reached 4,360 in 2020 — Reflecting Lengthy Examination Times"
-        subtitle="Annual patent filings vs. grants for biotechnology, showing the filing-to-grant pipeline."
+        subtitle="Annual patent filings versus grants for biotechnology, showing the filing-to-grant pipeline."
         caption="Biotechnology patents exhibit a moderate filing-to-grant lag. Filings peaked in 2018 and have since declined, while grants peaked in 2020. The relatively stable grant output despite declining filings reflects the deep pipeline of biotech applications undergoing examination."
         loading={fgL}
       >

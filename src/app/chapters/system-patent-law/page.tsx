@@ -599,7 +599,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-alice-event-study"
         title="Alice Corp. Did Not Halt Software Patent Growth"
-        subtitle="Patent count and mean claims indexed to 2013 = 100: software patents vs. control group, 2008–2020"
+        subtitle="Patent count and mean claims indexed to 2013 = 100: software patents versus control group, 2008–2020"
         loading={alL}
       >
         <PWLineChart
@@ -630,7 +630,7 @@ export default function Chapter4() {
 
       <ChartContainer
         id="fig-patent-law-alice-indexed"
-        title="Alice-Affected Art Groups Continued Growing Post-2014, Reaching 129.2 by 2024 vs. 102.7 for Controls"
+        title="Alice-Affected Art Groups Continued Growing Post-2014, Reaching 129.2 by 2024 versus 102.7 for Controls"
         subtitle="Patent grants indexed to 2013 = 100 for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
         caption="Patent grant counts indexed to 2013 = 100 for USPTO art groups most affected by Alice Corp. v. CLS Bank (treatment) and unaffected art groups (control). The vertical reference line marks the 2014 Alice decision. Despite the eligibility restriction, treatment groups continued to grow, suggesting that the decision moderated but did not reverse the trend."
         insight="The Alice decision did not produce a sharp decline in patent grants for affected art groups. Instead, treatment group grants continued to outpace controls, reaching 129.2 (indexed) by 2024 compared to 102.7 for controls, suggesting that applicants adapted their claims to survive Section 101 scrutiny."
@@ -652,7 +652,7 @@ export default function Chapter4() {
 
       <ChartContainer
         id="fig-patent-law-alice-pendency"
-        title="Pendency Declined Faster for Alice-Affected Art Groups, Falling to 978 Median Days by 2023 vs. 1,114 for Controls"
+        title="Pendency Declined Faster for Alice-Affected Art Groups, Falling to 978 Median Days by 2023 versus 1,114 for Controls"
         subtitle="Median examination pendency in days for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
         caption="Median pendency (days from filing to grant) for Alice-affected and control art groups. Both groups experienced declining pendency over the period, but the treatment group declined more steeply, potentially reflecting faster resolution of Section 101 issues during prosecution."
         insight="The faster pendency decline in Alice-affected art groups suggests that the Alice framework, while initially disruptive, may have streamlined examination by providing clearer grounds for eligibility determinations."
@@ -817,7 +817,7 @@ export default function Chapter4() {
         published studies in leading economics and management journals including the
         American Economic Review, Quarterly Journal of Economics, Journal of Political
         Economy, Review of Economic Studies, Management Science, Strategic Management
-        Journal, and Academy of Management Journal. Applications vs. grants data uses
+        Journal, and Academy of Management Journal. Applications versus grants data uses
         PatentsView, which only includes patents that were eventually granted -- the
         &quot;applications&quot; count therefore represents successful filings rather than total
         submissions to the USPTO.

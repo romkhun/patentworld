@@ -70,7 +70,7 @@ function pivotVelocity(data: InnovationVelocity[]) {
 export default function SystemPatentFieldsChapter() {
   /* ── Data hooks ── */
 
-  // Section A: Design vs. Utility
+  // Section A: Design versus Utility
   const { data: designData, loading: deL } = useChapterData<{ trends: DesignPatentTrend[] }>('company/design_patents.json');
 
   // Section B.i: CPC section composition (area chart)
@@ -338,7 +338,7 @@ export default function SystemPatentFieldsChapter() {
           SECTION A: DESIGN VS. UTILITY PATENTS
           ═══════════════════════════════════════════════════════════════════════ */}
 
-      <SectionDivider label="A — Design vs. Utility Patents" />
+      <SectionDivider label="A — Design versus Utility Patents" />
 
       <Narrative>
         <p>
@@ -685,7 +685,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-citation-lag-by-section"
         subtitle="Median citation lag in years by CPC technology section and decade, revealing technology-specific differences in knowledge accumulation speed."
-        title="Physics and Electricity Show 11-Year Median Lag in the 2020s vs. 17 Years for Chemistry"
+        title="Physics and Electricity Show 11-Year Median Lag in the 2020s versus 17 Years for Chemistry"
         caption="Median citation lag in years by CPC section and decade. Physics (G) and Electricity (H), which encompass computing and electronics, demonstrate consistently shorter lags than Chemistry (C) and Human Necessities (A), reflecting faster innovation cycles in digital technologies."
         loading={clsL}
         insight="The increasing density of the citation network indicates that modern inventions build on a broader base of prior knowledge, which is consistent with an accelerating pace of cumulative innovation."

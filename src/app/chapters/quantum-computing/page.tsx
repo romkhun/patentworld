@@ -273,7 +273,7 @@ export default function Chapter20() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures the transition: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a tiny fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures the transition: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a small fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
         </p>
       </aside>
 
@@ -354,7 +354,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-entrant-incumbent"
         title="Quantum Computing Patenting Is Increasingly Driven by New Entrants as the Field Matures"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first quantum computing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -374,7 +374,7 @@ export default function Chapter20() {
 
       <ChartContainer
         id="fig-quantum-patents-subfields"
-        subtitle="Patent counts by quantum computing subfield (algorithms, physical realizations, error correction, etc.) over time, based on specific CPC group codes."
+        subtitle="Patent counts by quantum computing subfield (algorithms, physical realizations, error correction, and related subfields) over time, based on specific CPC group codes."
         title="Physical Realizations Leads in Volume While All Quantum Subfields Have Grown Rapidly"
         caption="Patent counts by quantum computing subfield over time. The data reveal a shift from theoretical algorithm patents toward physical realizations and error correction, reflecting the field's maturation from theory to engineering."
         insight="The shift toward physical realizations and error correction patents coincides with the field's transition from algorithmic theory to practical hardware engineering in the 2010s."
@@ -651,9 +651,9 @@ export default function Chapter20() {
 
       <ChartContainer
         id="fig-quantum-patents-team-comparison"
-        subtitle="Average inventors per patent for quantum vs. non-quantum utility patents by year, showing the team size gap between the two categories."
+        subtitle="Average inventors per patent for quantum versus non-quantum utility patents by year, showing the team size gap between the two categories."
         title="Quantum Patents Generally Involve Larger Teams Than Non-Quantum Patents, Though the Gap Has Converged in Recent Years"
-        caption="Average number of inventors per patent for quantum computing vs. non-quantum utility patents. The data indicate that quantum patents have generally involved larger teams in recent years, though the gap has narrowed to near-zero by 2023-2025."
+        caption="Average number of inventors per patent for quantum computing versus non-quantum utility patents. The data indicate that quantum patents have generally involved larger teams in recent years, though the gap has narrowed to near-zero by 2023-2025."
         insight="Quantum computing patents have generally involved larger teams than non-quantum patents, though the gap has converged in recent years, reflecting the collaborative yet increasingly efficient nature of quantum research."
         loading={tcL}
       >
@@ -873,7 +873,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-filing-vs-grant"
         title="Quantum Filing Peaked at 579 in 2021 While Grants Reached 660 in 2024 — Rapid Growth on a Small Base"
-        subtitle="Annual patent filings vs. grants for quantum computing, showing the field's recent acceleration."
+        subtitle="Annual patent filings versus grants for quantum computing, showing the field's recent acceleration."
         caption="Quantum computing exhibits rapid recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019-2021 filing surge."
         loading={fgL}
       >

@@ -61,7 +61,7 @@ export default function InvSerialNewChapter() {
     return { data, cohorts };
   }, [longevity]);
 
-  /* ── pivot helper for serial vs. new-entrant charts ─────────── */
+  /* ── pivot helper for serial versus new-entrant charts ─────────── */
   const pivotData = (raw: any[] | null, metric: string) => {
     if (!raw) return [];
     const byYear: Record<number, any> = {};
@@ -83,7 +83,7 @@ export default function InvSerialNewChapter() {
     <div>
       <ChapterHeader
         number={15}
-        title="Serial Inventors vs. New Entrants"
+        title="Serial Inventors versus New Entrants"
         subtitle="Career patterns, serial innovation, and inventor survival"
       />
       <MeasurementSidebar slug="inv-serial-new" />
@@ -238,7 +238,7 @@ export default function InvSerialNewChapter() {
       <ChartContainer
         id="fig-inventors-segment-shares"
         title="12% of Inventors (Prolific, Superstar, and Mega) Produce 61% of Total Patent Output"
-        subtitle="Patent share vs. inventor share by productivity segment (One-Hit, Occasional, Prolific, Superstar, Mega), measuring output concentration"
+        subtitle="Patent share versus inventor share by productivity segment (One-Hit, Occasional, Prolific, Superstar, Mega), measuring output concentration"
         caption="The figure compares the share of total patents produced by each inventor segment against the share of inventors in that segment. The data demonstrate extreme skewness: single-patent inventors constitute the largest segment by headcount but contribute a comparatively small share of total output."
         insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while a plurality of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality observed in scientific publishing and other creative fields."
         loading={segL}
@@ -429,10 +429,10 @@ export default function InvSerialNewChapter() {
       </KeyInsight>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION F: Quality Metrics — Serial Inventors vs. New Entrants
+          SECTION F: Quality Metrics — Serial Inventors versus New Entrants
           ═══════════════════════════════════════════════════════════════ */}
 
-      <SectionDivider label="Quality Metrics — Serial Inventors vs. New Entrants" />
+      <SectionDivider label="Quality Metrics — Serial Inventors versus New Entrants" />
 
       <Narrative>
         <p>

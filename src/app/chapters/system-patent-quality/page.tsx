@@ -643,7 +643,7 @@ export default function SystemPatentQualityChapter() {
       <ChartContainer
         id="fig-sleeping-beauty-halflife"
         title="Slow Fields Have More Sleeping Beauties"
-        subtitle="Sleeping beauty rate vs. median citation half-life by CPC section"
+        subtitle="Sleeping beauty rate versus median citation half-life by CPC section"
         loading={sbhL}
       >
         <PWScatterChart

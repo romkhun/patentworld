@@ -293,8 +293,8 @@ export default function InvTopInventorsChapter() {
         </p>
       </KeyInsight>
 
-      {/* ── Section D: Quality Metrics — Top Inventors vs. Other ── */}
-      <SectionDivider label="Quality Metrics: Top Inventors vs. Other Inventors" />
+      {/* ── Section D: Quality Metrics — Top Inventors versus Other ── */}
+      <SectionDivider label="Quality Metrics: Top Inventors versus Other Inventors" />
       <Narrative>
         <p>
           This section compares quality indicators between prolific (top 12%) and other inventors
@@ -328,7 +328,7 @@ export default function InvTopInventorsChapter() {
       {/* D.ii: Forward Citations */}
       <ChartContainer
         id="fig-top-inv-fwd-citations"
-        title="Top Inventors Earned 9.8 Forward Citations Per Patent vs. 5.7 for Others (2015)"
+        title="Top Inventors Earned 9.8 Forward Citations Per Patent versus 5.7 for Others (2015)"
         subtitle="Average forward citations per patent by inventor rank, 1976-2025"
         caption="Average forward citations per patent by inventor rank, 1976-2025. Recent years are affected by citation truncation; 2015 values offer the most reliable comparison. Data: PatentsView."
         height={400}
@@ -350,7 +350,7 @@ export default function InvTopInventorsChapter() {
       {/* D.iii: Claims */}
       <ChartContainer
         id="fig-top-inv-claims"
-        title="Top Inventors' Patents Average 15.2 Claims vs. 12.7 for Others (2024)"
+        title="Top Inventors' Patents Average 15.2 Claims versus 12.7 for Others (2024)"
         subtitle="Average number of claims per patent by inventor rank, 1976-2025"
         caption="Average number of claims per patent by inventor rank, 1976-2024. Higher claim counts may reflect broader patent scope or more complex inventions. Data: PatentsView."
         height={400}
@@ -370,7 +370,7 @@ export default function InvTopInventorsChapter() {
       {/* D.iv: Scope */}
       <ChartContainer
         id="fig-top-inv-scope"
-        title="Top Inventor Patents Span 2.42 CPC Subclasses vs. 2.37 for Others (2024)"
+        title="Top Inventor Patents Span 2.42 CPC Subclasses versus 2.37 for Others (2024)"
         subtitle="Average CPC subclasses per patent by inventor rank, 1976-2025"
         caption="Average number of distinct CPC subclasses per patent by inventor rank, 1976-2024. A higher scope indicates broader technological coverage within a single patent. Data: PatentsView."
         height={400}
@@ -390,7 +390,7 @@ export default function InvTopInventorsChapter() {
       {/* D.v: Originality */}
       <ChartContainer
         id="fig-top-inv-originality"
-        title="Top Inventors Score 0.197 on the Originality Index vs. 0.190 for Others (2024)"
+        title="Top Inventors Score 0.197 on the Originality Index versus 0.190 for Others (2024)"
         subtitle="Average originality index per patent by inventor rank, 1976-2025"
         caption="Average originality index (Herfindahl-based diversity of backward citation sources) per patent by inventor rank, 1976-2024. Higher values indicate citations drawn from more diverse technology classes. Data: PatentsView."
         height={400}
@@ -410,7 +410,7 @@ export default function InvTopInventorsChapter() {
       {/* D.vi: Generality */}
       <ChartContainer
         id="fig-top-inv-generality"
-        title="Top Inventor Patents Score 0.035 on Generality vs. 0.031 for Others (2024)"
+        title="Top Inventor Patents Score 0.035 on Generality versus 0.031 for Others (2024)"
         subtitle="Average generality index per patent by inventor rank, 1976-2025"
         caption="Average generality index (Herfindahl-based diversity of forward citation recipients) per patent by inventor rank, 1976-2024. Higher values indicate that a patent's influence spans more diverse technology fields. Data: PatentsView."
         height={400}
@@ -430,7 +430,7 @@ export default function InvTopInventorsChapter() {
       {/* D.vii: Self-Citation Rate */}
       <ChartContainer
         id="fig-top-inv-self-citation"
-        title="Top Inventors Self-Cite at 15.0% vs. 5.5% for Others (2024)"
+        title="Top Inventors Self-Cite at 15.0% versus 5.5% for Others (2024)"
         subtitle="Average self-citation rate per patent by inventor rank, 1976-2025"
         caption="Average share of backward citations that reference the same assignee's prior patents, by inventor rank, 1976-2024. Higher self-citation rates among top inventors may reflect deeper corporate patent portfolios. Data: PatentsView."
         height={400}
@@ -451,7 +451,7 @@ export default function InvTopInventorsChapter() {
       {/* D.viii: Grant Lag */}
       <ChartContainer
         id="fig-top-inv-grant-lag"
-        title="Grant Lag Nearly Identical: 985 Days for Top Inventors vs. 989 for Others (2024)"
+        title="Grant Lag Nearly Identical: 985 Days for Top Inventors versus 989 for Others (2024)"
         subtitle="Average grant lag in days per patent by inventor rank, 1976-2025"
         caption="Average number of days between patent filing and grant by inventor rank, 1976-2024. The convergence in grant lag suggests that prosecution timelines are driven more by USPTO capacity than inventor characteristics. Data: PatentsView."
         height={400}
@@ -539,7 +539,7 @@ export default function InvTopInventorsChapter() {
       <ChartContainer
         id="fig-multi-type-inventors"
         title="30.7% of Inventors with 10+ Patents Have Patented Under Multiple Institution Types"
-        subtitle="Share of inventors who have patented under more than one assignee type (e.g., corporation and university), by career length bin"
+        subtitle="Share of inventors who have patented under more than one assignee type (such as corporation and university), by career length bin"
         caption="The figure displays the percentage of inventors who have filed patents under more than one assignee type over their career, grouped by career length (number of patents). Multi-type patenting is negligible among single-patent inventors but rises to 30.7% among those with 10 or more patents."
         insight="The prevalence of multi-type inventor trajectories among prolific inventors suggests that institutional mobility -- between firms, universities, and government -- is a common feature of sustained patenting careers."
         loading={mtL}
@@ -578,7 +578,7 @@ export default function InvTopInventorsChapter() {
             href="/chapters/inv-generalist-specialist"
             className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
           >
-            Generalist vs. Specialist Inventors
+            Generalist versus Specialist Inventors
           </Link>
           , examines whether these top inventors tend toward deep specialization or broad
           technological range, and how the balance between generalism and specialization has
@@ -593,7 +593,7 @@ export default function InvTopInventorsChapter() {
         ]}
         falsifiable="If superstar concentration reflects individual talent rather than institutional resources, then prolific inventors should maintain high citation impact even when they change employers."
         nextAnalysis={{
-          label: "Generalist vs. Specialist",
+          label: "Generalist versus Specialist",
           description: "How technology specialization patterns affect patent quality and citation impact",
           href: "/chapters/inv-generalist-specialist",
         }}

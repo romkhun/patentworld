@@ -353,7 +353,7 @@ export default function MechOrganizationsChapter() {
 
       <ChartContainer
         id="fig-mech-org-ambidexterity"
-        subtitle="Ambidexterity index vs. blockbuster rate for top-50 assignees across 5-year windows, measuring whether balanced firms produce more high-impact patents."
+        subtitle="Ambidexterity index versus blockbuster rate for top-50 assignees across 5-year windows, measuring whether balanced firms produce more high-impact patents."
         title="Balanced Firms Average a 2.51% Blockbuster Rate, 2.3x Higher Than Specialized Firms"
         caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980-2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year x CPC cohort). Only firm-periods with >=50 patents shown."
         loading={amL}
@@ -657,7 +657,7 @@ export default function MechOrganizationsChapter() {
           "11 of 20 major filers keep exploration below 5%, with a median exploration share of 2.9%, confirming the exploitation bias predicted by organizational theory.",
           "Balanced firms maintaining ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms.",
         ]}
-        falsifiable="If ambidexterity causally improves innovation outcomes, then firms that exogenously increase their exploration (e.g., through acquisitions in new domains) should see subsequent blockbuster rate improvements."
+        falsifiable="If ambidexterity causally improves innovation outcomes, then firms that exogenously increase their exploration (for example, through acquisitions in new domains) should see subsequent blockbuster rate improvements."
         nextAnalysis={{
           label: "Inventor Mechanics",
           description: "Co-invention networks, bridge inventors, and the impact of inter-firm mobility on productivity",

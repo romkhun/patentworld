@@ -376,7 +376,7 @@ export default function Chapter14() {
 
       <ChartContainer
         id="fig-av-subfields"
-        subtitle="Patent counts by AV subfield (vehicle control, navigation, scene understanding, etc.) over time, based on specific CPC group codes."
+        subtitle="Patent counts by AV subfield (vehicle control, navigation, scene understanding, and related subfields) over time, based on specific CPC group codes."
         title="Navigation and Path Planning Dominates AV Patenting, While Scene Understanding Has Emerged as the Fastest-Growing Subfield"
         caption="Patent counts by AV subfield over time, based on CPC classifications. Navigation and path planning has consistently been the largest subfield, reflecting the central engineering challenge of route optimization and real-time decision-making. Scene understanding -- encompassing computer vision applied to driving environments -- has grown rapidly since 2015 as deep learning methods improved object detection and semantic segmentation."
         insight="The dominance of navigation and path planning patents reflects the fundamental challenge of autonomous driving: route optimization and real-time decision-making. The rapid growth of scene understanding patents signals increasing sophistication in how AV systems perceive their environment."
@@ -751,9 +751,9 @@ export default function Chapter14() {
 
       <ChartContainer
         id="fig-av-team-comparison"
-        subtitle="Average inventors per patent for AV vs. non-AV utility patents by year, showing convergence in recent years."
+        subtitle="Average inventors per patent for AV versus non-AV utility patents by year, showing convergence in recent years."
         title="AV Patent Team Sizes Have Converged With Non-AV Teams in Recent Years"
-        caption="Average number of inventors per patent for AV-related vs. non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching nearly equal levels by 2025."
+        caption="Average number of inventors per patent for AV-related versus non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching nearly equal levels by 2025."
         insight="AV patent team sizes were historically smaller than non-AV patents but have converged in recent years, reaching parity by 2025 as autonomous driving systems have matured and attracted larger multidisciplinary teams."
         loading={atcL}
       >
@@ -874,7 +874,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-filing-vs-grant"
         title="AV Filings Peaked at 5,260 in 2019 While Grants Reached 5,300 in 2024 — a 5-Year Examination Lag"
-        subtitle="Annual patent filings vs. grants for autonomous vehicles, showing the filing-to-grant pipeline."
+        subtitle="Annual patent filings versus grants for autonomous vehicles, showing the filing-to-grant pipeline."
         caption="Autonomous vehicle patents exhibit a substantial filing-to-grant lag, with filings peaking in 2019 while grants continued rising through 2024. The growing divergence reflects both the technical complexity of AV patent examination and the surge of applications during the 2016-2019 autonomous vehicle investment boom."
         loading={fgL}
       >

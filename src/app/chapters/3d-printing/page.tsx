@@ -355,7 +355,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-entrant-incumbent"
         title="3D Printing Growth Is Driven Primarily by New Entrants After the 2009 FDM Patent Expiration"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first 3D printing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -745,9 +745,9 @@ export default function Chapter11() {
 
       <ChartContainer
         id="fig-3dprint-team-comparison"
-        subtitle="Average inventors per patent for 3D printing vs. non-3D printing utility patents by year, showing the complexity gap between the two categories."
+        subtitle="Average inventors per patent for 3D printing versus non-3D printing utility patents by year, showing the complexity gap between the two categories."
         title="AM Patent Team Sizes Have Generally Exceeded Non-AM Averages, With Recent Widening"
-        caption="Average number of inventors per patent for additive manufacturing vs. non-AM utility patents by year. AM patents have generally involved larger teams, though the gap narrowed and briefly reversed during 2016-2018 before widening again in recent years, reflecting the evolving multidisciplinary demands of additive manufacturing."
+        caption="Average number of inventors per patent for additive manufacturing versus non-AM utility patents by year. AM patents have generally involved larger teams, though the gap narrowed and briefly reversed during 2016-2018 before widening again in recent years, reflecting the evolving multidisciplinary demands of additive manufacturing."
         insight="The team size gap between AM and non-AM patents reflects the systems-level complexity of additive manufacturing, which requires concurrent innovation across materials, processes, equipment, and software."
         loading={tcL}
       >
@@ -862,7 +862,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-filing-vs-grant"
         title="3D Printing Filings Peaked in 2019 at 2,799 While Grants Continued Rising to 2,899 in 2024"
-        subtitle="Annual patent filings vs. grants for 3D printing, showing the multi-year lag between application and issuance."
+        subtitle="Annual patent filings versus grants for 3D printing, showing the multi-year lag between application and issuance."
         caption="The divergence between filing and grant curves reflects the USPTO examination pipeline. Filings peaked in 2019 and have since declined, but grants continued rising through 2024 as the backlog of applications was processed."
         loading={fgL}
       >

@@ -368,7 +368,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-entrant-incumbent"
         title="AI Patent Growth Is Dominated by Incumbents, Though Entrant Growth Accelerated After 2015"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first AI patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -388,7 +388,7 @@ export default function Chapter13() {
 
       <ChartContainer
         id="fig-ai-patents-subfields"
-        subtitle="Patent counts by AI subfield (neural networks, machine learning, NLP, etc.) over time, based on specific CPC group codes within G06N."
+        subtitle="Patent counts by AI subfield (neural networks, machine learning, NLP, and related subfields) over time, based on specific CPC group codes within G06N."
         title="Neural Networks / Deep Learning Has Emerged as One of the Largest AI Subfields Since 2012"
         caption="Patent counts by AI subfield over time, based on CPC classifications. The data reveal that neural networks/deep learning and machine learning have driven the recent growth, surpassing earlier subfields including computer vision, knowledge-based systems, and other classical approaches."
         insight="The shift from expert systems to deep learning reflects fundamental changes in AI methodology, moving from hand-crafted rules to data-driven pattern recognition."
@@ -764,9 +764,9 @@ export default function Chapter13() {
 
       <ChartContainer
         id="fig-ai-patents-team-comparison"
-        subtitle="Average inventors per patent for AI vs. non-AI utility patents by year, showing the widening complexity gap between the two categories."
+        subtitle="Average inventors per patent for AI versus non-AI utility patents by year, showing the widening complexity gap between the two categories."
         title="AI Patents Consistently Involve Larger Teams Than Non-AI Patents, With the Gap Widening in Recent Years"
-        caption="Average number of inventors per patent for AI-related vs. non-AI utility patents, 1976–2025. The data indicate that AI patents consistently involve larger teams, and the gap has widened since 2010, reflecting the increasing complexity of AI systems."
+        caption="Average number of inventors per patent for AI-related versus non-AI utility patents, 1976–2025. The data indicate that AI patents consistently involve larger teams, and the gap has widened since 2010, reflecting the increasing complexity of AI systems."
         insight="AI patents consistently involve larger teams than non-AI patents, and the gap has widened since 2010. This pattern reflects the increasing complexity of AI systems, which require expertise spanning machine learning, domain knowledge, hardware, and software engineering."
         loading={atcL}
       >
@@ -877,7 +877,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-filing-vs-grant"
         title="AI Filings Peaked at 25,853 in 2020 While Grants Reached 26,001 in 2023 — a 3-Year Examination Lag"
-        subtitle="Annual patent filings vs. grants for artificial intelligence, revealing the USPTO examination pipeline."
+        subtitle="Annual patent filings versus grants for artificial intelligence, revealing the USPTO examination pipeline."
         caption="The substantial gap between AI filing and grant curves during 2015-2020 reflects the rapid acceleration of AI patent applications that overwhelmed examination capacity. Grants continued climbing through 2023 as the backlog was processed."
         loading={fgL}
       >

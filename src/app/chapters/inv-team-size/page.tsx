@@ -313,7 +313,7 @@ export default function InvTeamSizeChapter() {
       {/* B.ii — Claims */}
       <ChartContainer
         id="fig-team-claims"
-        title="Teams of 7+ Average 16.7 Claims per Patent, vs. 11.6 for Solo Inventors"
+        title="Teams of 7+ Average 16.7 Claims per Patent, versus 11.6 for Solo Inventors"
         subtitle="Average number of claims per patent by team size category, 1976-2025"
         caption="Average number of claims per patent by team size category, 1976-2024. Larger teams consistently file patents with more claims. Data: PatentsView."
         loading={qtL}
@@ -330,7 +330,7 @@ export default function InvTeamSizeChapter() {
       {/* B.iii — Scope */}
       <ChartContainer
         id="fig-team-scope"
-        title="Teams of 7+ Span 2.58 CPC Subclasses on Average, vs. 2.30 for Solo Inventors"
+        title="Teams of 7+ Span 2.58 CPC Subclasses on Average, versus 2.30 for Solo Inventors"
         subtitle="Average patent scope (CPC subclass count) by team size category, 1976-2025"
         caption="Average number of distinct CPC subclasses per patent by team size category, 1976-2024. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qtL}
@@ -399,7 +399,7 @@ export default function InvTeamSizeChapter() {
       {/* B.vii — Grant Lag */}
       <ChartContainer
         id="fig-team-grant-lag"
-        title="Teams of 4-6 Wait 1,024 Days for Grant, vs. 905 Days for Solo Inventors"
+        title="Teams of 4-6 Wait 1,024 Days for Grant, versus 905 Days for Solo Inventors"
         subtitle="Average grant lag in days by team size category, 1976-2025"
         caption="Average number of days from filing to grant by team size category, 1976-2024. Grant lag generally increases with team size. Data: PatentsView."
         loading={qtL}
@@ -522,7 +522,7 @@ export default function InvTeamSizeChapter() {
         <p>
           Beyond team size, the institutional diversity of inventor teams provides an additional
           dimension of collaboration. Cross-institutional patents -- those listing inventors from
-          more than one assignee type (e.g., a corporation and a university) -- represent a
+          more than one assignee type (such as a corporation and a university) -- represent a
           distinctive form of collaboration that bridges organizational boundaries.
         </p>
       </Narrative>
@@ -531,7 +531,7 @@ export default function InvTeamSizeChapter() {
         id="fig-cross-institutional-rate"
         title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
         subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
-        caption="The figure tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (e.g., corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
+        caption="The figure tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (such as corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
         insight="The five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
         loading={crL}
       >
@@ -605,9 +605,9 @@ export default function InvTeamSizeChapter() {
       <InsightRecap
         learned={[
           "Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 24%.",
-          "Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors, indicating that larger teams produce broader patent protection.",
+          "Teams of 7+ average 16.7 claims per patent versus 11.6 for solo inventors, indicating that larger teams produce broader patent protection.",
         ]}
-        falsifiable="If team size causally increases patent quality rather than reflecting project selection, then exogenous team expansions (e.g., due to firm mergers) should produce citation gains."
+        falsifiable="If team size causally increases patent quality rather than reflecting project selection, then exogenous team expansions (for example, due to firm mergers) should produce citation gains."
         nextAnalysis={{
           label: "Domestic Geography",
           description: "Where in the United States does patenting concentrate, and how does location affect quality?",

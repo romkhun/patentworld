@@ -350,8 +350,8 @@ export default function InvGenderChapter() {
         </p>
       </KeyInsight>
 
-      {/* ── Section C: Quality Metrics — Women vs. Men ── */}
-      <SectionDivider label="Quality Metrics: Women vs. Men Inventors" />
+      {/* ── Section C: Quality Metrics — Women versus Men ── */}
+      <SectionDivider label="Quality Metrics: Women versus Men Inventors" />
       <Narrative>
         <p>
           Gender is inferred from inventor first names using the methodology in PatentsView and does not capture non-binary identities. The following quality indicators compare patents by the gender composition of inventor teams over time.
@@ -392,7 +392,7 @@ export default function InvGenderChapter() {
       {/* C.ii — Claims */}
       <ChartContainer
         id="fig-gender-claims"
-        title="Mixed-Gender Teams File Patents with 16.0 Claims on Average, vs. 10.6 for All-Female Teams"
+        title="Mixed-Gender Teams File Patents with 16.0 Claims on Average, versus 10.6 for All-Female Teams"
         subtitle="Average number of claims per patent by team gender composition, 1976-2025"
         caption="Average number of claims per patent by team gender composition, 1976-2024. Mixed-gender teams consistently file the broadest claims. Data: PatentsView."
         loading={qgL}
@@ -413,7 +413,7 @@ export default function InvGenderChapter() {
       {/* C.iii — Scope */}
       <ChartContainer
         id="fig-gender-scope"
-        title="Mixed-Gender Teams Average 2.49 CPC Subclasses per Patent, vs. 2.29 for All-Female Teams"
+        title="Mixed-Gender Teams Average 2.49 CPC Subclasses per Patent, versus 2.29 for All-Female Teams"
         subtitle="Average patent scope (CPC subclass count) by team gender composition, 1976-2025"
         caption="Average number of distinct CPC subclasses per patent by team gender composition, 1976-2024. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qgL}
@@ -476,7 +476,7 @@ export default function InvGenderChapter() {
       {/* C.vi — Self-Citation Rate */}
       <ChartContainer
         id="fig-gender-self-citation"
-        title="Mixed-Gender Teams Self-Cite at 15.7%, vs. 12.0% for All-Male and 9.9% for All-Female Teams"
+        title="Mixed-Gender Teams Self-Cite at 15.7%, versus 12.0% for All-Male and 9.9% for All-Female Teams"
         subtitle="Average self-citation rate by team gender composition, 1976-2025"
         caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team gender composition, 1976-2024. Data: PatentsView."
         loading={qgL}
@@ -498,7 +498,7 @@ export default function InvGenderChapter() {
       {/* C.vii — Grant Lag */}
       <ChartContainer
         id="fig-gender-grant-lag"
-        title="Mixed-Gender Teams Wait 1,027 Days for Grant, vs. 886 Days for All-Female Teams"
+        title="Mixed-Gender Teams Wait 1,027 Days for Grant, versus 886 Days for All-Female Teams"
         subtitle="Average grant lag in days by team gender composition, 1976-2025"
         caption="Average number of days from filing to grant by team gender composition, 1976-2024. Grant lag has increased for all groups over time. Data: PatentsView."
         loading={qgL}
@@ -550,8 +550,8 @@ export default function InvGenderChapter() {
 
       <ChartContainer
         id="fig-gender-by-filing-route"
-        title="Foreign-Origin Patents Show 16.4% Female Inventor Share vs. 13.8% for Domestic in 2025"
-        subtitle="Female inventor share by filing route (domestic vs. foreign-origin patents), 1976-2025"
+        title="Foreign-Origin Patents Show 16.4% Female Inventor Share versus 13.8% for Domestic in 2025"
+        subtitle="Female inventor share by filing route (domestic versus foreign-origin patents), 1976-2025"
         caption="The figure tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
         insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- suggests that non-US innovation systems have made faster progress on gender diversity in recent decades, particularly in fields like pharmaceuticals and chemistry where foreign applicants are well-represented."
         loading={gbrL}

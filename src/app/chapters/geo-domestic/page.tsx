@@ -313,7 +313,7 @@ export default function GeoDomesticChapter() {
         <ChartContainer
           id="fig-geography-state-specialization"
           subtitle="CPC technology section distribution by state, shown as 100% stacked bars to reveal distinctive regional specialization patterns."
-          title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering vs. California's 65.1% in Physics and Electricity"
+          title="States Exhibit Distinctive Technology Profiles: Michigan Devotes 20.1% to Mechanical Engineering versus California's 65.1% in Physics and Electricity"
           caption="The figure displays the CPC technology section distribution for all states by total patents, with each bar summing to 100%. States with pharmaceutical hubs show elevated Chemistry shares, while technology-oriented states concentrate in Electricity and Physics."
           insight="Geographic concentration of innovation is associated with self-reinforcing patterns, as talent, capital, and knowledge spillovers cluster in established hubs that develop distinctive technology specializations aligned with regional industry structures."
           loading={spL}
@@ -758,7 +758,7 @@ export default function GeoDomesticChapter() {
       <InsightRecap
         learned={[
           "California accounts for 23.6% of all US patent grants, producing 992,708 patents — more than the bottom 30 states combined.",
-          "States exhibit distinctive specialization: Michigan devotes 20.1% of patents to Mechanical Engineering vs. California's 65.1% in Physics and Electricity.",
+          "States exhibit distinctive specialization: Michigan devotes 20.1% of patents to Mechanical Engineering versus California's 65.1% in Physics and Electricity.",
         ]}
         falsifiable="If geographic concentration reflects agglomeration economies rather than mere population density, then patent-per-capita rates should be highest in clusters (Silicon Valley, Boston) even after controlling for industry composition."
         nextAnalysis={{

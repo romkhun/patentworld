@@ -361,7 +361,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-entrant-incumbent"
         title="Agricultural Technology Patenting Shows Steady Incumbent Dominance With Gradual Entrant Growth"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first agricultural technology patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -755,7 +755,7 @@ export default function Chapter12() {
       </KeyInsight>
 
       {/* ── Section 9: Team Comparison ── */}
-      <SectionDivider label="Team Size: AgTech vs. Non-AgTech" />
+      <SectionDivider label="Team Size: AgTech versus Non-AgTech" />
 
       <Narrative>
         <p>
@@ -769,9 +769,9 @@ export default function Chapter12() {
 
       <ChartContainer
         id="fig-agtech-team-comparison"
-        subtitle="Average inventors per patent for AgTech vs. non-AgTech utility patents by year, comparing collaborative intensity."
+        subtitle="Average inventors per patent for AgTech versus non-AgTech utility patents by year, comparing collaborative intensity."
         title="Agricultural Patent Teams Remain Smaller Than Non-AgTech Averages but Are Gradually Converging"
-        caption="Average number of inventors per patent for agricultural vs. non-agricultural utility patents, 1976-2025. Agricultural patent teams have consistently been smaller than non-AgTech teams, though the gap has narrowed over time as agricultural innovation becomes increasingly multidisciplinary."
+        caption="Average number of inventors per patent for agricultural versus non-agricultural utility patents, 1976-2025. Agricultural patent teams have consistently been smaller than non-AgTech teams, though the gap has narrowed over time as agricultural innovation becomes increasingly multidisciplinary."
         insight="Agricultural patent teams remain consistently smaller than non-AgTech averages, reflecting the sector's historical roots in individual mechanical invention, though the gap is narrowing as precision agriculture and biotechnology demand larger collaborative teams."
         loading={tcL}
       >
@@ -897,7 +897,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-filing-vs-grant"
         title="AgTech Filings Peaked in 2019 at 3,351 While Grants Peaked at 2,980 in 2020 — the Tightest Lag Among ACT 6 Domains"
-        subtitle="Annual patent filings vs. grants for agricultural technology, showing the filing-to-grant pipeline."
+        subtitle="Annual patent filings versus grants for agricultural technology, showing the filing-to-grant pipeline."
         caption="Agricultural technology exhibits one of the tightest filing-to-grant lags among ACT 6 domains, with grant peaks closely following filing peaks. This pattern reflects relatively shorter examination times for agricultural patents compared to software-heavy domains."
         loading={fgL}
       >

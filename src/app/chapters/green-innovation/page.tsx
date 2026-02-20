@@ -373,8 +373,8 @@ export default function Chapter19() {
 
       <ChartContainer
         id="fig-green-innovation-by-category"
-        subtitle="Annual patent counts by green technology sub-category (renewable energy, batteries, EVs, carbon capture, etc.) based on Y02/Y04S sub-codes."
-        title="Battery, Storage, and EV Patents Surpassed Renewable Energy After 2010, Reaching 7,363 and 5,818 vs. 3,453 by 2024"
+        subtitle="Annual patent counts by green technology sub-category (renewable energy, batteries, EVs, carbon capture, and related categories) based on Y02/Y04S sub-codes."
+        title="Battery, Storage, and EV Patents Surpassed Renewable Energy After 2010, Reaching 7,363 and 5,818 versus 3,453 by 2024"
         caption="Annual patent counts by green technology sub-category (Y02/Y04S CPC sub-codes), 1976–2025. Battery/storage and transportation patents overtook renewable energy generation as the leading sub-categories during the 2010s, with battery/storage reaching 7,363 patents and transportation/EVs reaching 5,818 patents by 2024, compared to 3,453 renewable energy patents."
         insight="The green patent portfolio has diversified substantially. While renewable energy generation dominated through the 2000s, the 2010s exhibited considerable growth in battery/storage and electric vehicle patents, coinciding with the electrification of transportation and declining battery costs."
         loading={catL}
@@ -570,11 +570,11 @@ export default function Chapter19() {
       </ChartContainer>
 
       {/* ── Team Size Comparison ───────────────────────────────────────────── */}
-      <SectionDivider label="Team Size: Green vs. Non-Green Patents" />
+      <SectionDivider label="Team Size: Green versus Non-Green Patents" />
 
       <ChartContainer
         id="fig-green-team-comparison"
-        subtitle="Average team size for green vs. non-green patents over time, measuring the collaborative intensity of climate technology R&D."
+        subtitle="Average team size for green versus non-green patents over time, measuring the collaborative intensity of climate technology R&D."
         title="Green Patent Teams Have Grown Larger Than Non-Green Counterparts"
         caption="Average number of inventors per patent for green and non-green patents, 1990-2025. Green patents consistently involve larger inventor teams, reflecting the interdisciplinary nature of climate technology."
         insight="The consistently larger team sizes for green patents suggest that climate technology innovation draws on multiple disciplines -- materials science, electrical engineering, chemistry, and software -- requiring collaborative approaches."
@@ -764,7 +764,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-entrant-incumbent"
         title="Green Innovation Shows Broad-Based Growth With Strong Entrant Contributions"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first green patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -852,7 +852,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-filing-vs-grant"
         title="Green Innovation Filings and Grants Both Peaked Near 2019 at 34,133 and 35,693 Respectively"
-        subtitle="Annual patent filings vs. grants for green innovation, showing the tightest filing-grant alignment among large ACT 6 domains."
+        subtitle="Annual patent filings versus grants for green innovation, showing the tightest filing-grant alignment among large ACT 6 domains."
         caption="Green innovation is unique among large ACT 6 domains in showing near-simultaneous filing and grant peaks. This alignment likely reflects the maturity of green technology patent examination at the USPTO, combined with the steady policy-driven demand for climate technology IP."
         loading={fgL}
       >

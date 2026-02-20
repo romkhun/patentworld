@@ -99,8 +99,8 @@ export default function MechGeographyChapter() {
         </p>
       </KeyInsight>
 
-      {/* ── Section 1: Domestic vs. International ─────────────────────────── */}
-      <SectionDivider label="Domestic vs. International" />
+      {/* ── Section 1: Domestic versus International ─────────────────────────── */}
+      <SectionDivider label="Domestic versus International" />
 
       <ChartContainer
         id="fig-mech-geo-intl-collaboration"

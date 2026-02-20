@@ -353,7 +353,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-entrant-incumbent"
         title="Space Technology Patenting Shows Accelerating Entrant Contributions as Commercial Space Expands"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first space technology patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -374,7 +374,7 @@ export default function Chapter22() {
 
       <ChartContainer
         id="fig-space-subfields"
-        subtitle="Patent counts by space technology subfield (satellite design, propulsion, communications, etc.) over time."
+        subtitle="Patent counts by space technology subfield (satellite design, propulsion, communications, and related subfields) over time."
         title="Space Communications and Other Spacecraft Constitute the Largest Subfields, Followed by Propulsion Systems"
         caption="Patent counts by space technology subfield over time, based on CPC classifications. The data reveal that space communications and other spacecraft categories have driven recent growth, followed by propulsion systems, reflecting the economic importance of orbital infrastructure for global connectivity."
         insight="The dominance of space communications patents coincides with the commercial evolution of the space industry -- from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
@@ -744,9 +744,9 @@ export default function Chapter22() {
 
       <ChartContainer
         id="fig-space-team-comparison"
-        subtitle="Average inventors per patent for space vs. non-space utility patents by year, showing recent convergence."
+        subtitle="Average inventors per patent for space versus non-space utility patents by year, showing recent convergence."
         title="Space Patent Team Sizes Have Recently Converged With Non-Space Averages"
-        caption="Average number of inventors per patent for space-related vs. non-space utility patents, 1976-2025. Space patents historically involved smaller teams than non-space patents for most of this period, with convergence occurring only in recent years (2024-2025)."
+        caption="Average number of inventors per patent for space-related versus non-space utility patents, 1976-2025. Space patents historically involved smaller teams than non-space patents for most of this period, with convergence occurring only in recent years (2024-2025)."
         insight="Space patent team sizes were historically smaller than non-space patents but have recently converged, with space teams slightly exceeding non-space averages only in 2024-2025 as spacecraft systems have grown more complex."
         loading={tcL}
       >
@@ -763,7 +763,7 @@ export default function Chapter22() {
       </ChartContainer>
 
       {/* ── Section 10: Assignee Type ────────────────────────────────────── */}
-      <SectionDivider label="Government vs. Commercial Balance" />
+      <SectionDivider label="Government versus Commercial Balance" />
 
       <Narrative>
         <p>
@@ -882,7 +882,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-filing-vs-grant"
         title="Space Technology Filings Peaked at 977 in 2020 While Grants Reached 1,069 in 2024 — a 4-Year Lag"
-        subtitle="Annual patent filings vs. grants for space technology, showing the filing-to-grant pipeline during the commercial space boom."
+        subtitle="Annual patent filings versus grants for space technology, showing the filing-to-grant pipeline during the commercial space boom."
         caption="Space technology filings peaked in 2020, coinciding with the commercial space investment boom (SpaceX, Blue Origin, satellite mega-constellations). Grants continued rising through 2024, reflecting the processing of this filing surge. The growing gap indicates the transformation of space from a government-dominated to a commercially driven patent domain."
         loading={fgL}
       >

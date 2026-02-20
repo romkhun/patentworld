@@ -383,12 +383,12 @@ export default function DeepDiveOverview() {
       </KeyInsight>
 
       {/* ── Figure 6: Filing vs Grant Trends by Domain ──────────────────── */}
-      <SectionDivider label="Filing vs. Grant Timelines" />
+      <SectionDivider label="Filing versus Grant Timelines" />
 
       <ChartContainer
         id="fig-act6-filing-vs-grant"
         title="Filing-to-Grant Lag Varies Across Domains, With AI and Green Showing the Widest Gaps"
-        subtitle="Annual patent filings (solid) vs. grants (dashed) per domain, 1990–2025. Each panel is independently scaled."
+        subtitle="Annual patent filings (solid) versus grants (dashed) per domain, 1990–2025. Each panel is independently scaled."
         caption="The gap between filing and grant curves reflects patent examination backlogs and processing times. AI and green innovation show substantial filing-grant lags during peak growth years (2015–2020), while mature domains like semiconductors show tighter alignment. Blockchain's filing decline after 2019 is visible before the grant peak, indicating a multi-year pipeline of pending applications."
         loading={fgL}
         flexHeight
@@ -399,7 +399,7 @@ export default function DeepDiveOverview() {
           yLabel="Patents"
           yFormatter={formatCompact}
           columns={4}
-          referenceLabel="Grants (dashed) vs. Filings (solid)"
+          referenceLabel="Grants (dashed) versus Filings (solid)"
         />
       </ChartContainer>
 

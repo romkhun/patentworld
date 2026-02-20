@@ -237,7 +237,7 @@ export default function SystemPatentCountChapter() {
 
       {/* ── Analysis 1: Filing vs Grant Year ── */}
 
-      <SectionDivider label="Filing vs. Grant Year" />
+      <SectionDivider label="Filing versus Grant Year" />
 
       <Narrative>
         <p>
@@ -248,7 +248,7 @@ export default function SystemPatentCountChapter() {
       <ChartContainer
         id="fig-filing-vs-grant"
         title="Filing-Year Counts Peaked at 349,093 in 2019, Matching the Grant-Year Peak of 355,923 in the Same Year"
-        subtitle="Utility patent counts by filing year vs. grant year, 1976–2025"
+        subtitle="Utility patent counts by filing year versus grant year, 1976–2025"
         caption="Filing-year counts understate recent activity because many applications remain pending. The sharp drop in filing-year counts after 2019 reflects the truncation bias of pending applications, not a decline in filing activity."
         insight="The divergence between filing and grant year trends reveals that recent filing-year declines are an artifact of examination lag — applications filed in recent years have not yet been granted, creating the appearance of decline."
         loading={fvgL}

@@ -362,7 +362,7 @@ export default function OrgPatentCountChapter() {
       <ChartContainer
         id="fig-blockbuster-lorenz"
         title="Blockbuster Patents Are Increasingly Concentrated Among a Few Firms"
-        subtitle="Lorenz curves: cumulative share of patents vs. cumulative share of blockbuster patents (top 1% by cohort-normalized citations) by decade."
+        subtitle="Lorenz curves: cumulative share of patents versus cumulative share of blockbuster patents (top 1% by cohort-normalized citations) by decade."
         loading={lzL}
         badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020 }}
         height={500}

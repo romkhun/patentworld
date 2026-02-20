@@ -368,7 +368,7 @@ export default function Chapter18() {
 
       <ChartContainer
         id="fig-digihealth-subfields"
-        subtitle="Patent counts by digital health subfield (patient monitoring, health informatics, surgical robotics, etc.) over time."
+        subtitle="Patent counts by digital health subfield (patient monitoring, health informatics, surgical robotics, and related subfields) over time."
         title="Patient Monitoring Dominates Digital Health Patenting, While Surgical Robotics and Health Informatics Are the Fastest-Growing Subfields"
         caption="Patent counts by digital health subfield over time. Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest category. Surgical robotics and health informatics have exhibited the most rapid growth in recent years."
         insight="The shift toward health informatics and surgical robotics coincides with a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies have enabled more sophisticated clinical interventions."
@@ -725,9 +725,9 @@ export default function Chapter18() {
 
       <ChartContainer
         id="fig-digihealth-team-comparison"
-        subtitle="Average inventors per patent for digital health vs. non-digital-health utility patents by year, showing the complexity gap between the two categories."
+        subtitle="Average inventors per patent for digital health versus non-digital-health utility patents by year, showing the complexity gap between the two categories."
         title="Since the Mid-1990s, Digital Health Patents Have Involved Larger Teams Than Non-Digital-Health Patents"
-        caption="Average number of inventors per patent for digital health vs. non-digital-health utility patents, 1976-2025. Before the mid-1990s, digital health team sizes were comparable to or slightly smaller than non-digital-health patents. Since then, digital health teams have grown larger, reflecting the increasing need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
+        caption="Average number of inventors per patent for digital health versus non-digital-health utility patents, 1976-2025. Before the mid-1990s, digital health team sizes were comparable to or slightly smaller than non-digital-health patents. Since then, digital health teams have grown larger, reflecting the increasing need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
         insight="Since the mid-1990s, digital health patents have involved larger teams than non-digital-health patents, a pattern that reflects the growing multidisciplinary demands of integrating clinical knowledge, engineering expertise, and regulatory compliance."
         loading={tcL}
       >
@@ -827,7 +827,7 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-digihealth-entrant-incumbent"
         title="Digital Health Patent Growth Is Driven Primarily by Incumbent Medical Device and Technology Firms"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first digital health patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -910,7 +910,7 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-digihealth-filing-vs-grant"
         title="Digital Health Filings Peaked at 11,827 in 2019 While Grants Reached 12,766 in 2024 — a 5-Year Lag"
-        subtitle="Annual patent filings vs. grants for digital health, showing the examination pipeline for medical device and health IT patents."
+        subtitle="Annual patent filings versus grants for digital health, showing the examination pipeline for medical device and health IT patents."
         caption="Digital health exhibits one of the longest filing-to-grant lags among ACT 6 domains. Filings peaked in 2019 and have moderated, but grants continued climbing through 2024, surpassing the filing peak. The extended lag likely reflects the technical complexity of examining patents that span both medical device and software domains."
         loading={fgL}
       >
@@ -938,7 +938,7 @@ export default function Chapter18() {
         robotics (A61B34), and related medical device codes. Subfield classifications are
         based on specific CPC group codes within these categories. A patent is classified
         as digital health if any of its CPC codes fall within these classifications. Team
-        comparison data compare average inventor counts for digital health vs. non-digital-health
+        comparison data compare average inventor counts for digital health versus non-digital-health
         utility patents. Strategy data show patent counts per subfield for the top assignees.
         Cross-domain diffusion measures co-occurrence of digital health CPC codes with other
         CPC sections. Source: PatentsView / USPTO.

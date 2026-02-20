@@ -363,7 +363,7 @@ export default function Chapter17() {
 
       <ChartContainer
         id="fig-cyber-patents-subfields"
-        subtitle="Patent counts by cybersecurity subfield (cryptography, authentication, network security, etc.) over time, based on specific CPC group codes."
+        subtitle="Patent counts by cybersecurity subfield (cryptography, authentication, network security, and related subfields) over time, based on specific CPC group codes."
         title="Network Security Is the Largest Subfield, Having Surpassed Cryptography in the Early 2000s, While Data Protection and Authentication Have Also Grown Rapidly"
         caption="Patent counts by cybersecurity subfield over time, based on CPC classifications. Network security surpassed cryptography around 2003 and has been the dominant subfield since, while data protection, authentication, and system security have all experienced rapid growth."
         insight="The diversification of cybersecurity subfields coincides with the expanding attack surface: as digital systems have grown more complex, the defensive patent landscape has broadened from encryption-centric approaches to encompass network defense, identity management, and data protection."
@@ -722,9 +722,9 @@ export default function Chapter17() {
 
       <ChartContainer
         id="fig-cyber-patents-team-comparison"
-        subtitle="Average inventors per patent for cybersecurity vs. non-cybersecurity utility patents by year, showing comparative team size dynamics."
+        subtitle="Average inventors per patent for cybersecurity versus non-cybersecurity utility patents by year, showing comparative team size dynamics."
         title="Cybersecurity and Non-Cybersecurity Patent Team Sizes Have Both Grown Steadily, Tracking Closely Over Time"
-        caption="Average number of inventors per patent for cybersecurity-related vs. non-cybersecurity utility patents. Both categories show a similar upward trend, reflecting the broader shift toward collaborative research across all technology domains."
+        caption="Average number of inventors per patent for cybersecurity-related versus non-cybersecurity utility patents. Both categories show a similar upward trend, reflecting the broader shift toward collaborative research across all technology domains."
         insight="Cybersecurity patent team sizes have tracked closely with non-cybersecurity patents, both exhibiting steady growth that reflects the increasing complexity and multidisciplinary nature of modern invention."
         loading={ctcL}
       >
@@ -788,7 +788,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-entrant-incumbent"
         title="Cybersecurity Patent Growth Reflects Balanced Contributions From Entrants and Incumbents"
-        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) vs. incumbents."
+        subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first cybersecurity patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
       >
@@ -871,7 +871,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-filing-vs-grant"
         title="Cybersecurity Filings Peaked at 18,090 in 2019 While Grants Reached 17,323 in 2022 — a 3-Year Pipeline"
-        subtitle="Annual patent filings vs. grants for cybersecurity, showing the examination lag during peak growth."
+        subtitle="Annual patent filings versus grants for cybersecurity, showing the examination lag during peak growth."
         caption="Cybersecurity patent filings peaked in 2019 and have since moderated, while grants continued climbing through 2022. The multi-year gap reflects both the volume of applications and the technical complexity of security-related patent examination."
         loading={fgL}
       >

@@ -213,10 +213,10 @@ export default function SystemConvergenceChapter() {
       />
 
       {/* ------------------------------------------------------------------ */}
-      {/* 3. Convergence Decomposition: Within-Firm vs. Between-Firm */}
+      {/* 3. Convergence Decomposition: Within-Firm versus Between-Firm */}
       {/* ------------------------------------------------------------------ */}
 
-      <SectionDivider label="Within-Firm vs. Between-Firm Convergence" />
+      <SectionDivider label="Within-Firm versus Between-Firm Convergence" />
 
       <Narrative>
         <p>
@@ -255,14 +255,14 @@ export default function SystemConvergenceChapter() {
       </KeyInsight>
 
       {/* ------------------------------------------------------------------ */}
-      {/* 4. Near vs. Far Field Convergence */}
+      {/* 4. Near versus Far Field Convergence */}
       {/* ------------------------------------------------------------------ */}
 
-      <SectionDivider label="Near vs. Far Field Convergence" />
+      <SectionDivider label="Near versus Far Field Convergence" />
 
       <ChartContainer
         id="fig-convergence-near-far"
-        subtitle="Share of multi-section patents involving near-field (adjacent CPC sections) vs. far-field (distant CPC sections) combinations over time."
+        subtitle="Share of multi-section patents involving near-field (adjacent CPC sections) versus far-field (distant CPC sections) combinations over time."
         title="Near-Field Combinations Dominate But Far-Field Convergence Is Growing Faster"
         caption="The figure tracks the share of multi-section patents classified as near-field (spanning closely related CPC sections) versus far-field (spanning distant or traditionally unrelated sections). While near-field convergence accounts for the majority of cross-domain activity, far-field convergence has grown at a faster rate, suggesting that increasingly radical combinations of technology domains are becoming more common."
         insight="The accelerating growth of far-field convergence indicates that inventors are increasingly bridging distant technology domains, a pattern consistent with the hypothesis that the most novel innovations arise at the intersection of previously unconnected fields."
@@ -339,9 +339,9 @@ export default function SystemConvergenceChapter() {
         </p>
       </KeyInsight>
 
-      {/* ── Conceptual Framework: Scope vs. Convergence ── */}
+      {/* ── Conceptual Framework: Scope versus Convergence ── */}
 
-      <SectionDivider label="Conceptual Framework: Scope vs. Convergence" />
+      <SectionDivider label="Conceptual Framework: Scope versus Convergence" />
 
       <Narrative>
         <p>
@@ -365,13 +365,13 @@ export default function SystemConvergenceChapter() {
           <tbody>
             <tr>
               <td className="border border-border bg-muted/50 p-3 font-semibold">Narrow Scope<br /><span className="font-normal text-xs text-muted-foreground">1-2 CPC sections</span></td>
-              <td className="border border-border p-3 text-center"><strong>Specialized</strong><br /><span className="text-xs text-muted-foreground">Traditional single-domain patents (e.g., mechanical engineering)</span></td>
-              <td className="border border-border p-3 text-center"><strong>Incremental Bridge</strong><br /><span className="text-xs text-muted-foreground">Routine cross-domain (e.g., Physics+Electricity in electronics)</span></td>
+              <td className="border border-border p-3 text-center"><strong>Specialized</strong><br /><span className="text-xs text-muted-foreground">Traditional single-domain patents (for example, mechanical engineering)</span></td>
+              <td className="border border-border p-3 text-center"><strong>Incremental Bridge</strong><br /><span className="text-xs text-muted-foreground">Routine cross-domain (for example, Physics+Electricity in electronics)</span></td>
             </tr>
             <tr>
               <td className="border border-border bg-muted/50 p-3 font-semibold">Broad Scope<br /><span className="font-normal text-xs text-muted-foreground">3+ CPC sections</span></td>
-              <td className="border border-border p-3 text-center"><strong>Radical Recombination</strong><br /><span className="text-xs text-muted-foreground">Novel combinations of distant fields (e.g., bio+computation+materials)</span></td>
-              <td className="border border-border p-3 text-center"><strong>Platform Innovation</strong><br /><span className="text-xs text-muted-foreground">Broad-scope patents in established convergence zones (e.g., IoT spanning G+H+B+F)</span></td>
+              <td className="border border-border p-3 text-center"><strong>Radical Recombination</strong><br /><span className="text-xs text-muted-foreground">Novel combinations of distant fields (for example, bio+computation+materials)</span></td>
+              <td className="border border-border p-3 text-center"><strong>Platform Innovation</strong><br /><span className="text-xs text-muted-foreground">Broad-scope patents in established convergence zones (for example, IoT spanning G+H+B+F)</span></td>
             </tr>
           </tbody>
         </table>
@@ -385,7 +385,7 @@ export default function SystemConvergenceChapter() {
 
       {/* ── Robustness: CPC vs IPC Convergence ── */}
 
-      <SectionDivider label="Robustness Check: CPC vs. IPC Convergence" />
+      <SectionDivider label="Robustness Check: CPC versus IPC Convergence" />
 
       <Narrative>
         <p>
