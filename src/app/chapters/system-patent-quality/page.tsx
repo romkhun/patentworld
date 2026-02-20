@@ -653,6 +653,8 @@ export default function SystemPatentQualityChapter() {
           colorKey="cpc_section"
           nameKey="section_name"
           categories={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']}
+          categoryLabels={Object.fromEntries(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(s => [s, `${s} – ${CPC_SECTION_NAMES[s]}`]))}
+          colors={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(s => CPC_SECTION_COLORS[s])}
           xLabel="Median Citation Half-Life (Years)"
           yLabel="Sleeping Beauty Rate (%)"
           tooltipFields={[

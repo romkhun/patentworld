@@ -15,6 +15,7 @@ interface PWScatterChartProps {
   colorKey: string;
   nameKey?: string;
   categories: string[];
+  categoryLabels?: Record<string, string>;
   colors?: string[];
   tooltipFields?: { key: string; label: string }[];
   xLabel?: string;
@@ -27,14 +28,14 @@ interface PWScatterChartProps {
 }
 
 export function PWScatterChart({
-  data, xKey, yKey, colorKey, nameKey, categories, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter, showMeanLines = false, hideAxes = false, hideGrid = false,
+  data, xKey, yKey, colorKey, nameKey, categories, categoryLabels, colors, tooltipFields, xLabel, yLabel, xFormatter, yFormatter, showMeanLines = false, hideAxes = false, hideGrid = false,
 }: PWScatterChartProps) {
   const fmtX = xFormatter ?? formatCompact;
   const fmtY = yFormatter ?? formatCompact;
   const colorPalette = colors ?? CHART_COLORS;
 
   const grouped = categories.map((cat, i) => ({
-    name: cat,
+    name: categoryLabels?.[cat] ?? cat,
     data: data.filter((d) => String(d[colorKey]) === cat),
     color: colorPalette[i % colorPalette.length],
   }));
