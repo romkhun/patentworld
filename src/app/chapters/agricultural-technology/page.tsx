@@ -868,7 +868,7 @@ export default function Chapter12() {
         id="fig-agtech-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed an agricultural technology patent."
         title="Later Entrants to Agricultural Technology Patent at Higher Annual Velocity: 2000s Cohort Averages 32.9 Patents per Year Versus 7.4 for 1970s Entrants"
-        caption="Mean patents per active year for top organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 4.1x velocity increase from 1970s to 2000s entrants suggests the domain has become significantly more accessible to productive patenting."
+        caption="Mean patents per active year for top organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 4.4x velocity increase from 1970s to 2000s entrants suggests the domain has become significantly more accessible to productive patenting."
         insight="The rising velocity across cohorts is consistent with agricultural technology maturing as a patenting domain, with standardized CPC classifications and established prior art facilitating faster patent prosecution for later entrants."
         loading={taL}
       >

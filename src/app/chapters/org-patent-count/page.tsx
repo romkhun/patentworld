@@ -361,7 +361,7 @@ export default function OrgPatentCountChapter() {
 
       <ChartContainer
         id="fig-blockbuster-lorenz"
-        title="Blockbuster Patents Are Increasingly Concentrated Among a Few Firms"
+        title="Blockbuster Patents Have Become More Evenly Distributed Across Organizations Over Time"
         subtitle="Lorenz curves: cumulative share of patents versus cumulative share of blockbuster patents (top 1% by cohort-normalized citations) by decade."
         loading={lzL}
         badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020 }}
@@ -395,13 +395,14 @@ export default function OrgPatentCountChapter() {
 
       <KeyInsight>
         <p>
-          The Gini coefficients for blockbuster patent concentration have risen steadily across
-          decades, indicating that high-impact innovation is becoming increasingly concentrated
-          among a shrinking set of elite firms. While the overall patent system has seen broader
-          participation, the ability to produce breakthrough inventions remains -- and is
-          increasingly -- the province of a few dominant organizations. This divergence between
-          extensive and intensive margins of innovation has significant implications for competition
-          policy and the long-run dynamics of technological change.
+          The Gini coefficients for blockbuster patent concentration have decreased steadily across
+          decades -- from 0.161 in 1976-1989 to -0.069 in 2010-2020 -- indicating that high-impact
+          innovation has become more evenly distributed across organizations over time. As more
+          firms have entered the patent system, the ability to produce breakthrough inventions has
+          spread beyond the traditional elite, narrowing the gap between large and small patent
+          holders. This convergence between the extensive and intensive margins of innovation
+          suggests that the patent system has become more competitive in generating high-impact
+          inventions.
         </p>
       </KeyInsight>
 

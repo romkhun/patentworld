@@ -916,7 +916,7 @@ export default function Chapter15() {
         id="fig-biotech-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a biotechnology patent."
         title="Later Biotech Entrants Patent at Modestly Higher Velocity: 2000s Cohort Averages 26.9 Patents per Year Versus 19.2 for 1970s Entrants"
-        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.7x increase is the smallest among mature ACT 6 domains, suggesting that biotechnology patenting has not become substantially easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
+        caption="Mean patents per active year for top biotech organizations grouped by entry decade. The 1.4x increase is the smallest among mature ACT 6 domains, suggesting that biotechnology patenting has not become substantially easier over time, consistent with the domain&apos;s high regulatory and scientific barriers."
         insight="The modest velocity increase contrasts with AI&apos;s 2.0x and green innovation&apos;s 5.5x ratios, reflecting the persistent barriers to biotech patenting imposed by regulatory requirements, clinical validation timelines, and the fundamental complexity of biological systems."
         loading={taL}
       >

@@ -265,7 +265,7 @@ export default function Chapter16() {
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
         <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
         <li>IBM, Intel, and Alibaba-affiliated entities lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
-        <li>Patent filings peaked in 2022 and have since declined, a pattern that corresponds with the broader cryptocurrency market correction.</li>
+        <li>Patent grants peaked in 2022 and have since declined, a pattern that corresponds with the broader cryptocurrency market correction.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -354,7 +354,7 @@ export default function Chapter16() {
         id="fig-blockchain-hype-cycle"
         title="One-and-Done Entrant Share Reveals the Blockchain Hype Cycle"
         subtitle="Percentage of new blockchain assignees who file exactly one patent and never return, by entry cohort year."
-        caption="One-and-done share above 80% suggests speculative patenting by firms with no sustained commitment to the technology. The peak around 2017–2019 coincides with the cryptocurrency boom."
+        caption="One-and-done share above 80% suggests speculative patenting by firms with no sustained commitment to the technology. The one-and-done share was moderate during 2017-2019 (peaking at 55.6% in 2018) but rose sharply after 2022, reaching 71.7% in 2023 and 89.6% in 2024 as speculative entrants exited the domain."
         loading={hcL}
       >
         <PWLineChart
@@ -636,7 +636,7 @@ export default function Chapter16() {
       >
         <PWLineChart
           data={qualityBif ?? []}
-          xKey="year"
+          xKey="period"
           lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
           yLabel="Top-Decile Share (%)"
         />
@@ -904,7 +904,7 @@ export default function Chapter16() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Blockchain patent filings peaked in 2022 and subsequently declined — the only advanced technology domain in the study to reverse course.", "Top-four concentration rose to 26.3% during the 2018 boom before declining to 14.0% by 2024, following a boom-bust cycle."]}
+        learned={["Blockchain patent grants peaked in 2022 and subsequently declined — the only advanced technology domain in the study to reverse course.", "Top-four concentration rose to 26.3% during the 2018 boom before declining to 14.0% by 2024, following a boom-bust cycle."]}
         falsifiable="If the blockchain patent decline reflects a genuine technology maturation rather than a speculative bubble bursting, then citation rates for recent blockchain patents should remain stable or increase."
         nextAnalysis={{ label: "Cybersecurity", description: "Defending digital infrastructure through innovation — from cryptography to network security", href: "/chapters/cybersecurity" }}
       />

@@ -137,7 +137,7 @@ export default function InvGeneralistSpecialistChapter() {
           The steady rise of specialist inventors from 20% to 48% of the prolific inventor workforce
           reflects a broader structural trend in modern innovation. As technology fields grow more complex
           and knowledge-intensive, inventors increasingly concentrate their efforts within narrower domains.
-          Yet the persistence of generalists — accounting for roughly one in five prolific inventors even in
+          Yet the persistence of generalists — accounting for roughly one in twenty prolific inventors in
           the most recent decade — suggests that cross-domain breadth continues to offer value in the
           patent system.
         </p>

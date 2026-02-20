@@ -853,9 +853,9 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a quantum computing patent."
-        title="Quantum Computing Shows a Unique Pattern: 1990s Entrants Average 11.0 Patents per Year Versus 6.0 for 2020s Entrants"
-        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Unlike most ACT 6 domains where later entrants patent at higher velocity, quantum computing's early entrants were more productive per year, reflecting the small number of pioneering organizations (D-Wave, IBM) that scaled quickly."
-        insight="The declining velocity for later cohorts suggests that quantum computing remains a difficult domain to patent productively, with many new entrants filing exploratory patents at low volume rather than building large portfolios."
+        title="Quantum Computing 2020s Entrants Average 6.0 Patents per Year, Similar to 2010s Entrants at 5.9"
+        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 1990s cohort (2 organizations: IBM and D-Wave) does not meet the minimum threshold and is excluded, though those early entrants averaged 11.0 patents per year. Among qualifying cohorts (2000s, 2010s, 2020s), velocity has remained relatively stable, suggesting that the field's rapid growth has been driven by breadth of participation rather than intensification by individual firms."
+        insight="The relatively stable velocity across the 2000s, 2010s, and 2020s cohorts suggests that quantum computing's growth is driven primarily by new entrants rather than increased per-firm productivity. The 1990s cohort (2 organizations, excluded for small sample size) had much higher velocity, reflecting the pioneering scale of IBM and D-Wave."
         loading={taL}
       >
         <PWBarChart

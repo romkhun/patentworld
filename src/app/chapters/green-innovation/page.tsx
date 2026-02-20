@@ -814,7 +814,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across green technology subfields."
-        title="Green Innovation Subfield Diversity Has Remained Stable at 0.87-0.90 Throughout Its 50-Year History"
+        title="Green Innovation Subfield Diversity Has Remained Stable at 0.86-0.90 Throughout Its 50-Year History"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The high and stable entropy (ranging from 0.86 to 0.90) indicates that green innovation has always been distributed across battery, solar, wind, EV, and energy efficiency subfields without significant concentration shifts."
         insight="The stability of green subfield diversity contrasts with domains like AI and biotechnology, which diversified substantially from narrow bases. Green innovation appears to have emerged as an inherently multi-technology domain from its inception."
         loading={catL}
@@ -831,9 +831,9 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a green patent."
-        title="Green Innovation Entrants Show the Largest Velocity Increase Among ACT 6 Domains: 2020s Cohort at 375 Patents per Year Versus 68 for 1970s Entrants"
-        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 5.5x velocity increase reflects the acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
-        insight="The 5.5x velocity ratio is the highest among all ACT 6 domains, suggesting that green innovation has become substantially more accessible to productive patenting, consistent with the proliferation of standardized clean energy technologies and supportive policy frameworks."
+        title="Green Innovation Shows Rising Velocity Across Cohorts: 2000s Entrants Average 122 Patents per Year Versus 68 for 1970s Entrants"
+        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 2010s cohort (1 organization) and 2020s cohort (2 organizations) do not meet the minimum threshold and are excluded. Among qualifying cohorts, the velocity increase from the 1970s to 2000s reflects the acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
+        insight="The velocity increase from the 1970s to 2000s cohort is consistent with green innovation becoming substantially more accessible to productive patenting, though the small sample sizes for the 2010s (1 organization) and 2020s (2 organizations) cohorts prevent reliable velocity estimates for the most recent entrants."
         loading={taL}
       >
         <PWBarChart

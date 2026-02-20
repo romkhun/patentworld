@@ -482,7 +482,7 @@ export default function GeoInternationalChapter() {
         <ChartContainer
           id="fig-geo-intl-priority-country-composition"
           subtitle="Annual patent counts by priority country for the top 8 filing origins, 1976-2025."
-          title="US Priority Filings Declined from 70% to 55% of Grants as China Rose from 53 (1993) to 25,029 (2024)"
+          title="US Priority Filings Declined from 70% to 60% of Grants as China Rose from 53 (1993) to 25,029 (2024)"
           caption="The figure displays annual patent grant counts by priority country for the top 8 filing origins. The US remains the dominant priority country but its share has declined steadily as Japan, South Korea, and more recently China have expanded their filing volumes. China surpassed several European countries to become the third-largest priority country by 2021."
           insight="The shifting composition of priority countries reflects the globalization of inventive activity, with East Asian economies accounting for an increasing share of the inventions entering the US patent system."
           loading={pccL}
@@ -504,7 +504,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from 70% in the 1970s to 55% by the 2020s. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most significant shifts in the history of the US patent system.
+          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from 70% in the 1970s to 60% by 2024. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most significant shifts in the history of the US patent system.
         </p>
       </KeyInsight>
 

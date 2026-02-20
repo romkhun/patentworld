@@ -88,14 +88,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-portfolio',
     title: 'Patent Portfolio',
     subtitle: 'Diversification, competitive proximity, and portfolio transitions',
-    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, often years before strategic shifts become publicly visible.',
+    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching Shannon entropy of 7.05 across 293 CPC subclasses. 51 technology pivots detected across 20 companies, often years before strategic shifts become publicly visible.',
   },
   {
     number: 12,
     slug: 'org-company-profiles',
     title: 'Interactive Company Profiles',
     subtitle: 'Unified patent histories, portfolios, quality trends, and strategy profiles',
-    description: 'Amazon achieves the highest blockbuster patent rate at 6.7%, while IBM leads in cumulative output with 161,888 grants across 229 CPC subclasses. Five interactive views per organization cover output trajectories, technology portfolios, citation quality, innovation strategy, and grant lag.',
+    description: 'Amazon achieves the highest blockbuster patent rate at 6.7%, while IBM leads in cumulative output with 161,888 grants across 311 CPC subclasses. Five interactive views per organization cover output trajectories, technology portfolios, citation quality, innovation strategy, and grant lag.',
   },
   // ── ACT 3: The Inventors ──
   {

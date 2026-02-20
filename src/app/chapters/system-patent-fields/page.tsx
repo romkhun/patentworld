@@ -319,7 +319,7 @@ export default function SystemPatentFieldsChapter() {
       <MeasurementSidebar slug="system-patent-fields" />
 
       <KeyFindings>
-        <li>Design patent share has fluctuated between 6% and 14%, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
+        <li>Design patent share has fluctuated between 6% and 14% since the late 1970s, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
         <li>CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share over five decades, now constituting 57.3% of all patent grants.</li>
         <li>The fastest-growing digital technology classes expanded by over 1,000%, while declining classes contracted by nearly 84%, consistent with Schumpeterian creative destruction.</li>
         <li>Patent markets remain unconcentrated across all CPC sections, with HHI values well below the 1,500 threshold despite concentration in digital fields.</li>
@@ -373,7 +373,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Design patent share peaked at 14% in 2008, declined to 7% by 2014, and returned to 14% by 2025. This pattern reflects a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
+          Design patent share peaked at nearly 14% in 2008, declined to 7% by 2014, and returned to 14% by 2025. This pattern reflects a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
         </p>
       </KeyInsight>
 
@@ -584,7 +584,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-friction-map"
         subtitle="Median time from application filing to patent grant by CPC section and 5-year period, measuring technology-specific examination friction."
-        title="Since the Mid-2000s, Chemistry (C) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,293 Days in the 2010-2014 Period"
+        title="Since the Mid-2000s, Chemistry (C) and Textiles & Paper (D) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,278 Days in the 2010-2014 Period"
         caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry and Human Necessities patents have exhibited the longest pendency, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns are consistent with institutional constraints that shape innovation timelines, with technology-specific backlogs associated with the USPTO's resource allocation across its technology centers."

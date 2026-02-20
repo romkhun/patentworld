@@ -344,13 +344,13 @@ export default function SystemPatentCountChapter() {
       {/* ── Chapter Closing ── */}
 
       <Narrative>
-        Having examined the overall scale of US patent activity and the examination timelines that shape it, the next chapter explores <Link href="/chapters/system-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and complexity</Link> — including claim structures, design versus utility composition, and what these patterns reveal about changing innovation strategies.
+        Having examined the overall scale of US patent activity and the examination timelines that shape it, the next chapter explores <Link href="/chapters/system-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and complexity</Link> — including claim complexity, citation patterns, and technological scope.
       </Narrative>
 
       <InsightRecap
         learned={[
           "The US patent system granted 9.36 million patents between 1976 and 2025, with annual output increasing five-fold from 70,000 to over 370,000.",
-          "Grant pendency peaked at 3.8 years in 2010 before declining to 2.4 years by 2023, reflecting USPTO capacity adjustments.",
+          "Average grant pendency peaked at 3.8 years in 2010 before declining to 2.7 years by 2023, reflecting USPTO capacity adjustments.",
         ]}
         falsifiable="If the USPTO's capacity constraints drove the pendency peak, then future surges in application volume should reproduce the pattern — pendency should rise again when filings outpace examiner hiring."
         nextAnalysis={{

@@ -374,7 +374,7 @@ export default function OrgCompositionChapter() {
 
       <InsightRecap
         learned={[
-          "Corporate assignees grew from 94% to 99% of US patent grants, with individual inventors declining from 6% to under 1%.",
+          "Corporate assignees grew from 94% to 99% of US patent grants, with individual inventors consistently representing under 2% of total grants.",
           "Foreign assignees surpassed US-based assignees around 2007, with Japan accounting for 1.4 million US patents since 1976.",
         ]}
         falsifiable="If foreign assignee growth reflects genuine R&D globalization rather than strategic filing behavior, then the quality of foreign-origin patents (measured by cohort-normalized citations) should be comparable to domestic-origin patents."

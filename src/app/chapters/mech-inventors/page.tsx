@@ -526,7 +526,7 @@ export default function MechInventorsChapter() {
           title="The United States Dominates International Inventor Flows, Appearing in 77.6% of All Cross-Border Migration Corridors"
           subtitle="Top 30 country-to-country inventor migration corridors by flow volume, showing dominant US bilateral patterns."
           caption="Inventor mobility is inferred by tracking disambiguated inventor IDs that appear on patents filed from different countries on sequential patent filings. This approach captures cross-border knowledge transfer but may overcount moves by prolific international collaborators."
-          insight="The US serves as a global hub for inventor mobility, with substantial bilateral flows to and from China, Japan, the United Kingdom, Canada, and Germany. Cross-border inventor migration increased from 1.3% to 5.4% of all patenting inventors between 1980 and 2025."
+          insight="The US serves as a global hub for inventor mobility, with substantial bilateral flows to and from China, Japan, the United Kingdom, Canada, and Germany. Cross-border inventor migration increased from 1.3% to 5.1% by 2024 of all patenting inventors."
           loading={cfL}
           height={700}
           wide

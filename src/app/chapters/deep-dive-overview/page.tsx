@@ -273,7 +273,7 @@ export default function DeepDiveOverview() {
 
       <KeyInsight>
         The twelve domains span four orders of magnitude in patent volume — from
-        Quantum Computing (3,166 total patents) to Green Innovation (618,409). This
+        Quantum Computing (3,166 total patents) to Green Innovation (618,404). This
         extreme variation means that concentration metrics (like CR4) must be interpreted
         relative to domain size: a 30% CR4 in quantum computing (where the top four firms
         hold ~1,000 patents total) reflects a fundamentally different competitive landscape
@@ -285,9 +285,9 @@ export default function DeepDiveOverview() {
 
       <ChartContainer
         id="fig-act6-quality"
-        title="Biotech and Semiconductor Patents Lead in Citation Impact; AI Leads in Claims"
+        title="Digital Health Patents Lead in Citation Impact; Quantum Leads in Claims"
         subtitle="Mean forward citations (5-year), claims, and CPC scope for patents granted 2020–2024."
-        caption="Quality metrics reveal distinct innovation profiles: biotech patents receive the most citations, AI patents have the most claims, and green innovation patents have the widest technological scope."
+        caption="Quality metrics reveal distinct innovation profiles: digital health patents receive the most citations (5.75 mean), quantum computing patents have the most claims (19.34 mean), and 3D printing patents have the widest technological scope (4.63 mean CPC codes)."
         loading={qL}
       >
         <PWBarChart
@@ -347,7 +347,7 @@ export default function DeepDiveOverview() {
 
       <KeyInsight>
         The highest spillover lifts appear between technologically adjacent domains.
-        Cyber × Blockchain, Semiconductor × Quantum, and AI × AV exhibit lifts well above
+        Cyber × Blockchain, AI × Quantum, and AI × AV exhibit lifts well above
         1.0, indicating that inventors working in one domain are disproportionately likely
         to also file patents in the related domain. Green innovation shows broad but low-lift
         connections across many domains, consistent with its role as a cross-cutting

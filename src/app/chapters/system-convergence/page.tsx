@@ -102,7 +102,7 @@ export default function SystemConvergenceChapter() {
       <MeasurementSidebar slug="system-convergence" />
 
       <KeyFindings>
-        <li>Multi-section patents rose from 21% to 41% of all grants between 1976 and 2025, signaling increasing technological convergence across once-separate domains.</li>
+        <li>Multi-section patents rose from 21% to 40% of all grants between 1976 and 2024, signaling increasing technological convergence across once-separate domains.</li>
         <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
         <li>Increasing cross-pollination of technology domains indicates that the boundaries between fields are becoming more permeable, with inventions more frequently occurring at the intersection of multiple disciplines.</li>
       </KeyFindings>
@@ -110,7 +110,7 @@ export default function SystemConvergenceChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Technology domains that were once largely separate have become increasingly intertwined. Multi-section patents rose from 21% to 41% of all grants, while the G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents. These patterns reflect a fundamental structural shift: modern invention increasingly occurs at the intersection of multiple fields, driven by the pervasiveness of digital technology and the growing interdisciplinarity of research.
+          Technology domains that were once largely separate have become increasingly intertwined. Multi-section patents rose from 21% to 40% of all grants, while the G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents. These patterns reflect a fundamental structural shift: modern invention increasingly occurs at the intersection of multiple fields, driven by the pervasiveness of digital technology and the growing interdisciplinarity of research.
         </p>
       </aside>
 
@@ -164,7 +164,7 @@ export default function SystemConvergenceChapter() {
       <ChartContainer
         id="fig-patent-quality-cross-domain"
         subtitle="Annual patent counts by number of CPC sections spanned (1, 2, or 3+), shown as a stacked area to illustrate growing cross-domain convergence."
-        title="Multi-Section Patents Rose from 21% to 41% of All Grants (1976-2025), Indicating Increasing Technological Convergence"
+        title="Multi-Section Patents Rose from 21% to 40% of All Grants (1976-2024), Indicating Increasing Technological Convergence"
         caption="The figure presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
@@ -178,7 +178,7 @@ export default function SystemConvergenceChapter() {
             { key: 'two_sections', name: 'Two Sections', color: CHART_COLORS[2] },
             { key: 'three_plus_sections', name: 'Three+ Sections', color: CHART_COLORS[3] },
           ]}
-          yLabel="Share of Patents (%)"
+          yLabel="Number of Patents"
           stacked
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2008, 2011] })}
         />
@@ -429,7 +429,7 @@ export default function SystemConvergenceChapter() {
 
       <InsightRecap
         learned={[
-          "Multi-section patents rose from 21% to 41% of all grants, signaling increasing technological convergence across once-separate domains.",
+          "Multi-section patents rose from 21% to 40% of all grants, signaling increasing technological convergence across once-separate domains.",
           "The G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025.",
         ]}
         falsifiable="If convergence is driven by genuine interdisciplinarity rather than CPC reclassification artifacts, then text-based measures of thematic overlap (Chapter 5) should confirm the same trend."

@@ -626,7 +626,7 @@ export default function Chapter14() {
       >
         <PWLineChart
           data={qualityBif ?? []}
-          xKey="year"
+          xKey="period"
           lines={[{ key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[2] }]}
           yLabel="Top-Decile Share (%)"
         />
