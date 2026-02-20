@@ -98,7 +98,7 @@ export default function SystemPatentCountChapter() {
       <MeasurementSidebar slug="system-patent-count" />
 
       <KeyFindings>
-        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a fivefold increase in annual output over five decades.</li>
+        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a five-fold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, while design patents constitute the principal secondary category.</li>
         <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010, creating uncertainty during a period of rapid technological change in computing and telecommunications.</li>
       </KeyFindings>

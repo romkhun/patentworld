@@ -531,7 +531,7 @@ export default function InvTeamSizeChapter() {
         title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
         subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
         caption="This chart tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (e.g., corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
-        insight="The fivefold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
+        insight="The five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
         loading={crL}
       >
         {crossRate && (
