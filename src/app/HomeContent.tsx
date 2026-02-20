@@ -109,7 +109,7 @@ export default function HomePage() {
               Start Reading <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/explore/"
+              href="#chapters"
               className="inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-medium text-foreground hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Browse All Chapters
@@ -150,7 +150,7 @@ export default function HomePage() {
       </section>
 
       {/* Chapter Cards */}
-      <section className="border-t">
+      <section id="chapters" className="border-t">
         <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
           <div className="mb-8 flex items-baseline justify-between">
             <h2 className="font-serif text-2xl font-bold">Explore by Act</h2>
