@@ -593,7 +593,7 @@ export default function Chapter21() {
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for semiconductor patents by year, measuring quality trends."
         title="Semiconductor Patent Quality Indicators Reveal Growing Complexity and Interdisciplinarity Over Time"
         caption="Average claims, backward citations, and technology scope for semiconductor-related patents by year. The rise-and-fall pattern in backward citations — peaking around 2012 before declining — alongside modest increases in technology scope suggest that semiconductor patents reflect shifting citation practices and growing interconnection with adjacent fields."
-        insight="Rising backward citations and technology scope indicate that semiconductor innovation is becoming more interconnected with adjacent domains, reflecting the industry's shift toward systems-level integration and heterogeneous architectures."
+        insight="Backward citations peaked around 2012 before declining, consistent with broader shifts in citation practices, while expanding technology scope indicates that semiconductor innovation is becoming more interconnected with adjacent domains, reflecting the industry's shift toward systems-level integration and heterogeneous architectures."
         loading={qL}
       >
         <PWLineChart
@@ -704,9 +704,9 @@ export default function Chapter21() {
           more so than in many other technology domains. This concentration reflects the
           capital-intensive nature of the semiconductor industry, where building a
           leading-edge fabrication facility requires investments exceeding $20 billion.
-          University semiconductor patenting peaked in the early 2000s and has since declined to negligible levels, primarily
-          in emerging areas such as organic semiconductors and novel device architectures,
-          but remains a small fraction of total activity. The negligible share of individual
+          University semiconductor patenting peaked in the early 2000s and has since declined;
+          what remains is concentrated primarily in emerging areas such as organic semiconductors
+          and novel device architectures, but constitutes a small fraction of total activity. The negligible share of individual
           inventors underscores the institutional nature of semiconductor innovation.
         </p>
       </KeyInsight>

@@ -77,7 +77,7 @@ export default function SystemPublicInvestmentChapter() {
       <KeyFindings>
         <li>Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, a trend associated with the 1980 Bayh-Dole Act.</li>
         <li>HHS/NIH leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).</li>
-        <li>Government-funded patents are often associated with higher citation impact in the academic literature.</li>
+        <li>Government-funded patents slightly outperform non-funded patents on cohort-normalized citation impact, as shown in the cohort-normalized comparison below, consistent with findings in the academic literature.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -346,10 +346,6 @@ export default function SystemPublicInvestmentChapter() {
         </p>
       </KeyInsight>
 
-      <Narrative>
-        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
-      </Narrative>
-
       <InsightRecap
         learned={[
           "Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, with HHS/NIH leading at 55,587 cumulative patents.",
@@ -362,6 +358,10 @@ export default function SystemPublicInvestmentChapter() {
           href: "/chapters/org-composition",
         }}
       />
+
+      <Narrative>
+        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
+      </Narrative>
 
       <DataNote>
         All data are drawn from PatentsView (patentsview.org), covering granted US patents

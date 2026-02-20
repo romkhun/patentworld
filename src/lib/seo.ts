@@ -98,7 +98,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent grant concentration by assignee remains below conventional thresholds across all CPC sections.',
   'system-convergence': 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
   'system-language': 'NLP topic modeling of 8.45 million patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
-  'system-patent-law': 'From Bayh-Dole (1980) to Alice Corp. (2014), twenty-one landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
+  'system-patent-law': 'From Bayh-Dole (1980) to the PREVAIL Act (2025), twenty-one landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
   'system-public-investment': 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 government-funded patents.',
   // ACT 2
   'org-composition': 'Corporate assignees grew from 94% to 99% of grants. Foreign assignees surpassed US-based filers in 2007. Japan accounts for 1.4M US patents.',

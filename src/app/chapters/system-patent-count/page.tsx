@@ -98,7 +98,7 @@ export default function SystemPatentCountChapter() {
       <MeasurementSidebar slug="system-patent-count" />
 
       <KeyFindings>
-        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a more than five-fold increase in annual output over five decades.</li>
+        <li>The US patent system granted 9.36 million patents (utility, design, plant, and reissue combined) between 1976 and 2025 — a more than five-fold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, while design patents constitute the principal secondary category.</li>
         <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010 (measured by grant year), creating uncertainty during a period of rapid technological change in computing and telecommunications.</li>
       </KeyFindings>
@@ -113,7 +113,7 @@ export default function SystemPatentCountChapter() {
       {/* ── Total Patent Volume ── */}
 
       <StatGrid>
-        <StatCard value={totalPatents} label="Total Patents" />
+        <StatCard value={totalPatents} label="Total Patents (All Types)" />
         <StatCard value="50" label="Years (1976-2025)" />
         <StatCard value={`${peakYear}`} label="Peak Year" />
         <StatCard value={peakCount} label={`Grants in ${peakYear}`} />
@@ -247,7 +247,7 @@ export default function SystemPatentCountChapter() {
 
       <ChartContainer
         id="fig-filing-vs-grant"
-        title="Filing-Year Counts Peaked at 349,093 in 2019, Matching the Grant-Year Peak of 355,923 in the Same Year"
+        title="Utility Patent Filing-Year Counts Peaked at 349,093 in 2019, Matching the Grant-Year Peak of 355,923 in the Same Year"
         subtitle="Utility patent counts by filing year versus grant year, 1976–2025"
         caption="Filing-year counts understate recent activity because many applications remain pending. The sharp drop in filing-year counts after 2019 reflects the truncation bias of pending applications, not a decline in filing activity."
         insight="The divergence between filing and grant year trends reveals that recent filing-year declines are an artifact of examination lag — applications filed in recent years have not yet been granted, creating the appearance of decline."
@@ -271,7 +271,7 @@ export default function SystemPatentCountChapter() {
 
       <ChartContainer
         id="fig-pendency-trend"
-        title="Median Time from Filing to Grant Rose from 1.6 to 3.8 Years, Peaking at 3.8 in 2006"
+        title="Median Time from Filing to Grant Rose from 1.6 Years, Peaking at 3.8 Years in 2006 Before Declining"
         subtitle="Median pendency in years by filing year, 1976–2022"
         caption="Pendency is measured from the filing date of the earliest US application in the family. Recent filing years have incomplete data due to pending applications, which is why the series ends at 2022."
         insight="The pendency peak in the mid-2000s coincided with the surge in computing and telecommunications filings, creating years of legal uncertainty for applicants in precisely the fastest-moving technology domains."
@@ -349,7 +349,7 @@ export default function SystemPatentCountChapter() {
 
       <InsightRecap
         learned={[
-          "The US patent system granted 9.36 million patents between 1976 and 2025, with annual output increasing more than five-fold from 70,000 to over 370,000.",
+          "The US patent system granted 9.36 million patents (all types) between 1976 and 2025, with annual output increasing more than five-fold from roughly 70,000 (1976) to over 370,000.",
           "Average grant pendency peaked at 3.8 years in 2010 before declining to 2.7 years by 2023, reflecting USPTO capacity adjustments.",
         ]}
         falsifiable="If the USPTO's capacity constraints drove the pendency peak, then future surges in application volume should reproduce the pattern — pendency should rise again when filings outpace examiner hiring."

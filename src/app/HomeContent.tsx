@@ -89,13 +89,13 @@ export default function HomePage() {
             , The Wharton School, University of Pennsylvania
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025.
+            An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025 (2025 data through September).
             Annual grants increased more than five-fold over this period, from 70,000 in 1976 to 374,000 in 2024,
             as computing and electronics (CPC sections G and H) rose from 27% to 57% of all grants.
           </p>
 
           <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
-            <CounterStat target={9.36} label="Patents" suffix="M" decimals={2} />
+            <CounterStat target={9.36} label="Patents (all types)" suffix="M" decimals={2} />
             <CounterStat target={HERO_STATS.yearsCovered} label="Years" />
             <CounterStat target={HERO_STATS.chapters} label="Chapters" />
             <CounterStat target={HERO_STATS.visualizations} label="Visualizations" />

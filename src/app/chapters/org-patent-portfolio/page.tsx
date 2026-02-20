@@ -127,10 +127,10 @@ export default function OrgPatentPortfolioChapter() {
       <MeasurementSidebar slug="org-patent-portfolio" />
 
       <KeyFindings>
-        <li>248 companies cluster into 8 industries by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple clusters.</li>
+        <li>248 companies cluster into 8 industries by patent portfolio similarity (HDBSCAN on pairwise cosine distances of CPC subclass distributions), with technology conglomerates occupying positions at the intersection of multiple clusters.</li>
         <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses, indicating broad technology coverage.</li>
         <li>IBM (88,600 G-section patents) and Samsung (79,400 H-section patents) maintain the most diversified technology portfolios among the top ten patent holders.</li>
-        <li>Jensen-Shannon divergence analysis flags 51 detected pivots across 20 companies, often years before strategic shifts become publicly visible.</li>
+        <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 5-year windows, with pivots flagged above the 90th percentile threshold) identifies 51 detected pivots across 20 companies, often years before strategic shifts become publicly visible.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">

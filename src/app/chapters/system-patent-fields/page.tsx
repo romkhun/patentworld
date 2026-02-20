@@ -826,7 +826,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the gap between the highest-median and lowest-median CPC sections widening from approximately 1 claim in the 1970s to 4 claims by the 2020s, reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the difference in median claims between the highest and lowest CPC sections widening from approximately 1 claim in the 1970s to 4 claims by the 2020s (e.g., Physics at 19 versus Textiles at 15), reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -998,7 +998,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          The field-level variation in self-citation rates carries two distinct interpretations. On one hand, elevated rates in patent-dense fields such as semiconductors and electronics may reflect genuine cumulative innovation, with each patent building upon the firm&apos;s previous work. On the other hand, high self-citation rates may also signal strategic behavior, as firms cite their own patents to construct defensive patent thickets that raise barriers to entry. Disentangling these mechanisms requires firm-level analysis of the relationship between self-citation intensity and subsequent market entry, a question explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
+          Distinguishing genuine cumulative innovation from strategic citation behavior poses a fundamental measurement challenge. If elevated self-citation rates in patent-dense fields such as semiconductors primarily reflect defensive portfolio construction -- citing one&apos;s own patents to build thickets that raise barriers to entry -- then self-citation ceases to be a reliable indicator of knowledge accumulation. Resolving this ambiguity requires firm-level analysis linking self-citation intensity to subsequent market entry patterns and competitive dynamics, a question explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
         </p>
       </KeyInsight>
 

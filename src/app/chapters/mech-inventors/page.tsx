@@ -165,7 +165,7 @@ export default function MechInventorsChapter() {
       <KeyFindings>
         <li>632 prolific inventors form 1,236 co-invention ties in a fragmented network of small, tightly connected teams.</li>
         <li>Average inventor degree rose 2.5 times, from 2.7 in the 1980s to 6.8 in the 2020s, reflecting a progressively more collaborative innovation ecosystem.</li>
-        <li>143,524 inventor movements flow among 50 major patent-filing organizations, with large technology companies tending to be net talent importers.</li>
+        <li>143,524 inventor movements (instances where an inventor filed consecutive patents at different assignees within 5 years) flow among 50 major patent-filing organizations, with large technology companies tending to be net talent importers.</li>
         <li>International inventor mobility rose from 1.3% in 1980 to 5.1% in 2024, surpassing domestic interstate mobility rates of 3.5%.</li>
         <li>The United States is involved in 77.6% of all international inventor migration flows (509,639 of 656,397 moves).</li>
       </KeyFindings>

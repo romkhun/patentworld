@@ -106,7 +106,7 @@ export default function SystemPatentQualityChapter() {
       <MeasurementSidebar slug="system-patent-quality" />
 
       <KeyFindings>
-        <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005, with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
+        <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005 before settling to 16.6 by 2024 (median: 18), with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
         <li>Average patent scope grew from 1.8 to a peak of 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent in 2020, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
         <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
@@ -145,8 +145,8 @@ export default function SystemPatentQualityChapter() {
         id="fig-innovation-landscape-claims-per-patent"
         title="Average Claims per Patent Doubled from 9.4 in 1976 to a Peak of 18.9 in 2005"
         subtitle="Average and median number of claims per utility patent, measuring patent scope and complexity over time, 1976–2025"
-        caption="Average and median number of claims per utility patent, 1976–2025. The relationship between mean and median has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
-        insight="The relationship between average and median claims per patent has shifted over time; by the mid-2010s, the median surpassed the average, suggesting a compression of the upper tail."
+        caption="Average and median number of claims per utility patent, 1976–2025. Median claims crossed above the average around 2014-2015, when the median reached 17 and the average fell to 16.6, marking a structural shift in the claims distribution."
+        insight="The crossover of median above mean indicates that the claims distribution has shifted from right-skewed (a long tail of high-claim patents pulling the average up) to left-skewed (a compression of the upper tail), a pattern consistent with increasing examiner scrutiny of excessively broad claim sets."
         loading={clL}
       >
         <PWLineChart
@@ -251,7 +251,7 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          The steady growth in average patent scope from 1.8 to nearly 2.5 CPC subclasses per patent is consistent with the increasing convergence of once-separate technology domains. This trend accelerated after 2000, coinciding with the rise of inherently cross-disciplinary technologies such as IoT, computational biology, and AI-driven engineering, and is further documented in the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Convergence chapter</Link>.
+          The broadening of patent scope implies that patents increasingly straddle traditional classification boundaries, creating challenges for examiners who must possess expertise across multiple technology domains and for firms that must monitor an expanding set of prior art. This trend is further documented in the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Convergence chapter</Link>.
         </p>
       </KeyInsight>
 
@@ -387,7 +387,7 @@ export default function SystemPatentQualityChapter() {
           decades, reflecting the expanding body of prior art that new inventions must
           acknowledge. Patents increasingly build on larger bodies of prior art, with the average rising
           from 4.9 in 1976 to 21.3 by 2023. The gap between average and median
-          suggests a long tail of heavily-cited patents, a pattern consistent with both the expanding universe of
+          suggests a long tail of patents citing an exceptionally large number of prior works, a pattern consistent with both the expanding universe of
           prior art and more thorough examination and disclosure requirements.
         </p>
       </Narrative>
@@ -679,7 +679,7 @@ export default function SystemPatentQualityChapter() {
         title="Average NPL Citations per Patent Rose 54-Fold from 0.23 in 1976 to 12.5 in 2024"
         subtitle="Average non-patent literature citations per utility patent by grant year, 1976–2025"
         caption="NPL citations include references to scientific journals, conference papers, and technical reports. The sustained rise indicates an increasingly science-intensive patent system."
-        insight="The sustained growth in NPL citations reflects a structural shift in patenting toward science-intensive domains. Patents granted in 2024 cite, on average, more than fifty times as many scientific publications as those from the late 1970s."
+        insight="The sustained growth in NPL citations reflects a structural shift in patenting toward science-intensive domains. Patents granted in 2024 cite, on average, more than fifty-four times as many scientific publications as those from the late 1970s."
         loading={nplL}
       >
         <PWLineChart
@@ -811,7 +811,7 @@ export default function SystemPatentQualityChapter() {
 
       <InsightRecap
         learned={[
-          "Average claims per patent nearly doubled from 9.4 to 18.9 over five decades, while forward citations rose steadily before peaking.",
+          "Average claims per patent doubled from 9.4 to 18.9 over five decades, while forward citations rose steadily before peaking.",
           "Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15, indicating patents draw on more diverse sources but serve narrower applications.",
         ]}
         falsifiable="If rising originality reflects genuine knowledge broadening rather than citation inflation, then cohort-normalized originality (controlling for field and year) should show the same upward trend."

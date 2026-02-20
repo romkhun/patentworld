@@ -104,7 +104,7 @@ export default function SystemConvergenceChapter() {
       <KeyFindings>
         <li>Multi-section patents rose from 21% to 40% of all grants between 1976 and 2024, signaling increasing technological convergence across once-separate domains.</li>
         <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
-        <li>Increasing cross-pollination of technology domains indicates that the boundaries between fields are becoming more permeable, with inventions more frequently occurring at the intersection of multiple disciplines.</li>
+        <li>Within-firm technological broadening accounts for the majority of the convergence trend, indicating that individual organizations are expanding their patent scope across CPC sections rather than the aggregate shift being driven by compositional changes in the population of patentees.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">

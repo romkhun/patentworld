@@ -143,7 +143,7 @@ export default function GeoInternationalChapter() {
 
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
-        <li>The United States leads with 164,000 patents (cumulative in the 2020s decade, by primary assignee country) and 18.4 average claims, while countries with rapidly growing patent volumes, including China, tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions or technology field composition.</li>
+        <li>The United States leads with 164,000 patents granted cumulatively during the 2020s (by primary assignee country) and 18.4 average claims per patent, while countries with rapidly growing patent volumes, including China, tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions or technology field composition.</li>
         <li>US-domestic patents and international patents differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
@@ -334,7 +334,7 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-claims-by-country"
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
-        title="The United States Leads with 164,000 Patents (Cumulative 2020s, by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
+        title="The United States Leads with 164,000 Patents Granted Cumulatively During the 2020s (by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
         caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts. The lower average claims from countries with rapidly growing patent volumes may reflect differences in patent drafting conventions, technology composition, or strategic filing approaches."
         loading={qcL}

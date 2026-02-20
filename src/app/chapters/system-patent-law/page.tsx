@@ -514,19 +514,19 @@ export default function Chapter4() {
         <ul className="list-disc pl-5 space-y-2 mt-2">
           <li>
             <strong>Bayh-Dole Act (1980):</strong> Coincided with a substantial increase in university patenting, though scholars debate whether the Act catalyzed the trend or formalized an existing one.
-            Government-funded patents (Patent Quality) began rising in the 1980s as universities
+            Government-funded patents (Public Investment) began rising in the 1980s as universities
             established technology transfer offices.
           </li>
           <li>
             <strong>Court of Appeals for the Federal Circuit (1982):</strong> Unified and strengthened patent rights,
             a change widely cited as a factor in the upward trend in patent grants through the 1990s and
-            2000s (The Innovation Landscape).
+            2000s (Patent Count).
           </li>
           <li>
             <strong>State Street Bank v. Signature Financial Group (1998):</strong> Established the patentability of business
             methods, The subsequent acceleration in software patent filings is consistent with this ruling, observable as
             the acceleration of Section G (Physics) and H (Electricity) patents in the late
-            1990s (The Technology Revolution).
+            1990s (Patent Fields).
           </li>
           <li>
             <strong>America Invents Act (2011):</strong> Created the PTAB inter partes review
@@ -565,7 +565,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-applications-vs-grants"
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
-        title="Applications Grew from 66,000 (Average, 1976-1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
+        title="Successfully Granted Applications Grew from 66,000 (Average, 1976-1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="The figure displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
@@ -798,7 +798,7 @@ export default function Chapter4() {
 
       <InsightRecap
         learned={[
-          "Twenty-one major legislative acts and Supreme Court decisions from the Bayh-Dole Act (1980) to Arthrex (2021) have shaped the modern patent system.",
+          "Twenty-one major legislative acts, Supreme Court decisions, and policy changes from the Bayh-Dole Act (1980) to the proposed PREVAIL Act & PERA (2025) have shaped the modern patent system.",
           "The America Invents Act of 2011 shifted the US from first-to-invent to first-to-file and created inter partes review as a major validity challenge mechanism.",
         ]}
         falsifiable="If Alice Corp. (2014) materially reduced software patenting, then CPC subclasses most affected by the decision should show a discontinuous decline in patent grants relative to unaffected subclasses."

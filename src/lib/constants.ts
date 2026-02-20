@@ -1,5 +1,5 @@
 export const SITE_NAME = 'PatentWorld';
-export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents granted from 1976 to 2025, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.';
+export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents (utility, design, plant, and reissue) granted from 1976 to 2025, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.';
 
 export interface ChapterMeta {
   number: number;
@@ -45,14 +45,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-language',
     title: 'The Language of Innovation',
     subtitle: 'Semantic analysis of 8.45 million patent abstracts',
-    description: 'Computing and semiconductor topics grew from 12% to 33% of all patents since 1976. Patent novelty (median entropy) rose 6.4% from 1.97 to 2.10, with an upward trend since the late 1980s.',
+    description: 'Computing and semiconductor topics grew from 12% to 33% of all patents since 1976. Patent novelty (median entropy) rose 6.6% from 1.97 to 2.10, with an upward trend since the late 1980s.',
   },
   {
     number: 6,
     slug: 'system-patent-law',
     title: 'Patent Law & Policy',
     subtitle: 'Legislation and jurisprudence shaping the patent system',
-    description: 'The Alice decision (2014) curtailed software patent eligibility, while the AIA (2011) was the most significant reform since 1952. Twenty-one legislative and judicial events since 1980 show measurable effects on filing patterns within one to two years.',
+    description: 'The Alice decision (2014) curtailed software patent eligibility, while the AIA (2011) was the most significant reform since 1952. Twenty-one legislative and judicial events from 1980 to 2025 show measurable effects on filing patterns within one to two years.',
   },
   {
     number: 7,
@@ -161,7 +161,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'mech-inventors',
     title: 'Inventor Mechanics',
     subtitle: 'Co-invention networks, bridge inventors, and inter-firm mobility',
-    description: '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements flow among 50 organizations. International mobility rose from 1.3% to 5.1%, with the US involved in 77.6% of all cross-border flows.',
+    description: '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements (consecutive patents at different assignees within 5 years) flow among 50 organizations. International mobility rose from 1.3% to 5.1%, with the US involved in 77.6% of all cross-border flows.',
   },
   {
     number: 22,
@@ -218,7 +218,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'cybersecurity',
     title: 'Cybersecurity',
     subtitle: 'Defending digital infrastructure through innovation',
-    description: 'Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025, reflecting broad-based entry across the field. Patent velocity reached 105.8 patents per year for 2010s entrants, a 1.7-fold increase. Network security surpassed cryptography as the dominant subfield around 2003.',
+    description: 'Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025, reflecting broad-based entry across the field. Patent velocity reached 105.8 patents per year for 2010s entrants, a 1.4-fold increase over 1970s entrants. Network security surpassed cryptography as the dominant subfield around 2003.',
   },
   {
     number: 30,

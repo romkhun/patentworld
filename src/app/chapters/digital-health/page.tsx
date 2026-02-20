@@ -346,7 +346,7 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-digihealth-share"
         subtitle="Digital health patents as a percentage of all utility patents, showing the growing allocation of inventive effort toward healthcare technology."
-        title="Digital Health&apos;s Share of Total Patents Has Risen Steadily, Indicating a Genuine Reallocation of Inventive Effort"
+        title="Digital Health's Share of Total Patents Has Risen Steadily, Indicating a Genuine Reallocation of Inventive Effort"
         caption="Percentage of all utility patents classified under digital health CPC codes. The upward trend indicates that digital health patenting growth is not merely tracking overall patent expansion but represents a disproportionate concentration of inventive effort in healthcare technology."
         insight="The growing share of digital health patents among all patents demonstrates a genuine reallocation of inventive effort toward healthcare technology, driven by regulatory incentives, demographic trends, and the digitization of clinical workflows."
         loading={pyL}
@@ -542,8 +542,8 @@ export default function Chapter18() {
         id="fig-digihealth-by-state"
         subtitle="US states ranked by total digital health patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California and Massachusetts Lead US Digital Health Patenting, Reflecting Medical Device and Health IT Industry Clusters"
-        caption="US states ranked by total digital health patents based on primary inventor location. California&apos;s lead reflects Silicon Valley&apos;s health technology ecosystem, while Massachusetts&apos;s strong second-place position is driven by its concentration of medical device firms, health IT companies, and academic medical centers."
-        insight="The geographic clustering of digital health patents in California and Massachusetts reflects distinct innovation ecosystems: Silicon Valley&apos;s technology-driven health startups and Boston&apos;s established medical device and health IT corridor."
+        caption="US states ranked by total digital health patents based on primary inventor location. California's lead reflects Silicon Valley's health technology ecosystem, while Massachusetts's strong second-place position is driven by its concentration of medical device firms, health IT companies, and academic medical centers."
+        insight="The geographic clustering of digital health patents in California and Massachusetts reflects distinct innovation ecosystems: Silicon Valley's technology-driven health startups and Boston's established medical device and health IT corridor."
         loading={geoL}
         height={900}
       >
@@ -862,8 +862,8 @@ export default function Chapter18() {
         id="fig-digihealth-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in digital health patenting."
         title="Top-4 Concentration in Digital Health Patents Peaked at 12.0% in 2009 Before Declining to 6.8% by 2025"
-        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total digital health patents. The moderate peak reflects Philips and Medtronic&apos;s early dominance, while the decline coincides with technology firms entering the medical device space after the HITECH Act."
-        insight="Digital health&apos;s low concentration is consistent with the sector&apos;s fragmented competitive landscape, where medical device incumbents, technology firms, and academic medical centers each contribute significant but non-dominant patent volumes."
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total digital health patents. The moderate peak reflects Philips and Medtronic's early dominance, while the decline coincides with technology firms entering the medical device space after the HITECH Act."
+        insight="Digital health's low concentration is consistent with the sector's fragmented competitive landscape, where medical device incumbents, technology firms, and academic medical centers each contribute significant but non-dominant patent volumes."
         loading={ootL || pyL}
       >
         <PWLineChart
@@ -879,7 +879,7 @@ export default function Chapter18() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across digital health subfields."
         title="Digital Health Subfield Diversity Rose From 0.49 in 1976 to 0.92 by 2025, Reflecting the Convergence of Medical and Computing Domains"
         caption="Normalized Shannon entropy of digital health subfield patent distributions. The increase from 0.49 to 0.92 reflects the evolution from narrow patient monitoring devices to a broad ecosystem spanning surgical robotics, health informatics, telemedicine, wearable diagnostics, and AI-assisted imaging."
-        insight="The diversification trajectory is consistent with digital health&apos;s transition from standalone medical devices to integrated systems requiring expertise across electronics, software, biomaterials, and clinical science."
+        insight="The diversification trajectory is consistent with digital health's transition from standalone medical devices to integrated systems requiring expertise across electronics, software, biomaterials, and clinical science."
         loading={sfL}
       >
         <PWLineChart
