@@ -52,14 +52,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-law',
     title: 'Patent Law & Policy',
     subtitle: 'Legislation and jurisprudence shaping the patent system',
-    description: 'Twenty-one major legislative acts and Supreme Court decisions from the Bayh-Dole Act (1980) to Arthrex (2021), each linked to empirical research on their effects.',
+    description: 'The Alice decision (2014) curtailed software patent eligibility, while the AIA (2011) was the most significant reform since 1952. Twenty-one legislative and judicial events since 1980 show measurable effects on filing patterns within one to two years.',
   },
   {
     number: 7,
     slug: 'system-public-investment',
     title: 'Public Investment',
     subtitle: 'Government funding and the Bayh-Dole Act',
-    description: 'Government-funded patents rose from 1,269 in 1976 to a peak of 6,457 in 2015. HHS/NIH leads with 55,587 government-funded patents.',
+    description: 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).',
   },
   // ── ACT 2: The Organizations ──
   {
@@ -103,7 +103,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-top-inventors',
     title: 'Top Inventors',
     subtitle: 'Superstar concentration, prolific inventors, and citation impact',
-    description: '12% of inventors produce 61% of total patent output. The most prolific inventor holds 6,709 patents. Citation impact ranges widely among top inventors.',
+    description: 'The top 5% of inventors grew from 26% to 60% of annual patent output (1976-2025). The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
   },
   {
     number: 14,
@@ -146,7 +146,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'geo-international',
     title: 'International Geography',
     subtitle: 'Cross-border patterns and country-level quality metrics',
-    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. Domestic patents average 12.9 forward citations vs. 5.8 for international-origin (2015) and 16.6 claims vs. 13.4 (2024).',
+    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with 164,000 patents and 18.4 average claims in the 2020s, while rapidly growing origins exhibit lower claims, suggesting a quality-quantity tradeoff.',
   },
   // ── ACT 5: The Mechanics ──
   {
@@ -154,14 +154,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'mech-organizations',
     title: 'Organizational Mechanics',
     subtitle: 'Within-firm exploration, exploitation, and inter-firm knowledge flows',
-    description: '11 of 20 major filers keep exploration below 5%. New-subclass exploration scores decay from 1.0 to 0.087. Corporate citation flows reveal distinct industry clusters.',
+    description: '11 of 20 major filers keep exploration below 5%. Balanced firms produce blockbusters at 2.3x the rate of specialists. 618 organizations form distinct industry clusters in the co-patenting network.',
   },
   {
     number: 21,
     slug: 'mech-inventors',
     title: 'Inventor Mechanics',
     subtitle: 'Co-invention networks, bridge inventors, and inter-firm mobility',
-    description: '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements flow among 50 major organizations. California accounts for 54.9% of interstate migration.',
+    description: '632 prolific inventors form 1,236 co-invention ties. 143,524 inventor movements flow among 50 organizations. International mobility rose from 1.3% to 5.1%, with the US involved in 77.6% of all cross-border flows.',
   },
   {
     number: 22,

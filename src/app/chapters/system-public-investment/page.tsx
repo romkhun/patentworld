@@ -352,7 +352,7 @@ export default function SystemPublicInvestmentChapter() {
 
       <InsightRecap
         learned={[
-          "Government-funded patents rose from 1,269 in 1976 to a peak of 6,457 in 2015, with HHS/NIH leading at 55,587 cumulative patents.",
+          "Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, with HHS/NIH leading at 55,587 cumulative patents.",
           "Public investment in patented R&D spans all major technology domains, with agency portfolios exhibiting distinct breadth-depth tradeoffs.",
         ]}
         falsifiable="If government funding genuinely improves patent quality, then funded patents should show higher cohort-normalized citation impact even after controlling for inventor quality and institutional resources."

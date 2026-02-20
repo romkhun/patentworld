@@ -276,3 +276,59 @@ All phases verified as already completed from prior audit sessions:
 - **Phase 6 (Titles)**: All chart titles are insight-oriented declarative sentences with verified numbers
 - **Phase 7 (Navigation)**: NAVIGATION_LOG.md covers 34-chapter architecture; prev/next links, breadcrumbs, mobile nav, reading progress, back-to-top all verified
 - **Phase 9 (SEO)**: robots.ts, sitemap.ts, per-chapter JSON-LD, OG tags, FAQ page all present and verified
+
+---
+
+## Session: 2026-02-20 — fix.md Final Execution
+
+### Phase 3c: Chapter Description Updates
+
+Updated 6 chapter descriptions in `src/lib/constants.ts` to match current KeyFindings:
+
+| Chapter | Issue | Fix |
+|---------|-------|-----|
+| Ch 6 (Patent Law) | Feature description, not finding-first | Rewrote to lead with Alice + AIA findings |
+| Ch 7 (Public Investment) | Wrong numbers (1976/1,269/2015/6,457) | Corrected to 1980/1,294/2019/8,359 per KeyFindings |
+| Ch 13 (Top Inventors) | Used "12%/61%" vs page's "top 5%, 26%-60%"; vague 3rd sentence | Updated to top-5% metric; added citation range 10-965 |
+| Ch 19 (Intl Geography) | Quality comparison tone mismatched hedged page text | Aligned with page's quality-quantity tradeoff framing |
+| Ch 20 (Org Mechanics) | Vague "distinct industry clusters" | Added blockbuster rate 2.3x and 618-org network specifics |
+| Ch 21 (Inventor Mechanics) | Missing international mobility emphasis | Replaced California 54.9% with intl mobility 1.3%-5.1% and US 77.6% |
+
+Also fixed: Ch 7 InsightRecap stale numbers (line 355 of system-public-investment/page.tsx).
+
+### Phase 4b: Unused Data Files Audit
+
+**Confirmed UNUSED (do not delete — author may use later):**
+- `public/data/act6/act6_npl_by_domain.json`
+- `public/data/computed/cohort_normalized_by_assignee.json`
+- `public/data/computed/cohort_normalized_by_geography.json`
+- `public/data/computed/cohort_normalized_by_inventor_group.json`
+- `public/data/computed/cohort_normalized_by_teamsize.json`
+
+**Confirmed USED (9 of 10 additional files checked):**
+- `chapter1/gov_agency_breadth_depth.json` → system-public-investment
+- `chapter1/gov_agency_field_matrix.json` → system-public-investment
+- `chapter2/blockbuster_lorenz.json` → org-patent-count
+- `chapter3/team_size_coefficients.json` → inv-team-size
+- `chapter5/exploration_exploitation_trajectory.json` → mech-organizations
+- `chapter5/inventor_mobility_event_study.json` → mech-inventors
+- `chapter10/convergence_decomposition.json` → system-convergence
+- `chapter10/convergence_near_far.json` → system-convergence
+- `chapter10/convergence_top_assignees.json` → system-convergence
+
+### All Phases Complete
+
+| Phase | Status |
+|-------|--------|
+| 1. Chart title verification | DONE (3 mismatches fixed: commit 16a645aa) |
+| 2. Tone sweep | DONE (30 edits: commit 16a645aa) |
+| 3a. Hero stats | DONE (459 verified) |
+| 3b. Key stat consistency | DONE (HomeContent.tsx 40%→57%: commit 3c3e0893) |
+| 3c. Chapter descriptions | DONE (6 descriptions updated: this session) |
+| 4a. ESLint | DONE (unused imports removed: commit 16a645aa) |
+| 4b. Unused data files | DONE (5 unused flagged, 9 confirmed used) |
+| 5a. Build | DONE (42 pages, zero errors) |
+| 5b. Spot-check | DONE (10 charts verified) |
+| 5c. Navigation | DONE (34/34 correct) |
+| 5d. Cross-stat | DONE (all key stats consistent) |
+| 6. Commit & deploy | DONE |
