@@ -8,6 +8,7 @@ import { Narrative } from '@/components/chapter/Narrative';
 import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWLollipopChart } from '@/components/charts/PWLollipopChart';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWLorenzCurve } from '@/components/charts/PWLorenzCurve';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
@@ -156,11 +157,12 @@ export default function OrgPatentCountChapter() {
         loading={topL}
         height={1400}
       >
-        <PWBarChart
+        <PWLollipopChart
           data={topOrgs}
           xKey="label"
-          bars={[{ key: 'total_patents', name: 'Total Patents', color: CHART_COLORS[0] }]}
-          layout="vertical"
+          valueKey="total_patents"
+          valueName="Total Patents"
+          color={CHART_COLORS[0]}
         />
       </ChartContainer>
 

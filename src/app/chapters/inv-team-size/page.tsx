@@ -207,6 +207,7 @@ export default function InvTeamSizeChapter() {
           rightYLabel="Average Team Size"
           rightYFormatter={(v) => v.toFixed(1)}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          brush
         />
       </ChartContainer>
 

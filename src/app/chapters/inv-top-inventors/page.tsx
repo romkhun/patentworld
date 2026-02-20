@@ -9,6 +9,7 @@ import { DataNote } from '@/components/chapter/DataNote';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWLineChart } from '@/components/charts/PWLineChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
+import { PWLollipopChart } from '@/components/charts/PWLollipopChart';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
@@ -222,11 +223,12 @@ export default function InvTopInventorsChapter() {
         loading={prL}
         height={1800}
       >
-        <PWBarChart
+        <PWLollipopChart
           data={topInventors}
           xKey="label"
-          bars={[{ key: 'total_patents', name: 'Total Patents', color: CHART_COLORS[0] }]}
-          layout="vertical"
+          valueKey="total_patents"
+          valueName="Total Patents"
+          color={CHART_COLORS[0]}
         />
       </ChartContainer>
 

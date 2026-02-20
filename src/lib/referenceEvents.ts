@@ -6,11 +6,17 @@ export interface ReferenceEvent {
 
 export const PATENT_EVENTS: ReferenceEvent[] = [
   { x: 1980, label: 'Bayh-Dole Act', color: '#6366f1' },
+  { x: 1982, label: 'Federal Circuit', color: '#6366f1' },
   { x: 1995, label: 'TRIPS Agreement', color: '#8b5cf6' },
+  { x: 1998, label: 'State Street Bank', color: '#f59e0b' },
+  { x: 2000, label: 'AIPA', color: '#6366f1' },
   { x: 2001, label: 'Dot-com bust', color: '#ef4444' },
+  { x: 2007, label: 'KSR v. Teleflex', color: '#f59e0b' },
   { x: 2008, label: 'Financial crisis', color: '#ef4444' },
   { x: 2011, label: 'America Invents Act', color: '#6366f1' },
+  { x: 2013, label: 'AIA First-Inventor-to-File', color: '#6366f1' },
   { x: 2014, label: 'Alice Corp. decision', color: '#f59e0b' },
+  { x: 2017, label: 'TC Heartland', color: '#f59e0b' },
   { x: 2020, label: 'COVID-19', color: '#ef4444' },
 ];
 

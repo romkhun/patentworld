@@ -244,6 +244,71 @@ export const BLOCKCHAIN_SUBFIELD_COLORS: Record<string, string> = {
   'Other Blockchain': '#999999',
 };
 
+// ── Sequential & Diverging Scales (discrete stops) ─────────────────────────
+
+/**
+ * Viridis 9-stop sequential scale (perceptually uniform, colorblind-safe).
+ * Use for heatmaps, choropleths, and any magnitude-encoding visualization.
+ */
+export const SEQUENTIAL_SCALE = [
+  '#440154', // lowest value
+  '#482878',
+  '#3e4989',
+  '#31688e',
+  '#26828e',
+  '#1f9e89',
+  '#35b779',
+  '#6ece58',
+  '#fde725', // highest value
+] as const;
+
+/**
+ * Blue-to-orange diverging scale (colorblind-safe).
+ * Use for signed change (positive/negative) centered at zero.
+ */
+export const DIVERGING_SCALE = [
+  '#2166ac', // most negative
+  '#4393c3',
+  '#92c5de',
+  '#d1e5f0',
+  '#f7f7f7', // zero / neutral
+  '#fddbc7',
+  '#f4a582',
+  '#d6604d',
+  '#b2182b', // most positive
+] as const;
+
+// ── Additional Categorical Mappings ────────────────────────────────────────
+
+export const PATENT_TYPE_COLORS: Record<string, string> = {
+  'Utility': '#0072B2',
+  'Design': '#E69F00',
+  'Plant': '#009E73',
+  'Reissue': '#999999',
+};
+
+export const ASSIGNEE_TYPE_COLORS: Record<string, string> = {
+  'Corporate': '#0072B2',
+  'Individual': '#E69F00',
+  'University': '#009E73',
+  'Government': '#D55E00',
+  'Other': '#999999',
+};
+
+export const FILING_ROUTE_COLORS: Record<string, string> = {
+  'PCT': '#0072B2',
+  'Direct Foreign': '#E69F00',
+  'Domestic': '#009E73',
+};
+
+/** Look up CPC section color with fallback to gray. */
+export function getCpcColor(section: string): string {
+  const key = section.charAt(0).toUpperCase();
+  return CPC_SECTION_COLORS[key] ?? '#999999';
+}
+
+// ── Tooltip ────────────────────────────────────────────────────────────────
+
 export const TOOLTIP_STYLE: React.CSSProperties = {
   backgroundColor: 'hsl(var(--card))',
   border: '1px solid hsl(var(--border))',

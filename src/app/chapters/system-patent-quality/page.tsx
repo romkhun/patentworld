@@ -161,6 +161,7 @@ export default function SystemPatentQualityChapter() {
           ]}
           yLabel="Claims"
           yFormatter={(v) => v.toFixed(0)}
+          brush
         />
       </ChartContainer>
 

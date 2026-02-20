@@ -368,6 +368,7 @@ export default function SystemPatentFieldsChapter() {
             yLabel="Number of Patents"
             rightYLabel="Design Share (%)"
             rightYFormatter={(v) => `${v.toFixed(1)}%`}
+            brush
           />
         ) : <div />}
       </ChartContainer>

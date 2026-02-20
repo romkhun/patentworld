@@ -210,6 +210,7 @@ export default function SystemPatentCountChapter() {
           yLabel="Years"
           yFormatter={(v) => `${v.toFixed(1)}y`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2011] })}
+          brush
         />
       </ChartContainer>
 

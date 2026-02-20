@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, ReferenceArea, Text, Area,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label, ReferenceLine, ReferenceArea, Text, Area, Brush,
 } from 'recharts';
 import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
@@ -40,9 +40,10 @@ interface PWLineChartProps {
   showEndLabels?: boolean;
   truncationYear?: number;
   bands?: BandConfig[];
+  brush?: boolean;
 }
 
-export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels, truncationYear, bands }: PWLineChartProps) {
+export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDomain, rightYLabel, rightYFormatter, referenceLines, annotations, showEndLabels, truncationYear, bands, brush }: PWLineChartProps) {
   const hasRightAxis = lines.some((l) => l.yAxisId === 'right');
   const [hoveredLine, setHoveredLine] = useState<string | null>(null);
 
@@ -167,6 +168,16 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             );
           } : undefined}
         />
+        {brush && data.length > 15 && (
+          <Brush
+            dataKey={xKey}
+            height={40}
+            startIndex={Math.max(0, data.length - 15)}
+            stroke="hsl(var(--border))"
+            fill="hsl(var(--card))"
+            tickFormatter={(v) => String(v)}
+          />
+        )}
         <Legend
           wrapperStyle={{ paddingTop: 12, fontSize: chartTheme.fontSize.legend, fontFamily: chartTheme.fontFamily }}
           iconType="circle"

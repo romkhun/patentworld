@@ -5,6 +5,7 @@ import { useChapterData } from '@/hooks/useChapterData';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { PWSmallMultiples } from '@/components/charts/PWSmallMultiples';
+import { PWSparkline } from '@/components/charts/PWSparkline';
 import { SectionDivider } from '@/components/chapter/SectionDivider';
 import { KeyInsight } from '@/components/chapter/KeyInsight';
 import { DataNote } from '@/components/chapter/DataNote';
@@ -56,6 +57,22 @@ export default function DeepDiveOverview() {
       total_patents: d.total_patents,
     }));
   }, [sortedDomains]);
+
+  // Sparkline data keyed by domain short name (e.g. "AI", "Biotech")
+  const domainSparkData = useMemo(() => {
+    if (!timeseries) return {} as Record<string, { x: number; y: number }[]>;
+    const grouped: Record<string, { x: number; y: number }[]> = {};
+    for (const d of timeseries) {
+      if (d.year < 1990) continue;
+      if (!grouped[d.domain]) grouped[d.domain] = [];
+      grouped[d.domain].push({ x: d.year, y: d.count });
+    }
+    // Sort each domain's data by year
+    for (const key of Object.keys(grouped)) {
+      grouped[key].sort((a, b) => a.x - b.x);
+    }
+    return grouped;
+  }, [timeseries]);
 
   // Small-multiples panels
   const panels = useMemo(() => {
@@ -208,9 +225,10 @@ export default function DeepDiveOverview() {
             <Link
               key={key}
               href={`/chapters/${info.slug}`}
-              className="rounded-md border px-3 py-2 text-sm hover:bg-accent transition-colors"
+              className="rounded-md border px-3 py-2 text-sm hover:bg-accent transition-colors flex flex-col gap-1"
             >
-              {info.title}
+              <span>{info.title}</span>
+              <PWSparkline data={domainSparkData[key] ?? []} />
             </Link>
           ))}
         </div>

@@ -166,6 +166,148 @@ After all phases pass:
 
 ---
 
+## PHASE 5: Visualization Polish (from visualization.md)
+
+### Existing Infrastructure Assessment
+
+The following infrastructure already exists and should be extended (not replaced):
+
+| Component | File | Status |
+|-----------|------|--------|
+| Okabe-Ito categorical palette | `src/lib/colors.ts` | DONE — CHART_COLORS, CPC_SECTION_COLORS, COUNTRY_COLORS, INDUSTRY_COLORS, ENTITY_COLORS, 10+ domain palettes |
+| Sequential/diverging scales | `src/lib/chartTheme.ts` | DONE — sequentialScale(), divergingScale(), sequentialStops() |
+| Typography constants | `src/lib/chartTheme.ts` | DONE — fontSize, fontSizeMobile, fontWeight |
+| Time annotations | `src/components/charts/TimeAnnotations.tsx` | DONE — 5 events (dotcom, gfc, aia, alice, covid) |
+| Domain-specific events | `src/lib/referenceEvents.ts` | DONE — PATENT_EVENTS + 10 domain arrays |
+| Bump chart component | `src/components/charts/PWBumpChart.tsx` | DONE — full implementation |
+| Basic number formatter | `src/lib/formatters.ts` | PARTIAL — only formatCompact |
+
+### Execution Order: 7 → 1 → 2 → 10 → 5 → 4 → 9 → 6 → 3 → 8
+
+---
+
+### 5.7. Upgrade 7: Consistent Number Formatting — IMPLEMENT
+
+**Current state:** Only `formatCompact(n)` exists in `src/lib/formatters.ts` (6 lines).
+
+**Action:**
+1. Expand `src/lib/formatters.ts` with:
+   - `formatCount(value, context: 'axis' | 'tooltip')` — abbreviated for axes (300K), full for tooltips (300,000)
+   - `formatPercent(value, decimals, context)` — auto-detect 0-1 vs 0-100 range, always show "X.Y%"
+   - `formatIndex(value, decimals)` — for HHI, Gini, correlation
+   - `formatYear(value)` — no thousands separator
+2. Update default `yFormatter` in PW chart wrapper components to use these formatters
+3. Verify no "2,014" for years, no "0.152" for 15.2%, no unnecessary decimals on integers
+
+---
+
+### 5.1. Upgrade 1: Perceptually Uniform Sequential Palette — ENHANCE
+
+**Current state:** `chartTheme.ts` has `sequentialScale(t)` using HSL approximation (white → dark blue). `PWValueHeatmap` and `PWRankHeatmap` use this.
+
+**Action:**
+1. Add viridis 9-stop discrete array `SEQUENTIAL_SCALE` to `src/lib/colors.ts` for charts that need discrete stops
+2. Add blue-to-orange `DIVERGING_SCALE` 9-stop array to `src/lib/colors.ts`
+3. Verify all heatmaps use centralized scales — spot-check PWValueHeatmap and PWRankHeatmap
+4. Ensure every heatmap has a labeled color legend with min/max values
+
+---
+
+### 5.2. Upgrade 2: Fixed Categorical Color Mapping — ENHANCE
+
+**Current state:** `colors.ts` already has CPC_SECTION_COLORS (9), COUNTRY_COLORS (7), INDUSTRY_COLORS (10), ENTITY_COLORS (15), plus 10 domain subfield palettes. All use Okabe-Ito base.
+
+**Action:**
+1. Add missing mappings: `PATENT_TYPE_COLORS`, `ASSIGNEE_TYPE_COLORS`, `FILING_ROUTE_COLORS`
+2. Add `getCpcColor(section)` helper
+3. Handle CPC section D yellow-on-white: add 1px dark border or substitute with `#B8860B` (DarkGoldenrod)
+4. Spot-check 3 CPC-colored charts across different chapters for consistency
+
+---
+
+### 5.10. Upgrade 10: Standardized Aspect Ratios — IMPLEMENT
+
+**Current state:** ChartContainer defaults to `height: 600px`. No standardized aspect ratios.
+
+**Action:**
+1. Add `CHART_ASPECT_RATIOS` to `src/lib/chartTheme.ts`:
+   - timeSeries: 3 (3:1), horizontalBar: 0.67 (2:3), heatmap: 1 (square), scatter: 1, slopeOrBump: 1.5
+2. Update ChartContainer to accept an `aspectRatio` prop as alternative to fixed height
+3. Apply via `aspect` prop on `ResponsiveContainer` where beneficial
+
+---
+
+### 5.5. Upgrade 5: Lollipop Charts for 20+ Entry Rankings — IMPLEMENT
+
+**Current state:** No lollipop component. 16+ horizontal bar charts with 20+ entries identified.
+
+**Action:**
+1. Create `src/components/charts/PWLollipopChart.tsx`:
+   - Horizontal orientation, circle (6px) + thin line (1px), category labels left-aligned
+   - Value labels right of dot, descending sort by default
+   - Color: single accent or categorical mapping
+   - Responsive: top 20 on mobile with "Show all" button
+2. Convert qualifying horizontal bar charts with 20+ entries
+3. Spot-check 5 entries per converted chart
+
+---
+
+### 5.4. Upgrade 4: Slope Charts for Two-Period Comparisons — IMPLEMENT
+
+**Current state:** No slope chart component.
+
+**Action:**
+1. Create `src/components/charts/PWSlopeChart.tsx`:
+   - Left/right axes for two periods, connecting lines, labels at both ends
+   - Hover highlight, sort toggle
+   - Use categorical mapping from Upgrade 2 where applicable
+2. Identify qualifying figures (5–20 categories at exactly 2 time points)
+3. Convert qualifying figures, verify data fidelity
+
+---
+
+### 5.9. Upgrade 9: Bump Charts — ALREADY IMPLEMENTED
+
+**Current state:** `PWBumpChart.tsx` exists with full implementation. 12 PWRankHeatmap instances exist for domain rankings.
+
+**Action:** Verify existing bump chart meets spec (hover-highlight, click-pin, labels both ends, top 5 in color). No additional work expected.
+
+---
+
+### 5.6. Upgrade 6: Focus + Context Brushing — IMPLEMENT
+
+**Current state:** No brushing. 28 files with 30+ year time series.
+
+**Action:**
+1. Add Recharts `<Brush>` to 10-15 most data-dense time-series charts
+2. Default window: most recent 15 years
+3. Brush dimensions: 40-50px overview below main chart
+4. Target charts: annual grants (Ch 1.1), CPC section trends (Ch 1.3), forward citations (Ch 1.2), female inventor share (Ch 3.4), team size (Ch 3.5), international co-invention (Ch 4.2/5.3)
+
+---
+
+### 5.3. Upgrade 3: Policy Event Annotations — ENHANCE
+
+**Current state:** `TimeAnnotations.tsx` has 5 events. `referenceEvents.ts` has PATENT_EVENTS (7) + domain arrays. Both exist independently.
+
+**Action:**
+1. Expand `POLICY_EVENTS` in `referenceEvents.ts` to include: Federal Circuit (1982), State Street Bank (1998), AIPA (2000), KSR v. Teleflex (2007), AIA FITF (2013), TC Heartland (2017)
+2. Add a per-chart "Policy events" toggle (default OFF for ≤20yr, ON for >30yr)
+3. Apply to qualifying time-series charts (≥15 years, calendar year x-axis, patent system metric)
+
+---
+
+### 5.8. Upgrade 8: ACT 6 Overview Sparklines — IMPLEMENT IF DATA EXISTS
+
+**Current state:** ACT 6 overview (`deep-dive-overview/page.tsx`) has 5 charts + domain index grid. No sparklines.
+
+**Action:**
+1. Check if per-domain annual patent data exists in `public/data/act6/`
+2. If yes: build inline sparkline (80-120px × 20-30px, no axes, normalized to own min/max)
+3. If no: log as INFEASIBLE and skip
+
+---
+
 ## FLAGGED FOR AUTHOR REVIEW (Not Actionable Without Author Input)
 
 These items were identified during prior audit sessions and require author decisions:

@@ -213,6 +213,7 @@ export default function InvGenderChapter() {
           yLabel="Female Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
+          brush
         />
       </ChartContainer>
 

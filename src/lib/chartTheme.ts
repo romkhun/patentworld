@@ -137,6 +137,22 @@ export function textColorForHsl(hslStr: string): string {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Standardized aspect ratios by chart type                            */
+/* ------------------------------------------------------------------ */
+
+export const CHART_ASPECT_RATIOS = {
+  timeSeries: 3,           // 3:1 (width 3× height)
+  horizontalBar: 0.67,     // 2:3 (taller than wide) — ~20 entries
+  horizontalBarLong: 0.4,  // 2:5 — 30+ entries
+  heatmap: 1,              // 1:1 square cells
+  scatter: 1,              // 1:1 equal axes
+  network: 1,              // 1:1
+  pie: 1,                  // 1:1
+  smallMultiplesPanel: 4,  // 4:1 per panel
+  slopeOrBump: 1.5,        // 3:2
+} as const;
+
+/* ------------------------------------------------------------------ */
 /*  Convenience re-export as default namespace                          */
 /* ------------------------------------------------------------------ */
 
@@ -152,6 +168,7 @@ const chartTheme = {
   divergingScale,
   textColorForBg,
   textColorForHsl,
+  CHART_ASPECT_RATIOS,
 } as const;
 
 export default chartTheme;
