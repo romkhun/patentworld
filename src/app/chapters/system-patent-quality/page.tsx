@@ -21,7 +21,6 @@ import { SkewnessExplainer } from '@/components/chapter/SkewnessExplainer';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
-import { PWValueHeatmap } from '@/components/charts/PWValueHeatmap';
 import { PWScatterChart } from '@/components/charts/PWScatterChart';
 import { PWBarChart } from '@/components/charts/PWBarChart';
 import { useThresholdFilter } from '@/hooks/useThresholdFilter';
@@ -36,7 +35,6 @@ import type {
   OriginalityGenerality,
   SelfCitationRate,
   SleepingBeauty,
-  CohortNormHeatmap,
   CohortNormSystem,
   OrigGenFiltered,
   SleepingBeautyHalflife,
@@ -88,7 +86,6 @@ export default function SystemPatentQualityChapter() {
   const { data: origGen, loading: ogL } = useChapterData<OriginalityGenerality[]>('chapter9/originality_generality.json');
   const { data: selfCite, loading: scL } = useChapterData<SelfCitationRate[]>('chapter9/self_citation_rate.json');
   const { data: sleepingBeauties } = useChapterData<SleepingBeauty[]>('chapter9/sleeping_beauties.json');
-  const { data: cohortHeatmap, loading: chL } = useChapterData<CohortNormHeatmap[]>('computed/cohort_normalized_citations_heatmap.json');
   const { data: cohortSystem, loading: csL } = useChapterData<CohortNormSystem[]>('computed/cohort_normalized_citations_system.json');
   const { data: origGenFiltered, loading: ogfL } = useChapterData<OrigGenFiltered[]>('computed/originality_generality_filtered.json');
   const { data: sbHalflife, loading: sbhL } = useChapterData<SleepingBeautyHalflife[]>('computed/sleeping_beauty_halflife.json');
@@ -315,10 +312,10 @@ export default function SystemPatentQualityChapter() {
       <SkewnessExplainer metric="forward citations" />
 
       {/* ================================================================== */}
-      {/* 3b. Cohort-Normalized Citation Heatmap (Analysis 1)                */}
+      {/* 3b. Cohort-Normalized Citations                                    */}
       {/* ================================================================== */}
 
-      <SectionDivider label="Cohort-Normalized Citations by Field" />
+      <SectionDivider label="Cohort-Normalized Citations" />
 
       <Narrative>
         <p>
@@ -327,27 +324,6 @@ export default function SystemPatentQualityChapter() {
           citations by the average for its grant-year × CPC section cohort, yielding a field-adjusted measure of relative impact.
         </p>
       </Narrative>
-
-      <ChartContainer
-        id="fig-patent-quality-cohort-heatmap"
-        title="Cohort-Normalized Citation Intensity Varies Substantially Across Fields and Time"
-        subtitle="Mean cohort-normalized 5-year forward citations by grant year and CPC section. Values above 1.0 indicate above-average impact within the cohort."
-        caption="Heatmap of mean cohort-normalized forward citations by year × CPC section. Each cell normalizes by the grant-year × section average, so values above 1.0 indicate above-average citation performance."
-        loading={chL}
-        badgeProps={{ asOf: 'PatentsView 2025-Q1', outcomeWindow: '5y', outcomeThrough: 2020, normalization: 'Cohort×field' }}
-        height={400}
-      >
-        <PWValueHeatmap
-          data={cohortHeatmap ?? []}
-          rowKey="year"
-          colKey="section"
-          valueKey="mean_norm"
-          colLabels={CPC_SECTION_NAMES}
-          valueFormatter={(v) => v.toFixed(2)}
-          rowLabel="Grant Year"
-          colLabel="CPC Section"
-        />
-      </ChartContainer>
 
       <ChartContainer
         id="fig-patent-quality-cohort-system"

@@ -297,7 +297,7 @@ export default function MechOrganizationsChapter() {
       <KeyInsight>
         <p>
           The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
-          exploitative, with exploration shares typically below 5%. This is consistent with the theoretical
+          exploitative, with exploration shares typically below 5%. The finding is consistent with the theoretical
           prediction that large, established organizations tend to favor exploitation of existing
           competencies over exploration of new domains.
         </p>

@@ -391,7 +391,7 @@ export default function Chapter15() {
 
       <ChartContainer
         id="fig-biotech-subfields"
-        subtitle="Patent counts by biotechnology subfield (gene editing, recombinant DNA, enzyme engineering, etc.) over time, based on CPC classifications."
+        subtitle="Patent counts by biotechnology subfield (gene editing, recombinant DNA, enzyme engineering, and other subfields) over time, based on CPC classifications."
         title="Recombinant DNA and Expression Vectors Are Among the Largest Growing Biotech Subfields"
         caption="Patent counts by biotechnology subfield over time, based on CPC classifications. The data reveal substantial growth in recombinant DNA and expression vectors since 2012, alongside the expansion of gene editing and nucleic acid detection methods."
         insight="The subfield composition of biotech patents has shifted substantially since 2012, with recombinant DNA technology continuing to grow substantially, while gene editing and expression vector technologies have also expanded considerably."

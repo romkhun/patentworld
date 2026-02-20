@@ -341,7 +341,7 @@ export default function OrgCompositionChapter() {
         id="fig-org-composition-top-law-firms"
         title="Sughrue Mion Leads With 90,279 Patents, Followed by Fish & Richardson (75,528) and Birch Stewart (71,132)"
         subtitle="Top 20 patent prosecution law firms ranked by total patents handled, all years"
-        caption="Patent prosecution law firms ranked by total patents handled across all years. Firms specializing in Japanese and Korean client portfolios (e.g., Sughrue Mion, Birch Stewart) rank among the largest, reflecting the influence of foreign assignees on US patent prosecution."
+        caption="Patent prosecution law firms ranked by total patents handled across all years. Firms specializing in Japanese and Korean client portfolios (such as Sughrue Mion, Birch Stewart) rank among the largest, reflecting the influence of foreign assignees on US patent prosecution."
         insight="The dominance of firms specializing in foreign client portfolios among top patent prosecution firms reinforces the international character of the US patent system."
         loading={tlfL}
         height={650}

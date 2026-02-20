@@ -271,7 +271,7 @@ export default function Chapter16() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2009 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that drove a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely because of this compactness: the data clearly reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
+          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2009 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that drove a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely due to the narrow scope of the domain: the data reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
         </p>
       </aside>
 
@@ -803,7 +803,7 @@ export default function Chapter16() {
           compared to other corporate-heavy technology domains. University and government
           participation is minimal, reflecting the fact that blockchain emerged from the
           cryptocurrency community rather than from traditional academic computer science
-          research. This contrasts sharply with AI, where universities have played a significant
+          research. The pattern differs markedly from AI, where universities have played a significant
           role in early-stage research, and with biotechnology, where government-funded research
           contributes substantially to the patent pipeline.
         </p>

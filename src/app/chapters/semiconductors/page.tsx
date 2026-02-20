@@ -880,7 +880,7 @@ export default function Chapter21() {
         id="fig-semi-filing-vs-grant"
         title="Semiconductor Filings Peaked at 24,463 in 2019 While Grants Reached 22,511 in 2020 — the Shortest Lag Among Large Domains"
         subtitle="Annual patent filings vs. grants for semiconductors, showing the mature examination pipeline."
-        caption="Semiconductors exhibit the tightest filing-to-grant alignment among large ACT 6 domains, with filing and grant peaks separated by only one year. This reflects the mature and well-established examination processes for semiconductor patents at the USPTO, a domain with decades of prior art and classification history."
+        caption="Semiconductors exhibit the tightest filing-to-grant alignment among large ACT 6 domains, with filing and grant peaks separated by only one year. The alignment reflects the mature and well-established examination processes for semiconductor patents at the USPTO, a domain with decades of prior art and classification history."
         loading={fgL}
       >
         <PWLineChart

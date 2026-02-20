@@ -272,7 +272,7 @@ export default function Chapter14() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems -- exemplified by Waymo and Tesla respectively -- manifests clearly in the patent data, as does the growing convergence of <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction -- patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> chapter.
+          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems -- exemplified by Waymo and Tesla respectively -- is evident in the patent data, as does the growing convergence of <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction -- patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link> chapter.
         </p>
       </aside>
 
@@ -742,7 +742,7 @@ export default function Chapter14() {
       <Narrative>
         <p>
           Autonomous vehicle patent team sizes were generally smaller than non-AV patents
-          through the 2010s but have converged in recent years, reaching essentially equal
+          through the 2010s but have converged in recent years, reaching nearly equal
           levels by 2025. This convergence reflects the maturation of AV technology, as
           autonomous systems have grown more sophisticated and attracted larger multidisciplinary
           teams integrating perception, planning, and control expertise.
@@ -753,7 +753,7 @@ export default function Chapter14() {
         id="fig-av-team-comparison"
         subtitle="Average inventors per patent for AV vs. non-AV utility patents by year, showing convergence in recent years."
         title="AV Patent Team Sizes Have Converged With Non-AV Teams in Recent Years"
-        caption="Average number of inventors per patent for AV-related vs. non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching essentially equal levels by 2025."
+        caption="Average number of inventors per patent for AV-related vs. non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching nearly equal levels by 2025."
         insight="AV patent team sizes were historically smaller than non-AV patents but have converged in recent years, reaching parity by 2025 as autonomous driving systems have matured and attracted larger multidisciplinary teams."
         loading={atcL}
       >

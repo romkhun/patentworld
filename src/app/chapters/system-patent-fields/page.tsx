@@ -1060,7 +1060,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          The reclassification flow matrix reveals that the largest movement of patents is from Section H (Electricity) to Section G (Physics), with over 42,000 patents reclassified. This is consistent with the well-documented convergence of electronics and computing-related physics. The reverse flow (G to H) accounts for 14,115 patents, and other significant flows include C to A (Chemistry to Human Necessities, 7,902 patents), reflecting the growth of pharmaceutical and biomedical applications of chemistry.
+          The reclassification flow matrix reveals that the largest movement of patents is from Section H (Electricity) to Section G (Physics), with over 42,000 patents reclassified. The pattern is consistent with the well-documented convergence of electronics and computing-related physics. The reverse flow (G to H) accounts for 14,115 patents, and other significant flows include C to A (Chemistry to Human Necessities, 7,902 patents), reflecting the growth of pharmaceutical and biomedical applications of chemistry.
         </p>
       </KeyInsight>
 

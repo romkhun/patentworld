@@ -189,7 +189,7 @@ export default function InvTopInventorsChapter() {
         <p>
           The skewed distribution of inventive output has important implications for innovation
           policy. The top 5% of inventors account for a growing share of total patent output,
-          and this concentration has increased substantially over the study period. Patenting is
+          and the degree of concentration has increased substantially over the study period. Patenting is
           increasingly the domain of repeat, professional inventors, a pattern that parallels
           analogous trends in academic publishing and other knowledge-intensive fields. Policies
           that support inventor retention, mobility, and productivity may therefore have

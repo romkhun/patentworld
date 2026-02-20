@@ -192,7 +192,7 @@ export default function MechInventorsChapter() {
       <Narrative>
         <p>
           In addition to organizational partnerships, individual inventors form collaborative
-          networks. When the same inventors repeatedly appear together on patents, this indicates
+          networks. When the same inventors repeatedly appear together on patents, the pattern indicates
           stable <StatCallout value="research teams" /> that persist across projects and years.
           These co-invention ties constitute some of the most productive relationships in the
           innovation ecosystem.
