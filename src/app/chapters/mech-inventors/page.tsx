@@ -703,7 +703,7 @@ export default function MechInventorsChapter() {
 
       <Narrative>
         The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
-        <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geography Mechanics</Link>,
+        <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
         examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
       </Narrative>
 

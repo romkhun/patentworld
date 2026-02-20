@@ -98,7 +98,7 @@ export default function SystemPatentCountChapter() {
       <MeasurementSidebar slug="system-patent-count" />
 
       <KeyFindings>
-        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a five-fold increase in annual output over five decades.</li>
+        <li>The US patent system granted 9.36 million patents between 1976 and 2025 — a more than five-fold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, while design patents constitute the principal secondary category.</li>
         <li>Grant lag — the time from filing to grant — peaked at 3.8 years in 2010, creating uncertainty during a period of rapid technological change in computing and telecommunications.</li>
       </KeyFindings>
@@ -135,7 +135,7 @@ export default function SystemPatentCountChapter() {
         title="Annual US Patent Grants Grew from 70,941 in 1976 to 392,618 in 2019 Before Moderating"
         subtitle="Total patents granted annually by the USPTO, broken down by patent type (utility, design, plant, reissue), 1976–2025"
         caption="Annual patent grants by type, 1976–2025. Utility patents, which protect novel inventions and processes, account for over 90% of all grants. Design patents, covering ornamental appearance, constitute the principal secondary category. Data: PatentsView / USPTO."
-        insight="The five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining in 2005 and again in 2007 and a broader decline in 2021-2023 following the 2019 peak."
+        insight="The more than five-fold expansion in annual patent grants since 1976 reflects both increased inventive activity and the growing strategic importance of intellectual property protection. Broader economic cycles are reflected in patent output, with utility grants declining in 2005 and again in 2007 and a broader decline in 2021-2023 following the 2019 peak."
         loading={ppyL}
       >
         <PWAreaChart
@@ -170,7 +170,7 @@ export default function SystemPatentCountChapter() {
 
       <KeyInsight>
         <p>
-          The five-fold expansion of the patent system over half a century reflects
+          The more than five-fold expansion of the patent system over half a century reflects
           not merely increased inventive output but a structural shift in competitive strategy.
           Intellectual property has become a central strategic asset across virtually every
           technology-intensive industry.
@@ -302,7 +302,7 @@ export default function SystemPatentCountChapter() {
 
       <ChartContainer
         id="fig-continuation-stacked"
-        title="96.3% of 2024 Patents Had Related Filings — Original Filings Without Continuations Have Nearly Disappeared"
+        title="96.3% of 2024 Patents Had Related Filings (Data Available from 2002) — Continuation Use Has Increased Substantially"
         subtitle="Patent grants by filing type, 1976–2025"
         caption="Related filings include continuations, divisionals, and continuation-in-part (CIP) applications. The 0% related filing share for 1976–2001 reflects a data limitation: the PatentsView g_us_related_documents table does not capture continuation relationships for patents granted before 2002, not an actual absence of related filings."
         insight="The near-complete dominance of continuation-related patents by the 2020s indicates that the patent system has evolved from protecting discrete inventions to enabling layered, portfolio-based IP strategies."
@@ -349,7 +349,7 @@ export default function SystemPatentCountChapter() {
 
       <InsightRecap
         learned={[
-          "The US patent system granted 9.36 million patents between 1976 and 2025, with annual output increasing five-fold from 70,000 to over 370,000.",
+          "The US patent system granted 9.36 million patents between 1976 and 2025, with annual output increasing more than five-fold from 70,000 to over 370,000.",
           "Average grant pendency peaked at 3.8 years in 2010 before declining to 2.7 years by 2023, reflecting USPTO capacity adjustments.",
         ]}
         falsifiable="If the USPTO's capacity constraints drove the pendency peak, then future surges in application volume should reproduce the pattern — pendency should rise again when filings outpace examiner hiring."

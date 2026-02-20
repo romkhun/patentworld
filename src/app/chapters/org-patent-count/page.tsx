@@ -208,8 +208,8 @@ export default function OrgPatentCountChapter() {
       <ChartContainer
         id="fig-org-patent-count-design-top-filers"
         subtitle="Organizations ranked by total design patents granted, showing which firms lead in design-driven intellectual property."
-        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Automotive Firms"
-        caption="The figure displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and automotive companies account for the majority of top design patent filers."
+        title="Samsung (13,094), Nike (9,189), and LG (6,720) Lead Design Patent Filings Among Consumer Electronics and Consumer Brands"
+        caption="The figure displays the organizations with the most design patents granted across all years. Consumer electronics manufacturers and consumer brands account for the majority of top design patent filers."
         loading={deL}
         height={500}
       >

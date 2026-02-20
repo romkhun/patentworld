@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: `The USPTO granted ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from 70,000 in 1976 to a peak of 393,000 in 2019, a five-fold increase over five decades. Recent annual volume has stabilized at 314,000-326,000 grants per year.`,
+    answer: `The USPTO granted ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from 70,000 in 1976 to a peak of 393,000 in 2019, a more than five-fold increase over five decades. Recent annual volume has stabilized at 314,000-326,000 grants per year.`,
   },
   {
     question: 'Which company has the most US patents?',

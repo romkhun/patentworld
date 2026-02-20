@@ -276,7 +276,7 @@ export default function MechGeographyChapter() {
         </p>
         <p>
           ACT 6 shifts from these system-wide perspectives to{' '}
-          <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
+          <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
           into specific technology domains -- from 3D printing and agricultural technology to AI,
           autonomous vehicles, biotechnology, and beyond. Each deep dive applies the analytical
           frameworks developed across the preceding five acts to a single field, revealing how

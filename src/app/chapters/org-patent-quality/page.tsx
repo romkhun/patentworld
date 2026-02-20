@@ -169,7 +169,7 @@ export default function OrgPatentQualityChapter() {
 
       <Narrative>
         <p>
-          While <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Counts</Link> examined the volume of corporate patenting, raw patent counts tell only part of the story. Two firms with identical output levels can differ substantially in the quality and influence of their inventions. This chapter consolidates the <StatCallout value="quality dimensions" /> of organizational patenting: from blockbuster rates and citation impact to self-citation behavior and the temporal durability of a firm&apos;s knowledge contributions.
+          While <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Count</Link> examined the volume of corporate patenting, raw patent counts tell only part of the story. Two firms with identical output levels can differ substantially in the quality and influence of their inventions. This chapter consolidates the <StatCallout value="quality dimensions" /> of organizational patenting: from blockbuster rates and citation impact to self-citation behavior and the temporal durability of a firm&apos;s knowledge contributions.
         </p>
         <p>
           The analysis employs four complementary approaches: a blockbuster-versus-dud typology that classifies firms by the tails of their quality distributions; average and median forward citations to capture central tendency and skewness; self-citation rates that distinguish cumulative internal R&amp;D from broad external knowledge sourcing; and citation half-lives that measure how quickly a firm&apos;s patents accumulate their influence.
@@ -575,7 +575,7 @@ export default function OrgPatentQualityChapter() {
 
       <Narrative>
         <p>
-          The quality analysis reveals that large patent portfolios mask enormous heterogeneity in impact. Blockbuster rates, forward citation distributions, self-citation patterns, and citation half-lives each expose a different dimension of organizational innovation strategy. The next chapter, <Link href="/chapters/org-patent-portfolio" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Patent Portfolios</Link>, examines how firms distribute their innovation across technology domains and whether portfolio diversification strategies correlate with sustained leadership.
+          The quality analysis reveals that large patent portfolios mask enormous heterogeneity in impact. Blockbuster rates, forward citation distributions, self-citation patterns, and citation half-lives each expose a different dimension of organizational innovation strategy. The next chapter, <Link href="/chapters/org-patent-portfolio" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Portfolio</Link>, examines how firms distribute their innovation across technology domains and whether portfolio diversification strategies correlate with sustained leadership.
         </p>
       </Narrative>
 

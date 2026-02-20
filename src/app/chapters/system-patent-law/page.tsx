@@ -357,7 +357,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     ],
   },
   {
-    year: 2023,
+    year: 2025,
     title: 'Proposed PREVAIL Act & Patent Eligibility Restoration Act (PERA)',
     category: 'Legislation',
     description: 'Congressional proposals to reform the PTAB system and patent eligibility under 35 U.S.C. \u00a7 101, reflecting the ongoing policy debate regarding the balance of innovation incentives.',

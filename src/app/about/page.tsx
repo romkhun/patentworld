@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: 'The USPTO granted 9.36 million patents between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 in 2019, a five-fold increase over five decades.',
+    answer: 'The USPTO granted 9.36 million patents between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 in 2019, a more than five-fold increase over five decades.',
   },
   {
     question: 'Which company holds the most US patents?',
@@ -351,7 +351,7 @@ export default function AboutPage() {
             </div>
             <div>
               <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
-              <dd className="text-muted-foreground">&Sigma; s<sub>i</sub><sup>2</sup> where s<sub>i</sub> is the market (or category) share. Range: 0 (perfect competition) to 10,000 (monopoly). DOJ/FTC 2023 guidelines classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500).</dd>
+              <dd className="text-muted-foreground">&Sigma; s<sub>i</sub><sup>2</sup> where s<sub>i</sub> is the market (or category) share. Range: 0 (perfect competition) to 10,000 (monopoly). DOJ/FTC 2010 Horizontal Merger Guidelines classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500).</dd>
             </div>
             <div>
               <dt className="font-semibold">Cohort normalization</dt>

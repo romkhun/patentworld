@@ -116,7 +116,7 @@ export default function SystemPatentQualityChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent quality is inherently multidimensional, and its evolution over five decades reveals diverging trends across different indicators. Claim counts doubled before leveling off, scope broadened as technologies became more interdisciplinary, and forward citations grew increasingly skewed. Meanwhile, originality rose as inventions drew on more diverse knowledge inputs, yet generality fell as downstream applications became more concentrated. Self-citation rates declined from 35% to 10% before rebounding modestly, and citation lag expanded from 3 to 16 years as the cumulative stock of prior art deepened. Together, these patterns demonstrate that the patent system has become simultaneously more complex, more interconnected, and more unequal in the distribution of impact.
+          Patent quality is inherently multidimensional, and its evolution over five decades reveals diverging trends across different indicators. Claim counts doubled before leveling off, scope broadened as technologies became more interdisciplinary, and forward citations grew increasingly skewed. Meanwhile, originality rose as inventions drew on more diverse knowledge inputs, yet generality fell as downstream applications became more concentrated. Self-citation rates declined from 35% to 10.5% before rebounding modestly, and citation lag expanded from 3 to 16 years as the cumulative stock of prior art deepened. Together, these patterns demonstrate that the patent system has become simultaneously more complex, more interconnected, and more unequal in the distribution of impact.
         </p>
       </aside>
 
@@ -367,7 +367,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-patent-quality-backward-citations"
         subtitle="Average and median backward citation counts per utility patent by grant year, showing the expanding knowledge base over time."
         title="Average Backward Citations Per Patent Rose From 4.9 in 1976 to 21.3 in 2023"
-        caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of heavily cited patents."
+        caption="Average and median number of US patent citations per utility patent, by grant year. The widening gap between mean and median indicates a growing right tail of patents with unusually long reference lists."
         loading={ciL}
         insight="The growth in backward citations is consistent with both the expanding knowledge base and changes in patent office practices that encourage more thorough prior art disclosure."
       >
@@ -389,7 +389,7 @@ export default function SystemPatentQualityChapter() {
           The average number of backward citations per patent has grown substantially over the
           decades, reflecting the expanding body of prior art that new inventions must
           acknowledge. Patents increasingly build on larger bodies of prior art, with the average rising
-          from 5 in the 1970s to 19-21 in recent years. The gap between average and median
+          from 4.9 in 1976 to 21.3 by 2023. The gap between average and median
           suggests a long tail of heavily-cited patents, a pattern consistent with both the expanding universe of
           prior art and more thorough examination and disclosure requirements.
         </p>
@@ -445,7 +445,7 @@ export default function SystemPatentQualityChapter() {
           Self-citation patterns indicate knowledge accumulation strategies within firms.
           Organizations that consistently cite their own prior patents are building on
           internal knowledge stocks, a characteristic of cumulative innovation within technological
-          trajectories. The long-term decline in self-citation rates from 35% to 10%
+          trajectories. The long-term decline in self-citation rates from 35% to 10.5%
           may reflect the broadening of knowledge inputs alongside the growing accessibility of
           external prior art, though the modest rebound in the 2020s warrants continued observation.
         </p>
@@ -519,7 +519,7 @@ export default function SystemPatentQualityChapter() {
         title="Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
         caption="The figure displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
         loading={ogL}
-        insight="Rising originality scores indicate that contemporary inventions increasingly synthesize knowledge from diverse technology fields, a pattern consistent with growing interdisciplinary research."
+        insight="Rising originality scores indicate that contemporary inventions increasingly synthesize knowledge from diverse technology fields, a pattern consistent with growing interdisciplinary research. The system-wide average of 0.25 reflects the inclusion of early decades when originality was near zero; within individual CPC sections, originality has converged to 0.45-0.55 by the 2020s, as documented in the Patent Fields chapter."
       >
         <PWLineChart
           data={origGen ?? []}

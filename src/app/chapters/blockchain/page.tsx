@@ -827,7 +827,7 @@ export default function Chapter16() {
       </Narrative>
 
       <Narrative>
-        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Firm Innovation</Link>.
+        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}

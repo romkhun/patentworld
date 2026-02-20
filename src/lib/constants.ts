@@ -17,7 +17,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-count',
     title: 'Patent Count',
     subtitle: 'Annual patent volume and grant pendency',
-    description: 'Annual US patent grants increased five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Grant pendency peaked at 3.8 years in 2010 before moderating.',
+    description: 'Annual US patent grants increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Grant pendency peaked at 3.8 years in 2010 before moderating.',
   },
   {
     number: 2,
@@ -276,7 +276,7 @@ export const ACT_GROUPINGS: ActGrouping[] = [
   { act: 3, title: 'The Inventors', subtitle: 'Who invents and how they differ', chapters: [13, 14, 15, 16, 17] },
   { act: 4, title: 'The Geography', subtitle: 'Where innovation happens', chapters: [18, 19] },
   { act: 5, title: 'The Mechanics', subtitle: 'How knowledge flows through organizations, inventors, and places', chapters: [20, 21, 22] },
-  { act: 6, title: 'Deep Dives', subtitle: 'Emerging fields and frontier technologies', chapters: [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34] },
+  { act: 6, title: 'Deep Dives', subtitle: 'Established and emerging technology domains', chapters: [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34] },
 ];
 
 export const CPC_SECTION_NAMES: Record<string, string> = {

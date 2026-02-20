@@ -167,8 +167,8 @@ export default function InvGenderChapter() {
 
       <KeyFindings>
         <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025, but remains well below parity with substantial variation across technology fields.</li>
-        <li>Chemistry leads female inventor representation at 14.6%, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
-        <li>All-male teams produce the highest average citation impact (14.2 citations), followed by mixed-gender teams (12.6) and all-female teams (9.5), indicating that team composition correlates with citation outcomes in complex ways.</li>
+        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
+        <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -369,9 +369,9 @@ export default function InvGenderChapter() {
       {/* C.i — Forward Citations */}
       <ChartContainer
         id="fig-gender-fwd-citations"
-        title="All-Female Teams Average 1.06 Forward Citations in 2024, Double the 0.51 for All-Male Teams"
+        title="Recent Cohorts Show Higher Raw Citation Counts for All-Female Teams (1.06 in 2024 versus 0.51 for All-Male), Though Truncation Limits Interpretation"
         subtitle="Average forward citations per patent by team gender composition, 1976-2025"
-        caption="Average forward citations received per patent by team gender composition, 1976-2025. Recent years are truncated due to citation lag. Data: PatentsView."
+        caption="Average forward citations received per patent by team gender composition, 1976-2025. Recent years are truncated due to citation lag. Data: PatentsView. The directional reversal compared with cumulative averages (where all-male teams lead at 14.2) reflects citation truncation: 2024 patents have accumulated fewer than two years of citations, a window too short to reveal long-run impact differences."
         loading={qgL}
         height={400}
         controls={fwdCitControls}

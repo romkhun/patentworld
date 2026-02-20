@@ -51,7 +51,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   // ACT 1
   'system-patent-count': 'US Patent Grants Grew 5x Since 1976',
   'system-patent-quality': 'Patent Claims Doubled; Citations Rose to 6.4',
-  'system-patent-fields': 'Computing Rose From 10% to 55% of Patents',
+  'system-patent-fields': 'CPC Sections G and H Rose From 27% to 57%',
   'system-convergence': 'Multi-Section Patents Rose from 21% to 41%',
   'system-language': 'Computing Topics Now Dominate Patent Language',
   'system-patent-law': '50 Years of Patent Law Shaped by 7 Key Events',
@@ -99,7 +99,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'system-convergence': 'Multi-section patents rose from 21% to 41% of all grants. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
   'system-language': 'NLP topic modeling of 9.36M patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
   'system-patent-law': 'From Bayh-Dole (1980) to Alice Corp. (2014), seven landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
-  'system-public-investment': 'Government-funded patents rose from 1,269 in 1976 to 6,457 in 2015. HHS/NIH leads with 55,587 government-funded patents since the Bayh-Dole Act.',
+  'system-public-investment': 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 government-funded patents.',
   // ACT 2
   'org-composition': 'Corporate assignees grew from 94% to 99% of grants. Foreign assignees surpassed US-based filers in 2007. Japan accounts for 1.4M US patents.',
   'org-patent-count': 'IBM leads with 161,888 cumulative grants. Samsung peaked at 9,716 in 2024. Top 100 organizations hold 32-39% of corporate patents.',

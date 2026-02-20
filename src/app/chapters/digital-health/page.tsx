@@ -470,7 +470,7 @@ export default function Chapter18() {
           importance of software, connectivity, and data analytics in healthcare. The
           convergence of medical device expertise with digital technology capabilities is
           reshaping competitive dynamics in ways that parallel the broader transformation
-          documented in the chapter on the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technology revolution</Link>.
+          documented in the chapter on the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>.
         </p>
       </KeyInsight>
 
@@ -809,7 +809,7 @@ export default function Chapter18() {
           and computing platforms become increasingly indistinct. The organizational strategies
           documented here are explored further in{' '}
           <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
-            Firm Innovation
+            Assignee Composition
           </Link>, while the broader relationship between digital health and artificial
           intelligence is examined in the chapter on{' '}
           <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
