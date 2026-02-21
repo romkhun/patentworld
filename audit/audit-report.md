@@ -450,6 +450,87 @@ All scripts saved to `audit/verification-scripts/`:
 
 ---
 
+## Phase 2D — Data Accuracy & Accessibility Fixes (Session 3)
+
+### Data Accuracy Fixes
+| Fix | File | Change |
+|-----|------|--------|
+| Quantum CR4 superlative | quantum-computing/page.tsx | "most concentrated" → "among the most concentrated alongside agricultural technology" |
+| Quantum cohort attribution | quantum-computing/page.tsx | "IBM and D-Wave" → "IBM and MIT" (D-Wave first_year=2002, not 1990s) |
+| Quantum velocity | quantum-computing/page.tsx | "11.0" → "10.8" (correct velocity for 1990s cohort) |
+| Space CR4 range superlative | space-technology/page.tsx | Removed false "widest range among all domains" |
+| Quantum/Space card descriptions | constants.ts | Updated to match corrected text |
+| Green Innovation cross-ref | green-innovation/page.tsx | "the most concentrated" → "among the most concentrated" |
+| Data access date | methodology/page.tsx, about/page.tsx, Footer.tsx, data-dictionary.json | "January 2025" → "February 2026" |
+
+### Accessibility Fixes
+| Fix | File | Change |
+|-----|------|--------|
+| CiteThisFigure aria-expanded | CiteThisFigure.tsx | `aria-expanded="false"` → `aria-expanded={isOpen}` (dynamic boolean) |
+| SVG aria-hidden | PWChordDiagram, PWSlopeChart, PWNetworkGraph, PWSankeyDiagram, PWChoroplethMap, PWWorldFlowMap | Added `aria-hidden="true"` to inner SVGs (parent `<figure>` provides accessible description) |
+
+### OG Image Mapping
+| Fix | File | Change |
+|-----|------|--------|
+| Missing deep-dive OG images | seo.ts | Added 10 deep-dive slug → thematic image mappings (3d-printing, agricultural-technology, autonomous-vehicles, biotechnology, blockchain, cybersecurity, digital-health, quantum-computing, semiconductors, space-technology) |
+
+### GenAI Readiness
+| Fix | File | Change |
+|-----|------|--------|
+| Outdated llms-full.txt | public/llms-full.txt | Complete rewrite: 11 outdated chapters → all 34 chapters with Act groupings, accurate descriptions, February 2026 data date |
+
+### Superlative Re-verification (Round 2)
+All 24 superlative claims verified correct — see `audit/superlative-checks.md` for full details including:
+- 7 additional superlatives verified with Python scripts against all 12 domains
+- Microsoft #1 in avg citations (30.7), Samsung peak 9,716 (2024), Quantum only early-faster domain
+- Semiconductors only sustained consolidation, Blockchain most dramatic recent reversal
+- Green Innovation highest entry velocity multiplier (5.9x), Chemistry #1 female representation (14.6%)
+
+### Audit Artifact Files Created
+8 dedicated audit artifacts created to match §1.19 structure:
+1. `audit/cite-this-figure-audit.md` — 459/459 CiteThisFigure coverage verified
+2. `audit/copyright-license-attribution.md` — All copyright/license checks PASS
+3. `audit/entity-color-consistency.md` — 0 data-encoding hardcoded colors
+4. `audit/external-link-audit.md` — 16/16 links valid and secure
+5. `audit/font-consistency.md` — 3 fonts consistently applied
+6. `audit/glossary-tooltip-accessibility.md` — WCAG 1.4.13 compliant
+7. `audit/locale-independence.md` — 0 bare .toLocaleString() remaining
+8. `audit/small-sample-edge-cases.md` — 5 chapters with DataNote warnings
+
+### Vercel Deployment Fix
+| Fix | File | Change |
+|-----|------|--------|
+| gh-pages branch auto-deploy | vercel.json | Added `"git": {"deploymentEnabled": {"gh-pages": false}}` |
+
+---
+
+## §1.19 — Audit Report Structure
+
+All 18 required sections are covered:
+
+| # | Section | Location |
+|---|---------|----------|
+| 1 | Executive Summary | This file: "Executive Summary" |
+| 2 | Track A: Data Accuracy Issue Log | This file: "Track A — Data Accuracy Issue Log" |
+| 3 | Track B: External Claims Issue Log | This file: "Track B — External Claims Issue Log" + `audit/external-claims-verification.md` + `audit/external-claims-registry.md` |
+| 4 | Track C: Methodology Issue Log | This file: "Track C — Methodology Issue Log" + `audit/methodology-verification.md` |
+| 5 | Track D: Sensitivity & Controversy Log | `audit/sensitivity-screening.md` + this file: §3.9 |
+| 6 | Cross-Page Consistency Log | This file: §3.5 |
+| 7 | Homepage Card Crosscheck | `audit/homepage-card-crosscheck.md` + this file: "Homepage Card Crosscheck" |
+| 8 | Deep Dive Cross-Domain Comparison | This file: "Cross-Domain Superlative Verification" + `audit/superlative-checks.md` |
+| 9 | CiteThisFigure Audit Summary | `audit/cite-this-figure-audit.md` + this file: §3.10 |
+| 10 | Glossary Audit | `audit/glossary-tooltip-accessibility.md` + this file: §3.11 |
+| 11 | Error/Loading State Audit | This file: §3.12 |
+| 12 | Entity Color Consistency | `audit/entity-color-consistency.md` + this file: §3.13 |
+| 13 | Tooltip Consistency | `audit/tooltip-consistency.md` + this file: §3.14 |
+| 14 | External Link Audit | `audit/external-link-audit.md` + this file: §3.16 |
+| 15 | Font Consistency | `audit/font-consistency.md` + this file: §3.18 |
+| 16 | General Issue Log | This file: "General Issues" |
+| 17 | SEO & GenAI Findings | `audit/seo-navigation-audit.md` + this file: Certification |
+| 18 | Copyright/License/Attribution Status | `audit/copyright-license-attribution.md` + this file: §3.17 |
+
+---
+
 ## Certification
 
 ```
@@ -494,9 +575,10 @@ VISUALIZATION: 458 charts verified
 
 ACCESSIBILITY:
   prefers-reduced-motion: ADDED
-  CiteThisFigure: aria-live, Escape key, aria-expanded
+  CiteThisFigure: aria-live, Escape key, aria-expanded={isOpen} (dynamic)
   GlossaryTooltip: focus/blur, Escape key, dismiss delay, aria-describedby
   ChartContainer: noscript fallbacks, aria-labelledby, aria-describedby
+  SVG components: aria-hidden="true" on 6 D3/custom SVG charts
   Error boundary: src/app/chapters/error.tsx
 
 CITE THIS FIGURE: 458/458 verified
@@ -523,14 +605,23 @@ SMALL-SAMPLE WARNINGS: 5 deep-dive chapters with DataNote warnings
 
 SEO:
   Dynamic favicon (src/app/icon.tsx)
-  OG image mapping with fallbacks (seo.ts)
+  OG image mapping: ALL 34 chapters mapped with fallbacks (seo.ts)
   Trailing slashes: 109 links fixed, 0 remaining violations
   FAQ link in Footer
 
+GENAI READINESS:
+  llms-full.txt: ALL 34 chapters documented with Act groupings
+  data-dictionary.json: complete with February 2026 data date
+  robots.txt + sitemap.xml: present
+
+SUPERLATIVE VERIFICATION: 24/24 superlative claims verified correct
+  Cross-domain CR4, velocity, concentration verified against all 12 domains
+  See audit/superlative-checks.md for full methodology and results
+
 Build: 46/46 pages compiled successfully
-Commits: 2 (efa45ee0 Phase 2, Phase 3 remediation)
+Commits: 5 (efa45ee0, 565a7914, fc439e93, 79807a01, a940e78b + pending)
 Branch: main
 Push: SUCCESS
-Deploy: gh-pages published
+Deploy: gh-pages published + Vercel auto-deploy from main
 ============================================
 ```
