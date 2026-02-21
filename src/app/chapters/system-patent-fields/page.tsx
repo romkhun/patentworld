@@ -783,7 +783,7 @@ export default function SystemPatentFieldsChapter() {
       {treemap && treemap.length > 0 && (
         <ChartContainer
           id="fig-patent-fields-cpc-treemap"
-          title="The Top 3 CPC Classes Account for 15-42% of Patents Across Sections, Revealing Concentrated Innovation"
+          title="The Top 3 CPC Classes Account for 15–42% of Patents Across Sections, Revealing Concentrated Innovation"
           subtitle="Proportional treemap of patent volume by CPC technology class, sized by total grants and colored by CPC section"
           caption="Proportional breakdown of patents by CPC technology class. Each rectangle represents the volume of patents in that class, with colors corresponding to CPC sections. Digital communication and computing dominate section H (Electricity), while organic chemistry classes lead section C (Chemistry)."
           insight="Within each CPC section, patent activity is concentrated in a small number of dominant classes. This concentration pattern suggests that a limited set of technology subfields drives the majority of inventive output within each broader domain."
@@ -798,7 +798,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          The treemap demonstrates that within each CPC section, patent activity is concentrated in a small number of dominant classes. In Electricity (H), digital communication and computing classes account for the largest share, while in Chemistry (C), organic chemistry classes constitute the leading subfields. Across all sections, the top 3 CPC classes account for 15-42% of patents, indicating that a limited set of technology subfields drives the majority of inventive output.
+          The treemap demonstrates that within each CPC section, patent activity is concentrated in a small number of dominant classes. In Electricity (H), digital communication and computing classes account for the largest share, while in Chemistry (C), organic chemistry classes constitute the leading subfields. Across all sections, the top 3 CPC classes account for 15–42% of patents, indicating that a limited set of technology subfields drives the majority of inventive output.
         </p>
       </KeyInsight>
 

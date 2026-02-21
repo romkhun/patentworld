@@ -119,7 +119,7 @@ export default function OrgPatentCountChapter() {
       <KeyFindings>
         <li>IBM leads with 161,888 cumulative utility patent grants, but Samsung trails by fewer than 4,000 patents and has surpassed IBM in annual output since 2007.</li>
         <li>Samsung (13,094), Nike (9,189), and LG (6,720) lead design patent filings, revealing how consumer electronics and consumer brands leverage ornamental innovation as a competitive tool.</li>
-        <li>The top 100 organizations consistently hold 32-39% of all corporate patents, a concentration ratio that has remained stable across five decades despite the entry of new organizations.</li>
+        <li>The top 100 organizations consistently hold 32–39% of all corporate patents, a concentration ratio that has remained stable across five decades despite the entry of new organizations.</li>
         <li>Samsung peaked at 9,716 annual grants in 2024, overtaking IBM which peaked at 9,257 in 2019, illustrating divergent corporate patent strategies.</li>
         <li>Only 9 of 50 top patent filers survived all five decades in the top rankings, an 18% cumulative survival rate that underscores the extraordinary volatility of innovation leadership.</li>
       </KeyFindings>
@@ -127,7 +127,7 @@ export default function OrgPatentCountChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          IBM leads all organizations with 161,888 cumulative patent grants, but Samsung has narrowed the gap to fewer than 4,000 patents. Design patents add an important dimension, with Samsung (13,094), Nike (9,189), and LG (6,720) leading filings. The top 100 organizations consistently hold 32-39% of corporate patents. Samsung peaked at 9,716 annual grants in 2024, reflecting the globalization of technology leadership. Only 9 of 50 top patent filers have maintained a continuous top-50 presence across all five decades, revealing that sustained innovation leadership is exceptionally rare.
+          IBM leads all organizations with 161,888 cumulative patent grants, but Samsung has narrowed the gap to fewer than 4,000 patents. Design patents add an important dimension, with Samsung (13,094), Nike (9,189), and LG (6,720) leading filings. The top 100 organizations consistently hold 32–39% of corporate patents. Samsung peaked at 9,716 annual grants in 2024, reflecting the globalization of technology leadership. Only 9 of 50 top patent filers have maintained a continuous top-50 presence across all five decades, revealing that sustained innovation leadership is exceptionally rare.
         </p>
       </aside>
 
@@ -233,7 +233,7 @@ export default function OrgPatentCountChapter() {
 
       <ChartContainer
         id="fig-org-patent-count-concentration"
-        title="The Top 100 Organizations Hold 32-39% of Corporate Patents, a Share That Has Narrowed Since the 2010s"
+        title="The Top 100 Organizations Hold 32–39% of Corporate Patents, a Share That Has Narrowed Since the 2010s"
         subtitle="Share of corporate patents held by the top 10, 50, and 100 organizations, measured by 5-year period, 1976–2025"
         caption="Share of all corporate patents held by the top 10, 50, and 100 organizations, by 5-year period. The relative stability of these concentration ratios across decades suggests persistent structural features of the patent system."
         insight="Despite the entry of new organizations, the patent landscape remains dominated by large, well-resourced entities that invest systematically in R&amp;D. The stability of concentration ratios is consistent with the presence of substantial barriers to large-scale patenting."
@@ -255,7 +255,7 @@ export default function OrgPatentCountChapter() {
       <KeyInsight>
         <p>
           Patent concentration has remained relatively stable: the top 100 organizations consistently
-          hold 32-39% of all corporate patents. This pattern suggests that while new entrants emerge,
+          hold 32–39% of all corporate patents. This pattern suggests that while new entrants emerge,
           the patent system remains dominated by large, well-resourced entities that invest substantially
           in R&amp;D.
         </p>
@@ -456,14 +456,14 @@ export default function OrgPatentCountChapter() {
 
       <Narrative>
         <p>
-          The organizational patent count reveals a system in which leadership is dynamic and contested. IBM&apos;s cumulative dominance is narrowing as Samsung closes the gap, while design patent rankings add a distinct dimension where consumer-facing firms such as Nike and LG emerge alongside electronics giants. The structural concentration of patenting among elite organizations has remained stable at 32-39%, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography or technology era. Only 9 of 50 top filers have maintained their position across all five decades, underscoring how difficult it is for any single organization to remain at the frontier of technological change. The <Link href="/chapters/org-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> examines the citation quality and innovation impact of these leading firms in greater detail.
+          The organizational patent count reveals a system in which leadership is dynamic and contested. IBM&apos;s cumulative dominance is narrowing as Samsung closes the gap, while design patent rankings add a distinct dimension where consumer-facing firms such as Nike and LG emerge alongside electronics giants. The structural concentration of patenting among elite organizations has remained stable at 32–39%, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography or technology era. Only 9 of 50 top filers have maintained their position across all five decades, underscoring how difficult it is for any single organization to remain at the frontier of technological change. The <Link href="/chapters/org-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> examines the citation quality and innovation impact of these leading firms in greater detail.
         </p>
       </Narrative>
 
       <InsightRecap
         learned={[
           "IBM leads all organizations with over 160,000 cumulative US patent grants, followed by Samsung and Canon.",
-          "The top 100 organizations hold 32-39% of all corporate patents, indicating substantial but not extreme concentration.",
+          "The top 100 organizations hold 32–39% of all corporate patents, indicating substantial but not extreme concentration.",
         ]}
         falsifiable="If organizational concentration is driven by genuine R&D scale advantages rather than strategic filing, then high-volume filers should maintain higher citation impact per patent than lower-volume filers."
         nextAnalysis={{

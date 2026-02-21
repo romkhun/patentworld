@@ -330,7 +330,7 @@ export default function Chapter21() {
           several decades, reflecting the sustained capital investment required to push
           the boundaries of transistor density, power efficiency, and manufacturing yield.
           Unlike many technology domains that exhibit sudden exponential growth,
-          semiconductor patent volume stabilized at 6-7% of all utility patents after
+          semiconductor patent volume stabilized at 6–7% of all utility patents after
           rapid growth through the 1990s and 2000s.
         </p>
       </KeyInsight>

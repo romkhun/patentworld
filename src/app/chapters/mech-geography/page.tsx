@@ -243,9 +243,9 @@ export default function MechGeographyChapter() {
         <ChartContainer
           id="fig-mech-geo-citation-localization"
           subtitle="Share of patent citation pairs where citing and cited patents originate from the same country, by 5-year period."
-          title="Home-Country Citation Bias Remains Persistent at 58-64%, Despite Rising International Collaboration"
-          caption="The figure displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained stable at 58-64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
-          insight="The persistence of home-country citation bias at 58-64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
+          title="Home-Country Citation Bias Remains Persistent at 58–64%, Despite Rising International Collaboration"
+          caption="The figure displays the share of citation pairs where both the citing and cited patents originate from the same country, tracked over successive 5-year periods. Despite the substantial increase in international collaboration documented elsewhere, home-country citation bias has remained stable at 58–64% throughout the study period, suggesting that geographic proximity continues to shape knowledge flows."
+          insight="The persistence of home-country citation bias at 58–64% despite rising international collaboration suggests that geographic and institutional proximity continues to exert a strong influence on the direction of knowledge flows, even in an increasingly globalized innovation system."
           loading={clcL}
         >
           <PWLineChart

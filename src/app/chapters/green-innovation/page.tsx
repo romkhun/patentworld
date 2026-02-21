@@ -330,7 +330,7 @@ export default function Chapter19() {
           Green patent filings increased from 3,000 per year in the late 1970s to
           30,000 per year by the early 2020s (peaking at 35,693 in 2019). Patent filings
           continued to grow following the 2015 Paris Agreement, with batteries and electric vehicles
-          exhibiting particularly strong growth. Green patents represented 9-10% of
+          exhibiting particularly strong growth. Green patents represented 9–10% of
           all utility patents granted annually during 2015–2024.
         </p>
       </Narrative>

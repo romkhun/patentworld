@@ -801,7 +801,7 @@ export default function Chapter15() {
         id="fig-biotech-assignee-type"
         subtitle="Distribution of biotech patents by assignee type (corporate, university, government, individual) over time, revealing the distinctive institutional mix."
         title="Corporate Assignees Dominate Aggregate Biotech Patent Counts, Though Individual Universities Rank Highly"
-        caption="Distribution of biotechnology patent assignees by type (corporate, university, government, individual) over time. Corporate assignees account for 96-98% of biotech patents in the aggregate categorization. While individual universities such as the University of California (#1 overall), Harvard (#8), and Stanford (#10) rank among the top assignees, the aggregate &quot;University/Other&quot; category remains small, suggesting many university-originated patents may be assigned to corporate licensees."
+        caption="Distribution of biotechnology patent assignees by type (corporate, university, government, individual) over time. Corporate assignees account for 96–98% of biotech patents in the aggregate categorization. While individual universities such as the University of California (#1 overall), Harvard (#8), and Stanford (#10) rank among the top assignees, the aggregate &quot;University/Other&quot; category remains small, suggesting many university-originated patents may be assigned to corporate licensees."
         insight="The assignee type distribution reveals an apparent paradox: while individual universities rank among the top biotech patent holders, the aggregate University/Other category accounts for less than 1% of patents. This disconnect likely reflects the practice of assigning university-originated inventions to corporate licensees and spin-off companies."
         loading={atL}
         height={500}
@@ -822,7 +822,7 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           The distribution of biotechnology patents by assignee type reveals an instructive
-          disconnect. Corporate assignees account for 96-98% of biotech patents in the aggregate
+          disconnect. Corporate assignees account for 96–98% of biotech patents in the aggregate
           data, yet individual universities rank among the very top assignees — the University of
           California holds the most biotech patents of any organization, and Harvard and Stanford
           both appear in the top ten. This apparent paradox likely reflects the common practice

@@ -197,7 +197,7 @@ export default function OrgCompositionChapter() {
         id="fig-org-composition-domestic-vs-foreign"
         title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
         subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976–2025"
-        caption="Patent grants by US-based versus foreign-based primary assignees, 1976–2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51-56% of grants in the 2020s."
+        caption="Patent grants by US-based versus foreign-based primary assignees, 1976–2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51–56% of grants in the 2020s."
         insight="The shift to a foreign-majority patent system is consistent with the globalization of R&amp;D. The US patent system remains a major destination for multinational patent filings regardless of assignee nationality."
         loading={dvfL}
       >

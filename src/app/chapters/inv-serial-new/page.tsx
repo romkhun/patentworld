@@ -91,8 +91,8 @@ export default function InvSerialNewChapter() {
       <KeyFindings>
         <li>Annual first-time inventor entries rose from 35,126 in 1979 to a peak of 140,490 in 2019, yet the share of patents including a first-time inventor fell from 71% to 26%.</li>
         <li>Just 12% of inventors (Prolific, Superstar, and Mega segments) produce 61% of total patent output, while 43% of inventors file only a single patent.</li>
-        <li>Only 37-51% of inventors survive past five career years, with attrition steepest in the earliest years, revealing a bimodal population of one-time filers and persistent career inventors.</li>
-        <li>Inventor productivity rises from 1.4 to 2.1 patents per year in early career before plateauing, with the majority of prolific careers spanning 5-15 years and a long tail exceeding 30 years.</li>
+        <li>Only 37–51% of inventors survive past five career years, with attrition steepest in the earliest years, revealing a bimodal population of one-time filers and persistent career inventors.</li>
+        <li>Inventor productivity rises from 1.4 to 2.1 patents per year in early career before plateauing, with the majority of prolific careers spanning 5–15 years and a long tail exceeding 30 years.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -230,7 +230,7 @@ export default function InvSerialNewChapter() {
             </tbody>
           </table>
           <figcaption className="mt-3 text-xs text-muted-foreground">
-            Inventors segmented by total career patent count: One-Hit (1), Occasional (2-9), Prolific (10-49), Superstar (50-99), Mega (100+).
+            Inventors segmented by total career patent count: One-Hit (1), Occasional (2–9), Prolific (10–49), Superstar (50–99), Mega (100+).
           </figcaption>
         </div>
       )}
@@ -280,9 +280,9 @@ export default function InvSerialNewChapter() {
 
       <ChartContainer
         id="fig-inventors-career-survival"
-        title="Only 37-51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
+        title="Only 37–51% of Inventors Survive Past Five Career Years; Attrition Is Steepest Early"
         subtitle="Percentage of inventors remaining active at each career year, stratified by 5-year entry cohort, measuring career persistence"
-        caption="The figure displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial early-career attrition, with only 37-51% of inventors surviving past five career years, while those who persist beyond the first few years tend to maintain extended careers."
+        caption="The figure displays the percentage of inventors remaining active (with at least one additional patent) at each career year, stratified by 5-year entry cohort. The steep initial decline indicates substantial early-career attrition, with only 37–51% of inventors surviving past five career years, while those who persist beyond the first few years tend to maintain extended careers."
         insight="The steep initial decline in survival rates indicates that a substantial minority of inventors patent only once. Those who persist beyond the first few years tend to sustain long, productive careers, suggesting a bimodal distribution of inventor engagement."
         loading={lgL}
       >
@@ -329,7 +329,7 @@ export default function InvSerialNewChapter() {
         id="fig-inventors-career-curve"
         title="Inventor Productivity Rises from 1.4 to 2.1 Patents per Year in Early Career Before Plateauing"
         subtitle="Average and median patents per year at each career year for inventors with 5+ lifetime patents, measuring productivity trajectory"
-        caption="The figure presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at 2.1-2.3 patents per year through the remainder of the career, with substantial variation across individuals."
+        caption="The figure presents average patents per year at each career year (years since first patent) for inventors with 5 or more lifetime patents. Productivity rises steeply in the first five career years, then plateaus at 2.1–2.3 patents per year through the remainder of the career, with substantial variation across individuals."
         insight="Inventor productivity rises steeply in the first five career years, then plateaus without significant decline. The wide interquartile range indicates substantial heterogeneity: some inventors sustain high output for decades while others taper off within a few years."
         loading={cdL}
       >
@@ -372,7 +372,7 @@ export default function InvSerialNewChapter() {
         <p>
           The career trajectory data paint a consistent picture: inventor productivity rises steeply
           in early career years, then plateaus without significant decline. The majority of prolific
-          careers span 5-15 years, though a long tail of inventors sustains output for more than three
+          careers span 5–15 years, though a long tail of inventors sustains output for more than three
           decades. These patterns underscore the importance of the early career period in shaping
           long-term inventive output.
         </p>
@@ -546,7 +546,7 @@ export default function InvSerialNewChapter() {
 
       <ChartContainer
         id="fig-quality-exp-self-cite"
-        title="Serial Inventors Self-Cite at 4-5x the Rate of New Entrants"
+        title="Serial Inventors Self-Cite at 4–5x the Rate of New Entrants"
         subtitle="Average self-citation rate per patent by experience group, 1976–2025"
         caption="The figure compares the average self-citation rate (share of backward citations to the same assignee's prior patents) for serial versus new-entrant inventors."
         insight="The large self-citation gap is structurally expected — serial inventors are typically associated with assignees that have larger patent portfolios to reference — but it also suggests they build more cumulatively on their organization's prior research trajectories."
@@ -612,7 +612,7 @@ export default function InvSerialNewChapter() {
           earn more forward citations, file broader claims, and patent across wider technology scopes. However,
           originality scores are comparable between groups, suggesting that new entrants draw from equally diverse
           knowledge bases. The most striking divergence is in self-citation rates, where serial inventors cite their
-          own prior work at 4-5x the rate of newcomers, reflecting cumulative, path-dependent innovation trajectories.
+          own prior work at 4–5x the rate of newcomers, reflecting cumulative, path-dependent innovation trajectories.
         </p>
       </KeyInsight>
 
@@ -635,7 +635,7 @@ export default function InvSerialNewChapter() {
 
       <InsightRecap
         learned={[
-          "Annual first-time inventor entries peaked at 140,490 in 2019, but only 37-51% of inventors survive past five career years.",
+          "Annual first-time inventor entries peaked at 140,490 in 2019, but only 37–51% of inventors survive past five career years.",
           "Productivity rises from 1.4 to 2.1 patents per year as inventors gain experience, consistent with learning-by-doing effects, though survivor bias may also contribute.",
         ]}
         falsifiable="If rising productivity reflects learning rather than survivor bias, then inventors who remain active should show productivity gains even within the same firm and technology domain."
@@ -648,8 +648,8 @@ export default function InvSerialNewChapter() {
 
       <DataNote>
         First-time inventors are identified by their earliest patent filing date.
-        Inventor segments are classified by total career patent count: One-Hit (1), Occasional (2-9),
-        Prolific (10-49), Superstar (50-99), Mega (100+). Career longevity tracks the span from first
+        Inventor segments are classified by total career patent count: One-Hit (1), Occasional (2–9),
+        Prolific (10–49), Superstar (50–99), Mega (100+). Career longevity tracks the span from first
         to last patent year per inventor. Career curves use inventors with 5+ patents. Comeback inventors
         are those with gaps of 5+ years between consecutive patents.
       </DataNote>

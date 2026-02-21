@@ -531,7 +531,7 @@ export default function GeoInternationalChapter() {
         <ChartContainer
           id="fig-geo-intl-pct-share-by-country"
           subtitle="PCT route share by country for major filing origins, 1990–2025."
-          title="France Leads PCT Usage at 53-57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
+          title="France Leads PCT Usage at 53–57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
           caption="The figure displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share rose from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
           insight="PCT usage patterns reflect national filing strategies: European and East Asian filers rely heavily on the PCT route, while US domestic filers use it less frequently, consistent with direct filing at the home office."
           loading={pctL}

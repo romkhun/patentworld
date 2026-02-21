@@ -411,7 +411,7 @@ export default function SystemPatentQualityChapter() {
       <ChartContainer
         id="fig-patent-quality-self-citation-rate"
         subtitle="Average and median self-citation rate per patent (fraction of backward citations to the same assignee's earlier patents), by year."
-        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13-16% in the 2020s"
+        title="Average Self-Citation Rates Declined from 35% in 1976 to 10.5% by 2010, Then Rebounding to 13–16% in the 2020s"
         caption="The figure displays the average self-citation rate per patent (the fraction of backward citations directed to patents held by the same assignee), by year. Changes in self-citation rates over time may reflect shifts between exploration of new domains and exploitation of established competencies."
         loading={scL}
         insight="Self-citation patterns indicate knowledge accumulation strategies within firms, with temporal changes potentially reflecting shifts between exploration of new domains and exploitation of established competencies."
