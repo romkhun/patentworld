@@ -52,6 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/chapters/deep-dive-overview/`,
+      lastModified: getGitDate('src/app/chapters/deep-dive-overview/page.tsx'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     ...chapterEntries,
   ];
 }
