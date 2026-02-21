@@ -348,7 +348,7 @@ export function PWNetworkGraph({
           onClick={() => {
             setZoom((z) => Math.min(8, z * 1.3));
           }}
-          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold focus:outline-none focus:ring-2 focus:ring-primary"
           title="Zoom in"
           aria-label="Zoom in"
         >
@@ -358,7 +358,7 @@ export function PWNetworkGraph({
           onClick={() => {
             setZoom((z) => Math.max(0.05, z / 1.3));
           }}
-          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold"
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-lg font-bold focus:outline-none focus:ring-2 focus:ring-primary"
           title="Zoom out"
           aria-label="Zoom out"
         >
@@ -366,7 +366,7 @@ export function PWNetworkGraph({
         </button>
         <button
           onClick={fitToView}
-          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-xs"
+          className="w-8 h-8 rounded border bg-card text-foreground flex items-center justify-center hover:bg-muted text-xs focus:outline-none focus:ring-2 focus:ring-primary"
           title="Fit to view"
           aria-label="Fit to view"
         >
@@ -377,7 +377,6 @@ export function PWNetworkGraph({
         width={dimensions.width}
         height={dimensions.height}
         aria-hidden="true"
-        aria-label={ariaLabel ?? `Network graph with ${nodes.length} nodes and ${edges.length} connections`}
         onWheel={handleWheel}
         onMouseDown={handleBgMouseDown}
         onMouseMove={(e) => {

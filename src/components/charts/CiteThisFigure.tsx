@@ -73,20 +73,20 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
         <div className="flex gap-1">
           <button
             onClick={() => setFormat('apa')}
-            className={`text-xs px-2 py-1 rounded ${format === 'apa' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+            className={`text-xs px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-primary ${format === 'apa' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
           >
             APA
           </button>
           <button
             onClick={() => setFormat('bibtex')}
-            className={`text-xs px-2 py-1 rounded ${format === 'bibtex' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+            className={`text-xs px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-primary ${format === 'bibtex' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
           >
             BibTeX
           </button>
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className="text-xs text-muted-foreground hover:text-foreground"
+          className="text-xs text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded"
           aria-label="Close citation"
         >
           Close
@@ -98,7 +98,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
       <button
         onClick={handleCopy}
         aria-live="polite"
-        className="mt-2 text-xs px-3 py-1.5 rounded-md border border-border bg-background hover:bg-muted transition-colors"
+        className="mt-2 text-xs px-3 py-1.5 rounded-md border border-border bg-background hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
       >
         {copied ? 'Copied' : 'Copy citation'}
       </button>

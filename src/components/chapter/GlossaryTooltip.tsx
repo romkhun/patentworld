@@ -33,7 +33,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
         onFocus={show}
         onBlur={hide}
         onKeyDown={handleKeyDown}
-        className="cursor-help border-b border-dashed border-muted-foreground/50"
+        className="cursor-help border-b border-dashed border-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary rounded-sm"
       >
         {children ?? entry.term}
       </span>

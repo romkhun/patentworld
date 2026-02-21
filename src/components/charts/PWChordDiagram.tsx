@@ -92,8 +92,6 @@ export function PWChordDiagram({
         className="w-full h-full"
         style={{ maxWidth: width, maxHeight: height }}
         aria-hidden="true"
-        role="img"
-        aria-label={ariaLabel ?? `Chord diagram showing relationships between ${nodes.map(n => n.name).join(', ')}`}
       >
         {/* Arcs (outer ring) */}
         {chordLayout.groups.map((group) => {

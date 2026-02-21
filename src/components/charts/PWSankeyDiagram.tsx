@@ -148,7 +148,6 @@ export function PWSankeyDiagram({
         viewBox={`0 0 ${width} ${height}`}
         className="w-full h-full"
         aria-hidden="true"
-        aria-label={ariaLabel ?? `Sankey diagram showing flows between ${inputNodes.map(n => n.name).join(', ')}`}
       >
         {/* Links */}
         {links.map((link, i) => {
