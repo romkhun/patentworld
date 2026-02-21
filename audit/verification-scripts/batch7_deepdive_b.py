@@ -471,7 +471,7 @@ total_green = sum(d['green_count'] for d in green_vol)
 peak = max(green_vol, key=lambda x: x['green_count'])
 log(f"  Total green patents: {total_green}")
 log(f"  Peak year: {peak['year']} with {peak['green_count']} patents, {peak.get('green_pct', 'N/A')}%")
-log(f"  CLAIM (dynamic): 'total {total_green}, peak at {peak[\"green_count\"]} in {peak[\"year\"]}'")
+log(f"  CLAIM (dynamic): 'total {total_green}, peak at {peak['green_count']} in {peak['year']}'")
 
 # Green AI trend: "41 in 2010 to 1,238 in 2023"
 green_ai = load("green/green_ai_trend.json")
