@@ -1,96 +1,129 @@
 # PatentWorld — Complete Content Guide
 
-> An interactive data exploration of 9.36 million US patents spanning 50 years of global innovation (1976-2025). Data from PatentsView / USPTO.
+> An interactive data exploration of 9.36 million US patents spanning 50 years of global innovation (1976–2025). Data from PatentsView / USPTO, accessed February 2026.
 
-## Chapter 1: The Innovation Landscape
-50 years of global invention in 9.36 million US patents. This chapter examines how the pace and nature of patenting has changed since 1976. Key findings:
-- Annual patent grants grew from approximately 70,000 in 1976 (70,941 all types) to over 350,000 by 2025
-- The growth rate accelerated dramatically in the 1990s with the digital revolution
-- Patent activity is a leading indicator of technological change and economic competitiveness
+## Act 1: The System
 
-## Chapter 2: The Technology Revolution
-The shifting frontiers of technology as revealed through patent classification data. Key findings:
-- Electricity (CPC Section H) and Physics (Section G) have grown from minority shares to dominate patenting, reflecting the digital transformation
-- Chemistry and mechanical engineering patents grew in absolute terms but declined as shares of total activity
-- WIPO sector analysis reveals electrical engineering overtaking all other sectors since the 1990s
-- The rise of software, semiconductors, telecommunications, and digital computing reshaped the technology landscape
+### Chapter 1: Patent Count
+Annual patent volume and grant pendency. Annual US patent grants (all types) increased more than five-fold from approximately 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Average grant pendency peaked at 3.8 years in 2010 before moderating.
 
-## Chapter 3: Who Innovates?
-The organizations driving patent activity. Key findings:
-- IBM held the #1 position for decades; Samsung, Canon, and other Asian firms now rival US incumbents
-- Corporate patenting dominates, but government-funded research (via Bayh-Dole Act) and university patenting grew significantly after 1980
-- Market concentration in patenting has both increased (top firms patent more) and decreased (more diverse set of patentees)
-- The share of patents assigned to foreign organizations has grown substantially
+### Chapter 2: Patent Quality
+Claims, scope, citations, originality, and knowledge flow indicators. Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.
 
-## Chapter 4: The Inventors
-The people behind the patents. Key findings:
-- Average team size has grown from ~1.8 inventors per patent in the 1970s to over 3.0 by the 2020s, reflecting increasing specialization
-- Women's share of patenting has grown but remains below 15%, with significant variation across technology fields
-- The most prolific individual inventors have produced thousands of patents each
-- Star inventors have outsized impact on citation metrics and knowledge creation
+### Chapter 3: Patent Fields
+Technology classes, field-level dynamics, and quality by technology area. CPC sections G and H gained 30 percentage points of share over five decades, rising from 27% to 57% of all grants.
 
-## Chapter 5: The Geography of Innovation
-Where ideas are born. Key findings:
-- California alone accounts for more patents than the bottom 30 US states combined
-- Silicon Valley, the Northeast corridor, and the Research Triangle are dominant innovation hubs
-- International origins have shifted dramatically: Japan dominated foreign patenting in the 1980s-90s, while South Korea, China, and Taiwan have surged since 2000
-- Geographic concentration of innovation has implications for regional economic development
+### Chapter 4: Convergence
+Cross-domain technology convergence. Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.
 
-## Chapter 6: Collaboration Networks
-The web of co-invention and co-patenting. Key findings:
-- Firm-to-firm co-patenting networks reveal industry clusters and strategic alliances
-- International inventor migration flows show talent moving primarily from Asia to the US
-- Co-inventor networks have become denser over time, with shorter average path lengths between inventors
+### Chapter 5: The Language of Innovation
+Semantic analysis of 8.45 million patent abstracts. Computing and semiconductor topics grew from 12% to 33% of all patents since 1976. Patent novelty (median entropy) rose 6.6% from 1.97 to 2.10.
 
-## Chapter 7: The Knowledge Network
-How ideas build on ideas through patent citations. Key findings:
-- Average citations per patent have increased over time, reflecting denser knowledge networks
-- Cross-technology knowledge flows reveal which fields build on which others
-- Government-funded patents (identified via government interest statements) receive more citations on average
-- The citation network reveals the cumulative nature of technological progress
+### Chapter 6: Patent Law & Policy
+Legislation and jurisprudence shaping the patent system. Twenty-one legislative and judicial events from 1980 to 2025 are associated with observable shifts in filing patterns. Key events include Bayh-Dole Act (1980), AIA (2011), and Alice Corp. (2014).
 
-## Chapter 8: Innovation Dynamics
-The tempo and trajectory of invention. Key findings:
-- Grant lag (application to grant) has varied from ~2 years to over 3.5 years, reflecting patent office backlogs
-- Cross-domain innovation (patents spanning multiple CPC sections) has grown, reflecting technological convergence
-- International collaboration in patenting grew from under 5% to over 10% of all patents
-- Innovation velocity (year-over-year growth) is highly correlated across sectors, suggesting macroeconomic drivers dominate
+### Chapter 7: Public Investment
+Government funding and the Bayh-Dole Act. Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019. HHS/NIH leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).
 
-## Chapter 9: Patent Quality
-Measuring the value and impact of inventions. Key findings:
-- Forward citation counts, originality indices, and generality scores provide complementary measures of patent quality
-- Quality distributions are highly skewed: a small fraction of patents receive the majority of citations
-- Quality metrics vary significantly across technology sectors and over time
-- Patent quality indicators help distinguish breakthrough inventions from incremental improvements
+## Act 2: The Organizations
 
-## Chapter 10: Patent Law & Policy
-The rules that shape innovation, with academic research from top economics and management journals. Key events:
-- Bayh-Dole Act (1980): Enabled university patenting of federally funded inventions
-- Federal Circuit (1982): Unified and strengthened patent rights
-- Hatch-Waxman Act (1984): Balanced generic drug entry with pharma patent protection
-- TRIPS Agreement (1994): Established global minimum patent standards
-- State Street Bank (1998): Enabled business method patents
-- American Inventors Protection Act (1999): Required 18-month publication
-- eBay v. MercExchange (2006): Ended automatic injunctive relief
-- KSR v. Teleflex (2007): Broadened obviousness standard
-- America Invents Act (2011): First-inventor-to-file, created IPR/PTAB
-- Myriad (2013): DNA not patent eligible
-- Alice Corp. (2014): Restricted abstract idea patents
-- TC Heartland (2017): Restricted patent venue rules
+### Chapter 8: Assignee Composition
+Corporate, foreign, and country-level composition. Corporate assignees grew from 94% to 99% of US patent grants. Foreign assignees surpassed US-based assignees around 2007. Japan accounts for 1.45 million US patents.
 
-## Chapter 11: Artificial Intelligence
-The rise of AI in the patent system. Key findings:
-- AI patenting has grown exponentially, especially since 2012 with deep learning breakthroughs
-- Machine learning, neural networks, and natural language processing are the fastest-growing AI subfields
-- Top AI patent holders include IBM, Microsoft, Google, Samsung, and major tech firms
-- The generative AI era (2020s) has created new patenting frontiers
+### Chapter 9: Organizational Patent Count
+Patent output rankings and trajectories. IBM leads with 161,888 cumulative grants. Samsung peaked at 9,716 annual grants in 2024. The top 100 organizations hold 32–39% of corporate patents.
+
+### Chapter 10: Organizational Patent Quality
+Citation impact, blockbuster patents, and quality metrics. Amazon holds the highest blockbuster rate at 6.7%. Microsoft leads in average citations at 30.7. Citation half-lives range from 6.3 to 14.3 years.
+
+### Chapter 11: Patent Portfolio
+Diversification, competitive proximity, and portfolio transitions. 50 companies cluster into 8 industry groups. Mitsubishi Electric reached peak Shannon entropy of 7.1 across 287 CPC subclasses. 51 technology pivots detected across 20 companies.
+
+### Chapter 12: Interactive Company Profiles
+Unified patent histories, portfolios, quality trends, and strategy profiles. Interactive dashboards for each organization across five analytical dimensions.
+
+## Act 3: The Inventors
+
+### Chapter 13: Top Inventors
+Superstar concentration and prolific inventors. The top 5% of inventors account for 63.2% of all patents. The most prolific inventor holds 6,709 patents.
+
+### Chapter 14: Generalist vs. Specialist
+Technology specialization patterns. Specialist inventors rose from 20% to 48% of the inventor workforce. Generalists earn 9.3 forward citations vs. 8.2 for specialists.
+
+### Chapter 15: Serial Inventors vs. New Entrants
+Career patterns and inventor survival. Annual first-time entries peaked at 140,490 in 2019. Only 37–51% survive past five career years.
+
+### Chapter 16: Gender and Patenting
+Gender composition and the gender innovation gap. Female inventor share rose from 2.8% in 1976 to 14.9% in 2025. Chemistry leads cumulative female representation at 14.6%.
+
+### Chapter 17: Team Size and Collaboration
+The collaborative turn and team size effects. Average team size increased from 1.7 to 3.2 inventors. Solo-inventor share fell from 58% to 23% by 2025.
+
+## Act 4: The Geography
+
+### Chapter 18: Domestic Geography
+State-level and city-level patent concentration. California accounts for 23.6% of all US patent grants with 992,708 patents. States exhibit distinctive specialization patterns.
+
+### Chapter 19: International Geography
+Cross-border patterns and country-level quality. Japan leads foreign filings with 1.45 million US patents. China grew from 299 filings in 2000 to 30,695 in 2024.
+
+## Act 5: The Mechanics
+
+### Chapter 20: Organizational Mechanics
+Within-firm exploration, exploitation, and inter-firm knowledge flows. 11 of 20 major filers keep exploration below 5%. Balanced firms produce blockbusters at 2.3x the rate of specialists.
+
+### Chapter 21: Inventor Mechanics
+Co-invention networks, bridge inventors, and inter-firm mobility. 632 prolific inventors form 1,236 co-invention ties. International mobility rose from 1.3% to 5.1%.
+
+### Chapter 22: Geographic Mechanics
+Cross-border collaboration and innovation diffusion. International co-invention increased from 1.0% in 1976 to 10.0% in 2025. US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024.
+
+## Act 6: Deep Dives (12 Technology Domains)
+
+### Chapter 23: 3D Printing & Additive Manufacturing
+Top-four concentration declined from 36% in 2005 to 11% by 2024. FDM patent expirations in 2009 coincided with broad-based competition entry.
+
+### Chapter 24: Agricultural Technology
+Patent velocity nearly quadrupled from 7.4 patents/year (1970s) to 32.9 (2000s). Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025.
+
+### Chapter 25: Artificial Intelligence
+AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all US grants. IBM leads with 16,781 AI patents.
+
+### Chapter 26: Autonomous Vehicles & ADAS
+Patent velocity rose 1.8-fold from 1990s to 2010s entrants. Subfield diversity reached near-maximum entropy of 0.97 by 2025.
+
+### Chapter 27: Biotechnology & Gene Editing
+Achieved the lowest top-four concentration among advanced technology domains (4.6% by 2025). Subfield diversity tripled from 0.32 to 0.94.
+
+### Chapter 28: Blockchain & Decentralized Systems
+The only advanced technology domain to reverse course: filings peaked in 2022 then declined. Top-four concentration rose to 26.3% during the 2018 boom.
+
+### Chapter 29: Cybersecurity
+Top-four concentration declined from 32.4% in 1980 to 9.4% by 2025. Network security surpassed cryptography as the dominant subfield around 2003.
+
+### Chapter 30: Digital Health & Medical Devices
+Patent velocity jumped 3.4-fold from 1970s to 2010s entrants. Philips (2,909), Medtronic (2,302), and Intuitive Surgical (1,994) lead.
+
+### Chapter 31: Green Innovation
+Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453. Samsung, Toyota, and GE lead.
+
+### Chapter 32: Quantum Computing
+Among the most concentrated domains alongside agricultural technology (CR4: 28.4% in 2025, down from 76.9% in 2003). The only domain where early entrants patent faster than later entrants.
+
+### Chapter 33: Semiconductors
+The only domain showing sustained rising concentration (11.3% in 1977 to 32.6% in 2023). Entry velocity plateaued at 197 patents/year.
+
+### Chapter 34: Space Technology
+Top-four concentration fluctuated between 4.9% and 36.7%, reflecting government-to-commercial transition. Satellite communications is now the dominant subfield.
 
 ## Data & Methodology
 - Source: PatentsView (patentsview.org), supported by USPTO
-- Coverage: 9,360,000+ granted US utility patents
-- Period: 1976-2025 (50 years)
-- Processing: DuckDB analytical SQL on PatentsView TSV bulk data
+- Data accessed: February 2026
+- Coverage: 9,360,000+ granted US patents (utility, design, plant, reissue)
+- Period: 1976–2025 (through September 2025)
+- Processing: DuckDB and Polars (Python) on PatentsView bulk data
 - Classifications: CPC (Cooperative Patent Classification), WIPO technology fields
-- Quality metrics: Forward citations, originality index, generality index
+- Quality metrics: Forward citations, originality index, generality index, claims, scope
 - Geographic data: Inventor and assignee locations, disambiguated by PatentsView
+- Gender inference: Name-based attribution with accuracy limitations for non-Western names
 - Network data: Citation links, co-inventor relationships, assignee collaboration
