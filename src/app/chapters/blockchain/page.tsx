@@ -274,7 +274,7 @@ export default function Chapter16() {
       </KeyFindings>
 
       <DataNote>
-        <strong>On cryptocurrency market correlation:</strong> The post-2022 decline in blockchain patent grants coincided temporally with a major cryptocurrency market correction. However, this temporal association does not establish causation. Multiple confounding factors — including the natural exhaustion of easily patentable blockchain concepts, increased examiner scrutiny of blockchain applications, and broader venture capital contraction in Web3 startups — may independently explain the decline. The 2--3 year filing-to-grant lag further complicates any direct mapping between market prices and grant counts.
+        <strong>On cryptocurrency market correlation:</strong> The post-2022 decline in blockchain patent grants coincided temporally with a major cryptocurrency market correction. However, this temporal association does not establish causation. Multiple confounding factors — including the natural exhaustion of easily patentable blockchain concepts, increased examiner scrutiny of blockchain applications, and broader venture capital contraction in Web3 startups — may independently explain the decline. The 2–3 year filing-to-grant lag further complicates any direct mapping between market prices and grant counts.
       </DataNote>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
