@@ -56,13 +56,13 @@ export default function GeoInternationalChapter() {
     data: qualByDomIntl,
     xKey: 'year',
     citationKeys: ['avg_forward_citations'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
   const countryNorm = useCitationNormalization({
     data: qualByCountryTs,
     xKey: 'year',
     citationKeys: ['avg_forward_citations'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   /* ── Country filing trends: pivot top countries into line-chart format ── */
@@ -208,7 +208,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -228,7 +228,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. CPC Subclasses"
+          yLabel="Average CPC Subclasses"
         />
       </ChartContainer>
 
@@ -248,7 +248,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -268,7 +268,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Generality Index"
+          yLabel="Average Generality Index"
         />
       </ChartContainer>
 
@@ -288,7 +288,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Self-Citation Rate"
+          yLabel="Average Self-Citation Rate"
           yFormatter={(v) => `${((v as number) * 100).toFixed(1)}%`}
         />
       </ChartContainer>
@@ -309,7 +309,7 @@ export default function GeoInternationalChapter() {
             { key: 'domestic', name: 'Domestic Teams', color: CHART_COLORS[0] },
             { key: 'international', name: 'International Teams', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 
@@ -392,7 +392,7 @@ export default function GeoInternationalChapter() {
           data={pivotData(qualByCountryTs, 'avg_num_claims')}
           xKey="year"
           lines={countryLines}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -409,7 +409,7 @@ export default function GeoInternationalChapter() {
           data={pivotData(qualByCountryTs, 'avg_originality')}
           xKey="year"
           lines={countryLines}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -426,7 +426,7 @@ export default function GeoInternationalChapter() {
           data={pivotData(qualByCountryTs, 'avg_grant_lag_days')}
           xKey="year"
           lines={countryLines}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 

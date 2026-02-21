@@ -454,6 +454,7 @@ export default function Chapter22() {
           insight="The ranking dynamics reveal the gradual entry of commercial space firms alongside traditional defense contractors, reflecting the transformation of the space industry from a government-dominated sector to a mixed commercial-government ecosystem."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -861,7 +862,7 @@ export default function Chapter22() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

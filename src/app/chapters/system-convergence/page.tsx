@@ -20,6 +20,7 @@ import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { CHART_COLORS } from '@/lib/colors';
+import { cleanOrgName } from '@/lib/orgNames';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CompetingExplanations } from '@/components/chapter/CompetingExplanations';
 import type { CrossDomain, ConvergenceEntry, ConvergenceDecomp, ConvergenceNearFar, ConvergenceTopAssignee, InterdisciplinarityTrend } from '@/lib/types';
@@ -135,6 +136,7 @@ export default function SystemConvergenceChapter() {
         insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}
         height={700}
+        flexHeight
       >
         {convergenceData && convergenceEras.length > 0 && (
           <PWConvergenceMatrix data={convergenceData} eras={convergenceEras} />
@@ -307,7 +309,7 @@ export default function SystemConvergenceChapter() {
           xKey="year"
           lines={topFirms.map((firm, i) => ({
             key: firm,
-            name: firm,
+            name: cleanOrgName(firm),
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           yLabel="Multi-Section Patents"

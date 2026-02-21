@@ -89,7 +89,7 @@ export default function InvTeamSizeChapter() {
     data: pivotData(qualityByTeam, 'avg_forward_citations'),
     xKey: 'year',
     citationKeys: ['Solo', '2-3', '4-6', '7+'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   /* ── shared line config for team-size charts ── */
@@ -198,8 +198,8 @@ export default function InvTeamSizeChapter() {
           data={team ?? []}
           xKey="year"
           lines={[
-            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[2], yAxisId: 'left' },
-            { key: 'large_team_pct', name: 'Large Team (5+) %', color: CHART_COLORS[3], yAxisId: 'left' },
+            { key: 'solo_pct', name: 'Solo Inventor Share (%)', color: CHART_COLORS[2], yAxisId: 'left' },
+            { key: 'large_team_pct', name: 'Large Team (5+) Share (%)', color: CHART_COLORS[3], yAxisId: 'left' },
             { key: 'avg_team_size', name: 'Average Team Size', color: CHART_COLORS[0], yAxisId: 'right' },
           ]}
           yLabel="Percentage (%)"
@@ -245,7 +245,7 @@ export default function InvTeamSizeChapter() {
           data={solo ?? []}
           xKey="year"
           lines={[
-            { key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[0] },
+            { key: 'solo_pct', name: 'Solo Inventor Share (%)', color: CHART_COLORS[0] },
           ]}
           yLabel="Solo Inventor Share (%)"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
@@ -263,7 +263,7 @@ export default function InvTeamSizeChapter() {
         <PWBarChart
           data={soloBySectionLabeled}
           xKey="label"
-          bars={[{ key: 'solo_pct', name: 'Solo %', color: CHART_COLORS[0] }]}
+          bars={[{ key: 'solo_pct', name: 'Solo Inventor Share (%)', color: CHART_COLORS[0] }]}
           layout="vertical"
           yLabel="Solo Inventor Share (%)"
         />
@@ -323,7 +323,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_num_claims')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -340,7 +340,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_scope')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. CPC Subclasses"
+          yLabel="Average CPC Subclasses"
         />
       </ChartContainer>
 
@@ -357,7 +357,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_originality')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -374,7 +374,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_generality')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Generality Index"
+          yLabel="Average Generality Index"
         />
       </ChartContainer>
 
@@ -391,7 +391,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_self_citation_rate')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Self-Citation Rate"
+          yLabel="Average Self-Citation Rate"
           yFormatter={(v: number) => `${(v * 100).toFixed(1)}%`}
         />
       </ChartContainer>
@@ -409,7 +409,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(qualityByTeam, 'avg_grant_lag_days')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 
@@ -426,7 +426,7 @@ export default function InvTeamSizeChapter() {
           data={pivotData(prodByTeam, 'avg_patents_per_inventor')}
           xKey="year"
           lines={teamLines}
-          yLabel="Avg. Patents per Inventor"
+          yLabel="Average Patents per Inventor"
         />
       </ChartContainer>
 

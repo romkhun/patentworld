@@ -475,6 +475,7 @@ export default function Chapter16() {
           insight="The high volatility in organizational rankings distinguishes blockchain from more established domains where leadership positions are relatively stable, suggesting that competitive positions in blockchain IP are still forming."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -881,7 +882,7 @@ export default function Chapter16() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

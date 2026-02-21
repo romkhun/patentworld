@@ -98,7 +98,7 @@ export default function InvTopInventorsChapter() {
     data: pivotData(qualityRank, 'avg_forward_citations'),
     xKey: 'year',
     citationKeys: ['top_inventor', 'other_inventor'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   return (
@@ -321,7 +321,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Patents per Inventor"
+          yLabel="Average Patents per Inventor"
         />
       </ChartContainer>
 
@@ -363,7 +363,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -383,7 +383,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. CPC Subclasses"
+          yLabel="Average CPC Subclasses"
         />
       </ChartContainer>
 
@@ -403,7 +403,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -423,7 +423,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Generality Index"
+          yLabel="Average Generality Index"
         />
       </ChartContainer>
 
@@ -443,7 +443,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Self-Citation Rate"
+          yLabel="Average Self-Citation Rate"
           yFormatter={(v: number) => `${(v * 100).toFixed(1)}%`}
         />
       </ChartContainer>
@@ -464,7 +464,7 @@ export default function InvTopInventorsChapter() {
             { key: 'top_inventor', name: 'Top Inventors', color: CHART_COLORS[0] },
             { key: 'other_inventor', name: 'Other Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 

@@ -115,7 +115,7 @@ export default function MechGeographyChapter() {
           xKey="year"
           lines={[
             { key: 'intl_collab_count', name: 'International Collaboration Patents', color: CHART_COLORS[0], yAxisId: 'left' },
-            { key: 'intl_collab_pct', name: 'International Collaboration %', color: CHART_COLORS[2], yAxisId: 'right' },
+            { key: 'intl_collab_pct', name: 'International Collaboration Share (%)', color: CHART_COLORS[2], yAxisId: 'right' },
           ]}
           yLabel="Number of Patents"
           rightYLabel="Share (%)"

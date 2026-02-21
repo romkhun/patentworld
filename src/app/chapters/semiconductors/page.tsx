@@ -462,6 +462,7 @@ export default function Chapter21() {
           insight="The ranking dynamics reveal a long-term shift in semiconductor patent leadership from US-based and Japanese firms toward Korean and Taiwanese organizations, reflecting the geographic migration of advanced manufacturing capacity."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -864,7 +865,7 @@ export default function Chapter21() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

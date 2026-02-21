@@ -447,6 +447,7 @@ export default function Chapter17() {
           insight="The ranking dynamics reveal the growing strategic importance of cybersecurity patents, with cloud and enterprise software firms expanding their security portfolios to compete with traditional security-focused companies."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -864,7 +865,7 @@ export default function Chapter17() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

@@ -467,6 +467,7 @@ export default function Chapter13() {
           insight="The rapid convergence of multiple firms at the top since 2012 reflects intensifying competitive dynamics in AI capabilities, as the deep learning transformation attracted substantial investment from firms across technology sectors."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -866,7 +867,7 @@ export default function Chapter13() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

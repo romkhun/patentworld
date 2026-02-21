@@ -477,6 +477,7 @@ export default function Chapter15() {
           insight="The organizational rankings reveal dynamic competition in biotech patenting, with pharmaceutical incumbents facing challenges from specialized biotechnology firms and research-intensive universities as new technologies reshape the field."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -924,7 +925,7 @@ export default function Chapter15() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

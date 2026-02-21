@@ -273,8 +273,8 @@ export default function SystemPatentQualityChapter() {
           data={(trends ?? []).filter((d) => d.year <= 2020)}
           xKey="year"
           lines={[
-            { key: 'avg_forward_cites_5yr', name: 'Average Forward Citations (5yr)', color: CHART_COLORS[0] },
-            { key: 'median_forward_cites_5yr', name: 'Median Forward Citations (5yr)', color: CHART_COLORS[2] },
+            { key: 'avg_forward_cites_5yr', name: 'Average Forward Citations (5-Year)', color: CHART_COLORS[0] },
+            { key: 'median_forward_cites_5yr', name: 'Median Forward Citations (5-Year)', color: CHART_COLORS[2] },
           ]}
           yLabel="Citations"
           yFormatter={(v) => v.toFixed(1)}
@@ -334,7 +334,7 @@ export default function SystemPatentQualityChapter() {
           data={cohortSystem ?? []}
           xKey="year"
           lines={[
-            { key: 'mean_cohort_norm', name: 'Mean Cohort-Normalized', color: CHART_COLORS[0] },
+            { key: 'mean_cohort_norm', name: 'Average Cohort-Normalized', color: CHART_COLORS[0] },
             { key: 'median_cohort_norm', name: 'Median Cohort-Normalized', color: CHART_COLORS[2] },
             { key: 'top1pct_share', name: 'Top 1% Citation Share (%)', color: CHART_COLORS[5], yAxisId: 'right' },
           ]}
@@ -708,7 +708,7 @@ export default function SystemPatentQualityChapter() {
             color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
           }))}
           xKey="label"
-          bars={[{ key: 'avg_npl_citations', name: 'Avg NPL Citations' }]}
+          bars={[{ key: 'avg_npl_citations', name: 'Average NPL Citations' }]}
           layout="vertical"
           yLabel="Average NPL Citations"
           colorByValue
@@ -793,7 +793,7 @@ export default function SystemPatentQualityChapter() {
             color: CPC_SECTION_COLORS[d.cpc_section] ?? CHART_COLORS[0],
           }))}
           xKey="label"
-          bars={[{ key: 'avg_figures', name: 'Avg Figures' }]}
+          bars={[{ key: 'avg_figures', name: 'Average Figures' }]}
           layout="vertical"
           yLabel="Average Figures"
           colorByValue

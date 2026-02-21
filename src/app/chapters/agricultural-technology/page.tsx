@@ -469,6 +469,7 @@ export default function Chapter12() {
           insight="The rank heatmap captures how mergers and strategic R&D investments have reshaped agricultural patent leadership, with Deere's sustained dominance contrasting with the turbulence caused by consolidation among seed and chemical companies."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -876,7 +877,7 @@ export default function Chapter12() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

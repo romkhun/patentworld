@@ -303,7 +303,7 @@ export default function SystemPatentFieldsChapter() {
     data: fwdCitePivot,
     xKey: 'year',
     citationKeys: ['avg_forward_citations'],
-    yLabel: 'Avg Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
   const originalityPivot = useMemo(() => pivotData(qualityCpc, 'avg_originality'), [qualityCpc]);
   const generalityPivot = useMemo(() => pivotData(qualityCpc, 'avg_generality'), [qualityCpc]);
@@ -645,7 +645,7 @@ export default function SystemPatentFieldsChapter() {
                 <th className="py-2 pr-4 font-medium">Section</th>
                 <th className="py-2 pr-4 font-medium">Stage</th>
                 <th className="py-2 pr-4 text-right font-medium">Cumulative</th>
-                <th className="py-2 pr-4 text-right font-medium">Recent 5yr</th>
+                <th className="py-2 pr-4 text-right font-medium">Recent 5-Year</th>
                 <th className="py-2 text-right font-medium">% of K</th>
               </tr>
             </thead>
@@ -909,7 +909,7 @@ export default function SystemPatentFieldsChapter() {
           data={originalityPivot}
           xKey="year"
           lines={cpcQualityLines}
-          yLabel="Avg Originality"
+          yLabel="Average Originality"
           yFormatter={(v: number) => v.toFixed(2)}
         />
       </ChartContainer>
@@ -926,7 +926,7 @@ export default function SystemPatentFieldsChapter() {
           data={generalityPivot}
           xKey="year"
           lines={cpcQualityLines}
-          yLabel="Avg Generality"
+          yLabel="Average Generality"
           yFormatter={(v: number) => v.toFixed(2)}
         />
       </ChartContainer>
@@ -943,7 +943,7 @@ export default function SystemPatentFieldsChapter() {
           data={scopePivot}
           xKey="year"
           lines={cpcQualityLines}
-          yLabel="Avg Scope (Subclasses)"
+          yLabel="Average Scope (Subclasses)"
           yFormatter={(v: number) => v.toFixed(1)}
         />
       </ChartContainer>
@@ -1043,6 +1043,7 @@ export default function SystemPatentFieldsChapter() {
         insight="The dominant H-to-G flow reflects the ongoing renegotiation of the boundary between electronics (H) and computing/physics (G), consistent with the convergence of these fields documented in earlier sections."
         loading={rcFlL}
         height={550}
+        flexHeight
       >
         {reclassFlowData.length > 0 ? (
           <PWValueHeatmap

@@ -185,13 +185,13 @@ export default function GeoDomesticChapter() {
     data: qualityByState,
     xKey: 'year',
     citationKeys: ['avg_forward_citations'],
-    yLabel: 'Avg Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
   const cityNorm = useCitationNormalization({
     data: qualityByCity,
     xKey: 'year',
     citationKeys: ['avg_forward_citations'],
-    yLabel: 'Avg Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   return (
@@ -432,7 +432,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByState, 'avg_num_claims')}
           xKey="year"
           lines={stateLines}
-          yLabel="Avg Claims"
+          yLabel="Average Claims"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -450,7 +450,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByState, 'avg_originality')}
           xKey="year"
           lines={stateLines}
-          yLabel="Avg Originality"
+          yLabel="Average Originality"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -468,7 +468,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByState, 'avg_grant_lag_days')}
           xKey="year"
           lines={stateLines}
-          yLabel="Avg Grant Lag (Days)"
+          yLabel="Average Grant Lag (Days)"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -614,7 +614,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByCity, 'avg_num_claims')}
           xKey="year"
           lines={cityLines}
-          yLabel="Avg Claims"
+          yLabel="Average Claims"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -632,7 +632,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByCity, 'avg_originality')}
           xKey="year"
           lines={cityLines}
-          yLabel="Avg Originality"
+          yLabel="Average Originality"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>
@@ -650,7 +650,7 @@ export default function GeoDomesticChapter() {
           data={pivotData(qualityByCity, 'avg_grant_lag_days')}
           xKey="year"
           lines={cityLines}
-          yLabel="Avg Grant Lag (Days)"
+          yLabel="Average Grant Lag (Days)"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [1995, 2001, 2008] })}
         />
       </ChartContainer>

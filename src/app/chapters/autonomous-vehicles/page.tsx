@@ -314,7 +314,7 @@ export default function Chapter14() {
           data={perYear ?? []}
           xKey="year"
           lines={[
-            { key: 'domain_patents', name: 'AV Patents', color: CHART_COLORS[0] },
+            { key: 'domain_patents', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[0] },
           ]}
           yLabel="Number of Patents"
           referenceLines={AV_EVENTS}
@@ -363,7 +363,7 @@ export default function Chapter14() {
           data={perYear ?? []}
           xKey="year"
           lines={[
-            { key: 'domain_pct', name: 'AV Share (%)', color: CHART_COLORS[3] },
+            { key: 'domain_pct', name: 'Autonomous Vehicle Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
@@ -425,7 +425,7 @@ export default function Chapter14() {
         <PWBarChart
           data={assigneeData}
           xKey="label"
-          bars={[{ key: 'domain_patents', name: 'AV Patents', color: CHART_COLORS[0] }]}
+          bars={[{ key: 'domain_patents', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[0] }]}
           layout="vertical"
         />
       </ChartContainer>
@@ -502,7 +502,7 @@ export default function Chapter14() {
         <PWBarChart
           data={inventorData}
           xKey="label"
-          bars={[{ key: 'domain_patents', name: 'AV Patents', color: CHART_COLORS[4] }]}
+          bars={[{ key: 'domain_patents', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[4] }]}
           layout="vertical"
         />
       </ChartContainer>
@@ -534,7 +534,7 @@ export default function Chapter14() {
         <PWBarChart
           data={geoCountry}
           xKey="country"
-          bars={[{ key: 'domain_patents', name: 'AV Patents', color: CHART_COLORS[2] }]}
+          bars={[{ key: 'domain_patents', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[2] }]}
           layout="vertical"
         />
       </ChartContainer>
@@ -563,7 +563,7 @@ export default function Chapter14() {
         <PWBarChart
           data={geoState}
           xKey="state"
-          bars={[{ key: 'domain_patents', name: 'AV Patents', color: CHART_COLORS[3] }]}
+          bars={[{ key: 'domain_patents', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[3] }]}
           layout="vertical"
         />
       </ChartContainer>
@@ -716,7 +716,7 @@ export default function Chapter14() {
               name: `${section}: ${CPC_SECTION_NAMES[section] ?? section}`,
               color: CPC_SECTION_COLORS[section],
             }))}
-            yLabel="% of AV Patents"
+            yLabel="% of Autonomous Vehicle Patents"
             yFormatter={(v: number) => `${v.toFixed(1)}%`}
             referenceLines={AV_EVENTS}
           />
@@ -761,7 +761,7 @@ export default function Chapter14() {
           data={teamComparisonPivot}
           xKey="year"
           lines={[
-            { key: 'AV', name: 'AV Patents', color: CHART_COLORS[0] },
+            { key: 'AV', name: 'Autonomous Vehicle Patents', color: CHART_COLORS[0] },
             { key: 'Non-AV', name: 'Non-AV Patents', color: CHART_COLORS[3] },
           ]}
           yLabel="Average Team Size"
@@ -856,7 +856,7 @@ export default function Chapter14() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

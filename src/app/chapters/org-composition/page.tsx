@@ -329,8 +329,8 @@ export default function OrgCompositionChapter() {
           data={lawFirmConc ?? []}
           xKey="year"
           lines={[
-            { key: 'cr4_pct', name: 'CR4 (%)', color: CHART_COLORS[0] },
-            { key: 'cr10_pct', name: 'CR10 (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+            { key: 'cr4_pct', name: 'Top 4 Firms Share (%)', color: CHART_COLORS[0] },
+            { key: 'cr10_pct', name: 'Top 10 Firms Share (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
           ]}
           yLabel="Market Share (%)"
           yFormatter={(v: number) => `${v.toFixed(1)}%`}

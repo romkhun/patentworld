@@ -141,7 +141,7 @@ export default function OrgPatentQualityChapter() {
     data: companyFwdCitePivot,
     xKey: 'year',
     citationKeys: topCompanies,
-    yLabel: 'Avg Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   return (
@@ -203,7 +203,7 @@ export default function OrgPatentQualityChapter() {
         <PWBubbleScatter
           data={scatterData}
           xLabel="Blockbuster Rate (%)"
-          yLabel="Dud Rate (%)"
+          yLabel="Zero-Citation Rate (%)"
           xMidline={1}
           yMidline={40}
           quadrants={[
@@ -274,7 +274,7 @@ export default function OrgPatentQualityChapter() {
             xKey="year"
             lines={[
               { key: 'blockbuster_rate', name: 'Blockbuster Rate (%)', color: CHART_COLORS[0] },
-              { key: 'dud_rate', name: 'Dud Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+              { key: 'dud_rate', name: 'Zero-Citation Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
             ]}
             yLabel="Share of Patents (%)"
             yFormatter={(v) => `${v}%`}
@@ -452,7 +452,7 @@ export default function OrgPatentQualityChapter() {
           data={pivotCompanyMetric(qualityByCompany, 'avg_num_claims', topCompanies)}
           xKey="year"
           lines={companyLines}
-          yLabel="Avg Claims per Patent"
+          yLabel="Average Claims per Patent"
         />
       </ChartContainer>
 
@@ -470,7 +470,7 @@ export default function OrgPatentQualityChapter() {
           data={pivotCompanyMetric(qualityByCompany, 'avg_originality', topCompanies)}
           xKey="year"
           lines={companyLines}
-          yLabel="Avg Originality Score"
+          yLabel="Average Originality Score"
         />
       </ChartContainer>
 
@@ -488,7 +488,7 @@ export default function OrgPatentQualityChapter() {
           data={pivotCompanyMetric(qualityByCompany, 'avg_grant_lag_days', topCompanies)}
           xKey="year"
           lines={companyLines}
-          yLabel="Avg Grant Lag (Days)"
+          yLabel="Average Grant Lag (Days)"
         />
       </ChartContainer>
 
@@ -528,7 +528,7 @@ export default function OrgPatentQualityChapter() {
         <PWBarChart
           data={nplTop20}
           xKey="label"
-          bars={[{ key: 'avg_npl_citations', name: 'Avg NPL Citations', color: CHART_COLORS[0] }]}
+          bars={[{ key: 'avg_npl_citations', name: 'Average NPL Citations', color: CHART_COLORS[0] }]}
           layout="vertical"
         />
       </ChartContainer>

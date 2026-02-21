@@ -499,6 +499,7 @@ export default function Chapter19() {
         insight="The entry of Korean electronics conglomerates into the top ranks of green patenting after 2010 reflects the strategic importance of battery technology and electric vehicles in reshaping the competitive landscape."
         loading={ootL}
         height={500}
+        flexHeight
         wide
       >
         <PWRankHeatmap
@@ -840,7 +841,7 @@ export default function Chapter19() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

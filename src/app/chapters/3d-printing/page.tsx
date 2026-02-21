@@ -344,7 +344,7 @@ export default function Chapter11() {
           data={perYear ?? []}
           xKey="year"
           lines={[
-            { key: 'domain_pct', name: 'AM Share (%)', color: CHART_COLORS[3] },
+            { key: 'domain_pct', name: '3D Printing Share (%)', color: CHART_COLORS[3] },
           ]}
           yLabel="Share (%)"
           yFormatter={(v) => `${v.toFixed(1)}%`}
@@ -460,6 +460,7 @@ export default function Chapter11() {
           insight="The entry of industrial conglomerates into the top AM patent rankings after 2012 reflects a strategic reassessment of additive manufacturing's production potential, moving beyond prototyping into direct manufacturing applications."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -851,7 +852,7 @@ export default function Chapter11() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

@@ -152,7 +152,7 @@ export default function InvGenderChapter() {
     data: pivotData(qualityByGender, 'avg_forward_citations'),
     xKey: 'year',
     citationKeys: ['all_female', 'all_male', 'mixed'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   /* ── render ── */
@@ -406,7 +406,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -427,7 +427,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. CPC Subclasses"
+          yLabel="Average CPC Subclasses"
         />
       </ChartContainer>
 
@@ -448,7 +448,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -469,7 +469,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Generality Index"
+          yLabel="Average Generality Index"
         />
       </ChartContainer>
 
@@ -490,7 +490,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Self-Citation Rate"
+          yLabel="Average Self-Citation Rate"
           yFormatter={(v) => `${(v * 100).toFixed(1)}%`}
         />
       </ChartContainer>
@@ -512,7 +512,7 @@ export default function InvGenderChapter() {
             { key: 'all_male', name: 'All-Male Teams', color: CHART_COLORS[1] },
             { key: 'mixed', name: 'Mixed-Gender Teams', color: CHART_COLORS[2] },
           ]}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 
@@ -532,7 +532,7 @@ export default function InvGenderChapter() {
             { key: 'female', name: 'Female Inventors', color: CHART_COLORS[0] },
             { key: 'male', name: 'Male Inventors', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Patents per Inventor"
+          yLabel="Average Patents per Inventor"
         />
       </ChartContainer>
 

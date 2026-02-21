@@ -52,7 +52,7 @@ export default function InvGeneralistSpecialistChapter() {
     data: pivotData(qualitySpec, 'avg_forward_citations'),
     xKey: 'year',
     citationKeys: ['specialist', 'generalist'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   return (
@@ -190,7 +190,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Claims"
+          yLabel="Average Claims"
         />
       </ChartContainer>
 
@@ -210,7 +210,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. CPC Subclasses"
+          yLabel="Average CPC Subclasses"
         />
       </ChartContainer>
 
@@ -230,7 +230,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Originality Index"
+          yLabel="Average Originality Index"
         />
       </ChartContainer>
 
@@ -250,7 +250,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Generality Index"
+          yLabel="Average Generality Index"
         />
       </ChartContainer>
 
@@ -270,7 +270,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Self-Citation Rate"
+          yLabel="Average Self-Citation Rate"
           yFormatter={(v) => `${(v * 100).toFixed(1)}%`}
         />
       </ChartContainer>
@@ -291,7 +291,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Grant Lag (days)"
+          yLabel="Average Grant Lag (days)"
         />
       </ChartContainer>
 
@@ -311,7 +311,7 @@ export default function InvGeneralistSpecialistChapter() {
             { key: 'specialist', name: 'Specialists', color: CHART_COLORS[0] },
             { key: 'generalist', name: 'Generalists', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg. Patents per Inventor"
+          yLabel="Average Patents per Inventor"
         />
       </ChartContainer>
 

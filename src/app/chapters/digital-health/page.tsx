@@ -449,6 +449,7 @@ export default function Chapter18() {
           insight="The evolving rankings reflect the ongoing convergence of medical device expertise and digital technology capabilities, as firms compete to define the future of connected healthcare."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -789,7 +790,7 @@ export default function Chapter18() {
           data={regSplitPivot}
           xKey="year"
           areas={[
-            { key: 'Med Device', name: 'Med Device', color: CHART_COLORS[0] },
+            { key: 'Med Device', name: 'Medical Device', color: CHART_COLORS[0] },
             { key: 'Big Tech', name: 'Big Tech', color: CHART_COLORS[1] },
             { key: 'Other', name: 'Other', color: CHART_COLORS[3] },
           ]}
@@ -903,7 +904,7 @@ export default function Chapter18() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

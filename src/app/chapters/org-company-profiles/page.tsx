@@ -24,6 +24,7 @@ import Link from 'next/link';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
+import { cleanOrgName } from '@/lib/orgNames';
 import { formatCompact } from '@/lib/formatters';
 import type {
   CompanyProfile,
@@ -356,6 +357,7 @@ export default function OrgCompanyProfilesChapter() {
               companies={companyList}
               selected={activeCompany}
               onSelect={setSelectedCompany}
+              formatLabel={cleanOrgName}
             />
           ) : (
             <span className="text-sm text-muted-foreground">Loading companies...</span>
@@ -453,7 +455,7 @@ export default function OrgCompanyProfilesChapter() {
               data={citationsData}
               xKey="year"
               lines={[
-                { key: 'median_citations_5yr', name: 'Median Citations (5yr)', color: CHART_COLORS[0] },
+                { key: 'median_citations_5yr', name: 'Median Citations (5-Year)', color: CHART_COLORS[0] },
               ]}
               yLabel="Citations"
               referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008] })}
@@ -601,7 +603,7 @@ export default function OrgCompanyProfilesChapter() {
                 xKey="year"
                 lines={[
                   { key: 'blockbuster_rate', name: 'Blockbuster Rate (%)', color: CHART_COLORS[0] },
-                  { key: 'dud_rate', name: 'Dud Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
+                  { key: 'dud_rate', name: 'Zero-Citation Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
                 ]}
                 yLabel="Share of Patents (%)"
                 yFormatter={(v: number) => `${v}%`}

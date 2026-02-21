@@ -470,6 +470,7 @@ export default function Chapter20() {
           insight="The rapid reshuffling of organizational rankings since 2015 reflects the competitive dynamics of a nascent field, where sustained investment and hardware breakthroughs can quickly alter the competitive landscape."
           loading={ootL}
           height={600}
+          flexHeight
           wide
         >
           <PWRankHeatmap
@@ -862,7 +863,7 @@ export default function Chapter20() {
           data={velocityData}
           xKey="decade"
           bars={[{ key: 'velocity', name: 'Patents per Year', color: CHART_COLORS[1] }]}
-          yLabel="Mean Patents / Year"
+          yLabel="Average Patents per Year"
         />
       </ChartContainer>
 

@@ -76,7 +76,7 @@ export default function InvSerialNewChapter() {
     data: pivotData(qualityByExp, 'avg_forward_citations'),
     xKey: 'year',
     citationKeys: ['serial', 'new_entrant'],
-    yLabel: 'Avg. Forward Citations',
+    yLabel: 'Average Forward Citations',
   });
 
   return (
@@ -479,7 +479,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Number of Claims"
+          yLabel="Average Number of Claims"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -499,7 +499,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Scope"
+          yLabel="Average Scope"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -519,7 +519,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Originality"
+          yLabel="Average Originality"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -539,7 +539,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Generality"
+          yLabel="Average Generality"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -580,7 +580,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Grant Lag (Days)"
+          yLabel="Average Grant Lag (Days)"
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />
       </ChartContainer>
@@ -600,7 +600,7 @@ export default function InvSerialNewChapter() {
             { key: 'serial', name: 'Serial Inventors', color: CHART_COLORS[0] },
             { key: 'new_entrant', name: 'New Entrants', color: CHART_COLORS[1] },
           ]}
-          yLabel="Avg Patents per Inventor"
+          yLabel="Average Patents per Inventor"
           yFormatter={(v: number) => v.toFixed(1)}
           referenceLines={filterEvents(PATENT_EVENTS, { only: [2001, 2008, 2020] })}
         />

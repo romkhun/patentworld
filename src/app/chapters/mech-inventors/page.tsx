@@ -573,10 +573,10 @@ export default function MechInventorsChapter() {
             data={mobilityEvent?.overall ?? []}
             xKey="relative_year"
             lines={[
-              { key: 'mean_fwd_cite_5y', name: 'Mean 5-Year Forward Citations', color: CHART_COLORS[0] },
+              { key: 'mean_fwd_cite_5y', name: 'Average 5-Year Forward Citations', color: CHART_COLORS[0] },
             ]}
             bands={[{ upperKey: 'ci_upper_cites', lowerKey: 'ci_lower_cites', color: CHART_COLORS[0] }]}
-            yLabel="Mean 5-Year Forward Citations"
+            yLabel="Average 5-Year Forward Citations"
             xLabel="Years Relative to Move"
           />
         ) : <div />}
@@ -608,7 +608,7 @@ export default function MechInventorsChapter() {
             data={mobilityByDirectionData}
             xKey="relative_year"
             lines={directionLines}
-            yLabel="Mean 5-Year Forward Citations"
+            yLabel="Average 5-Year Forward Citations"
             xLabel="Years Relative to Move"
           />
         ) : <div />}
@@ -624,8 +624,8 @@ export default function MechInventorsChapter() {
           data={bridgeCentrality ?? []}
           xKey="centrality_label"
           bars={[
-            { key: 'mean_citations', name: 'Mean Citations (5yr)', color: CHART_COLORS[0] },
-            { key: 'mean_degree', name: 'Mean Degree Centrality', color: CHART_COLORS[4] },
+            { key: 'mean_citations', name: 'Average Citations (5-Year)', color: CHART_COLORS[0] },
+            { key: 'mean_degree', name: 'Average Degree Centrality', color: CHART_COLORS[4] },
           ]}
         />
       </ChartContainer>

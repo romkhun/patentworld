@@ -106,13 +106,13 @@ export default function MechOrganizationsChapter() {
   const trajectoryDatasets = useMemo(() => {
     if (!explTraj) return [];
     return Object.entries(explTraj).map(([firm, points], i) => ({
-      name: firm,
+      name: cleanOrgName(firm),
       points: points
         .filter(p => p.exploration_index != null)
         .map(p => ({
           x: p.exploration_index as number,
           y: p.self_citation_rate as number,
-          label: firm,
+          label: cleanOrgName(firm),
           period: p.period,
         })),
       color: CHART_COLORS[i % CHART_COLORS.length],
@@ -288,7 +288,7 @@ export default function MechOrganizationsChapter() {
         <PWSmallMultiples
           panels={explTrajPanels}
           xLabel="Year"
-          yLabel="Exploration %"
+          yLabel="Exploration Score (%)"
           yFormatter={(v) => `${v.toFixed(0)}%`}
           columns={4}
         />
@@ -546,7 +546,7 @@ export default function MechOrganizationsChapter() {
                   <td className="py-2 pr-4 text-xs">{t.window}</td>
                   <td className="py-2 pr-4">{t.section}: {CPC_SECTION_NAMES[t.section] ?? t.section}</td>
                   <td className="py-2 pr-4 font-mono">#{t.rank}</td>
-                  <td className="py-2 pr-4 font-medium">{t.company}</td>
+                  <td className="py-2 pr-4 font-medium">{cleanOrgName(t.company)}</td>
                   <td className="py-2 text-right font-mono text-xs">{formatCompact(t.citations_received)}</td>
                 </tr>
               ))}

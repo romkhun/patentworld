@@ -6,13 +6,17 @@ interface PWCompanySelectorProps {
   companies: string[];
   selected: string;
   onSelect: (company: string) => void;
+  /** Optional formatter for display labels (underlying value remains unchanged) */
+  formatLabel?: (company: string) => string;
 }
 
 export function PWCompanySelector({
   companies,
   selected,
   onSelect,
+  formatLabel,
 }: PWCompanySelectorProps) {
+  const displayLabel = formatLabel ?? ((c: string) => c);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -23,7 +27,8 @@ export function PWCompanySelector({
 
   const filtered = query
     ? companies.filter((c) =>
-        c.toLowerCase().includes(query.toLowerCase())
+        c.toLowerCase().includes(query.toLowerCase()) ||
+        displayLabel(c).toLowerCase().includes(query.toLowerCase())
       )
     : companies;
 
@@ -141,7 +146,7 @@ export function PWCompanySelector({
         aria-activedescendant={open ? activeDescendantId : undefined}
         className="flex w-full items-center justify-between rounded-lg border bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-sm hover:bg-accent/50 transition-colors"
       >
-        <span className="truncate">{selected || 'Select a company...'}</span>
+        <span className="truncate">{selected ? displayLabel(selected) : 'Select a company...'}</span>
         <svg
           className={`ml-2 h-4 w-4 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`}
           fill="none"
@@ -198,7 +203,7 @@ export function PWCompanySelector({
                       : 'text-foreground'
                   } ${index === activeIndex ? 'bg-accent/70 outline-none' : ''}`}
                 >
-                  {company}
+                  {displayLabel(company)}
                 </button>
               </li>
             ))}

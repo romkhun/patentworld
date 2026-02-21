@@ -294,9 +294,9 @@ export default function DeepDiveOverview() {
           data={qualityBar}
           xKey="domain"
           bars={[
-            { key: 'mean_citations', name: 'Mean Citations (5yr)', color: CHART_COLORS[0] },
-            { key: 'mean_claims', name: 'Mean Claims', color: CHART_COLORS[1] },
-            { key: 'mean_scope', name: 'Mean Scope', color: CHART_COLORS[2] },
+            { key: 'mean_citations', name: 'Average Citations (5-Year)', color: CHART_COLORS[0] },
+            { key: 'mean_claims', name: 'Average Claims', color: CHART_COLORS[1] },
+            { key: 'mean_scope', name: 'Average Scope', color: CHART_COLORS[2] },
           ]}
           layout="vertical"
         />

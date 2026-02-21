@@ -181,6 +181,7 @@ export default function SystemPublicInvestmentChapter() {
         loading={afL}
         badgeProps={{ asOf: 'PatentsView 2025-Q1', taxonomy: 'CPC', normalization: 'Cohort×field' }}
         height={500}
+        flexHeight
       >
         <PWValueHeatmap
           data={agencyField ?? []}
@@ -299,7 +300,7 @@ export default function SystemPublicInvestmentChapter() {
           data={govImpact ?? []}
           xKey="funding_status"
           bars={[
-            { key: 'mean_normalized', name: 'Mean Normalized Citations', color: CHART_COLORS[5] },
+            { key: 'mean_normalized', name: 'Average Normalized Citations', color: CHART_COLORS[5] },
             { key: 'top_decile_share', name: 'Top-Decile Share (%)', color: CHART_COLORS[0] },
             { key: 'top_1pct_share', name: 'Top-1% Share (%)', color: CHART_COLORS[3] },
           ]}

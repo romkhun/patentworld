@@ -703,7 +703,7 @@ export default function Chapter4() {
             data={tdRateFiltered}
             xKey="year"
             lines={[{ key: 'td_rate_pct', name: 'Terminal Disclaimer Rate (%)', color: CHART_COLORS[0] }]}
-            yLabel="TD Rate (%)"
+            yLabel="Terminal Disclaimer Rate (%)"
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         ) : <div />}
@@ -721,9 +721,9 @@ export default function Chapter4() {
           <PWBarChart
             data={tdByCpcSorted}
             xKey="cpc_section"
-            bars={[{ key: 'td_rate_pct', name: 'TD Rate (%)', color: CHART_COLORS[1] }]}
+            bars={[{ key: 'td_rate_pct', name: 'Terminal Disclaimer Rate (%)', color: CHART_COLORS[1] }]}
             layout="vertical"
-            yLabel="TD Rate (%)"
+            yLabel="Terminal Disclaimer Rate (%)"
             yFormatter={(v) => `${v.toFixed(1)}%`}
           />
         ) : <div />}
