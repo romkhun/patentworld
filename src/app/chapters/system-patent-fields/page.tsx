@@ -302,7 +302,7 @@ export default function SystemPatentFieldsChapter() {
   const { data: fwdCiteNormalized, yLabel: fwdCiteYLabel, controls: fwdCiteControls } = useCitationNormalization({
     data: fwdCitePivot,
     xKey: 'year',
-    citationKeys: ['avg_forward_citations'],
+    citationKeys: cpcQualitySections,
     yLabel: 'Average Forward Citations',
   });
   const originalityPivot = useMemo(() => pivotData(qualityCpc, 'avg_originality'), [qualityCpc]);

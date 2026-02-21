@@ -22,6 +22,7 @@ import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import type { ApplicationsVsGrants, AliceEventStudy } from '@/lib/types';
 import { CHART_COLORS } from '@/lib/colors';
+import { CPC_SECTION_NAMES } from '@/lib/constants';
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   {
@@ -719,8 +720,11 @@ export default function Chapter4() {
       >
         {tdByCpcSorted.length > 0 ? (
           <PWBarChart
-            data={tdByCpcSorted}
-            xKey="cpc_section"
+            data={tdByCpcSorted.map((d) => ({
+              ...d,
+              label: `${d.cpc_section}: ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            }))}
+            xKey="label"
             bars={[{ key: 'td_rate_pct', name: 'Terminal Disclaimer Rate (%)', color: CHART_COLORS[1] }]}
             layout="vertical"
             yLabel="Terminal Disclaimer Rate (%)"

@@ -313,7 +313,6 @@ export default function SystemConvergenceChapter() {
             color: CHART_COLORS[i % CHART_COLORS.length],
           }))}
           yLabel="Multi-Section Patents"
-          showEndLabels
         />
       </ChartContainer>
 
