@@ -138,19 +138,23 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
           contentStyle={TOOLTIP_STYLE}
           cursor={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1, strokeDasharray: '4 4' }}
           formatter={(value: any, name: any) => {
+            const bandKeys = bands?.flatMap(b => [b.upperKey, b.lowerKey]) ?? [];
+            if (bandKeys.includes(name)) return [null, null];
             const line = lines.find((l) => l.name === name);
             const fmt = line?.yAxisId === 'right' ? (rightYFormatter ?? formatCompact) : (yFormatter ?? formatCompact);
             return [fmt(Number(value)), name];
           }}
+          filterNull
           content={truncationYear != null ? (props: any) => {
             const { payload, label } = props;
             if (!payload || payload.length === 0) return null;
             const yr = Number(label);
             const inTruncation = yr >= truncationYear;
+            const bandKeys = bands?.flatMap(b => [b.upperKey, b.lowerKey]) ?? [];
             return (
               <div style={{ ...TOOLTIP_STYLE }}>
                 <p style={{ fontWeight: 600, marginBottom: 4 }}>{label}</p>
-                {payload.map((entry: any, i: number) => {
+                {payload.filter((entry: any) => !bandKeys.includes(entry.dataKey)).map((entry: any, i: number) => {
                   const line = lines.find((l) => l.key === entry.dataKey || l.name === entry.name);
                   const fmt = line?.yAxisId === 'right' ? (rightYFormatter ?? formatCompact) : (yFormatter ?? formatCompact);
                   return (
@@ -207,6 +211,7 @@ export function PWLineChart({ data, xKey, lines, xLabel, yLabel, yFormatter, yDo
             isAnimationActive={false}
             baseLine={data.map((d) => d[band.lowerKey] ?? 0)}
             type="monotone"
+            legendType="none"
           />
         ))}
         {lines.map((line, i) => {

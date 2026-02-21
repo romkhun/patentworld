@@ -40,3 +40,11 @@ export function formatYear(value: number): string {
   return String(Math.round(value));
 }
 
+/**
+ * Convert a lowercase or mixed-case string to Title Case.
+ * e.g. "cited by applicant" → "Cited by Applicant"
+ */
+export function titleCase(s: string): string {
+  return s.replace(/\b\w/g, c => c.toUpperCase());
+}
+

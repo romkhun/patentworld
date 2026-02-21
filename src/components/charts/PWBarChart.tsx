@@ -104,6 +104,7 @@ export function PWBarChart({
               tickLine={false}
               axisLine={false}
               width={labelWidth}
+              interval={0}
             >
               {xLabel && (
                 <Label
@@ -126,6 +127,10 @@ export function PWBarChart({
               tick={{ fontSize: chartTheme.fontSize.tickLabel, fill: 'hsl(var(--muted-foreground))', fontFamily: chartTheme.fontFamily }}
               tickLine={false}
               axisLine={{ stroke: 'hsl(var(--border))' }}
+              interval={0}
+              angle={data.length > 8 ? -35 : 0}
+              textAnchor={data.length > 8 ? 'end' : 'middle'}
+              height={data.length > 8 ? 60 : 30}
             >
               {xLabel && (
                 <Label

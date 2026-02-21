@@ -29,7 +29,7 @@ import Link from 'next/link';
 import { CHART_COLORS, BUMP_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { cleanOrgName } from '@/lib/orgNames';
-import { formatCompact } from '@/lib/formatters';
+import { formatCompact, titleCase } from '@/lib/formatters';
 import type {
   FirmExplorationYear, FirmExplorationTrajectory,
   FirmLifecyclePoint,
@@ -127,7 +127,7 @@ export default function MechOrganizationsChapter() {
       .sort((a: any, b: any) => b.cnt - a.cnt)
       .map((d: any) => ({
         ...d,
-        label: d.citation_category,
+        label: titleCase(d.citation_category),
         share_pct: +((d.cnt / total) * 100).toFixed(1),
       }));
   }, [citationCategories]);

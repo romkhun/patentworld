@@ -25,7 +25,7 @@ import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
 import { CPC_SECTION_NAMES } from '@/lib/constants';
 import { cleanOrgName } from '@/lib/orgNames';
-import { formatCompact } from '@/lib/formatters';
+import { formatCompact, titleCase } from '@/lib/formatters';
 import type {
   CompanyProfile,
   StrategyProfile,
@@ -187,7 +187,7 @@ export default function OrgCompanyProfilesChapter() {
     const dims = ['breadth', 'depth', 'defensiveness', 'influence', 'science_intensity', 'speed', 'collaboration', 'freshness'];
     return dims.map((dim) => {
       const row: { dimension: string; [company: string]: number | string } = {
-        dimension: dim.replace('_', ' '),
+        dimension: titleCase(dim.replace('_', ' ')),
       };
       effectiveStrategyCompare.forEach((c) => {
         const profile = strategyProfiles.find((p) => p.company === c);
