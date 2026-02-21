@@ -836,7 +836,7 @@ export default function Chapter14() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across autonomous vehicle subfields."
         title="AV Subfield Diversity Increased From 0.82 in 1990 to 0.97 by 2025 (Through September)"
         caption="Normalized Shannon entropy of AV subfield patent distributions. The increase from 0.82 to 0.97 indicates a shift from predominantly navigation-focused patenting to a balanced distribution across path planning, scene understanding, sensor fusion, and V2X communication."
-        insight="The near-maximum entropy value of 0.97 by 2025 suggests that AV innovation has matured into a truly multidisciplinary endeavor requiring simultaneous advances across all subfields, consistent with the systems-level complexity of autonomous driving."
+        insight="The near-maximum entropy value of 0.97 by 2025 (through September) suggests that AV innovation has matured into a truly multidisciplinary endeavor requiring simultaneous advances across all subfields, consistent with the systems-level complexity of autonomous driving."
         loading={sfL}
       >
         <PWLineChart
