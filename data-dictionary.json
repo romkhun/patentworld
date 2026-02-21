@@ -1,7 +1,7 @@
 {
   "name": "PatentWorld Data Dictionary",
-  "version": "2025-Q1",
-  "description": "Schema reference for all JSON data files served by PatentWorld. Data derived from USPTO PatentsView bulk download (January 2025).",
+  "version": "2026-Q1",
+  "description": "Schema reference for all JSON data files served by PatentWorld. Data derived from USPTO PatentsView bulk download (February 2026).",
   "coverage": {
     "patents": "9.36 million",
     "period": "1976-2025",
