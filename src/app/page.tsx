@@ -53,7 +53,7 @@ const FAQ_JSONLD = {
       name: 'Which technology sectors have the most US patents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, reflecting the digital transformation. Together they account for 57% of recent grants, propelled by software, semiconductors, and telecommunications innovations.',
+        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, consistent with the digital transformation. Together they account for 57% of recent grants, driven primarily by software, semiconductors, and telecommunications innovations.',
       },
     },
     {
@@ -93,7 +93,7 @@ const FAQ_JSONLD = {
       name: 'What are the fastest-growing patent technology areas?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, propelled by advances in deep learning.',
+        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, coinciding with advances in deep learning.',
       },
     },
     {

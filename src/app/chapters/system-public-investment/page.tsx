@@ -128,7 +128,7 @@ export default function SystemPublicInvestmentChapter() {
         caption="Federal agencies ranked by total number of associated patents (all time). The Department of Health and Human Services/NIH, Department of Defense, and Department of Energy account for the largest share of government-interest patents."
         loading={agL}
         height={750}
-        insight="Federal agencies such as NIH/HHS, the DoD, and DOE fund research that leads to thousands of patents, often representing foundational technologies that enable subsequent waves of commercial innovation."
+        insight="Federal agencies such as NIH/HHS, the DoD, and DOE fund research associated with thousands of patents, often representing foundational technologies that precede subsequent waves of commercial innovation."
       >
         <PWBarChart
           data={topAgencies}

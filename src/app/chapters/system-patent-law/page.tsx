@@ -298,7 +298,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2014,
     title: 'Alice Corp. v. CLS Bank International (573 U.S. 208)',
     category: 'Court',
-    description: 'The Court held that claims directed to an abstract idea implemented on a generic computer are not patent-eligible under 35 U.S.C. \u00a7 101, establishing a two-step framework for patent eligibility analysis. This holding led to a substantial increase in \u00a7 101 rejections and invalidations, particularly for software patents.',
+    description: 'The Court held that claims directed to an abstract idea implemented on a generic computer are not patent-eligible under 35 U.S.C. \u00a7 101, establishing a two-step framework for patent eligibility analysis. This holding was followed by a substantial increase in \u00a7 101 rejections and invalidations, particularly for software patents.',
     research: [
       {
         citation: 'Schankerman, M., & Schuett, F. (2022). Patent screening, innovation, and welfare. The Review of Economic Studies, 89(4), 2101\u20132148. https://doi.org/10.1093/restud/rdab073',
