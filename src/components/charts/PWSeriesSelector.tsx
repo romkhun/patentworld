@@ -75,7 +75,7 @@ export function PWSeriesSelector({ items, selected, onChange, defaultCount = 5 }
               className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium transition-colors ${
                 isSelected
                   ? 'bg-foreground/10 text-foreground'
-                  : 'bg-muted/50 text-muted-foreground/50 line-through'
+                  : 'bg-muted/50 text-foreground/50 line-through'
               }`}
             >
               <span
