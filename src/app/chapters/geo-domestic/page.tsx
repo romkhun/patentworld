@@ -640,8 +640,8 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-city-grant-lag"
         subtitle="Average grant lag in days for the top 5 cities by total output, 1976-2025."
-        title="Grant Lag Follows Similar Trajectories Across Leading Cities, Driven by USPTO Capacity"
-        caption="Average grant lag (filing to issue, in days) by year for the five leading US cities. The similar trajectories suggest that examination delay is driven by patent office capacity rather than city-level factors."
+        title="Grant Lag Follows Similar Trajectories Across Leading Cities, Reflecting USPTO Capacity"
+        caption="Average grant lag (filing to issue, in days) by year for the five leading US cities. The similar trajectories suggest that examination delay reflects patent office capacity rather than city-level factors."
         insight="The convergence of grant lag across cities reinforces that examination timelines are determined primarily by USPTO workload and technology complexity rather than by geographic origin of the application."
         loading={qcL}
         height={400}

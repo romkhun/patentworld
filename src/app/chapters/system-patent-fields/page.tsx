@@ -608,7 +608,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives contributed to reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, consistent with the complexity of chemical examination and the specialized nature of textile and paper technology review.
+          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives were followed by reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, consistent with the complexity of chemical examination and the specialized nature of textile and paper technology review.
         </p>
       </KeyInsight>
 

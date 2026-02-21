@@ -320,8 +320,8 @@ export default function Chapter15() {
         id="fig-biotech-annual-count"
         subtitle="Annual count of utility patents classified under biotechnology-related CPC codes, tracking the growth trajectory of biotech patenting."
         title="Biotechnology Patent Filings Have Grown Substantially Since the 1980s, With Notable Fluctuations"
-        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976-2025. The growth trajectory reflects successive waves driven by the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012). Grant year shown. Application dates are typically 2–3 years earlier."
-        insight="The sustained growth of biotech patents reflects the expanding commercial potential of molecular biology, with each major scientific breakthrough triggering a new wave of inventive activity."
+        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976-2025. The growth trajectory reflects successive waves following the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012). Grant year shown. Application dates are typically 2–3 years earlier."
+        insight="The sustained growth of biotech patents reflects the expanding commercial potential of molecular biology, with each major scientific breakthrough coinciding with a new wave of inventive activity."
         loading={pyL}
       >
         <PWLineChart

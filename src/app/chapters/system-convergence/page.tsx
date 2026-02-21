@@ -337,7 +337,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          A small number of large organizations dominate multi-section patenting, and their share has generally increased over time. These firms -- typically large technology conglomerates with diversified R&D portfolios -- are disproportionately responsible for bridging technology domains. Their scale enables them to maintain research programs across multiple CPC sections simultaneously, facilitating the kind of cross-pollination that produces convergent inventions. This concentration has implications for competition policy: if cross-domain innovation increasingly requires the scale and scope of a major technology firm, barriers to entry for smaller or more specialized organizations may be rising.
+          A small number of large organizations dominate multi-section patenting, and their share has generally increased over time. These firms -- typically large technology conglomerates with diversified R&D portfolios -- are disproportionately responsible for bridging technology domains. Their scale enables them to maintain research programs across multiple CPC sections simultaneously, facilitating cross-pollination across technology domains. This concentration has implications for competition policy: if cross-domain innovation increasingly requires the scale and scope of a major technology firm, barriers to entry for smaller or more specialized organizations may be rising.
         </p>
       </KeyInsight>
 

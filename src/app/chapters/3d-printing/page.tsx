@@ -354,7 +354,7 @@ export default function Chapter11() {
 
       <ChartContainer
         id="fig-3dprint-entrant-incumbent"
-        title="3D Printing Growth Is Driven Primarily by New Entrants After the 2009 FDM Patent Expiration"
+        title="3D Printing Growth Coincides With New Entrants After the 2009 FDM Patent Expiration"
         subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first 3D printing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
@@ -494,7 +494,7 @@ export default function Chapter11() {
         id="fig-3dprint-top-inventors"
         subtitle="Primary inventors ranked by total 3D printing patent count, illustrating the concentration of AM inventive output among key individuals."
         title="The Most Prolific AM Inventors Are Concentrated at Pioneer Firms, Reflecting the Deep Technical Expertise Required for Process Innovation"
-        caption="Primary inventors ranked by total additive manufacturing patents. The distribution exhibits pronounced skewness, with the most prolific inventors typically affiliated with AM-native firms where they contributed to foundational process and materials innovations."
+        caption="Primary inventors ranked by total additive manufacturing patents. The distribution exhibits pronounced skewness, with the most prolific inventors typically affiliated with AM-native firms involved in foundational process and materials innovations."
         insight="The concentration of AM patents among inventors at pioneer firms reflects the deep, specialized expertise required for additive manufacturing process development, where material science, thermal dynamics, and precision engineering intersect."
         loading={tiL}
         height={1400}
@@ -510,7 +510,7 @@ export default function Chapter11() {
       <KeyInsight>
         <p>
           The most prolific 3D printing inventors are typically affiliated with AM-native
-          firms where they contributed to foundational innovations in process technology,
+          firms involved in foundational innovations in process technology,
           materials formulation, and equipment design. The highly skewed distribution of
           inventor productivity reflects the specialized nature of AM innovation, which
           requires deep expertise at the intersection of materials science, thermal
@@ -879,7 +879,7 @@ export default function Chapter11() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, driven by the expiration of key FDM patents in 2009.", "Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants, suggesting that open-source knowledge diffusion accelerated innovation."]}
+        learned={["Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, following the expiration of key FDM patents in 2009.", "Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants, suggesting that open-source knowledge diffusion accelerated innovation."]}
         falsifiable="If the FDM patent expiration causally democratized the field, then concentration should have declined discontinuously around 2009 rather than gradually."
         nextAnalysis={{ label: "Agricultural Technology", description: "How precision agriculture and biotechnology are transforming food production patents", href: "/chapters/agricultural-technology" }}
       />
