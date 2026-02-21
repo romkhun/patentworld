@@ -59,7 +59,7 @@ export function PWConvergenceMatrix({ data, eras }: PWConvergenceMatrixProps) {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               selectedEra === era
                 ? 'bg-primary text-primary-foreground'
-                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                : 'bg-muted text-foreground/70 hover:bg-muted/80'
             }`}
           >
             {era}

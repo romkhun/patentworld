@@ -721,7 +721,7 @@ export default function OrgCompanyProfilesChapter() {
                     className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                       effectiveStrategyCompare.includes(c)
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground hover:bg-accent'
+                        : 'bg-muted text-foreground/70 hover:bg-accent'
                     }`}
                   >
                     {c}
@@ -737,7 +737,7 @@ export default function OrgCompanyProfilesChapter() {
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 strategyViewMode === 'radar'
                   ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-accent'
+                  : 'bg-muted text-foreground/70 hover:bg-accent'
               }`}
             >
               Radar
@@ -748,7 +748,7 @@ export default function OrgCompanyProfilesChapter() {
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 strategyViewMode === 'bar'
                   ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-accent'
+                  : 'bg-muted text-foreground/70 hover:bg-accent'
               }`}
             >
               Bar

@@ -89,7 +89,7 @@ export default function HomePage() {
             , The Wharton School, University of Pennsylvania
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025 (2025 data through September).
+            An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025 (through September).
             Annual grants increased more than five-fold over this period, from approximately 70,000 in 1976 to 374,000 in 2024,
             as computing and electronics (Cooperative Patent Classification sections G and H) rose from 27% to 57% of all grants.
           </p>
@@ -121,6 +121,7 @@ export default function HomePage() {
       {/* Featured Visualization */}
       <section className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
         <ChartContainer
+          headingLevel="h2"
           id="fig-homepage-patent-volume"
           title="50 Years of US Patent Grants"
           subtitle="Annual patent grants by type, 1976&ndash;2025. Utility patents account for over 90% of all grants."

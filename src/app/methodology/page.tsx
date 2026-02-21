@@ -128,7 +128,7 @@ export default function MethodologyPage() {
         {TOC_ITEMS.map((item, i) => (
           <span key={item.id}>
             {i > 0 && <span className="mr-1" aria-hidden="true">&middot;</span>}
-            <a href={`#${item.id}`} className="underline underline-offset-2 hover:text-foreground transition-colors">
+            <a href={`#${item.id}`} className="inline-block py-0.5 underline underline-offset-2 hover:text-foreground transition-colors">
               {item.label}
             </a>
           </span>

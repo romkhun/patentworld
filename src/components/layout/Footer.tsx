@@ -18,13 +18,13 @@ export function Footer() {
             {' '}(USPTO), accessed Feb 2026. Coverage: 1976&ndash;Sep 2025.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <Link href="/methodology/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Methodology</Link>
-            <Link href="/about/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
-            <Link href="/explore/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
-            <Link href="/about/#faq" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">FAQ</Link>
+            <Link href="/methodology/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Methodology</Link>
+            <Link href="/about/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
+            <Link href="/explore/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
+            <Link href="/about/#faq" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">FAQ</Link>
           </div>
         </div>
-        <p className="text-xs text-muted-foreground/70">
+        <p className="mt-2 text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Saerom (Ronnie) Lee. Content licensed under{' '}
           <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">CC BY 4.0</a>.
         </p>

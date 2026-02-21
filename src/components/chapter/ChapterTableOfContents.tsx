@@ -98,7 +98,7 @@ export function ChapterTableOfContents() {
       {/* Mobile/Tablet: collapsible block (below xl) */}
       <div className="xl:hidden mb-8">
         <details open={mobileOpen} onToggle={(e) => setMobileOpen((e.target as HTMLDetailsElement).open)}>
-          <summary className="cursor-pointer rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <summary className="cursor-pointer rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             In this chapter ({sections.length} sections)
           </summary>
           <div className="mt-2 rounded-lg border border-border bg-background p-4">

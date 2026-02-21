@@ -51,13 +51,13 @@ export function PWSeriesSelector({ items, selected, onChange, defaultCount = 5 }
         )}
         <button
           onClick={handleShowAll}
-          className="rounded-full px-2 py-0.5 text-xs font-medium bg-muted text-muted-foreground hover:bg-accent transition-colors"
+          className="rounded-full px-2 py-0.5 text-xs font-medium bg-muted text-foreground/70 hover:bg-accent transition-colors"
         >
           Show all
         </button>
         <button
           onClick={handleReset}
-          className="rounded-full px-2 py-0.5 text-xs font-medium bg-muted text-muted-foreground hover:bg-accent transition-colors"
+          className="rounded-full px-2 py-0.5 text-xs font-medium bg-muted text-foreground/70 hover:bg-accent transition-colors"
         >
           Reset
         </button>

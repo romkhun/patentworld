@@ -208,14 +208,14 @@ export default function Chapter3() {
         <span className="text-sm text-muted-foreground">View:</span>
         <button
           onClick={() => setTopicView('stacked')}
-          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'stacked' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'stacked' ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/70 hover:bg-accent'}`}
         >
           Stacked %
         </button>
         <span className="text-muted-foreground/30" aria-hidden="true">|</span>
         <button
           onClick={() => setTopicView('multiples')}
-          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'multiples' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'multiples' ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/70 hover:bg-accent'}`}
         >
           Small Multiples
         </button>

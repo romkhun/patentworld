@@ -494,7 +494,7 @@ export default function MechOrganizationsChapter() {
             <button
               key={String(d)}
               onClick={() => setSelectedDecade(d)}
-              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${String(effectiveDecade) === String(d) ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${String(effectiveDecade) === String(d) ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/70 hover:bg-accent'}`}
             >
               {String(d)}s
             </button>

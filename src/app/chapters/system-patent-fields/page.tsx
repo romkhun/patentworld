@@ -395,14 +395,14 @@ export default function SystemPatentFieldsChapter() {
         <span className="text-sm text-muted-foreground">View:</span>
         <button
           onClick={() => setCpcStackedPercent(true)}
-          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/70 hover:bg-accent'}`}
         >
           Share (%)
         </button>
         <span className="text-muted-foreground/30" aria-hidden="true">|</span>
         <button
           onClick={() => setCpcStackedPercent(false)}
-          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${!cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
+          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${!cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/70 hover:bg-accent'}`}
         >
           Count
         </button>

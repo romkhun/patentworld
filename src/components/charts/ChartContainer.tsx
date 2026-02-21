@@ -21,10 +21,11 @@ interface ChartContainerProps {
   flexHeight?: boolean;
   controls?: ReactNode;
   badgeProps?: DataBadgeProps;
+  headingLevel?: 'h2' | 'h3';
   children: ReactNode;
 }
 
-export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, badgeProps, children }: ChartContainerProps) {
+export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, badgeProps, headingLevel = 'h3', children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
   const headingId = id ? `${id}-heading` : undefined;
   const captionId = id && caption ? `${id}-caption` : undefined;
@@ -43,7 +44,10 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         style={{ background: 'linear-gradient(90deg, hsl(var(--chart-1)), hsl(var(--chart-5)))' }}
         aria-hidden="true"
       />
-      <h3 id={headingId} className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h3>
+      {headingLevel === 'h2'
+        ? <h2 id={headingId} className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h2>
+        : <h3 id={headingId} className="mb-1 font-sans text-base font-bold leading-snug tracking-tight text-foreground/90">{title}</h3>
+      }
       {subtitle && (
         <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
       )}

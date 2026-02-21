@@ -634,7 +634,7 @@ export default function Chapter18() {
                   <td className="py-2 px-2 font-medium text-sm">{cleanOrgName(org.organization)}</td>
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
-                      <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                      <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-foreground/70">
                         {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
