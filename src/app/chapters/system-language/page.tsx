@@ -499,7 +499,7 @@ export default function Chapter3() {
           abstracts from 1976–2025. The number of topics (K=25) was selected based on
           interpretability of the resulting topic clusters rather than a formal model selection
           criterion such as coherence or perplexity. The <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip> projection uses a
-          stratified sample of 15,000 patents (600 per topic) with cosine distance. Novelty is measured as Shannon
+          stratified sample of 5,000 patents (200 per topic) with cosine distance. Novelty is measured as Shannon
           entropy of the NMF topic weight vector. Topic names are auto-generated from the top-weighted terms and may
           not perfectly capture all nuances of each topic cluster. Source: PatentsView / USPTO.
         </p>

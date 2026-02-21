@@ -78,7 +78,7 @@ export const PRINT3D_EVENTS: ReferenceEvent[] = [
 ];
 
 export const BLOCKCHAIN_EVENTS: ReferenceEvent[] = [
-  { x: 2009, label: 'Bitcoin whitepaper', color: '#8b5cf6' },
+  { x: 2008, label: 'Bitcoin whitepaper', color: '#8b5cf6' },
   { x: 2015, label: 'Ethereum launch', color: '#8b5cf6' },
   { x: 2021, label: 'Crypto / NFT peak', color: '#ef4444' },
 ];

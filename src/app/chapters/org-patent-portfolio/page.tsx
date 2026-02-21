@@ -128,7 +128,7 @@ export default function OrgPatentPortfolioChapter() {
 
       <KeyFindings>
         <li>50 companies across six decades (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple groups. Industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass.</li>
-        <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses, indicating broad technology coverage.</li>
+        <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 7.1 across 287 CPC subclasses, indicating broad technology coverage.</li>
         <li>IBM (88,600 G-section patents) and Samsung (79,400 H-section patents) maintain the most diversified technology portfolios among the top ten patent holders.</li>
         <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 3-year windows, with pivots flagged above the 95th percentile per-company threshold) identifies 51 detected pivots across 20 companies, which can precede strategic shifts that later become publicly visible.</li>
       </KeyFindings>
@@ -136,7 +136,7 @@ export default function OrgPatentPortfolioChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent portfolio analysis reveals that 50 companies (248 company-decade observations) cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple groups. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, which can precede strategic shifts that later become publicly visible.
+          Patent portfolio analysis reveals that 50 companies (248 company-decade observations) cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple groups. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 7.1 across 287 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, which can precede strategic shifts that later become publicly visible.
         </p>
       </aside>
 
@@ -218,7 +218,7 @@ export default function OrgPatentPortfolioChapter() {
       <ChartContainer
         id="fig-patent-portfolio-diversification"
         subtitle="Shannon entropy across CPC subclasses over time for the 10 most diversified firms, measuring portfolio breadth."
-        title="Mitsubishi Electric Leads 50 Firms With Shannon Entropy of 6.7 Across 229 CPC Subclasses"
+        title="Mitsubishi Electric Leads 50 Firms With Shannon Entropy of 7.1 Across 287 CPC Subclasses"
         caption="Shannon entropy across CPC subclasses over time for the 10 most diversified patent filers. The data indicate that technology conglomerates maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization."
         insight="Technology conglomerates such as Samsung and Hitachi maintain the highest portfolio diversity, while pharmaceutical firms tend toward focused specialization, reflecting fundamentally different innovation strategies."
         loading={diL}

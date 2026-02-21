@@ -275,7 +275,7 @@ export default function Chapter16() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2009 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that drove a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely due to the narrow scope of the domain: the data reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
+          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2008 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that coincided with a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely due to the narrow scope of the domain: the data reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
         </p>
       </aside>
 
@@ -288,7 +288,7 @@ export default function Chapter16() {
           has evolved into a broader class of distributed ledger and decentralized consensus systems.
           This chapter examines how patenting activity in blockchain-related technologies has tracked
           one of the most pronounced hype cycles in recent technology history, from the Bitcoin
-          whitepaper in 2009 through the NFT and DeFi peaks of 2021 and the subsequent contraction.
+          whitepaper in 2008 through the NFT and DeFi peaks of 2021 and the subsequent contraction.
         </p>
       </Narrative>
 
@@ -820,7 +820,7 @@ export default function Chapter16() {
       <Narrative>
         <p>
           Blockchain patenting provides perhaps the clearest case study in the dataset of how
-          hype cycles manifest in the patent system. The Bitcoin whitepaper of 2009 sparked
+          hype cycles manifest in the patent system. The Bitcoin whitepaper of 2008 sparked
           initial interest. Ethereum&apos;s launch in 2015 expanded the conceptual scope of
           blockchain beyond cryptocurrency to programmable smart contracts. The ICO boom of
           2017 and the NFT/DeFi peak of 2021 coincided with successive waves of patent filings. The

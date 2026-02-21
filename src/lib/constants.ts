@@ -88,7 +88,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-portfolio',
     title: 'Patent Portfolio',
     subtitle: 'Diversification, competitive proximity, and portfolio transitions',
-    description: '50 companies (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, which can precede strategic shifts that later become publicly visible.',
+    description: '50 companies (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 7.1 across 287 CPC subclasses. 51 technology pivots detected across 20 companies, which can precede strategic shifts that later become publicly visible.',
   },
   {
     number: 12,
