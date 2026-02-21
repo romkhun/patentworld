@@ -14,9 +14,9 @@ export function SectionDivider({ label, id }: SectionDividerProps) {
     >
       <div className="flex-grow border-t border-border" />
       {label && (
-        <span className="mx-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        <h2 className="mx-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
           {label}
-        </span>
+        </h2>
       )}
       <div className="flex-grow border-t border-border" />
     </div>

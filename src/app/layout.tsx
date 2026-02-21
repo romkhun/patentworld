@@ -81,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             '@type': 'WebSite',
             name: 'PatentWorld',
             description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
+            disambiguatingDescription: 'Interactive data visualization platform analyzing 9.36 million US patents (1976–2025) by Saerom (Ronnie) Lee, The Wharton School. Distinct from the UK journal Patent World (1989–2001).',
             url: 'https://patentworld.vercel.app',
             author: {
               '@type': 'Person',
