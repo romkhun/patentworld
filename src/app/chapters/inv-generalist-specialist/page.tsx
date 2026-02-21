@@ -199,7 +199,7 @@ export default function InvGeneralistSpecialistChapter() {
         id="fig-spec-scope"
         title="Generalist Patents Span 2.51 CPC Subclasses versus 2.22 for Specialists (2024)"
         subtitle="Average patent scope (CPC subclass count) by inventor type, 1976-2025"
-        caption="Average number of distinct CPC subclasses per patent by inventor specialization type, 1976-2024. The persistent gap indicates that generalists produce patents with broader technological coverage. Data: PatentsView."
+        caption="Average number of distinct CPC subclasses per patent by inventor specialization type, 1976-2024. The persistent gap indicates that generalist patents span broader technological coverage. Data: PatentsView."
         loading={qsL}
         height={400}
       >
@@ -300,7 +300,7 @@ export default function InvGeneralistSpecialistChapter() {
         id="fig-spec-productivity"
         title="Specialists Are More Productive Than Generalists in Patents per Inventor"
         subtitle="Average patents per inventor by type, 1976-2025"
-        caption="Average number of patents per inventor per year by specialization type, 1976-2025. Specialists consistently produce more patents per person, consistent with the efficiency gains of focused domain expertise. Data: PatentsView."
+        caption="Average number of patents per inventor per year by specialization type, 1976-2025. Specialists consistently have higher per-capita patent output, consistent with the efficiency gains of focused domain expertise. Data: PatentsView."
         loading={psL}
         height={400}
       >

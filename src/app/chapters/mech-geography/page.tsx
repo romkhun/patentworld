@@ -192,7 +192,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          The US-China co-invention data indicate substantial growth across most technology areas, though growth rates moderated in certain sectors in recent years. The broad-based nature of this collaboration suggests deeply integrated research ties that span multiple technology domains, even as policy tensions have introduced new uncertainties into the relationship.
+          The US-China co-invention data indicate substantial growth across most technology areas, though growth rates moderated in certain sectors after 2018, coinciding with new export control regulations and entity list restrictions. The broad-based nature of this collaboration suggests deeply integrated research ties that span multiple technology domains, even as bilateral technology policy changes have introduced new uncertainties into the relationship.
         </p>
       </KeyInsight>
 

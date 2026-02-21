@@ -358,7 +358,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-share"
         subtitle="AV patents as a percentage of all utility patents, showing the growing allocation of inventive effort toward autonomous driving."
-        title="AV Patents as a Share of Total Filings Rose Substantially After 2012, Reflecting Intensifying Investment"
+        title="AV Patents as a Share of Total Filings Rose Substantially After 2012, Consistent With Intensifying Investment"
         caption="Percentage of all utility patents classified under AV-related CPC codes. The upward trend indicates that AV patenting growth represents a disproportionate concentration of inventive effort, not merely tracking overall patent expansion."
         insight="The growing share of AV patents among all filings demonstrates that autonomous vehicle innovation is not merely keeping pace with overall patent growth but represents a genuine shift in R&D priorities across both automotive and technology sectors."
         loading={pyL}
@@ -420,7 +420,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-top-assignees"
         subtitle="Organizations ranked by total AV-related patent count, showing concentration among automakers and technology firms."
-        title="Toyota, Honda, Ford, Waymo, and GM Lead in AV Patent Volume, Reflecting the Dual Nature of the Autonomous Vehicle Race"
+        title="Toyota, Honda, Ford, Waymo, and GM Lead in AV Patent Volume, Consistent With the Dual Nature of the Autonomous Vehicle Race"
         caption="Organizations ranked by total AV-related patents, 1976-2025. The data indicate a distinctive competitive landscape where traditional automakers and technology companies compete directly, each leveraging distinct capabilities in vehicle engineering and artificial intelligence."
         insight="The AV patent landscape uniquely bridges two industries: traditional automakers bring decades of vehicle engineering expertise while technology firms contribute AI, sensor fusion, and software capabilities -- creating a competitive dynamic unlike any other technology domain."
         loading={taL}
@@ -558,7 +558,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-geography-state"
         subtitle="US states ranked by total AV-related patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California and Michigan Dominate US AV Patenting, Reflecting the Convergence of Tech and Auto Industries"
+        title="California and Michigan Dominate US AV Patenting, Consistent With the Convergence of Tech and Auto Industries"
         caption="US states ranked by total AV-related patents based on primary inventor location. California's lead reflects Silicon Valley's technology firms (Waymo, Tesla, Uber ATG), while Michigan's prominence reflects Detroit's automotive R&D heritage -- illustrating how AV innovation bridges two geographic clusters."
         insight="The dual concentration in California and Michigan illustrates the unique nature of AV innovation: it requires the convergence of Silicon Valley's AI and software capabilities with Detroit's automotive engineering expertise."
         loading={geoL}
@@ -590,7 +590,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for AV patents by year, measuring quality trends."
-        title="AV Patent Technology Scope Has Expanded Substantially, Reflecting the Growing Interdisciplinarity of Autonomous Driving"
+        title="AV Patent Technology Scope Has Expanded Substantially, Consistent With the Growing Interdisciplinarity of Autonomous Driving"
         caption="Average claims, backward citations, and technology scope for AV-related patents by year. The upward trend in technology scope reflects the inherently interdisciplinary nature of autonomous driving, which spans vehicle control, computer vision, communications, and mechanical engineering."
         insight="Rising technology scope indicates that AV patents increasingly bridge multiple CPC subclasses, consistent with autonomous driving requiring the integration of AI, sensor technology, communications, and mechanical engineering."
         loading={qL}
@@ -747,7 +747,7 @@ export default function Chapter14() {
         <p>
           Autonomous vehicle patent team sizes were generally smaller than non-AV patents
           through the 2010s but have converged in recent years, reaching nearly equal
-          levels by 2025. This convergence reflects the maturation of AV technology, as
+          levels by 2025 (through September). This convergence is consistent with the maturation of AV technology, as
           autonomous systems have grown more sophisticated and attracted larger multidisciplinary
           teams integrating perception, planning, and control expertise.
         </p>
@@ -757,8 +757,8 @@ export default function Chapter14() {
         id="fig-av-team-comparison"
         subtitle="Average inventors per patent for AV versus non-AV utility patents by year, showing convergence in recent years."
         title="AV Patent Team Sizes Have Converged With Non-AV Teams in Recent Years"
-        caption="Average number of inventors per patent for AV-related versus non-AV utility patents, 1976-2025. AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching nearly equal levels by 2025."
-        insight="AV patent team sizes were historically smaller than non-AV patents but have converged in recent years, reaching parity by 2025 as autonomous driving systems have matured and attracted larger multidisciplinary teams."
+        caption="Average number of inventors per patent for AV-related versus non-AV utility patents, 1976–2025 (through September). AV patent team sizes were generally smaller than non-AV patents through the 2010s but have converged in recent years, reaching nearly equal levels by 2025 (through September)."
+        insight="AV patent team sizes were historically smaller than non-AV patents but have converged in recent years, reaching parity by 2025 (through September) as autonomous driving systems have matured and attracted larger multidisciplinary teams."
         loading={atcL}
       >
         <PWLineChart
@@ -818,7 +818,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in autonomous vehicle patenting."
-        title="Top-4 Concentration in Autonomous Vehicle Patents Peaked at 14.6% in 2013 and Stabilized Near 12.7% by 2025"
+        title="Top-4 Concentration in Autonomous Vehicle Patents Peaked at 14.6% in 2013 and Stabilized Near 12.7% by 2025 (Through September)"
         caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total AV domain patents. The moderate and relatively stable concentration reflects the dual-industry nature of AV innovation, with both automotive incumbents and technology firms contributing significant patent volumes."
         insight="The moderate concentration level distinguishes autonomous vehicles from domains like agricultural technology (CR4 peak 47%) or blockchain (CR4 peak 26%), reflecting the unusually broad competitive landscape spanning traditional automakers and technology firms."
         loading={ootL || pyL}
@@ -834,7 +834,7 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across autonomous vehicle subfields."
-        title="AV Subfield Diversity Increased From 0.82 in 1990 to 0.97 by 2025, Reflecting the Growing Interdisciplinarity of Autonomous Driving"
+        title="AV Subfield Diversity Increased From 0.82 in 1990 to 0.97 by 2025 (Through September)"
         caption="Normalized Shannon entropy of AV subfield patent distributions. The increase from 0.82 to 0.97 indicates a shift from predominantly navigation-focused patenting to a balanced distribution across path planning, scene understanding, sensor fusion, and V2X communication."
         insight="The near-maximum entropy value of 0.97 by 2025 suggests that AV innovation has matured into a truly multidisciplinary endeavor requiring simultaneous advances across all subfields, consistent with the systems-level complexity of autonomous driving."
         loading={sfL}
@@ -894,7 +894,7 @@ export default function Chapter14() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Autonomous vehicle patent velocity rose from 15.9 patents/year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase.", "Subfield diversity reached near-maximum entropy of 0.97 by 2025, indicating that AV innovation now spans virtually all relevant technology domains."]}
+        learned={["Autonomous vehicle patent velocity rose from 15.9 patents/year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase.", "Subfield diversity reached near-maximum entropy of 0.97 by 2025 (through September), indicating that AV innovation now spans virtually all relevant technology domains."]}
         falsifiable="If subfield diversification reflects genuine technology maturation, then AV patents spanning more subfields should correlate with higher citation impact."
         nextAnalysis={{ label: "Biotechnology", description: "From recombinant DNA to CRISPR — engineering life at the molecular level", href: "/chapters/biotechnology" }}
       />

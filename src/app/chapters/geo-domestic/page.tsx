@@ -402,7 +402,7 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-state-forward-citations"
         subtitle="Average forward citations per patent for the top 5 states by total output, 1976-2025."
-        title="California and Massachusetts Patents Attract More Forward Citations, Reflecting Higher Downstream Impact"
+        title="California and Massachusetts Patents Attract More Forward Citations, Consistent With Higher Downstream Impact"
         caption="Average forward citations per patent by year for the five leading US states. Higher values indicate greater downstream influence on subsequent inventions."
         insight="Forward citation rates vary meaningfully across states, suggesting that geographic ecosystems differ not only in the volume but also in the downstream impact of their patent output."
         loading={qsL}
@@ -515,8 +515,7 @@ export default function GeoDomesticChapter() {
         <p>
           The persistence of geographic clustering challenges the expectation that digital
           communication technologies would distribute innovation activity more evenly. Despite the expansion of remote work and
-          global connectivity, patent activity remains highly concentrated geographically, a pattern consistent with continued agglomeration effects in innovation-intensive industries
-          process.
+          global connectivity, patent activity remains highly concentrated geographically, a pattern consistent with continued agglomeration effects in innovation-intensive industries.
         </p>
       </KeyInsight>
 
@@ -604,7 +603,7 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-city-claims"
         subtitle="Average number of claims per patent for the top 5 cities by total output, 1976-2025."
-        title="Claim Counts Have Expanded Across All Leading Cities, Reflecting System-Wide Scope Expansion"
+        title="Claim Counts Have Expanded Across All Leading Cities, Consistent With System-Wide Scope Expansion"
         caption="Average number of claims per patent by year for the five leading US cities. Rising claim counts reflect broader patent scope across all major regions with high patent concentration."
         insight="The secular rise in claim counts is evident across all leading cities, indicating that the trend toward broader patent scope is a system-wide phenomenon rather than a city-specific strategy."
         loading={qcL}
@@ -640,7 +639,7 @@ export default function GeoDomesticChapter() {
       <ChartContainer
         id="fig-geography-city-grant-lag"
         subtitle="Average grant lag in days for the top 5 cities by total output, 1976-2025."
-        title="Grant Lag Follows Similar Trajectories Across Leading Cities, Reflecting USPTO Capacity"
+        title="Grant Lag Follows Similar Trajectories Across Leading Cities, Consistent With USPTO Capacity"
         caption="Average grant lag (filing to issue, in days) by year for the five leading US cities. The similar trajectories suggest that examination delay reflects patent office capacity rather than city-level factors."
         insight="The convergence of grant lag across cities reinforces that examination timelines are determined primarily by USPTO workload and technology complexity rather than by geographic origin of the application."
         loading={qcL}

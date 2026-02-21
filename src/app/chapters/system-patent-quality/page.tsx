@@ -186,8 +186,8 @@ export default function SystemPatentQualityChapter() {
       <ChartContainer
         id="fig-patent-quality-claims-trends"
         subtitle="Median and 90th percentile claim counts for utility patents by grant year, measuring the evolution of patent scope over time."
-        title="Median Claims Doubled from 8 to 18 (1976-2025) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025"
-        caption="The figure displays the median and 90th percentile claim counts for utility patents by grant year. The gap between median and 90th percentile widened through the mid-2000s (peak gap of 19 in 2005) but has since narrowed substantially to 3 by 2025, indicating that the most extreme claim inflation has moderated."
+        title="Median Claims Doubled from 8 to 18 (1976–2025, Through September) While the 90th Percentile Declined from Its Peak of 35 in 2005 to 21 by 2025 (Through September)"
+        caption="The figure displays the median and 90th percentile claim counts for utility patents by grant year. The gap between median and 90th percentile widened through the mid-2000s (peak gap of 19 in 2005) but has since narrowed substantially to 3 by 2025 (through September), indicating that the most extreme claim inflation has moderated."
         insight="The increase in claim counts is consistent with more sophisticated patent drafting strategies and broader claim scopes, particularly in software and biotechnology fields."
         loading={clL2}
       >
@@ -733,7 +733,7 @@ export default function SystemPatentQualityChapter() {
 
       <ChartContainer
         id="fig-foreign-citation-share"
-        title="Foreign Citation Share Rose from 7% in 1976 to 48% by 2025, Reflecting Globalization of Innovation"
+        title="Foreign Citation Share Rose from 7% in 1976 to 48% by 2025 (Through September)"
         subtitle="Average share of backward citations to foreign patents, by grant year, 1976–2025"
         caption="Foreign citation share is computed as the average across patents of the ratio of foreign patent citations to total patent citations (US + foreign). The steady rise reflects both the growing volume of non-US patent filings and the increasing accessibility of international prior art databases."
         insight="The near-doubling of foreign citation share since the early 2000s indicates that the knowledge base underlying US patents has become fundamentally international. By the mid-2020s, nearly half of all cited prior art originates from outside the United States."
@@ -784,7 +784,7 @@ export default function SystemPatentQualityChapter() {
 
       <ChartContainer
         id="fig-figures-by-cpc"
-        title="Human Necessities (A) Leads with 22.2 Figures per Patent, Reflecting Complex Biomedical Illustrations"
+        title="Human Necessities (A) Leads with 22.2 Figures per Patent, Consistent With Complex Biomedical Illustrations"
         subtitle="Average figures per patent by CPC section, 2010–2025"
         caption="CPC Section A (Human Necessities) includes pharmaceuticals, biotechnology, and medical devices, which require extensive illustrations of molecular structures, anatomical diagrams, and device configurations."
         loading={figCpcL}

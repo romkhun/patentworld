@@ -496,7 +496,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-patents-top-inventors"
         subtitle="Primary inventors ranked by total semiconductor-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
-        title="The Most Prolific Semiconductor Inventors Hold Hundreds of Patents, Reflecting Deep Specialization in Process and Device Engineering"
+        title="The Most Prolific Semiconductor Inventors Hold Hundreds of Patents, Consistent With Deep Specialization in Process and Device Engineering"
         caption="Primary inventors ranked by total semiconductor-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total semiconductor patent output."
         insight="The concentration of semiconductor patenting among a small cohort of prolific inventors reflects the deep specialization required in process engineering, device physics, and circuit design -- fields where decades of accumulated expertise translate into sustained inventive productivity."
         loading={tiL}
@@ -528,7 +528,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-patents-by-country"
         subtitle="Countries ranked by total semiconductor-related patents based on primary inventor location, showing geographic distribution of semiconductor innovation."
-        title="The United States, Japan, South Korea, and Taiwan Account for the Majority of Semiconductor Patents, Reflecting the Geographic Concentration of Fabrication Capacity"
+        title="The United States, Japan, South Korea, and Taiwan Account for the Majority of Semiconductor Patents, Consistent With the Geographic Concentration of Fabrication Capacity"
         caption="Countries ranked by total semiconductor-related patents based on primary inventor location. The geographic distribution closely mirrors the location of major fabrication facilities, with the United States, Japan, South Korea, and Taiwan dominating."
         insight="The geographic distribution of semiconductor patents closely tracks the location of advanced fabrication facilities, underscoring the tight coupling between manufacturing presence and patenting activity in this capital-intensive industry."
         loading={geoL}
@@ -645,7 +645,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-patents-team-comparison"
         subtitle="Average inventors per patent for semiconductor versus non-semiconductor utility patents by year, showing the complexity gap between the two categories."
-        title="Semiconductor Patents Consistently Involve Larger Teams Than Non-Semiconductor Patents, Reflecting the Collaborative Nature of Fab R&D"
+        title="Semiconductor Patents Consistently Involve Larger Teams Than Non-Semiconductor Patents, Consistent With the Collaborative Nature of Fab R&D"
         caption="Average number of inventors per patent for semiconductor-related versus non-semiconductor utility patents, 1976-2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
         insight="Semiconductor patents involve larger inventor teams than non-semiconductor patents, consistent with the multidisciplinary nature of fabrication R&D, which requires expertise in materials science, physics, chemistry, and electrical engineering."
         loading={stcL}
@@ -680,7 +680,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-patents-assignee-type"
         subtitle="Distribution of semiconductor patents by assignee type (corporate, university, government, individual) over time, showing the growing corporate share."
-        title="Corporate Assignees Overwhelmingly Dominate Semiconductor Patenting, Reflecting the Capital-Intensive Nature of the Industry"
+        title="Corporate Assignees Overwhelmingly Dominate Semiconductor Patenting, Consistent With the Capital-Intensive Nature of the Industry"
         caption="Distribution of semiconductor patent assignees by type (corporate, university, government, individual) over time. The data reveal that corporate assignees account for the vast majority of semiconductor patents, consistent with the substantial capital requirements of semiconductor fabrication and the central role of corporate R&D laboratories."
         insight="The pronounced corporate dominance in semiconductor patenting reflects the capital-intensive nature of the industry, where building and operating a leading-edge fab requires investments exceeding $20 billion."
         loading={satL}
@@ -839,7 +839,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across semiconductor subfields."
-        title="Semiconductor Subfield Diversity Has Remained High and Stable at 0.79-0.95, Reflecting the Industry's Mature Technical Breadth"
+        title="Semiconductor Subfield Diversity Has Remained High and Stable at 0.79-0.95, Consistent With the Industry's Mature Technical Breadth"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The consistently high values indicate that semiconductor innovation has been broadly distributed across manufacturing processes, device architectures, packaging, organic semiconductors, and testing throughout the study period."
         insight="The stability of semiconductor subfield diversity at high entropy levels is consistent with a mature industry where innovation occurs simultaneously across all technical dimensions, from lithographic processes to packaging and interconnect technologies."
         loading={sfL}
@@ -856,7 +856,7 @@ export default function Chapter21() {
       <ChartContainer
         id="fig-semi-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a semiconductor patent."
-        title="Semiconductor Patenting Velocity Peaked for 1990s Entrants at 197 Patents per Year, Reflecting the Golden Age of East Asian Fab Investment"
+        title="Semiconductor Patenting Velocity Peaked for 1990s Entrants at 197 Patents per Year, Consistent With the Golden Age of East Asian Fab Investment"
         caption="Mean patents per active year for top semiconductor organizations grouped by entry decade. The 1990s cohort's peak velocity reflects the rapid scaling of Samsung, TSMC, and other East Asian firms that entered semiconductor patenting during the DRAM and foundry expansion era."
         insight="The plateau of velocity at 197 patents per year for both 1990s and 2010s entrants suggests a structural ceiling on organizational patenting capacity in semiconductors, possibly reflecting the finite number of novel process and device innovations achievable per year."
         loading={taL}

@@ -85,11 +85,6 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
             </div>
           </div>
           <p className="relative z-10 mb-4 text-xs text-muted-foreground/50">Loading visualization…</p>
-          <noscript>
-            <p className="absolute inset-0 flex items-center justify-center text-sm text-muted-foreground px-8 text-center">
-              This interactive chart requires JavaScript. {caption ?? subtitle ?? title}
-            </p>
-          </noscript>
         </div>
       ) : (
         <div

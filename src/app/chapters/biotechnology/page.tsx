@@ -778,7 +778,7 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-team-comparison"
         subtitle="Average inventors per patent for biotech versus non-biotech utility patents by year, showing the widening collaboration gap."
-        title="Biotech Patents Consistently Involve Larger Teams Than Non-Biotech Patents, Reflecting the Multidisciplinary Demands of Life Sciences"
+        title="Biotech Patents Consistently Involve Larger Teams Than Non-Biotech Patents, Consistent With the Multidisciplinary Demands of Life Sciences"
         caption="Average number of inventors per patent for biotechnology-related versus non-biotech utility patents, 1976-2025. The data indicate that biotech patents have consistently involved larger teams, and the gap has widened as the complexity of genetic engineering, genomics, and clinical development has increased."
         insight="Biotech patents consistently involve larger teams than non-biotech patents, and the gap has widened over time. This pattern reflects the inherent multidisciplinarity of life sciences innovation, which requires collaboration across molecular biology, chemistry, clinical medicine, and increasingly computational science."
         loading={tcL}
@@ -883,7 +883,7 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in biotechnology patenting."
-        title="Top-4 Concentration in Biotechnology Patents Peaked at 13.5% in 2007 Before Declining to 4.6% by 2025"
+        title="Top-4 Concentration in Biotechnology Patents Peaked at 13.5% in 2007 Before Declining to 4.6% by 2025 (Through September)"
         caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. Biotechnology exhibits the lowest peak concentration among ACT 6 domains, reflecting the highly distributed nature of life sciences research across universities, startups, and pharmaceutical firms."
         insight="The low and declining concentration is consistent with the Bayh-Dole Act&apos;s legacy of distributed university patenting and the biotech sector&apos;s reliance on specialized startups rather than large vertically integrated firms."
         loading={ootL || pyL}
@@ -899,7 +899,7 @@ export default function Chapter15() {
       <ChartContainer
         id="fig-biotech-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across biotechnology subfields."
-        title="Biotechnology Subfield Diversity Tripled From 0.32 in 1976 to 0.94 by 2025, Reflecting the Field&apos;s Maturation"
+        title="Biotechnology Subfield Diversity Tripled From 0.32 in 1976 to 0.94 by 2025 (Through September)"
         caption="Normalized Shannon entropy increased from 0.32 (dominated by recombinant DNA) to 0.94 (broadly distributed across gene editing, expression vectors, cell engineering, and diagnostics). This trajectory reflects the successive waves of innovation from recombinant DNA to PCR to CRISPR."
         insight="The biotechnology diversification trajectory parallels AI&apos;s but is shaped by different mechanisms: successive breakthrough technologies (PCR, monoclonal antibodies, CRISPR) each opened new subfields, progressively balancing the distribution of inventive activity."
         loading={sfL}
@@ -931,7 +931,7 @@ export default function Chapter15() {
 
       <ChartContainer
         id="fig-biotech-filing-vs-grant"
-        title="Biotech Filings Peaked at 4,763 in 2018 While Grants Reached 4,360 in 2020 — Reflecting Lengthy Examination Times"
+        title="Biotech Filings Peaked at 4,763 in 2018 While Grants Reached 4,360 in 2020 — Consistent With Lengthy Examination Times"
         subtitle="Annual patent filings versus grants for biotechnology, showing the filing-to-grant pipeline."
         caption="Biotechnology patents exhibit a moderate filing-to-grant lag. Filings peaked in 2018 and have since declined, while grants peaked in 2020. The relatively stable grant output despite declining filings reflects the deep pipeline of biotech applications undergoing examination."
         loading={fgL}
@@ -948,7 +948,7 @@ export default function Chapter15() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025) among all advanced technology domains, reflecting exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, reflecting successive waves from recombinant DNA to CRISPR-Cas9."]}
+        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025, through September) among all advanced technology domains, consistent with exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9."]}
         falsifiable="If CRISPR drove the latest diversity wave, then gene-editing subclass patents should show discontinuous growth after the 2012 Doudna-Charpentier publication."
         nextAnalysis={{ label: "Blockchain", description: "Distributed trust in the digital economy — the only technology domain to reverse course", href: "/chapters/blockchain" }}
       />

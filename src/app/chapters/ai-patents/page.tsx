@@ -323,7 +323,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-annual-count"
         subtitle="Annual count of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), tracking the growth trajectory of AI patenting."
-        title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, Reflecting Deep Learning Advances"
+        title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, Consistent With Deep Learning Advances"
         caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, coinciding with advances in deep learning frameworks, GPU computing, and large-scale data availability."
         loading={pyL}
@@ -430,7 +430,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-top-assignees"
         subtitle="Organizations ranked by total AI-related patent count from 1976 to 2025, showing concentration among large technology firms."
-        title="IBM (16,781), Google (7,775), and Samsung (6,195) Lead in Total AI Patent Volume, Reflecting the Resource-Intensive Nature of AI R&D"
+        title="IBM (16,781), Google (7,775), and Samsung (6,195) Lead in Total AI Patent Volume, Consistent With the Resource-Intensive Nature of AI R&D"
         caption="Organizations ranked by total AI-related patents, 1976-2025. The data indicate a concentration among large technology firms with substantial computational infrastructure and data assets."
         insight="The dominance of large technology firms in AI patenting reflects the resource-intensive nature of AI R&D, which requires large-scale datasets, computing infrastructure, and specialized talent."
         loading={taL}
@@ -562,7 +562,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-patents-by-state"
         subtitle="US states ranked by total AI-related patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California Leads US AI Patenting, Reflecting Strong Agglomeration Effects"
+        title="California Leads US AI Patenting, Consistent With Strong Agglomeration Effects"
         caption="US states ranked by total AI-related patents based on primary inventor location. California's substantial lead is consistent with agglomeration effects, where proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         insight="California's dominance in AI patents is consistent with strong agglomeration effects: proximity to talent pools, venture capital, and established AI research communities creates a self-reinforcing concentration of innovation."
         loading={geoL}
@@ -829,7 +829,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in AI patenting."
-        title="Top-4 Concentration in AI Patents Declined Steadily From 25.2% in 1984 to 10.9% by 2025, Reflecting Democratization"
+        title="Top-4 Concentration in AI Patents Declined Steadily From 25.2% in 1984 to 10.9% by 2025 (Through September)"
         caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual AI patent counts divided by total AI patents. The steady decline from 25% to 11% reflects the democratization of AI research, with an accelerating drop after 2015 as cloud computing and open-source frameworks lowered barriers to AI innovation."
         insight="AI exhibits the most pronounced concentration decline among ACT 6 domains, consistent with the technology's transition from specialized research labs to a general-purpose capability accessible to organizations across all sectors."
         loading={ootL || pyL}
@@ -845,7 +845,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across AI subfields."
-        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025, Representing the Largest Diversification Among ACT 6 Domains"
+        title="AI Subfield Diversity More Than Doubled From 0.40 in 1976 to 0.84 by 2025 (Through September)"
         caption="Normalized Shannon entropy of AI subfield patent distributions. The increase from 0.40 (highly concentrated in symbolic AI) to 0.84 (broadly distributed across machine learning, computer vision, NLP, robotics, and other subfields) represents the largest diversification trajectory among all technology domains studied."
         insight="The entropy trajectory mirrors AI's intellectual evolution: from narrow expert systems in the 1970s-80s through the statistical learning revolution of the 2000s to the current era of deep learning, generative AI, and domain-specific applications spanning virtually every CPC section."
         loading={sfL}

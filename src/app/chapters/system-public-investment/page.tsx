@@ -322,7 +322,7 @@ export default function SystemPublicInvestmentChapter() {
 
       <ChartContainer
         id="fig-gov-contract-concentration"
-        title="Department of Energy Contract DE-AC04-94AL85000 Leads With 2,152 Patents, Reflecting National Laboratory Dominance"
+        title="Department of Energy Contract DE-AC04-94AL85000 Leads With 2,152 Patents, Consistent With National Laboratory Dominance"
         subtitle="Top 30 government contracts ranked by total patent count, color-coded by sponsoring federal agency."
         caption="Government contracts ranked by total associated patent grants. The Department of Energy dominates the top positions, with contracts supporting Sandia, Lawrence Livermore, and Argonne National Laboratories generating the largest patent portfolios."
         loading={gcL}

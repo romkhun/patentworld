@@ -320,10 +320,10 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyFindings>
         <li>Design patent share has fluctuated between 6% and 14% since the late 1970s, with peaks in 2008 and 2025, reflecting a structural shift toward design-driven product differentiation.</li>
-        <li>CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share over five decades, now constituting 57.3% of all patent grants.</li>
+        <li>CPC sections G (Physics) and H (Electricity) gained 30 percentage points of share over five decades, now constituting 57.3% of utility patent grants.</li>
         <li>The fastest-growing digital technology classes expanded by over 1,000%, while declining classes contracted by nearly 84%, consistent with Schumpeterian creative destruction.</li>
         <li>Patent grant concentration by assignee remains below conventional thresholds across all CPC sections, with HHI values well below 1,500 despite concentration in digital fields. (HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.)</li>
-        <li>Technology diversity declined from 0.848 in 1984 to 0.777 in 2009 before stabilizing at 0.789 by 2025.</li>
+        <li>Technology diversity declined from 0.848 in 1984 to 0.777 in 2009 before stabilizing at 0.789 by 2025 (through September).</li>
         <li>Electricity (H) and Physics (G) patents exhibit the shortest citation half-lives at 10.7 and 11.2 years, while Human Necessities (A) reaches 15.6 years.</li>
       </KeyFindings>
 
@@ -373,7 +373,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Design patent share peaked at nearly 14% in 2008, declined to 7% by 2014, and returned to 14% by 2025. This pattern reflects a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
+          Design patent share peaked at nearly 14% in 2008, declined to 7% by 2014, and returned to 14% by 2025 (through September). This pattern is consistent with a broader strategic turn toward design-driven product differentiation, particularly in consumer electronics, automotive design, and fashion-related industries.
         </p>
       </KeyInsight>
 
@@ -517,7 +517,7 @@ export default function SystemPatentFieldsChapter() {
 
       <ChartContainer
         id="fig-patent-fields-diversity-index"
-        title="Technology Diversity Declined from 0.848 in 1984 to 0.777 in 2009 Before Stabilizing at 0.789 by 2025"
+        title="Technology Diversity Declined from 0.848 in 1984 to 0.777 in 2009 Before Stabilizing at 0.789 by 2025 (Through September)"
         subtitle="Technology diversity index (1 minus HHI of CPC section concentration), where higher values indicate more diverse patent output, 1976-2025"
         caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976-2025. Higher values indicate more diverse technology output. The index declined substantially as digital technologies concentrated activity, then stabilized after 2009."
         insight="Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
@@ -549,7 +549,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-velocity"
         subtitle="Year-over-year percentage change in patent grants by WIPO technology sector, revealing synchronized cyclical patterns."
-        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Early-2000s Slowdown (Grant-Year Decline 2004-2005, Reflecting Reduced Filings During the Recession) and Financial Crisis (2007)"
+        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Early-2000s Slowdown (Grant-Year Decline 2004-2005, Consistent With Reduced Filings During the Recession) and Financial Crisis (2007)"
         caption="The figure presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors is consistent with macroeconomic conditions and patent policy exerting stronger influence on patenting rates than sector-specific technology cycles."
@@ -846,7 +846,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-quality-by-sector"
         subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to illustrate cross-sector trends."
-        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Reflecting Broad Increases Across Sectors"
+        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Consistent With Broad Increases Across Sectors"
         caption="The figure displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
         insight="Electrical engineering and instruments patents tend to have the most claims in recent decades, reflecting the detailed and layered claim structures characteristic of software and electronics inventions."

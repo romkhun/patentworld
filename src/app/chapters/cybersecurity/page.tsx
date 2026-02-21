@@ -403,7 +403,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-patents-top-assignees"
         subtitle="Organizations ranked by total cybersecurity-related patent count, showing concentration among large technology and defense firms."
-        title="IBM, Intel, Microsoft, and Cisco Lead in Total Cybersecurity Patent Volume, Reflecting the Resource-Intensive Nature of Security R&D"
+        title="IBM, Intel, Microsoft, and Cisco Lead in Total Cybersecurity Patent Volume, Consistent With the Resource-Intensive Nature of Security R&D"
         caption="Organizations ranked by total cybersecurity-related patents. The data indicate a concentration among large technology firms with dedicated security research divisions, reflecting the substantial investment required to develop and maintain defensive technologies."
         insight="The dominance of large technology firms in cybersecurity patenting reflects the resource-intensive nature of security R&D, which requires deep expertise in cryptography, network protocols, and threat intelligence, as well as access to large-scale operational data."
         loading={taL}
@@ -823,7 +823,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in cybersecurity patenting."
-        title="Top-4 Concentration in Cybersecurity Patents Declined From 32.4% in 1980 to 9.4% by 2025, Reflecting the Sector&apos;s Expansion"
+        title="Top-4 Concentration in Cybersecurity Patents Declined From 32.4% in 1980 to 9.4% by 2025 (Through September)"
         caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total cybersecurity patents. The early high concentration reflects IBM&apos;s pioneering role in cryptographic research (including DES). The steady decline mirrors the expansion of cybersecurity into network security, cloud security, and endpoint protection."
         insight="The concentration trajectory is consistent with cybersecurity&apos;s evolution from a specialized cryptographic discipline dominated by a few research labs to a broad security sector where threat diversity ensures no single organization can dominate."
         loading={ootL || pyL}
@@ -839,7 +839,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across cybersecurity subfields."
-        title="Cybersecurity Subfield Diversity Increased From 0.83 in 1978 to 0.94 by 2025, Reflecting Broadening Threat Landscapes"
+        title="Cybersecurity Subfield Diversity Increased From 0.83 in 1978 to 0.94 by 2025 (Through September)"
         caption="Normalized Shannon entropy of cybersecurity subfield patent distributions. The increase from 0.83 to 0.94 reflects the transition from cryptography-dominated patenting to a balanced distribution across network security, data protection, authentication, and access control."
         insight="The high starting entropy of 0.83 suggests cybersecurity was already relatively diversified by the late 1970s, unlike AI or biotechnology which started from narrow bases. The further increase reflects the proliferation of new attack vectors and corresponding defensive innovations."
         loading={sfL}
@@ -888,7 +888,7 @@ export default function Chapter17() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025, reflecting broad-based entry across the security field.", "Network security surpassed cryptography as the dominant subfield around 2003, reflecting the shift from mathematical encryption to applied system protection."]}
+        learned={["Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025 (through September), consistent with broad-based entry across the security field.", "Network security surpassed cryptography as the dominant subfield around 2003, consistent with the shift from mathematical encryption to applied system protection."]}
         falsifiable="If broad-based entry reflects genuine innovation democratization, then new entrants' patents should achieve comparable citation rates to incumbents' patents within the same subfields."
         nextAnalysis={{ label: "Digital Health", description: "How medical device and health IT patents are transforming healthcare delivery", href: "/chapters/digital-health" }}
       />

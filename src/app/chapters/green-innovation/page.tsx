@@ -799,7 +799,7 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in green patenting."
-        title="Top-4 Concentration in Green Patents Peaked at 10.7% in 2011 Before Declining to 5.7% by 2025"
+        title="Top-4 Concentration in Green Patents Peaked at 10.7% in 2011 Before Declining to 5.7% by 2025 (Through September)"
         caption="CR4 computed as the sum of the top 4 organizations' annual green patent counts divided by total green patents. The low peak concentration of 10.7% reflects the broad competitive landscape spanning automotive, energy, electronics, and chemical firms."
         insight="Green innovation exhibits among the lowest organizational concentration of any ACT 6 domain, consistent with its status as a policy-driven technology area where government incentives and regulatory mandates encourage broad participation rather than concentration."
         loading={ootL || volL}

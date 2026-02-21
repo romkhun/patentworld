@@ -339,7 +339,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-share"
         subtitle="3D printing patents as a percentage of all utility patents, showing the growing allocation of inventive effort toward additive manufacturing."
-        title="AM's Share of Total Patents Has Risen Steadily, Reflecting a Genuine Reallocation of Manufacturing R&D Toward Additive Processes"
+        title="AM's Share of Total Patents Has Risen Steadily, Consistent With a Genuine Reallocation of Manufacturing R&D Toward Additive Processes"
         caption="Percentage of all utility patents classified under additive manufacturing CPC codes. The upward trend indicates that AM patenting growth reflects a real shift in manufacturing innovation priorities, not merely growth tracking the overall patent system."
         insight="The growing share of AM patents suggests that additive manufacturing is capturing an increasing fraction of total manufacturing R&D effort, consistent with its expanding role in production workflows."
         loading={pyL}
@@ -497,7 +497,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-top-inventors"
         subtitle="Primary inventors ranked by total 3D printing patent count, illustrating the concentration of AM inventive output among key individuals."
-        title="The Most Prolific AM Inventors Are Concentrated at Pioneer Firms, Reflecting the Deep Technical Expertise Required for Process Innovation"
+        title="The Most Prolific AM Inventors Are Concentrated at Pioneer Firms, Consistent With the Deep Technical Expertise Required for Process Innovation"
         caption="Primary inventors ranked by total additive manufacturing patents. The distribution exhibits pronounced skewness, with the most prolific inventors typically affiliated with AM-native firms involved in foundational process and materials innovations."
         insight="The concentration of AM patents among inventors at pioneer firms reflects the deep, specialized expertise required for additive manufacturing process development, where material science, thermal dynamics, and precision engineering intersect."
         loading={tiL}
@@ -530,7 +530,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-by-country"
         subtitle="Countries ranked by total 3D printing patents based on primary inventor location, showing the geographic distribution of AM innovation."
-        title="The United States Leads in AM Patenting, With Germany, Japan, and China as Major Contributors Reflecting Distinct Manufacturing Traditions"
+        title="The United States Leads in AM Patenting, With Germany, Japan, and China as Major Contributors Consistent With Distinct Manufacturing Traditions"
         caption="Countries ranked by total additive manufacturing patents based on primary inventor location. The United States maintains the leading position, while the strong presence of Germany and Japan reflects their advanced manufacturing traditions, and China's growing share indicates rapid expansion of AM capabilities."
         insight="The geographic distribution of AM patents reflects the alignment between additive manufacturing innovation and existing manufacturing strength, with the United States, Germany, and Japan leveraging their industrial bases to drive AM development."
         loading={geoL}
@@ -591,7 +591,7 @@ export default function Chapter11() {
       <ChartContainer
         id="fig-3dprint-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for 3D printing patents by year, measuring quality trends."
-        title="AM Patent Technology Scope Has Increased Over the Long Term, Reflecting the Growing Interdisciplinarity of Additive Manufacturing Innovation"
+        title="AM Patent Technology Scope Has Increased Over the Long Term, Consistent With the Growing Interdisciplinarity of Additive Manufacturing Innovation"
         caption="Average claims, backward citations, and technology scope for additive manufacturing patents by year. The rising technology scope indicates that AM patents increasingly span multiple CPC subclasses, consistent with the interdisciplinary nature of AM systems that integrate materials science, mechanical engineering, and software control."
         insight="The expanding technology scope of AM patents reflects the interdisciplinary nature of additive manufacturing, which requires simultaneous innovation in materials, process control, equipment design, and software."
         loading={qL}

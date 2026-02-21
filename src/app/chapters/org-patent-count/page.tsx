@@ -395,14 +395,13 @@ export default function OrgPatentCountChapter() {
 
       <KeyInsight>
         <p>
-          The Gini coefficients for blockbuster patent concentration have decreased steadily across
-          decades -- from 0.161 in 1976-1989 to -0.069 in 2010-2020 -- indicating that high-impact
-          innovation has become more evenly distributed across organizations over time. As more
-          firms have entered the patent system, the distribution of blockbuster patents has
-          become more even across organizations, narrowing the gap between large and small patent
-          holders. This convergence between the extensive and intensive margins of innovation
-          narrowing the gap between large and small patent holders in the share of high-impact
-          inventions they produce.
+          The modified Gini coefficients for blockbuster patent concentration have decreased steadily across
+          decades — from 0.161 in 1976–1989 to −0.069 in 2010–2020. In this framework, positive values indicate that large patent holders
+          capture a disproportionate share of blockbusters relative to their overall patent output, while
+          negative values indicate the reverse: blockbusters are distributed more evenly than total patents,
+          with smaller firms holding a slightly higher blockbuster share than their patent output would predict.
+          The shift from positive to negative suggests that high-impact innovation
+          has become increasingly accessible to a broader set of organizations over time.
         </p>
       </KeyInsight>
 

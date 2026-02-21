@@ -303,7 +303,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-annual-count"
         subtitle="Annual count of utility patents classified under space technology CPC codes, tracking the growth trajectory of space-related patenting."
-        title="Space Patent Filings Have Grown Substantially Since 2015, Reflecting the Commercialization of the Space Industry"
+        title="Space Patent Filings Have Grown Substantially Since 2015, Consistent With the Commercialization of the Space Industry"
         caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in space patents coincides with the broader commercialization of the space industry, including reusable launch vehicles, satellite constellations, and increasing private-sector investment."
         loading={pyL}
@@ -412,7 +412,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-top-assignees"
         subtitle="Organizations ranked by total space-related patent count from 1976 to 2025, showing concentration among aerospace and defense firms."
-        title="Boeing, ViaSat, and Hughes Network Systems Lead in Total Space Patent Volume, Reflecting the Importance of Satellite Communications"
+        title="Boeing, ViaSat, and Hughes Network Systems Lead in Total Space Patent Volume, Consistent With the Importance of Satellite Communications"
         caption="Organizations ranked by total space-related patents, 1976-2025. The data indicate a concentration among traditional aerospace and defense contractors, though commercial space entrants have been scaling their portfolios in recent years."
         insight="The dominance of traditional aerospace firms in space patenting reflects the historical role of government contracts in funding space R&D, though commercial entrants are beginning to reshape the competitive landscape."
         loading={taL}
@@ -516,7 +516,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-by-country"
         subtitle="Countries ranked by total space-related patents based on primary inventor location, showing geographic distribution of space innovation."
-        title="The United States Dominates Space Patenting by Inventor Nationality, Reflecting Its Leadership in Both Government and Commercial Space Programs"
+        title="The United States Dominates Space Patenting by Inventor Nationality, Consistent With Its Leadership in Both Government and Commercial Space Programs"
         caption="Countries ranked by total space-related patents based on primary inventor location. The United States maintains a substantial lead, with significant contributions from France, Japan, and Germany reflecting their national space agencies and aerospace industries."
         insight="The United States lead in space patenting reflects its concentration of major aerospace firms, NASA research centers, and the growing commercial space ecosystem, while European and Japanese contributions reflect their respective national space programs."
         loading={geoL}
@@ -545,7 +545,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-by-state"
         subtitle="US states ranked by total space-related patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California and Maryland Lead US Space Patenting, Reflecting Aerospace and Defense Industry Clustering"
+        title="California and Maryland Lead US Space Patenting, Consistent With Aerospace and Defense Industry Clustering"
         caption="US states ranked by total space-related patents based on primary inventor location. California leads by a wide margin, followed by Maryland -- home to major defense contractors and NASA's Goddard Space Flight Center. Arizona, Washington, and Texas round out the top five."
         insight="The geographic clustering of space patents in California and Maryland reflects the concentration of aerospace and defense facilities, NASA research centers, and satellite communications firms in these states."
         loading={geoL}
@@ -578,7 +578,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-quality"
         subtitle="Average claims, backward citations, and technology scope (CPC subclasses) for space patents by year, measuring quality trends."
-        title="Space Patent Technology Scope Has Risen Over Time, Reflecting the Growing Interdisciplinarity of Spacecraft Systems"
+        title="Space Patent Technology Scope Has Risen Over Time, Consistent With the Growing Interdisciplinarity of Spacecraft Systems"
         caption="Average claims, backward citations, and technology scope for space-related patents by year. The upward trend in technology scope suggests that space patents are becoming increasingly interdisciplinary, spanning electronics, materials science, and communications."
         insight="Rising technology scope in space patents reflects the interdisciplinary nature of modern spacecraft systems, which integrate advances in electronics, materials science, propulsion, and communications."
         loading={qL}
@@ -611,7 +611,7 @@ export default function Chapter22() {
 
       <ChartContainer
         id="fig-space-quality-bifurcation"
-        title="Space Technology Top-Decile Citation Share Has Fluctuated, Reflecting the Domain's Structural Transition"
+        title="Space Technology Top-Decile Citation Share Has Fluctuated, Consistent With the Domain's Structural Transition"
         subtitle="Share of domain patents in the top decile of system-wide forward citations by grant year × CPC section."
         caption="Top decile computed relative to all utility patents in the same grant year and primary CPC section. Rising share indicates domain quality outpacing the system; falling share indicates dilution."
         loading={qbL}
@@ -696,7 +696,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-diffusion"
         subtitle="Percentage of space patents co-classified with non-space CPC sections, measuring the diffusion of space technology into other domains."
-        title="Space Patents Show Increasing Co-Classification With Electronics and Physics, Reflecting Cross-Domain Technology Transfer"
+        title="Space Patents Show Increasing Co-Classification With Electronics and Physics, Consistent With Cross-Domain Technology Transfer"
         caption="Percentage of space patents that also carry CPC codes from each non-space CPC section. Rising lines indicate space technology diffusing into that sector. The most notable pattern is the increasing co-occurrence with Electricity (Section H) and Physics (Section G), consistent with the growing importance of electronics and sensing systems in modern spacecraft."
         insight="The presence of space patents across multiple CPC sections reflects the multidisciplinary nature of spacecraft engineering and the diffusion of space-derived innovations into terrestrial applications in electronics, materials, and communications."
         loading={diffL}
@@ -820,7 +820,7 @@ export default function Chapter22() {
       <ChartContainer
         id="fig-space-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in space technology patenting."
-        title="Top-4 Concentration in Space Technology Patents Fluctuated Between 4.9% and 36.7%, Reflecting the Sector's Transition From Government to Commercial Innovation"
+        title="Top-4 Concentration in Space Technology Patents Fluctuated Between 4.9% and 36.7%, Consistent With the Sector's Transition From Government to Commercial Innovation"
         caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total space patents. The wide fluctuation reflects structural shifts: early government-funded concentration, a fragmented middle period, and recent reconsolidation as SpaceX, Boeing, and satellite communication firms scaled patent portfolios."
         insight="The space sector's concentration dynamics are unique among ACT 6 domains, reflecting the fundamental tension between government-funded basic research (distributed across contractors) and commercial space ventures (consolidated among a few well-funded firms)."
         loading={ootL || pyL}

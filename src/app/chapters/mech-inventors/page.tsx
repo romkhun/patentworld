@@ -550,8 +550,8 @@ export default function MechInventorsChapter() {
           address its consequences for individual productivity. An event-study design estimates changes in patenting around the
           timing of firm moves by tracking each inventor&apos;s output from t-5 to t+5 years
           relative to the move event. By centering outcomes on the move year, this approach
-          controls for secular trends and life-cycle effects, revealing how the disruption of
-          changing organizational context affects citation impact. The panel includes inventors
+          controls for secular trends and life-cycle effects, providing estimates of how
+          changing organizational context is associated with citation impact. The panel includes inventors
           who moved exactly once between top-50 assignees, with at least two patents in both
           the pre- and post-move windows.
         </p>
@@ -596,9 +596,9 @@ export default function MechInventorsChapter() {
       <ChartContainer
         id="fig-inventor-mobility-event-direction"
         subtitle="Mean 5-year forward citations by year relative to move, stratified by move direction (up to higher-quality firm, lateral, or down to lower-quality firm)."
-        title="Moves to Higher-Quality Firms Produce Larger Post-Move Citation Gains"
-        caption="Event-study results stratified by the direction of the move relative to firm quality (measured by mean citation impact). Moves to higher-quality firms show the largest post-move gains, while moves to lower-quality firms exhibit a more muted recovery, suggesting that organizational context shapes inventor productivity."
-        insight="The direction of the move matters: inventors who move to higher-quality firms experience the largest post-move citation gains, indicating that organizational resources and peer quality amplify individual inventor productivity."
+        title="Moves to Higher-Quality Firms Are Associated With Larger Post-Move Citation Gains"
+        caption="Event-study results stratified by the direction of the move relative to firm quality (measured by mean citation impact). Moves to higher-quality firms show the largest post-move gains, while moves to lower-quality firms exhibit a more muted recovery, consistent with organizational context being associated with inventor productivity."
+        insight="The direction of the move matters: inventors who move to higher-quality firms experience the largest post-move citation gains, consistent with organizational resources and peer quality being associated with individual inventor productivity."
         loading={meL}
         height={400}
         wide
@@ -632,12 +632,12 @@ export default function MechInventorsChapter() {
 
       <KeyInsight>
         <p>
-          Stratifying by move direction reveals that organizational context is a first-order
-          determinant of inventor productivity. Moves to higher-quality firms are associated with the largest
+          Stratifying by move direction suggests that organizational context is closely associated
+          with inventor productivity. Moves to higher-quality firms are associated with the largest
           post-move citation gains, while moves to lower-quality firms show a more muted recovery.
-          This asymmetry suggests that access to better resources, stronger peer networks, and
-          more productive organizational routines may enhance individual inventive output -- a finding
-          with implications for both firm talent strategy and innovation policy.
+          This asymmetry is consistent with the hypothesis that access to better resources, stronger peer networks, and
+          more productive organizational routines may be associated with higher individual inventive output, though
+          selection effects (higher-ability inventors choosing better firms) cannot be ruled out.
         </p>
       </KeyInsight>
 

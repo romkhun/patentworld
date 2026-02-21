@@ -119,7 +119,7 @@ export default function OrgCompositionChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Corporate assignees now account for 99% of US patent grants, up from 94% in 1976. Foreign assignees surpassed domestic filers around 2007, with Japan (1.45 million cumulative patents), South Korea, and China as the leading contributors. The US patent system has become the de facto global standard for protecting high-value inventions regardless of assignee nationality.
+          Corporate assignees now account for 99% of US patent grants, up from 94% in 1976. Foreign assignees surpassed domestic filers around 2007, with Japan (1.45 million cumulative patents), South Korea, and China as the leading contributors. The US patent system remains a major destination for multinational patent filings regardless of assignee nationality.
         </p>
       </aside>
 
@@ -198,7 +198,7 @@ export default function OrgCompositionChapter() {
         title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
         subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976-2025"
         caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51-56% of grants in the 2020s."
-        insight="The shift to a foreign-majority patent system reflects the globalization of R&amp;D. The US patent system functions as the de facto global standard for protecting high-value inventions regardless of assignee nationality."
+        insight="The shift to a foreign-majority patent system is consistent with the globalization of R&amp;D. The US patent system remains a major destination for multinational patent filings regardless of assignee nationality."
         loading={dvfL}
       >
         <PWLineChart
@@ -218,7 +218,7 @@ export default function OrgCompositionChapter() {
           Foreign assignees surpassed US-based assignees around 2007 and now account for the
           majority of patent grants, averaging 53% in the 2020s. This shift reflects the globalization of R&amp;D: multinational firms
           file strategically in the US regardless of headquarter location, and the US patent
-          system has become the de facto global standard for protecting high-value inventions.
+          system remains a major destination for multinational patent filings.
         </p>
       </KeyInsight>
 

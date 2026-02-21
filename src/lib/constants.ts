@@ -1,5 +1,12 @@
 export const SITE_NAME = 'PatentWorld';
-export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents (utility, design, plant, and reissue) granted from 1976 to 2025, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.';
+export const SITE_DESCRIPTION = 'An interactive exploration of 9.36 million US patents (utility, design, plant, and reissue) granted from 1976 to 2025 (through September), covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.';
+
+/** Single source of truth for data provenance dates (Constraint 26). */
+export const DATA_ACCESS_DATE = 'February 2026';
+export const DATA_ACCESS_DATE_SHORT = 'Feb 2026';
+export const DATA_COVERAGE_START = 1976;
+export const DATA_COVERAGE_END_YEAR = 2025;
+export const DATA_COVERAGE_END_MONTH = 'September';
 
 export interface ChapterMeta {
   number: number;
@@ -103,7 +110,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-top-inventors',
     title: 'Top Inventors',
     subtitle: 'Superstar concentration, prolific inventors, and citation impact',
-    description: 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
+    description: 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025 (through September). The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
   },
   {
     number: 14,
@@ -131,7 +138,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-team-size',
     title: 'Team Size and Collaboration',
     subtitle: 'The collaborative turn and team size effects on quality',
-    description: 'Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 23% by 2025. Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors.',
+    description: 'Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 23% by 2025 (through September). Teams of 7+ average 16.7 claims per patent vs. 11.6 for solo inventors.',
   },
   // ── ACT 4: The Geography ──
   {
@@ -154,7 +161,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'mech-organizations',
     title: 'Organizational Mechanics',
     subtitle: 'Within-firm exploration, exploitation, and inter-firm knowledge flows',
-    description: '11 of 20 major filers keep exploration below 5%. Balanced firms produce blockbusters at 2.3x the rate of specialists. 618 organizations form distinct industry clusters in the co-patenting network.',
+    description: '11 of 20 major filers keep exploration below 5%. Balanced firms are associated with blockbuster rates 2.3x higher than specialists. 618 organizations form distinct industry clusters in the co-patenting network.',
   },
   {
     number: 21,
@@ -176,14 +183,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: '3d-printing',
     title: '3D Printing & Additive Manufacturing',
     subtitle: 'Layer-by-layer revolution in manufacturing',
-    description: 'Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, as the expiration of key FDM patents in 2009 opened the field to broad-based competition. Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants.',
+    description: 'Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024. The decline coincided with the expiration of key FDM patents in 2009 and a subsequent increase in new entrants. Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants.',
   },
   {
     number: 24,
     slug: 'agricultural-technology',
     title: 'Agricultural Technology',
     subtitle: 'Innovation feeding a growing world',
-    description: 'Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025.',
+    description: 'Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025 (through September).',
   },
   {
     number: 25,
@@ -197,14 +204,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'autonomous-vehicles',
     title: 'Autonomous Vehicles & ADAS',
     subtitle: 'The race toward self-driving transportation',
-    description: 'Autonomous vehicle patent velocity rose from 15.9 patents per year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase. Subfield diversity reached near-maximum entropy of 0.97 by 2025. Toyota, Honda, Ford, and Waymo lead the field.',
+    description: 'Autonomous vehicle patent velocity rose from 15.9 patents per year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase. Subfield diversity reached near-maximum entropy of 0.97 by 2025 (through September). Toyota, Honda, Ford, and Waymo lead the field.',
   },
   {
     number: 27,
     slug: 'biotechnology',
     title: 'Biotechnology & Gene Editing',
     subtitle: 'Engineering life at the molecular level',
-    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025. Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, reflecting successive waves from recombinant DNA to CRISPR-Cas9.',
+    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025 (through September). Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9.',
   },
   {
     number: 28,
@@ -218,14 +225,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'cybersecurity',
     title: 'Cybersecurity',
     subtitle: 'Defending digital infrastructure through innovation',
-    description: 'Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025, reflecting broad-based entry across the field. Patent velocity reached 105.8 patents per year for 2010s entrants, a 1.4-fold increase over 1970s entrants. Network security surpassed cryptography as the dominant subfield around 2003.',
+    description: 'Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025 (through September), consistent with broad-based entry across the field. Patent velocity reached 105.8 patents per year for 2010s entrants, a 1.4-fold increase over 1970s entrants. Network security surpassed cryptography as the dominant subfield around 2003.',
   },
   {
     number: 30,
     slug: 'digital-health',
     title: 'Digital Health & Medical Devices',
     subtitle: 'Technology transforming healthcare delivery',
-    description: 'Digital health patent velocity jumped 3.4-fold from 22.5 patents per year (1970s entrants) to 77.5 (2010s entrants). Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field. Subfield diversity rose from 0.48 in 1976 to 0.92 by 2025.',
+    description: 'Digital health patent velocity jumped 3.4-fold from 22.5 patents per year (1970s entrants) to 77.5 (2010s entrants). Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field. Subfield diversity rose from 0.48 in 1976 to 0.92 by 2025 (through September).',
   },
   {
     number: 31,
@@ -239,7 +246,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'quantum-computing',
     title: 'Quantum Computing',
     subtitle: 'From theoretical foundations to practical hardware',
-    description: 'Quantum computing remains among the most concentrated advanced technology domains alongside agricultural technology, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers.',
+    description: 'Quantum computing remains among the most concentrated advanced technology domains alongside agricultural technology, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry.',
   },
   {
     number: 33,
@@ -253,7 +260,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'space-technology',
     title: 'Space Technology',
     subtitle: 'Patenting the final frontier',
-    description: 'Space technology top-four concentration fluctuated between 4.9% and 36.7%, reflecting the transition from government-dominated to commercial-driven innovation. Boeing, ViaSat, and Lockheed Martin lead, with satellite communications now the dominant subfield.',
+    description: 'Space technology top-four concentration fluctuated between 4.9% and 36.7%, a pattern consistent with the transition from government-dominated to commercial-driven innovation. Boeing, ViaSat, and Lockheed Martin lead, with satellite communications now the dominant subfield.',
   },
 ];
 

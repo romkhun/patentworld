@@ -74,7 +74,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   // ACT 5
   'mech-organizations': '11 of 20 Major Filers Keep Exploration Below 5%',
   'mech-inventors': '143,524 Inventor Moves Among 50 Top Firms',
-  'mech-geography': 'US-China Co-Invention Surpassed 2% by 2025',
+  'mech-geography': 'US-China Co-Invention Surpassed 2% by 2025 (Through September)',
   // ACT 6
   'ai-patents': 'AI Patents Grew 5.7-Fold in the Deep Learning Era',
   'green-innovation': 'Green Patents Rose to 10% of All US Grants',
@@ -107,7 +107,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'org-patent-portfolio': 'Portfolio diversity rose across leading firms. 248 companies cluster into 8 industries by portfolio similarity. JSD identifies strategic portfolio shifts.',
   'org-company-profiles': 'Interactive profiles combining annual output, technology composition, citation impact, innovation strategy, and portfolio analysis for individual companies.',
   // ACT 3
-  'inv-top-inventors': 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025. The most prolific inventor holds 6,709 patents.',
+  'inv-top-inventors': 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025 (through September). The most prolific inventor holds 6,709 patents.',
   'inv-generalist-specialist': 'Specialist inventors rose from 20% to 48% of the inventor workforce. Quality metrics differ systematically between generalists and specialists.',
   'inv-serial-new': 'First-time inventor entries peaked at 140,490 in 2019. Only 37-51% survive past five years. Productivity rises from 1.4 to 2.1 before plateauing.',
   'inv-gender': 'Female inventor share rose from 2.8% to 14.9%. Quality metrics reveal systematic gender differences across claims, citations, and scope.',
@@ -130,7 +130,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'agricultural-technology': 'Agricultural technology patents span precision agriculture, plant breeding, and soil science. Explore how innovation is modernizing global food production.',
   'autonomous-vehicles': 'Autonomous vehicle patents cover driving systems, navigation, and scene understanding. Explore the AV patent race among automotive and technology firms.',
   'space-technology': 'Space technology patents span spacecraft design, propulsion, and satellite communications. Explore the patent landscape of the new commercial space era.',
-  '3d-printing': 'Top-four concentration in 3D printing patents fell from 36% to 11% by 2024 as FDM patent expirations opened the field. Explore polymer and metal AM patent trends.',
+  '3d-printing': 'Top-four concentration in 3D printing patents fell from 36% to 11% by 2024, coinciding with key FDM patent expirations. Explore polymer and metal AM patent trends.',
   'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Grants peaked in 2022, the only advanced domain to reverse course.',
 };
 
@@ -182,7 +182,7 @@ export function chapterMetadata(slug: string): Metadata {
   if (!ch) return {};
 
   const title = CHAPTER_SEO_TITLES[slug] ?? `${ch.title} — Chapter ${ch.number}`;
-  const description = CHAPTER_SEO_DESCRIPTIONS[slug] ?? `${ch.subtitle}. ${ch.description} Interactive data visualizations of US patent trends from 1976 to 2025.`;
+  const description = CHAPTER_SEO_DESCRIPTIONS[slug] ?? `${ch.subtitle}. ${ch.description} Interactive data visualizations of US patent trends from 1976 to 2025 (through September).`;
   const keywords = CHAPTER_KEYWORDS[slug] ?? [];
   const ogImage = chapterOgImage(slug);
 

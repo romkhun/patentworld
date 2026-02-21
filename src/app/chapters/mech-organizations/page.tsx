@@ -178,7 +178,7 @@ export default function MechOrganizationsChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Most large patent filers are overwhelmingly exploitative, with 11 of 20 keeping exploration below 5%. When firms do enter new domains, exploration scores decay from 1.0 to below 0.1 within 5 years -- yet balanced firms that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms. Inter-firm knowledge flows, mapped through co-patenting networks and directed citation flows among the top 30 filers, reveal asymmetric dependencies that shift by decade and cluster by industry.
+          Most large patent filers are overwhelmingly exploitative, with 11 of 20 keeping exploration below 5%. When firms do enter new domains, exploration scores decay from 1.0 to below 0.1 within 5 years -- yet balanced firms that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms. Inter-firm knowledge flows, mapped through co-patenting networks and directed citation flows among the top 30 filers, reveal asymmetric dependencies that shift by decade and cluster by industry.
         </p>
       </aside>
 
@@ -352,7 +352,7 @@ export default function MechOrganizationsChapter() {
 
       <ChartContainer
         id="fig-mech-org-ambidexterity"
-        subtitle="Ambidexterity index versus blockbuster rate for top-50 assignees across 5-year windows, measuring whether balanced firms produce more high-impact patents."
+        subtitle="Ambidexterity index versus blockbuster rate for top-50 assignees across 5-year windows, measuring whether balanced firms are associated with higher rates of high-impact patents."
         title="Balanced Firms Average a 2.51% Blockbuster Rate, 2.3x Higher Than Specialized Firms"
         caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980-2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year x CPC cohort). Only firm-periods with >=50 patents shown."
         loading={amL}
@@ -375,7 +375,7 @@ export default function MechOrganizationsChapter() {
           The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
           exploitative, with exploration shares typically below 5%. The exploration decay curves show that even when
           firms do enter new technology areas, they transition to exploitation rapidly -- typically within
-          5 years of entry. Yet balanced firms that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms.
+          5 years of entry. Yet balanced firms that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms.
         </p>
       </KeyInsight>
 
@@ -647,14 +647,14 @@ export default function MechOrganizationsChapter() {
 
       <Narrative>
         <p>
-          The organizational mechanics documented across this chapter -- from the overwhelming exploitation bias and rapid exploration decay to the co-patenting clusters and asymmetric citation dependencies -- paint a nuanced picture of how firms navigate the innovation landscape. While most organizations deepen established domains, the minority that maintain ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms, even as within-firm quality concentration continues to rise. These firm-level patterns set the stage for the next chapter, <Link href="/chapters/mech-inventors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Inventor Mechanics</Link>, which shifts from organizational strategies to the individual inventors and collaborative networks that ultimately produce the patents.
+          The organizational mechanics documented across this chapter — from the overwhelming exploitation bias and rapid exploration decay to the co-patenting clusters and asymmetric citation dependencies — paint a nuanced picture of how firms navigate the innovation landscape. While most organizations deepen established domains, the minority that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms, even as within-firm quality concentration continues to rise. These firm-level patterns set the stage for the next chapter, <Link href="/chapters/mech-inventors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Inventor Mechanics</Link>, which shifts from organizational strategies to the individual inventors and collaborative networks that ultimately account for the patents.
         </p>
       </Narrative>
 
       <InsightRecap
         learned={[
           "11 of 20 major filers keep exploration below 5%, with a median exploration share of 2.9%, confirming the exploitation bias predicted by organizational theory.",
-          "Balanced firms maintaining ambidexterity produce blockbuster patents at 2.3 times the rate of specialized firms.",
+          "Balanced firms maintaining ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms.",
         ]}
         falsifiable="If ambidexterity causally improves innovation outcomes, then firms that exogenously increase their exploration (for example, through acquisitions in new domains) should see subsequent blockbuster rate improvements."
         nextAnalysis={{

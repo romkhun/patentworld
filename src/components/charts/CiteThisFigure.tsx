@@ -30,13 +30,13 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
   const stableUrl = `${baseUrl}#${slug}`;
 
-  const apaCitation = `Lee, Saerom (Ronnie). 2025. "${title}." In PatentWorld: 50 Years of US Patent Data. The Wharton School, University of Pennsylvania. ${stableUrl}. Accessed ${accessedDate}. Data source: United States Patent and Trademark Office (USPTO) via PatentsView.`;
+  const apaCitation = `Lee, Saerom (Ronnie). 2026. "${title}." In PatentWorld: 50 Years of US Patent Data. The Wharton School, University of Pennsylvania. ${stableUrl}. Accessed ${accessedDate}. Data source: United States Patent and Trademark Office (USPTO) via PatentsView (accessed February 2026).`;
 
   const bibtexSlug = slug.replace(/-/g, '_');
-  const bibtexCitation = `@misc{lee2025patentworld_${bibtexSlug},
+  const bibtexCitation = `@misc{lee2026patentworld_${bibtexSlug},
   author = {Lee, Saerom (Ronnie)},
   title = {${title}},
-  year = {2025},
+  year = {2026},
   howpublished = {PatentWorld: 50 Years of US Patent Data},
   institution = {The Wharton School, University of Pennsylvania},
   url = {${stableUrl}},

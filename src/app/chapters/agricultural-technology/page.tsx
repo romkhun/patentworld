@@ -341,7 +341,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-share"
         subtitle="Agricultural patents as a percentage of all utility patents, showing the evolving allocation of inventive effort toward agricultural technologies."
-        title="Agricultural Technology's Share of Total Patents Has Fluctuated, Reflecting Shifting R&D Priorities Across Decades"
+        title="Agricultural Technology's Share of Total Patents Has Fluctuated, Consistent With Shifting R&D Priorities Across Decades"
         caption="Percentage of all utility patents classified under agricultural technology CPC codes. Fluctuations in share reflect both changes in agricultural R&D investment and the growth of other technology sectors that expand the overall patent base."
         insight="The share of agricultural patents reveals how agricultural innovation competes for attention with other technology domains, with periods of relative growth often coinciding with major policy or scientific breakthroughs."
         loading={pyL}
@@ -719,7 +719,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-diffusion"
         subtitle="Percentage of agricultural patents co-classified with non-agricultural CPC sections, measuring technology diffusion into farming."
-        title="Agricultural Patents Show Dominant Co-Classification With Physics, Followed by Chemistry, Reflecting Cross-Domain Convergence"
+        title="Agricultural Patents Show Dominant Co-Classification With Physics, Followed by Chemistry, Consistent With Cross-Domain Convergence"
         caption="Percentage of agricultural patents that also carry CPC codes from each non-agricultural section. Rising lines indicate growing technology convergence. The most notable pattern is the dominant co-occurrence with Physics (Section G, encompassing sensors, data processing, and computing), followed by Chemistry (Section C, encompassing crop protection and biochemistry)."
         insight="The cross-domain diffusion of agricultural patents reveals how farming is becoming a technology-integration challenge, where innovations in chemistry, computing, and engineering converge in the field."
         loading={diffL}
@@ -792,7 +792,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-assignee-type"
         subtitle="Distribution of agricultural patents by assignee type (corporate, university, government, individual) over time."
-        title="Corporate Assignees Dominate Agricultural Patenting, With University and Government Contributions Reflecting the Land-Grant Legacy"
+        title="Corporate Assignees Dominate Agricultural Patenting, With University and Government Contributions Consistent With the Land-Grant Legacy"
         caption="Distribution of agricultural patent assignees by type over time. Corporate assignees dominate, but the presence of universities and government entities reflects the enduring role of the land-grant university system and public agricultural research institutions."
         insight="The assignee type distribution reveals the public-private structure of agricultural R&D, where corporate investment in commercial technologies is complemented by university and government contributions to fundamental crop science and sustainable farming practices."
         loading={atL}
@@ -835,7 +835,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in agricultural technology patenting."
-        title="Top-4 Concentration in Agricultural Technology Patents Peaked at 46.7% in 2014 Before Declining to 32.8% by 2025"
+        title="Top-4 Concentration in Agricultural Technology Patents Peaked at 46.7% in 2014 Before Declining to 32.8% by 2025 (Through September)"
         caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2014 peak reflects the dominance of large agricultural conglomerates. Concentration has decreased modestly as biotechnology and precision agriculture attracted new entrants."
         insight="Agricultural technology exhibits the highest peak organizational concentration among ACT 6 domains, consistent with the capital-intensive nature of agricultural R&amp;D and the dominance of vertically integrated seed and agrochemical firms."
         loading={ootL || pyL}
@@ -851,7 +851,7 @@ export default function Chapter12() {
       <ChartContainer
         id="fig-agtech-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across agricultural technology subfields."
-        title="Agricultural Technology Subfield Diversity Increased From 0.73 in 1976 to 0.92 by 2025, Reflecting Broadening Innovation"
+        title="Agricultural Technology Subfield Diversity Increased From 0.73 in 1976 to 0.92 by 2025 (Through September)"
         caption="Normalized Shannon entropy of subfield patent distributions. The steady increase from 0.73 to above 0.90 indicates that agricultural patenting has diversified from a moderately diverse base into precision agriculture, soil science, and agricultural biotechnology."
         insight="The diversification trajectory is consistent with the agricultural sector's transition from chemical-intensive to data-driven farming, with new subfields emerging around sensors, automation, and genetic engineering."
         loading={sfL}
@@ -914,7 +914,7 @@ export default function Chapter12() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025, reflecting broader entry into agricultural innovation."]}
+        learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025 (through September), consistent with broader entry into agricultural innovation."]}
         falsifiable="If precision agriculture drove the velocity increase, then patents in GPS/sensor subclasses should show faster growth than traditional agricultural chemistry patents."
         nextAnalysis={{ label: "Artificial Intelligence", description: "AI patenting from expert systems to deep learning — the fastest-growing technology domain", href: "/chapters/ai-patents" }}
       />

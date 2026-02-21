@@ -376,7 +376,7 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-blockchain-share"
         subtitle="Blockchain patents as a percentage of all utility patents, showing the domain's still-small but rapidly changing share of total inventive activity."
-        title="Blockchain's Share of Total Patents Rose Rapidly After 2016 Before Plateauing, Reflecting Its Niche but Volatile Status"
+        title="Blockchain's Share of Total Patents Rose Rapidly After 2016 Before Plateauing, Consistent With Its Niche but Volatile Status"
         caption="Percentage of all utility patents classified under blockchain-related CPC codes. Even at its peak, blockchain represents a small fraction of total patenting, underscoring the domain's niche character despite disproportionate media attention."
         insight="Blockchain's share of total patents remains small even at peak levels, highlighting the disconnect between the domain's media prominence and its actual footprint in the patent system."
         loading={pyL}
@@ -478,7 +478,7 @@ export default function Chapter16() {
         <ChartContainer
           id="fig-blockchain-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by blockchain patent grants from 2014 onward, with darker cells indicating higher rank."
-          title="Organizational Rankings in Blockchain Patenting Have Shifted Rapidly, Reflecting the Domain's Youth and Volatility"
+          title="Organizational Rankings in Blockchain Patenting Have Shifted Rapidly, Consistent With the Domain's Youth and Volatility"
           caption="Annual ranking of the top 15 organizations by blockchain patent grants, 2014 onward. Darker cells indicate higher rank (more patents). The data reveal significant year-to-year volatility in organizational rankings, consistent with a nascent domain where competitive positions are not yet entrenched."
           insight="The high volatility in organizational rankings distinguishes blockchain from more established domains where leadership positions are relatively stable, suggesting that competitive positions in blockchain IP are still forming."
           loading={ootL}

@@ -212,7 +212,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       },
       {
         citation: 'Cohen, L., Gurun, U. G., & Kominers, S. D. (2019). Patent trolls: Evidence from targeted firms. Management Science, 65(12), 5461\u20135486. https://doi.org/10.1287/mnsc.2018.3147',
-        summary: 'NPEs target cash-rich firms, asserting lower-quality patents and engaging in forum shopping. NPE litigation significantly reduces innovation at targeted firms\u2014the hold-up concerns that motivated the eBay ruling.',
+        summary: 'Non-practicing entities (NPEs) target cash-rich firms, asserting lower-quality patents and engaging in forum shopping. NPE litigation significantly reduces innovation at targeted firms\u2014the hold-up concerns that motivated the eBay ruling.',
       },
       {
         citation: 'Farrell, J., & Shapiro, C. (2008). How strong are weak patents? American Economic Review, 98(4), 1347\u20131369. https://doi.org/10.1257/aer.98.4.1347',
@@ -565,7 +565,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-applications-vs-grants"
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
-        title="Successfully Granted Applications Grew from 66,000 (Average, 1976–1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
+        title="Successfully Granted Applications Grew from 66,000 (Average, 1976–1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Consistent With Increasing Examination Lag"
         caption="The figure displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes coincide with observable inflection points in patent filing data, consistent with a relationship between policy and innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
@@ -633,7 +633,7 @@ export default function Chapter4() {
         title="Alice-Affected Art Groups Continued Growing Post-2014, Reaching 129.2 by 2024 versus 102.7 for Controls"
         subtitle="Patent grants indexed to 2013 = 100 for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
         caption="Patent grant counts indexed to 2013 = 100 for USPTO art groups most affected by Alice Corp. v. CLS Bank (treatment) and unaffected art groups (control). The vertical reference line marks the 2014 Alice decision. Despite the eligibility restriction, treatment groups continued to grow, suggesting that the decision moderated but did not reverse the trend."
-        insight="The Alice decision did not produce a sharp decline in patent grants for affected art groups. Instead, treatment group grants continued to outpace controls, reaching 129.2 (indexed) by 2024 compared to 102.7 for controls, suggesting that applicants adapted their claims to survive Section 101 scrutiny."
+        insight="The Alice decision was not associated with a sharp decline in patent grants for affected art groups. Instead, treatment group grants continued to outpace controls, reaching 129.2 (indexed) by 2024 compared to 102.7 for controls, suggesting that applicants adapted their claims to survive Section 101 scrutiny."
         loading={aiL}
       >
         {aliceIndexedPivot.length > 0 ? (
@@ -749,7 +749,7 @@ export default function Chapter4() {
 
       <ChartContainer
         id="fig-patent-law-pta-over-time"
-        title="Median Patent Term Adjustment Peaked at 520 Days in 2011, Declining to 147 Days by 2025"
+        title="Median Patent Term Adjustment Peaked at 520 Days in 2011, Declining to 147 Days by 2025 (Through September)"
         subtitle="Median patent term adjustment in days by grant year, 2002-2025, tracking USPTO examination delays"
         caption="Median PTA in days for granted patents by year. PTA increased substantially through the 2000s as the USPTO backlog grew, peaking at 520 days in 2011. Subsequent reforms and hiring initiatives were followed by a sustained decline, though PTA remains well above zero, indicating ongoing examination delays beyond statutory timelines."
         insight="The rise and fall of median PTA mirrors the USPTO backlog crisis and subsequent reforms. The peak of 520 days in 2011 represents nearly 1.5 years of additional patent life granted as compensation for examination delays."

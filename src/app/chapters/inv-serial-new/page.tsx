@@ -100,7 +100,7 @@ export default function InvSerialNewChapter() {
         <p className="text-sm leading-relaxed">
           The patent system is shaped by a fundamental tension between continuity and renewal. The absolute number of first-time
           inventors peaked at 140,490 in 2019, but their share of total patent activity has declined from 71% to 26%, indicating the
-          system increasingly favors experienced, repeat filers. A small elite of serial inventors produces a disproportionate share of
+          system increasingly favors experienced, repeat filers. A small elite of serial inventors accounts for a disproportionate share of
           all output, while career survival curves reveal that most inventors patent only once. For those who persist, productivity
           rises steeply in early career years before plateauing, and a subset of &quot;comeback&quot; inventors return after extended absences,
           often with new employers and new technology fields.
@@ -237,10 +237,10 @@ export default function InvSerialNewChapter() {
 
       <ChartContainer
         id="fig-inventors-segment-shares"
-        title="12% of Inventors (Prolific, Superstar, and Mega) Produce 61% of Total Patent Output"
+        title="12% of Inventors (Prolific, Superstar, and Mega) Account for 61% of Total Patent Output"
         subtitle="Patent share versus inventor share by productivity segment (One-Hit, Occasional, Prolific, Superstar, Mega), measuring output concentration"
         caption="The figure compares the share of total patents produced by each inventor segment against the share of inventors in that segment. The data demonstrate extreme skewness: single-patent inventors constitute the largest segment by headcount but contribute a comparatively small share of total output."
-        insight="A small group of prolific and mega-inventors produces a disproportionate share of all patents, while a plurality of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality observed in scientific publishing and other creative fields."
+        insight="A small group of prolific and mega-inventors accounts for a disproportionate share of all patents, while a plurality of inventors file only once. This extreme skewness mirrors broader patterns of productivity inequality observed in scientific publishing and other creative fields."
         loading={segL}
         height={350}
       >
@@ -509,7 +509,7 @@ export default function InvSerialNewChapter() {
         title="Originality Scores Converge Between Serial and New-Entrant Inventors"
         subtitle="Average originality score per patent by experience group, 1976-2025"
         caption="The figure compares the average originality score (diversity of backward citation sources) for patents from serial inventors versus new entrants."
-        insight="The near-convergence in originality scores suggests that while serial inventors produce more impactful patents by citation count, new entrants draw from comparably diverse knowledge bases."
+        insight="The near-convergence in originality scores suggests that while serial inventors' patents receive higher citation counts, new entrants draw from comparably diverse knowledge bases."
         loading={qbL}
       >
         <PWLineChart

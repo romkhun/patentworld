@@ -308,7 +308,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-patents-annual-count"
         subtitle="Annual count of utility patents classified under quantum computing-related CPC codes, tracking the growth trajectory of quantum computing patenting."
-        title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Reflecting the Field's Transition to Engineering"
+        title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Consistent With the Field's Transition to Engineering"
         caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in quantum computing patents coincides with increased corporate investment in quantum hardware and software, following milestones in qubit performance and error correction demonstrated in the late 2010s."
         loading={pyL}
@@ -416,7 +416,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-patents-top-assignees"
         subtitle="Organizations ranked by total quantum computing patent count, showing concentration among a small number of technology firms."
-        title="IBM, Google, D-Wave, and Microsoft Lead Quantum Computing Patenting, Reflecting the Capital-Intensive Nature of Quantum R&D"
+        title="IBM, Google, D-Wave, and Microsoft Lead Quantum Computing Patenting, Consistent With the Capital-Intensive Nature of Quantum R&D"
         caption="Organizations ranked by total quantum computing patents, 1990-2025. The data indicate strong concentration among a handful of large technology firms that have made significant investments in quantum hardware and software."
         insight="The dominance of a small group of major technology firms in quantum computing patenting reflects the substantial capital requirements of quantum hardware research, which demands cryogenic infrastructure, specialized fabrication, and large physics and engineering teams."
         loading={taL}
@@ -565,7 +565,7 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-patents-by-state"
         subtitle="US states ranked by total quantum computing patents based on primary inventor location, highlighting geographic clustering within the United States."
-        title="California and New York Lead US Quantum Computing Patenting, Reflecting Proximity to Major Corporate and Academic Research Centers"
+        title="California and New York Lead US Quantum Computing Patenting, Consistent With Proximity to Major Corporate and Academic Research Centers"
         caption="US states ranked by total quantum computing patents based on primary inventor location. The clustering of quantum innovation in California, New York, and a few other states reflects the location of major corporate research labs and university quantum programs."
         insight="The geographic concentration of quantum patents in a few states reflects the importance of proximity to major corporate research laboratories and university quantum computing programs."
         loading={geoL}
@@ -825,8 +825,8 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in quantum computing patenting."
-        title="Top-4 Concentration in Quantum Computing Patents Declined From 76.9% in 2003 to 28.4% by 2025"
-        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025 indicates broadening participation, though concentration remains among the highest of the ACT 6 domains alongside agricultural technology (33%)."
+        title="Top-4 Concentration in Quantum Computing Patents Declined From 76.9% in 2003 to 28.4% by 2025 (Through September)"
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025 (through September) indicates broadening participation, though concentration remains among the highest of the ACT 6 domains alongside agricultural technology (33%)."
         insight="Quantum computing's high residual concentration (28%) is consistent with the enormous capital requirements for quantum hardware research, which limit participation to well-funded organizations with access to cryogenic facilities and specialized fabrication capabilities."
         loading={ootL || pyL}
       >
@@ -841,9 +841,9 @@ export default function Chapter20() {
       <ChartContainer
         id="fig-quantum-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across quantum computing subfields."
-        title="Quantum Computing Subfield Diversity Increased From 0.78 in 2006 to 0.95 by 2025, Reflecting the Field's Broadening Technical Scope"
+        title="Quantum Computing Subfield Diversity Increased From 0.78 in 2006 to 0.95 by 2025 (Through September)"
         caption="Normalized Shannon entropy (H/ln(N)) ranges from 0 (all activity in one subfield) to 1 (perfectly even distribution). The increase from 0.78 to 0.95 indicates a shift from predominantly physical realizations to a balanced distribution across quantum algorithms, error correction, quantum networking, and hybrid classical-quantum systems."
-        insight="The high entropy by 2025 suggests that quantum computing has matured beyond the hardware-only phase into a multi-layered technology stack, with significant inventive activity at the algorithm, software, and application layers."
+        insight="The high entropy by 2025 (through September) suggests that quantum computing has matured beyond the hardware-only phase into a multi-layered technology stack, with significant inventive activity at the algorithm, software, and application layers."
         loading={sfL}
       >
         <PWLineChart
@@ -894,7 +894,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Quantum computing remains among the most concentrated technology domains alongside agricultural technology, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers to entry."]}
+        learned={["Quantum computing remains among the most concentrated technology domains alongside agricultural technology, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry."]}
         falsifiable="If high concentration reflects genuine technical barriers rather than strategic patent thickets, then new entrants should produce patents with lower scope and fewer claims than incumbents."
         nextAnalysis={{ label: "Semiconductors", description: "The silicon foundation of modern technology — the only domain with rising concentration", href: "/chapters/semiconductors" }}
       />
