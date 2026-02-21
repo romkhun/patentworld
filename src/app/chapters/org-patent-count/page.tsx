@@ -349,7 +349,7 @@ export default function OrgPatentCountChapter() {
           Not all patents are created equal. A small fraction of patents -- so-called
           &quot;blockbusters&quot; -- account for a disproportionate share of technological impact as
           measured by forward citations. Blockbuster patents are defined here as those in the
-          top 1% of forward citations received within five years, normalized within each filing
+          top 1% of forward citations received within five years, normalized within each grant
           year and CPC section cohort. The Lorenz curve provides a natural way to visualize
           how evenly (or unevenly) these high-impact patents are distributed across
           organizations: if every firm produced blockbusters in exact proportion to its total
@@ -482,7 +482,7 @@ export default function OrgPatentCountChapter() {
         across all years. Corporate mortality tracks presence in the top 50 patent filers per decade
         (1976-2025). Organization names are cleaned and standardized for display purposes.
         Blockbuster patents are defined as the top 1% by forward citations within 5 years,
-        normalized within filing year and CPC section cohort. Lorenz curves and Gini coefficients
+        normalized within grant year and CPC section cohort. Lorenz curves and Gini coefficients
         measure the concentration of these blockbuster patents across firms by decade.
       </DataNote>
 
