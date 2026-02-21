@@ -163,7 +163,7 @@ export default function OrgPatentQualityChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent quantity alone does not capture an organization&apos;s technological influence. This chapter brings together four complementary quality lenses -- blockbuster-versus-dud typologies, forward citation distributions, self-citation patterns, and citation half-lives -- to reveal how leading firms differ not just in the volume of patents they produce, but in the impact, durability, and cumulative nature of their innovation portfolios.
+          Patent quantity alone does not capture an organization&apos;s technological influence. This chapter brings together four complementary quality lenses — blockbuster-versus-dud typologies, forward citation distributions, self-citation patterns, and citation half-lives — to reveal how leading firms differ not just in the volume of patents they produce, but in the impact, durability, and cumulative nature of their innovation portfolios.
         </p>
       </aside>
 
@@ -184,7 +184,7 @@ export default function OrgPatentQualityChapter() {
         <p>
           Plotting each firm&apos;s <GlossaryTooltip term="blockbuster rate">blockbuster rate</GlossaryTooltip> against its <GlossaryTooltip term="dud rate">dud rate</GlossaryTooltip> for the most recent
           complete decade (2010–2019) reveals distinct innovation strategies. Firms in the
-          upper-right produce both high-impact breakthroughs and many zero-citation patents -- a
+          upper-right produce both high-impact breakthroughs and many zero-citation patents — a
           high-variance strategy. Firms in the lower-right achieve high blockbuster rates with
           few duds, the hallmark of consistent quality.
         </p>
@@ -195,7 +195,7 @@ export default function OrgPatentQualityChapter() {
         title="Amazon's 6.7% Blockbuster Rate Leads the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010–2019)"
         subtitle="Blockbuster rate versus dud rate for the top 50 assignees (2010–2019), with bubble size proportional to patent count and color by primary CPC section"
         caption="Each bubble represents one of the top 50 assignees in the decade 2010–2019. X-axis: share of patents in the top 1% of their year x CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
-        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms -- predominantly those with large electronics and component portfolios -- cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
+        insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms — predominantly those with large electronics and component portfolios — cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}
         height={500}
         wide
@@ -220,8 +220,8 @@ export default function OrgPatentQualityChapter() {
         <p>
           The quality typology scatter reveals that technology sector alone does not determine innovation strategy.
           Within the same CPC section, firms exhibit substantially different blockbuster-to-dud ratios,
-          suggesting that organizational factors -- R&amp;D investment concentration, inventor incentive
-          structures, and portfolio management decisions -- contribute meaningfully to shaping the quality
+          suggesting that organizational factors — R&amp;D investment concentration, inventor incentive
+          structures, and portfolio management decisions — contribute meaningfully to shaping the quality
           distribution of a firm&apos;s patent output.
         </p>
       </KeyInsight>
@@ -376,8 +376,8 @@ export default function OrgPatentQualityChapter() {
       <Narrative>
         <p>
           The rate at which a firm&apos;s patents accumulate citations varies considerably. The{' '}
-          <GlossaryTooltip term="citation half-life">citation half-life</GlossaryTooltip> -- the
-          time required to accumulate 50% of total citations -- distinguishes firms whose patents
+          <GlossaryTooltip term="citation half-life">citation half-life</GlossaryTooltip> — the
+          time required to accumulate 50% of total citations — distinguishes firms whose patents
           have <StatCallout value="immediate versus foundational impact" />.
         </p>
       </Narrative>
@@ -423,7 +423,7 @@ export default function OrgPatentQualityChapter() {
         title="IBM and Samsung Led in Average Forward Citations Through the 1990s, but Convergence Narrowed the Gap by 2015"
         subtitle="Average forward citations per patent per year for the top 5 assignees by total patent count"
         caption="Average 5-year forward citations per patent for the five most prolific assignees, plotted annually from 1976 to the most recent complete citation window. Declining averages across all firms reflect system-wide citation dilution as the patent population expands."
-        insight="The long-run convergence in forward citations suggests that scale alone does not sustain citation advantage -- as portfolios grow, average impact per patent tends to regress toward the system-wide mean."
+        insight="The long-run convergence in forward citations suggests that scale alone does not sustain citation advantage — as portfolios grow, average impact per patent tends to regress toward the system-wide mean."
         loading={qbcL}
         height={400}
         wide
@@ -497,7 +497,7 @@ export default function OrgPatentQualityChapter() {
           Across four quality dimensions, the top five patent filers exhibit parallel trajectories:
           forward citations decline system-wide, claim counts rise universally, originality scores converge,
           and grant lag follows USPTO capacity cycles. These shared trends suggest that macro-level forces --
-          citation dilution, prosecution norms, and examination backlogs -- shape patent quality metrics at
+          citation dilution, prosecution norms, and examination backlogs — shape patent quality metrics at
           least as strongly as firm-specific R&amp;D strategies. The remaining firm-level variation, however,
           reveals meaningful differences in portfolio composition and drafting practices.
         </p>

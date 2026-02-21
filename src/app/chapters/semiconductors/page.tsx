@@ -264,7 +264,7 @@ export default function Chapter21() {
       <KeyFindings>
         <li>Semiconductor patents are among the most heavily filed in the US patent system, with CPC class H01L representing one of the single largest concentrations of patenting activity across all technology domains.</li>
         <li>Manufacturing processes and semiconductor devices account for the majority of semiconductor patent filings, reflecting the capital-intensive nature of fabrication and the competitive dynamics of chip architecture.</li>
-        <li>East Asian firms -- Samsung and TSMC -- have emerged as dominant patent holders alongside US-based incumbents such as IBM and Micron, illustrating the global nature of semiconductor competition.</li>
+        <li>East Asian firms — Samsung and TSMC — have emerged as dominant patent holders alongside US-based incumbents such as IBM and Micron, illustrating the global nature of semiconductor competition.</li>
         <li>Organic semiconductors and packaging and interconnects represent rapidly growing subfields within semiconductor patenting, reflecting the industry&apos;s expansion beyond traditional device architectures.</li>
         <li>The CHIPS and Science Act of 2022 represents the most significant US policy intervention in semiconductor manufacturing in decades, with potential implications for the geographic distribution of future patenting activity.</li>
       </KeyFindings>
@@ -272,7 +272,7 @@ export default function Chapter21() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing -- an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+          Semiconductors constitute the physical substrate upon which virtually all modern computing, communication, and sensing technologies depend. The trajectory of semiconductor patenting reveals an industry defined by sustained process miniaturization, substantial capital requirements, and growing international competition. What began as a predominantly US-based enterprise has become a globally distributed innovation system, with East Asian firms now holding prominent positions in patent volume across multiple subfields. The passage of the CHIPS Act in 2022 signals a renewed US policy commitment to domestic semiconductor manufacturing — an intervention whose effects on the geography and composition of semiconductor patenting will unfold over the coming decade. The organizational strategies behind semiconductor patenting are explored further in the company-level analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
         </p>
       </aside>
 
@@ -286,7 +286,7 @@ export default function Chapter21() {
           automotive electronics, and an expanding universe of connected devices, semiconductors
           represent one of the most <StatCallout value="capital-intensive" /> and
           patent-dense fields in the United States patent system. This chapter examines
-          the evolution of semiconductor-related patenting -- from the early days of
+          the evolution of semiconductor-related patenting — from the early days of
           discrete transistors and basic integrated circuits through the current era of
           advanced process nodes, 3D packaging, and heterogeneous integration.
         </p>
@@ -403,8 +403,8 @@ export default function Chapter21() {
         <p>
           The composition of semiconductor patents reflects the industry&apos;s dual focus
           on advancing core manufacturing capabilities and expanding into new application
-          domains. Manufacturing processes -- encompassing lithography, etching, deposition,
-          and planarization -- remain the largest subfield, consistent with the substantial
+          domains. Manufacturing processes — encompassing lithography, etching, deposition,
+          and planarization — remain the largest subfield, consistent with the substantial
           engineering effort required at each new process node. Semiconductor Devices
           constitutes the second major category. The notable growth in organic semiconductors
           and packaging and interconnects reflects the industry&apos;s expansion into new
@@ -498,7 +498,7 @@ export default function Chapter21() {
         subtitle="Primary inventors ranked by total semiconductor-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
         title="The Most Prolific Semiconductor Inventors Hold Hundreds of Patents, Consistent With Deep Specialization in Process and Device Engineering"
         caption="Primary inventors ranked by total semiconductor-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total semiconductor patent output."
-        insight="The concentration of semiconductor patenting among a small cohort of prolific inventors reflects the deep specialization required in process engineering, device physics, and circuit design -- fields where decades of accumulated expertise translate into sustained inventive productivity."
+        insight="The concentration of semiconductor patenting among a small cohort of prolific inventors reflects the deep specialization required in process engineering, device physics, and circuit design — fields where decades of accumulated expertise translate into sustained inventive productivity."
         loading={tiL}
         height={1400}
       >
@@ -581,7 +581,7 @@ export default function Chapter21() {
           the headquarters of companies such as Intel, Qualcomm, and Applied Materials.
           Texas, Oregon, and Arizona reflect the location of major fabs operated by Intel,
           Samsung, and TSMC. The geographic pattern underscores the importance of physical
-          manufacturing infrastructure in shaping local patenting activity -- a dynamic
+          manufacturing infrastructure in shaping local patenting activity — a dynamic
           that the CHIPS Act aims to expand by incentivizing new fab construction across
           additional states.
         </p>
@@ -619,7 +619,7 @@ export default function Chapter21() {
           earlier rise reflected the increasingly dense web of prior art in an industry where
           each new advance builds incrementally on a vast body of existing knowledge. The
           expanding technology scope suggests that semiconductor patents are becoming more
-          interdisciplinary -- spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>{' '}
+          interdisciplinary — spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>{' '}
           subclasses as chip technology integrates with packaging, software, and
           systems-level design considerations.
         </p>
@@ -808,8 +808,8 @@ export default function Chapter21() {
           materials science, and manufacturing techniques. The presence of co-classification
           with Human Necessities (A) reflects the expanding role of semiconductors in
           medical devices and biosensors. The breadth of semiconductor diffusion across CPC sections
-          underscores why disruptions to the semiconductor supply chain -- as experienced
-          during the 2020–2021 chip shortage -- have cascading effects across the entire
+          underscores why disruptions to the semiconductor supply chain — as experienced
+          during the 2020–2021 chip shortage — have cascading effects across the entire
           economy.
         </p>
       </KeyInsight>

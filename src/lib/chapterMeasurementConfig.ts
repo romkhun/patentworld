@@ -8,7 +8,7 @@ export const CHAPTER_MEASUREMENTS: Record<string, ChapterMeasurementMeta> = {
   'system-patent-count': {
     dataVintage: 'PatentsView 2025-Q1',
     taxonomy: 'CPC',
-    notes: 'Utility patents only; excludes design and plant patents.',
+    notes: 'All patent types (utility, design, plant, reissue). Chapter totals and hero stats reflect all types.',
   },
   'system-patent-quality': {
     dataVintage: 'PatentsView 2025-Q1',

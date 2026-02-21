@@ -205,7 +205,7 @@ export default function GeoDomesticChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent activity concentrates in a handful of coastal states, with California alone producing 992,708 patents -- exceeding the bottom 30 states and territories combined. The top five states account for 46% of all US patent grants, and each has developed distinctive technology specialization profiles shaped by regional industry, universities, and talent pools. City-level analysis reveals even more extreme innovation concentration, with San Jose, San Diego, and Austin leading all US cities. California&apos;s patent output has diverged sharply from other states since the 1990s, reaching 4.0x Texas by 2024.
+          Patent activity concentrates in a handful of coastal states, with California alone producing 992,708 patents — exceeding the bottom 30 states and territories combined. The top five states account for 46% of all US patent grants, and each has developed distinctive technology specialization profiles shaped by regional industry, universities, and talent pools. City-level analysis reveals even more extreme innovation concentration, with San Jose, San Diego, and Austin leading all US cities. California&apos;s patent output has diverged sharply from other states since the 1990s, reaching 4.0x Texas by 2024.
         </p>
       </aside>
 
@@ -214,7 +214,7 @@ export default function GeoDomesticChapter() {
           Innovation activity is not evenly distributed across geographic space. Within the United States, a small number of states and metropolitan areas account for the majority of patent output. This chapter examines the domestic geography of innovation at both the state and city levels, including cumulative rankings, technology specialization profiles, temporal trends, and regional quality metrics.
         </p>
         <p>
-          The concentration documented here reflects the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems. These patterns of geographic clustering have strengthened rather than diminished over the digital era, suggesting that agglomeration forces continue to shape the geography of innovation despite advances in remote collaboration.
+          The concentration documented here is consistent with agglomeration mechanisms proposed in the literature (e.g., Marshall 1890; Krugman 1991), where the co-location of technology firms, research universities, and venture capital in a small number of innovation ecosystems may generate self-reinforcing dynamics. These patterns of geographic clustering have strengthened rather than diminished over the digital era, suggesting that agglomeration forces continue to shape the geography of innovation despite advances in remote collaboration.
         </p>
       </Narrative>
 
@@ -235,7 +235,7 @@ export default function GeoDomesticChapter() {
         subtitle="Total utility patents by primary inventor state (1976–2025), displayed as a choropleth map with darker shading for higher counts."
         title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States and Territories Combined (314,664)"
         caption="The choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
-        insight="The coastal concentration of patent activity is associated with the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
+        insight="The coastal concentration of patent activity is consistent with agglomeration economies, where the co-location of technology firms, research universities, and venture capital may create self-reinforcing dynamics (Marshall 1890; Krugman 1991)."
         loading={stL}
         height={650}
       >
@@ -378,7 +378,7 @@ export default function GeoDomesticChapter() {
       </KeyInsight>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* Section B-ext: Quality Metrics -- By US State                      */}
+      {/* Section B-ext: Quality Metrics — By US State                      */}
       {/* Data: computed/quality_by_state.json                               */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
 
@@ -496,7 +496,7 @@ export default function GeoDomesticChapter() {
       <Narrative>
         <p>
           At the city level, geographic concentration is more pronounced still. A small number of technology hubs --
-          San Jose, San Diego, Austin, San Francisco, and Houston -- account for the largest shares of patent output.
+          San Jose, San Diego, Austin, San Francisco, and Houston — account for the largest shares of patent output.
           These cities have maintained their leading positions for decades, suggesting that geographic
           clustering in innovation exhibits strong path dependence.
         </p>
@@ -559,7 +559,7 @@ export default function GeoDomesticChapter() {
       </KeyInsight>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* Section C-ext: Quality Metrics -- By US City                       */}
+      {/* Section C-ext: Quality Metrics — By US City                       */}
       {/* Data: computed/quality_by_city.json                                */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
 
@@ -697,7 +697,7 @@ export default function GeoDomesticChapter() {
 
       <KeyInsight>
         <p>
-          The increasing concentration of patent output in the top 50 counties -- rising from 43.3% in 1990 to 56.8% by 2020 -- challenges the expectation that digital communication would distribute innovation more broadly. Instead, geographic clustering has intensified, consistent with the self-reinforcing nature of agglomeration economies in technology-intensive regions.
+          The increasing concentration of patent output in the top 50 counties — rising from 43.3% in 1990 to 56.8% by 2020 — challenges the expectation that digital communication would distribute innovation more broadly. Instead, geographic clustering has intensified, consistent with the self-reinforcing nature of agglomeration economies in technology-intensive regions.
         </p>
       </KeyInsight>
 

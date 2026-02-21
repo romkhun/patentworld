@@ -87,7 +87,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'autonomous-vehicles': 'AV Patents Accelerated in the 2010s',
   'space-technology': 'Space Patents Reflect Commercial Frontier',
   '3d-printing': 'AM Concentration Fell From 36% to 11% by 2024',
-  'blockchain': 'Blockchain Patents Track a Hype Cycle',
+  'blockchain': 'Blockchain Patents Show Boom-Bust Pattern',
 };
 
 /** Insight-oriented meta descriptions (under 160 chars) */
@@ -252,7 +252,7 @@ export function chapterJsonLd(slug: string): object[] | null {
       about: {
         '@type': 'Dataset',
         name: 'US Patent Data (1976-2025)',
-        description: 'Analysis of 9.36 million US utility patents from PatentsView / USPTO.',
+        description: 'Analysis of 9.36 million US patents (utility, design, plant, and reissue) from PatentsView / USPTO.',
         temporalCoverage: '1976/2025',
       },
     },
@@ -264,7 +264,7 @@ export function chapterJsonLd(slug: string): object[] | null {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-          ...(actName ? [{ '@type': 'ListItem', position: 2, name: actName, item: `${BASE_URL}/#acts` }] : []),
+          ...(actName ? [{ '@type': 'ListItem', position: 2, name: actName, item: `${BASE_URL}/#chapters` }] : []),
           { '@type': 'ListItem', position: actName ? 3 : 2, name: ch.title, item: `${BASE_URL}/chapters/${ch.slug}/` },
         ],
       };

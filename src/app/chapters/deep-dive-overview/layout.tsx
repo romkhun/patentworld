@@ -70,7 +70,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-            { '@type': 'ListItem', position: 2, name: 'Act 6: Deep Dives', item: `${BASE_URL}/#acts` },
+            { '@type': 'ListItem', position: 2, name: 'Act 6: Deep Dives', item: `${BASE_URL}/#chapters` },
             { '@type': 'ListItem', position: 3, name: 'Cross-Domain Comparison', item: `${BASE_URL}/chapters/deep-dive-overview/` },
           ],
         },

@@ -378,7 +378,7 @@ export default function Chapter22() {
         subtitle="Patent counts by space technology subfield (satellite design, propulsion, communications, and related subfields) over time."
         title="Space Communications and Other Spacecraft Constitute the Largest Subfields, Followed by Propulsion Systems"
         caption="Patent counts by space technology subfield over time, based on CPC classifications. The data reveal that space communications and other spacecraft categories have driven recent growth, followed by propulsion systems, reflecting the economic importance of orbital infrastructure for global connectivity."
-        insight="The dominance of space communications patents coincides with the commercial evolution of the space industry -- from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
+        insight="The dominance of space communications patents coincides with the commercial evolution of the space industry — from exploration-driven missions to revenue-generating orbital services such as satellite broadband."
         loading={sfL}
         height={650}
       >
@@ -438,7 +438,7 @@ export default function Chapter22() {
         <p>
           Space patent leadership reflects a mix of traditional aerospace firms and satellite
           communications specialists. Boeing leads in total volume, followed by ViaSat and
-          Hughes Network Systems -- both of which built large portfolios through satellite
+          Hughes Network Systems — both of which built large portfolios through satellite
           broadband innovation. Lockheed Martin also maintains a substantial presence, drawing
           on deep systems integration capabilities in launch vehicles and satellite platforms. The emergence of commercially oriented firms
           in lower ranking positions signals a potential long-term shift in the competitive
@@ -505,7 +505,7 @@ export default function Chapter22() {
           The most prolific space inventors are typically affiliated with large aerospace and
           defense firms that maintain dedicated space technology divisions. The concentration of
           space patenting among a relatively small cohort of highly productive inventors reflects
-          the specialized expertise required in spacecraft engineering -- knowledge of orbital
+          the specialized expertise required in spacecraft engineering — knowledge of orbital
           mechanics, radiation-hardened electronics, thermal management, and life support systems
           that takes years to accumulate and is difficult to transfer across organizations.
         </p>
@@ -547,7 +547,7 @@ export default function Chapter22() {
         id="fig-space-by-state"
         subtitle="US states ranked by total space-related patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California and Maryland Lead US Space Patenting, Consistent With Aerospace and Defense Industry Clustering"
-        caption="US states ranked by total space-related patents based on primary inventor location. California leads by a wide margin, followed by Maryland -- home to major defense contractors and NASA's Goddard Space Flight Center. Arizona, Washington, and Texas round out the top five."
+        caption="US states ranked by total space-related patents based on primary inventor location. California leads by a wide margin, followed by Maryland — home to major defense contractors and NASA's Goddard Space Flight Center. Arizona, Washington, and Texas round out the top five."
         insight="The geographic clustering of space patents in California and Maryland reflects the concentration of aerospace and defense facilities, NASA research centers, and satellite communications firms in these states."
         loading={geoL}
         height={900}

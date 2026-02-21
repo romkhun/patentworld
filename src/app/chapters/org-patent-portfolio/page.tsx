@@ -290,7 +290,7 @@ export default function OrgPatentPortfolioChapter() {
       <KeyInsight>
         <p>
           Portfolio breadth appears to correlate with firm longevity at the top of the patent rankings.
-          The most persistent leaders -- IBM, Samsung, Canon -- maintain diversified technology
+          The most persistent leaders — IBM, Samsung, Canon — maintain diversified technology
           portfolios, whereas more specialized firms tend to rise and fall with the trajectories
           of their core technology domains.
         </p>

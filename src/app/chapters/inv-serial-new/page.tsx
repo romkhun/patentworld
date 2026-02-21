@@ -109,7 +109,7 @@ export default function InvSerialNewChapter() {
 
       <Narrative>
         <p>
-          Understanding who invents -- and who persists as an inventor -- is central to understanding the innovation system.
+          Understanding who invents — and who persists as an inventor — is central to understanding the innovation system.
           This chapter brings together several dimensions of inventor experience: the flow of new entrants, the dominance of
           serial inventors, career survival and productivity trajectories, and the phenomenon of inventor comebacks after
           extended absences. Together, these patterns reveal a system in which a small, persistent core of repeat inventors
@@ -387,7 +387,7 @@ export default function InvSerialNewChapter() {
       <Narrative>
         <p>
           A subset of inventors exhibit extended absences from the patent record before resuming patenting activity.
-          These &quot;comeback&quot; inventors -- those with gaps of 5 or more years between patents --
+          These &quot;comeback&quot; inventors — those with gaps of 5 or more years between patents --
           provide insights into <StatCallout value="career interruptions and reinventions" />.
         </p>
       </Narrative>
@@ -549,7 +549,7 @@ export default function InvSerialNewChapter() {
         title="Serial Inventors Self-Cite at 4-5x the Rate of New Entrants"
         subtitle="Average self-citation rate per patent by experience group, 1976–2025"
         caption="The figure compares the average self-citation rate (share of backward citations to the same assignee's prior patents) for serial versus new-entrant inventors."
-        insight="The large self-citation gap is structurally expected -- serial inventors are typically associated with assignees that have larger patent portfolios to reference -- but it also suggests they build more cumulatively on their organization's prior research trajectories."
+        insight="The large self-citation gap is structurally expected — serial inventors are typically associated with assignees that have larger patent portfolios to reference — but it also suggests they build more cumulatively on their organization's prior research trajectories."
         loading={qbL}
       >
         <PWLineChart
@@ -624,9 +624,9 @@ export default function InvSerialNewChapter() {
 
       <Narrative>
         <p>
-          The patterns documented here -- rising new-entrant inflow alongside declining newcomer prevalence,
+          The patterns documented here — rising new-entrant inflow alongside declining newcomer prevalence,
           extreme concentration of output among serial inventors, bimodal career survival, and the persistence
-          of comeback inventors -- reveal a patent system increasingly shaped by a professional, repeat-inventor
+          of comeback inventors — reveal a patent system increasingly shaped by a professional, repeat-inventor
           core. The next chapter, <Link href="/chapters/inv-gender/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Gender and Patenting</Link>,
           examines how these career and productivity patterns differ across gender lines, including the
           gender innovation gap and the quality implications of team composition.

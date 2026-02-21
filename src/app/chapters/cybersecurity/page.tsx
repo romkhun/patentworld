@@ -267,13 +267,13 @@ export default function Chapter17() {
         <li>Cybersecurity patent filings have grown alongside the expansion of the digital economy, with notable acceleration in filings observed following major security incidents such as the Snowden disclosures (2013), the WannaCry ransomware campaign (2017), and the SolarWinds supply-chain compromise (2020).</li>
         <li>Network security constitutes the largest cybersecurity subfield by patent volume, having surpassed cryptography around 2003, coinciding with the expansion of cloud computing and distributed network architectures.</li>
         <li>Data protection, system security, and authentication technologies have all exhibited rapid growth rates, particularly since the mid-2010s, coinciding with the proliferation of cloud computing, mobile devices, and zero-trust security architectures.</li>
-        <li>A small number of large technology firms -- IBM, Intel, Microsoft, and Cisco -- dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
+        <li>A small number of large technology firms — IBM, Intel, Microsoft, and Cisco — dominate cybersecurity patenting, reflecting the capital-intensive nature of security R&D and the strategic importance of defensive patent portfolios.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
+          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity — from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events — the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 — appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
         </p>
       </aside>
 
@@ -283,8 +283,8 @@ export default function Chapter17() {
         </p>
         <p>
           As the digital economy has expanded, so too has the attack surface that threatens it.
-          Cybersecurity -- the protection of networks, systems, and data from unauthorized access
-          and malicious exploitation -- has become one of the most active domains in the United
+          Cybersecurity — the protection of networks, systems, and data from unauthorized access
+          and malicious exploitation — has become one of the most active domains in the United
           States patent system. This chapter examines the trajectory of{' '}
           <StatCallout value="cybersecurity-related patents" />, from early cryptographic methods
           through the current era of network defense, zero-trust architectures, and AI-driven
@@ -387,8 +387,8 @@ export default function Chapter17() {
       <KeyInsight>
         <p>
           The composition of cybersecurity patents has diversified substantially over time.
-          Cryptography -- encompassing encryption algorithms, key management, and secure
-          communication protocols -- was the largest subfield through the early 2000s, reflecting
+          Cryptography — encompassing encryption algorithms, key management, and secure
+          communication protocols — was the largest subfield through the early 2000s, reflecting
           the foundational role of encryption in digital security. Network security surpassed
           cryptography around 2003 and has been the dominant subfield since, coinciding with the
           expansion of cloud computing and distributed architectures. Data protection,
@@ -499,7 +499,7 @@ export default function Chapter17() {
           technology firms that maintain dedicated security research divisions. The
           concentration of output among a relatively small cohort reflects the deep
           specialization required in cryptographic algorithm design, network protocol
-          security, and threat analysis -- fields where extensive domain expertise is a
+          security, and threat analysis — fields where extensive domain expertise is a
           prerequisite for meaningful innovation. The skewed productivity distribution
           mirrors patterns observed across the broader patent system, though the degree
           of specialization in cybersecurity may be particularly pronounced.
@@ -531,7 +531,7 @@ export default function Chapter17() {
           United States, reflecting the concentration of major technology firms, defense
           contractors, and security research laboratories. The strong presence of Israel, despite
           its comparatively small economy, reflects that nation&apos;s well-documented
-          specialization in cybersecurity -- a strength rooted in national security priorities
+          specialization in cybersecurity — a strength rooted in national security priorities
           and a robust military-to-technology pipeline. Japan, China, and India also contribute
           substantially, with China and India ranking among the top five non-US contributors.
           South Korea and Germany contribute through their large electronics and
@@ -544,7 +544,7 @@ export default function Chapter17() {
         subtitle="US states ranked by total cybersecurity-related patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California Leads US Cybersecurity Patenting, With Significant Clusters in the Washington DC Corridor and Texas"
         caption="US states ranked by total cybersecurity-related patents based on primary inventor location. California's lead is consistent with Silicon Valley's concentration of technology firms, while the strong showing of Virginia and Maryland reflects the proximity of defense contractors and intelligence agencies to Washington, DC."
-        insight="The geographic clustering of cybersecurity patents in California, the DC corridor, and Texas reflects the dual nature of cybersecurity innovation -- driven both by commercial technology firms and by defense and intelligence sector demand."
+        insight="The geographic clustering of cybersecurity patents in California, the DC corridor, and Texas reflects the dual nature of cybersecurity innovation — driven both by commercial technology firms and by defense and intelligence sector demand."
         loading={geoL}
         height={900}
       >
@@ -563,7 +563,7 @@ export default function Chapter17() {
           consistent with the concentration of major technology firms in Silicon Valley and
           the broader Bay Area ecosystem. The strong presence of Virginia and Maryland reflects
           the Washington, DC corridor&apos;s concentration of defense contractors, intelligence
-          agencies, and government-adjacent security firms -- a pattern that distinguishes
+          agencies, and government-adjacent security firms — a pattern that distinguishes
           cybersecurity from most other technology domains, where the DC region plays a
           smaller role.
         </p>
@@ -603,7 +603,7 @@ export default function Chapter17() {
           expanding technology scope indicates that cybersecurity inventions are becoming
           more interdisciplinary, spanning multiple{' '}
           <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses as security
-          capabilities are integrated into diverse technology systems -- from cloud
+          capabilities are integrated into diverse technology systems — from cloud
           infrastructure to medical devices to autonomous vehicles.
         </p>
       </KeyInsight>

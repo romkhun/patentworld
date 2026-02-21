@@ -291,7 +291,7 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough — the deep learning revolution of the early 2010s — reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole — a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
         </p>
       </aside>
 
@@ -302,7 +302,7 @@ export default function Chapter13() {
         <p>
           Artificial intelligence has evolved from a specialized academic pursuit to one of
           the most active domains in the United States patent system. This chapter examines
-          the trajectory of <StatCallout value="AI-related patents" /> -- from early expert
+          the trajectory of <StatCallout value="AI-related patents" /> — from early expert
           systems and symbolic reasoning through the machine learning transformation to the
           current era of deep learning and generative models.
         </p>
@@ -554,7 +554,7 @@ export default function Chapter13() {
           States, Japan, China, and South Korea in AI innovation. The United States maintains a
           substantial lead, reflecting the concentration of major AI research laboratories
           and technology firms. The strong presence of East Asian economies reflects their
-          investments in electronics, semiconductors, and consumer technology -- sectors
+          investments in electronics, semiconductors, and consumer technology — sectors
           where AI capabilities have become increasingly central to product differentiation.
         </p>
       </KeyInsight>
@@ -582,7 +582,7 @@ export default function Chapter13() {
           consistent with the state&apos;s dominance of the broader technology sector.
           The clustering of AI innovation in a small number of technology hubs reflects
           the importance of proximity to talent pools, venture capital, and established
-          AI research communities -- agglomeration effects that are particularly pronounced
+          AI research communities — agglomeration effects that are particularly pronounced
           in knowledge-intensive fields.
         </p>
       </KeyInsight>

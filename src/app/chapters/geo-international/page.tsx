@@ -337,7 +337,7 @@ export default function GeoInternationalChapter() {
 
       <Narrative>
         <p>
-          The relationship between patent quantity and quality across countries warrants examination. Comparing average patent claims -- a rough proxy for patent scope -- across countries indicates that volume and quality do not necessarily correspond. Meanwhile, country-level filing trends over time reveal the evolving composition of foreign patent activity in the US system.
+          The relationship between patent quantity and quality across countries warrants examination. Comparing average patent claims — a rough proxy for patent scope — across countries indicates that volume and quality do not necessarily correspond. Meanwhile, country-level filing trends over time reveal the evolving composition of foreign patent activity in the US system.
         </p>
       </Narrative>
 
@@ -456,7 +456,7 @@ export default function GeoInternationalChapter() {
           subtitle="Annual patent grants by inventor country for the top 10 foreign filing countries, 1976–2024."
           title="Japan Leads Foreign Filings with 1.45M US Patents, While China Grew from 299 (2000) to 30,695 (2024)"
           caption="The figure displays annual patent grant counts for the top 10 countries by inventor location. Japan has dominated foreign filings throughout the study period, while South Korea and China have exhibited rapid growth since the 2000s, fundamentally reshaping the composition of foreign patent activity in the US system."
-          insight="Successive waves of foreign patent filings -- first from Japan, then South Korea, and most recently China -- have progressively diversified the international composition of the US patent system."
+          insight="Successive waves of foreign patent filings — first from Japan, then South Korea, and most recently China — have progressively diversified the international composition of the US patent system."
           loading={cpyL}
         >
           <PWLineChart
@@ -515,7 +515,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from 70% in the 1970s to 60% by 2024. China&apos;s rise as a priority country -- from just 53 filings in 1993 to over 25,000 by 2024 -- represents one of the most significant shifts in the history of the US patent system.
+          The priority country composition reveals a structural shift in the origins of US patent grants. While the United States remains the dominant priority country, its share has declined from 70% in the 1970s to 60% by 2024. China&apos;s rise as a priority country — from just 53 filings in 1993 to over 25,000 by 2024 — represents one of the most significant shifts in the history of the US patent system.
         </p>
       </KeyInsight>
 
@@ -553,7 +553,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting differences in treaty access and international patent-system participation, underscores how political and institutional factors shape international filing behavior.
+          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage — from negligible levels in the 1990s to over 35% by 2024 — reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting differences in treaty access and international patent-system participation, underscores how political and institutional factors shape international filing behavior.
         </p>
       </KeyInsight>
 
@@ -586,13 +586,13 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The global innovation cluster rankings reveal that the Tokyo metropolitan area -- spanning Tokyo, Yokohama, and Kawasaki -- constitutes the single largest concentration of US patent activity outside the United States. Combined, these three Japanese cities account for over 521,000 patents, underscoring the depth of Japan&apos;s contribution to the US patent system.
+          The global innovation cluster rankings reveal that the Tokyo metropolitan area — spanning Tokyo, Yokohama, and Kawasaki — constitutes the single largest concentration of US patent activity outside the United States. Combined, these three Japanese cities account for over 521,000 patents, underscoring the depth of Japan&apos;s contribution to the US patent system.
         </p>
       </KeyInsight>
 
       <Narrative>
         <p>
-          The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens -- from state-level domestic concentration to global filing patterns and cross-country quality comparisons -- the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
+          The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens — from state-level domestic concentration to global filing patterns and cross-country quality comparisons — the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
         </p>
       </Narrative>
 

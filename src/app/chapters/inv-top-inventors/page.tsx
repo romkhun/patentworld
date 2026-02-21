@@ -137,14 +137,14 @@ export default function InvTopInventorsChapter() {
           inventors. The top 5% (by cumulative output) account for 63.2% of all patents, with
           their annual share rising from 26% to 60% over five decades. The single most prolific
           inventor holds 6,709 patents. Yet prolificacy and citation impact are only weakly
-          correlated -- some high-volume filers average fewer than 10 citations per patent
+          correlated — some high-volume filers average fewer than 10 citations per patent
           while others exceed 900.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          This chapter consolidates the evidence on top inventors -- their growing concentration
+          This chapter consolidates the evidence on top inventors — their growing concentration
           of patent output, their individual rankings, and the distinction between quantity and
           quality. Together, these perspectives illuminate the outsized role that a small cohort
           of professional inventors plays in the modern innovation system.
@@ -475,14 +475,14 @@ export default function InvTopInventorsChapter() {
       <Narrative>
         <p>
           A natural question is whether individuals who serve as USPTO patent examiners also
-          appear in the inventor record. Using name matching -- an inherently imprecise method --
+          appear in the inventor record. Using name matching — an inherently imprecise method --
           we estimate an upper bound on the number of individuals who have appeared in both roles.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-examiner-inventor-overlap"
-        title="An Estimated 5,785 Individuals Appear as Both Patent Examiner and Inventor -- an Upper Bound Based on Name Matching"
+        title="An Estimated 5,785 Individuals Appear as Both Patent Examiner and Inventor — an Upper Bound Based on Name Matching"
         subtitle="Count of unique names appearing in both the examiner and inventor records, based on exact first-name and last-name matching"
         caption="The table reports the number of unique names found in both the patent examiner and inventor records. Because name matching does not use disambiguated identifiers, this figure represents an upper bound that likely includes false positives from common names."
         insight="Even under generous name-matching assumptions, the overlap between examiners and inventors is small relative to the 4.1 million unique inventor names in the database."
@@ -530,7 +530,7 @@ export default function InvTopInventorsChapter() {
       <Narrative>
         <p>
           Beyond individual prolificacy, some inventors patent under multiple institution types
-          over their careers -- for example, filing patents through both a corporation and a
+          over their careers — for example, filing patents through both a corporation and a
           university. The prevalence of such multi-type trajectories increases sharply with
           career length, suggesting that inventor mobility across institutional boundaries is a
           common feature of long patenting careers.
@@ -542,7 +542,7 @@ export default function InvTopInventorsChapter() {
         title="30.7% of Inventors with 10+ Patents Have Patented Under Multiple Institution Types"
         subtitle="Share of inventors who have patented under more than one assignee type (such as corporation and university), by career length bin"
         caption="The figure displays the percentage of inventors who have filed patents under more than one assignee type over their career, grouped by career length (number of patents). Multi-type patenting is negligible among single-patent inventors but rises to 30.7% among those with 10 or more patents."
-        insight="The prevalence of multi-type inventor trajectories among prolific inventors suggests that institutional mobility -- between firms, universities, and government -- is a common feature of sustained patenting careers."
+        insight="The prevalence of multi-type inventor trajectories among prolific inventors suggests that institutional mobility — between firms, universities, and government — is a common feature of sustained patenting careers."
         loading={mtL}
       >
         {multiType && (
@@ -562,8 +562,8 @@ export default function InvTopInventorsChapter() {
 
       <KeyInsight>
         <p>
-          Multi-type inventor trajectories -- where an individual patents under more than one
-          institution type -- are concentrated among prolific inventors. Only 8.4% of inventors
+          Multi-type inventor trajectories — where an individual patents under more than one
+          institution type — are concentrated among prolific inventors. Only 8.4% of inventors
           with 2-4 patents have multi-type careers, rising to 18.4% for those with 5-9 patents
           and 30.7% for those with 10 or more. This pattern indicates that institutional mobility
           is closely linked to sustained inventive output.

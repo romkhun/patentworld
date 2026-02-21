@@ -45,7 +45,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-convergence',
     title: 'Convergence',
     subtitle: 'Cross-domain technology convergence',
-    description: 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025.',
+    description: 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents between 1976\u20131995 and 2011\u20132025.',
   },
   {
     number: 5,
@@ -124,14 +124,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-serial-new',
     title: 'Serial Inventors vs. New Entrants',
     subtitle: 'Career patterns, serial innovation, and inventor survival',
-    description: 'Annual first-time inventor entries peaked at 140,490 in 2019. Only 37-51% of inventors survive past five career years. Productivity rises from 1.4 to 2.1 patents per year.',
+    description: 'Annual first-time inventor entries peaked at 140,490 in 2019. Only 37\u201351% of inventors survive past five career years. Productivity rises from 1.4 to 2.1 patents per year.',
   },
   {
     number: 16,
     slug: 'inv-gender',
     title: 'Gender and Patenting',
     subtitle: 'Gender composition and the gender innovation gap',
-    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September). All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025), reaching 23.4% in the most recent period.',
+    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September). All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5; these differences are substantially confounded by field composition. Gender is inferred from inventor names and limited to a binary classification. Chemistry leads cumulative female representation at 14.6% (1976\u20132025), reaching 23.4% in the most recent period.',
   },
   {
     number: 17,
@@ -146,14 +146,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'geo-domestic',
     title: 'Domestic Geography',
     subtitle: 'State-level and city-level patent concentration and quality',
-    description: 'California accounts for 23.6% of all US patent grants, producing 992,708 patents -- more than the bottom 30 states combined. States exhibit distinctive specialization: Michigan devotes 20.1% to Mechanical Engineering vs. California\'s 65.1% in Physics and Electricity.',
+    description: 'California accounts for 23.6% of all US patent grants, producing 992,708 patents \u2014 more than the bottom 30 states combined. States exhibit distinctive specialization: Michigan devotes 20.1% to Mechanical Engineering vs. California\u2019s 65.1% in Physics and Electricity.',
   },
   {
     number: 19,
     slug: 'geo-international',
     title: 'International Geography',
     subtitle: 'Cross-border patterns and country-level quality metrics',
-    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with approximately 164,000 patents granted cumulatively during the 2020s (by assignee country) and 18.4 average claims, while rapidly growing origins exhibit lower claims, suggesting a quality-quantity tradeoff.',
+    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with approximately 164,000 patents granted cumulatively during the 2020s (by assignee country) and 18.4 average claims. Countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions, technology field composition, or strategic filing approaches.',
   },
   // ── ACT 5: The Mechanics ──
   {

@@ -173,13 +173,13 @@ export default function MechInventorsChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Individual inventors form fragmented co-invention networks of small, tightly connected teams, while bridge inventors who span 30 or more organizations create potential channels for cross-firm knowledge transfer. Average co-inventor counts have risen 2.5x since the 1980s, reflecting a sustained shift toward team-based invention. Beyond collaboration, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel, and international inventor mobility -- now surpassing domestic rates -- positions the United States at the center of 77.6% of all cross-border inventor flows.
+          Individual inventors form fragmented co-invention networks of small, tightly connected teams, while bridge inventors who span 30 or more organizations create potential channels for cross-firm knowledge transfer. Average co-inventor counts have risen 2.5x since the 1980s, reflecting a sustained shift toward team-based invention. Beyond collaboration, the movement of 143,524 inventors among the top 50 assignees constitutes a parallel knowledge-diffusion channel, and international inventor mobility — now surpassing domestic rates — positions the United States at the center of 77.6% of all cross-border inventor flows.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Innovation is shaped not only by what is patented but by the people who patent it -- how inventors collaborate, how they move between firms, and how they migrate across borders. This chapter examines the interpersonal and inter-firm dimensions of inventor activity: the co-invention networks that reveal stable research teams, the bridge inventors who connect otherwise separate organizations, and the mobility patterns through which talent and tacit knowledge circulate across firms, states, and countries.
+          Innovation is shaped not only by what is patented but by the people who patent it — how inventors collaborate, how they move between firms, and how they migrate across borders. This chapter examines the interpersonal and inter-firm dimensions of inventor activity: the co-invention networks that reveal stable research teams, the bridge inventors who connect otherwise separate organizations, and the mobility patterns through which talent and tacit knowledge circulate across firms, states, and countries.
         </p>
       </Narrative>
 
@@ -222,8 +222,8 @@ export default function MechInventorsChapter() {
         <p>
           Inventor collaboration networks tend to be more fragmented than organizational
           networks, comprising many small, closely connected teams that operate in relative isolation. The most
-          stable long-term collaborations -- pairs or trios of inventors who co-patent over
-          decades -- are concentrated in fields such as semiconductors and pharmaceuticals, where
+          stable long-term collaborations — pairs or trios of inventors who co-patent over
+          decades — are concentrated in fields such as semiconductors and pharmaceuticals, where
           deep domain expertise and established laboratory relationships confer durable advantages.
         </p>
       </KeyInsight>
@@ -455,7 +455,7 @@ export default function MechInventorsChapter() {
       <Narrative>
         <p>
           The state and city patent output documented in the <Link href="/chapters/geo-domestic/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> chapter capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
-          <StatCallout value="geographic mobility" /> -- the manner in which innovators relocate between states, carrying tacit knowledge and professional networks with them.
+          <StatCallout value="geographic mobility" /> — the manner in which innovators relocate between states, carrying tacit knowledge and professional networks with them.
         </p>
       </Narrative>
 
@@ -678,7 +678,7 @@ export default function MechInventorsChapter() {
           subtitle="Top 20 country-to-country inventor migration corridors by total move count."
           title="US-China Inventor Flows Dominate International Mobility with 100,934 Bidirectional Moves"
           caption="The figure displays the top 20 unidirectional inventor migration corridors, measured by the number of inventors who filed sequential patents from different countries. The US-China corridor dominates with 52,143 moves from US to China and 48,791 from China to US, totaling 100,934 bidirectional moves. Other major corridors include US-South Korea, India-US, and US-Japan."
-          insight="The dominance of the US-China corridor in inventor mobility flows reflects the deep integration of US and Chinese innovation ecosystems, with nearly balanced bidirectional assignee changes indicating substantial cross-border career mobility. Note that assignee-country changes may reflect organizational reassignment rather than physical relocation."
+          insight="The US-China corridor dominates inventor mobility flows, with nearly balanced bidirectional assignee changes indicating substantial cross-border career mobility. These high bilateral mobility volumes may reflect labor market dynamics, institutional partnerships, or immigration policy rather than a single underlying cause. Note that assignee-country changes may reflect organizational reassignment rather than physical relocation."
           loading={mfL}
           height={700}
         >
@@ -693,7 +693,7 @@ export default function MechInventorsChapter() {
 
       <KeyInsight>
         <p>
-          The bilateral inventor flow data reveal that US-China mobility is nearly balanced, with 52,143 moves from US to China and 48,791 from China to US. This approximate symmetry indicates substantial cross-border career mobility rather than a strongly asymmetric talent flow pattern, and highlights the deep integration of these two innovation ecosystems. The Taiwan-China corridor (16,917 bidirectional moves) further underscores the interconnected nature of East Asian innovation networks.
+          The bilateral inventor flow data reveal that US-China mobility is nearly balanced, with 52,143 moves from US to China and 48,791 from China to US. This approximate symmetry indicates substantial cross-border career mobility rather than a strongly asymmetric talent flow pattern. These high bilateral mobility volumes may reflect labor market dynamics, institutional partnerships, immigration policy, or other factors. The Taiwan-China corridor (16,917 bidirectional moves) further underscores the interconnected nature of East Asian innovation networks.
         </p>
       </KeyInsight>
 
@@ -703,7 +703,7 @@ export default function MechInventorsChapter() {
 
       <Narrative>
         <p>
-          The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
+          The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation — the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
           <Link href="/chapters/mech-geography/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
           examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
         </p>

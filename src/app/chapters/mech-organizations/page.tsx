@@ -178,13 +178,13 @@ export default function MechOrganizationsChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Most large patent filers are overwhelmingly exploitative, with 11 of 20 keeping exploration below 5%. When firms do enter new domains, exploration scores decay from 1.0 to below 0.1 within 5 years -- yet balanced firms that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms. Inter-firm knowledge flows, mapped through co-patenting networks and directed citation flows among the top 30 filers, reveal asymmetric dependencies that shift by decade and cluster by industry.
+          Most large patent filers are overwhelmingly exploitative, with 11 of 20 keeping exploration below 5%. When firms do enter new domains, exploration scores decay from 1.0 to below 0.1 within 5 years — yet balanced firms that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms. Inter-firm knowledge flows, mapped through co-patenting networks and directed citation flows among the top 30 filers, reveal asymmetric dependencies that shift by decade and cluster by industry.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          This chapter examines two complementary dimensions of organizational innovation mechanics. The first half applies March&apos;s (1991) exploration/exploitation framework to patent data, revealing how firms balance the search for new technology domains against the deepening of established ones -- and how this balance shapes innovation outcomes including blockbuster patent production and quality concentration. The second half maps the inter-firm knowledge flows that connect organizations through co-patenting relationships and directed citation networks, exposing the structural dependencies that shape the corporate innovation landscape.
+          This chapter examines two complementary dimensions of organizational innovation mechanics. The first half applies March&apos;s (1991) exploration/exploitation framework to patent data, revealing how firms balance the search for new technology domains against the deepening of established ones — and how this balance shapes innovation outcomes including blockbuster patent production and quality concentration. The second half maps the inter-firm knowledge flows that connect organizations through co-patenting relationships and directed citation networks, exposing the structural dependencies that shape the corporate innovation landscape.
         </p>
       </Narrative>
 
@@ -374,7 +374,7 @@ export default function MechOrganizationsChapter() {
         <p>
           The exploration/exploitation analysis reveals that most large patent filers are overwhelmingly
           exploitative, with exploration shares typically below 5%. The exploration decay curves show that even when
-          firms do enter new technology areas, they transition to exploitation rapidly -- typically within
+          firms do enter new technology areas, they transition to exploitation rapidly — typically within
           5 years of entry. Yet balanced firms that maintain ambidexterity are associated with blockbuster patent rates 2.3 times higher than specialized firms.
         </p>
       </KeyInsight>
@@ -427,7 +427,7 @@ export default function MechOrganizationsChapter() {
       <Narrative>
         <p>
           When two or more organizations appear as assignees on the same patent, this indicates a
-          substantive collaborative relationship -- joint research ventures, licensing agreements,
+          substantive collaborative relationship — joint research ventures, licensing agreements,
           or cross-firm R&D partnerships. The network below maps these{' '}
           <StatCallout value="co-patenting relationships" /> among organizations with significant
           collaboration ties.
@@ -458,8 +458,8 @@ export default function MechOrganizationsChapter() {
           The co-patenting network exhibits distinct industry clusters. Electronics firms (Samsung,
           LG, Sony) form a dense cluster, pharmaceutical companies (Pfizer, Novartis) cluster
           separately, and automotive firms (Toyota, Honda, Ford) constitute their own community. Bridge
-          organizations that span multiple clusters -- often large conglomerates such as GE or Siemens
-          -- appear to serve disproportionate roles in cross-industry knowledge transfer.
+          organizations that span multiple clusters — often large conglomerates such as GE or Siemens
+          — appear to serve disproportionate roles in cross-industry knowledge transfer.
         </p>
       </KeyInsight>
 
@@ -568,7 +568,7 @@ export default function MechOrganizationsChapter() {
           exploration index (cosine distance from its prior CPC centroid) against its self-citation
           rate across successive 5-year windows, the trajectory scatter reveals how organizations
           navigate the exploration-exploitation trade-off over decades. Some firms trace stable
-          orbits -- consistently exploitative or consistently exploratory -- while others undergo
+          orbits — consistently exploitative or consistently exploratory — while others undergo
           substantial strategic pivots, shifting from deep exploitation to broad exploration or vice
           versa. These trajectories illuminate the path-dependent nature of corporate innovation
           strategy, where each period&apos;s positioning constrains the feasible moves in the next.
@@ -600,7 +600,7 @@ export default function MechOrganizationsChapter() {
           The trajectory scatter reveals that top patent filers follow markedly different
           exploration-exploitation paths over time. Rather than converging toward a single
           optimal balance, firms trace distinctive orbits shaped by their technological
-          histories and organizational capabilities -- underscoring that innovation strategy
+          histories and organizational capabilities — underscoring that innovation strategy
           is path-dependent and that the exploration-exploitation trade-off manifests
           differently across corporate contexts.
         </p>

@@ -270,13 +270,13 @@ export default function Chapter14() {
         <li>Autonomous vehicle patent filings increased rapidly in the 2010s, coinciding with competition between established automakers and technology companies entering the transportation sector.</li>
         <li>Navigation and path planning constitutes the largest AV subfield, reflecting the central engineering challenge of route optimization and real-time autonomous decision-making.</li>
         <li>The competitive landscape spans traditional automakers (Toyota, Honda, Ford, GM), technology firms (Google/Waymo), and other technology companies, each pursuing distinct technical strategies.</li>
-        <li>Scene understanding -- computer vision applied to driving environments -- has emerged as one of the fastest-growing subfields, associated with advances in deep learning and sensor fusion.</li>
+        <li>Scene understanding — computer vision applied to driving environments — has emerged as one of the fastest-growing subfields, associated with advances in deep learning and sensor fusion.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems -- exemplified by Waymo and Tesla respectively -- is evident in the patent data, as is the growing convergence of <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction -- patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
+          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems — exemplified by Waymo and Tesla respectively — is evident in the patent data, as is the growing convergence of <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction — patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
         </p>
       </aside>
 
@@ -287,7 +287,7 @@ export default function Chapter14() {
         <p>
           Autonomous vehicles and advanced driver-assistance systems (ADAS) represent a convergence
           of artificial intelligence, sensor technology, and automotive engineering. This chapter
-          traces the patent landscape of <StatCallout value="self-driving technology" /> -- from
+          traces the patent landscape of <StatCallout value="self-driving technology" /> — from
           early cruise control and lane-keeping systems through the current era of fully autonomous
           driving platforms and robotaxis.
         </p>
@@ -298,12 +298,12 @@ export default function Chapter14() {
           AV patent activity serves as a barometer of the broader race toward autonomous
           transportation. The exponential growth in AV-related patenting since 2012 reflects
           the convergence of advances in deep learning, lidar and camera technology, and
-          high-definition mapping -- enabling capabilities that were considered decades away
+          high-definition mapping — enabling capabilities that were considered decades away
           only a generation earlier.
         </p>
       </KeyInsight>
 
-      {/* -- Section 1: Growth Trajectory --------------------------------------- */}
+      {/* — Section 1: Growth Trajectory --------------------------------------- */}
       <SectionDivider label="Growth Trajectory" />
 
       <ChartContainer
@@ -354,7 +354,7 @@ export default function Chapter14() {
         />
       </ChartContainer>
 
-      {/* -- Section 2: AV Share of All Patents --------------------------------- */}
+      {/* — Section 2: AV Share of All Patents --------------------------------- */}
       <ChartContainer
         id="fig-av-share"
         subtitle="AV patents as a percentage of all utility patents, showing the growing allocation of inventive effort toward autonomous driving."
@@ -375,14 +375,14 @@ export default function Chapter14() {
         />
       </ChartContainer>
 
-      {/* -- Section 3: AV Subfields ------------------------------------------- */}
+      {/* — Section 3: AV Subfields ------------------------------------------- */}
       <SectionDivider label="AV Subfields" />
 
       <ChartContainer
         id="fig-av-subfields"
         subtitle="Patent counts by AV subfield (vehicle control, navigation, scene understanding, and related subfields) over time, based on specific CPC group codes."
         title="Navigation and Path Planning Dominates AV Patenting, While Scene Understanding Has Emerged as the Fastest-Growing Subfield"
-        caption="Patent counts by AV subfield over time, based on CPC classifications. Navigation and path planning has consistently been the largest subfield, reflecting the central engineering challenge of route optimization and real-time decision-making. Scene understanding -- encompassing computer vision applied to driving environments -- has grown rapidly since 2015 as deep learning methods improved object detection and semantic segmentation."
+        caption="Patent counts by AV subfield over time, based on CPC classifications. Navigation and path planning has consistently been the largest subfield, reflecting the central engineering challenge of route optimization and real-time decision-making. Scene understanding — encompassing computer vision applied to driving environments — has grown rapidly since 2015 as deep learning methods improved object detection and semantic segmentation."
         insight="The dominance of navigation and path planning patents reflects the fundamental challenge of autonomous driving: route optimization and real-time decision-making. The rapid growth of scene understanding patents signals increasing sophistication in how AV systems perceive their environment."
         loading={sfL}
         height={650}
@@ -405,8 +405,8 @@ export default function Chapter14() {
         <p>
           The composition of AV patents reveals the multidisciplinary nature of autonomous
           driving. Navigation and path planning constitutes the largest subfield, addressing
-          route optimization and real-time decision-making. Vehicle control -- encompassing
-          steering, braking, and acceleration algorithms -- represents another major category. Scene understanding, which applies
+          route optimization and real-time decision-making. Vehicle control — encompassing
+          steering, braking, and acceleration algorithms — represents another major category. Scene understanding, which applies
           computer vision and deep learning to interpret driving environments, has been the
           fastest-growing subfield since 2015, reflecting advances in object detection,
           semantic segmentation, and sensor fusion that underpin modern ADAS and autonomous
@@ -414,7 +414,7 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
-      {/* -- Section 4: Top Organizations -------------------------------------- */}
+      {/* — Section 4: Top Organizations -------------------------------------- */}
       <SectionDivider label="Leading Organizations" />
 
       <ChartContainer
@@ -422,7 +422,7 @@ export default function Chapter14() {
         subtitle="Organizations ranked by total AV-related patent count, showing concentration among automakers and technology firms."
         title="Toyota, Honda, Ford, Waymo, and GM Lead in AV Patent Volume, Consistent With the Dual Nature of the Autonomous Vehicle Race"
         caption="Organizations ranked by total AV-related patents, 1976–2025. The data indicate a distinctive competitive landscape where traditional automakers and technology companies compete directly, each leveraging distinct capabilities in vehicle engineering and artificial intelligence."
-        insight="The AV patent landscape uniquely bridges two industries: traditional automakers bring decades of vehicle engineering expertise while technology firms contribute AI, sensor fusion, and software capabilities -- creating a competitive dynamic unlike any other technology domain."
+        insight="The AV patent landscape uniquely bridges two industries: traditional automakers bring decades of vehicle engineering expertise while technology firms contribute AI, sensor fusion, and software capabilities — creating a competitive dynamic unlike any other technology domain."
         loading={taL}
         height={1400}
       >
@@ -444,9 +444,9 @@ export default function Chapter14() {
       <KeyInsight>
         <p>
           The organizational landscape of AV patenting reflects the convergence of two
-          historically distinct industries. Traditional automakers -- Toyota, Ford, GM, Honda,
-          and Hyundai -- leverage their expertise in vehicle dynamics, safety systems, and
-          manufacturing scale. Technology companies -- Google/Waymo, Amazon/Zoox, and LG Electronics -- bring
+          historically distinct industries. Traditional automakers — Toyota, Ford, GM, Honda,
+          and Hyundai — leverage their expertise in vehicle dynamics, safety systems, and
+          manufacturing scale. Technology companies — Google/Waymo, Amazon/Zoox, and LG Electronics — bring
           capabilities in artificial intelligence, computer vision, and high-definition mapping.
           The presence of both types of organizations among the top patent holders underscores
           the multidisciplinary nature of autonomous driving, requiring the integration of
@@ -455,7 +455,7 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
-      {/* -- Section 5: Organization Rankings Over Time ------------------------- */}
+      {/* — Section 5: Organization Rankings Over Time ------------------------- */}
       {orgRankData.length > 0 && (
         <ChartContainer
           id="fig-av-org-rankings"
@@ -486,19 +486,19 @@ export default function Chapter14() {
           technology firms scaled their autonomous driving programs. This intensifying
           competition is consistent with the characterization of autonomous driving as a
           technology domain where incumbency in automotive manufacturing does not guarantee
-          leadership -- a pattern that distinguishes AV from most other transportation-related
+          leadership — a pattern that distinguishes AV from most other transportation-related
           patent categories.
         </p>
       </KeyInsight>
 
-      {/* -- Section 6: Top Inventors ------------------------------------------ */}
+      {/* — Section 6: Top Inventors ------------------------------------------ */}
       <SectionDivider label="Top Inventors" />
 
       <ChartContainer
         id="fig-av-top-inventors"
         subtitle="Primary inventors ranked by total AV-related patent count, illustrating the skewed distribution of individual output."
         title="A Small Cohort of Prolific Inventors Accounts for a Disproportionate Share of AV Patent Output"
-        caption="Primary inventors ranked by total AV-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals -- many affiliated with major automakers or technology firms -- accounting for a large share of total AV patent output."
+        caption="Primary inventors ranked by total AV-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals — many affiliated with major automakers or technology firms — accounting for a large share of total AV patent output."
         insight="The concentration of AV patenting among a small cohort of prolific inventors reflects the deep specialization required in autonomous systems engineering, where expertise in sensor fusion, control theory, and machine learning must be combined within individual inventive contributions."
         loading={tiL}
         height={1400}
@@ -523,7 +523,7 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
-      {/* -- Section 7: Geography ---------------------------------------------- */}
+      {/* — Section 7: Geography ---------------------------------------------- */}
       <SectionDivider label="Geographic Distribution" />
 
       <ChartContainer
@@ -559,7 +559,7 @@ export default function Chapter14() {
         id="fig-av-geography-state"
         subtitle="US states ranked by total AV-related patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California and Michigan Dominate US AV Patenting, Consistent With the Convergence of Tech and Auto Industries"
-        caption="US states ranked by total AV-related patents based on primary inventor location. California's lead reflects Silicon Valley's technology firms (Waymo, Tesla, Uber ATG), while Michigan's prominence reflects Detroit's automotive R&D heritage -- illustrating how AV innovation bridges two geographic clusters."
+        caption="US states ranked by total AV-related patents based on primary inventor location. California's lead reflects Silicon Valley's technology firms (Waymo, Tesla, Uber ATG), while Michigan's prominence reflects Detroit's automotive R&D heritage — illustrating how AV innovation bridges two geographic clusters."
         insight="The dual concentration in California and Michigan illustrates the unique nature of AV innovation: it requires the convergence of Silicon Valley's AI and software capabilities with Detroit's automotive engineering expertise."
         loading={geoL}
         height={900}
@@ -576,15 +576,15 @@ export default function Chapter14() {
         <p>
           Within the United States, AV patenting is concentrated in California and Michigan,
           reflecting the two pillars of the autonomous vehicle industry. California&apos;s
-          leadership is anchored by Silicon Valley technology companies -- Waymo, Tesla, Cruise,
-          and numerous startups -- while Michigan&apos;s prominence reflects the Detroit
+          leadership is anchored by Silicon Valley technology companies — Waymo, Tesla, Cruise,
+          and numerous startups — while Michigan&apos;s prominence reflects the Detroit
           automotive ecosystem, including GM, Ford, and their extensive supplier networks.
           This dual concentration distinguishes AV from most other technology domains examined
           in this book, where California typically dominates more decisively.
         </p>
       </KeyInsight>
 
-      {/* -- Section 8: Quality Indicators ------------------------------------- */}
+      {/* — Section 8: Quality Indicators ------------------------------------- */}
       <SectionDivider label="Quality Indicators" />
 
       <ChartContainer
@@ -636,14 +636,14 @@ export default function Chapter14() {
         />
       </ChartContainer>
 
-      {/* -- Section 9: AV Patenting Strategies -------------------------------- */}
+      {/* — Section 9: AV Patenting Strategies -------------------------------- */}
       <SectionDivider label="AV Patenting Strategies" />
       <Narrative>
         <p>
           The leading AV patent holders pursue markedly different technical strategies. Some
-          organizations concentrate on vehicle control and path planning -- reflecting an
-          automotive engineering approach -- while others invest heavily in scene understanding
-          and perception -- reflecting a computer science orientation. The lidar-versus-camera
+          organizations concentrate on vehicle control and path planning — reflecting an
+          automotive engineering approach — while others invest heavily in scene understanding
+          and perception — reflecting a computer science orientation. The lidar-versus-camera
           debate, exemplified by Waymo&apos;s multi-sensor approach and Tesla&apos;s
           camera-centric strategy, manifests in the patent portfolios of the leading firms.
         </p>
@@ -687,12 +687,12 @@ export default function Chapter14() {
           driving systems alongside navigation, reflecting their strengths in AI and software.
           The relative balance between these subfields within each organization&apos;s portfolio
           reveals whether its approach to autonomous driving is rooted in automotive engineering
-          or computer science -- a distinction that may ultimately determine competitive
+          or computer science — a distinction that may ultimately determine competitive
           outcomes as the industry matures.
         </p>
       </KeyInsight>
 
-      {/* -- Section 10: Cross-Domain Diffusion -------------------------------- */}
+      {/* — Section 10: Cross-Domain Diffusion -------------------------------- */}
       <SectionDivider label="AV as a Convergent Technology" />
       <Narrative>
         <p>
@@ -740,7 +740,7 @@ export default function Chapter14() {
         </p>
       </KeyInsight>
 
-      {/* -- Section 11: Team Comparison and Assignee Types --------------------- */}
+      {/* — Section 11: Team Comparison and Assignee Types --------------------- */}
       <SectionDivider label="The Collaborative Nature of AV Innovation" />
 
       <Narrative>
@@ -778,7 +778,7 @@ export default function Chapter14() {
         subtitle="Distribution of AV patents by assignee type (corporate, university, government, individual) over time."
         title="Corporate Assignees Dominate AV Patenting, With Technology Firms Driving Recent Growth"
         caption="Distribution of AV patent assignees by type (corporate, university, government, individual) over time. The data reveal overwhelming corporate dominance, reflecting the capital-intensive nature of autonomous vehicle R&D, which requires extensive testing infrastructure, sensor hardware, and large engineering teams."
-        insight="Corporate assignees dominate AV patenting to an even greater degree than in most technology domains, reflecting the substantial capital requirements of autonomous vehicle development -- from testing fleets to simulation infrastructure to regulatory compliance."
+        insight="Corporate assignees dominate AV patenting to an even greater degree than in most technology domains, reflecting the substantial capital requirements of autonomous vehicle development — from testing fleets to simulation infrastructure to regulatory compliance."
         loading={aatL}
         height={500}
       >
@@ -803,9 +803,9 @@ export default function Chapter14() {
           infrastructure, specialized sensor hardware, regulatory engagement, and large
           multidisciplinary teams spanning mechanical engineering, electrical engineering,
           computer science, and safety engineering. The relative absence of university and
-          individual inventors among AV patent holders -- more pronounced than in{' '}
+          individual inventors among AV patent holders — more pronounced than in{' '}
           <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patenting</Link>{' '}
-          generally -- underscores the capital-intensive nature of this technology domain.
+          generally — underscores the capital-intensive nature of this technology domain.
         </p>
       </KeyInsight>
 

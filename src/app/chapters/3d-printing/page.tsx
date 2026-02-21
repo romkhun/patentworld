@@ -286,7 +286,7 @@ export default function Chapter11() {
         </p>
         <p>
           3D printing, more formally known as additive manufacturing (AM), builds objects
-          layer by layer from digital models -- a fundamental departure from the subtractive
+          layer by layer from digital models — a fundamental departure from the subtractive
           machining and formative molding that have dominated manufacturing for centuries.
           This chapter examines the patent landscape of AM technologies, tracing their
           evolution from early stereolithography systems through the desktop printing boom
@@ -405,7 +405,7 @@ export default function Chapter11() {
       <KeyInsight>
         <p>
           The subfield composition of 3D printing patents reveals the technology&apos;s
-          evolving focus. AM processes -- covering the core methods of fused deposition
+          evolving focus. AM processes — covering the core methods of fused deposition
           modeling, stereolithography, selective laser sintering, and powder bed fusion --
           constitute the largest category, reflecting ongoing innovation in fundamental
           build techniques. Polymer additive manufacturing (B29C64) and metal additive
@@ -615,7 +615,7 @@ export default function Chapter11() {
         <p>
           AM patents exhibit distinctive quality characteristics. Backward citations peaked around 2013 and have since declined,
           while technology scope has shown a long-term increase. The expanding technology
-          scope -- measured by the number of distinct CPC subclasses per patent -- indicates
+          scope — measured by the number of distinct CPC subclasses per patent — indicates
           that AM inventions increasingly bridge multiple technology domains, consistent with
           the systems-level complexity of modern additive manufacturing platforms.
         </p>

@@ -346,8 +346,8 @@ export default function OrgPatentCountChapter() {
 
       <Narrative>
         <p>
-          Not all patents are created equal. A small fraction of patents -- so-called
-          &quot;blockbusters&quot; -- account for a disproportionate share of technological impact as
+          Not all patents are created equal. A small fraction of patents — so-called
+          &quot;blockbusters&quot; — account for a disproportionate share of technological impact as
           measured by forward citations. Blockbuster patents are defined here as those in the
           top 1% of forward citations received within five years, normalized within each grant
           year and <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> section cohort. The Lorenz curve provides a natural way to visualize

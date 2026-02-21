@@ -297,7 +297,7 @@ export default function Chapter15() {
           direct, biotech patents frequently emerge from basic scientific research conducted at
           universities and government laboratories, traverse lengthy regulatory approval processes,
           and raise profound ethical questions about the boundaries of patentable subject matter.
-          This chapter examines the trajectory of biotechnology and gene editing patents -- from
+          This chapter examines the trajectory of biotechnology and gene editing patents — from
           the recombinant DNA revolution of the 1970s through the genomic era and the current
           frontier of precision gene editing.
         </p>
@@ -308,7 +308,7 @@ export default function Chapter15() {
           Biotechnology patent activity serves as a barometer of the life sciences innovation
           ecosystem. The field has been shaped by a series of landmark scientific breakthroughs --
           recombinant DNA technology, polymerase chain reaction, the Human Genome Project, and
-          CRISPR-Cas9 -- each of which generated distinctive waves of patenting activity. The
+          CRISPR-Cas9 — each of which generated distinctive waves of patenting activity. The
           interplay between academic discovery, commercial development, and regulatory oversight
           makes biotech patenting uniquely complex among technology domains.
         </p>
@@ -460,7 +460,7 @@ export default function Chapter15() {
           overwhelmingly dominate, biotech patenting features a diverse organizational
           landscape. Agricultural biotech firms such as Monsanto, Pioneer Hi-Bred, and DuPont are
           among the top patent holders, alongside enzyme companies like Novozymes. Research
-          universities -- empowered by the Bayh-Dole Act -- hold prominent positions, with the
+          universities — empowered by the Bayh-Dole Act — hold prominent positions, with the
           University of California ranking first overall, and Harvard and Stanford also in the top ten.
           This mix of agricultural biotech, life sciences tools companies, and academic institutions
           is a defining feature of the biotech innovation ecosystem, with technology transfer
@@ -474,7 +474,7 @@ export default function Chapter15() {
           id="fig-biotech-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by biotechnology patent grants, with darker cells indicating higher rank."
           title="Organizational Leadership in Biotech Patenting Has Shifted as Gene Editing and mRNA Technologies Reshaped Competitive Dynamics"
-          caption="Annual ranking of the top 15 organizations by biotechnology patent grants, 1990–2025. Darker cells indicate higher rank (more patents). The data reveal how successive technological waves -- genomics, gene editing, and mRNA -- have altered the competitive landscape of biotech patenting."
+          caption="Annual ranking of the top 15 organizations by biotechnology patent grants, 1990–2025. Darker cells indicate higher rank (more patents). The data reveal how successive technological waves — genomics, gene editing, and mRNA — have altered the competitive landscape of biotech patenting."
           insight="The organizational rankings reveal dynamic competition in biotech patenting, with pharmaceutical incumbents facing challenges from specialized biotechnology firms and research-intensive universities as new technologies reshape the field."
           loading={ootL}
           height={600}
@@ -578,7 +578,7 @@ export default function Chapter15() {
         subtitle="US states ranked by total biotechnology patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="Biotech Patenting Clusters in States With Major Research Universities and Pharmaceutical Industry Presence"
         caption="US states ranked by total biotechnology-related patents based on primary inventor location. The data reflect the co-location of research universities, NIH-funded medical centers, pharmaceutical companies, and venture capital that characterizes leading biotech hubs."
-        insight="The state-level distribution of biotech patents reveals distinct clusters reflecting the co-location of research universities, teaching hospitals, pharmaceutical firms, and venture capital -- the key ingredients of the biotech innovation ecosystem."
+        insight="The state-level distribution of biotech patents reveals distinct clusters reflecting the co-location of research universities, teaching hospitals, pharmaceutical firms, and venture capital — the key ingredients of the biotech innovation ecosystem."
         loading={geoL}
         height={900}
       >
@@ -752,7 +752,7 @@ export default function Chapter15() {
           Biotechnology exhibits the characteristics of a platform technology with broad
           applicability across the economy. The strong co-classification with Human Necessities
           (Section A) reflects biotech&apos;s deep connections to healthcare, pharmaceuticals,
-          and agriculture -- the sectors where genetic engineering has had its most significant
+          and agriculture — the sectors where genetic engineering has had its most significant
           impact. The substantial co-occurrence with Physics (Section G, encompassing measurement and
           testing technologies) reflects the importance of analytical and diagnostic instrumentation
           in the field, while growing connections to other sections
@@ -823,7 +823,7 @@ export default function Chapter15() {
         <p>
           The distribution of biotechnology patents by assignee type reveals an instructive
           disconnect. Corporate assignees account for 96-98% of biotech patents in the aggregate
-          data, yet individual universities rank among the very top assignees -- the University of
+          data, yet individual universities rank among the very top assignees — the University of
           California holds the most biotech patents of any organization, and Harvard and Stanford
           both appear in the top ten. This apparent paradox likely reflects the common practice
           whereby university-originated inventions are assigned to corporate licensees, spin-off
@@ -843,14 +843,14 @@ export default function Chapter15() {
           innovation policy, bioethics, and public health regulation. The Supreme Court&apos;s
           decision in Association for Molecular Pathology v. Myriad Genetics (2013) established
           that naturally occurring DNA sequences cannot be patented, while synthetic cDNA
-          remains patentable -- a distinction that continues to shape patent strategy in genomics.
+          remains patentable — a distinction that continues to shape patent strategy in genomics.
           The ongoing CRISPR patent dispute between the Broad Institute and the University of
           California illustrates how foundational biotech patents can become the subject of
           protracted legal battles with billions of dollars in commercial value at stake.
         </p>
         <p>
           Gene editing technologies raise particularly acute ethical questions. The ability to
-          modify human germline cells -- changes that would be inherited by future generations --
+          modify human germline cells — changes that would be inherited by future generations --
           has prompted international calls for moratoriums and regulatory frameworks that have no
           parallel in other technology domains. These ethical and regulatory dimensions create
           unique constraints on how biotech patents translate into products and therapies,
@@ -864,13 +864,13 @@ export default function Chapter15() {
           The ethical and regulatory landscape surrounding biotechnology patents creates both
           constraints and incentives that shape inventive activity in distinctive ways. Patent
           exclusivity provides the economic incentive necessary to justify the substantial
-          investment required for drug development and clinical trials -- a process that typically
+          investment required for drug development and clinical trials — a process that typically
           costs over a billion dollars and spans more than a decade. At the same time, the
           patentability of biological materials remains subject to evolving legal standards and
           ethical considerations that have no direct analogue in other technology domains. The
           tension between incentivizing innovation and ensuring equitable access to
-          life-saving technologies -- exemplified by debates over mRNA vaccine patents during the
-          COVID-19 pandemic -- remains one of the most consequential policy questions in the
+          life-saving technologies — exemplified by debates over mRNA vaccine patents during the
+          COVID-19 pandemic — remains one of the most consequential policy questions in the
           modern patent system.
         </p>
       </KeyInsight>

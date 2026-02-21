@@ -333,7 +333,7 @@ export default function OrgCompanyProfilesChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          This chapter provides unified interactive company dashboards combining five dimensions of innovation for each of the top patent filers. Select a company below to explore its annual patent output, CPC technology composition, citation quality distribution, innovation strategy profile, and patent prosecution speed -- all in a single view.
+          This chapter provides unified interactive company dashboards combining five dimensions of innovation for each of the top patent filers. Select a company below to explore its annual patent output, CPC technology composition, citation quality distribution, innovation strategy profile, and patent prosecution speed — all in a single view.
         </p>
       </aside>
 
@@ -803,7 +803,7 @@ export default function OrgCompanyProfilesChapter() {
 
       <Narrative>
         <p>
-          The time between patent application filing and grant -- the <StatCallout value="grant lag" /> --
+          The time between patent application filing and grant — the <StatCallout value="grant lag" /> --
           varies substantially across companies and over time. Grant lag reflects differences in technology
           composition, prosecution strategy, and USPTO pendency patterns.
         </p>
@@ -887,10 +887,10 @@ export default function OrgCompanyProfilesChapter() {
         <p>
           These company profiles complete ACT 2&apos;s examination of organizations as institutional
           actors in the innovation system. The interactive dashboards reveal that no single metric
-          captures the complexity of corporate innovation -- volume, quality, breadth, strategy, and
+          captures the complexity of corporate innovation — volume, quality, breadth, strategy, and
           speed each contribute to a firm&apos;s strategic fingerprint. But organizations do not invent;
-          individuals do. The patterns documented across Chapters 8&ndash;12 -- rising concentration,
-          portfolio diversification, and quality dispersion -- ultimately reflect the aggregate
+          individuals do. The patterns documented across Chapters 8&ndash;12 — rising concentration,
+          portfolio diversification, and quality dispersion — ultimately reflect the aggregate
           contributions of the inventors who work within these firms. ACT 3 shifts from the
           institutional to the individual level, beginning with the{' '}
           <Link href="/chapters/inv-top-inventors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">

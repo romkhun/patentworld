@@ -275,7 +275,7 @@ export default function Chapter18() {
 
       <KeyFindings>
         <li>Digital health patent filings have grown substantially since 2009, with notable growth following the 2009 HITECH Act&apos;s mandate for electronic health record adoption and the 2020 COVID-19 pandemic, which coincided with rapid expansion of telemedicine adoption.</li>
-        <li>Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest subfield, reflecting the centrality of continuous data capture to modern healthcare.</li>
+        <li>Patient monitoring — encompassing vital signs, diagnostic imaging, and physiological signals — constitutes the largest subfield, reflecting the centrality of continuous data capture to modern healthcare.</li>
         <li>Surgical robotics, led by Intuitive Surgical (1,994 patents) and the da Vinci platform, has emerged as one of the fastest-growing subfields, with substantial growth in minimally invasive procedure technologies.</li>
         <li>Health informatics and clinical decision support are increasingly integrated with artificial intelligence, driving a convergence between digital health and machine learning technologies.</li>
       </KeyFindings>
@@ -283,7 +283,7 @@ export default function Chapter18() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two significant developments: the 2009 HITECH Act, which mandated electronic health record adoption and coincided with a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by medical device firms such as Philips, Medtronic, and Intuitive Surgical, alongside technology companies including IBM and Samsung -- yet the growing role of AI in clinical decision support is drawing even more technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents an active frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape surgical disciplines.
+          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two significant developments: the 2009 HITECH Act, which mandated electronic health record adoption and coincided with a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by medical device firms such as Philips, Medtronic, and Intuitive Surgical, alongside technology companies including IBM and Samsung — yet the growing role of AI in clinical decision support is drawing even more technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents an active frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape surgical disciplines.
         </p>
       </aside>
 
@@ -294,7 +294,7 @@ export default function Chapter18() {
         <p>
           Digital health bridges the worlds of medicine and computing, encompassing a broad
           range of technologies designed to capture, analyze, and act upon health-related data.
-          This chapter traces the evolution of digital health patenting -- from early patient
+          This chapter traces the evolution of digital health patenting — from early patient
           monitoring devices through the electronic health records revolution to the current
           era of AI-driven clinical decision support and robotic surgery.
         </p>
@@ -370,7 +370,7 @@ export default function Chapter18() {
         id="fig-digihealth-subfields"
         subtitle="Patent counts by digital health subfield (patient monitoring, health informatics, surgical robotics, and related subfields) over time."
         title="Patient Monitoring Dominates Digital Health Patenting, While Surgical Robotics and Health Informatics Are the Fastest-Growing Subfields"
-        caption="Patent counts by digital health subfield over time. Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest category. Surgical robotics and health informatics have exhibited the most rapid growth in recent years."
+        caption="Patent counts by digital health subfield over time. Patient monitoring — encompassing vital signs, diagnostic imaging, and physiological signals — constitutes the largest category. Surgical robotics and health informatics have exhibited the most rapid growth in recent years."
         insight="The shift toward health informatics and surgical robotics coincides with a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies are associated with more sophisticated clinical interventions."
         loading={sfL}
         height={650}
@@ -394,8 +394,8 @@ export default function Chapter18() {
           The composition of digital health patents reveals the evolving priorities of healthcare
           technology. Patient monitoring has long been the dominant subfield, reflecting the
           foundational importance of continuous physiological data capture. More recently,
-          surgical robotics -- led by platforms such as Intuitive Surgical&apos;s da Vinci system
-          -- has emerged as a rapidly growing category, while health informatics and clinical
+          surgical robotics — led by platforms such as Intuitive Surgical&apos;s da Vinci system
+          — has emerged as a rapidly growing category, while health informatics and clinical
           decision support have expanded in tandem with advances in artificial intelligence and
           machine learning.
         </p>
@@ -482,7 +482,7 @@ export default function Chapter18() {
         id="fig-digihealth-top-inventors"
         subtitle="Primary inventors ranked by total digital health patent count, illustrating the distribution of individual inventive output."
         title="The Most Prolific Digital Health Inventors Are Typically Affiliated With Major Medical Device Firms"
-        caption="Primary inventors ranked by total digital health patents. The distribution exhibits pronounced skewness, with a small number of highly productive individuals -- often associated with leading medical device companies -- accounting for a disproportionate share of output."
+        caption="Primary inventors ranked by total digital health patents. The distribution exhibits pronounced skewness, with a small number of highly productive individuals — often associated with leading medical device companies — accounting for a disproportionate share of output."
         insight="The concentration of digital health patenting among a small cohort of prolific inventors mirrors the broader superstar pattern in innovation, amplified by the specialized clinical and engineering expertise required in medical technology."
         loading={tiL}
         height={1400}
@@ -559,7 +559,7 @@ export default function Chapter18() {
       <KeyInsight>
         <p>
           Within the United States, digital health patenting is concentrated in California
-          and Massachusetts -- the two leading states by a substantial margin. California&apos;s
+          and Massachusetts — the two leading states by a substantial margin. California&apos;s
           leadership reflects the Silicon Valley health technology corridor, where
           software-driven approaches to clinical decision support and telemedicine predominate.
           Massachusetts ranks second, reflecting its concentration of medical device firms,
@@ -655,7 +655,7 @@ export default function Chapter18() {
           GE Healthcare maintain broad portfolios spanning diagnostic imaging and health
           informatics. Siemens concentrates on medical imaging informatics and healthcare IT
           infrastructure. The emergence of surgical robotics as a distinct strategic focus --
-          particularly for Intuitive Surgical -- illustrates how patent-protected platforms
+          particularly for Intuitive Surgical — illustrates how patent-protected platforms
           can define new categories of medical intervention.
         </p>
       </KeyInsight>
@@ -668,7 +668,7 @@ export default function Chapter18() {
           A defining characteristic of digital health is its diffusion across multiple
           technology domains. By tracking how frequently digital health patents also carry CPC
           codes from other technology areas, it is possible to measure the spread of healthcare
-          technology into computing, chemistry, and other sectors -- and conversely, the
+          technology into computing, chemistry, and other sectors — and conversely, the
           adoption of external technologies within healthcare.
         </p>
       </Narrative>
@@ -701,13 +701,13 @@ export default function Chapter18() {
         <p>
           Digital health increasingly exhibits the characteristics of a cross-domain
           technology. The highest co-occurrence is with Electricity (Section H), which
-          encompasses electronic circuits, communication, and electric signaling -- reflecting
+          encompasses electronic circuits, communication, and electric signaling — reflecting
           the deep integration of electronic systems into medical devices. Performing Operations
           (Section B), covering surgical instruments and mechanical processes, is also strongly
           represented. Co-occurrence with Chemistry (Section C) indicates connections to
           pharmaceutical and biochemical technologies. This pattern of broad diffusion suggests
           that digital health innovation is not confined to a single technology silo but draws
-          on -- and contributes to -- advances across multiple sectors of the economy.
+          on — and contributes to — advances across multiple sectors of the economy.
         </p>
       </KeyInsight>
 
@@ -773,7 +773,7 @@ export default function Chapter18() {
           underscores the resource-intensive nature of healthcare technology innovation.
           Unlike software-centric technology domains where individual inventors and startups
           can make disproportionate contributions, medical device innovation requires substantial
-          investment in clinical trials, regulatory submissions, and manufacturing -- creating
+          investment in clinical trials, regulatory submissions, and manufacturing — creating
           structural advantages for large, established organizations with existing
           relationships with healthcare systems and regulatory agencies.
         </p>

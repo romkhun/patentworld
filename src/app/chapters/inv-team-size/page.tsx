@@ -238,7 +238,7 @@ export default function InvTeamSizeChapter() {
         title="Solo Inventor Patents Declined from 58% to 23% of All Grants by 2025 (Through September)"
         subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976–2025"
         caption="The figure tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
-        insight="Solo invention has not disappeared in absolute terms -- solo patent counts have roughly doubled -- but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
+        insight="Solo invention has not disappeared in absolute terms — solo patent counts have roughly doubled — but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
         loading={soL}
       >
         <PWLineChart
@@ -500,7 +500,7 @@ export default function InvTeamSizeChapter() {
           The team-size citation premium has not been constant: it has grown substantially
           across decades, with the largest gains accruing to teams of 7 or more inventors.
           This pattern is consistent with the hypothesis that the increasing complexity of
-          modern technology rewards larger, more diverse teams -- and that the returns to
+          modern technology rewards larger, more diverse teams — and that the returns to
           collaboration have risen over time rather than diminished.
         </p>
       </KeyInsight>
@@ -521,8 +521,8 @@ export default function InvTeamSizeChapter() {
       <Narrative>
         <p>
           Beyond team size, the institutional diversity of inventor teams provides an additional
-          dimension of collaboration. Cross-institutional patents -- those listing inventors from
-          more than one assignee type (such as a corporation and a university) -- represent a
+          dimension of collaboration. Cross-institutional patents — those listing inventors from
+          more than one assignee type (such as a corporation and a university) — represent a
           distinctive form of collaboration that bridges organizational boundaries.
         </p>
       </Narrative>
@@ -587,9 +587,9 @@ export default function InvTeamSizeChapter() {
       <Narrative>
         <p>
           The team-based structure of modern invention documented in this chapter concludes
-          ACT 3: The Inventors. Having examined who invents -- from top inventors and
+          ACT 3: The Inventors. Having examined who invents — from top inventors and
           specialization patterns to career trajectories, gender composition, and team
-          structure -- the analysis now shifts to <em>where</em> innovation happens. ACT 4:
+          structure — the analysis now shifts to <em>where</em> innovation happens. ACT 4:
           The Geography begins with{' '}
           <Link
             href="/chapters/geo-domestic/"

@@ -86,7 +86,7 @@ export default function MechGeographyChapter() {
 
       <Narrative>
         <p>
-          The geography of collaborative invention operates at multiple scales. At the international level, cross-border co-invention has expanded steadily as multinational firms distribute their research activities across countries and communication technology reduces the friction of remote collaboration. At the bilateral level, specific country-pair corridors -- particularly the United States and China -- reveal how economic integration, talent mobility, and policy constraints interact. And at the city level, the diffusion of emerging technologies traces a recurring pattern from concentrated origins to broader geographic spread.
+          The geography of collaborative invention operates at multiple scales. At the international level, cross-border co-invention has expanded steadily as multinational firms distribute their research activities across countries and communication technology reduces the friction of remote collaboration. At the bilateral level, specific country-pair corridors — particularly the United States and China — reveal how economic integration, talent mobility, and policy constraints interact. And at the city level, the diffusion of emerging technologies traces a recurring pattern from concentrated origins to broader geographic spread.
         </p>
         <p>
           This chapter brings together these geographic dimensions, drawing on cross-border collaboration data, bilateral co-invention rates, and city-level technology diffusion to map the spatial mechanics of innovation.
@@ -141,7 +141,7 @@ export default function MechGeographyChapter() {
 
       <Narrative>
         <p>
-          International co-invention rates -- the share of US patents with inventors from multiple countries -- illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018, coinciding with new US export control regulations and entity list restrictions.
+          International co-invention rates — the share of US patents with inventors from multiple countries — illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018, coinciding with new US export control regulations and entity list restrictions.
         </p>
       </Narrative>
 
@@ -260,7 +260,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          The stable home-country citation bias -- hovering between 58% and 64% across five decades -- is one of the most notable findings in the geography of knowledge flows. Despite the substantial increase in international co-invention (from 1% to 10% of patents) and the globalization of corporate R&D, inventors continue to cite patents from their own country at the same rate as in the 1980s. This persistence suggests that tacit knowledge, language, institutional proximity, and local knowledge networks continue to shape how inventors identify and build upon prior art.
+          The stable home-country citation bias — hovering between 58% and 64% across five decades — is one of the most notable findings in the geography of knowledge flows. Despite the substantial increase in international co-invention (from 1% to 10% of patents) and the globalization of corporate R&D, inventors continue to cite patents from their own country at the same rate as in the 1980s. This persistence suggests that tacit knowledge, language, institutional proximity, and local knowledge networks continue to shape how inventors identify and build upon prior art.
         </p>
       </KeyInsight>
 
@@ -270,14 +270,14 @@ export default function MechGeographyChapter() {
           The cross-border collaboration and innovation diffusion patterns documented in this chapter
           complete ACT 5: The Mechanics, which traced how knowledge flows through the innovation system
           at the organizational, individual, and geographic levels. Chapters 20&ndash;22 revealed that
-          knowledge transfer operates through distinct but interconnected channels -- inter-firm citation
+          knowledge transfer operates through distinct but interconnected channels — inter-firm citation
           networks, inventor mobility and collaboration ties, and cross-border co-invention corridors --
           each shaping how ideas propagate from their origins to new applications and locations.
         </p>
         <p>
           ACT 6 shifts from these system-wide perspectives to{' '}
           <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
-          into specific technology domains -- from 3D printing and agricultural technology to AI,
+          into specific technology domains — from 3D printing and agricultural technology to AI,
           autonomous vehicles, biotechnology, and beyond. Each deep dive applies the analytical
           frameworks developed across the preceding five acts to a single field, revealing how
           domain-specific dynamics interact with the broader structural patterns documented here.

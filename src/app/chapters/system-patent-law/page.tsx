@@ -459,7 +459,7 @@ export default function Chapter4() {
       <MeasurementSidebar slug="system-patent-law" />
 
       <KeyFindings>
-        <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
+        <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) allowed universities to retain patent rights from federally funded research, and was followed by substantial growth in academic patenting.</li>
         <li>The <GlossaryTooltip term="AIA">America Invents Act</GlossaryTooltip> (2011) constituted the most significant patent reform since 1952, transitioning the United States from a first-to-invent to a first-inventor-to-file system.</li>
         <li>In <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank International</GlossaryTooltip> (2014), the Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially curtailing patent eligibility for software and business method patents.</li>
         <li>Legislative and judicial changes are associated with observable shifts in patent filing patterns, with changes appearing in the data within one to two years of major rulings.</li>
@@ -468,7 +468,7 @@ export default function Chapter4() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility coincided with the volume growth documented in <Link href="/chapters/system-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data are consistent with these legal shifts producing observable changes in patent filing patterns within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 — during which university patenting, strengthened enforcement, and broadened subject-matter eligibility coincided with the volume growth documented in <Link href="/chapters/system-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> — followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data are consistent with these legal shifts producing observable changes in patent filing patterns within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 
@@ -476,7 +476,7 @@ export default function Chapter4() {
         <p>
           The patent system operates within a dynamic legal and institutional context. Over the past half century,{' '}
           <StatCallout value="landmark legislation" />, Supreme Court decisions, and policy
-          changes have fundamentally reshaped the rules governing patents -- who may obtain them,
+          changes have fundamentally reshaped the rules governing patents — who may obtain them,
           what subject matter is patent-eligible, and how patents may be enforced. These legal shifts have had
           substantial effects on patenting behavior, with observable impacts on the trends documented
           throughout this book.
@@ -675,7 +675,7 @@ export default function Chapter4() {
 
       <KeyInsight>
         <p>
-          The art-group-level analysis reveals a nuanced picture of Alice&apos;s impact. While the decision imposed a meaningful eligibility constraint, patent grants in affected art groups continued to grow -- applicants adapted their claims and prosecution strategies. Meanwhile, examination pendency declined faster in treatment groups (from 1,267 median days in 2009 to 978 in 2023) compared to controls (from 1,440 to 1,114), suggesting that the Alice framework may have streamlined examination by providing clearer eligibility criteria.
+          The art-group-level analysis reveals a nuanced picture of Alice&apos;s impact. While the decision imposed a meaningful eligibility constraint, patent grants in affected art groups continued to grow — applicants adapted their claims and prosecution strategies. Meanwhile, examination pendency declined faster in treatment groups (from 1,267 median days in 2009 to 978 in 2023) compared to controls (from 1,440 to 1,114), suggesting that the Alice framework may have streamlined examination by providing clearer eligibility criteria.
         </p>
       </KeyInsight>
 
@@ -825,7 +825,7 @@ export default function Chapter4() {
         American Economic Review, Quarterly Journal of Economics, Journal of Political
         Economy, Review of Economic Studies, Management Science, Strategic Management
         Journal, and Academy of Management Journal. Applications versus grants data uses
-        PatentsView, which only includes patents that were eventually granted -- the
+        PatentsView, which only includes patents that were eventually granted — the
         &quot;applications&quot; count therefore represents successful filings rather than total
         submissions to the USPTO.
       </DataNote>

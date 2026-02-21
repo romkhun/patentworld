@@ -110,7 +110,7 @@ export default function SystemPatentQualityChapter() {
         <li>Average patent scope grew from 1.8 to a peak of 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent in 2020, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
         <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 system-wide (section-level averages reached 0.45-0.55 by the 2020s; see <Link href="/chapters/system-patent-fields/">Patent Fields</Link> chapter) while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
-        <li>Sleeping beauty patents -- inventions that received fewer than 2 citations per year in their first 10 years, then experienced a burst of 10 or more citations within a 3-year window -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
+        <li>Sleeping beauty patents — inventions that received fewer than 2 citations per year in their first 10 years, then experienced a burst of 10 or more citations within a 3-year window — are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -122,10 +122,10 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          Measuring the quality of patents is among the most consequential -- and most contested -- challenges in the economics of innovation. Unlike patent counts, which capture the <em>quantity</em> of inventive activity, quality indicators attempt to measure how significant, broad, and influential individual inventions are. No single metric suffices: claim structures reveal the legal scope of protection, classification breadth captures technological interdisciplinarity, forward citations measure downstream impact, and knowledge flow indicators such as originality and generality illuminate the diversity of inputs and outputs in the inventive process.
+          Measuring the quality of patents is among the most consequential — and most contested — challenges in the economics of innovation. Unlike patent counts, which capture the <em>quantity</em> of inventive activity, quality indicators attempt to measure how significant, broad, and influential individual inventions are. No single metric suffices: claim structures reveal the legal scope of protection, classification breadth captures technological interdisciplinarity, forward citations measure downstream impact, and knowledge flow indicators such as originality and generality illuminate the diversity of inputs and outputs in the inventive process.
         </p>
         <p>
-          This chapter synthesizes eight complementary dimensions of patent quality, drawing together evidence from claim analysis, scope measurement, citation dynamics, and knowledge flow indicators. The patterns that emerge are not always consistent -- quality trends in one dimension do not necessarily parallel trends in another -- but together they provide a multifaceted portrait of how the nature and significance of patented inventions has evolved from the late 1970s through the present.
+          This chapter synthesizes eight complementary dimensions of patent quality, drawing together evidence from claim analysis, scope measurement, citation dynamics, and knowledge flow indicators. The patterns that emerge are not always consistent — quality trends in one dimension do not necessarily parallel trends in another — but together they provide a multifaceted portrait of how the nature and significance of patented inventions has evolved from the late 1970s through the present.
         </p>
       </Narrative>
 
@@ -179,7 +179,7 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          Examining the distribution more closely -- particularly at the extremes -- reveals how the upper tail of claim counts has shifted relative to the median over the same period.
+          Examining the distribution more closely — particularly at the extremes — reveals how the upper tail of claim counts has shifted relative to the median over the same period.
         </p>
       </Narrative>
 
@@ -284,7 +284,7 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          Forward citations -- the frequency with which a patent is cited by subsequent inventions -- constitute the
+          Forward citations — the frequency with which a patent is cited by subsequent inventions — constitute the
           most widely employed indicator of patent quality in the economics of innovation literature. A patent
           that receives numerous forward citations has produced knowledge that subsequent inventors deemed sufficiently
           valuable to build upon.
@@ -348,7 +348,7 @@ export default function SystemPatentQualityChapter() {
       <KeyInsight>
         <p>
           After cohort normalization, the mean citation index is mechanically near 1.0, but the median
-          consistently falls below 1.0 -- confirming that most patents are cited below average.
+          consistently falls below 1.0 — confirming that most patents are cited below average.
           The rising top-1% citation share indicates growing concentration of impact among a shrinking
           elite of breakthrough patents.
         </p>
@@ -431,7 +431,7 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          Self-citation rates -- the fraction of backward citations directed to patents held by the same assignee -- provide a window into how firms balance internal knowledge accumulation with external knowledge absorption. Organizations that consistently cite their own prior patents are building on
+          Self-citation rates — the fraction of backward citations directed to patents held by the same assignee — provide a window into how firms balance internal knowledge accumulation with external knowledge absorption. Organizations that consistently cite their own prior patents are building on
           internal knowledge stocks, a characteristic of cumulative innovation within technological
           trajectories.
         </p>
@@ -477,7 +477,7 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          The citation lag -- the temporal distance over which patents cite prior art -- has increased steadily,
+          The citation lag — the temporal distance over which patents cite prior art — has increased steadily,
           indicating that the useful life of patented knowledge continues to extend. Contemporary
           patents draw on an increasingly expansive base of prior art, reaching further back in time
           than patents of earlier decades.
@@ -486,8 +486,8 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          The lengthening citation lag -- from 3 years in the early 1980s to 16 years
-          in the most recent period -- is consistent with the expanding body of relevant prior art requiring newer patents
+          The lengthening citation lag — from 3 years in the early 1980s to 16 years
+          in the most recent period — is consistent with the expanding body of relevant prior art requiring newer patents
           to reach further back in time. This widening temporal window is associated with both the cumulative
           nature of technological progress and the increasing searchability of prior art databases.
         </p>
@@ -502,7 +502,7 @@ export default function SystemPatentQualityChapter() {
       <Narrative>
         <p>
           The <StatCallout value="originality" /> index (Trajtenberg, Henderson, and Jaffe, 1997)
-          measures the diversity of a patent&apos;s technology sources -- a patent that cites
+          measures the diversity of a patent&apos;s technology sources — a patent that cites
           prior art across many different CPC sections is more &quot;original&quot; than one citing
           only its own field. The <StatCallout value="generality" /> index measures the
           converse: the diversity of citing patents, capturing whether an invention has
@@ -625,9 +625,9 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          Sleeping beauty patents -- defined here as patents receiving fewer than 2 citations per year
+          Sleeping beauty patents — defined here as patents receiving fewer than 2 citations per year
           during their first 10 years after grant, then experiencing a burst of 10 or more citations
-          within a subsequent 3-year window -- are overwhelmingly concentrated in Human Necessities
+          within a subsequent 3-year window — are overwhelmingly concentrated in Human Necessities
           (Section A), which accounts for 94% of identified cases. In this domain, fundamental
           discoveries may require decades to find practical applications. The existence of these
           dormant-then-resurgent patents challenges the assumption that citation impact can be
@@ -673,7 +673,7 @@ export default function SystemPatentQualityChapter() {
 
       <Narrative>
         <p>
-          Non-patent literature (NPL) citations -- references to journal articles, conference proceedings, technical reports, and other scientific publications -- provide a window into how closely patent activity is linked to the underlying science base. Rising NPL citation counts indicate a tightening relationship between scientific discovery and commercial invention.
+          Non-patent literature (NPL) citations — references to journal articles, conference proceedings, technical reports, and other scientific publications — provide a window into how closely patent activity is linked to the underlying science base. Rising NPL citation counts indicate a tightening relationship between scientific discovery and commercial invention.
         </p>
       </Narrative>
 
@@ -701,7 +701,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-npl-citations-by-cpc"
         title="Chemistry & Metallurgy Leads NPL Citations at 32.3 per Patent, 2.7 Times the System Average"
         subtitle="Average non-patent literature citations per patent by CPC section, 2010–2025"
-        caption="NPL citation intensity varies substantially by technology field. Chemistry (C) and Human Necessities (A) -- which include pharmaceuticals and biotechnology -- cite the scientific literature most heavily, reflecting the tight science-invention link in these domains."
+        caption="NPL citation intensity varies substantially by technology field. Chemistry (C) and Human Necessities (A) — which include pharmaceuticals and biotechnology — cite the scientific literature most heavily, reflecting the tight science-invention link in these domains."
         loading={nplCpcL}
       >
         <PWBarChart
@@ -809,7 +809,7 @@ export default function SystemPatentQualityChapter() {
       {/* ================================================================== */}
 
       <Narrative>
-        Having examined patent quality across eight complementary dimensions -- from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents -- the next chapter turns to the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.
+        Having examined patent quality across eight complementary dimensions — from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents — the next chapter turns to the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.
       </Narrative>
 
       <InsightRecap

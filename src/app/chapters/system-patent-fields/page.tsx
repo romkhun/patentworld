@@ -509,7 +509,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Patent grant concentration by assignee across all technology sectors remains below conventional thresholds, with HHI values well below 1,500. Even in Electricity (H) and Physics (G) -- the sections most associated with large technology firms -- concentration remains low, though Textiles and Paper (D) has exhibited the highest concentration since 2010, consistent with its smaller inventor base and more specialized industrial structure.
+          Patent grant concentration by assignee across all technology sectors remains below conventional thresholds, with HHI values well below 1,500. Even in Electricity (H) and Physics (G) — the sections most associated with large technology firms — concentration remains low, though Textiles and Paper (D) has exhibited the highest concentration since 2010, consistent with its smaller inventor base and more specialized industrial structure.
         </p>
       </KeyInsight>
 
@@ -810,7 +810,7 @@ export default function SystemPatentFieldsChapter() {
 
       <Narrative>
         <p>
-          The characteristics of patents -- their claim complexity, quality indicators, and self-citation patterns -- vary systematically across technology fields. These differences reflect both the underlying nature of innovation in each domain and the evolving strategies that patent applicants employ across fields. This section examines claim counts by <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> section and <GlossaryTooltip term="WIPO">WIPO</GlossaryTooltip> technology sector, and self-citation patterns that reveal how firms accumulate knowledge within specific technology areas.
+          The characteristics of patents — their claim complexity, quality indicators, and self-citation patterns — vary systematically across technology fields. These differences reflect both the underlying nature of innovation in each domain and the evolving strategies that patent applicants employ across fields. This section examines claim counts by <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> section and <GlossaryTooltip term="WIPO">WIPO</GlossaryTooltip> technology sector, and self-citation patterns that reveal how firms accumulate knowledge within specific technology areas.
         </p>
       </Narrative>
 
@@ -826,7 +826,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with median claims in the high teens by the 2020s. The gap in median claims across CPC sections widened from approximately 1 claim in 1976 to 4 claims by the 2020s -- that is, the difference between the highest-median section (Physics, 19 claims) and the lowest-median section (Textiles, 15 claims) grew from near-parity to a 4-claim spread, reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with median claims in the high teens by the 2020s. The gap in median claims across CPC sections widened from approximately 1 claim in 1976 to 4 claims by the 2020s — that is, the difference between the highest-median section (Physics, 19 claims) and the lowest-median section (Textiles, 15 claims) grew from near-parity to a 4-claim spread, reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -919,7 +919,7 @@ export default function SystemPatentFieldsChapter() {
         title="Generality Has Remained Stable at 0.25-0.45, with Operations (B) and Fixed Constructions (E) Consistently the Most General"
         subtitle="Average generality index by CPC section, 1976–2025, measuring how broadly each section's patents are cited across technology classes."
         caption="Average generality index per patent by CPC section and year. Generality measures the Herfindahl-based diversity of CPC classes in a patent's forward citations. Unlike originality, generality has remained relatively stable over time, indicating that the breadth of a patent's downstream impact is more intrinsic to its technology domain."
-        insight="The stability of generality over time suggests that certain technology areas -- particularly Operations (B) and Fixed Constructions (E) -- produce innovations with inherently broader applicability across fields, a pattern that has persisted for five decades."
+        insight="The stability of generality over time suggests that certain technology areas — particularly Operations (B) and Fixed Constructions (E) — produce innovations with inherently broader applicability across fields, a pattern that has persisted for five decades."
         loading={qcL}
       >
         <PWLineChart
@@ -998,7 +998,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Distinguishing genuine cumulative innovation from strategic citation behavior poses a fundamental measurement challenge. If elevated self-citation rates in patent-dense fields such as semiconductors primarily reflect defensive portfolio construction -- citing one&apos;s own patents to build thickets that raise barriers to entry -- then self-citation ceases to be a reliable indicator of knowledge accumulation. Resolving this ambiguity requires firm-level analysis linking self-citation intensity to subsequent market entry patterns and competitive dynamics, a question explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
+          Distinguishing genuine cumulative innovation from strategic citation behavior poses a fundamental measurement challenge. If elevated self-citation rates in patent-dense fields such as semiconductors primarily reflect defensive portfolio construction — citing one&apos;s own patents to build thickets that raise barriers to entry — then self-citation ceases to be a reliable indicator of knowledge accumulation. Resolving this ambiguity requires firm-level analysis linking self-citation intensity to subsequent market entry patterns and competitive dynamics, a question explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
         </p>
       </KeyInsight>
 

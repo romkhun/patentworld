@@ -222,7 +222,7 @@ export default function SystemConvergenceChapter() {
 
       <Narrative>
         <p>
-          The aggregate rise in multi-section patenting can be decomposed into two distinct sources using a shift-share framework. <em>Within-firm</em> convergence captures the extent to which individual organizations have broadened their technological scope over time, filing patents that span more CPC sections than they did previously. <em>Between-firm</em> convergence reflects compositional shifts in the population of patentees -- for instance, the growing share of firms that are inherently multi-domain (such as large technology conglomerates) relative to single-domain specialists. Understanding whether convergence is driven primarily by firms individually expanding their technological breadth or by structural changes in the composition of patenting organizations has important implications for innovation policy and competitive strategy.
+          The aggregate rise in multi-section patenting can be decomposed into two distinct sources using a shift-share framework. <em>Within-firm</em> convergence captures the extent to which individual organizations have broadened their technological scope over time, filing patents that span more CPC sections than they did previously. <em>Between-firm</em> convergence reflects compositional shifts in the population of patentees — for instance, the growing share of firms that are inherently multi-domain (such as large technology conglomerates) relative to single-domain specialists. Understanding whether convergence is driven primarily by firms individually expanding their technological breadth or by structural changes in the composition of patenting organizations has important implications for innovation policy and competitive strategy.
         </p>
       </Narrative>
 
@@ -252,7 +252,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          The shift-share decomposition reveals that within-firm technological broadening accounts for the majority of the convergence trend. Organizations are individually expanding the number of CPC sections their patents span, rather than the aggregate trend being driven by a changing mix of firm types. This finding suggests that convergence reflects a genuine strategic shift in how firms approach innovation -- increasingly drawing on knowledge and techniques from adjacent and distant technology fields to solve problems that were once addressed within narrower disciplinary boundaries.
+          The shift-share decomposition reveals that within-firm technological broadening accounts for the majority of the convergence trend. Organizations are individually expanding the number of CPC sections their patents span, rather than the aggregate trend being driven by a changing mix of firm types. This finding suggests that convergence reflects a genuine strategic shift in how firms approach innovation — increasingly drawing on knowledge and techniques from adjacent and distant technology fields to solve problems that were once addressed within narrower disciplinary boundaries.
         </p>
       </KeyInsight>
 
@@ -285,7 +285,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          While near-field convergence -- combinations of closely related technology domains such as Physics and Electricity -- continues to account for the largest share of multi-section patents, far-field convergence has been growing at a notably faster rate. This acceleration of distant-field combinations is consistent with the emergence of fundamentally interdisciplinary technologies (such as bioelectronics, computational chemistry, and AI-driven materials science) that require integration of knowledge from traditionally separate scientific and engineering traditions. The growing share of far-field convergence suggests that the innovation frontier is increasingly defined by the ability to bridge distant knowledge domains.
+          While near-field convergence — combinations of closely related technology domains such as Physics and Electricity — continues to account for the largest share of multi-section patents, far-field convergence has been growing at a notably faster rate. This acceleration of distant-field combinations is consistent with the emergence of fundamentally interdisciplinary technologies (such as bioelectronics, computational chemistry, and AI-driven materials science) that require integration of knowledge from traditionally separate scientific and engineering traditions. The growing share of far-field convergence suggests that the innovation frontier is increasingly defined by the ability to bridge distant knowledge domains.
         </p>
       </KeyInsight>
 
@@ -336,7 +336,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          A small number of large organizations dominate multi-section patenting, and their share has generally increased over time. These firms -- typically large technology conglomerates with diversified R&D portfolios -- are disproportionately responsible for bridging technology domains. Their scale enables them to maintain research programs across multiple CPC sections simultaneously, facilitating cross-pollination across technology domains. This concentration has implications for competition policy: if cross-domain innovation increasingly requires the scale and scope of a major technology firm, barriers to entry for smaller or more specialized organizations may be rising.
+          A small number of large organizations dominate multi-section patenting, and their share has generally increased over time. These firms — typically large technology conglomerates with diversified R&D portfolios — are disproportionately responsible for bridging technology domains. Their scale enables them to maintain research programs across multiple CPC sections simultaneously, facilitating cross-pollination across technology domains. This concentration has implications for competition policy: if cross-domain innovation increasingly requires the scale and scope of a major technology firm, barriers to entry for smaller or more specialized organizations may be rising.
         </p>
       </KeyInsight>
 
@@ -380,7 +380,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          The 2&times;2 framework clarifies that not all interdisciplinary patents are alike. A patent spanning Physics and Electricity (high convergence, narrow scope) represents routine cross-domain activity, while a patent combining biotechnology, computation, and materials science (low convergence, broad scope) represents radical recombination. The data show that the fastest-growing category is broad-scope patents in established convergence zones -- platform innovations that integrate multiple well-trodden cross-domain pathways.
+          The 2&times;2 framework clarifies that not all interdisciplinary patents are alike. A patent spanning Physics and Electricity (high convergence, narrow scope) represents routine cross-domain activity, while a patent combining biotechnology, computation, and materials science (low convergence, broad scope) represents radical recombination. The data show that the fastest-growing category is broad-scope patents in established convergence zones — platform innovations that integrate multiple well-trodden cross-domain pathways.
         </p>
       </KeyInsight>
 
