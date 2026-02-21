@@ -310,7 +310,7 @@ export default function Chapter14() {
         id="fig-av-annual-count"
         subtitle="Annual count of utility patents classified under AV-related CPC codes, tracking the growth trajectory of autonomous vehicle patenting."
         title="AV Patent Filings Increased Rapidly Through the 2010s, Coinciding With the Entry of Technology Companies Into the Transportation Sector"
-        caption="Annual count and share of utility patents classified under AV-related CPC codes (G05D1, B60W, G08G), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under AV-related CPC codes (B60W60, G05D1, G06V20/56), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AV patents mirrors the broader industry transformation, coinciding with advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
         loading={pyL}
       >

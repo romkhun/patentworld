@@ -921,7 +921,7 @@ export default function Chapter16() {
 
       <DataNote>
         Blockchain patents are identified using CPC classifications H04L9/0643 (distributed
-        ledger technology) and G06Q20/06 (digital currency and payment schemes). A patent is
+        ledger technology) and G06Q20/0655 (digital currency and payment schemes). A patent is
         classified as blockchain-related if any of its CPC codes fall within these categories.
         Subfield classifications distinguish between distributed ledger and consensus technologies
         versus cryptocurrency and digital money applications. Due to the narrow range of CPC codes
