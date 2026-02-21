@@ -241,7 +241,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-choropleth"
-        subtitle="Total utility patents by primary inventor state (1976-2025), displayed as a choropleth map with darker shading for higher counts."
+        subtitle="Total utility patents by primary inventor state (1976–2025), displayed as a choropleth map with darker shading for higher counts."
         title="Patent Activity Concentrates on the Coasts, with California's 992,708 Patents Exceeding the Bottom 30 States and Territories Combined (314,664)"
         caption="The choropleth map displays total utility patents by primary inventor state from 1976 to 2025, with darker shading indicating higher patent counts. The coastal concentration is pronounced, with California, New York, and Texas exhibiting the highest totals."
         insight="The coastal concentration of patent activity is associated with the co-location of technology firms, research universities, and venture capital in a small number of self-reinforcing innovation ecosystems."
@@ -261,8 +261,8 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-rankings"
-        subtitle="US states ranked by total utility patents from primary inventors (1976-2025)."
-        title="California Accounts for Nearly One-Quarter (23.6%) of All US Patent Grants, 1976-2025"
+        subtitle="US states ranked by total utility patents from primary inventors (1976–2025)."
+        title="California Accounts for Nearly One-Quarter (23.6%) of All US Patent Grants, 1976–2025"
         caption="The figure ranks US states by total utility patents attributed to primary inventors from 1976 to 2025. California leads by a substantial margin, followed by Texas, New York, Massachusetts, and Michigan."
         insight="California accounts for nearly one-quarter (23.6%) of all US patent activity, a concentration reflecting the Silicon Valley ecosystem of venture capital, research universities, and technology firms."
         loading={stL}
@@ -281,7 +281,7 @@ export default function GeoDomesticChapter() {
         title="View top states as a data table"
         headers={['State', 'Total Patents']}
         rows={(states ?? []).slice(0, 15).map(d => [d.state, d.total_patents])}
-        caption="Top 15 US states by total utility patents, 1976-2025. Source: PatentsView."
+        caption="Top 15 US states by total utility patents, 1976–2025. Source: PatentsView."
       />
 
       <Narrative>
@@ -401,7 +401,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-forward-citations"
-        subtitle="Average forward citations per patent for the top 5 states by total output, 1976-2025."
+        subtitle="Average forward citations per patent for the top 5 states by total output, 1976–2025."
         title="California and Massachusetts Patents Attract More Forward Citations, Consistent With Higher Downstream Impact"
         caption="Average forward citations per patent by year for the five leading US states. Higher values indicate greater downstream influence on subsequent inventions."
         insight="Forward citation rates vary meaningfully across states, suggesting that geographic ecosystems differ not only in the volume but also in the downstream impact of their patent output."
@@ -421,7 +421,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-claims"
-        subtitle="Average number of claims per patent for the top 5 states by total output, 1976-2025."
+        subtitle="Average number of claims per patent for the top 5 states by total output, 1976–2025."
         title="Claim Counts Have Risen Across All Leading States, with Texas and California Leading the Expansion"
         caption="Average number of claims per patent by year for the five leading US states. Rising claim counts across all states reflect a system-wide trend toward broader patent scope."
         insight="The secular increase in claim counts is a system-wide phenomenon, but leading innovation states tend to file patents with modestly higher claim counts, consistent with more complex inventions."
@@ -439,7 +439,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-originality"
-        subtitle="Average originality score for the top 5 states by total output, 1976-2025."
+        subtitle="Average originality score for the top 5 states by total output, 1976–2025."
         title="Originality Scores Converge Across Leading States, Suggesting Increasingly Interdisciplinary Innovation"
         caption="Average originality score per patent by year for the five leading US states. Originality measures the breadth of technology classes cited by each patent."
         insight="Rising originality scores across all leading states indicate that innovation is becoming more interdisciplinary, drawing on increasingly diverse prior art."
@@ -457,7 +457,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-state-grant-lag"
-        subtitle="Average grant lag in days for the top 5 states by total output, 1976-2025."
+        subtitle="Average grant lag in days for the top 5 states by total output, 1976–2025."
         title="Grant Lag Varies Modestly Across States, Tracking USPTO Examination Capacity Rather Than Regional Differences"
         caption="Average grant lag (filing to issue, in days) by year for the five leading US states. Grant lag is driven primarily by USPTO capacity and technology complexity rather than inventor geography."
         insight="The relatively uniform grant lag across states indicates that examination delays are driven primarily by USPTO capacity constraints and technology complexity rather than by geographic factors."
@@ -487,7 +487,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-city-rankings"
-        subtitle="US cities ranked by total utility patents from primary inventors (1976-2025), revealing finer-grained concentration patterns."
+        subtitle="US cities ranked by total utility patents from primary inventors (1976–2025), revealing finer-grained concentration patterns."
         title="San Jose (96,068), San Diego (70,186), and Austin (53,595) Lead All US Cities in Total Patent Output"
         caption="The figure ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
         insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national patent output."
@@ -531,7 +531,7 @@ export default function GeoDomesticChapter() {
 
       {topSpecializations.length > 0 && (
         <div className="max-w-4xl mx-auto my-8 overflow-x-auto">
-          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Regions with High Patent Concentration (2010-2025, LQ &ge; 1.5)</h3>
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Regions with High Patent Concentration (2010–2025, LQ &ge; 1.5)</h3>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
@@ -582,7 +582,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-city-forward-citations"
-        subtitle="Average forward citations per patent for the top 5 cities by total output, 1976-2025."
+        subtitle="Average forward citations per patent for the top 5 cities by total output, 1976–2025."
         title="Silicon Valley Cities Attract Substantially More Forward Citations Than Other Regions with High Patent Concentration"
         caption="Average forward citations per patent by year for the five leading US cities. Higher values indicate greater downstream influence on subsequent inventions."
         insight="The elevated forward citation rates of Silicon Valley cities suggest that geographic proximity to the densest innovation cluster confers advantages in producing high-impact inventions."
@@ -602,7 +602,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-city-claims"
-        subtitle="Average number of claims per patent for the top 5 cities by total output, 1976-2025."
+        subtitle="Average number of claims per patent for the top 5 cities by total output, 1976–2025."
         title="Claim Counts Have Expanded Across All Leading Cities, Consistent With System-Wide Scope Expansion"
         caption="Average number of claims per patent by year for the five leading US cities. Rising claim counts reflect broader patent scope across all major regions with high patent concentration."
         insight="The secular rise in claim counts is evident across all leading cities, indicating that the trend toward broader patent scope is a system-wide phenomenon rather than a city-specific strategy."
@@ -620,7 +620,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-city-originality"
-        subtitle="Average originality score for the top 5 cities by total output, 1976-2025."
+        subtitle="Average originality score for the top 5 cities by total output, 1976–2025."
         title="Originality Scores Rise Across All Leading Cities as Innovation Becomes More Interdisciplinary"
         caption="Average originality score per patent by year for the five leading US cities. Originality measures the breadth of technology classes cited by each patent."
         insight="Rising originality in leading cities is consistent with the increasingly interdisciplinary nature of innovation in dense technology clusters, where knowledge spillovers across fields are more readily available."
@@ -638,7 +638,7 @@ export default function GeoDomesticChapter() {
 
       <ChartContainer
         id="fig-geography-city-grant-lag"
-        subtitle="Average grant lag in days for the top 5 cities by total output, 1976-2025."
+        subtitle="Average grant lag in days for the top 5 cities by total output, 1976–2025."
         title="Grant Lag Follows Similar Trajectories Across Leading Cities, Consistent With USPTO Capacity"
         caption="Average grant lag (filing to issue, in days) by year for the five leading US cities. The similar trajectories suggest that examination delay reflects patent office capacity rather than city-level factors."
         insight="The convergence of grant lag across cities reinforces that examination timelines are determined primarily by USPTO workload and technology complexity rather than by geographic origin of the application."
@@ -669,7 +669,7 @@ export default function GeoDomesticChapter() {
       {topCountiesChart.length > 0 && (
         <ChartContainer
           id="fig-geography-top-counties"
-          subtitle="Top 20 US counties by total utility patents from primary inventors (1976-2025)."
+          subtitle="Top 20 US counties by total utility patents from primary inventors (1976–2025)."
           title={`Santa Clara County Leads with 327,700 Patents — Five Counties Account for ${top5CountiesShare}% of Top-50 County Output`}
           caption="The figure ranks the top 20 US counties by total utility patents attributed to primary inventors from 1976 to 2025. Santa Clara County (home to Silicon Valley) leads by a wide margin, followed by Los Angeles, King (Seattle), San Diego, and Alameda counties."
           insight="County-level data reveal that patent concentration is even more pronounced than state-level figures suggest, with Santa Clara County alone producing nearly three times the output of the second-ranked county."
@@ -721,7 +721,7 @@ export default function GeoDomesticChapter() {
       {topClustersChart.length > 0 && (
         <ChartContainer
           id="fig-geography-innovation-clusters"
-          subtitle="Top 30 global cities by total utility patents in the US patent system (1976-2025)."
+          subtitle="Top 30 global cities by total utility patents in the US patent system (1976–2025)."
           title="Tokyo Leads Global Innovation Clusters with 263,010 Patents, Followed by Yokohama (196,841) and Seoul (102,646)"
           caption="The figure ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, reflecting Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
           insight="The global innovation cluster landscape is dominated by East Asian and US West Coast cities, reflecting the concentration of electronics, semiconductor, and software R&D in these regions."
@@ -771,7 +771,7 @@ export default function GeoDomesticChapter() {
         disambiguated records. Only utility patents with valid location data are included.
         State specialization uses CPC technology section classifications. City-level rankings
         include all cities with patent activity. Regional specialization uses Location Quotient (LQ)
-        computed for US cities with 500+ patents (2010-2025). Quality metrics are computed from
+        computed for US cities with 500+ patents (2010–2025). Quality metrics are computed from
         computed/quality_by_state.json and computed/quality_by_city.json.
       </DataNote>
 

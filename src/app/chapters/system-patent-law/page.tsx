@@ -497,7 +497,7 @@ export default function Chapter4() {
       <KeyInsight>
         <p>
           The trajectory of patent law over the past four decades exhibits a discernible pattern: an era of
-          expansion and strengthening (1982-2000) shaped by the Court of Appeals for the Federal Circuit and pro-patent
+          expansion and strengthening (1982–2000) shaped by the Court of Appeals for the Federal Circuit and pro-patent
           legislative reforms, followed by an era of recalibration (2006-present) as the Supreme
           Court narrowed patent scope, and Congress established administrative
           alternatives to costly litigation through the <GlossaryTooltip term="AIA">AIA</GlossaryTooltip>.
@@ -590,7 +590,7 @@ export default function Chapter4() {
           In the early years, grants and applications tracked closely because the dataset only
           captures successful filings. The growing divergence from the mid-1990s onward reflects
           the increasing time lag between filing and grant; applications filed in a given year
-          may not be granted for two to four years. The increase in grants around 2012-2015 coincides with
+          may not be granted for two to four years. The increase in grants around 2012–2015 coincides with
           the USPTO clearing a significant backlog, while the America Invents Act&apos;s procedural
           reforms reshaped the pipeline.
         </p>
@@ -631,7 +631,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-alice-indexed"
         title="Alice-Affected Art Groups Continued Growing Post-2014, Reaching 129.2 by 2024 versus 102.7 for Controls"
-        subtitle="Patent grants indexed to 2013 = 100 for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
+        subtitle="Patent grants indexed to 2013 = 100 for Alice-affected (treatment) and unaffected (control) art groups, 2008–2024"
         caption="Patent grant counts indexed to 2013 = 100 for USPTO art groups most affected by Alice Corp. v. CLS Bank (treatment) and unaffected art groups (control). The vertical reference line marks the 2014 Alice decision. Despite the eligibility restriction, treatment groups continued to grow, suggesting that the decision moderated but did not reverse the trend."
         insight="The Alice decision was not associated with a sharp decline in patent grants for affected art groups. Instead, treatment group grants continued to outpace controls, reaching 129.2 (indexed) by 2024 compared to 102.7 for controls, suggesting that applicants adapted their claims to survive Section 101 scrutiny."
         loading={aiL}
@@ -653,7 +653,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-alice-pendency"
         title="Pendency Declined Faster for Alice-Affected Art Groups, Falling to 978 Median Days by 2023 versus 1,114 for Controls"
-        subtitle="Median examination pendency in days for Alice-affected (treatment) and unaffected (control) art groups, 2008-2024"
+        subtitle="Median examination pendency in days for Alice-affected (treatment) and unaffected (control) art groups, 2008–2024"
         caption="Median pendency (days from filing to grant) for Alice-affected and control art groups. Both groups experienced declining pendency over the period, but the treatment group declined more steeply, potentially reflecting faster resolution of Section 101 issues during prosecution."
         insight="The faster pendency decline in Alice-affected art groups suggests that the Alice framework, while initially disruptive, may have streamlined examination by providing clearer grounds for eligibility determinations."
         loading={apL}
@@ -693,7 +693,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-td-rate"
         title="Terminal Disclaimer Rate Peaked at 11.3% in 2023, Rising from Near Zero in the Late 1990s"
-        subtitle="Share of granted patents with a terminal disclaimer by grant year, 1976-2024"
+        subtitle="Share of granted patents with a terminal disclaimer by grant year, 1976–2024"
         caption="Terminal disclaimer rate computed as the percentage of granted patents that include a terminal disclaimer. The rate dropped sharply in the late 1990s (coinciding with the GATT patent term change) before rebounding and rising to record levels in the 2010s-2020s, consistent with the growth of continuation and patent family strategies."
         insight="The secular rise in terminal disclaimer rates since the early 2000s is consistent with the increasing use of continuation applications and patent family strategies, as firms seek to maintain overlapping patent protection across related inventions."
         loading={tdL}
@@ -712,7 +712,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-td-by-cpc"
         title="H (Electricity) and C (Chemistry) Lead Terminal Disclaimer Rates at 9.2% and 8.6%"
-        subtitle="Terminal disclaimer rate by CPC section for patents granted 2015-2024, showing technology-specific variation in portfolio strategy"
+        subtitle="Terminal disclaimer rate by CPC section for patents granted 2015–2024, showing technology-specific variation in portfolio strategy"
         caption="Terminal disclaimer rates by CPC section. Electricity (H) and Chemistry (C) lead, consistent with the intense patent portfolio strategies employed in semiconductors, telecommunications, and pharmaceuticals. Mechanical engineering fields (B, F) exhibit the lowest rates."
         insight="The technology-specific variation in terminal disclaimer rates reflects different patent strategies: electronics and pharmaceutical firms employ continuation-based portfolio building more aggressively than firms in mechanical engineering domains."
         loading={tdcL}
@@ -750,7 +750,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-pta-over-time"
         title="Median Patent Term Adjustment Peaked at 520 Days in 2011, Declining to 147 Days by 2025 (Through September)"
-        subtitle="Median patent term adjustment in days by grant year, 2002-2025, tracking USPTO examination delays"
+        subtitle="Median patent term adjustment in days by grant year, 2002–2025, tracking USPTO examination delays"
         caption="Median PTA in days for granted patents by year. PTA increased substantially through the 2000s as the USPTO backlog grew, peaking at 520 days in 2011. Subsequent reforms and hiring initiatives were followed by a sustained decline, though PTA remains well above zero, indicating ongoing examination delays beyond statutory timelines."
         insight="The rise and fall of median PTA mirrors the USPTO backlog crisis and subsequent reforms. The peak of 520 days in 2011 represents nearly 1.5 years of additional patent life granted as compensation for examination delays."
         loading={ptaL}
@@ -769,7 +769,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-pta-by-cpc"
         title="Section A (Human Necessities) Receives the Longest PTA at 237 Median Days"
-        subtitle="Median patent term adjustment in days by CPC section for patents granted 2002-2025, revealing technology-specific examination delays"
+        subtitle="Median patent term adjustment in days by CPC section for patents granted 2002–2025, revealing technology-specific examination delays"
         caption="Median PTA by CPC section. Human Necessities (A), which includes pharmaceuticals and biotechnology, experiences the longest delays at 237 median days, consistent with the complex examination requirements in these domains. Mechanical Engineering (F) and Electricity (H) receive the shortest adjustments."
         insight="The technology-specific variation in PTA is consistent with differential examination complexity: pharmaceutical and biotechnology patents require more specialized review and face longer pendency, while mechanical and electrical patents benefit from more established examination practices."
         loading={ptacL}

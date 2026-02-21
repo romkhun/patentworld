@@ -76,7 +76,7 @@ export default function SystemPublicInvestmentChapter() {
 
       <KeyFindings>
         <li>Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, a trend associated with the 1980 Bayh-Dole Act.</li>
-        <li>HHS/NIH leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).</li>
+        <li>The Department of Health and Human Services/National Institutes of Health (HHS/NIH) leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).</li>
         <li>Government-funded patents slightly outperform non-funded patents on cohort-normalized citation impact, as shown in the cohort-normalized comparison below, consistent with findings in the academic literature (Azoulay et al., 2019, <em>JPE</em>; Mowery et al., 2001, <em>Research Policy</em>).</li>
       </KeyFindings>
 
@@ -163,7 +163,7 @@ export default function SystemPublicInvestmentChapter() {
       <Narrative>
         <p>
           Beyond aggregate patent counts, the <em>technological composition</em> of each agency&apos;s
-          portfolio reveals how federal funding priorities map onto the CPC classification system.
+          portfolio reveals how federal funding priorities map onto the <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> classification system.
           Some agencies concentrate their funding in a narrow set of technology fields — the
           Department of Energy, for example, is heavily weighted toward Chemistry &amp; Metallurgy
           (Section C) and Physics (Section G) — while others, such as the Department of Defense,

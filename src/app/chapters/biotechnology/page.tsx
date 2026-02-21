@@ -18,6 +18,7 @@ import { InsightRecap } from '@/components/chapter/InsightRecap';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { RankingTable } from '@/components/chapter/RankingTable';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import { CHART_COLORS, CPC_SECTION_COLORS, BIOTECH_SUBFIELD_COLORS } from '@/lib/colors';
@@ -320,7 +321,7 @@ export default function Chapter15() {
         id="fig-biotech-annual-count"
         subtitle="Annual count of utility patents classified under biotechnology-related CPC codes, tracking the growth trajectory of biotech patenting."
         title="Biotechnology Patent Filings Have Grown Substantially Since the 1980s, With Notable Fluctuations"
-        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976-2025. The growth trajectory reflects successive waves following the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012). Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count of utility patents classified under biotechnology-related CPC codes, 1976–2025. The growth trajectory reflects successive waves following the Bayh-Dole Act (1980), the Human Genome Project completion (2003), and the CRISPR-Cas9 publication (2012). Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The sustained growth of biotech patents reflects the expanding commercial potential of molecular biology, with each major scientific breakthrough coinciding with a new wave of inventive activity."
         loading={pyL}
       >
@@ -432,7 +433,7 @@ export default function Chapter15() {
         id="fig-biotech-top-assignees"
         subtitle="Organizations ranked by total biotechnology patent count, showing the institutional landscape of life sciences innovation."
         title="Research Universities and Agricultural Biotech Firms Dominate Biotechnology Patenting"
-        caption="Organizations ranked by total biotechnology-related patents, 1976-2025. The data reveal a distinctive institutional mix: research universities (University of California, Harvard, Stanford), agricultural biotech firms (Monsanto, Pioneer Hi-Bred, DuPont), and enzyme companies (Novozymes) dominate the rankings, reflecting the diverse origins of biotech innovation."
+        caption="Organizations ranked by total biotechnology-related patents, 1976–2025. The data reveal a distinctive institutional mix: research universities (University of California, Harvard, Stanford), agricultural biotech firms (Monsanto, Pioneer Hi-Bred, DuPont), and enzyme companies (Novozymes) dominate the rankings, reflecting the diverse origins of biotech innovation."
         insight="The organizational landscape of biotech patenting differs markedly from AI, where large technology firms dominate. In biotechnology, research universities, agricultural biotech firms, enzyme companies, and life sciences tools makers are the major patent holders, reflecting the field's diverse institutional roots."
         loading={taL}
         height={1400}
@@ -449,7 +450,7 @@ export default function Chapter15() {
         title="View top biotech patent holders as a data table"
         headers={['Organization', 'Biotech Patents']}
         rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
-        caption="Top 15 organizations by biotechnology patent count, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by biotechnology patent count, 1976–2025. Source: PatentsView."
       />
 
       <KeyInsight>
@@ -473,7 +474,7 @@ export default function Chapter15() {
           id="fig-biotech-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by biotechnology patent grants, with darker cells indicating higher rank."
           title="Organizational Leadership in Biotech Patenting Has Shifted as Gene Editing and mRNA Technologies Reshaped Competitive Dynamics"
-          caption="Annual ranking of the top 15 organizations by biotechnology patent grants, 1990-2025. Darker cells indicate higher rank (more patents). The data reveal how successive technological waves -- genomics, gene editing, and mRNA -- have altered the competitive landscape of biotech patenting."
+          caption="Annual ranking of the top 15 organizations by biotechnology patent grants, 1990–2025. Darker cells indicate higher rank (more patents). The data reveal how successive technological waves -- genomics, gene editing, and mRNA -- have altered the competitive landscape of biotech patenting."
           insight="The organizational rankings reveal dynamic competition in biotech patenting, with pharmaceutical incumbents facing challenges from specialized biotechnology firms and research-intensive universities as new technologies reshape the field."
           loading={ootL}
           height={600}
@@ -511,7 +512,7 @@ export default function Chapter15() {
         id="fig-biotech-top-inventors"
         subtitle="Primary inventors ranked by total biotechnology patent count, illustrating the distribution of individual inventive output in the life sciences."
         title="The Most Prolific Biotech Inventors Reflect the Field's Deep Connection to Academic Research and Pharmaceutical R&D"
-        caption="Primary inventors ranked by total biotechnology-related patents, 1976-2025. The distribution reveals that prolific biotech inventors are frequently affiliated with universities and pharmaceutical firms, reflecting the academic origins of many biotech breakthroughs."
+        caption="Primary inventors ranked by total biotechnology-related patents, 1976–2025. The distribution reveals that prolific biotech inventors are frequently affiliated with universities and pharmaceutical firms, reflecting the academic origins of many biotech breakthroughs."
         insight="The concentration of biotech patenting among prolific inventors affiliated with universities and pharmaceutical companies highlights the field's dependence on deep scientific expertise and long-term research programs."
         loading={tiL}
         height={1400}
@@ -544,7 +545,7 @@ export default function Chapter15() {
         id="fig-biotech-by-country"
         subtitle="Countries ranked by total biotechnology patents based on primary inventor location, showing the geographic distribution of biotech innovation."
         title="The United States Leads in Biotech Patenting, With Significant Contributions From Japan, Germany, and Emerging Asian Economies"
-        caption="Countries ranked by total biotechnology-related patents based on primary inventor location. The United States maintains a substantial lead, reflecting its extensive network of research universities, NIH-funded research, and pharmaceutical industry concentration."
+        caption="Countries ranked by total biotechnology-related patents based on primary inventor location. The United States maintains a substantial lead, reflecting its extensive network of research universities, National Institutes of Health (NIH)-funded research, and pharmaceutical industry concentration."
         insight="The geographic distribution of biotech patents reflects the importance of national research funding infrastructure, regulatory frameworks, and the concentration of pharmaceutical and life sciences firms."
         loading={geoL}
         height={900}
@@ -779,7 +780,7 @@ export default function Chapter15() {
         id="fig-biotech-team-comparison"
         subtitle="Average inventors per patent for biotech versus non-biotech utility patents by year, showing the widening collaboration gap."
         title="Biotech Patents Consistently Involve Larger Teams Than Non-Biotech Patents, Consistent With the Multidisciplinary Demands of Life Sciences"
-        caption="Average number of inventors per patent for biotechnology-related versus non-biotech utility patents, 1976-2025. The data indicate that biotech patents have consistently involved larger teams, and the gap has widened as the complexity of genetic engineering, genomics, and clinical development has increased."
+        caption="Average number of inventors per patent for biotechnology-related versus non-biotech utility patents, 1976–2025. The data indicate that biotech patents have consistently involved larger teams, and the gap has widened as the complexity of genetic engineering, genomics, and clinical development has increased."
         insight="Biotech patents consistently involve larger teams than non-biotech patents, and the gap has widened over time. This pattern reflects the inherent multidisciplinarity of life sciences innovation, which requires collaboration across molecular biology, chemistry, clinical medicine, and increasingly computational science."
         loading={tcL}
       >
@@ -954,7 +955,7 @@ export default function Chapter15() {
       />
 
       <DataNote>
-        Biotechnology patents are identified using specific CPC groups within genetic
+        Biotechnology patents are identified using specific <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> groups within genetic
         engineering and molecular biology: C12N15 (mutation or genetic engineering), C12N9
         (enzymes and proenzymes), and C12Q1/68 (nucleic acid detection). These targeted codes
         capture core molecular biotechnology while excluding broader C12N and C12Q

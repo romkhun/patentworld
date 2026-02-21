@@ -309,7 +309,7 @@ export default function Chapter20() {
         id="fig-quantum-patents-annual-count"
         subtitle="Annual count of utility patents classified under quantum computing-related CPC codes, tracking the growth trajectory of quantum computing patenting."
         title="Quantum Computing Patent Filings Have Grown Rapidly From a Small Base, Consistent With the Field's Transition to Engineering"
-        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990-2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count of utility patents classified under quantum computing-related CPC codes, 1990–2025. The most prominent pattern is the sharp acceleration beginning around 2018, coinciding with advances in superconducting qubit hardware and Google's quantum supremacy announcement in 2019. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in quantum computing patents coincides with increased corporate investment in quantum hardware and software, following milestones in qubit performance and error correction demonstrated in the late 2010s."
         loading={pyL}
       >
@@ -417,7 +417,7 @@ export default function Chapter20() {
         id="fig-quantum-patents-top-assignees"
         subtitle="Organizations ranked by total quantum computing patent count, showing concentration among a small number of technology firms."
         title="IBM, Google, D-Wave, and Microsoft Lead Quantum Computing Patenting, Consistent With the Capital-Intensive Nature of Quantum R&D"
-        caption="Organizations ranked by total quantum computing patents, 1990-2025. The data indicate strong concentration among a handful of large technology firms that have made significant investments in quantum hardware and software."
+        caption="Organizations ranked by total quantum computing patents, 1990–2025. The data indicate strong concentration among a handful of large technology firms that have made significant investments in quantum hardware and software."
         insight="The dominance of a small group of major technology firms in quantum computing patenting reflects the substantial capital requirements of quantum hardware research, which demands cryogenic infrastructure, specialized fabrication, and large physics and engineering teams."
         loading={taL}
         height={1400}
@@ -470,7 +470,7 @@ export default function Chapter20() {
           id="fig-quantum-patents-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by quantum computing patent grants from 2005 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings in Quantum Computing Have Shifted Rapidly as New Entrants Scaled Investment After 2015"
-          caption="Annual ranking of the top 15 organizations by quantum computing patent grants, 2005-2025. Darker cells indicate higher rank (more patents). The data reveal rapid reshuffling as firms scaled quantum research programs following hardware breakthroughs."
+          caption="Annual ranking of the top 15 organizations by quantum computing patent grants, 2005–2025. Darker cells indicate higher rank (more patents). The data reveal rapid reshuffling as firms scaled quantum research programs following hardware breakthroughs."
           insight="The rapid reshuffling of organizational rankings since 2015 reflects the competitive dynamics of a nascent field, where sustained investment and hardware breakthroughs can quickly alter the competitive landscape."
           loading={ootL}
           height={600}
@@ -658,7 +658,7 @@ export default function Chapter20() {
         id="fig-quantum-patents-team-comparison"
         subtitle="Average inventors per patent for quantum versus non-quantum utility patents by year, showing the team size gap between the two categories."
         title="Quantum Patents Generally Involve Larger Teams Than Non-Quantum Patents, Though the Gap Has Converged in Recent Years"
-        caption="Average number of inventors per patent for quantum computing versus non-quantum utility patents. The data indicate that quantum patents have generally involved larger teams in recent years, though the gap has narrowed to near-zero by 2023-2025."
+        caption="Average number of inventors per patent for quantum computing versus non-quantum utility patents. The data indicate that quantum patents have generally involved larger teams in recent years, though the gap has narrowed to near-zero by 2023–2025."
         insight="Quantum computing patents have generally involved larger teams than non-quantum patents, though the gap has converged in recent years, reflecting the collaborative yet increasingly efficient nature of quantum research."
         loading={tcL}
       >
@@ -879,7 +879,7 @@ export default function Chapter20() {
         id="fig-quantum-filing-vs-grant"
         title="Quantum Filing Peaked at 579 in 2021 While Grants Reached 660 in 2024 — Rapid Growth on a Small Base"
         subtitle="Annual patent filings versus grants for quantum computing, showing the field's recent acceleration."
-        caption="Quantum computing exhibits rapid recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019-2021 filing surge."
+        caption="Quantum computing exhibits rapid recent growth in both filings and grants, though from a very small base. The filing-to-grant lag reflects both the technical complexity of quantum patent examination and the rapid expansion of filings after 2017. Grants surpassed the filing peak in 2024, reflecting the processing of the 2019–2021 filing surge."
         loading={fgL}
       >
         <PWLineChart

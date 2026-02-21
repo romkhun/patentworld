@@ -154,7 +154,7 @@ export default function OrgPatentQualityChapter() {
       <MeasurementSidebar slug="org-patent-quality" />
 
       <KeyFindings>
-        <li>Amazon&apos;s 6.7% blockbuster rate leads the field for 2010-2019, while 18 of 50 firms exceed a 50% dud rate, revealing sharply divergent quality strategies.</li>
+        <li>Amazon&apos;s 6.7% blockbuster rate leads the field for 2010–2019, while 18 of 50 firms exceed a 50% dud rate, revealing sharply divergent quality strategies.</li>
         <li>Microsoft leads in average forward citations (30.7) while IBM&apos;s 5.6x average-to-median ratio reveals a highly skewed portfolio with a few highly cited patents alongside many incremental ones.</li>
         <li>Canon (47.6%), TSMC (38.4%), and Micron (25.3%) exhibit the highest self-citation rates among top assignees, reflecting deep cumulative R&amp;D programs.</li>
         <li>Citation half-lives range from 6.3 years (Huawei) to 14.3 years (US Air Force), with pharmaceutical firms exhibiting longer half-lives than electronics and IT firms.</li>
@@ -183,7 +183,7 @@ export default function OrgPatentQualityChapter() {
       <Narrative>
         <p>
           Plotting each firm&apos;s <GlossaryTooltip term="blockbuster rate">blockbuster rate</GlossaryTooltip> against its <GlossaryTooltip term="dud rate">dud rate</GlossaryTooltip> for the most recent
-          complete decade (2010-2019) reveals distinct innovation strategies. Firms in the
+          complete decade (2010–2019) reveals distinct innovation strategies. Firms in the
           upper-right produce both high-impact breakthroughs and many zero-citation patents -- a
           high-variance strategy. Firms in the lower-right achieve high blockbuster rates with
           few duds, the hallmark of consistent quality.
@@ -192,9 +192,9 @@ export default function OrgPatentQualityChapter() {
 
       <ChartContainer
         id="fig-org-patent-quality-quality-scatter"
-        title="Amazon's 6.7% Blockbuster Rate Leads the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010-2019)"
-        subtitle="Blockbuster rate versus dud rate for the top 50 assignees (2010-2019), with bubble size proportional to patent count and color by primary CPC section"
-        caption="Each bubble represents one of the top 50 assignees in the decade 2010-2019. X-axis: share of patents in the top 1% of their year x CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
+        title="Amazon's 6.7% Blockbuster Rate Leads the Field, While 18 of 50 Firms Exceed a 50% Dud Rate (2010–2019)"
+        subtitle="Blockbuster rate versus dud rate for the top 50 assignees (2010–2019), with bubble size proportional to patent count and color by primary CPC section"
+        caption="Each bubble represents one of the top 50 assignees in the decade 2010–2019. X-axis: share of patents in the top 1% of their year x CPC section cohort. Y-axis: share of patents receiving zero 5-year forward citations. Bubble size: total patents. Color: primary CPC section."
         insight={`Amazon occupies the lower-right quadrant with a blockbuster rate of 6.7% and a dud rate of 18.3%, classifying it as a consistent high-impact innovator. By contrast, several firms -- predominantly those with large electronics and component portfolios -- cluster in the upper-left with blockbuster rates below 0.2% and dud rates above 50%.`}
         loading={fsL}
         height={500}
@@ -239,7 +239,7 @@ export default function OrgPatentQualityChapter() {
         id="fig-org-patent-quality-quality-fan"
         title={`${selectedQualityFirm}: 35 of 48 Top Firms Saw Median Forward Citations Fall to Zero by 2019`}
         subtitle={`5-year forward citation percentiles (P10-P90) for ${selectedQualityFirm} patents by grant year, with company selector`}
-        caption={`5-year forward citation percentiles for ${selectedQualityFirm} patents by grant year (1976-2019). Bands show P25-P75 (dark) and P10-P90 (light). Solid line = median; dashed gray = system-wide median. Only years with >=10 patents shown.`}
+        caption={`5-year forward citation percentiles for ${selectedQualityFirm} patents by grant year (1976–2019). Bands show P25-P75 (dark) and P10-P90 (light). Solid line = median; dashed gray = system-wide median. Only years with >=10 patents shown.`}
         insight="The width of the fan reveals the dispersion of quality within the firm's portfolio. A widening gap between the median and upper percentiles indicates increasing reliance on a small fraction of high-impact patents."
         loading={fqL}
         height={400}
@@ -600,7 +600,7 @@ export default function OrgPatentQualityChapter() {
         cohort. Dud rate measures the share of patents receiving zero 5-year forward citations.
         Self-citation rate measures the fraction of backward citations directed to the same assignee.
         Citation half-life uses patents granted before 2010 to ensure at least 15 years of citation
-        accumulation. The quality scatter uses the most recent complete decade (2010-2019) to ensure
+        accumulation. The quality scatter uses the most recent complete decade (2010–2019) to ensure
         complete citation windows. Organization names are disambiguated identities from PatentsView.
       </DataNote>
 

@@ -317,7 +317,7 @@ export default function Chapter19() {
           Climate change constitutes one of the defining challenges of the 21st century, and the
           patent system provides a valuable lens through which to observe the technological
           response. This chapter traces the growth of green innovation through patents classified
-          under the CPC&apos;s <GlossaryTooltip term="Y02">Y02</GlossaryTooltip> and Y04S codes, encompassing solar panels, wind turbines,
+          under the <GlossaryTooltip term="CPC">CPC</GlossaryTooltip>&apos;s <GlossaryTooltip term="Y02">Y02</GlossaryTooltip> and Y04S codes, encompassing solar panels, wind turbines,
           electric vehicles, carbon capture, and smart grids.
         </p>
       </Narrative>
@@ -331,7 +331,7 @@ export default function Chapter19() {
           30,000 per year by the early 2020s (peaking at 35,693 in 2019). Patent filings
           continued to grow following the 2015 Paris Agreement, with batteries and electric vehicles
           exhibiting particularly strong growth. Green patents represented 9-10% of
-          all utility patents granted annually during 2015-2024.
+          all utility patents granted annually during 2015–2024.
         </p>
       </Narrative>
 
@@ -455,7 +455,7 @@ export default function Chapter19() {
         id="fig-green-innovation-top-companies"
         subtitle="Organizations ranked by total green patent count (Y02/Y04S classifications) from 1976 to 2025, dominated by automotive and electronics firms."
         title="Samsung (13,771), Toyota (12,636), and GE (10,812) Lead the Top 20 Green Patent Holders"
-        caption="Organizations ranked by total green patent count (Y02/Y04S classifications), 1976-2025. The data indicate that automotive firms and electronics conglomerates account for the majority of the top 20 positions, with Samsung, Toyota, and General Electric each exceeding 10,000 green patents."
+        caption="Organizations ranked by total green patent count (Y02/Y04S classifications), 1976–2025. The data indicate that automotive firms and electronics conglomerates account for the majority of the top 20 positions, with Samsung, Toyota, and General Electric each exceeding 10,000 green patents."
         insight="The leading green patent holders are predominantly automotive and electronics conglomerates -- organizations with substantial R&D budgets and the engineering capabilities to address energy, transportation, and industrial decarbonization at scale."
         loading={coL}
         height={700}
@@ -495,7 +495,7 @@ export default function Chapter19() {
         id="fig-green-org-rankings"
         subtitle="Annual patent rank of leading green technology organizations from 2000 to 2025, showing competitive dynamics."
         title="Green Patent Leadership Has Shifted as Electronics Firms Entered the Top Ranks Alongside Traditional Auto and Energy Companies"
-        caption="Annual patent rank of leading organizations in green technology, 2000-2025. The heatmap reveals how Samsung, LG, and Hyundai rose to challenge the longstanding dominance of Japanese and US-based incumbents."
+        caption="Annual patent rank of leading organizations in green technology, 2000–2025. The heatmap reveals how Samsung, LG, and Hyundai rose to challenge the longstanding dominance of Japanese and US-based incumbents."
         insight="The entry of Korean electronics conglomerates into the top ranks of green patenting after 2010 reflects the strategic importance of battery technology and electric vehicles in reshaping the competitive landscape."
         loading={ootL}
         height={500}
@@ -527,7 +527,7 @@ export default function Chapter19() {
         id="fig-green-top-inventors"
         subtitle="Most prolific individual inventors in green technology patents, ranked by total patent count."
         title="Top Green Patent Inventors Span Automotive, Battery, and Energy Systems Engineering"
-        caption="Inventors ranked by total green patent count (Y02/Y04S classifications), 1976-2025. The leading inventors are predominantly associated with major automotive and electronics firms."
+        caption="Inventors ranked by total green patent count (Y02/Y04S classifications), 1976–2025. The leading inventors are predominantly associated with major automotive and electronics firms."
         loading={tiL}
         height={600}
       >
@@ -554,7 +554,7 @@ export default function Chapter19() {
         id="fig-green-quality"
         subtitle="Average claims, backward citations, and CPC scope for green patents over time."
         title="Green Patents Show Increasing Complexity as Measured by Claims and Technology Scope"
-        caption="Quality indicators for green patents over time, 1976-2025. Rising average claims and scope suggest that green innovations are becoming more complex and spanning multiple technology areas."
+        caption="Quality indicators for green patents over time, 1976–2025. Rising average claims and scope suggest that green innovations are becoming more complex and spanning multiple technology areas."
         loading={qL}
       >
         <PWLineChart
@@ -577,7 +577,7 @@ export default function Chapter19() {
         id="fig-green-team-comparison"
         subtitle="Average team size for green versus non-green patents over time, measuring the collaborative intensity of climate technology R&D."
         title="Green Patent Teams Have Grown Larger Than Non-Green Counterparts"
-        caption="Average number of inventors per patent for green and non-green patents, 1990-2025. Green patents consistently involve larger inventor teams, reflecting the interdisciplinary nature of climate technology."
+        caption="Average number of inventors per patent for green and non-green patents, 1990–2025. Green patents consistently involve larger inventor teams, reflecting the interdisciplinary nature of climate technology."
         insight="The consistently larger team sizes for green patents suggest that climate technology innovation draws on multiple disciplines -- materials science, electrical engineering, chemistry, and software -- requiring collaborative approaches."
         loading={tcL}
       >
@@ -600,7 +600,7 @@ export default function Chapter19() {
         id="fig-green-assignee-type"
         subtitle="Distribution of green patents by assignee type over time, showing the balance between corporate, government, university, and individual innovators."
         title="Corporate Assignees Dominate Green Patenting, but University Contributions Are Growing"
-        caption="Annual green patent counts by assignee type, 1990-2025. Corporate assignees account for the vast majority of green patents, but university and government contributions have increased in absolute terms."
+        caption="Annual green patent counts by assignee type, 1990–2025. Corporate assignees account for the vast majority of green patents, but university and government contributions have increased in absolute terms."
         loading={atL}
         height={500}
         wide
@@ -672,7 +672,7 @@ export default function Chapter19() {
         id="fig-green-diffusion"
         subtitle="Percentage of green patents co-classified with other CPC sections, measuring the diffusion of climate technology across technology domains."
         title="Green Patents Show Deepening Integration with Electricity and Chemistry Domains"
-        caption="Percentage of green patents co-classified with each non-Y CPC section, 1990-2025. The high co-occurrence with Electricity (H) and Chemistry/Metallurgy (C) reflects the central role of energy conversion and materials science in climate technology."
+        caption="Percentage of green patents co-classified with each non-Y CPC section, 1990–2025. The high co-occurrence with Electricity (H) and Chemistry/Metallurgy (C) reflects the central role of energy conversion and materials science in climate technology."
         insight="Green patents are deeply embedded in electrical engineering and chemistry, reflecting the fundamental nature of climate technology as an applied fusion of these disciplines rather than a standalone technology domain."
         loading={dfL}
         wide

@@ -143,7 +143,7 @@ export default function GeoInternationalChapter() {
 
       <KeyFindings>
         <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global patent filing activity as measured by USPTO grants.</li>
-        <li>The United States leads with approximately 164,000 patents granted cumulatively during the 2020s (by primary assignee country, summed across 2020-2024), averaging roughly 33,000 per year, with 18.4 average claims per patent, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern observed across several fast-growing origins that may reflect differences in patent drafting conventions or technology field composition.</li>
+        <li>The United States leads with approximately 164,000 patents granted cumulatively during the 2020s (by primary assignee country, summed across 2020–2024), averaging roughly 33,000 per year, with 18.4 average claims per patent, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern observed across several fast-growing origins that may reflect differences in patent drafting conventions or technology field composition.</li>
         <li>US-domestic patents and international patents differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
@@ -174,8 +174,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-fwd-citations"
         title="Domestic Patents Average 12.9 Forward Citations versus 5.8 for International-Origin in 2015"
-        subtitle="Average forward citations per patent by domestic versus international inventor teams, 1976-2025"
-        caption="Average forward citations per patent comparing domestic and international-origin patents, 1976-2025. The 2015 cohort is used for the headline comparison because recent years suffer from citation truncation. Data: PatentsView."
+        subtitle="Average forward citations per patent by domestic versus international inventor teams, 1976–2025"
+        caption="Average forward citations per patent comparing domestic and international-origin patents, 1976–2025. The 2015 cohort is used for the headline comparison because recent years suffer from citation truncation. Data: PatentsView."
         loading={qdiL}
         height={400}
         controls={domIntlNorm.controls}
@@ -196,8 +196,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-claims"
         title="Domestic-Origin Patents Average 16.6 Claims versus 13.4 for International-Origin in 2024"
-        subtitle="Average number of claims per patent by domestic versus international inventor teams, 1976-2025"
-        caption="Average number of claims per patent comparing domestic and international-origin patents, 1976-2024. Domestic patents have consistently contained more claims, with the gap widening since the mid-1990s. Data: PatentsView."
+        subtitle="Average number of claims per patent by domestic versus international inventor teams, 1976–2025"
+        caption="Average number of claims per patent comparing domestic and international-origin patents, 1976–2024. Domestic patents have consistently contained more claims, with the gap widening since the mid-1990s. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -216,8 +216,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-scope"
         title="Domestic Patents Span 2.47 CPC Subclasses versus 2.36 for International-Origin in 2024"
-        subtitle="Average patent scope (CPC subclass count) by domestic versus international inventor teams, 1976-2025"
-        caption="Average number of distinct CPC subclasses per patent comparing domestic and international-origin patents, 1976-2024. Both groups have seen scope rise steadily since the late 1990s. Data: PatentsView."
+        subtitle="Average patent scope (CPC subclass count) by domestic versus international inventor teams, 1976–2025"
+        caption="Average number of distinct CPC subclasses per patent comparing domestic and international-origin patents, 1976–2024. Both groups have seen scope rise steadily since the late 1990s. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -236,8 +236,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-originality"
         title="Domestic Patents Score 0.236 on Originality versus 0.165 for International-Origin in 2024"
-        subtitle="Average originality index by domestic versus international inventor teams, 1976-2025"
-        caption="Average originality index per patent comparing domestic and international-origin patents, 1976-2024. Higher values indicate citations drawn from a wider range of technology classes. Data: PatentsView."
+        subtitle="Average originality index by domestic versus international inventor teams, 1976–2025"
+        caption="Average originality index per patent comparing domestic and international-origin patents, 1976–2024. Higher values indicate citations drawn from a wider range of technology classes. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -256,8 +256,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-generality"
         title="Domestic Patents Score 0.045 on Generality versus 0.024 for International-Origin in 2024"
-        subtitle="Average generality index by domestic versus international inventor teams, 1976-2025"
-        caption="Average generality index per patent comparing domestic and international-origin patents, 1976-2024. Higher values indicate the patent is cited by a broader range of downstream technology fields. Data: PatentsView."
+        subtitle="Average generality index by domestic versus international inventor teams, 1976–2025"
+        caption="Average generality index per patent comparing domestic and international-origin patents, 1976–2024. Higher values indicate the patent is cited by a broader range of downstream technology fields. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -276,8 +276,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-self-citation"
         title="Domestic Patents Self-Cite at 13.2% versus 12.4% for International-Origin in 2024, After Decades of International Leading"
-        subtitle="Average self-citation rate by domestic versus international inventor teams, 1976-2025"
-        caption="Average self-citation rate per patent comparing domestic and international-origin patents, 1976-2024. International teams exhibited higher self-citation rates through most of the period, but the rates have converged in recent years. Data: PatentsView."
+        subtitle="Average self-citation rate by domestic versus international inventor teams, 1976–2025"
+        caption="Average self-citation rate per patent comparing domestic and international-origin patents, 1976–2024. International teams exhibited higher self-citation rates through most of the period, but the rates have converged in recent years. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -297,8 +297,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-dom-grant-lag"
         title="International Patents Wait 1,021 Days for Grant versus 929 Days for Domestic in 2024"
-        subtitle="Average grant lag in days by domestic versus international inventor teams, 1976-2025"
-        caption="Average grant lag (filing to issue, in days) comparing domestic and international-origin patents, 1976-2024. International patents consistently face longer examination times, reflecting cross-border filing complexity. Data: PatentsView."
+        subtitle="Average grant lag in days by domestic versus international inventor teams, 1976–2025"
+        caption="Average grant lag (filing to issue, in days) comparing domestic and international-origin patents, 1976–2024. International patents consistently face longer examination times, reflecting cross-border filing complexity. Data: PatentsView."
         loading={qdiL}
         height={400}
       >
@@ -364,8 +364,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-country-fwd-citations"
         title="US Patents Average 12.9 Forward Citations in 2015, More Than Double Japan's 3.5"
-        subtitle="Average forward citations per patent for the top 5 filing countries, 1976-2025"
-        caption="Average forward citations per patent for the top 5 filing countries by inventor location, 1976-2025. The 2015 cohort is used for the headline comparison because recent years suffer from citation truncation. Data: PatentsView."
+        subtitle="Average forward citations per patent for the top 5 filing countries, 1976–2025"
+        caption="Average forward citations per patent for the top 5 filing countries by inventor location, 1976–2025. The 2015 cohort is used for the headline comparison because recent years suffer from citation truncation. Data: PatentsView."
         loading={qctL}
         height={400}
         controls={countryNorm.controls}
@@ -383,8 +383,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-country-claims"
         title="US Patents Average 16.7 Claims in 2024, versus 14.8 for Germany and 9.8 for China"
-        subtitle="Average number of claims per patent for the top 5 filing countries, 1976-2025"
-        caption="Average number of claims per patent for the top 5 filing countries by inventor location, 1976-2024. US patents consistently contain more claims than those from other major filing countries. Data: PatentsView."
+        subtitle="Average number of claims per patent for the top 5 filing countries, 1976–2025"
+        caption="Average number of claims per patent for the top 5 filing countries by inventor location, 1976–2024. US patents consistently contain more claims than those from other major filing countries. Data: PatentsView."
         loading={qctL}
         height={400}
       >
@@ -400,8 +400,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-country-originality"
         title="US Patents Score 0.234 on Originality in 2024, Nearly Double China's 0.118"
-        subtitle="Average originality index for the top 5 filing countries, 1976-2025"
-        caption="Average originality index per patent for the top 5 filing countries by inventor location, 1976-2024. Higher values indicate citations drawn from a wider range of technology classes. Data: PatentsView."
+        subtitle="Average originality index for the top 5 filing countries, 1976–2025"
+        caption="Average originality index per patent for the top 5 filing countries by inventor location, 1976–2024. Higher values indicate citations drawn from a wider range of technology classes. Data: PatentsView."
         loading={qctL}
         height={400}
       >
@@ -417,8 +417,8 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-country-grant-lag"
         title="German Filers Wait 1,217 Days for Grant in 2024, versus 932 Days for US Domestic"
-        subtitle="Average grant lag in days for the top 5 filing countries, 1976-2025"
-        caption="Average grant lag (filing to issue, in days) for the top 5 filing countries by inventor location, 1976-2024. Grant lag has risen across all countries, with non-US filers consistently facing longer waits. Data: PatentsView."
+        subtitle="Average grant lag in days for the top 5 filing countries, 1976–2025"
+        caption="Average grant lag (filing to issue, in days) for the top 5 filing countries by inventor location, 1976–2024. Grant lag has risen across all countries, with non-US filers consistently facing longer waits. Data: PatentsView."
         loading={qctL}
         height={400}
       >
@@ -442,7 +442,7 @@ export default function GeoInternationalChapter() {
       {countryTimePivot.length > 0 && (
         <ChartContainer
           id="fig-geo-intl-country-filing-trends"
-          subtitle="Annual patent grants by inventor country for the top 10 foreign filing countries, 1976-2024."
+          subtitle="Annual patent grants by inventor country for the top 10 foreign filing countries, 1976–2024."
           title="Japan Leads Foreign Filings with 1.45M US Patents, While China Grew from 299 (2000) to 30,695 (2024)"
           caption="The figure displays annual patent grant counts for the top 10 countries by inventor location. Japan has dominated foreign filings throughout the study period, while South Korea and China have exhibited rapid growth since the 2000s, fundamentally reshaping the composition of foreign patent activity in the US system."
           insight="Successive waves of foreign patent filings -- first from Japan, then South Korea, and most recently China -- have progressively diversified the international composition of the US patent system."
@@ -481,7 +481,7 @@ export default function GeoInternationalChapter() {
       {priorityPivot.length > 0 && (
         <ChartContainer
           id="fig-geo-intl-priority-country-composition"
-          subtitle="Annual patent counts by priority country for the top 8 filing origins, 1976-2025."
+          subtitle="Annual patent counts by priority country for the top 8 filing origins, 1976–2025."
           title="US Priority Filings Declined from 70% to 60% of Grants as China Rose from 53 (1993) to 25,029 (2024)"
           caption="The figure displays annual patent grant counts by priority country for the top 8 filing origins. The US remains the dominant priority country but its share has declined steadily as Japan, South Korea, and more recently China have expanded their filing volumes. China surpassed several European countries to become the third-largest priority country by 2021."
           insight="The shifting composition of priority countries reflects the globalization of inventive activity, with East Asian economies accounting for an increasing share of the inventions entering the US patent system."
@@ -519,7 +519,7 @@ export default function GeoInternationalChapter() {
       {pctPivot.length > 0 && (
         <ChartContainer
           id="fig-geo-intl-pct-share-by-country"
-          subtitle="PCT route share by country for major filing origins, 1990-2025."
+          subtitle="PCT route share by country for major filing origins, 1990–2025."
           title="France Leads PCT Usage at 53-57%, While China's PCT Share Rose from 0% to 35% in Two Decades"
           caption="The figure displays the share of each country's US patent filings that entered via the PCT route. European countries (France, Germany, UK) exhibit consistently high PCT usage reflecting their reliance on international filing pathways. China's PCT share rose from near zero in the early 2000s to over 35% by 2024, reflecting the rapid internationalization of Chinese patent strategy."
           insight="PCT usage patterns reflect national filing strategies: European and East Asian filers rely heavily on the PCT route, while US domestic filers use it less frequently, consistent with direct filing at the home office."

@@ -147,9 +147,9 @@ export default function MechGeographyChapter() {
 
       <ChartContainer
         id="fig-mech-geo-co-invention-rates"
-        subtitle="Share of US patents co-invented with each partner country (1976-2025), measured as the percentage with at least one US and one foreign inventor."
+        subtitle="Share of US patents co-invented with each partner country (1976–2025), measured as the percentage with at least one US and one foreign inventor."
         title="US-China Co-Invention Rates Have Grown Substantially, Surpassing 2% by 2025 (through September)"
-        caption="Share of US patents co-invented with each partner country, 1976-2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025 (through September)."
+        caption="Share of US patents co-invented with each partner country, 1976–2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025 (through September)."
         insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025 (through September), though growth rates have moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
         loading={ciL}
       >

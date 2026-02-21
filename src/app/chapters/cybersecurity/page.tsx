@@ -309,7 +309,7 @@ export default function Chapter17() {
         id="fig-cyber-patents-annual-count"
         subtitle="Annual count of utility patents classified under cybersecurity-related CPC codes, tracking the growth trajectory of cybersecurity patenting."
         title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Coinciding With Data Breaches, Ransomware, and Regulatory Compliance"
-        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020). Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976–2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020). Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in cybersecurity patents coincides with the expansion of the digital economy, with acceleration observed following major security incidents such as the Snowden disclosures (2013), WannaCry ransomware campaign (2017), and SolarWinds attack (2020)."
         loading={pyL}
       >
@@ -443,7 +443,7 @@ export default function Chapter17() {
           id="fig-cyber-patents-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by cybersecurity patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings Have Shifted as Cloud Security and Enterprise Software Firms Expanded Their Patent Portfolios After 2010"
-          caption="Annual ranking of the top 15 organizations by cybersecurity patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal increasing competition among technology firms as cybersecurity has become a critical differentiator in enterprise software and cloud services."
+          caption="Annual ranking of the top 15 organizations by cybersecurity patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal increasing competition among technology firms as cybersecurity has become a critical differentiator in enterprise software and cloud services."
           insight="The ranking dynamics reveal the growing strategic importance of cybersecurity patents, with cloud and enterprise software firms expanding their security portfolios to compete with traditional security-focused companies."
           loading={ootL}
           height={600}

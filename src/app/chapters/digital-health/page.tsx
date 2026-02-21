@@ -317,7 +317,7 @@ export default function Chapter18() {
         id="fig-digihealth-annual-count"
         subtitle="Annual count of utility patents classified under digital health CPC codes, tracking the growth trajectory of digital health patenting."
         title="Digital Health Patent Filings Have Grown Substantially Since 2009, Coinciding With the HITECH Act and COVID-19 Pandemic"
-        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under digital health CPC codes, 1976–2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth trajectory of digital health patents coincides with regulatory mandates (HITECH Act), public health emergencies (COVID-19), and advances in sensor technology, wireless connectivity, and cloud computing."
         loading={pyL}
       >
@@ -339,7 +339,7 @@ export default function Chapter18() {
           electronic health record adoption, coinciding with increased investment in health IT
           infrastructure. The second began in 2020, coinciding with the COVID-19 pandemic and rapid
           deployment of telemedicine, remote patient monitoring, and digital diagnostics during
-          2020-2021.
+          2020–2021.
         </p>
       </KeyInsight>
 
@@ -425,7 +425,7 @@ export default function Chapter18() {
         title="View top digital health patent holders as a data table"
         headers={['Organization', 'Digital Health Patents']}
         rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
-        caption="Top 15 organizations by digital health patent count, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by digital health patent count, 1976–2025. Source: PatentsView."
       />
 
       <KeyInsight>
@@ -445,7 +445,7 @@ export default function Chapter18() {
           id="fig-digihealth-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by digital health patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Organizational Leadership in Digital Health Has Shifted as Technology Firms Enter the Medical Device Space"
-          caption="Annual ranking of the top 15 organizations by digital health patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal shifts in competitive positioning as traditional medical device firms face growing competition from technology companies expanding into healthcare."
+          caption="Annual ranking of the top 15 organizations by digital health patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal shifts in competitive positioning as traditional medical device firms face growing competition from technology companies expanding into healthcare."
           insight="The evolving rankings reflect the ongoing convergence of medical device expertise and digital technology capabilities, as firms compete to define the future of connected healthcare."
           loading={ootL}
           height={600}
@@ -728,7 +728,7 @@ export default function Chapter18() {
         id="fig-digihealth-team-comparison"
         subtitle="Average inventors per patent for digital health versus non-digital-health utility patents by year, showing the complexity gap between the two categories."
         title="Since the Mid-1990s, Digital Health Patents Have Involved Larger Teams Than Non-Digital-Health Patents"
-        caption="Average number of inventors per patent for digital health versus non-digital-health utility patents, 1976-2025. Before the mid-1990s, digital health team sizes were comparable to or slightly smaller than non-digital-health patents. Since then, digital health teams have grown larger, reflecting the increasing need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
+        caption="Average number of inventors per patent for digital health versus non-digital-health utility patents, 1976–2025. Before the mid-1990s, digital health team sizes were comparable to or slightly smaller than non-digital-health patents. Since then, digital health teams have grown larger, reflecting the increasing need for expertise spanning biomedical engineering, software development, clinical science, and regulatory affairs."
         insight="Since the mid-1990s, digital health patents have involved larger teams than non-digital-health patents, a pattern that reflects the growing multidisciplinary demands of integrating clinical knowledge, engineering expertise, and regulatory compliance."
         loading={tcL}
       >

@@ -411,8 +411,8 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-cpc-sections"
         title="CPC Sections G and H Gained 30 Percentage Points of Share Over Five Decades"
-        subtitle="Share of utility patents by CPC section, toggling between percentage share and absolute count views, 1976-2025"
-        caption="Share of utility patents by CPC section (primary classification), 1976-2025. Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity. The stacked area visualization reveals a sustained reallocation of patent activity toward digital technology sections."
+        subtitle="Share of utility patents by CPC section, toggling between percentage share and absolute count views, 1976–2025"
+        caption="Share of utility patents by CPC section (primary classification), 1976–2025. Sections: A=Human Necessities, B=Operations, C=Chemistry, D=Textiles, E=Construction, F=Mechanical, G=Physics, H=Electricity. The stacked area visualization reveals a sustained reallocation of patent activity toward digital technology sections."
         insight="Digital technology sections (G, H) gained 30 percentage points of share over five decades, while chemistry and operations contracted proportionally. This redistribution is consistent with the economy-wide shift toward information-intensive industries."
         loading={cpcL}
         height={650}
@@ -456,8 +456,8 @@ export default function SystemPatentFieldsChapter() {
         <ChartContainer
           id="fig-patent-fields-cpc-class-change"
           title="The Fastest-Growing Digital Technology Classes Grew by Over 1,000% While Declining Classes Contracted by Nearly 84%"
-          subtitle="Percentage change in patent counts by CPC class, comparing 2000-2010 to 2015-2025, for classes with 100+ patents in each period"
-          caption="Percent change in patent counts comparing 2000-2010 to 2015-2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
+          subtitle="Percentage change in patent counts by CPC class, comparing 2000–2010 to 2015–2025, for classes with 100+ patents in each period"
+          caption="Percent change in patent counts comparing 2000–2010 to 2015–2025, for CPC classes with at least 100 patents in each period. The fastest-growing classes are concentrated in digital technologies, while the most rapidly declining classes include both older digital standards and specialized semiconductor processes."
           insight="The pattern is consistent with Schumpeterian creative destruction: entire categories of analog-era invention have been rendered obsolete as digital replacements have expanded. The magnitude of these shifts indicates a fundamental reorientation of inventive activity."
           loading={chgL}
           height={900}
@@ -518,8 +518,8 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-diversity-index"
         title="Technology Diversity Declined from 0.848 in 1984 to 0.777 in 2009 Before Stabilizing at 0.789 by 2025 (Through September)"
-        subtitle="Technology diversity index (1 minus HHI of CPC section concentration), where higher values indicate more diverse patent output, 1976-2025"
-        caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976-2025. Higher values indicate more diverse technology output. The index declined substantially as digital technologies concentrated activity, then stabilized after 2009."
+        subtitle="Technology diversity index (1 minus HHI of CPC section concentration), where higher values indicate more diverse patent output, 1976–2025"
+        caption="1 minus the Herfindahl-Hirschman Index of CPC section concentration, 1976–2025. Higher values indicate more diverse technology output. The index declined substantially as digital technologies concentrated activity, then stabilized after 2009."
         insight="Technology diversity declined substantially from its 1984 peak through 2009 as digital technologies concentrated patent activity in sections G and H. The index then stabilized at a lower level, suggesting that while the concentration shift has halted, it has not reversed."
         loading={divL}
       >
@@ -549,7 +549,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-velocity"
         subtitle="Year-over-year percentage change in patent grants by WIPO technology sector, revealing synchronized cyclical patterns."
-        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Early-2000s Slowdown (Grant-Year Decline 2004-2005, Consistent With Reduced Filings During the Recession) and Financial Crisis (2007)"
+        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Early-2000s Slowdown (Grant-Year Decline 2004–2005, Consistent With Reduced Filings During the Recession) and Financial Crisis (2007)"
         caption="The figure presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors is consistent with macroeconomic conditions and patent policy exerting stronger influence on patenting rates than sector-specific technology cycles."
@@ -570,7 +570,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Innovation velocity is highly correlated across sectors, suggesting that macroeconomic conditions and patent policy are stronger determinants of patenting rates than sector-specific technology cycles. The synchronized grant-year declines in 2004-2005 (reflecting reduced filings during the early-2000s recession) and the 2008 financial crisis are particularly instructive.
+          Innovation velocity is highly correlated across sectors, suggesting that macroeconomic conditions and patent policy are stronger determinants of patenting rates than sector-specific technology cycles. The synchronized grant-year declines in 2004–2005 (reflecting reduced filings during the early-2000s recession) and the 2008 financial crisis are particularly instructive.
         </p>
       </KeyInsight>
 
@@ -585,8 +585,8 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-friction-map"
         subtitle="Median time from application filing to patent grant by CPC section and 5-year period, measuring technology-specific examination friction."
-        title="Since the Mid-2000s, Chemistry (C) and Textiles & Paper (D) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,278 Days in the 2010-2014 Period"
-        caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, with all technology areas peaking around 2010-2014 before declining following USPTO reforms."
+        title="Since the Mid-2000s, Chemistry (C) and Textiles & Paper (D) Patents Have Exhibited the Longest Examination Durations, with a Median of 1,278 Days in the 2010–2014 Period"
+        caption="The figure presents the median time from application filing to patent grant, disaggregated by CPC section and 5-year period. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, with all technology areas peaking around 2010–2014 before declining following USPTO reforms."
         loading={fmL}
         insight="Examination duration patterns are consistent with institutional constraints that shape innovation timelines, with technology-specific backlogs associated with the USPTO's resource allocation across its technology centers."
       >
@@ -608,7 +608,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010-2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives were followed by reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, consistent with the complexity of chemical examination and the specialized nature of textile and paper technology review.
+          Examination duration increased substantially across all technology areas through the 2000s, peaking in the 2010–2014 period as the USPTO contended with a considerable backlog. The AIA reforms and USPTO hiring initiatives were followed by reduced pendency in subsequent years. Since the mid-2000s, Chemistry (C) and Textiles & Paper (D) patents have exhibited the longest examination durations, consistent with the complexity of chemical examination and the specialized nature of textile and paper technology review.
         </p>
       </KeyInsight>
 
@@ -623,8 +623,8 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-scurve-maturity"
         title="Textiles Has Reached Over 97% of Estimated Carrying Capacity While Computing Sections Continue to Grow"
-        subtitle="Percentage of estimated logistic carrying capacity reached by each CPC section, measuring technology lifecycle maturity, 1976-2025"
-        caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts, 1976-2025. Higher values indicate greater technological maturity as measured by proximity to the estimated saturation point."
+        subtitle="Percentage of estimated logistic carrying capacity reached by each CPC section, measuring technology lifecycle maturity, 1976–2025"
+        caption="Percentage of estimated carrying capacity (K) reached by each CPC section, based on logistic S-curve fit to cumulative patent counts, 1976–2025. Higher values indicate greater technological maturity as measured by proximity to the estimated saturation point."
         insight="Textiles (D) has reached over 97% of estimated carrying capacity, while Fixed Constructions (E) is at nearly 60%, suggesting maturation. Physics (G) and Electricity (H), which encompass computing, AI, and semiconductors, appear to retain substantial growth potential."
         loading={scL}
         height={400}
@@ -662,7 +662,7 @@ export default function SystemPatentFieldsChapter() {
             </tbody>
           </table>
           <figcaption className="mt-3 text-xs text-muted-foreground">
-            Logistic S-curve parameters fitted to cumulative patent counts per CPC section (1976-2025). K = carrying capacity, lifecycle stage based on percentage of K reached.
+            Logistic S-curve parameters fitted to cumulative patent counts per CPC section (1976–2025). K = carrying capacity, lifecycle stage based on percentage of K reached.
           </figcaption>
         </div>
       )}
@@ -846,7 +846,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-quality-by-sector"
         subtitle="Average number of claims per patent by WIPO technology sector, computed in 5-year periods to illustrate cross-sector trends."
-        title="Instruments Patents Peaked at 19.8 Average Claims (2001-2005) While Mechanical Engineering Rose from 9.3 to 14.9, Consistent With Broad Increases Across Sectors"
+        title="Instruments Patents Peaked at 19.8 Average Claims (2001–2005) While Mechanical Engineering Rose from 9.3 to 14.9, Consistent With Broad Increases Across Sectors"
         caption="The figure displays the average claims per patent by WIPO sector over 5-year periods. Electrical engineering and instruments patents tend to have the most claims in recent decades. Claim counts have increased across all sectors, though the range has widened over time."
         loading={bsL}
         insight="Electrical engineering and instruments patents tend to have the most claims in recent decades, reflecting the detailed and layered claim structures characteristic of software and electronics inventions."
@@ -881,7 +881,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-fwd-citations-by-cpc"
         title="Human Necessities (A) and Fixed Constructions (E) Patents Attracted the Highest Forward Citations in Early Decades, Converging Across Sections by the 2020s"
-        subtitle="Average forward citations per patent by CPC section, 1976-2025, showing how citation impact has evolved and converged across technology domains."
+        subtitle="Average forward citations per patent by CPC section, 1976–2025, showing how citation impact has evolved and converged across technology domains."
         caption="Average number of forward citations received per patent, disaggregated by CPC section and year. Early decades show large inter-section variation, with Human Necessities (A) and Fixed Constructions (E) leading. By the 2020s, citation counts converge substantially as the patent corpus expands and citation practices mature."
         insight="The convergence in forward citations across technology sections is consistent with the densification of citation networks and the maturation of the patent system. Early-era patents in smaller fields attracted disproportionate citations relative to later cohorts."
         loading={qcL}
@@ -900,7 +900,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-originality-by-cpc"
         title="Section-Level Patent Originality Rose Steeply from Near-Zero in the 1970s to 0.45-0.55 per CPC Section by the 2020s"
-        subtitle="Average originality index by CPC section, 1976-2025, measuring the diversity of technology classes cited in backward references. Values shown are per-section averages; the system-wide average is lower (~0.25) because it includes the low-originality early decades."
+        subtitle="Average originality index by CPC section, 1976–2025, measuring the diversity of technology classes cited in backward references. Values shown are per-section averages; the system-wide average is lower (~0.25) because it includes the low-originality early decades."
         caption="Average originality index per patent by CPC section and year. Originality measures the Herfindahl-based diversity of CPC classes in a patent's backward citations. The near-universal rise from zero in the 1970s to 0.45-0.55 (per CPC section) by the 2020s reflects increasingly cross-disciplinary inventive activity. Note: these are section-level averages; the system-wide originality average is approximately 0.25."
         insight="The broad increase in originality across all sections indicates that modern patents draw on prior art from a wider range of technology classes, consistent with increasing technological convergence and interdisciplinary research."
         loading={qcL}
@@ -917,7 +917,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-generality-by-cpc"
         title="Generality Has Remained Stable at 0.25-0.45, with Operations (B) and Fixed Constructions (E) Consistently the Most General"
-        subtitle="Average generality index by CPC section, 1976-2025, measuring how broadly each section's patents are cited across technology classes."
+        subtitle="Average generality index by CPC section, 1976–2025, measuring how broadly each section's patents are cited across technology classes."
         caption="Average generality index per patent by CPC section and year. Generality measures the Herfindahl-based diversity of CPC classes in a patent's forward citations. Unlike originality, generality has remained relatively stable over time, indicating that the breadth of a patent's downstream impact is more intrinsic to its technology domain."
         insight="The stability of generality over time suggests that certain technology areas -- particularly Operations (B) and Fixed Constructions (E) -- produce innovations with inherently broader applicability across fields, a pattern that has persisted for five decades."
         loading={qcL}
@@ -934,7 +934,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-scope-by-cpc"
         title="Patent Scope Expanded from 1.5-2.0 Subclasses in the 1970s to 2.5-3.5 by the 2020s, Led by Mechanical Engineering (F)"
-        subtitle="Average scope (number of distinct CPC subclasses) per patent by CPC section, 1976-2025, measuring the breadth of technological coverage."
+        subtitle="Average scope (number of distinct CPC subclasses) per patent by CPC section, 1976–2025, measuring the breadth of technological coverage."
         caption="Average number of distinct CPC subclasses assigned to each patent, by CPC section and year. Scope captures the breadth of a patent's technological coverage. The steady increase across all sections reflects more detailed classification practices and the growing complexity of modern inventions."
         insight="The expansion of patent scope across all sections is consistent with both the increasing technical complexity of inventions and the USPTO's more granular classification scheme. Mechanical Engineering (F) and Operations (B) patents tend to span the most subclasses, reflecting their inherently cross-cutting nature."
         loading={qcL}
@@ -1079,7 +1079,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-wipo-sector-shares"
         title="Electrical Engineering Grew from 14% to 41% of Patent Grants, Surpassing All Other WIPO Sectors by the Late 1990s"
-        subtitle="Stacked area chart of patent counts by WIPO technology sector, 1976-2025, showing the structural shift toward electrical engineering"
+        subtitle="Stacked area chart of patent counts by WIPO technology sector, 1976–2025, showing the structural shift toward electrical engineering"
         caption="Annual patent counts by WIPO technology sector. Electrical engineering, which encompasses computing, telecommunications, and semiconductors, has grown from a minority share in the 1970s to the dominant sector by the late 1990s, consistent with the CPC-level trends documented in Section B."
         insight="The WIPO sector view confirms the structural transformation visible in the CPC data: electrical engineering now accounts for the largest share of patent output, reflecting the economy-wide digital transition."
         loading={wsL}
@@ -1103,8 +1103,8 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-wipo-field-growth"
         title="IT Methods for Management Grew by 5,675% While Computer Technology and Digital Communication Each Exceeded 1,600%"
-        subtitle="Top 10 fastest-growing WIPO technology fields by percentage growth, comparing 1976-1995 to 2006-2025 patent counts"
-        caption="Percentage growth in patent counts by WIPO technology field, comparing the early period (1976-1995) to the late period (2006-2025). The fastest-growing fields are concentrated in digital and computing-related technologies, consistent with the structural shift documented throughout this chapter."
+        subtitle="Top 10 fastest-growing WIPO technology fields by percentage growth, comparing 1976–1995 to 2006–2025 patent counts"
+        caption="Percentage growth in patent counts by WIPO technology field, comparing the early period (1976–1995) to the late period (2006–2025). The fastest-growing fields are concentrated in digital and computing-related technologies, consistent with the structural shift documented throughout this chapter."
         insight="The fastest-growing fields are overwhelmingly digital: IT methods for management, computer technology, and digital communication lead by wide margins. This concentration of growth in a small number of fields explains the declining technology diversity documented in Section B."
         loading={wgL}
         height={550}
@@ -1149,7 +1149,7 @@ export default function SystemPatentFieldsChapter() {
       />
 
       <DataNote>
-        Technology classifications use the primary CPC section (sequence 0) for each patent and WIPO technology fields mapped from IPC codes. Growth rates compare patent counts in 2000-2010 to 2015-2025 for CPC classes with at least 100 patents in each period. The diversity index is computed as 1 minus the Herfindahl-Hirschman Index of CPC section concentration. S-curve parameters are fitted using logistic regression on cumulative patent counts per CPC section (1976-2025). Assignee concentration (HHI) is computed within each CPC section by assignee patent share in 5-year windows. Citation lag uses median lag in years between cited and citing patent grant dates. Technology half-life is computed as the time until 50% of cumulative forward citations are received. Self-citation rates are computed as the fraction of backward citations directed to patents held by the same assignee.
+        Technology classifications use the primary CPC section (sequence 0) for each patent and WIPO technology fields mapped from IPC codes. Growth rates compare patent counts in 2000–2010 to 2015–2025 for CPC classes with at least 100 patents in each period. The diversity index is computed as 1 minus the Herfindahl-Hirschman Index of CPC section concentration. S-curve parameters are fitted using logistic regression on cumulative patent counts per CPC section (1976–2025). Assignee concentration (HHI) is computed within each CPC section by assignee patent share in 5-year windows. Citation lag uses median lag in years between cited and citing patent grant dates. Technology half-life is computed as the time until 50% of cumulative forward citations are received. Self-citation rates are computed as the fraction of backward citations directed to patents held by the same assignee.
       </DataNote>
 
       <RelatedChapters currentChapter={3} />

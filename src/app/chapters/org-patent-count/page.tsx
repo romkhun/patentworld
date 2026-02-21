@@ -151,8 +151,8 @@ export default function OrgPatentCountChapter() {
       <ChartContainer
         id="fig-org-patent-count-top-assignees"
         title="IBM Leads With 161,888 Cumulative Grants, but Samsung Trails by Fewer Than 4,000 Patents"
-        subtitle="Top organizations ranked by cumulative utility patent grants, 1976-2025"
-        caption="Organizations ranked by total utility patents granted, 1976-2025. Japanese and Korean firms occupy a majority of the top positions alongside US-based technology firms."
+        subtitle="Top organizations ranked by cumulative utility patent grants, 1976–2025"
+        caption="Organizations ranked by total utility patents granted, 1976–2025. Japanese and Korean firms occupy a majority of the top positions alongside US-based technology firms."
         insight="The ranking demonstrates the global nature of US patent activity. Japanese and Korean firms compete directly with US-based technology firms for the leading positions, reflecting the internationalization of technology-intensive industries."
         loading={topL}
         height={1400}
@@ -170,7 +170,7 @@ export default function OrgPatentCountChapter() {
         title="View top assignees as a data table"
         headers={['Organization', 'Total Patents']}
         rows={(top ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.total_patents])}
-        caption="Top 15 organizations by cumulative utility patent grants, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by cumulative utility patent grants, 1976–2025. Source: PatentsView."
       />
 
       <Narrative>
@@ -234,7 +234,7 @@ export default function OrgPatentCountChapter() {
       <ChartContainer
         id="fig-org-patent-count-concentration"
         title="The Top 100 Organizations Hold 32-39% of Corporate Patents, a Share That Has Narrowed Since the 2010s"
-        subtitle="Share of corporate patents held by the top 10, 50, and 100 organizations, measured by 5-year period, 1976-2025"
+        subtitle="Share of corporate patents held by the top 10, 50, and 100 organizations, measured by 5-year period, 1976–2025"
         caption="Share of all corporate patents held by the top 10, 50, and 100 organizations, by 5-year period. The relative stability of these concentration ratios across decades suggests persistent structural features of the patent system."
         insight="Despite the entry of new organizations, the patent landscape remains dominated by large, well-resourced entities that invest systematically in R&amp;D. The stability of concentration ratios is consistent with the presence of substantial barriers to large-scale patenting."
         loading={concL}
@@ -278,8 +278,8 @@ export default function OrgPatentCountChapter() {
           <ChartContainer
             id="fig-org-patent-count-org-output-trends"
             title="Samsung Peaked at 9,716 Annual Grants in 2024, Overtaking IBM Which Peaked at 9,257 in 2019"
-            subtitle="Annual patent grants for the 10 historically top-ranked organizations, with selectable series, 1976-2025"
-            caption="Annual patent grants for the 10 historically top-ranked organizations, 1976-2025. The data reveal divergent trajectories, with certain firms exhibiting sustained growth and others demonstrating gradual decline over the five-decade period."
+            subtitle="Annual patent grants for the 10 historically top-ranked organizations, with selectable series, 1976–2025"
+            caption="Annual patent grants for the 10 historically top-ranked organizations, 1976–2025. The data reveal divergent trajectories, with certain firms exhibiting sustained growth and others demonstrating gradual decline over the five-decade period."
             insight="The divergence between IBM's declining trajectory and Samsung's sustained ascent illustrates how corporate patent strategies differ. IBM shifted toward services while Samsung invested extensively in hardware and electronics R&amp;D."
             loading={orgL}
             interactive
@@ -350,7 +350,7 @@ export default function OrgPatentCountChapter() {
           &quot;blockbusters&quot; -- account for a disproportionate share of technological impact as
           measured by forward citations. Blockbuster patents are defined here as those in the
           top 1% of forward citations received within five years, normalized within each grant
-          year and CPC section cohort. The Lorenz curve provides a natural way to visualize
+          year and <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> section cohort. The Lorenz curve provides a natural way to visualize
           how evenly (or unevenly) these high-impact patents are distributed across
           organizations: if every firm produced blockbusters in exact proportion to its total
           patent output, the curve would follow the 45-degree line of perfect equality.
@@ -476,11 +476,11 @@ export default function OrgPatentCountChapter() {
       <DataNote>
         Assignee data employ disambiguated identities from PatentsView. The primary assignee
         (sequence 0) is used to avoid double-counting patents with multiple assignees.
-        Rankings are based on cumulative utility patent grants, 1976-2025. Concentration ratios
+        Rankings are based on cumulative utility patent grants, 1976–2025. Concentration ratios
         are computed as the fraction of all corporate patents held by the top 10, 50, and 100
         organizations per 5-year period. Design patent rankings use total design patents granted
         across all years. Corporate mortality tracks presence in the top 50 patent filers per decade
-        (1976-2025). Organization names are cleaned and standardized for display purposes.
+        (1976–2025). Organization names are cleaned and standardized for display purposes.
         Blockbuster patents are defined as the top 1% by forward citations within 5 years,
         normalized within grant year and CPC section cohort. Lorenz curves and Gini coefficients
         measure the concentration of these blockbuster patents across firms by decade.

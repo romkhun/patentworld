@@ -54,6 +54,11 @@ export const GLOSSARY: Record<string, GlossaryTerm> = {
     definition:
       'A dense web of overlapping patent rights that competitors must navigate, often used as a strategic barrier to entry.',
   },
+  USPTO: {
+    term: 'USPTO',
+    definition:
+      'United States Patent and Trademark Office — the federal agency that grants US patents and registers trademarks. USPTO examines patent applications and maintains the public patent record.',
+  },
   PatentsView: {
     term: 'PatentsView',
     definition:

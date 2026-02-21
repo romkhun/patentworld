@@ -104,7 +104,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyFindings>
         <li>Multi-section patents rose from 21% to 40% of all grants between 1976 and 2024, signaling increasing technological convergence across once-separate domains.</li>
-        <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
+        <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976–1995 and 2011–2025, reflecting intensifying cross-field integration.</li>
         <li>Within-firm technological broadening accounts for the majority of the convergence trend, indicating that individual organizations are expanding their patent scope across CPC sections rather than the aggregate shift being explained by compositional changes in the population of patentees.</li>
       </KeyFindings>
 
@@ -131,8 +131,8 @@ export default function SystemConvergenceChapter() {
       <ChartContainer
         id="fig-cross-field-convergence-matrix"
         subtitle="Percentage of multi-section patents spanning each CPC section pair by era, measuring how technology boundaries have become more permeable."
-        title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976-1995 and 2011-2025"
-        caption="The figure displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011-2025 period as digital technology has permeated additional domains."
+        title="The G-H (Physics-Electricity) Convergence Pair Rose from 12.5% to 37.5% of All Cross-Section Patents Between 1976–1995 and 2011–2025"
+        caption="The figure displays the percentage of multi-section patents that span each pair of CPC sections, by era. The G-H (Physics-Electricity) pair consistently dominates convergence, and its share has increased substantially in the 2011–2025 period as digital technology has permeated additional domains."
         insight="Technology boundaries appear increasingly permeable over time, with the Physics-Electricity convergence intensifying as digital technology extends across domains. This increasing cross-pollination has implications for patent scope and examination complexity."
         loading={conL}
         height={700}
@@ -145,17 +145,17 @@ export default function SystemConvergenceChapter() {
 
       <Narrative>
         <p>
-          The convergence matrix reveals that cross-field integration is not uniformly distributed. The G-H (Physics-Electricity) pair has dominated convergence from the late 1990s onward, reflecting the deep integration of computing, electronics, and physics that characterizes the digital era. In the earliest period (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted substantially as digital technology became pervasive.
+          The convergence matrix reveals that cross-field integration is not uniformly distributed. The G-H (Physics-Electricity) pair has dominated convergence from the late 1990s onward, reflecting the deep integration of computing, electronics, and physics that characterizes the digital era. In the earliest period (1976–1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted substantially as digital technology became pervasive.
         </p>
       </Narrative>
 
       <KeyInsight>
         <p>
           The G-H (Physics-Electricity) pair has dominated convergence from the late 1990s onward, reflecting
-          the deep integration of computing, electronics, and physics. In the earliest era (1976-1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
-          substantially: in 2011-2025, G-H convergence has intensified as digital technology permeates
+          the deep integration of computing, electronics, and physics. In the earliest era (1976–1995), B-C (Operations-Chemistry) and A-C (Human Necessities-Chemistry) pairs led convergence, but the pattern shifted
+          substantially: in 2011–2025, G-H convergence has intensified as digital technology permeates
           an increasing number of domains. The growing overlap between A (Human Necessities) and G (Physics)
-          in the 2011-2025 period is consistent with the rise of health technology and biomedical electronics.
+          in the 2011–2025 period is consistent with the rise of health technology and biomedical electronics.
         </p>
       </KeyInsight>
 
@@ -166,7 +166,7 @@ export default function SystemConvergenceChapter() {
       <ChartContainer
         id="fig-patent-quality-cross-domain"
         subtitle="Annual patent counts by number of CPC sections spanned (1, 2, or 3+), shown as a stacked area to illustrate growing cross-domain convergence."
-        title="Multi-Section Patents Rose from 21% to 40% of All Grants (1976-2024), Indicating Increasing Technological Convergence"
+        title="Multi-Section Patents Rose from 21% to 40% of All Grants (1976–2024), Indicating Increasing Technological Convergence"
         caption="The figure presents the number of patents classified in a single CPC section, two sections, or three or more sections (excluding Y), displayed as a stacked area. The proportion of patents spanning multiple sections has increased over time, with three-or-more-section patents exhibiting the most pronounced growth."
         loading={cdL}
         height={500}
@@ -399,7 +399,7 @@ export default function SystemConvergenceChapter() {
         id="fig-convergence-cpc-vs-ipc"
         title="Multi-Section Patent Share Shows Consistent Trends Under CPC (20.7% to 40%) and IPC (7.5% to 34.1%)"
         subtitle="Share of patents classified in multiple technology sections by year, comparing CPC and IPC classification systems"
-        caption="The CPC multi-section rate (solid) and IPC multi-section rate (dashed) both show sustained increases over time, though at different absolute levels due to differences in classification granularity and coverage. The IPC series shows a gap during 2002-2004 when IPC data is sparse in PatentsView. Both systems confirm the convergence trend, indicating that the finding is robust to taxonomy choice."
+        caption="The CPC multi-section rate (solid) and IPC multi-section rate (dashed) both show sustained increases over time, though at different absolute levels due to differences in classification granularity and coverage. The IPC series shows a gap during 2002–2004 when IPC data is sparse in PatentsView. Both systems confirm the convergence trend, indicating that the finding is robust to taxonomy choice."
         insight="Both classification systems show the same convergence trend, confirming the finding is robust to taxonomy choice."
         loading={ivcL}
       >
@@ -432,7 +432,7 @@ export default function SystemConvergenceChapter() {
       <InsightRecap
         learned={[
           "Multi-section patents rose from 21% to 40% of all grants, signaling increasing technological convergence across once-separate domains.",
-          "The G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents between 1976-1995 and 2011-2025.",
+          "The G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents between 1976–1995 and 2011–2025.",
         ]}
         falsifiable="If convergence is driven by genuine interdisciplinarity rather than CPC reclassification artifacts, then text-based measures of thematic overlap (Chapter 5) should confirm the same trend."
         nextAnalysis={{

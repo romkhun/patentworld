@@ -324,7 +324,7 @@ export default function Chapter13() {
         id="fig-ai-patents-annual-count"
         subtitle="Annual count of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), tracking the growth trajectory of AI patenting."
         title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, Consistent With Deep Learning Advances"
-        caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976–2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, coinciding with advances in deep learning frameworks, GPU computing, and large-scale data availability."
         loading={pyL}
       >
@@ -392,7 +392,7 @@ export default function Chapter13() {
 
       <ChartContainer
         id="fig-ai-patents-subfields"
-        subtitle="Patent counts by AI subfield (neural networks, machine learning, NLP, and related subfields) over time, based on specific CPC group codes within G06N."
+        subtitle="Patent counts by AI subfield (neural networks, machine learning, natural language processing, and related subfields) over time, based on specific CPC group codes within G06N."
         title="Neural Networks / Deep Learning Has Emerged as One of the Largest AI Subfields Since 2012"
         caption="Patent counts by AI subfield over time, based on CPC classifications. The data reveal that neural networks/deep learning and machine learning have driven the recent growth, surpassing earlier subfields including computer vision, knowledge-based systems, and other classical approaches."
         insight="The shift from expert systems to deep learning reflects fundamental changes in AI methodology, moving from hand-crafted rules to data-driven pattern recognition."
@@ -431,7 +431,7 @@ export default function Chapter13() {
         id="fig-ai-patents-top-assignees"
         subtitle="Organizations ranked by total AI-related patent count from 1976 to 2025, showing concentration among large technology firms."
         title="IBM (16,781), Google (7,775), and Samsung (6,195) Lead in Total AI Patent Volume, Consistent With the Resource-Intensive Nature of AI R&D"
-        caption="Organizations ranked by total AI-related patents, 1976-2025. The data indicate a concentration among large technology firms with substantial computational infrastructure and data assets."
+        caption="Organizations ranked by total AI-related patents, 1976–2025. The data indicate a concentration among large technology firms with substantial computational infrastructure and data assets."
         insight="The dominance of large technology firms in AI patenting reflects the resource-intensive nature of AI R&D, which requires large-scale datasets, computing infrastructure, and specialized talent."
         loading={taL}
         height={1400}
@@ -467,7 +467,7 @@ export default function Chapter13() {
           id="fig-ai-patents-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by AI patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="7 Firms Exceeded 400 AI Patents Annually by 2024, as Multiple Firms Converged at the Top After 2012"
-          caption="Annual ranking of the top 15 organizations by AI patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal rapid convergence of multiple firms since 2012 as advances in deep learning attracted investment from across technology sectors."
+          caption="Annual ranking of the top 15 organizations by AI patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal rapid convergence of multiple firms since 2012 as advances in deep learning attracted investment from across technology sectors."
           insight="The rapid convergence of multiple firms at the top since 2012 reflects intensifying competitive dynamics in AI capabilities, as the deep learning transformation attracted substantial investment from firms across technology sectors."
           loading={ootL}
           height={600}
@@ -505,7 +505,7 @@ export default function Chapter13() {
         id="fig-ai-patents-top-inventors"
         subtitle="Primary inventors ranked by total AI-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
         title="A Small Cohort of Prolific Inventors Accounts for a Disproportionate Share of AI Patent Output"
-        caption="Primary inventors ranked by total AI-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total AI patent output."
+        caption="Primary inventors ranked by total AI-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total AI patent output."
         insight="The concentration of AI patenting among a small cohort of prolific inventors mirrors the broader superstar pattern in innovation, where a few highly productive individuals account for a disproportionate share of output."
         loading={tiL}
         height={1400}
@@ -739,7 +739,7 @@ export default function Chapter13() {
       <ChartContainer
         id="fig-ai-gpt-kpi"
         title="AI Patents Span an Increasing Number of Technology Domains, Confirming GPT Status"
-        subtitle="Distinct non-AI CPC sections co-occurring with AI patents, and HHI of their distribution, by year."
+        subtitle="Distinct non-AI CPC sections co-occurring with AI patents, and Herfindahl-Hirschman Index (HHI) of their distribution, by year."
         caption="Distinct sections measures breadth of AI application; falling HHI indicates increasingly even distribution across technology domains. Both trends are consistent with AI functioning as a general-purpose technology."
         loading={gptL}
       >
@@ -883,7 +883,7 @@ export default function Chapter13() {
         id="fig-ai-filing-vs-grant"
         title="AI Filings Peaked at 25,853 in 2020 While Grants Reached 26,001 in 2023 — a 3-Year Examination Lag"
         subtitle="Annual patent filings versus grants for artificial intelligence, revealing the USPTO examination pipeline."
-        caption="The substantial gap between AI filing and grant curves during 2015-2020 reflects the rapid acceleration of AI patent applications that overwhelmed examination capacity. Grants continued climbing through 2023 as the backlog was processed."
+        caption="The substantial gap between AI filing and grant curves during 2015–2020 reflects the rapid acceleration of AI patent applications that overwhelmed examination capacity. Grants continued climbing through 2023 as the backlog was processed."
         loading={fgL}
       >
         <PWLineChart

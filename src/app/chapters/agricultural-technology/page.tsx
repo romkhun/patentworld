@@ -310,7 +310,7 @@ export default function Chapter12() {
         id="fig-agtech-annual-count"
         subtitle="Annual count of utility patents classified under agricultural technology CPC codes, tracking the growth trajectory of agricultural patenting."
         title="Agricultural Patent Filings Reflect Steady Growth With Accelerations Following GM Crop Adoption and the Precision Agriculture Expansion"
-        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976-2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture expansion accelerating markedly from 2018. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under agricultural technology CPC codes, 1976–2025. The data reveal sustained growth with notable accelerations following the introduction of genetically modified crops in 1996 and the precision agriculture expansion accelerating markedly from 2018. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="Agricultural patent growth reflects the sector's ongoing transformation from mechanization to biotechnology and digital farming, with each technological wave generating new categories of inventive activity."
         loading={pyL}
       >
@@ -465,7 +465,7 @@ export default function Chapter12() {
           id="fig-agtech-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by agricultural patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings Reveal Shifting Competitive Dynamics as Consolidation Reshapes the Agricultural Patent Landscape"
-          caption="Annual ranking of the top 15 organizations by agricultural patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal the effects of industry consolidation, with mergers and acquisitions reshaping rankings over time."
+          caption="Annual ranking of the top 15 organizations by agricultural patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal the effects of industry consolidation, with mergers and acquisitions reshaping rankings over time."
           insight="The rank heatmap captures how mergers and strategic R&D investments have reshaped agricultural patent leadership, with Deere's sustained dominance contrasting with the turbulence accompanying consolidation among seed and chemical companies."
           loading={ootL}
           height={600}
@@ -772,7 +772,7 @@ export default function Chapter12() {
         id="fig-agtech-team-comparison"
         subtitle="Average inventors per patent for AgTech versus non-AgTech utility patents by year, comparing collaborative intensity."
         title="Agricultural Patent Teams Remain Smaller Than Non-AgTech Averages but Are Gradually Converging"
-        caption="Average number of inventors per patent for agricultural versus non-agricultural utility patents, 1976-2025. Agricultural patent teams have consistently been smaller than non-AgTech teams, though the gap has narrowed over time as agricultural innovation becomes increasingly multidisciplinary."
+        caption="Average number of inventors per patent for agricultural versus non-agricultural utility patents, 1976–2025. Agricultural patent teams have consistently been smaller than non-AgTech teams, though the gap has narrowed over time as agricultural innovation becomes increasingly multidisciplinary."
         insight="Agricultural patent teams remain consistently smaller than non-AgTech averages, reflecting the sector's historical roots in individual mechanical invention, though the gap is narrowing as precision agriculture and biotechnology demand larger collaborative teams."
         loading={tcL}
       >

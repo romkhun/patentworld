@@ -18,6 +18,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { RankingTable } from '@/components/chapter/RankingTable';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import Link from 'next/link';
 import { cleanOrgName } from '@/lib/orgNames';
 import { CHART_COLORS, CPC_SECTION_COLORS, SPACE_SUBFIELD_COLORS } from '@/lib/colors';
@@ -304,7 +305,7 @@ export default function Chapter22() {
         id="fig-space-annual-count"
         subtitle="Annual count of utility patents classified under space technology CPC codes, tracking the growth trajectory of space-related patenting."
         title="Space Patent Filings Have Grown Substantially Since 2015, Consistent With the Commercialization of the Space Industry"
-        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976-2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under space technology CPC codes, 1976–2025. After a decline in the late 2000s, the most prominent pattern is the acceleration beginning around 2015, coinciding with the maturation of commercial launch providers and satellite broadband programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in space patents coincides with the broader commercialization of the space industry, including reusable launch vehicles, satellite constellations, and increasing private-sector investment."
         loading={pyL}
       >
@@ -413,7 +414,7 @@ export default function Chapter22() {
         id="fig-space-top-assignees"
         subtitle="Organizations ranked by total space-related patent count from 1976 to 2025, showing concentration among aerospace and defense firms."
         title="Boeing, ViaSat, and Hughes Network Systems Lead in Total Space Patent Volume, Consistent With the Importance of Satellite Communications"
-        caption="Organizations ranked by total space-related patents, 1976-2025. The data indicate a concentration among traditional aerospace and defense contractors, though commercial space entrants have been scaling their portfolios in recent years."
+        caption="Organizations ranked by total space-related patents, 1976–2025. The data indicate a concentration among traditional aerospace and defense contractors, though commercial space entrants have been scaling their portfolios in recent years."
         insight="The dominance of traditional aerospace firms in space patenting reflects the historical role of government contracts in funding space R&D, though commercial entrants are beginning to reshape the competitive landscape."
         loading={taL}
         height={1400}
@@ -430,7 +431,7 @@ export default function Chapter22() {
         title="View top space patent holders as a data table"
         headers={['Organization', 'Space Patents']}
         rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
-        caption="Top 15 organizations by space-related patent count, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by space-related patent count, 1976–2025. Source: PatentsView."
       />
 
       <KeyInsight>
@@ -450,7 +451,7 @@ export default function Chapter22() {
           id="fig-space-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by space patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings Have Shifted as Commercial Space Firms Challenge Traditional Aerospace Leaders"
-          caption="Annual ranking of the top 15 organizations by space patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal the entry of new competitors alongside traditional defense contractors, reflecting the broadening commercial space ecosystem."
+          caption="Annual ranking of the top 15 organizations by space patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal the entry of new competitors alongside traditional defense contractors, reflecting the broadening commercial space ecosystem."
           insight="The ranking dynamics reveal the gradual entry of commercial space firms alongside traditional defense contractors, reflecting the transformation of the space industry from a government-dominated sector to a mixed commercial-government ecosystem."
           loading={ootL}
           height={600}
@@ -486,7 +487,7 @@ export default function Chapter22() {
         id="fig-space-top-inventors"
         subtitle="Primary inventors ranked by total space-related patent count from 1976 to 2025, illustrating the distribution of individual output."
         title="The Most Prolific Space Inventors Are Concentrated Among a Small Number of Aerospace Engineers"
-        caption="Primary inventors ranked by total space-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total space patent output."
+        caption="Primary inventors ranked by total space-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total space patent output."
         insight="The concentration of space patenting among a small cohort of prolific inventors reflects the highly specialized nature of spacecraft engineering, where deep domain expertise in orbital mechanics, materials science, and systems integration is essential."
         loading={tiL}
         height={1400}
@@ -604,7 +605,7 @@ export default function Chapter22() {
           substantially since, a pattern consistent with the broader shift toward more narrowly
           targeted prior art searches as the field has matured. The expanding technology scope
           indicates that space inventions are becoming more
-          interdisciplinary, spanning multiple CPC subclasses as spacecraft systems integrate
+          interdisciplinary, spanning multiple <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses as spacecraft systems integrate
           advances in electronics, materials science, propulsion, and telecommunications.
         </p>
       </KeyInsight>
@@ -737,7 +738,7 @@ export default function Chapter22() {
         <p>
           Space patents historically involved smaller inventor teams than non-space patents for
           most of the period studied. However, space patent team sizes have recently converged
-          with and slightly exceeded non-space averages in 2024-2025, reflecting the growing
+          with and slightly exceeded non-space averages in 2024–2025, reflecting the growing
           systems complexity of modern spacecraft engineering and the increasing multidisciplinary
           collaboration required in contemporary space technology development.
         </p>
@@ -747,8 +748,8 @@ export default function Chapter22() {
         id="fig-space-team-comparison"
         subtitle="Average inventors per patent for space versus non-space utility patents by year, showing recent convergence."
         title="Space Patent Team Sizes Have Recently Converged With Non-Space Averages"
-        caption="Average number of inventors per patent for space-related versus non-space utility patents, 1976-2025. Space patents historically involved smaller teams than non-space patents for most of this period, with convergence occurring only in recent years (2024-2025)."
-        insight="Space patent team sizes were historically smaller than non-space patents but have recently converged, with space teams slightly exceeding non-space averages only in 2024-2025 as spacecraft systems have grown more complex."
+        caption="Average number of inventors per patent for space-related versus non-space utility patents, 1976–2025. Space patents historically involved smaller teams than non-space patents for most of this period, with convergence occurring only in recent years (2024–2025)."
+        insight="Space patent team sizes were historically smaller than non-space patents but have recently converged, with space teams slightly exceeding non-space averages only in 2024–2025 as spacecraft systems have grown more complex."
         loading={tcL}
       >
         <PWLineChart

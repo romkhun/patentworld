@@ -21,6 +21,7 @@ import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { MeasurementSidebar } from '@/components/chapter/MeasurementSidebar';
 import { BLOCKCHAIN_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { RankingTable } from '@/components/chapter/RankingTable';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import { cleanOrgName } from '@/lib/orgNames';
 import Link from 'next/link';
 import type {
@@ -267,7 +268,7 @@ export default function Chapter16() {
 
       <KeyFindings>
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
-        <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
+        <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> codes that define the domain.</li>
         <li>IBM, Intel, and Alibaba-affiliated entities lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
         <li>Patent grants peaked in 2022 and have since declined -- a reversal unique among the advanced technology domains studied here.</li>
       </KeyFindings>
@@ -362,7 +363,7 @@ export default function Chapter16() {
         id="fig-blockchain-hype-cycle"
         title="One-and-Done Entrant Share Reveals the Blockchain Hype Cycle"
         subtitle="Percentage of new blockchain assignees who file exactly one patent and never return, by entry cohort year."
-        caption="One-and-done share above 80% suggests speculative patenting by firms with no sustained commitment to the technology. The one-and-done share was moderate during 2017-2019 (peaking at 55.6% in 2018) but rose sharply after 2022, reaching 71.7% in 2023 and 89.6% in 2024 as speculative entrants exited the domain."
+        caption="One-and-done share above 80% suggests speculative patenting by firms with no sustained commitment to the technology. The one-and-done share was moderate during 2017–2019 (peaking at 55.6% in 2018) but rose sharply after 2022, reaching 71.7% in 2023 and 89.6% in 2024 as speculative entrants exited the domain."
         loading={hcL}
       >
         <PWLineChart
@@ -850,7 +851,7 @@ export default function Chapter16() {
         id="fig-blockchain-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in blockchain patenting."
         title="Top-4 Concentration in Blockchain Patents Rose to 26.3% During the 2018 Boom Before Declining to 14.0% by 2024"
-        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. The concentration spike during 2018-2020 reflects aggressive patenting by IBM, Alibaba-affiliated entities, and financial services firms during the cryptocurrency boom."
+        caption="CR4 computed as the sum of the top 4 organizations&apos; annual patent counts divided by total domain patents. The concentration spike during 2018–2020 reflects aggressive patenting by IBM, Alibaba-affiliated entities, and financial services firms during the cryptocurrency boom."
         insight="The hype-cycle pattern in blockchain concentration mirrors the domain&apos;s broader patent trajectory: rapid consolidation during speculative enthusiasm followed by fragmentation as the market corrected and enterprise blockchain applications diversified the competitive landscape."
         loading={ootL || pyL}
       >

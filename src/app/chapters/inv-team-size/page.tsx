@@ -188,8 +188,8 @@ export default function InvTeamSizeChapter() {
 
       <ChartContainer
         id="fig-team-size-trend"
-        title="Average Patent Team Size Increased from 1.7 to Over 3 Inventors, 1976-2025"
-        subtitle="Average team size, solo-inventor share, and large-team (5+) share per patent, tracking the shift from solo to collaborative invention, 1976-2025"
+        title="Average Patent Team Size Increased from 1.7 to Over 3 Inventors, 1976–2025"
+        subtitle="Average team size, solo-inventor share, and large-team (5+) share per patent, tracking the shift from solo to collaborative invention, 1976–2025"
         caption="The figure displays three concurrent trends in inventor team composition: average team size per patent, the percentage of solo-inventor patents, and the share of large-team (5+ inventor) patents. The most prominent pattern is the steady rise in average team size alongside a corresponding decline in solo invention from above 50% to under 25%."
         insight="The transition from solo invention to team-based research and development constitutes one of the defining structural shifts in modern innovation, reflecting the increasing complexity and interdisciplinarity of technology development."
         loading={tmL}
@@ -236,7 +236,7 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-solo-inventor-trend"
         title="Solo Inventor Patents Declined from 58% to 23% of All Grants by 2025 (Through September)"
-        subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976-2025"
+        subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976–2025"
         caption="The figure tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
         insight="Solo invention has not disappeared in absolute terms -- solo patent counts have roughly doubled -- but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
         loading={soL}
@@ -255,7 +255,7 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-solo-by-section"
         title="Solo Invention Rates Vary Widely Across Technology Fields"
-        subtitle="Share of solo-inventor patents by CPC section, 1976-2025"
+        subtitle="Share of solo-inventor patents by CPC section, 1976–2025"
         caption="The figure compares the solo-inventor share across CPC technology sections. Fields requiring complex laboratory or multidisciplinary approaches (such as Chemistry and Electricity) show markedly lower solo rates than traditional mechanical and construction fields."
         insight="The variation in solo-inventor rates across technology fields reflects the differing knowledge requirements of each domain. Laboratory-intensive fields like chemistry and biotechnology rely more heavily on team-based approaches."
         loading={sbsL}
@@ -295,8 +295,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-fwd-citations"
         title="Solo Inventors Average 0.88 Forward Citations in 2024, More Than Double the 0.32 for Teams of 4-6"
-        subtitle="Average forward citations per patent by team size category, 1976-2025"
-        caption="Average forward citations received per patent by team size category, 1976-2024. Recent years are truncated due to citation lag. Data: PatentsView."
+        subtitle="Average forward citations per patent by team size category, 1976–2025"
+        caption="Average forward citations received per patent by team size category, 1976–2024. Recent years are truncated due to citation lag. Data: PatentsView."
         loading={qtL}
         height={400}
         controls={fwdCitControls}
@@ -314,8 +314,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-claims"
         title="Teams of 7+ Average 16.7 Claims per Patent, versus 11.6 for Solo Inventors"
-        subtitle="Average number of claims per patent by team size category, 1976-2025"
-        caption="Average number of claims per patent by team size category, 1976-2024. Larger teams consistently file patents with more claims. Data: PatentsView."
+        subtitle="Average number of claims per patent by team size category, 1976–2025"
+        caption="Average number of claims per patent by team size category, 1976–2024. Larger teams consistently file patents with more claims. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -331,8 +331,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-scope"
         title="Teams of 7+ Span 2.58 CPC Subclasses on Average, versus 2.30 for Solo Inventors"
-        subtitle="Average patent scope (CPC subclass count) by team size category, 1976-2025"
-        caption="Average number of distinct CPC subclasses per patent by team size category, 1976-2024. Higher values indicate broader technological scope. Data: PatentsView."
+        subtitle="Average patent scope (CPC subclass count) by team size category, 1976–2025"
+        caption="Average number of distinct CPC subclasses per patent by team size category, 1976–2024. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -348,8 +348,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-originality"
         title="Multi-Inventor Teams Draw on More Diverse Prior Art Sources"
-        subtitle="Average originality index by team size category, 1976-2025"
-        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team size category, 1976-2024. Data: PatentsView."
+        subtitle="Average originality index by team size category, 1976–2025"
+        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team size category, 1976–2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -365,8 +365,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-generality"
         title="Team Size Shows Little Differentiation in Citation Generality"
-        subtitle="Average generality index by team size category, 1976-2025"
-        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team size category, 1976-2024. Data: PatentsView."
+        subtitle="Average generality index by team size category, 1976–2025"
+        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team size category, 1976–2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -382,8 +382,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-self-citation"
         title="Teams of 7+ Self-Cite at 16.8%, Nearly Double Solo Inventors' 8.8%"
-        subtitle="Average self-citation rate by team size category, 1976-2025"
-        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team size category, 1976-2024. Data: PatentsView."
+        subtitle="Average self-citation rate by team size category, 1976–2025"
+        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team size category, 1976–2024. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -400,8 +400,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-grant-lag"
         title="Teams of 4-6 Wait 1,024 Days for Grant, versus 905 Days for Solo Inventors"
-        subtitle="Average grant lag in days by team size category, 1976-2025"
-        caption="Average number of days from filing to grant by team size category, 1976-2024. Grant lag generally increases with team size. Data: PatentsView."
+        subtitle="Average grant lag in days by team size category, 1976–2025"
+        caption="Average number of days from filing to grant by team size category, 1976–2024. Grant lag generally increases with team size. Data: PatentsView."
         loading={qtL}
         height={400}
       >
@@ -417,8 +417,8 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-team-productivity"
         title="Mid-Size Teams (4-6) Show the Highest Per-Inventor Patent Productivity"
-        subtitle="Average patents per inventor by team size category, 1976-2025"
-        caption="Average number of patents per inventor per year by team size category, 1976-2024. Data: PatentsView."
+        subtitle="Average patents per inventor by team size category, 1976–2025"
+        caption="Average number of patents per inventor per year by team size category, 1976–2024. Data: PatentsView."
         loading={ptL}
         height={400}
       >
@@ -529,8 +529,8 @@ export default function InvTeamSizeChapter() {
 
       <ChartContainer
         id="fig-cross-institutional-rate"
-        title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976-2025"
-        subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976-2025"
+        title="Cross-Institutional Patents Rose from 0.9% to 4.5% of All Grants, 1976–2025"
+        subtitle="Share of patents listing inventors from more than one assignee type, by grant year, 1976–2025"
         caption="The figure tracks the annual percentage of granted patents that list inventors associated with more than one assignee type (such as corporation and university). The steady upward trend indicates that cross-institutional collaboration has become an increasingly important feature of the patent system."
         insight="The more than five-fold increase in cross-institutional patenting reflects the growing importance of boundary-spanning collaboration in modern innovation, particularly between corporations and research universities."
         loading={crL}
@@ -552,7 +552,7 @@ export default function InvTeamSizeChapter() {
       <ChartContainer
         id="fig-cross-institutional-by-cpc"
         title="Chemistry & Metallurgy Leads Cross-Institutional Collaboration at 8.6%; Fixed Constructions Lowest at 2.2%"
-        subtitle="Cross-institutional patent share by CPC section, 2010-2025"
+        subtitle="Cross-institutional patent share by CPC section, 2010–2025"
         caption="The figure compares the share of cross-institutional patents across CPC technology sections. Chemistry & Metallurgy (Section C) exhibits the highest rate, consistent with the strong university-industry linkages in pharmaceutical and chemical research, while Fixed Constructions (Section E) has the lowest rate."
         insight="The concentration of cross-institutional collaboration in chemistry-related fields reflects the well-established pipelines between academic research labs and corporate R&D in pharmaceuticals, materials science, and biotechnology."
         loading={cbcL}

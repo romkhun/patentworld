@@ -127,7 +127,7 @@ export default function OrgPatentPortfolioChapter() {
       <MeasurementSidebar slug="org-patent-portfolio" />
 
       <KeyFindings>
-        <li>50 companies across six decades (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple groups. Industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass.</li>
+        <li>50 companies across six decades (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple groups. Industry labels are assigned using a rule-based heuristic on each company&apos;s dominant <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> section and top subclass.</li>
         <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 7.1 across 287 CPC subclasses, indicating broad technology coverage.</li>
         <li>IBM (88,600 G-section patents) and Samsung (79,400 H-section patents) maintain the most diversified technology portfolios among the top ten patent holders.</li>
         <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 3-year windows, with pivots flagged above the 95th percentile per-company threshold) identifies 51 detected pivots across 20 companies, which can precede strategic shifts that later become publicly visible.</li>
@@ -265,9 +265,9 @@ export default function OrgPatentPortfolioChapter() {
       {corpDivLate.length > 0 && (
         <ChartContainer
           id="fig-patent-portfolio-corp-diversification"
-          subtitle="Distribution of patent grants across CPC technology sections for the ten largest assignees (2001-2025), shown as stacked bars."
-          title="IBM (88,600 G-Section Patents) and Samsung (79,400 H-Section Patents) Maintain the Most Diversified Technology Portfolios Among the Top Ten Patent Holders (2001-2025)"
-          caption="The figure displays the distribution of patent grants across CPC technology sections for the ten largest patent holders in the 2001-2025 period. IBM and Samsung exhibit the broadest portfolio diversification, spanning physics, electricity, and chemistry, whereas firms such as Intel concentrate in semiconductor-related classifications."
+          subtitle="Distribution of patent grants across CPC technology sections for the ten largest assignees (2001–2025), shown as stacked bars."
+          title="IBM (88,600 G-Section Patents) and Samsung (79,400 H-Section Patents) Maintain the Most Diversified Technology Portfolios Among the Top Ten Patent Holders (2001–2025)"
+          caption="The figure displays the distribution of patent grants across CPC technology sections for the ten largest patent holders in the 2001–2025 period. IBM and Samsung exhibit the broadest portfolio diversification, spanning physics, electricity, and chemistry, whereas firms such as Intel concentrate in semiconductor-related classifications."
           loading={cpL}
           height={650}
           insight="Portfolio breadth appears to correlate with firm longevity at the top of the patent rankings, as the most persistent leaders maintain diversified technology portfolios."
@@ -438,7 +438,7 @@ export default function OrgPatentPortfolioChapter() {
       />
 
       <DataNote>
-        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP (cosine metric, n_neighbors=10, min_dist=0.3) for 50 companies across six decades (248 company-decade observations). The 8 industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass (e.g., H01L → Semiconductor, B60 → Automotive), not statistical clustering. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 3-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 95th percentile of that company&apos;s own JSD distribution, yielding 51 detected pivots across 20 companies. Source: PatentsView.
+        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP (cosine metric, n_neighbors=10, min_dist=0.3) for 50 companies across six decades (248 company-decade observations). The 8 industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass (e.g., H01L → Semiconductor, B60 → Automotive), not statistical clustering. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001–2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 3-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 95th percentile of that company&apos;s own JSD distribution, yielding 51 detected pivots across 20 companies. Source: PatentsView.
       </DataNote>
 
       <RelatedChapters currentChapter={11} />

@@ -167,7 +167,7 @@ export default function InvGenderChapter() {
 
       <KeyFindings>
         <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), representing approximately one in seven patent inventors, with substantial variation across technology fields.</li>
-        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), reaching 23.4% in the most recent period, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
+        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976–2025), reaching 23.4% in the most recent period, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
         <li>All-male teams have the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). These are unconditional averages and do not control for differences in field composition, team size, or institutional affiliation across gender groups. Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
 
@@ -203,7 +203,7 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-female-share"
         title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025 (through September)"
-        subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976-2025"
+        subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976–2025"
         caption="The figure tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025 (through September), an increase of 5.3-fold over the study period."
         insight="The persistent gender gap in patenting is consistent with broader structural differences in STEM participation, including educational pipelines, workplace composition, and institutional factors."
         loading={gnL}
@@ -329,7 +329,7 @@ export default function InvGenderChapter() {
 
       {genderTeamQuality && genderTeamQuality.length > 0 && (
         <div className="max-w-2xl mx-auto my-6">
-          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Patent Quality by Team Gender Composition (2000-2020)</h3>
+          <h3 className="text-sm font-semibold text-center mb-3 text-muted-foreground">Patent Quality by Team Gender Composition (2000–2020)</h3>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border">
@@ -382,8 +382,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-fwd-citations"
         title="Recent Cohorts Show Higher Raw Citation Counts for All-Female Teams (1.06 in 2024 versus 0.51 for All-Male), Though Truncation Limits Interpretation (Recent Cohorts; Citation Window Incomplete)"
-        subtitle="Average forward citations per patent by team gender composition, 1976-2025"
-        caption="Average forward citations received per patent by team gender composition, 1976-2025. Recent years are truncated due to citation lag. Data: PatentsView. The directional reversal compared with cumulative averages (where all-male teams lead at 14.2) reflects citation truncation: 2024 patents have accumulated fewer than two years of citations, a window too short to reveal long-run impact differences."
+        subtitle="Average forward citations per patent by team gender composition, 1976–2025"
+        caption="Average forward citations received per patent by team gender composition, 1976–2025. Recent years are truncated due to citation lag. Data: PatentsView. The directional reversal compared with cumulative averages (where all-male teams lead at 14.2) reflects citation truncation: 2024 patents have accumulated fewer than two years of citations, a window too short to reveal long-run impact differences."
         loading={qgL}
         height={400}
         controls={fwdCitControls}
@@ -405,8 +405,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-claims"
         title="Mixed-Gender Teams File Patents with 16.0 Claims on Average, versus 10.6 for All-Female Teams"
-        subtitle="Average number of claims per patent by team gender composition, 1976-2025"
-        caption="Average number of claims per patent by team gender composition, 1976-2025. Mixed-gender teams consistently file the broadest claims. Data: PatentsView."
+        subtitle="Average number of claims per patent by team gender composition, 1976–2025"
+        caption="Average number of claims per patent by team gender composition, 1976–2025. Mixed-gender teams consistently file the broadest claims. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -426,8 +426,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-scope"
         title="Mixed-Gender Teams Average 2.49 CPC Subclasses per Patent, versus 2.29 for All-Female Teams"
-        subtitle="Average patent scope (CPC subclass count) by team gender composition, 1976-2025"
-        caption="Average number of distinct CPC subclasses per patent by team gender composition, 1976-2025. Higher values indicate broader technological scope. Data: PatentsView."
+        subtitle="Average patent scope (CPC subclass count) by team gender composition, 1976–2025"
+        caption="Average number of distinct CPC subclasses per patent by team gender composition, 1976–2025. Higher values indicate broader technological scope. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -447,8 +447,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-originality"
         title="All-Male Teams Score 0.198 on Originality, Above Mixed Teams' 0.195 and All-Female Teams' 0.157"
-        subtitle="Average originality index by team gender composition, 1976-2025"
-        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team gender composition, 1976-2025. Data: PatentsView."
+        subtitle="Average originality index by team gender composition, 1976–2025"
+        caption="Average originality index (Herfindahl-based dispersion of backward citation technology classes) by team gender composition, 1976–2025. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -468,8 +468,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-generality"
         title="Mixed-Gender Teams Score 0.037 on Generality, Nearly Double All-Female Teams' 0.022"
-        subtitle="Average generality index by team gender composition, 1976-2025"
-        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team gender composition, 1976-2025. Data: PatentsView."
+        subtitle="Average generality index by team gender composition, 1976–2025"
+        caption="Average generality index (Herfindahl-based dispersion of forward citation technology classes) by team gender composition, 1976–2025. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -489,8 +489,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-self-citation"
         title="Mixed-Gender Teams Self-Cite at 15.7%, versus 12.0% for All-Male and 9.9% for All-Female Teams"
-        subtitle="Average self-citation rate by team gender composition, 1976-2025"
-        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team gender composition, 1976-2025. Data: PatentsView."
+        subtitle="Average self-citation rate by team gender composition, 1976–2025"
+        caption="Average self-citation rate (share of backward citations to the same assignee's patents) by team gender composition, 1976–2025. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -511,8 +511,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-grant-lag"
         title="Mixed-Gender Teams Wait 1,027 Days for Grant, versus 886 Days for All-Female Teams"
-        subtitle="Average grant lag in days by team gender composition, 1976-2025"
-        caption="Average number of days from filing to grant by team gender composition, 1976-2025. Grant lag has increased for all groups over time. Data: PatentsView."
+        subtitle="Average grant lag in days by team gender composition, 1976–2025"
+        caption="Average number of days from filing to grant by team gender composition, 1976–2025. Grant lag has increased for all groups over time. Data: PatentsView."
         loading={qgL}
         height={400}
       >
@@ -532,8 +532,8 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-productivity"
         title="Average Patent Output per Inventor Is Higher for Male Than Female Inventors"
-        subtitle="Average patents per inventor by gender, 1976-2025"
-        caption="Average number of patents per inventor per year by gender, 1976-2025. Data: PatentsView."
+        subtitle="Average patents per inventor by gender, 1976–2025"
+        caption="Average number of patents per inventor per year by gender, 1976–2025. Data: PatentsView."
         loading={pgL}
         height={400}
       >
@@ -563,7 +563,7 @@ export default function InvGenderChapter() {
       <ChartContainer
         id="fig-gender-by-filing-route"
         title="Foreign-Origin Patents Show 16.5% Female Inventor Share versus 13.8% for Domestic in 2025 (through September)"
-        subtitle="Female inventor share by filing route (domestic versus foreign-origin patents), 1976-2025"
+        subtitle="Female inventor share by filing route (domestic versus foreign-origin patents), 1976–2025"
         caption="The figure tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
         insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- may reflect field-composition differences in the types of patents filed through foreign versus domestic routes, though it is also consistent with differing rates of change in female STEM participation across countries."
         loading={gbrL}

@@ -310,7 +310,7 @@ export default function Chapter14() {
         id="fig-av-annual-count"
         subtitle="Annual count of utility patents classified under AV-related CPC codes, tracking the growth trajectory of autonomous vehicle patenting."
         title="AV Patent Filings Increased Rapidly Through the 2010s, Coinciding With the Entry of Technology Companies Into the Transportation Sector"
-        caption="Annual count and share of utility patents classified under AV-related CPC codes (B60W60, G05D1, G06V20/56), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under AV-related CPC codes (B60W60, G05D1, G06V20/56), 1976–2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The exponential growth in AV patents mirrors the broader industry transformation, coinciding with advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
         loading={pyL}
       >
@@ -421,7 +421,7 @@ export default function Chapter14() {
         id="fig-av-top-assignees"
         subtitle="Organizations ranked by total AV-related patent count, showing concentration among automakers and technology firms."
         title="Toyota, Honda, Ford, Waymo, and GM Lead in AV Patent Volume, Consistent With the Dual Nature of the Autonomous Vehicle Race"
-        caption="Organizations ranked by total AV-related patents, 1976-2025. The data indicate a distinctive competitive landscape where traditional automakers and technology companies compete directly, each leveraging distinct capabilities in vehicle engineering and artificial intelligence."
+        caption="Organizations ranked by total AV-related patents, 1976–2025. The data indicate a distinctive competitive landscape where traditional automakers and technology companies compete directly, each leveraging distinct capabilities in vehicle engineering and artificial intelligence."
         insight="The AV patent landscape uniquely bridges two industries: traditional automakers bring decades of vehicle engineering expertise while technology firms contribute AI, sensor fusion, and software capabilities -- creating a competitive dynamic unlike any other technology domain."
         loading={taL}
         height={1400}
@@ -438,7 +438,7 @@ export default function Chapter14() {
         title="View top AV patent holders as a data table"
         headers={['Organization', 'AV Patents']}
         rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
-        caption="Top 15 organizations by AV-related patent count, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by AV-related patent count, 1976–2025. Source: PatentsView."
       />
 
       <KeyInsight>
@@ -461,7 +461,7 @@ export default function Chapter14() {
           id="fig-av-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by AV patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Multiple Technology and Automotive Firms Converged at the Top of AV Rankings After 2012"
-          caption="Annual ranking of the top 15 organizations by AV patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal a competitive landscape that intensified substantially after 2012 as technology companies entered the autonomous driving space."
+          caption="Annual ranking of the top 15 organizations by AV patent grants, 2000–2025. Darker cells indicate higher rank (more patents). The data reveal a competitive landscape that intensified substantially after 2012 as technology companies entered the autonomous driving space."
           insight="The ranking data reveal a transformation in competitive dynamics: whereas traditional automakers dominated AV patenting through the 2000s, technology companies rapidly ascended after 2012, creating a more contested and dynamic competitive landscape."
           loading={ootL}
           height={600}
@@ -498,7 +498,7 @@ export default function Chapter14() {
         id="fig-av-top-inventors"
         subtitle="Primary inventors ranked by total AV-related patent count, illustrating the skewed distribution of individual output."
         title="A Small Cohort of Prolific Inventors Accounts for a Disproportionate Share of AV Patent Output"
-        caption="Primary inventors ranked by total AV-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals -- many affiliated with major automakers or technology firms -- accounting for a large share of total AV patent output."
+        caption="Primary inventors ranked by total AV-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals -- many affiliated with major automakers or technology firms -- accounting for a large share of total AV patent output."
         insight="The concentration of AV patenting among a small cohort of prolific inventors reflects the deep specialization required in autonomous systems engineering, where expertise in sensor fusion, control theory, and machine learning must be combined within individual inventive contributions."
         loading={tiL}
         height={1400}
@@ -879,7 +879,7 @@ export default function Chapter14() {
         id="fig-av-filing-vs-grant"
         title="AV Filings Peaked at 5,260 in 2019 While Grants Reached 5,300 in 2024 — a 5-Year Examination Lag"
         subtitle="Annual patent filings versus grants for autonomous vehicles, showing the filing-to-grant pipeline."
-        caption="Autonomous vehicle patents exhibit a substantial filing-to-grant lag, with filings peaking in 2019 while grants continued rising through 2024. The growing divergence reflects both the technical complexity of AV patent examination and the surge of applications during the 2016-2019 autonomous vehicle investment boom."
+        caption="Autonomous vehicle patents exhibit a substantial filing-to-grant lag, with filings peaking in 2019 while grants continued rising through 2024. The growing divergence reflects both the technical complexity of AV patent examination and the surge of applications during the 2016–2019 autonomous vehicle investment boom."
         loading={fgL}
       >
         <PWLineChart

@@ -309,7 +309,7 @@ export default function Chapter21() {
         id="fig-semi-patents-annual-count"
         subtitle="Annual count of utility patents classified under semiconductor-related CPC codes (H01L), tracking the growth trajectory of semiconductor patenting."
         title="Semiconductor Patent Filings Reflect Decades of Sustained Investment in Fabrication and Device Innovation"
-        caption="Annual count and share of utility patents classified under semiconductor-related CPC codes (H01L), 1976-2025. H01L is one of the most heavily used CPC classes in the entire patent system, corresponding to the substantial R&D investment required to advance semiconductor manufacturing. Grant year shown. Application dates are typically 2–3 years earlier."
+        caption="Annual count and share of utility patents classified under semiconductor-related CPC codes (H01L), 1976–2025. H01L is one of the most heavily used CPC classes in the entire patent system, corresponding to the substantial R&D investment required to advance semiconductor manufacturing. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The sustained volume of semiconductor patents corresponds to the continued pace of process node advancement, where each new process node requires billions of dollars in R&D investment and is associated with thousands of patent filings."
         loading={pyL}
       >
@@ -419,7 +419,7 @@ export default function Chapter21() {
         id="fig-semi-patents-top-assignees"
         subtitle="Organizations ranked by total semiconductor-related patent count from 1976 to 2025, showing concentration among integrated device manufacturers and foundries."
         title="Samsung, TSMC, and IBM Lead in Total Semiconductor Patent Volume"
-        caption="Organizations ranked by total semiconductor-related patents, 1976-2025. The data reveal a mix of East Asian and US-based firms at the top, with integrated device manufacturers, pure-play foundries, and fabless design houses all represented."
+        caption="Organizations ranked by total semiconductor-related patents, 1976–2025. The data reveal a mix of East Asian and US-based firms at the top, with integrated device manufacturers, pure-play foundries, and fabless design houses all represented."
         insight="The dominance of both East Asian and US-based firms in semiconductor patenting reflects the globally distributed nature of the semiconductor supply chain, where design, fabrication, and packaging are often performed by different organizations in different countries."
         loading={taL}
         height={1400}
@@ -436,7 +436,7 @@ export default function Chapter21() {
         title="View top semiconductor patent holders as a data table"
         headers={['Organization', 'Semiconductor Patents']}
         rows={(topAssignees ?? []).slice(0, 15).map(d => [cleanOrgName(d.organization), d.domain_patents])}
-        caption="Top 15 organizations by semiconductor-related patent count, 1976-2025. Source: PatentsView."
+        caption="Top 15 organizations by semiconductor-related patent count, 1976–2025. Source: PatentsView."
       />
 
       <KeyInsight>
@@ -458,7 +458,7 @@ export default function Chapter21() {
           id="fig-semi-patents-org-rankings"
           subtitle="Annual ranking of the top 15 organizations by semiconductor patent grants from 1990 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings in Semiconductor Patents Reveal Shifting Competitive Dynamics Between US and East Asian Firms"
-          caption="Annual ranking of the top 15 organizations by semiconductor patent grants, 1990-2025. Darker cells indicate higher rank (more patents). The data reveal the rise of East Asian firms, particularly Samsung and TSMC, alongside the sustained presence of US-based and Japanese incumbents."
+          caption="Annual ranking of the top 15 organizations by semiconductor patent grants, 1990–2025. Darker cells indicate higher rank (more patents). The data reveal the rise of East Asian firms, particularly Samsung and TSMC, alongside the sustained presence of US-based and Japanese incumbents."
           insight="The ranking dynamics reveal a long-term shift in semiconductor patent leadership from US-based and Japanese firms toward Korean and Taiwanese organizations, reflecting the geographic migration of advanced manufacturing capacity."
           loading={ootL}
           height={600}
@@ -497,7 +497,7 @@ export default function Chapter21() {
         id="fig-semi-patents-top-inventors"
         subtitle="Primary inventors ranked by total semiconductor-related patent count from 1976 to 2025, illustrating the skewed distribution of individual output."
         title="The Most Prolific Semiconductor Inventors Hold Hundreds of Patents, Consistent With Deep Specialization in Process and Device Engineering"
-        caption="Primary inventors ranked by total semiconductor-related patents, 1976-2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total semiconductor patent output."
+        caption="Primary inventors ranked by total semiconductor-related patents, 1976–2025. The distribution exhibits pronounced skewness, with a small number of highly productive individuals accounting for a disproportionate share of total semiconductor patent output."
         insight="The concentration of semiconductor patenting among a small cohort of prolific inventors reflects the deep specialization required in process engineering, device physics, and circuit design -- fields where decades of accumulated expertise translate into sustained inventive productivity."
         loading={tiL}
         height={1400}
@@ -646,7 +646,7 @@ export default function Chapter21() {
         id="fig-semi-patents-team-comparison"
         subtitle="Average inventors per patent for semiconductor versus non-semiconductor utility patents by year, showing the complexity gap between the two categories."
         title="Semiconductor Patents Consistently Involve Larger Teams Than Non-Semiconductor Patents, Consistent With the Collaborative Nature of Fab R&D"
-        caption="Average number of inventors per patent for semiconductor-related versus non-semiconductor utility patents, 1976-2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
+        caption="Average number of inventors per patent for semiconductor-related versus non-semiconductor utility patents, 1976–2025. The data indicate that semiconductor patents consistently involve larger teams, reflecting the collaborative, multidisciplinary nature of semiconductor process development."
         insight="Semiconductor patents involve larger inventor teams than non-semiconductor patents, consistent with the multidisciplinary nature of fabrication R&D, which requires expertise in materials science, physics, chemistry, and electrical engineering."
         loading={stcL}
       >
@@ -809,7 +809,7 @@ export default function Chapter21() {
           with Human Necessities (A) reflects the expanding role of semiconductors in
           medical devices and biosensors. The breadth of semiconductor diffusion across CPC sections
           underscores why disruptions to the semiconductor supply chain -- as experienced
-          during the 2020-2021 chip shortage -- have cascading effects across the entire
+          during the 2020–2021 chip shortage -- have cascading effects across the entire
           economy.
         </p>
       </KeyInsight>

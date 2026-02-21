@@ -145,7 +145,7 @@ export default function SystemPatentQualityChapter() {
         id="fig-innovation-landscape-claims-per-patent"
         title="Average Claims per Patent Doubled from 9.4 in 1976 to a Peak of 18.9 in 2005"
         subtitle="Average and median number of claims per utility patent, measuring patent scope and complexity over time, 1976–2025"
-        caption="Average and median number of claims per utility patent, 1976–2025. Median claims crossed above the average around 2014-2015, when the median reached 17 and the average fell to 16.6, marking a structural shift in the claims distribution."
+        caption="Average and median number of claims per utility patent, 1976–2025. Median claims crossed above the average around 2014–2015, when the median reached 17 and the average fell to 16.6, marking a structural shift in the claims distribution."
         insight="The crossover of median above mean indicates that the claims distribution has shifted from right-skewed (a long tail of high-claim patents pulling the average up) to left-skewed (a compression of the upper tail), a pattern consistent with increasing examiner scrutiny of excessively broad claim sets."
         loading={clL}
       >
@@ -512,7 +512,7 @@ export default function SystemPatentQualityChapter() {
 
       <ChartContainer
         id="fig-patent-quality-originality-generality"
-        subtitle="Average originality (diversity of backward citation fields) and generality (diversity of forward citation fields), measured as 1 minus the HHI of CPC sections."
+        subtitle="Average originality (diversity of backward citation fields) and generality (diversity of forward citation fields), measured as 1 minus the Herfindahl-Hirschman Index (HHI) of CPC sections."
         title="System-Wide Originality Rose from 0.09 to 0.25 While Generality Fell from 0.28 to 0.15, Indicating Diverging Knowledge Flows"
         caption="The figure displays average originality (1 minus the HHI of backward citation CPC sections) and generality (1 minus the HHI of forward citation CPC sections) by year. Higher values indicate greater diversity. Originality has increased over time, reflecting more interdisciplinary innovation, whereas generality has declined."
         loading={ogL}

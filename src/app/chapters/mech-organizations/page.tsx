@@ -203,7 +203,7 @@ export default function MechOrganizationsChapter() {
           The exploration/exploitation framework (March, 1991) provides a lens for examining
           whether firms are entering new technology domains (exploration) or deepening established
           ones (exploitation). Each patent from a top-50 assignee is scored on three equally weighted indicators:
-          (1) technology newness (1 if the firm has no prior patents in the patent&apos;s CPC subclass within the preceding 5 years, 0 otherwise),
+          (1) technology newness (1 if the firm has no prior patents in the patent&apos;s <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclass within the preceding 5 years, 0 otherwise),
           (2) citation newness (the share of backward citations pointing to CPC subclasses outside the firm&apos;s existing portfolio),
           and (3) external knowledge sourcing (1 minus the self-citation rate, i.e., the share of backward citations directed to other assignees&apos; patents).
           The composite exploration score is the unweighted arithmetic mean of these three indicators, yielding a value on a 0-1 scale where higher values indicate more exploratory behavior.
@@ -354,7 +354,7 @@ export default function MechOrganizationsChapter() {
         id="fig-mech-org-ambidexterity"
         subtitle="Ambidexterity index versus blockbuster rate for top-50 assignees across 5-year windows, measuring whether balanced firms are associated with higher rates of high-impact patents."
         title="Balanced Firms Average a 2.51% Blockbuster Rate, 2.3x Higher Than Specialized Firms"
-        caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980-2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year x CPC cohort). Only firm-periods with >=50 patents shown."
+        caption="Each dot represents one firm in one 5-year window (top 50 assignees, 1980–2019). X-axis: ambidexterity index. Y-axis: blockbuster rate (% of patents in top 1% of year x CPC cohort). Only firm-periods with >=50 patents shown."
         loading={amL}
         height={400}
         wide

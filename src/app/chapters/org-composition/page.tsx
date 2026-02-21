@@ -148,8 +148,8 @@ export default function OrgCompositionChapter() {
       <ChartContainer
         id="fig-org-composition-assignee-types"
         title="Corporate Assignees Grew From 94% to 99% of US Patent Grants Between 1976 and 2024"
-        subtitle="Share of utility patents by assignee category (corporate, individual, government, university), measured as percentage of annual grants, 1976-2025"
-        caption="Share of utility patents by assignee category (primary assignee), 1976-2025. Corporate entities have progressively expanded their share, while individual inventors and government entities have declined proportionally."
+        subtitle="Share of utility patents by assignee category (corporate, individual, government, university), measured as percentage of annual grants, 1976–2025"
+        caption="Share of utility patents by assignee category (primary assignee), 1976–2025. Corporate entities have progressively expanded their share, while individual inventors and government entities have declined proportionally."
         insight="The Bayh-Dole Act (1980) permitted university patenting, but the predominant trend is the rise of corporate R&amp;D as patent portfolios became strategic assets for cross-licensing and competitive signaling."
         loading={typL}
       >
@@ -196,8 +196,8 @@ export default function OrgCompositionChapter() {
       <ChartContainer
         id="fig-org-composition-domestic-vs-foreign"
         title="Foreign Assignees Surpassed US-Based Assignees Around 2007 and Reached 54.5% of Grants by 2024"
-        subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976-2025"
-        caption="Patent grants by US-based versus foreign-based primary assignees, 1976-2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51-56% of grants in the 2020s."
+        subtitle="Annual patent grants by US-based versus foreign-based primary assignees, 1976–2025"
+        caption="Patent grants by US-based versus foreign-based primary assignees, 1976–2025. Foreign assignees surpassed US-based assignees around 2007 and now account for 51-56% of grants in the 2020s."
         insight="The shift to a foreign-majority patent system is consistent with the globalization of R&amp;D. The US patent system remains a major destination for multinational patent filings regardless of assignee nationality."
         loading={dvfL}
       >
@@ -234,8 +234,8 @@ export default function OrgCompositionChapter() {
       <ChartContainer
         id="fig-org-composition-non-us-assignees"
         title="Japan Accounts for 1.45 Million US Patents Since 1976, With South Korea (359K) and China (222K) Rising Rapidly"
-        subtitle="Annual patent grants by primary assignee country/region, showing successive waves of international entry, 1976-2025"
-        caption="Annual patent grants by primary assignee country/region, 1976-2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World. The stacked area chart reveals sequential waves of international entry into the US patent system."
+        subtitle="Annual patent grants by primary assignee country/region, showing successive waves of international entry, 1976–2025"
+        caption="Annual patent grants by primary assignee country/region, 1976–2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World. The stacked area chart reveals sequential waves of international entry into the US patent system."
         insight="Japan led the first wave of non-US patenting in the 1980s-90s, particularly in automotive and electronics. South Korea emerged as a major presence in the 2000s, while China's share has grown rapidly since 2010, concentrated primarily in telecommunications and computing."
         loading={nuL}
         height={500}
@@ -276,7 +276,7 @@ export default function OrgCompositionChapter() {
       <ChartContainer
         id="fig-org-composition-filing-route"
         title="PCT Route Grew From 0% to 22.2% of Patent Grants Between 1980 and 2024"
-        subtitle="Share of US patent grants by filing route (PCT, direct foreign, domestic), 1976-2025"
+        subtitle="Share of US patent grants by filing route (PCT, direct foreign, domestic), 1976–2025"
         caption="Share of US patent grants by filing route over time. The PCT route, introduced in 1978, has steadily displaced direct foreign filings as the preferred international prosecution pathway, rising from 0% in 1980 to 22.2% in 2024."
         insight="The growth of the PCT route reflects the globalization of patent prosecution. Foreign applicants increasingly use PCT as a single-entry mechanism, while direct foreign filings have declined proportionally."
         loading={frL}
@@ -320,7 +320,7 @@ export default function OrgCompositionChapter() {
       <ChartContainer
         id="fig-org-composition-law-firm-concentration"
         title="Top 4 Law Firms' Market Share Declined From a Peak of 13.2% in 1985 to 5.8% in 2024"
-        subtitle="CR4 and CR10 concentration ratios among patent prosecution law firms, by year, 1976-2025"
+        subtitle="CR4 and CR10 concentration ratios among patent prosecution law firms, by year, 1976–2025"
         caption="Market concentration among patent prosecution firms, measured by the share of patents handled by the top 4 (CR4) and top 10 (CR10) firms. Both ratios have declined substantially since the mid-1990s, indicating a more fragmented prosecution market."
         insight="The declining concentration in the patent prosecution market suggests that barriers to entry for law firms have fallen, or that the growth of international filings has diversified the firm landscape."
         loading={lfcL}
@@ -390,7 +390,7 @@ export default function OrgCompositionChapter() {
         (sequence 0) is used to avoid double-counting patents with multiple assignees.
         Country of origin is determined by the primary assignee&apos;s location. Non-US breakdown
         uses CPC section-level classification aggregated by assignee country. All figures
-        cover utility patents granted 1976-2025.
+        cover utility patents granted 1976–2025.
       </DataNote>
 
       <RelatedChapters currentChapter={8} />

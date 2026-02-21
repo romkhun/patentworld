@@ -20,6 +20,7 @@ import { ChapterNavigation } from '@/components/layout/ChapterNavigation';
 import { KeyFindings } from '@/components/chapter/KeyFindings';
 import { RelatedChapters } from '@/components/chapter/RelatedChapters';
 import { InsightRecap } from '@/components/chapter/InsightRecap';
+import { GlossaryTooltip } from '@/components/chapter/GlossaryTooltip';
 import Link from 'next/link';
 import { PATENT_EVENTS, filterEvents } from '@/lib/referenceEvents';
 import { CHART_COLORS, CPC_SECTION_COLORS } from '@/lib/colors';
@@ -341,7 +342,7 @@ export default function OrgCompanyProfilesChapter() {
           The preceding chapters examined <Link href="/chapters/org-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output</Link>, <Link href="/chapters/org-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quality metrics</Link>, and <Link href="/chapters/org-patent-portfolio/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">portfolio composition</Link> as separate analytical dimensions. This chapter integrates those perspectives into a single interactive dashboard for each company, providing a <StatCallout value="comprehensive innovation fingerprint" /> that reveals how patent volume, quality, strategic orientation, and prosecution speed interrelate within individual organizations.
         </p>
         <p>
-          Each dashboard presents five views: annual patent output and summary statistics, technology portfolio evolution through CPC distributions, innovation quality through citation fan charts and blockbuster rates, multi-dimensional strategy profiles, and patent prosecution speed through grant lag trends. Together, these views enable direct comparison of how individual firms navigate the innovation landscape.
+          Each dashboard presents five views: annual patent output and summary statistics, technology portfolio evolution through <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> distributions, innovation quality through citation fan charts and blockbuster rates, multi-dimensional strategy profiles, and patent prosecution speed through grant lag trends. Together, these views enable direct comparison of how individual firms navigate the innovation landscape.
         </p>
       </Narrative>
 
@@ -611,7 +612,7 @@ export default function OrgCompanyProfilesChapter() {
             id="fig-org-profiles-quality-fan"
             title={`${activeCompany}: 5-Year Forward Citation Distribution Over Time`}
             subtitle={`5-year forward citation percentiles (P10-P90) for ${activeCompany} patents by grant year`}
-            caption={`5-year forward citation percentiles for ${activeCompany} patents by grant year (1976-2019). Bands show P25-P75 (dark) and P10-P90 (light). Solid line = median; dashed gray = system-wide median.`}
+            caption={`5-year forward citation percentiles for ${activeCompany} patents by grant year (1976–2019). Bands show P25-P75 (dark) and P10-P90 (light). Solid line = median; dashed gray = system-wide median.`}
             insight="The width of the fan reveals the dispersion of quality within the firm's portfolio. A widening gap between the median and upper percentiles indicates increasing reliance on a small fraction of high-impact patents."
             loading={fqL}
             height={400}
@@ -914,7 +915,7 @@ export default function OrgCompanyProfilesChapter() {
 
       <DataNote>
         Company profiles are constructed from PatentsView data for the top patent filers by total utility
-        patent count, 1976-2025. Annual patent counts, CPC distributions, median 5-year forward citations,
+        patent count, 1976–2025. Annual patent counts, CPC distributions, median 5-year forward citations,
         average team sizes, inventor counts, and CPC subclass breadth are computed for each year in which the
         company has at least one patent grant. Citation data is limited to patents granted through 2020 to allow
         for 5-year citation accumulation. Strategy profiles normalize 8 innovation dimensions to a 0-100 scale
