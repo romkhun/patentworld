@@ -334,7 +334,7 @@ export default function GeoInternationalChapter() {
       <ChartContainer
         id="fig-geo-intl-claims-by-country"
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
-        title="The United States Leads with 164,000 Patents Granted Cumulatively During the 2020s (by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
+        title="The United States Leads with 164,000 Patents Granted Cumulatively During the 2020s (2020–2024, by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
         caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Average claim counts vary across countries, reflecting differences in patent drafting conventions, technology field composition, and examination practices. Claim count is a measure of patent scope, not a direct quality indicator."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts. The lower average claims from countries with rapidly growing patent volumes may reflect differences in patent drafting conventions, technology composition, or strategic filing approaches."
         loading={qcL}
