@@ -949,7 +949,7 @@ export default function Chapter15() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025, through September) among all advanced technology domains, consistent with exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9."]}
+        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025, through September) among all advanced technology domains, consistent with exceptionally broad-based participation.", "Subfield diversity nearly tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9."]}
         falsifiable="If CRISPR drove the latest diversity wave, then gene-editing subclass patents should show discontinuous growth after the 2012 Doudna-Charpentier publication."
         nextAnalysis={{ label: "Blockchain", description: "Distributed trust in the digital economy — the only technology domain to reverse course", href: "/chapters/blockchain/" }}
       />

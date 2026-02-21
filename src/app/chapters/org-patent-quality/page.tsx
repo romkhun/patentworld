@@ -404,7 +404,7 @@ export default function OrgPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          The nearly threefold variation in citation half-lives across leading organizations reflects fundamental
+          The more than twofold variation in citation half-lives across leading organizations reflects fundamental
           differences in the nature of their innovations. Science-intensive firms produce patents with slow-burning,
           foundational influence, while fast-cycle technology firms generate impact that peaks shortly after grant.
           This distinction has implications for how firms should evaluate the long-term return on their R&amp;D investments.

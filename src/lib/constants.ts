@@ -190,7 +190,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'agricultural-technology',
     title: 'Agricultural Technology',
     subtitle: 'Innovation feeding a growing world',
-    description: 'Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025 (through September).',
+    description: 'Agricultural technology patent velocity more than quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025 (through September).',
   },
   {
     number: 25,
@@ -211,7 +211,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'biotechnology',
     title: 'Biotechnology & Gene Editing',
     subtitle: 'Engineering life at the molecular level',
-    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025 (through September). Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9.',
+    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025 (through September). Subfield diversity nearly tripled from 0.32 in 1976 to 0.94 by 2025 (through September), a pattern consistent with the sequential emergence of new subfields from recombinant DNA to CRISPR-Cas9.',
   },
   {
     number: 28,
