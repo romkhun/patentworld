@@ -239,7 +239,7 @@ export function chapterJsonLd(slug: string): object[] | null {
         name: 'University of Pennsylvania',
         url: 'https://www.upenn.edu',
       },
-      datePublished: '2025-01-01',
+      datePublished: '2026-01-01',
       dateModified: '2026-02-14',
       mainEntityOfPage: `${BASE_URL}/chapters/${ch.slug}/`,
       image: chapterOgImage(slug),

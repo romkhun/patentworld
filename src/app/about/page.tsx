@@ -95,7 +95,7 @@ const ABOUT_JSONLD = [
     license: 'https://creativecommons.org/licenses/by/4.0/',
     temporalCoverage: '1976/2025',
     spatialCoverage: 'United States',
-    datePublished: '2025',
+    datePublished: '2026',
     creator: {
       '@type': 'Person',
       name: 'Saerom (Ronnie) Lee',
@@ -335,7 +335,7 @@ export default function AboutPage() {
         <section id="citation">
           <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">
-            Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
+            Lee, Saerom (Ronnie). 2026. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
             The Wharton School, University of Pennsylvania.
             Available at: https://patentworld.vercel.app/
           </p>

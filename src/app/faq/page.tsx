@@ -123,7 +123,7 @@ export default function FAQPage() {
       <div className="mt-12 rounded-lg border bg-muted/30 p-5">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Suggested Citation</h2>
         <p className="mt-2 text-sm leading-relaxed">
-          Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo; The Wharton School, University of Pennsylvania. Available at:{' '}
+          Lee, Saerom (Ronnie). 2026. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo; The Wharton School, University of Pennsylvania. Available at:{' '}
           <a href="https://patentworld.vercel.app" className="text-primary hover:underline">
             https://patentworld.vercel.app
           </a>

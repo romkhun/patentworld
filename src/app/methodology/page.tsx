@@ -60,7 +60,7 @@ const METHODOLOGY_JSONLD = [
         name: 'The Wharton School, University of Pennsylvania',
       },
     },
-    datePublished: '2025-01-01',
+    datePublished: '2026-01-01',
     dateModified: '2026-02-20',
     isPartOf: {
       '@type': 'WebSite',

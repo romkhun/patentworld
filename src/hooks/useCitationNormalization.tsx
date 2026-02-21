@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, type ReactNode } from 'react';
 
-const CURRENT_YEAR = 2025;
+const CURRENT_YEAR = 2026;
 
 interface UseCitationNormalizationOptions {
   data: any[] | null;
