@@ -544,7 +544,7 @@ export default function OrgPatentQualityChapter() {
 
       <ChartContainer
         id="fig-org-patent-quality-foreign-cite-by-firm"
-        title="Huawei's Prior Art Is 78.3% Foreign — More Than 10x IBM's 11.4% Foreign Share"
+        title="Huawei's Prior Art Is 78.3% Foreign — Nearly 7x IBM's 11.4% Foreign Share"
         subtitle="Top 20 firms ranked by share of backward citations to foreign (non-US) patents, revealing reliance on international knowledge sources"
         caption="Firms ranked by the share of their backward patent citations directed to foreign (non-US) patents. Huawei (78.3%), Toyota (63.2%), and LG Electronics (61.0%) lead, consistent with their non-US headquarter locations and reliance on international prior art."
         insight="The foreign citation share strongly correlates with the assignee's headquarter location, but also reveals the degree to which firms draw on a global versus domestic knowledge base."
