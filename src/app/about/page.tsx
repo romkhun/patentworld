@@ -267,7 +267,7 @@ export default function AboutPage() {
             <li>Government interest statements</li>
           </ul>
           <p className="mt-3 text-sm text-muted-foreground">
-            Data source: USPTO PatentsView bulk data download, accessed January 2025.
+            Data source: USPTO PatentsView bulk data download, accessed February 2026.
             Temporal coverage: January 1976 &ndash; September 2025.
           </p>
           <p className="mt-2 text-sm text-muted-foreground">

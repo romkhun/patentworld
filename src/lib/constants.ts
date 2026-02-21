@@ -239,7 +239,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'quantum-computing',
     title: 'Quantum Computing',
     subtitle: 'From theoretical foundations to practical hardware',
-    description: 'Quantum computing remains the most concentrated advanced technology domain, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers.',
+    description: 'Quantum computing remains among the most concentrated advanced technology domains alongside agricultural technology, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers.',
   },
   {
     number: 33,
@@ -253,7 +253,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'space-technology',
     title: 'Space Technology',
     subtitle: 'Patenting the final frontier',
-    description: 'Space technology top-four concentration fluctuated between 4.9% and 36.7%, the widest range among all domains studied, reflecting the transition from government-dominated to commercial-driven innovation. Boeing, ViaSat, and Lockheed Martin lead, with satellite communications now the dominant subfield.',
+    description: 'Space technology top-four concentration fluctuated between 4.9% and 36.7%, reflecting the transition from government-dominated to commercial-driven innovation. Boeing, ViaSat, and Lockheed Martin lead, with satellite communications now the dominant subfield.',
   },
 ];
 

@@ -826,7 +826,7 @@ export default function Chapter20() {
         id="fig-quantum-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in quantum computing patenting."
         title="Top-4 Concentration in Quantum Computing Patents Declined From 76.9% in 2003 to 28.4% by 2025"
-        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025, while still the highest among mature ACT 6 domains, indicates broadening participation."
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025 indicates broadening participation, though concentration remains among the highest of the ACT 6 domains alongside agricultural technology (33%)."
         insight="Quantum computing's high residual concentration (28%) is consistent with the enormous capital requirements for quantum hardware research, which limit participation to well-funded organizations with access to cryogenic facilities and specialized fabrication capabilities."
         loading={ootL || pyL}
       >
@@ -859,8 +859,8 @@ export default function Chapter20() {
         id="fig-quantum-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a quantum computing patent."
         title="Quantum Computing 2020s Entrants Average 6.0 Patents per Year, Similar to 2010s Entrants at 5.9"
-        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 1990s cohort (2 organizations: IBM and D-Wave) does not meet the minimum threshold and is excluded, though those early entrants averaged 11.0 patents per year. Among qualifying cohorts (2000s, 2010s, 2020s), velocity has remained relatively stable, suggesting that the field's rapid growth reflects breadth of participation rather than intensification by individual firms."
-        insight="The relatively stable velocity across the 2000s, 2010s, and 2020s cohorts suggests that quantum computing's growth reflects primarily new entrants rather than increased per-firm productivity. The 1990s cohort (2 organizations, excluded for small sample size) had much higher velocity, reflecting the pioneering scale of IBM and D-Wave."
+        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 1990s cohort (2 organizations: IBM and MIT) does not meet the minimum threshold and is excluded, though those early entrants averaged 10.8 patents per year. Among qualifying cohorts (2000s, 2010s, 2020s), velocity has remained relatively stable, suggesting that the field's rapid growth reflects breadth of participation rather than intensification by individual firms."
+        insight="The relatively stable velocity across the 2000s, 2010s, and 2020s cohorts suggests that quantum computing's growth reflects primarily new entrants rather than increased per-firm productivity. The 1990s cohort (2 organizations, excluded for small sample size) had much higher velocity, reflecting the pioneering scale of IBM and MIT."
         loading={taL}
       >
         <PWBarChart
@@ -894,7 +894,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Quantum computing remains the most concentrated technology domain, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers to entry."]}
+        learned={["Quantum computing remains among the most concentrated technology domains alongside agricultural technology, with top-four firms holding 28.4% in 2025, down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers to entry."]}
         falsifiable="If high concentration reflects genuine technical barriers rather than strategic patent thickets, then new entrants should produce patents with lower scope and fewer claims than incumbents."
         nextAnalysis={{ label: "Semiconductors", description: "The silicon foundation of modern technology — the only domain with rising concentration", href: "/chapters/semiconductors" }}
       />

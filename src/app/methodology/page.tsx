@@ -606,7 +606,7 @@ export default function MethodologyPage() {
               PatentsView
             </a>
             , a patent data platform supported by the United States Patent and Trademark Office
-            (USPTO). The bulk data files were accessed in <strong>January 2025</strong>. Key tables
+            (USPTO). The bulk data files were accessed in <strong>February 2026</strong>. Key tables
             used include:
           </p>
           <ul className="mt-3 list-disc pl-6 space-y-1 text-sm">
