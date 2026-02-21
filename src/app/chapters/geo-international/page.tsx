@@ -35,6 +35,9 @@ export default function GeoInternationalChapter() {
   const { data: priorityCountryComp, loading: pccL } = useChapterData<any[]>('chapter19/priority_country_composition.json');
   const { data: pctShareByCountry, loading: pctL } = useChapterData<any[]>('chapter19/pct_share_by_country.json');
 
+  // Global innovation clusters (ranked cities by patent output)
+  const { data: innovationClusters, loading: clL } = useChapterData<any[]>('chapter18/innovation_clusters.json');
+
   /* ── Pivot helper: reshape [{year, group, metric}] -> [{year, group1: val, group2: val}] ── */
   const pivotData = (raw: any[] | null, metric: string) => {
     if (!raw) return [];
@@ -47,6 +50,14 @@ export default function GeoInternationalChapter() {
   };
 
   /* ── Country-level chart helpers ── */
+  const topClustersChart = useMemo(() => {
+    if (!innovationClusters) return [];
+    return innovationClusters.slice(0, 30).map((d: any) => ({
+      ...d,
+      label: d.location,
+    }));
+  }, [innovationClusters]);
+
   const countryColors = [CHART_COLORS[0], CHART_COLORS[1], CHART_COLORS[2], CHART_COLORS[3], CHART_COLORS[4]];
   const topCountriesForChart = topCountries?.slice(0, 5) ?? [];
   const countryLines = topCountriesForChart.map((c: string, i: number) => ({ key: c, name: c, color: countryColors[i] }));
@@ -543,6 +554,39 @@ export default function GeoInternationalChapter() {
       <KeyInsight>
         <p>
           PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting differences in treaty access and international patent-system participation, underscores how political and institutional factors shape international filing behavior.
+        </p>
+      </KeyInsight>
+
+      <SectionDivider label="Global Innovation Clusters" />
+
+      <Narrative>
+        <p>
+          Extending the geographic lens beyond national aggregates, innovation clusters worldwide exhibit similarly pronounced concentration patterns. The following analysis ranks global cities by their total patent output in the US patent system, revealing which metropolitan areas function as the primary engines of patented invention worldwide.
+        </p>
+      </Narrative>
+
+      {topClustersChart.length > 0 && (
+        <ChartContainer
+          id="fig-geography-innovation-clusters"
+          subtitle="Top 30 global cities by total utility patents in the US patent system (1976–2025)."
+          title="Tokyo Leads Global Innovation Clusters with 263,010 Patents, Followed by Yokohama (196,841) and Seoul (102,646)"
+          caption="The figure ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, consistent with Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
+          insight="The global innovation cluster landscape is dominated by East Asian and US West Coast cities, consistent with the concentration of electronics, semiconductor, and software R&D in these regions."
+          loading={clL}
+          height={1000}
+        >
+          <PWBarChart
+            data={topClustersChart}
+            xKey="label"
+            bars={[{ key: 'patent_count', name: 'Total Patents', color: CHART_COLORS[2] }]}
+            layout="vertical"
+          />
+        </ChartContainer>
+      )}
+
+      <KeyInsight>
+        <p>
+          The global innovation cluster rankings reveal that the Tokyo metropolitan area -- spanning Tokyo, Yokohama, and Kawasaki -- constitutes the single largest concentration of US patent activity outside the United States. Combined, these three Japanese cities account for over 521,000 patents, underscoring the depth of Japan&apos;s contribution to the US patent system.
         </p>
       </KeyInsight>
 

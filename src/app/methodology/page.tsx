@@ -595,6 +595,11 @@ export default function MethodologyPage() {
               <dd className="text-muted-foreground"><strong>Patent share</strong> (preferred) refers to the fraction of patents held by an entity or group within a defined universe. PatentWorld avoids the term &ldquo;market share&rdquo; in the patent context because patents represent inventive output rather than product-market revenue.</dd>
             </div>
           </dl>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">URL Slug Convention</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Chapter URLs use descriptive kebab-case slugs (e.g., <code>/chapters/org-composition/</code> for &ldquo;Assignee Composition&rdquo;, <code>/chapters/inv-gender/</code> for &ldquo;Gender and Patenting&rdquo;). Slugs are optimized for brevity and readability rather than literal title matching. All chapter slugs are defined in the site&rsquo;s chapter registry and remain stable across updates.
+          </p>
         </section>
 
         {/* ── 9. Data Source ─────────────────────────────────────────────── */}

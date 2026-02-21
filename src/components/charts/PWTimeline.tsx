@@ -123,7 +123,7 @@ export function PWTimeline({ events }: PWTimelineProps) {
                       <span className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${colors.bg} ${colors.text}`}>
                         {event.category}
                       </span>
-                      <h4 className="text-sm font-semibold">{event.title}</h4>
+                      <h3 className="text-sm font-semibold">{event.title}</h3>
                     </div>
                     {isExpanded && (
                       <div id={`timeline-event-${i}`}>

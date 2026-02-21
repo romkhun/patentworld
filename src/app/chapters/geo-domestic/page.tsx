@@ -50,7 +50,6 @@ export default function GeoDomesticChapter() {
   // Section D: County-Level and Innovation Clusters (Analysis 30, 31)
   const { data: topCounties, loading: tcL } = useChapterData<any[]>('chapter18/top_counties.json');
   const { data: countyConcentration, loading: ccL } = useChapterData<any[]>('chapter18/county_concentration_over_time.json');
-  const { data: innovationClusters, loading: clL } = useChapterData<any[]>('chapter18/innovation_clusters.json');
 
   // ── Section A derived data ──
 
@@ -148,14 +147,6 @@ export default function GeoDomesticChapter() {
     const top5Sum = topCounties.slice(0, 5).reduce((sum: number, d: any) => sum + d.patent_count, 0);
     return +((top5Sum / topCountiesTotal) * 100).toFixed(1);
   }, [topCounties, topCountiesTotal]);
-
-  const topClustersChart = useMemo(() => {
-    if (!innovationClusters) return [];
-    return innovationClusters.slice(0, 30).map((d: any) => ({
-      ...d,
-      label: d.location,
-    }));
-  }, [innovationClusters]);
 
   const sectionKeys = Object.keys(CPC_SECTION_NAMES).filter((k) => k !== 'Y');
   const topStateName = states?.[0]?.state ?? 'California';
@@ -709,43 +700,6 @@ export default function GeoDomesticChapter() {
           The increasing concentration of patent output in the top 50 counties -- rising from 43.3% in 1990 to 56.8% by 2020 -- challenges the expectation that digital communication would distribute innovation more broadly. Instead, geographic clustering has intensified, consistent with the self-reinforcing nature of agglomeration economies in technology-intensive regions.
         </p>
       </KeyInsight>
-
-      <SectionDivider label="Global Innovation Clusters" />
-
-      <Narrative>
-        <p>
-          Extending the geographic lens beyond US borders, innovation clusters worldwide exhibit similarly pronounced concentration patterns. The following analysis ranks global cities by their total patent output in the US patent system, revealing which metropolitan areas function as the primary engines of patented invention worldwide.
-        </p>
-      </Narrative>
-
-      {topClustersChart.length > 0 && (
-        <ChartContainer
-          id="fig-geography-innovation-clusters"
-          subtitle="Top 30 global cities by total utility patents in the US patent system (1976–2025)."
-          title="Tokyo Leads Global Innovation Clusters with 263,010 Patents, Followed by Yokohama (196,841) and Seoul (102,646)"
-          caption="The figure ranks the top 30 global cities by total utility patents filed in the US patent system from 1976 to 2025. Japanese cities dominate the top positions, reflecting Japan's long history as the leading foreign filer. US cities (San Jose, San Diego, Austin) and East Asian hubs (Seoul, Beijing, Taipei) also feature prominently."
-          insight="The global innovation cluster landscape is dominated by East Asian and US West Coast cities, reflecting the concentration of electronics, semiconductor, and software R&D in these regions."
-          loading={clL}
-          height={1000}
-        >
-          <PWBarChart
-            data={topClustersChart}
-            xKey="label"
-            bars={[{ key: 'patent_count', name: 'Total Patents', color: CHART_COLORS[2] }]}
-            layout="vertical"
-          />
-        </ChartContainer>
-      )}
-
-      <KeyInsight>
-        <p>
-          The global innovation cluster rankings reveal that the Tokyo metropolitan area -- spanning Tokyo, Yokohama, and Kawasaki -- constitutes the single largest concentration of US patent activity outside the United States. Combined, these three Japanese cities account for over 521,000 patents, underscoring the depth of Japan&apos;s contribution to the US patent system.
-        </p>
-      </KeyInsight>
-
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* Closing Transition                                                 */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
 
       <Narrative>
         <p>

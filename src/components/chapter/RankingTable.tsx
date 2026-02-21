@@ -12,18 +12,18 @@ export function RankingTable({ title, headers, rows, caption }: RankingTableProp
 
   return (
     <details className="my-6 max-w-3xl mx-auto rounded-lg border bg-card">
-      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
         {title}
       </summary>
       <div className="overflow-x-auto px-4 pb-4">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-right py-2 pr-3 font-medium text-muted-foreground w-10">#</th>
+              <th className="text-right py-2 pr-3 font-medium text-foreground/70 w-10">#</th>
               {headers.map((h, i) => (
                 <th
                   key={i}
-                  className={`py-2 px-3 font-medium text-muted-foreground ${i === 0 ? 'text-left' : 'text-right'}`}
+                  className={`py-2 px-3 font-medium text-foreground/70 ${i === 0 ? 'text-left' : 'text-right'}`}
                 >
                   {h}
                 </th>
@@ -33,7 +33,7 @@ export function RankingTable({ title, headers, rows, caption }: RankingTableProp
           <tbody>
             {rows.map((row, i) => (
               <tr key={i} className="border-b border-border/50">
-                <td className="text-right py-1.5 pr-3 font-mono text-xs text-muted-foreground">{i + 1}</td>
+                <td className="text-right py-1.5 pr-3 font-mono text-xs text-foreground/70">{i + 1}</td>
                 {row.map((cell, j) => (
                   <td
                     key={j}
@@ -47,7 +47,7 @@ export function RankingTable({ title, headers, rows, caption }: RankingTableProp
           </tbody>
         </table>
         {caption && (
-          <figcaption className="mt-2 text-xs text-muted-foreground">{caption}</figcaption>
+          <figcaption className="mt-2 text-xs text-foreground/60">{caption}</figcaption>
         )}
       </div>
     </details>

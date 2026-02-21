@@ -482,7 +482,7 @@ export default function SystemPatentFieldsChapter() {
 
       <Narrative>
         <p>
-          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (HHI) measures concentration by summing the squared shares of all participants in a domain. Under the thresholds established by the 2010 DOJ/FTC Horizontal Merger Guidelines (designed for product-market analysis), <StatCallout value="below 1,500" /> indicates an unconcentrated domain, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated. Note: HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.
+          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (<GlossaryTooltip term="HHI">HHI</GlossaryTooltip>) measures concentration by summing the squared shares of all participants in a domain. Under the thresholds established by the 2010 DOJ/FTC Horizontal Merger Guidelines (designed for product-market analysis), <StatCallout value="below 1,500" /> indicates an unconcentrated domain, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated. Note: HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.
         </p>
       </Narrative>
 

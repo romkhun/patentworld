@@ -172,12 +172,12 @@ export default function AboutPage() {
                     Act {act.act}: {act.title}
                     <span className="ml-2 font-normal text-muted-foreground">&mdash; {act.subtitle}</span>
                   </h3>
-                  <ul className="mt-1 grid gap-x-4 gap-y-0.5 sm:grid-cols-2 pl-4 text-sm text-muted-foreground">
+                  <ul className="mt-1 grid gap-x-4 gap-y-1 sm:grid-cols-2 pl-4 text-sm text-muted-foreground">
                     {actChapters.map((ch) => (
                       <li key={ch.slug}>
                         <Link
                           href={`/chapters/${ch.slug}/`}
-                          className="hover:text-foreground transition-colors"
+                          className="inline-block py-0.5 hover:text-foreground transition-colors"
                         >
                           {ch.title}
                         </Link>

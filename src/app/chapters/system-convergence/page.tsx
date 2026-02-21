@@ -359,18 +359,18 @@ export default function SystemConvergenceChapter() {
           <thead>
             <tr>
               <th className="border border-border bg-muted/50 p-3"></th>
-              <th className="border border-border bg-muted/50 p-3 text-center font-semibold">Low Convergence<br /><span className="font-normal text-xs text-muted-foreground">Rare section pairs</span></th>
-              <th className="border border-border bg-muted/50 p-3 text-center font-semibold">High Convergence<br /><span className="font-normal text-xs text-muted-foreground">Common section pairs</span></th>
+              <th scope="col" className="border border-border bg-muted/50 p-3 text-center font-semibold">Low Convergence<br /><span className="font-normal text-xs text-muted-foreground">Rare section pairs</span></th>
+              <th scope="col" className="border border-border bg-muted/50 p-3 text-center font-semibold">High Convergence<br /><span className="font-normal text-xs text-muted-foreground">Common section pairs</span></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border border-border bg-muted/50 p-3 font-semibold">Narrow Scope<br /><span className="font-normal text-xs text-muted-foreground">1-2 CPC sections</span></td>
+              <th scope="row" className="border border-border bg-muted/50 p-3 font-semibold text-left">Narrow Scope<br /><span className="font-normal text-xs text-muted-foreground">1-2 CPC sections</span></th>
               <td className="border border-border p-3 text-center"><strong>Specialized</strong><br /><span className="text-xs text-muted-foreground">Traditional single-domain patents (for example, mechanical engineering)</span></td>
               <td className="border border-border p-3 text-center"><strong>Incremental Bridge</strong><br /><span className="text-xs text-muted-foreground">Routine cross-domain (for example, Physics+Electricity in electronics)</span></td>
             </tr>
             <tr>
-              <td className="border border-border bg-muted/50 p-3 font-semibold">Broad Scope<br /><span className="font-normal text-xs text-muted-foreground">3+ CPC sections</span></td>
+              <th scope="row" className="border border-border bg-muted/50 p-3 font-semibold text-left">Broad Scope<br /><span className="font-normal text-xs text-muted-foreground">3+ CPC sections</span></th>
               <td className="border border-border p-3 text-center"><strong>Radical Recombination</strong><br /><span className="text-xs text-muted-foreground">Novel combinations of distant fields (for example, bio+computation+materials)</span></td>
               <td className="border border-border p-3 text-center"><strong>Platform Innovation</strong><br /><span className="text-xs text-muted-foreground">Broad-scope patents in established convergence zones (for example, IoT spanning G+H+B+F)</span></td>
             </tr>

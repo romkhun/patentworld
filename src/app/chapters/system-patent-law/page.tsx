@@ -460,7 +460,7 @@ export default function Chapter4() {
 
       <KeyFindings>
         <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
-        <li>The America Invents Act (2011) constituted the most significant patent reform since 1952, transitioning the United States from a first-to-invent to a first-inventor-to-file system.</li>
+        <li>The <GlossaryTooltip term="AIA">America Invents Act</GlossaryTooltip> (2011) constituted the most significant patent reform since 1952, transitioning the United States from a first-to-invent to a first-inventor-to-file system.</li>
         <li>In <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank International</GlossaryTooltip> (2014), the Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially curtailing patent eligibility for software and business method patents.</li>
         <li>Legislative and judicial changes are associated with observable shifts in patent filing patterns, with changes appearing in the data within one to two years of major rulings.</li>
       </KeyFindings>
@@ -780,8 +780,11 @@ export default function Chapter4() {
       >
         {ptaByCpcSorted.length > 0 ? (
           <PWBarChart
-            data={ptaByCpcSorted}
-            xKey="cpc_section"
+            data={ptaByCpcSorted.map((d) => ({
+              ...d,
+              label: `${d.cpc_section}: ${CPC_SECTION_NAMES[d.cpc_section] ?? d.cpc_section}`,
+            }))}
+            xKey="label"
             bars={[{ key: 'median_pta_days', name: 'Median PTA (Days)', color: CHART_COLORS[4] }]}
             layout="vertical"
             yLabel="Median PTA (Days)"
