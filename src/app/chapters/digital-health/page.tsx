@@ -934,9 +934,11 @@ export default function Chapter18() {
 
       <DataNote>
         Digital health patents are identified using CPC classifications spanning patient
-        monitoring (A61B5), diagnostic imaging (A61B6, A61B8), electronic health records
-        (G16H10), clinical decision support (G16H50), health informatics (G16H), surgical
-        robotics (A61B34), and related medical device codes. Subfield classifications are
+        monitoring (A61B5), health informatics (G16H, including electronic health records
+        G16H10 and clinical decision support G16H50), and surgical robotics (A61B34).
+        Note: diagnostic imaging codes A61B6 and A61B8 are not included in the filter, as
+        these primarily cover traditional radiology equipment rather than digital health
+        applications. Subfield classifications are
         based on specific CPC group codes within these categories. A patent is classified
         as digital health if any of its CPC codes fall within these classifications. Team
         comparison data compare average inventor counts for digital health versus non-digital-health

@@ -86,7 +86,7 @@ export const CHAPTER_MEASUREMENTS: Record<string, ChapterMeasurementMeta> = {
     taxonomy: 'CPC',
     outcomeWindow: '5-year forward citations',
     outcomeThrough: 2020,
-    notes: 'Gender inferred from inventor first names using PatentsView male_flag.',
+    notes: 'Gender inferred from inventor first names using PatentsView gender_code field.',
   },
   'inv-top-inventors': {
     dataVintage: 'PatentsView 2025-Q1',

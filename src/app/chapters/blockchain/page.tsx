@@ -916,15 +916,17 @@ export default function Chapter16() {
       />
 
       <DataNote>
-        Blockchain patents are identified using CPC classifications for distributed ledger
-        technology, consensus mechanisms, and cryptocurrency-related inventions. A patent is
+        Blockchain patents are identified using CPC classifications H04L9/0643 (distributed
+        ledger technology) and G06Q20/06 (digital currency and payment schemes). A patent is
         classified as blockchain-related if any of its CPC codes fall within these categories.
         Subfield classifications distinguish between distributed ledger and consensus technologies
         versus cryptocurrency and digital money applications. Due to the narrow range of CPC codes
         that define this domain, blockchain represents the smallest technology area by patent volume
-        in this study. Patenting strategies show patent counts per blockchain sub-area for the top
-        assignees. Cross-domain diffusion measures co-occurrence of blockchain CPC codes with other
-        CPC sections.
+        in this study. Note: H04L9/0643 patents also overlap with the cybersecurity domain, which
+        uses the broader H04L9 cryptographic mechanisms filter, and are counted in both domains.
+        Patenting strategies show patent counts per blockchain sub-area for the top assignees.
+        Cross-domain diffusion measures co-occurrence of blockchain CPC codes with other CPC
+        sections.
       </DataNote>
 
       <RelatedChapters currentChapter={28} />

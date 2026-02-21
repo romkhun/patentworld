@@ -954,12 +954,13 @@ export default function Chapter15() {
       />
 
       <DataNote>
-        Biotechnology patents are identified using CPC classifications related to genetic
-        engineering and molecular biology, including C12N (microorganisms, enzymes, and mutation
-        or genetic engineering), C12Q (measuring or testing involving enzymes or
-        microorganisms), and related codes. Subfield classifications distinguish gene editing
-        and modification, expression vectors, recombinant DNA, enzyme engineering, nucleic acid
-        detection, and other genetic engineering categories. A patent is classified as
+        Biotechnology patents are identified using specific CPC groups within genetic
+        engineering and molecular biology: C12N15 (mutation or genetic engineering), C12N9
+        (enzymes and proenzymes), and C12Q1/68 (nucleic acid detection). These targeted codes
+        capture core molecular biotechnology while excluding broader C12N and C12Q
+        categories that include conventional microbiology. Subfield classifications distinguish
+        gene editing and modification, expression vectors, recombinant DNA, enzyme engineering,
+        nucleic acid detection, and other genetic engineering categories. A patent is classified as
         biotechnology-related if any of its CPC codes fall within these categories. Geographic
         attribution is based on the primary inventor&apos;s location. Strategy data show patent
         counts per biotech sub-area for the top assignees. Diffusion analysis measures

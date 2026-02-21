@@ -922,9 +922,10 @@ export default function Chapter12() {
       <DataNote>
         Agricultural technology patents are identified using CPC classifications for soil
         working (A01B), planting and sowing (A01C), horticulture and forestry (A01G), plant
-        breeding and biocides (A01H, A01N), and precision agriculture (G06Q50/02). A patent
-        is classified as agricultural technology if any of its CPC codes fall within these
-        categories. Subfield classifications are based on primary CPC group codes. The
+        breeding (A01H), and precision agriculture (G06Q50/02). A patent is classified as
+        agricultural technology if any of its CPC codes fall within these categories.
+        Note: A01N (biocides) is excluded from the filter to focus on core agricultural
+        innovation rather than chemical pest control. Subfield classifications are based on primary CPC group codes. The
         strategy table shows patent counts per agricultural sub-area for the top assignees.
         Cross-domain diffusion measures co-occurrence of agricultural CPC codes with other
         CPC sections. Team comparison uses the categories &quot;AgTech&quot; and

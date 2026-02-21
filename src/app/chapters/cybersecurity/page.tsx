@@ -903,7 +903,9 @@ export default function Chapter17() {
         control, network security, data protection, and system security. Strategy analysis
         shows patent counts per cybersecurity sub-area for the top organizations. Cross-domain
         diffusion measures co-occurrence of cybersecurity CPC codes with other CPC sections.
-        Source: PatentsView / USPTO.
+        Note: blockchain patents using H04L9/0643 (distributed ledger technology) overlap with
+        the cybersecurity domain&apos;s H04L9 cryptographic mechanisms filter and are counted in
+        both domains. Source: PatentsView / USPTO.
       </DataNote>
 
       <RelatedChapters currentChapter={29} />

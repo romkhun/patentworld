@@ -903,10 +903,12 @@ export default function Chapter21() {
       />
 
       <DataNote>
-        Semiconductor patents are identified using CPC classification H01L, which covers
-        semiconductor devices, processes, and related solid-state technology including
-        integrated circuits, LEDs, photovoltaic cells, and thermoelectric devices. A patent
-        is classified as semiconductor-related if any of its CPC codes fall within H01L.
+        Semiconductor patents are identified using CPC classifications H01L (semiconductor
+        devices, processes, and related solid-state technology), H10N (other solid-state
+        devices including thermoelectric and piezoelectric), and H10K (organic solid-state
+        devices). Together these cover integrated circuits, LEDs, photovoltaic cells,
+        thermoelectric devices, and organic semiconductors. A patent is classified as
+        semiconductor-related if any of its CPC codes fall within these subclasses.
         Subfield classifications are based on more specific CPC group codes within H01L,
         mapped to broader categories such as Manufacturing Processes, Semiconductor Devices,
         Organic Semiconductors, Packaging &amp; Interconnects, Assemblies &amp; Modules, and

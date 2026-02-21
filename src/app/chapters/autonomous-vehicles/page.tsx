@@ -897,14 +897,15 @@ export default function Chapter14() {
 
       <DataNote>
         AV patents are identified using CPC classifications: G05D1 (control of position,
-        course, or altitude of land, water, air, or space vehicles), B60W (conjoint control
-        of vehicle sub-units), and G08G (traffic control systems). A patent is classified as
-        AV-related if any of its CPC codes fall within these categories. Subfield
-        classifications are based on more specific CPC group codes: Autonomous Driving Systems
-        encompasses core self-driving architectures, Vehicle Control covers steering, braking,
-        and acceleration algorithms, Navigation &amp; Path Planning addresses route optimization
-        and decision-making, and Scene Understanding captures computer vision applied to driving
-        environments. AV patenting strategies show patent counts per AV sub-area for the top
+        course, or altitude of land, water, air, or space vehicles), B60W60 (autonomous
+        road-vehicle drive control), and G06V20/56 (scene understanding for driving
+        environments). A patent is classified as AV-related if any of its CPC codes fall
+        within these categories. Subfield classifications are based on more specific CPC group
+        codes: Autonomous Driving Systems (B60W60) encompasses core self-driving architectures,
+        Vehicle Control (G05D1) covers steering, braking, and acceleration algorithms,
+        Navigation &amp; Path Planning (G05D1/00, G05D1/02) addresses route optimization
+        and decision-making, and Scene Understanding (G06V20/56) captures computer vision
+        applied to driving environments. AV patenting strategies show patent counts per AV sub-area for the top
         assignees. The diffusion analysis measures co-occurrence of AV CPC codes with other CPC
         sections. Source: PatentsView / USPTO.
       </DataNote>

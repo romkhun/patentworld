@@ -906,6 +906,10 @@ export default function Chapter13() {
         (natural language processing). A patent is classified as AI-related if any of
         its CPC codes fall within these categories. Subfield classifications are based
         on more specific CPC group codes within G06N. AI patenting strategies present patent counts per AI sub-area for the top 20 assignees. AI as GPT measures co-occurrence of AI CPC codes with non-AI CPC sections (Section G excluded since it contains AI classifications).
+        Note: the AI domain overlaps with two other Deep Dive domains — quantum computing
+        patents (G06N10) fall within the broader G06N prefix, and autonomous vehicle
+        scene-understanding patents (G06V20/56) fall within G06V. Patents in these
+        overlapping codes are counted in both domains.
       </DataNote>
 
       <RelatedChapters currentChapter={25} />

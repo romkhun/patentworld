@@ -611,6 +611,9 @@ export default function InvGenderChapter() {
         Gender data is based on PatentsView gender attribution using first names.
         Gender analysis uses PatentsView&apos;s gender_code field.
         Non-binary identities are not captured by the name-based inference methodology.
+        Accuracy of name-based gender inference varies by cultural and geographic context,
+        with higher error rates for names common in East Asian, South Asian, and other
+        non-Western naming traditions.
       </DataNote>
 
       <RelatedChapters currentChapter={16} />

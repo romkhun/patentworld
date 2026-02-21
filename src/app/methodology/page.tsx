@@ -450,11 +450,11 @@ export default function MethodologyPage() {
               <dd className="mt-2 rounded-lg border bg-muted/30 p-3 font-mono text-sm">
                 Originality = 1 &minus; &Sigma; s<sub>i</sub><sup>2</sup>
               </dd>
-              <dd className="mt-2 text-muted-foreground">where s<sub>i</sub> is the share of backward citations in CPC section <em>i</em>. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections). Higher values indicate the patent synthesizes knowledge from more diverse technological domains.</dd>
+              <dd className="mt-2 text-muted-foreground">where s<sub>i</sub> is the share of backward citations in CPC section <em>i</em>. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections). Higher values indicate the patent synthesizes knowledge from more diverse technological domains. Note: PatentWorld computes these indices over CPC sections (8 categories), which compresses the range relative to the finer-grained NBER technology subcategories (~36 categories) used in Trajtenberg, Henderson, and Jaffe (1997). The Hall, Jaffe, and Trajtenberg (2001) small-sample correction is not applied, which may introduce upward bias for patents with very few citations.</dd>
             </div>
             <div>
               <dt className="font-semibold">Generality</dt>
-              <dd className="text-muted-foreground">Measures how broadly a patent is cited across CPC sections. Computed identically to originality but using <em>forward</em> citations instead of backward citations. Range: 0 (all citing patents in one section) to ~1 (cited across many sections). Higher values indicate wider downstream influence.</dd>
+              <dd className="text-muted-foreground">Measures how broadly a patent is cited across CPC sections. Computed identically to originality but using <em>forward</em> citations instead of backward citations. Range: 0 (all citing patents in one section) to ~1 (cited across many sections). Higher values indicate wider downstream influence. The same caveats regarding CPC section granularity and the absence of small-sample correction apply.</dd>
             </div>
             <div>
               <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
@@ -466,7 +466,7 @@ export default function MethodologyPage() {
             </div>
             <div>
               <dt className="font-semibold">Shannon entropy</dt>
-              <dd className="text-muted-foreground">H = &minus;&Sigma; p<sub>i</sub> ln(p<sub>i</sub>) over category shares. Measures diversity of technology portfolios, geographic distributions, and topic distributions. Higher values indicate more even distribution. Often reported as <em>normalized entropy</em> (H / ln N), which scales the result to a 0&ndash;1 range where 1 is perfectly even distribution across N categories.</dd>
+              <dd className="text-muted-foreground">H = &minus;&Sigma; p<sub>i</sub> log(p<sub>i</sub>) over category shares, where the logarithm base determines the unit. PatentWorld uses log<sub>2</sub> (bits) for topic modeling and inventor specialization analyses, and natural log (nats) for CPC portfolio diversity. Higher values indicate more even distribution across categories. The absolute value depends on both the number of categories and the log base used, so entropy values from different analyses are not directly comparable without normalization.</dd>
             </div>
             <div>
               <dt className="font-semibold">Gini coefficient</dt>

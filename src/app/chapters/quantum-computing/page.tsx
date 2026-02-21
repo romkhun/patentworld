@@ -896,10 +896,11 @@ export default function Chapter20() {
       />
 
       <DataNote>
-        Quantum computing patents are identified using CPC classifications related to quantum
-        computing hardware, algorithms, error correction, and related technologies. A patent
-        is classified as quantum computing-related if any of its CPC codes fall within the
-        relevant quantum computing categories. Subfield classifications are based on more
+        Quantum computing patents are identified using CPC classifications G06N10 (quantum
+        computing algorithms and architectures) and H01L39 (superconducting devices). A patent
+        is classified as quantum computing-related if any of its CPC codes fall within
+        these groups. Note: G06N10 patents are also counted in the AI domain (which uses
+        the broader G06N prefix), and H01L39 patents overlap with the semiconductor domain. Subfield classifications are based on more
         specific CPC group codes. Strategy data show patent counts per quantum sub-area for
         the top assignees. Cross-domain diffusion measures co-occurrence of quantum CPC codes
         with other CPC sections.
