@@ -150,7 +150,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 1998,
-    title: 'State Street Bank v. Signature Financial Group',
+    title: 'State Street Bank v. Signature Financial Group (149 F.3d 1368)',
     category: 'Court',
     description: 'The Court of Appeals for the Federal Circuit held that business methods are patentable if they produce a "useful, concrete, and tangible result." This holding precipitated a substantial increase in software and business method patent filings.',
     research: [
@@ -198,7 +198,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2006,
-    title: 'eBay v. MercExchange',
+    title: 'eBay v. MercExchange (547 U.S. 388)',
     category: 'Court',
     description: 'The Court held that patent holders are not automatically entitled to injunctive relief, ending the presumption of permanent injunctions in patent cases. This holding significantly affected non-practicing entity litigation strategies.',
     research: [
@@ -222,7 +222,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2007,
-    title: 'KSR v. Teleflex',
+    title: 'KSR v. Teleflex (550 U.S. 398)',
     category: 'Court',
     description: 'The Court held that the rigid "teaching-suggestion-motivation" test previously employed by the Federal Circuit was not the exclusive standard for obviousness under 35 U.S.C. \u00a7 103, thereby broadening the grounds for patent invalidation.',
     research: [
@@ -234,7 +234,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2010,
-    title: 'Bilski v. Kappos',
+    title: 'Bilski v. Kappos (561 U.S. 593)',
     category: 'Court',
     description: 'The Court held that the "machine-or-transformation" test is not the sole test for patent eligibility under 35 U.S.C. \u00a7 101, while narrowing the scope of patentable subject matter for business methods. No empirical study of this provision\u2019s effects has been identified in a leading peer-reviewed journal.',
     research: [],
@@ -276,7 +276,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2013,
-    title: 'Association for Molecular Pathology v. Myriad',
+    title: 'Association for Molecular Pathology v. Myriad (569 U.S. 576)',
     category: 'Court',
     description: 'The Court held that naturally occurring DNA segments are not patent-eligible under 35 U.S.C. \u00a7 101, but that synthetically created complementary DNA (cDNA) is patent-eligible. This holding had substantial implications for biotechnology patenting.',
     research: [
@@ -296,7 +296,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2014,
-    title: 'Alice Corp. v. CLS Bank International',
+    title: 'Alice Corp. v. CLS Bank International (573 U.S. 208)',
     category: 'Court',
     description: 'The Court held that claims directed to an abstract idea implemented on a generic computer are not patent-eligible under 35 U.S.C. \u00a7 101, establishing a two-step framework for patent eligibility analysis. This holding led to a substantial increase in \u00a7 101 rejections and invalidations, particularly for software patents.',
     research: [
@@ -312,7 +312,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2017,
-    title: 'TC Heartland v. Kraft Foods',
+    title: 'TC Heartland v. Kraft Foods (581 U.S. 258)',
     category: 'Court',
     description: 'The Court held that patent infringement suits must be filed where the defendant is incorporated, restricting venue rules. This holding substantially reduced filings in the previously plaintiff-favorable Eastern District of Texas.',
     research: [
@@ -328,7 +328,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2018,
-    title: 'Oil States v. Greene\'s Energy',
+    title: 'Oil States v. Greene\'s Energy (584 U.S. 325)',
     category: 'Court',
     description: 'The Court held that inter partes review (IPR) proceedings at the PTAB are constitutional, affirming Congress\'s authority to create administrative patent validity challenges.',
     research: [
@@ -340,7 +340,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     year: 2018,
-    title: 'SAS Institute v. Iancu',
+    title: 'SAS Institute v. Iancu (584 U.S. 357)',
     category: 'Court',
     description: 'The Court held that the PTAB must review all claims challenged in an IPR petition, not merely a subset, thereby altering PTAB practice.',
   },
@@ -497,7 +497,7 @@ export default function Chapter4() {
       <KeyInsight>
         <p>
           The trajectory of patent law over the past four decades exhibits a discernible pattern: an era of
-          expansion and strengthening (1982-2000) driven by the Court of Appeals for the Federal Circuit and pro-patent
+          expansion and strengthening (1982-2000) shaped by the Court of Appeals for the Federal Circuit and pro-patent
           legislative reforms, followed by an era of recalibration (2006-present) as the Supreme
           Court narrowed patent scope, and Congress established administrative
           alternatives to costly litigation through the <GlossaryTooltip term="AIA">AIA</GlossaryTooltip>.
@@ -565,7 +565,7 @@ export default function Chapter4() {
       <ChartContainer
         id="fig-patent-law-applications-vs-grants"
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
-        title="Successfully Granted Applications Grew from 66,000 (Average, 1976-1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
+        title="Successfully Granted Applications Grew from 66,000 (Average, 1976–1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="The figure displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
         insight="Major legislative changes coincide with observable inflection points in patent filing data, consistent with a relationship between policy and innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}

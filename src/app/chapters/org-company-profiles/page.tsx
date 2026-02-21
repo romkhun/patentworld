@@ -358,6 +358,18 @@ export default function OrgCompanyProfilesChapter() {
         </p>
       </Narrative>
 
+      {/* SSR-visible instructional text: always rendered on the server regardless of data state */}
+      <div className="my-6 rounded-lg border bg-muted/20 p-5 text-sm text-muted-foreground">
+        <p className="mb-2 font-medium">How to use this dashboard</p>
+        <p>
+          This interactive chapter provides unified company profiles spanning five dimensions: annual patent output,
+          CPC technology composition, citation quality distribution, multi-dimensional innovation strategy profiles,
+          and patent prosecution speed. Use the company selector below to choose an organization and explore its
+          complete innovation fingerprint. Profiles cover the top patent filers from 1976 through 2025 based on
+          PatentsView data.
+        </p>
+      </div>
+
       {/* ════════════════════════════════════════════════════
        *  SHARED COMPANY SELECTOR
        * ════════════════════════════════════════════════════ */}
@@ -372,11 +384,13 @@ export default function OrgCompanyProfilesChapter() {
               onSelect={setSelectedCompany}
               formatLabel={cleanOrgName}
             />
+          ) : anyLoading ? (
+            <span className="text-sm text-muted-foreground animate-pulse">Loading company list&hellip; Please wait while patent data is retrieved.</span>
           ) : (
-            <span className="text-sm text-muted-foreground">Loading companies&hellip; Please wait while patent data is retrieved.</span>
+            <span className="text-sm text-destructive">Unable to load company data. Please refresh the page or check your network connection.</span>
           )}
-          {anyLoading && (
-            <span className="text-xs text-muted-foreground animate-pulse">Loading data...</span>
+          {anyLoading && companyList.length > 0 && (
+            <span className="text-xs text-muted-foreground animate-pulse">Loading additional data&hellip;</span>
           )}
         </div>
       </div>
@@ -386,6 +400,14 @@ export default function OrgCompanyProfilesChapter() {
         <div className="my-12 flex items-center justify-center rounded-lg border border-dashed bg-muted/20 p-10 text-sm text-muted-foreground">
           No company selected. Choose an organization from the dropdown above to explore its
           patent output, technology portfolio, citation quality, strategy profile, and grant speed.
+        </div>
+      )}
+
+      {/* Error state: loading finished but no companies found */}
+      {!anyLoading && companyList.length === 0 && (
+        <div className="my-12 flex items-center justify-center rounded-lg border border-dashed border-destructive/50 bg-destructive/5 p-10 text-sm text-destructive">
+          No company data available. This may indicate a data loading error. Please try refreshing
+          the page. If the problem persists, the underlying data files may be temporarily unavailable.
         </div>
       )}
 
@@ -707,8 +729,8 @@ export default function OrgCompanyProfilesChapter() {
             </div>
           )}
 
-          <div className="my-2 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
-            <span className="text-sm text-muted-foreground mr-2">View:</span>
+          <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+            <span className="text-sm text-muted-foreground">View:</span>
             <button
               onClick={() => setStrategyViewMode('radar')}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
@@ -719,7 +741,7 @@ export default function OrgCompanyProfilesChapter() {
             >
               Radar
             </button>
-            <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
+            <span className="text-muted-foreground/30" aria-hidden="true">|</span>
             <button
               onClick={() => setStrategyViewMode('bar')}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${

@@ -353,7 +353,7 @@ export default function Chapter20() {
 
       <ChartContainer
         id="fig-quantum-entrant-incumbent"
-        title="Quantum Computing Patenting Is Increasingly Driven by New Entrants as the Field Matures"
+        title="Quantum Computing Patenting Is Increasingly Shaped by New Entrants as the Field Matures"
         subtitle="Annual patent counts decomposed by entrants (first patent in domain that year) versus incumbents."
         caption="Entrants are assignees filing their first quantum computing patent in a given year. Incumbents had at least one prior-year patent. Grant year shown."
         loading={eiL}
@@ -855,8 +855,8 @@ export default function Chapter20() {
         id="fig-quantum-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a quantum computing patent."
         title="Quantum Computing 2020s Entrants Average 6.0 Patents per Year, Similar to 2010s Entrants at 5.9"
-        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 1990s cohort (2 organizations: IBM and D-Wave) does not meet the minimum threshold and is excluded, though those early entrants averaged 11.0 patents per year. Among qualifying cohorts (2000s, 2010s, 2020s), velocity has remained relatively stable, suggesting that the field's rapid growth has been driven by breadth of participation rather than intensification by individual firms."
-        insight="The relatively stable velocity across the 2000s, 2010s, and 2020s cohorts suggests that quantum computing's growth is driven primarily by new entrants rather than increased per-firm productivity. The 1990s cohort (2 organizations, excluded for small sample size) had much higher velocity, reflecting the pioneering scale of IBM and D-Wave."
+        caption="Mean patents per active year for top quantum organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 1990s cohort (2 organizations: IBM and D-Wave) does not meet the minimum threshold and is excluded, though those early entrants averaged 11.0 patents per year. Among qualifying cohorts (2000s, 2010s, 2020s), velocity has remained relatively stable, suggesting that the field's rapid growth reflects breadth of participation rather than intensification by individual firms."
+        insight="The relatively stable velocity across the 2000s, 2010s, and 2020s cohorts suggests that quantum computing's growth reflects primarily new entrants rather than increased per-firm productivity. The 1990s cohort (2 organizations, excluded for small sample size) had much higher velocity, reflecting the pioneering scale of IBM and D-Wave."
         loading={taL}
       >
         <PWBarChart

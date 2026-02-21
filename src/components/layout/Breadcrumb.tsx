@@ -17,18 +17,18 @@ export function Breadcrumb() {
   return (
     <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted-foreground">
       <ol className="flex items-center gap-1 flex-wrap">
-        <li>
+        <li className="flex items-center gap-1">
           <Link href="/" className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-md">Home</Link>
         </li>
         {act && (
-          <>
-            <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
-            <li className="truncate">Act {act.act}: {act.title}</li>
-          </>
+          <li className="flex items-center gap-1">
+            <ChevronRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+            <span className="truncate">Act {act.act}: {act.title}</span>
+          </li>
         )}
-        <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
-        <li aria-current="page" className="text-foreground font-medium truncate">
-          {chapter.title}
+        <li className="flex items-center gap-1" aria-current="page">
+          <ChevronRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+          <span className="text-foreground font-medium truncate">{chapter.title}</span>
         </li>
       </ol>
     </nav>

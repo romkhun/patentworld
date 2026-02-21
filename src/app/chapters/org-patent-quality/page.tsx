@@ -443,7 +443,7 @@ export default function OrgPatentQualityChapter() {
         title="Claim Counts Rose Across All Top Filers, With Samsung and Canon Converging on IBM by the 2010s"
         subtitle="Average number of claims per patent per year for the top 5 assignees by total patent count"
         caption="Average number of claims per patent for the five most prolific assignees, plotted annually. Rising claim counts reflect a system-wide trend toward broader patent drafting, with notable firm-level variation."
-        insight="The universal rise in claim counts indicates broader patent drafting strategies across all leading firms, likely driven by changes in prosecution practice and competitive pressure to secure wider protection."
+        insight="The universal rise in claim counts indicates broader patent drafting strategies across all leading firms, likely associated with changes in prosecution practice and competitive pressure to secure wider protection."
         loading={qbcL}
         height={400}
         wide

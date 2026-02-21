@@ -204,15 +204,15 @@ export default function Chapter3() {
         </p>
       </Narrative>
 
-      <div className="my-4 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
-        <span className="text-sm text-muted-foreground mr-2">View:</span>
+      <div className="my-4 flex items-center gap-2 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+        <span className="text-sm text-muted-foreground">View:</span>
         <button
           onClick={() => setTopicView('stacked')}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'stacked' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
         >
           Stacked %
         </button>
-        <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
+        <span className="text-muted-foreground/30" aria-hidden="true">|</span>
         <button
           onClick={() => setTopicView('multiples')}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${topicView === 'multiples' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}

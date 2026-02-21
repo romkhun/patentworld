@@ -425,7 +425,7 @@ export default function Chapter19() {
           Japan has historically been the second-largest green patent filer, led by Toyota (12,636 total
           patents) and Honda (5,807) in automotive technologies and Mitsubishi Electric and Toshiba in
           energy systems. South Korea&apos;s annual green patent count grew from 174 in 2005 to 2,989 by 2024
-          (reaching 67% of Japan&apos;s 2024 count of 4,455), driven by Samsung (13,771 total patents), LG,
+          (reaching 67% of Japan&apos;s 2024 count of 4,455), led by Samsung (13,771 total patents), LG,
           and Hyundai (4,888). US firms such as General Electric (10,812) and Ford (7,383) have maintained
           strong positions.
         </p>
@@ -435,7 +435,7 @@ export default function Chapter19() {
         id="fig-green-innovation-by-country"
         subtitle="Annual green patent counts by primary assignee country, showing the shifting competitive landscape of climate technology innovation."
         title="South Korea's Green Patents Grew From 174 in 2005 to 2,989 by 2024, Reaching 67% of Japan's Annual Count"
-        caption="Annual green patent counts by primary assignee country/region, 1976–2025. South Korea's annual count grew from 174 in 2005 to 2,989 by 2024, reaching 67% of Japan's 2024 count (4,455), driven by Samsung, LG, and Hyundai."
+        caption="Annual green patent counts by primary assignee country/region, 1976–2025. South Korea's annual count grew from 174 in 2005 to 2,989 by 2024, reaching 67% of Japan's 2024 count (4,455), led by Samsung, LG, and Hyundai."
         insight="Japan's early lead in green patenting reflects its substantial early investment in hybrid vehicles and energy efficiency. South Korea's growth from 174 annual patents in 2005 to 2,989 in 2024 coincides with the rise of Samsung (13,771 total patents), LG, and Hyundai (4,888) in battery and electric vehicle technologies."
         loading={ctyL}
         height={500}
@@ -833,7 +833,7 @@ export default function Chapter19() {
         id="fig-green-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a green patent."
         title="Green Innovation Shows Rising Velocity Across Cohorts: 2000s Entrants Average 122 Patents per Year Versus 68 for 1970s Entrants"
-        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 2010s cohort (1 organization) and 2020s cohort (2 organizations) do not meet the minimum threshold and are excluded. Among qualifying cohorts, the velocity increase from the 1970s to 2000s reflects the acceleration of climate technology patenting driven by government subsidies, ESG mandates, and the Paris Agreement."
+        caption="Mean patents per active year for top green organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 2010s cohort (1 organization) and 2020s cohort (2 organizations) do not meet the minimum threshold and are excluded. Among qualifying cohorts, the velocity increase from the 1970s to 2000s reflects the acceleration of climate technology patenting coinciding with government subsidies, ESG mandates, and the Paris Agreement."
         insight="The velocity increase from the 1970s to 2000s cohort is consistent with green innovation becoming substantially more accessible to productive patenting, though the small sample sizes for the 2010s (1 organization) and 2020s (2 organizations) cohorts prevent reliable velocity estimates for the most recent entrants."
         loading={taL}
       >

@@ -17,14 +17,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-count',
     title: 'Patent Count',
     subtitle: 'Annual patent volume and grant pendency',
-    description: 'Annual US patent grants (all types) increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 (all types) in 2019. Average grant pendency peaked at 3.8 years in 2010 before moderating.',
+    description: 'Annual US patent grants (all types) increased more than five-fold from approximately 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 (all types) in 2019. Average (mean) grant pendency peaked at 3.8 years in 2010 before moderating.',
   },
   {
     number: 2,
     slug: 'system-patent-quality',
     title: 'Patent Quality',
     subtitle: 'Claims, scope, citations, originality, and knowledge flow indicators',
-    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
+    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 (section-level averages reached 0.45-0.55 by the 2020s) while generality fell from 0.28 to 0.15.',
   },
   {
     number: 3,
@@ -67,7 +67,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-composition',
     title: 'Assignee Composition',
     subtitle: 'Corporate, foreign, and country-level composition of patent assignees',
-    description: 'Corporate assignees grew from 94% to 99% of US patent grants. Foreign assignees surpassed US-based assignees around 2007. Japan accounts for 1.4 million US patents since 1976.',
+    description: 'Corporate assignees grew from 94% to 99% of US patent grants. Foreign assignees surpassed US-based assignees around 2007. Japan accounts for 1.45 million US patents since 1976.',
   },
   {
     number: 9,
@@ -88,7 +88,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-portfolio',
     title: 'Patent Portfolio',
     subtitle: 'Diversification, competitive proximity, and portfolio transitions',
-    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, sometimes preceding strategic shifts that later become publicly visible.',
+    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, which can precede strategic shifts that later become publicly visible.',
   },
   {
     number: 12,
@@ -103,7 +103,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-top-inventors',
     title: 'Top Inventors',
     subtitle: 'Superstar concentration, prolific inventors, and citation impact',
-    description: 'The top 5% of inventors (by cumulative patent count) account for 60% of annual patent grants, up from 26% in 1976. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
+    description: 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
   },
   {
     number: 14,
@@ -124,7 +124,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-gender',
     title: 'Gender and Patenting',
     subtitle: 'Gender composition and the gender innovation gap',
-    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September). All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025).',
+    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September). All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025), reaching 23.4% in the most recent period.',
   },
   {
     number: 17,
@@ -183,7 +183,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'agricultural-technology',
     title: 'Agricultural Technology',
     subtitle: 'Innovation feeding a growing world',
-    description: 'Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), driven by the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025.',
+    description: 'Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution. Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025.',
   },
   {
     number: 25,
@@ -204,7 +204,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'biotechnology',
     title: 'Biotechnology & Gene Editing',
     subtitle: 'Engineering life at the molecular level',
-    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025. Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, driven by successive waves from recombinant DNA to CRISPR-Cas9.',
+    description: 'Biotechnology achieved the lowest top-four concentration among all advanced technology domains studied, declining from 13.5% in 2007 to 4.6% by 2025. Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, reflecting successive waves from recombinant DNA to CRISPR-Cas9.',
   },
   {
     number: 28,
@@ -239,7 +239,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'quantum-computing',
     title: 'Quantum Computing',
     subtitle: 'From theoretical foundations to practical hardware',
-    description: 'Quantum computing remains the most concentrated advanced technology domain, with the top four firms holding 28.4% of patents in 2025, down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers.',
+    description: 'Quantum computing remains the most concentrated advanced technology domain, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, reflecting high hardware IP barriers.',
   },
   {
     number: 33,

@@ -350,7 +350,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-design-trends"
         subtitle="Annual utility and design patent counts with design share on the right axis, tracking the shift toward design-driven innovation."
         title="Design Patent Share Has Fluctuated Between 6% and 14%, With Peaks in 2008 and 2025"
-        caption="The figure displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, driven by growth in consumer electronics, automotive design, and fashion-related filings."
+        caption="The figure displays annual counts of utility and design patents, with design patent share on the right axis. Design patents have exhibited higher growth rates than utility patents since the 2000s, reflecting growth in consumer electronics, automotive design, and fashion-related filings."
         insight="The increasing share of design patents suggests a structural shift in innovation strategy toward design-driven product differentiation, reflecting broader economic trends in which aesthetic and user-experience considerations have become central to competitive advantage."
         loading={deL}
       >
@@ -391,15 +391,15 @@ export default function SystemPatentFieldsChapter() {
 
       {/* ── B.i: CPC Sections G and H ── */}
 
-      <div className="my-2 flex items-center gap-1 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
-        <span className="text-sm text-muted-foreground mr-2">View:</span>
+      <div className="my-2 flex items-center gap-2 max-w-[960px] mx-auto" role="group" aria-label="Chart view toggle">
+        <span className="text-sm text-muted-foreground">View:</span>
         <button
           onClick={() => setCpcStackedPercent(true)}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
         >
           Share (%)
         </button>
-        <span className="text-muted-foreground/30 mx-1" aria-hidden="true">|</span>
+        <span className="text-muted-foreground/30" aria-hidden="true">|</span>
         <button
           onClick={() => setCpcStackedPercent(false)}
           className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${!cpcStackedPercent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'}`}
@@ -482,7 +482,7 @@ export default function SystemPatentFieldsChapter() {
 
       <Narrative>
         <p>
-          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (HHI) measures concentration by summing the squared shares of all participants in a domain. On the standard DOJ/FTC scale (designed for product markets), <StatCallout value="below 1,500" /> indicates an unconcentrated domain, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated. Note: HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.
+          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (HHI) measures concentration by summing the squared shares of all participants in a domain. Under the thresholds established by the 2010 DOJ/FTC Horizontal Merger Guidelines (designed for product-market analysis), <StatCallout value="below 1,500" /> indicates an unconcentrated domain, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated. Note: HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.
         </p>
       </Narrative>
 
@@ -491,7 +491,7 @@ export default function SystemPatentFieldsChapter() {
         subtitle="Herfindahl-Hirschman Index (HHI) of patent assignee concentration within each CPC section, computed in 5-year periods."
         title="Patent Grant Concentration by Assignee Remains Below Conventional Thresholds Across All CPC Sections, with HHI Values Well Below 1,500"
         caption="The figure displays the Herfindahl-Hirschman Index (HHI) for patent assignees within each CPC section, computed in 5-year periods. Higher values indicate greater concentration. All technology sectors remain well below the 1,500 threshold for moderate concentration."
-        insight="Notwithstanding concerns about market power in technology, patent grant concentration by assignee remains below conventional thresholds across all sectors. The broad base of innovators maintains concentration well below antitrust thresholds even in areas associated with large firms. HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure."
+        insight="Patent grant concentration by assignee remains below conventional thresholds across all sectors. The broad base of innovators maintains concentration well below the 1,500 threshold (from the 2010 Horizontal Merger Guidelines) even in areas associated with large firms. HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure."
         loading={hhiL}
       >
         <PWLineChart
@@ -826,7 +826,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas. The gap between the highest-median section (Physics, 19 claims) and the lowest-median section (Textiles, 15 claims) widened from roughly 1 claim in the 1970s to 4 claims by the 2020s, reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with median claims in the high teens by the 2020s. The gap in median claims across CPC sections widened from approximately 1 claim in 1976 to 4 claims by the 2020s -- that is, the difference between the highest-median section (Physics, 19 claims) and the lowest-median section (Textiles, 15 claims) grew from near-parity to a 4-claim spread, reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (

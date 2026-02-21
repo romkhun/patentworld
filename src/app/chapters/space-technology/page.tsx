@@ -256,7 +256,7 @@ export default function Chapter22() {
       <ChapterHeader
         number={34}
         title="Space Technology"
-        subtitle="Patenting the final frontier"
+        subtitle="Satellite, propulsion, and orbital systems patenting trends"
       />
       <MeasurementSidebar slug="space-technology" />
 
@@ -534,7 +534,7 @@ export default function Chapter22() {
         <p>
           The geographic distribution of space patents reveals the dominant role of the United
           States, supported by both its government space programs and the commercial space sector.
-          France, Japan, and Germany maintain significant positions, driven by their national
+          France, Japan, and Germany maintain significant positions, supported by their national
           space agencies (CNES, JAXA, DLR) and aerospace industries (Airbus, Thales, Mitsubishi
           Heavy Industries). The relatively limited presence of China in US patent filings likely
           understates its actual space technology capabilities, as Chinese firms and agencies
@@ -562,7 +562,7 @@ export default function Chapter22() {
       <KeyInsight>
         <p>
           Within the United States, space patenting is concentrated in states with established
-          aerospace clusters. California leads by a wide margin, driven by the presence of
+          aerospace clusters. California leads by a wide margin, reflecting the presence of
           Boeing Satellite Systems, numerous satellite communications firms, and NASA&apos;s Jet
           Propulsion Laboratory. Maryland ranks second, anchored by major defense contractors
           and NASA&apos;s Goddard Space Flight Center. Colorado, home to Lockheed Martin Space,

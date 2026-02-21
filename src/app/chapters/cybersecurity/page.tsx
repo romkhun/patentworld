@@ -308,7 +308,7 @@ export default function Chapter17() {
       <ChartContainer
         id="fig-cyber-patents-annual-count"
         subtitle="Annual count of utility patents classified under cybersecurity-related CPC codes, tracking the growth trajectory of cybersecurity patenting."
-        title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Driven by Data Breaches, Ransomware, and Regulatory Compliance"
+        title="Cybersecurity Patent Filings Grew Rapidly Since the Early 2000s, Coinciding With Data Breaches, Ransomware, and Regulatory Compliance"
         caption="Annual count of utility patents classified under cybersecurity-related CPC codes, 1976-2025. The most prominent pattern is the sustained growth beginning in the early 2000s, with notable acceleration observed following the Snowden disclosures (2013) and the SolarWinds attack (2020). Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth in cybersecurity patents coincides with the expansion of the digital economy, with acceleration observed following major security incidents such as the Snowden disclosures (2013), WannaCry ransomware campaign (2017), and SolarWinds attack (2020)."
         loading={pyL}
@@ -390,7 +390,7 @@ export default function Chapter17() {
           Cryptography -- encompassing encryption algorithms, key management, and secure
           communication protocols -- was the largest subfield through the early 2000s, reflecting
           the foundational role of encryption in digital security. Network security surpassed
-          cryptography around 2003 and has been the dominant subfield since, driven by the
+          cryptography around 2003 and has been the dominant subfield since, coinciding with the
           expansion of cloud computing and distributed architectures. Data protection,
           authentication, and system security have all grown rapidly, particularly since the
           mid-2010s, reflecting the adoption of multi-factor authentication, zero-trust
@@ -528,7 +528,7 @@ export default function Chapter17() {
       <KeyInsight>
         <p>
           The geographic distribution of cybersecurity patents reveals the dominant role of the
-          United States, driven by the concentration of major technology firms, defense
+          United States, reflecting the concentration of major technology firms, defense
           contractors, and security research laboratories. The strong presence of Israel, despite
           its comparatively small economy, reflects that nation&apos;s well-documented
           specialization in cybersecurity -- a strength rooted in national security priorities
@@ -702,7 +702,7 @@ export default function Chapter17() {
           Operations &amp; Transport (B) reflects the integration of security with logistics,
           manufacturing, and transportation systems. Growing co-occurrence with Human
           Necessities (A) indicates the expansion of security requirements into healthcare
-          and medical devices, driven by regulatory mandates such as HIPAA and the growing
+          and medical devices, reflecting regulatory mandates such as HIPAA and the growing
           digitization of health records. The broad upward trend across most sections suggests
           that cybersecurity has evolved beyond a standalone computing discipline to become an
           essential component of virtually every technology system.

@@ -36,29 +36,6 @@ export const metadata: Metadata = {
   },
 };
 
-const WEBSITE_JSONLD = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'PatentWorld',
-  description: 'Interactive exploration of 9.36 million US patents granted by the USPTO from 1976 to 2025.',
-  url: BASE_URL,
-  author: {
-    '@type': 'Person',
-    name: 'Saerom (Ronnie) Lee',
-    jobTitle: 'Assistant Professor of Management',
-    affiliation: {
-      '@type': 'Organization',
-      name: 'The Wharton School, University of Pennsylvania',
-    },
-    url: 'https://www.saeromlee.com',
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'University of Pennsylvania',
-    url: 'https://www.upenn.edu',
-  },
-};
-
 const FAQ_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -68,7 +45,7 @@ const FAQ_JSONLD = {
       name: 'How many US patents have been granted since 1976?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The USPTO granted 9.36 million patents (all types) from 1976 to 2025, growing from 70,000 per year to 374,000 per year, peaking at 393,000 (all types) in 2019.',
+        text: 'The USPTO granted 9.36 million patents (all types) from 1976 to 2025, growing from approximately 70,000 per year in 1976 to 374,000 per year in 2024, peaking at 393,000 (all types) in 2019.',
       },
     },
     {
@@ -149,7 +126,7 @@ const FAQ_JSONLD = {
 export default function Page() {
   return (
     <>
-      <JsonLd data={[WEBSITE_JSONLD, FAQ_JSONLD]} />
+      <JsonLd data={[FAQ_JSONLD]} />
       <HomeContent />
     </>
   );

@@ -105,13 +105,13 @@ export default function SystemConvergenceChapter() {
       <KeyFindings>
         <li>Multi-section patents rose from 21% to 40% of all grants between 1976 and 2024, signaling increasing technological convergence across once-separate domains.</li>
         <li>The G-H (Physics-Electricity) convergence pair rose from 12.5% to 37.5% of all cross-section patents between 1976-1995 and 2011-2025, reflecting intensifying cross-field integration.</li>
-        <li>Within-firm technological broadening accounts for the majority of the convergence trend, indicating that individual organizations are expanding their patent scope across CPC sections rather than the aggregate shift being driven by compositional changes in the population of patentees.</li>
+        <li>Within-firm technological broadening accounts for the majority of the convergence trend, indicating that individual organizations are expanding their patent scope across CPC sections rather than the aggregate shift being explained by compositional changes in the population of patentees.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Technology domains that were once largely separate have become increasingly intertwined. Multi-section patents rose from 21% to 40% of all grants, while the G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents. These patterns reflect a fundamental structural shift: modern invention increasingly occurs at the intersection of multiple fields, driven by the pervasiveness of digital technology and the growing interdisciplinarity of research.
+          Technology domains that were once largely separate have become increasingly intertwined. Multi-section patents rose from 21% to 40% of all grants, while the G-H (Physics-Electricity) convergence pair grew from 12.5% to 37.5% of cross-section patents. These patterns reflect a fundamental structural shift: modern invention increasingly occurs at the intersection of multiple fields, associated with the pervasiveness of digital technology and the growing interdisciplinarity of research.
         </p>
       </aside>
 
@@ -230,7 +230,7 @@ export default function SystemConvergenceChapter() {
         id="fig-convergence-decomposition"
         subtitle="Shift-share decomposition of the multi-section patent rate into within-firm technological broadening and between-firm compositional change."
         title="Within-Firm Technological Breadth Drives Most of the Convergence Trend"
-        caption="The left axis shows the overall multi-section patent rate over time, while the right axis decomposes the year-over-year change into within-firm and between-firm components. The within-firm component consistently exceeds the between-firm component, indicating that convergence is predominantly driven by individual organizations expanding their technological scope rather than by compositional shifts in the population of patentees."
+        caption="The left axis shows the overall multi-section patent rate over time, while the right axis decomposes the year-over-year change into within-firm and between-firm components. The within-firm component consistently exceeds the between-firm component, indicating that convergence is predominantly explained by individual organizations expanding their technological scope rather than by compositional shifts in the population of patentees."
         insight="The dominance of the within-firm component suggests that convergence is not merely an artifact of changing firm composition but reflects a genuine broadening of organizational technological capabilities over time."
         loading={dcL}
         height={500}
@@ -397,7 +397,7 @@ export default function SystemConvergenceChapter() {
 
       <ChartContainer
         id="fig-convergence-cpc-vs-ipc"
-        title="Multi-Section Patent Share Shows Consistent Trends Under CPC (20.7% to 40.2%) and IPC (7.5% to 34.1%)"
+        title="Multi-Section Patent Share Shows Consistent Trends Under CPC (20.7% to 40%) and IPC (7.5% to 34.1%)"
         subtitle="Share of patents classified in multiple technology sections by year, comparing CPC and IPC classification systems"
         caption="The CPC multi-section rate (solid) and IPC multi-section rate (dashed) both show sustained increases over time, though at different absolute levels due to differences in classification granularity and coverage. The IPC series shows a gap during 2002-2004 when IPC data is sparse in PatentsView. Both systems confirm the convergence trend, indicating that the finding is robust to taxonomy choice."
         insight="Both classification systems show the same convergence trend, confirming the finding is robust to taxonomy choice."
@@ -419,7 +419,7 @@ export default function SystemConvergenceChapter() {
 
       <KeyInsight>
         <p>
-          Both classification systems show the same convergence trend, confirming that the finding is robust to taxonomy choice. The CPC system reports higher absolute multi-section rates (20.7% in 1976 rising to 40.2% by 2024) because CPC assigns more classification codes per patent than IPC. Under IPC, the multi-section rate rose from 7.5% to 34.1% over the same period. The parallel trajectories provide strong evidence that the rise in cross-domain patenting reflects genuine technological change rather than a classification artifact.
+          Both classification systems show the same convergence trend, confirming that the finding is robust to taxonomy choice. The CPC system reports higher absolute multi-section rates (20.7% in 1976 rising to 40% by 2024) because CPC assigns more classification codes per patent than IPC. Under IPC, the multi-section rate rose from 7.5% to 34.1% over the same period. The parallel trajectories provide strong evidence that the rise in cross-domain patenting reflects genuine technological change rather than a classification artifact.
         </p>
       </KeyInsight>
 

@@ -1,0 +1,102 @@
+# Claude Code Prompt: Fix Figure Layout Issues and Chapter Error
+
+You are fixing specific bugs on https://patentworld.vercel.app/. There are two categories of issues: figure layout problems where chart content overlaps with legends and captions, and a client-side crash on one chapter page. Fix all of them.
+
+---
+
+## CONSTRAINTS
+
+- **Fix only what is specified below.** Do not refactor, restyle, or "improve" anything beyond the scope of these fixes.
+- **Match existing codebase conventions.** Use the same chart library, component patterns, and styling as the rest of the project.
+- **Do not change the data, findings, or text content** of any figure or chapter. These fixes are purely visual/structural.
+- **Test every fix** by running the dev server and confirming the issue is resolved before moving on.
+
+---
+
+## SETUP
+
+1. Install dependencies and start the dev server.
+2. Locate the source files for the three figures and the `collaboration_network` chapter page.
+
+---
+
+## FIX 1: Figure Layout Overlaps
+
+The following three figures have panels that still overlap with their legends and/or captions. For each one, diagnose the specific overlap and fix it.
+
+### Figure 1a
+**Title:** "11 of 20 Major Filers Keep Exploration Below 5%, with a Median Share of 2.9%"
+
+### Figure 1b
+**Title:** "New-Subclass Exploration Scores Decay from 1.0 to 0.087 Within 5 Years of Entry"
+
+### Figure 1c
+**Title:** "Within-Firm Citation Gini Coefficients Rose from 0.5 to Above 0.8 for Most Large Filers, Signaling Growing Reliance on Blockbuster Patents"
+
+### Diagnosis Steps (apply to each figure)
+
+1. Find the component file that renders this figure. Search the codebase for the chart title text or a distinctive substring.
+2. Identify the chart library being used (Recharts, D3, Chart.js, etc.) and how the legend and caption are positioned.
+3. Determine the cause of the overlap. Common causes include:
+   - Legend positioned inside the chart area (e.g., `verticalAlign: "top"` or absolute positioning that collides with the chart)
+   - Chart container height too small for the content, causing the legend and caption to stack on top of the chart
+   - No margin or padding between the chart area and the legend/caption
+   - Caption rendered inside the chart container instead of below it
+   - Responsive breakpoints that compress the layout at certain widths
+
+### Fix Requirements
+
+For each figure, the fix must satisfy **all** of the following:
+
+- **Legend does not overlap** any chart element (bars, lines, axes, labels, data points, or annotations) at any viewport width (375px, 768px, 1440px).
+- **Caption does not overlap** the chart area or the legend at any viewport width.
+- **Legend is positioned below the chart** (not inside or on top of the chart area). If the existing site convention is to place legends elsewhere (e.g., to the right on desktop), match that convention — but ensure zero overlap.
+- **The chart remains fully visible.** Do not fix overlap by shrinking the chart to an unreadable size. If more vertical space is needed, increase the container height.
+- **No content is clipped or hidden.** All legend items, all axis labels, and the full caption text must be visible without scrolling within the chart container.
+- **The fix is responsive.** Verify at 375px, 768px, and 1440px. On mobile, the legend should be below the chart if it is not already.
+
+### Common Fix Patterns (choose the one appropriate to the cause)
+
+- **Increase chart container height** to accommodate legend + caption below the chart area.
+- **Add `margin-bottom`** to the chart area to create space between the chart and the legend.
+- **Move the legend** from inside the chart SVG/canvas to a separate DOM element below it, or adjust the chart library's legend positioning props (e.g., in Recharts: `<Legend verticalAlign="bottom" wrapperStyle={{ paddingTop: '20px' }}>`).
+- **Move the caption** outside the chart component's container if it is currently rendered inside it.
+- **Set explicit `height`** on the chart area (not the container) so the chart does not expand to fill the container and push into the legend/caption space.
+
+---
+
+## VERIFICATION
+
+After all fixes are applied:
+
+1. **Build check:** Run `npm run build` (or equivalent). It must complete with zero errors.
+2. **Figure 1a, 1b, 1c:** Confirm each figure has zero overlap between chart content, legend, and caption. Check the source code for responsive behavior at mobile, tablet, and desktop widths.
+4. **Regression check:** Confirm 2–3 other chapter pages still load and render correctly.
+
+---
+
+## DELIVERABLE
+
+Log all fixes in `BUGFIX_LOG.md` with the following structure for each fix:
+
+```
+## [Figure title or chapter name]
+- **Root cause:** [What caused the issue]
+- **File(s) changed:** [File paths]
+- **Fix applied:** [What you changed and why]
+- **Verified:** [Confirmation that the fix resolves the issue without regressions]
+```
+
+After all fixes are verified, commit with this message format:
+
+```
+fix: resolve figure overlaps and collaboration_network crash
+
+- Fix legend/caption overlap on 3 figures in ACT 5
+- Fix client-side crash on collaboration_network chapter page
+- Add defensive null guards to prevent recurrence
+
+See BUGFIX_LOG.md for details.
+```
+
+Push to the deployment branch and confirm the deployment succeeds.

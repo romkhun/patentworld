@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: 'The USPTO granted 9.36 million patents (all types) between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 (all types) in 2019, a more than five-fold increase over five decades.',
+    answer: 'The USPTO granted 9.36 million patents (all types) between 1976 and 2025. Annual grants increased from approximately 70,000 in 1976 to a peak of 393,000 (all types) in 2019, a more than five-fold increase over five decades.',
   },
   {
     question: 'Which company holds the most US patents?',
@@ -42,7 +42,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How long does it take to obtain a US patent?',
-    answer: 'The median time from application filing to patent grant (pendency) peaked at 3.6 years (1,317 days) in 2010 before declining to 2.4 years (875 days) in 2023. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
+    answer: 'The median time from application filing to patent grant (pendency) peaked at 3.6 years (median) (1,317 days) in 2010 before declining to 2.4 years (875 days) in 2023. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
   },
   {
     question: 'What are the fastest-growing patent technology areas?',
@@ -70,7 +70,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How many patents does the average inventor hold?',
-    answer: 'The top 12% of inventors by lifetime output produce 61% of all patent grants. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
+    answer: 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents, with their annual share rising from 26% to 60% between 1976 and 2025. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
   },
 ];
 

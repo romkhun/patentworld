@@ -570,7 +570,7 @@ export default function InvSerialNewChapter() {
         title="Grant Lag Rose for Both Groups Through 2010 Before Partially Recovering"
         subtitle="Average days from application to grant by experience group, 1976-2025"
         caption="The figure compares the average grant lag (days from filing to patent grant) for patents by serial inventors and new entrants."
-        insight="The parallel trajectories indicate that prosecution delays affect both groups similarly, driven by USPTO workload rather than inventor experience level."
+        insight="The parallel trajectories indicate that prosecution delays affect both groups similarly, associated with USPTO workload rather than inventor experience level."
         loading={qbL}
       >
         <PWLineChart

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: `The USPTO granted ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from 70,000 in 1976 to a peak of 393,000 in 2019, a more than five-fold increase over five decades. Recent annual volume has stabilized at 314,000-326,000 grants per year.`,
+    answer: `The USPTO granted ${HERO_STATS.totalPatents} utility, design, plant, and reissue patents between 1976 and 2025. Annual grants grew from approximately 70,000 in 1976 to a peak of 393,000 in 2019, a more than five-fold increase over five decades. Recent annual volume has stabilized at 314,000-326,000 grants per year.`,
   },
   {
     question: 'Which company has the most US patents?',
@@ -41,7 +41,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'How long does it take to obtain a US patent?',
-    answer: 'The median time from application filing to grant (patent pendency) peaked at 3.6 years (1,317 days) in 2010. Pendency has since declined substantially, reaching 2.4 years (875 days) in 2023, though it rose slightly to 2.6 years (959 days) in 2024. Pendency varies substantially by technology area and examiner workload.',
+    answer: 'The median time from application filing to grant (patent pendency) peaked at 3.6 years (median) (1,317 days) in 2010. Pendency has since declined substantially, reaching 2.4 years (875 days) in 2023, though it rose slightly to 2.6 years (959 days) in 2024. Pendency varies substantially by technology area and examiner workload.',
   },
   {
     question: 'What are the fastest-growing patent technology areas?',
@@ -65,7 +65,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Do top inventors produce higher-quality patents?',
-    answer: 'Yes. The top 12% of inventors by lifetime output produce 61% of all patent grants, and their patents receive higher average forward citations (15.0 vs. 13.0 for other inventors) with more claims (15.1 vs. 12.3) and broader scope (2.14 vs. 1.98). Measured by annual output, the top 5% account for 60% of annual grants, up from 26% in 1976. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents spanning 1980-2025.',
+    answer: 'Yes. The top 5% of inventors (by cumulative output) account for 63.2% of all patents, and their annual share rose from 26% to 60% between 1976 and 2025. Their patents receive higher average forward citations (15.0 vs. 13.0 for other inventors) with more claims (15.1 vs. 12.3) and broader scope (2.14 vs. 1.98). Separately, the top 12% by lifetime segment (Prolific, Superstar, and Mega) produce 61% of total grants. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents spanning 1980-2025.',
   },
   {
     question: 'How does patent quality differ across US states?',

@@ -321,7 +321,7 @@ export default function Chapter13() {
         subtitle="Annual count of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), tracking the growth trajectory of AI patenting."
         title="AI Patent Filings Grew from 5,201 in 2012 to 29,624 in 2023, Reflecting Deep Learning Advances"
         caption="Annual count and share of utility patents classified under AI-related CPC codes (G06N, G06F18, G06V, G10L15, G06F40), 1976-2025. The most prominent pattern is the exponential increase beginning around 2012, coinciding with advances in deep learning frameworks and GPU computing. Grant year shown. Application dates are typically 2–3 years earlier."
-        insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, driven by advances in deep learning frameworks, GPU computing, and large-scale data availability."
+        insight="The exponential growth in AI patents mirrors the broader expansion of AI capabilities, coinciding with advances in deep learning frameworks, GPU computing, and large-scale data availability."
         loading={pyL}
       >
         <PWLineChart
@@ -548,7 +548,7 @@ export default function Chapter13() {
         <p>
           The geographic distribution of AI patents reveals the dominant role of the United
           States, Japan, China, and South Korea in AI innovation. The United States maintains a
-          substantial lead, driven by the concentration of major AI research laboratories
+          substantial lead, reflecting the concentration of major AI research laboratories
           and technology firms. The strong presence of East Asian economies reflects their
           investments in electronics, semiconductors, and consumer technology -- sectors
           where AI capabilities have become increasingly central to product differentiation.

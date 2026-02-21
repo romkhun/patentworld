@@ -257,7 +257,7 @@ export default function Chapter11() {
       <ChapterHeader
         number={23}
         title="3D Printing & Additive Manufacturing"
-        subtitle="Layer-by-layer revolution in manufacturing"
+        subtitle="Additive manufacturing patenting trends, 1976–2025"
       />
       <MeasurementSidebar slug="3d-printing" />
 
@@ -544,7 +544,7 @@ export default function Chapter11() {
         <p>
           The geographic distribution of 3D printing patents reflects the intersection of
           additive manufacturing innovation with existing manufacturing strength. The United
-          States leads, driven by the headquarters of Stratasys, 3D Systems, GE Additive,
+          States leads, anchored by the headquarters of Stratasys, 3D Systems, GE Additive,
           and HP. Germany&apos;s strong position reflects its engineering and precision
           manufacturing tradition, with firms like EOS, SLM Solutions, and Siemens. Japan
           contributes through its materials science and electronics manufacturing
@@ -790,7 +790,7 @@ export default function Chapter11() {
       <KeyInsight>
         <p>
           The institutional composition of AM patenting reflects the technology&apos;s
-          capital-intensive nature. Corporate assignees dominate, driven by the substantial
+          capital-intensive nature. Corporate assignees dominate, reflecting the substantial
           equipment, materials, and testing infrastructure required for AM innovation.
           University contributions have grown as academic AM research programs expanded,
           particularly in metal AM processes and bioprinting, though universities represent

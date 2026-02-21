@@ -88,7 +88,8 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
           className="chart-container-inner w-full animate-in fade-in duration-200"
           style={flexHeight ? { minHeight: height } : { height, minHeight: 250 }}
           role={interactive ? 'group' : 'img'}
-          aria-label={ariaLabel ?? `Chart: ${title}`}
+          aria-label={ariaLabel ?? undefined}
+          aria-labelledby={!ariaLabel ? headingId : undefined}
         >
           {children}
         </div>

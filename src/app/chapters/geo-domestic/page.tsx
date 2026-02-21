@@ -208,7 +208,7 @@ export default function GeoDomesticChapter() {
         <li>California alone accounts for 23.6% of all US utility patent grants, producing more patents (992,708) than the bottom 30 states and territories combined (314,664).</li>
         <li>States exhibit distinctive technology specialization profiles: Michigan devotes 20.1% of its patents to Mechanical Engineering compared to California&apos;s 65.1% concentration in Physics and Electricity.</li>
         <li>City-level data reveal even more pronounced geographic concentration, with San Jose (96,068), San Diego (70,186), and Austin (53,595) leading all US cities in total patent output.</li>
-        <li>California&apos;s patent output has diverged sharply from other leading states, reaching 4.0x Texas by 2024, driven by the accelerating growth of the Silicon Valley ecosystem.</li>
+        <li>California&apos;s patent output has diverged sharply from other leading states, reaching 4.0x Texas by 2024, reflecting the accelerating growth of the Silicon Valley ecosystem.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
@@ -264,7 +264,7 @@ export default function GeoDomesticChapter() {
         subtitle="US states ranked by total utility patents from primary inventors (1976-2025)."
         title="California Accounts for Nearly One-Quarter (23.6%) of All US Patent Grants, 1976-2025"
         caption="The figure ranks US states by total utility patents attributed to primary inventors from 1976 to 2025. California leads by a substantial margin, followed by Texas, New York, Massachusetts, and Michigan."
-        insight="California accounts for nearly one-quarter (23.6%) of all US patent activity, a concentration driven by the Silicon Valley ecosystem of venture capital, research universities, and technology firms."
+        insight="California accounts for nearly one-quarter (23.6%) of all US patent activity, a concentration reflecting the Silicon Valley ecosystem of venture capital, research universities, and technology firms."
         loading={stL}
         height={1200}
       >
@@ -303,7 +303,7 @@ export default function GeoDomesticChapter() {
         </p>
       </KeyInsight>
 
-      <ConcentrationPanel outcome="Patent Grants" entity="States" top1={23.6} top5={46.0} gini={0.731} top1Label="Top State Share" top5Label="Top 5 States Share" />
+      <ConcentrationPanel outcome="Patent Grants" entity="States" top1={23.6} top5={46.0} gini={0.731} top1Label="Top 1 State Share" top5Label="Top 5 States Share" />
 
       <DescriptiveGapNote variant="domestic" />
 
@@ -379,7 +379,7 @@ export default function GeoDomesticChapter() {
         <p>
           The time-series trajectories of state-level patent output reveal divergent growth
           patterns. California&apos;s patent output has increased at a substantially faster rate
-          than that of other states since the 1990s, driven by the expansion of Silicon Valley and
+          than that of other states since the 1990s, reflecting the expansion of Silicon Valley and
           the broader California technology ecosystem. Texas and Washington have also
           demonstrated strong growth, reflecting the emergence of technology clusters
           in Austin, Dallas, and Seattle.

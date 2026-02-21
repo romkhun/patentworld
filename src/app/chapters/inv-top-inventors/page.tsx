@@ -112,9 +112,9 @@ export default function InvTopInventorsChapter() {
 
       <KeyFindings>
         <li>
-          The top 5% of inventors by cumulative patent count grew from accounting for 26% to
-          60% of annual patent output between 1976 and 2025, indicating rising concentration
-          among repeat inventors.
+          The top 5% of inventors (by cumulative output) account for 63.2% of all patents.
+          Their annual share rose from 26% to 60% between 1976 and 2025, indicating rising
+          concentration among repeat inventors.
         </li>
         <li>
           The most prolific inventor, {topInventorName}, holds 6,709 patents, and the top 100
@@ -134,10 +134,11 @@ export default function InvTopInventorsChapter() {
         </h2>
         <p className="text-sm leading-relaxed">
           Innovation output is increasingly concentrated among a small elite of repeat
-          inventors. The top 5% grew from 26% to 60% of annual output over five decades, and
-          the single most prolific inventor holds 6,709 patents. Yet prolificacy and citation
-          impact are only weakly correlated -- some high-volume filers average fewer than 10
-          citations per patent while others exceed 900.
+          inventors. The top 5% (by cumulative output) account for 63.2% of all patents, with
+          their annual share rising from 26% to 60% over five decades. The single most prolific
+          inventor holds 6,709 patents. Yet prolificacy and citation impact are only weakly
+          correlated -- some high-volume filers average fewer than 10 citations per patent
+          while others exceed 900.
         </p>
       </aside>
 
@@ -164,7 +165,7 @@ export default function InvTopInventorsChapter() {
 
       <ChartContainer
         id="fig-inventors-superstar-concentration"
-        title="The Top 5% of Inventors Grew from 26% to 60% of Annual Patent Output, 1976-2025"
+        title="The Top 5% of Inventors (by Cumulative Output) Account for 63.2% of All Patents; Annual Share Rose from 26% to 60%"
         subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
         caption="The figure tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
         insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly concentrated among professional, repeat inventors rather than occasional contributors."
@@ -297,7 +298,7 @@ export default function InvTopInventorsChapter() {
       <SectionDivider label="Quality Metrics: Top Inventors versus Other Inventors" />
       <Narrative>
         <p>
-          This section compares quality indicators between prolific (top 12%) and other inventors
+          This section compares quality indicators between prolific (top 12% by cumulative patent count) and other inventors
           over time, revealing how sustained patenting experience correlates with patent quality.
           The metrics span productivity, citation impact, claim breadth, technological scope,
           originality and generality of knowledge flows, self-citation behavior, and administrative
@@ -310,7 +311,7 @@ export default function InvTopInventorsChapter() {
         id="fig-productivity-by-rank"
         title="Top Inventors Average More Patents Per Year Than Other Inventors"
         subtitle="Average patents per inventor per year by rank, 1976-2025"
-        caption="Average number of patents per inventor per year, comparing top-ranked inventors (top 12% by cumulative patent count) to all others, 1976-2025. Data: PatentsView."
+        caption="Average number of patents per inventor per year, comparing top-ranked inventors (top 12% by cumulative patent count, the computation threshold for the quality-by-rank analysis) to all others, 1976-2025. Data: PatentsView."
         height={400}
         loading={qrL}
       >
@@ -588,7 +589,7 @@ export default function InvTopInventorsChapter() {
 
       <InsightRecap
         learned={[
-          "The top 5% of inventors by cumulative patent count account for 60% of annual patent output, indicating extreme concentration of inventive output.",
+          "The top 5% of inventors (by cumulative output) account for 63.2% of all patents; their annual share rose from 26% to 60%, indicating extreme and increasing concentration of inventive output.",
           "The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents — nearly nine times the output of the median prolific inventor in the top 100.",
         ]}
         falsifiable="If superstar concentration reflects individual talent rather than institutional resources, then prolific inventors should maintain high citation impact even when they change employers."

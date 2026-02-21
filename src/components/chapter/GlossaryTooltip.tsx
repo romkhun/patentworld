@@ -11,15 +11,20 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
   const entry = GLOSSARY[term];
   if (!entry) return <>{children ?? term}</>;
 
+  const tooltipId = `glossary-${term.replace(/\s+/g, '-').toLowerCase()}`;
+
   return (
     <span className="group relative inline">
-      <abbr
-        title={entry.definition}
-        className="cursor-help border-b border-dashed border-muted-foreground/50 no-underline"
+      <span
+        role="term"
+        tabIndex={0}
+        aria-describedby={tooltipId}
+        className="cursor-help border-b border-dashed border-muted-foreground/50"
       >
         {children ?? entry.term}
-      </abbr>
+      </span>
       <span
+        id={tooltipId}
         role="tooltip"
         className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-md border bg-card px-3 py-2 text-xs leading-relaxed text-foreground shadow-lg opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
       >

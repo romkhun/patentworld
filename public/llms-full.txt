@@ -4,7 +4,7 @@
 
 ## Chapter 1: The Innovation Landscape
 50 years of global invention in 9.36 million US patents. This chapter examines how the pace and nature of patenting has changed since 1976. Key findings:
-- Annual patent grants grew from ~70,000 in 1976 to over 350,000 by 2025
+- Annual patent grants grew from approximately 70,000 in 1976 (70,941 all types) to over 350,000 by 2025
 - The growth rate accelerated dramatically in the 1990s with the digital revolution
 - Patent activity is a leading indicator of technological change and economic competitiveness
 

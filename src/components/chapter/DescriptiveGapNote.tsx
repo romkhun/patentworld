@@ -1,7 +1,4 @@
-'use client';
-
-import { useState } from 'react';
-import { AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 
 const VARIANT_TEXT: Record<string, { title: string; body: string }> = {
   gender: {
@@ -36,50 +33,23 @@ const VARIANT_TEXT: Record<string, { title: string; body: string }> = {
 
 interface DescriptiveGapNoteProps {
   variant: 'gender' | 'team-size' | 'international' | 'top-inventors' | 'serial-new' | 'domestic' | 'composition';
+  /** @deprecated No longer used. All causation notes are now always visible. */
   alwaysVisible?: boolean;
 }
 
-export function DescriptiveGapNote({ variant, alwaysVisible = false }: DescriptiveGapNoteProps) {
-  const [isOpen, setIsOpen] = useState(alwaysVisible);
+export function DescriptiveGapNote({ variant }: DescriptiveGapNoteProps) {
   const content = VARIANT_TEXT[variant];
   if (!content) return null;
 
-  if (alwaysVisible) {
-    return (
-      <aside className="my-6 rounded-lg border border-amber-500/30 bg-amber-50/50 p-4 dark:bg-amber-950/20">
-        <div className="flex gap-3">
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden="true" />
-          <div>
-            <p className="text-sm font-medium text-foreground/90">{content.title}</p>
-            <p className="mt-1 text-sm leading-relaxed text-foreground/80">{content.body}</p>
-          </div>
-        </div>
-      </aside>
-    );
-  }
-
   return (
-    <aside className="my-6 rounded-lg border border-amber-500/30 bg-amber-50/50 dark:bg-amber-950/20">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-foreground/90 transition-colors hover:bg-amber-50/80 dark:hover:bg-amber-950/30"
-        aria-expanded={isOpen}
-      >
-        <div className="flex items-center gap-2">
-          <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden="true" />
-          <span>{content.title}</span>
+    <aside className="my-6 rounded-lg border border-amber-500/30 bg-amber-50/50 p-4 dark:bg-amber-950/20">
+      <div className="flex gap-3">
+        <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+        <div>
+          <p className="text-sm font-medium text-foreground/90">{content.title}</p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground/80">{content.body}</p>
         </div>
-        {isOpen ? (
-          <ChevronUp className="h-4 w-4 shrink-0 text-muted-foreground" />
-        ) : (
-          <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
-        )}
-      </button>
-      {isOpen && (
-        <div className="border-t border-amber-500/20 px-4 py-3">
-          <p className="text-sm leading-relaxed text-foreground/80">{content.body}</p>
-        </div>
-      )}
+      </div>
     </aside>
   );
 }

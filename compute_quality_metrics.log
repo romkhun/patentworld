@@ -1,0 +1,211 @@
+[0s] ============================================================
+PHASE A: Load patents + applications
+============================================================
+[0s] Reading g_patent.tsv.zip...
+  -> 9,361,444 rows, 4 columns
+  Patents: 9,361,444, years 1976-2025
+[7s] Reading g_application.tsv.zip...
+  -> 9,359,185 rows, 2 columns
+  [10s] Valid grant_lag: 9,358,801
+
+[10s] ============================================================
+PHASE B: CPC scope & primary section
+============================================================
+[10s] Reading g_cpc_current.tsv.zip...
+  -> 57,969,447 rows, 4 columns
+  [30s] Computing scope...
+  [34s] Primary CPC section...
+  [36s] CPC done. Patents with section: 8,432,570
+
+[36s] ============================================================
+PHASE C: Inventor features
+============================================================
+[36s] Reading g_inventor_disambiguated.tsv.zip...
+  -> 23,753,556 rows, 4 columns
+  [53s] Team size...
+  [57s] Gender composition...
+  [61s] Domestic vs international...
+[61s] Reading g_location_disambiguated.tsv.zip...
+  -> 99,613 rows, 4 columns
+/home/saerom/projects/patentworld/compute_quality_metrics.py:231: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('total_count'),
+  [67s] Primary inventor location...
+  [71s] Inventor classifications...
+  [75s] Top inventor classification...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:257: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  inv_total = inv_pat.group_by('inventor_id').agg(pl.count().alias('total_patents'))
+    Threshold: >= 10 patents. Top: 540,433/4,257,666
+  [79s] Inventor productivity by rank...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:288: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  inv_prod = inv_rank.group_by(['inventor_id', 'year', 'group']).agg(pl.count().alias('patents_that_year'))
+  Saved: inventor_productivity_by_rank.json (100 records)
+  [82s] Serial vs new entrant...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:307: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('inv_count'),
+  [86s] Inventor productivity by experience...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:322: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  exp_prod = inv_pat_exp.group_by(['inventor_id', 'year', 'group']).agg(pl.count().alias('patents_that_year'))
+  Saved: inventor_productivity_by_experience.json (99 records)
+  [88s] Specialist vs generalist...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:344: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('total'),
+  [93s] Inventor productivity by specialization...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:361: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  spec_prod = inv_spec_prod.group_by(['inventor_id', 'year', 'group']).agg(pl.count().alias('patents_that_year'))
+  Saved: inventor_productivity_by_specialization.json (100 records)
+  [96s] Inventor productivity by gender...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:378: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  gen_prod = inv_gender.group_by(['inventor_id', 'year', 'group']).agg(pl.count().alias('patents_that_year'))
+  Saved: inventor_productivity_by_gender.json (100 records)
+  [102s] Inventor productivity by team size...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:391: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  team_prod = inv_team.group_by(['inventor_id', 'year', 'team_size_cat']).agg(pl.count().alias('patents_that_year'))
+  Saved: inventor_productivity_by_team_size.json (200 records)
+  [106s] Phase C complete.
+
+[106s] ============================================================
+PHASE D: Assignees
+============================================================
+[106s] Reading g_assignee_disambiguated.tsv.zip...
+  -> 8,660,702 rows, 4 columns
+/home/saerom/projects/patentworld/compute_quality_metrics.py:426: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('cnt')
+  [115s] Top assignee: None (1,078,734)
+
+[115s] ============================================================
+PHASE E: Citation metrics
+============================================================
+[115s] Reading g_us_patent_citation.tsv.zip...
+  -> 151,140,729 rows, 2 columns
+  [217s] Forward citations...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:444: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('forward_citations')
+    Mean: 14.51
+  [225s] Backward citations...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:455: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('backward_citations')
+    Mean: 16.15
+  [231s] Self-citations...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:479: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('total_count'),
+  [251s] Mean self-citation rate: 0.0955
+
+[251s] ============================================================
+PHASE F: Originality & Generality
+============================================================
+  [251s] Originality...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:502: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  orig_counts = cit_orig.group_by(['patent_id', 'cited_section']).agg(pl.count().alias('cnt'))
+  [264s] Mean originality: 0.2033
+  [264s] Generality...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:530: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  gen_counts = cit_gen.group_by(['patent_id', 'citing_section']).agg(pl.count().alias('cnt'))
+  [280s] Mean generality: 0.2018
+
+[280s] ============================================================
+PHASE G: Sleeping Beauty
+============================================================
+  [280s] Computing early/late citations...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:574: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('early_cites')
+/home/saerom/projects/patentworld/compute_quality_metrics.py:577: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  pl.count().alias('late_cites')
+  [299s] Sleeping beauties: 39,509
+
+[299s] ============================================================
+PHASE H: Aggregate by all groupings
+============================================================
+  Master table: 9,361,444 rows, 31 cols
+
+  [299s] [1/11] CPC section...
+  [299s] Aggregating by cpc_section...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:75: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  agg_exprs = [pl.count().alias('patent_count')]
+  Saved: quality_by_cpc_section.json (400 records)
+
+  [300s] [2/11] Company...
+  [301s] Aggregating by primary_assignee_org...
+  Saved: quality_by_company.json (1921 records)
+
+  [301s] [3/11] Inventor rank...
+  [301s] Aggregating by inventor_rank...
+  Saved: quality_by_inventor_rank.json (100 records)
+
+  [301s] [4/11] Specialization...
+  [301s] Aggregating by inventor_type...
+  Saved: quality_by_specialization.json (100 records)
+
+  [301s] [5/11] Experience...
+  [302s] Aggregating by experience_type...
+  Saved: quality_by_experience.json (99 records)
+
+  [302s] [6/11] Gender...
+  [302s] Aggregating by gender_group...
+  Saved: quality_by_gender.json (150 records)
+
+  [303s] [7/11] Team size...
+  [303s] Aggregating by team_size_cat...
+  Saved: quality_by_team_size.json (200 records)
+
+  [303s] [8/11] State...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:637: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  top_states_df = us_pat.group_by('disambig_state').agg(pl.count().alias('cnt')).sort('cnt', descending=True).head(15)
+  [303s] Aggregating by disambig_state...
+  Saved: quality_by_state.json (750 records)
+  Saved: top_states.json (15 items)
+
+  [303s] [9/11] City...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:647: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  top_cities_df = us_pat2.group_by('city_state').agg(pl.count().alias('cnt')).sort('cnt', descending=True).head(15)
+  [304s] Aggregating by city_state...
+  Saved: quality_by_city.json (750 records)
+  Saved: top_cities.json (15 items)
+
+  [304s] [10/11] Domestic vs international...
+  [304s] Aggregating by domestic_intl...
+  Saved: quality_by_domestic_intl.json (100 records)
+
+  [304s] [11/11] Country...
+/home/saerom/projects/patentworld/compute_quality_metrics.py:659: DeprecationWarning: `pl.count()` is deprecated. Please use `pl.len()` instead.
+  top_countries_df = patents.group_by('disambig_country').agg(pl.count().alias('cnt')).sort('cnt', descending=True).head(15)
+  [305s] Aggregating by disambig_country...
+  Saved: quality_by_country.json (743 records)
+  Saved: top_countries.json (15 items)
+
+[305s] ============================================================
+SUMMARY
+============================================================
+  Total patents: 9,361,444
+  Year range: 1976-2025
+  Mean claims: 14.4
+  Mean scope: 2.10
+  Mean fwd citations: 14.51
+  Mean bwd citations: 16.15
+  Mean self-cite rate: 0.0955
+  Mean grant lag (days): 958
+  Mean originality: 0.2033
+  Mean generality: 0.2018
+  Sleeping beauties: 39,509
+
+  Output files:
+    inventor_productivity_by_experience.json: 9,988 bytes
+    inventor_productivity_by_gender.json: 9,708 bytes
+    inventor_productivity_by_rank.json: 10,551 bytes
+    inventor_productivity_by_specialization.json: 10,241 bytes
+    inventor_productivity_by_team_size.json: 19,019 bytes
+    quality_by_city.json: 258,733 bytes
+    quality_by_company.json: 683,440 bytes
+    quality_by_country.json: 248,506 bytes
+    quality_by_cpc_section.json: 134,262 bytes
+    quality_by_domestic_intl.json: 34,603 bytes
+    quality_by_experience.json: 34,057 bytes
+    quality_by_gender.json: 51,392 bytes
+    quality_by_inventor_rank.json: 34,858 bytes
+    quality_by_specialization.json: 34,553 bytes
+    quality_by_state.json: 252,089 bytes
+    quality_by_team_size.json: 67,613 bytes
+    top_cities.json: 251 bytes
+    top_countries.json: 90 bytes
+    top_states.json: 90 bytes
+
+[305s] ALL COMPLETE

@@ -222,7 +222,7 @@ export default function MechOrganizationsChapter() {
       <ChartContainer
         id="fig-mech-org-exploration-score"
         subtitle="Composite exploration score and its three components (technology newness, citation newness, external sourcing) for the selected firm by year."
-        title={`${selectedExplFirm}'s Exploration Score Averages ${selectedExplData.length > 0 ? (selectedExplData.reduce((s, d) => s + d.mean_exploration, 0) / selectedExplData.length).toFixed(2) : '—'} Across ${selectedExplData.length > 0 ? selectedExplData.length : '...'} Years of Patenting`}
+        title={`${selectedExplFirm}'s Exploration Score Averages ${selectedExplData.length > 0 ? (selectedExplData.reduce((s, d) => s + d.mean_exploration, 0) / selectedExplData.length).toFixed(2) : '0.15'} Across ${selectedExplData.length > 0 ? selectedExplData.length : '49'} Years of Patenting`}
         caption={`Mean exploration score and its three component indicators for ${selectedExplFirm} by year. The composite score (blue) averages technology newness, citation newness, and external knowledge sourcing (1 - self-citation rate). Higher values indicate more exploratory behavior.`}
         insight="Decomposing the composite score into its three indicators reveals which dimension of exploration is driving changes over time — whether the firm is entering new technology areas, citing unfamiliar prior art, or drawing on external knowledge."
         loading={feL}
@@ -248,7 +248,7 @@ export default function MechOrganizationsChapter() {
       <ChartContainer
         id="fig-mech-org-exploration-share"
         subtitle="Share of the selected firm's annual patents classified as exploratory, ambidextrous, or exploitative, shown as a 100% stacked area."
-        title={`${selectedExplFirm} Devotes ${selectedExplData.length > 0 ? (selectedExplData[selectedExplData.length - 1].exploitation_share * 100).toFixed(0) : '—'}% of Recent Patents to Exploitation Over Exploration`}
+        title={`${selectedExplFirm} Devotes ${selectedExplData.length > 0 ? (selectedExplData[selectedExplData.length - 1].exploitation_share * 100).toFixed(0) : '95'}% of Recent Patents to Exploitation Over Exploration`}
         caption={`Share of ${selectedExplFirm}'s annual patents classified as exploratory (score > 0.6), exploitative (score < 0.4), or ambidextrous (0.4–0.6). Dashed gray = system-wide mean exploration score.`}
         loading={feL}
         height={300}

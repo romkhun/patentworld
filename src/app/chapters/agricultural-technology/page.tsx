@@ -260,13 +260,13 @@ export default function Chapter12() {
       <ChapterHeader
         number={24}
         title="Agricultural Technology"
-        subtitle="Innovation feeding a growing world"
+        subtitle="Precision agriculture and crop science patenting trends"
       />
       <MeasurementSidebar slug="agricultural-technology" />
 
       <KeyFindings>
         <li>Agricultural technology patenting reflects one of the oldest areas of continuous innovation in the US patent system, with soil working, planting, and horticulture patents tracing back to the earliest decades of patent records.</li>
-        <li>Horticulture and forestry and plant breeding dominate patent volume, while precision agriculture -- though still small in absolute terms -- is among the fastest-growing subfields, driven by GPS, sensors, and AI integration.</li>
+        <li>Horticulture and forestry and plant breeding dominate patent volume, while precision agriculture -- though still small in absolute terms -- is among the fastest-growing subfields, reflecting GPS, sensors, and AI integration.</li>
         <li>A small number of major agribusiness firms -- Pioneer Hi-Bred, Monsanto, Deere &amp; Company, and Syngenta -- dominate agricultural patent portfolios, reflecting the capital-intensive nature of agricultural R&amp;D.</li>
         <li>Recent patent activity in drought-resistant crops, sustainable farming methods, and resource-efficient technologies is associated with increasing focus on climate resilience.</li>
       </KeyFindings>
@@ -554,7 +554,7 @@ export default function Chapter12() {
       <KeyInsight>
         <p>
           The geographic distribution of agricultural patents reflects the global structure
-          of agribusiness. The United States leads, driven by the concentration of major
+          of agribusiness. The United States leads, reflecting the concentration of major
           agricultural equipment manufacturers, seed companies, and agrochemical firms.
           Canada ranks as a prominent contributor, reflecting its substantial agricultural
           sector and agribusiness R&amp;D activity. Germany and the Netherlands hold notable
@@ -914,7 +914,7 @@ export default function Chapter12() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), driven by the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025, reflecting broader entry into agricultural innovation."]}
+        learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025, reflecting broader entry into agricultural innovation."]}
         falsifiable="If precision agriculture drove the velocity increase, then patents in GPS/sensor subclasses should show faster growth than traditional agricultural chemistry patents."
         nextAnalysis={{ label: "Artificial Intelligence", description: "AI patenting from expert systems to deep learning — the fastest-growing technology domain", href: "/chapters/ai-patents" }}
       />

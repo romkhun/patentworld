@@ -567,7 +567,7 @@ export default function Chapter15() {
           and pharmaceutical engineering. The United Kingdom and France also rank prominently,
           ahead of China and South Korea, reflecting Europe&apos;s deep life sciences research
           tradition. The growing presence of China and South Korea in biotech patenting signals
-          the expansion of life sciences capabilities in East Asia, driven by substantial
+          the expansion of life sciences capabilities in East Asia, reflecting substantial
           government investment in genomics and biomanufacturing.
         </p>
       </KeyInsight>
@@ -577,7 +577,7 @@ export default function Chapter15() {
         subtitle="US states ranked by total biotechnology patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="Biotech Patenting Clusters in States With Major Research Universities and Pharmaceutical Industry Presence"
         caption="US states ranked by total biotechnology-related patents based on primary inventor location. The data reflect the co-location of research universities, NIH-funded medical centers, pharmaceutical companies, and venture capital that characterizes leading biotech hubs."
-        insight="The state-level distribution of biotech patents reveals distinct clusters driven by the co-location of research universities, teaching hospitals, pharmaceutical firms, and venture capital -- the key ingredients of the biotech innovation ecosystem."
+        insight="The state-level distribution of biotech patents reveals distinct clusters reflecting the co-location of research universities, teaching hospitals, pharmaceutical firms, and venture capital -- the key ingredients of the biotech innovation ecosystem."
         loading={geoL}
         height={900}
       >
@@ -595,7 +595,7 @@ export default function Chapter15() {
           leading research universities, NIH-funded medical centers, life sciences industry
           headquarters, and venture capital availability. California and Massachusetts are
           particularly prominent, reflecting the Bay Area biotech corridor and the Boston-Cambridge
-          life sciences cluster. Iowa ranks sixth nationally, driven by Pioneer Hi-Bred&apos;s
+          life sciences cluster. Iowa ranks sixth nationally, anchored by Pioneer Hi-Bred&apos;s
           agricultural biotechnology headquarters, illustrating the significant role of crop
           science in biotech patenting. New Jersey benefits from its historical concentration
           of pharmaceutical and life sciences companies, while states such as Maryland and North
@@ -901,7 +901,7 @@ export default function Chapter15() {
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across biotechnology subfields."
         title="Biotechnology Subfield Diversity Tripled From 0.32 in 1976 to 0.94 by 2025, Reflecting the Field&apos;s Maturation"
         caption="Normalized Shannon entropy increased from 0.32 (dominated by recombinant DNA) to 0.94 (broadly distributed across gene editing, expression vectors, cell engineering, and diagnostics). This trajectory reflects the successive waves of innovation from recombinant DNA to PCR to CRISPR."
-        insight="The biotechnology diversification trajectory parallels AI&apos;s but is driven by different mechanisms: successive breakthrough technologies (PCR, monoclonal antibodies, CRISPR) each opened new subfields, progressively balancing the distribution of inventive activity."
+        insight="The biotechnology diversification trajectory parallels AI&apos;s but is shaped by different mechanisms: successive breakthrough technologies (PCR, monoclonal antibodies, CRISPR) each opened new subfields, progressively balancing the distribution of inventive activity."
         loading={sfL}
       >
         <PWLineChart
@@ -948,7 +948,7 @@ export default function Chapter15() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025) among all advanced technology domains, reflecting exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, driven by successive waves from recombinant DNA to CRISPR-Cas9."]}
+        learned={["Biotechnology achieved the lowest top-four concentration (4.6% by 2025) among all advanced technology domains, reflecting exceptionally broad-based participation.", "Subfield diversity tripled from 0.32 in 1976 to 0.94 by 2025, reflecting successive waves from recombinant DNA to CRISPR-Cas9."]}
         falsifiable="If CRISPR drove the latest diversity wave, then gene-editing subclass patents should show discontinuous growth after the 2012 Doudna-Charpentier publication."
         nextAnalysis={{ label: "Blockchain", description: "Distributed trust in the digital economy — the only technology domain to reverse course", href: "/chapters/blockchain" }}
       />

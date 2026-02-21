@@ -11,7 +11,7 @@ PatentWorld is a data exploration platform presenting 50 years of United States 
 - Patent types: utility, design, plant, and reissue
 - Total patents: 9.36 million
 - Chapters: 34
-- Visualizations: 459
+- Visualizations: 458
 
 ## Pages
 
@@ -24,7 +24,7 @@ PatentWorld is a data exploration platform presenting 50 years of United States 
 
 ### Act 1: The System - How the patent landscape took shape
 
-- https://patentworld.vercel.app/chapters/system-patent-count/ : Annual patent volume and grant pendency; grants grew from 70K to 374K
+- https://patentworld.vercel.app/chapters/system-patent-count/ : Annual patent volume and grant pendency; grants grew from approximately 70K in 1976 to 374K
 - https://patentworld.vercel.app/chapters/system-patent-quality/ : Claims, scope, citations, originality, and knowledge flow indicators
 - https://patentworld.vercel.app/chapters/system-patent-fields/ : Technology classes, field-level dynamics; CPC sections G and H rose from 27% to 57%
 - https://patentworld.vercel.app/chapters/system-convergence/ : Cross-domain technology convergence; multi-section patents rose from 21% to 40%
@@ -42,7 +42,7 @@ PatentWorld is a data exploration platform presenting 50 years of United States 
 
 ### Act 3: The Inventors - Who invents and how they differ
 
-- https://patentworld.vercel.app/chapters/inv-top-inventors/ : Top 5% of inventors produce 60% of output; most prolific holds 6,709 patents
+- https://patentworld.vercel.app/chapters/inv-top-inventors/ : Top 5% of inventors (by cumulative output) account for 63.2% of all patents; most prolific holds 6,709 patents
 - https://patentworld.vercel.app/chapters/inv-generalist-specialist/ : Specialist inventors rose from 20% to 48% of the workforce
 - https://patentworld.vercel.app/chapters/inv-serial-new/ : Career patterns and survival; only 37-51% survive past five years
 - https://patentworld.vercel.app/chapters/inv-gender/ : Female inventor share rose from 2.8% to 14.9% (1976-2025)

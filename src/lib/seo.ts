@@ -63,7 +63,7 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
   'org-patent-portfolio': 'Firm Portfolio Diversity Rose Across Decades',
   'org-company-profiles': 'Interactive Company Innovation Profiles',
   // ACT 3
-  'inv-top-inventors': 'Top 5% Inventors Produce 60% of Output',
+  'inv-top-inventors': 'Top 5% of Inventors Account for 63% of Patents',
   'inv-generalist-specialist': 'Specialist Inventors Rose from 20% to 48%',
   'inv-serial-new': 'Half of Inventors Exit Within Five Years',
   'inv-gender': 'Female Inventor Share Rose from 2.8% to 14.9%',
@@ -93,21 +93,21 @@ const CHAPTER_SEO_TITLES: Record<string, string> = {
 /** Insight-oriented meta descriptions (under 160 chars) */
 const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   // ACT 1
-  'system-patent-count': 'US patent grants grew from 70K to 374K annually. Grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
+  'system-patent-count': 'US patent grants grew from approximately 70K in 1976 to 374K annually. Average (mean) grant pendency peaked at 3.8 years in 2010 before moderating to current levels.',
   'system-patent-quality': 'Average claims doubled from 9.4 to a peak of 18.9 in 2005. Forward citations peaked at 6.4. Originality rose from 0.09 to 0.25 while generality fell from 0.28 to 0.15.',
   'system-patent-fields': 'CPC sections G and H gained 30 percentage points of share. Fastest digital classes grew 1,000%. Patent grant concentration by assignee remains below conventional thresholds across all CPC sections.',
   'system-convergence': 'Multi-section patents rose from 21% to 40% of all grants by 2024. The G-H convergence pair rose from 12.5% to 37.5% of cross-section patents.',
-  'system-language': 'NLP topic modeling of 8.45 million patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
+  'system-language': 'Natural language processing (NLP) topic modeling of 8.45 million patent abstracts reveals computing dominance. Explore how the language of innovation has evolved over 50 years.',
   'system-patent-law': 'From Bayh-Dole (1980) to the PREVAIL Act (2025), twenty-one landmark events reshaped US patent law. Interactive timeline with data on how each event affected patenting.',
   'system-public-investment': 'Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019 after the Bayh-Dole Act. HHS/NIH leads with 55,587 government-funded patents.',
   // ACT 2
-  'org-composition': 'Corporate assignees grew from 94% to 99% of grants. Foreign assignees surpassed US-based filers in 2007. Japan accounts for 1.4M US patents.',
+  'org-composition': 'Corporate assignees grew from 94% to 99% of grants. Foreign assignees surpassed US-based filers in 2007. Japan accounts for 1.45M US patents.',
   'org-patent-count': 'IBM leads with 161,888 cumulative grants. Samsung peaked at 9,716 in 2024. Top 100 organizations hold 32-39% of corporate patents.',
   'org-patent-quality': 'Amazon leads with 6.7% blockbuster rate. Microsoft leads in average citations at 30.7. Citation half-lives range from 6.3 to 14.3 years across firms.',
   'org-patent-portfolio': 'Portfolio diversity rose across leading firms. 248 companies cluster into 8 industries by portfolio similarity. JSD identifies strategic portfolio shifts.',
   'org-company-profiles': 'Interactive profiles combining annual output, technology composition, citation impact, innovation strategy, and portfolio analysis for individual companies.',
   // ACT 3
-  'inv-top-inventors': 'The top 5% of inventors (by cumulative patent count) grew from 26% to 60% of annual patent output. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 among top 100.',
+  'inv-top-inventors': 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents. Their annual share rose from 26% to 60% between 1976 and 2025. The most prolific inventor holds 6,709 patents.',
   'inv-generalist-specialist': 'Specialist inventors rose from 20% to 48% of the inventor workforce. Quality metrics differ systematically between generalists and specialists.',
   'inv-serial-new': 'First-time inventor entries peaked at 140,490 in 2019. Only 37-51% survive past five years. Productivity rises from 1.4 to 2.1 before plateauing.',
   'inv-gender': 'Female inventor share rose from 2.8% to 14.9%. Quality metrics reveal systematic gender differences across claims, citations, and scope.',

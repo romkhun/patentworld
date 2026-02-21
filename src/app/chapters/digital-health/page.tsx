@@ -316,7 +316,7 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-digihealth-annual-count"
         subtitle="Annual count of utility patents classified under digital health CPC codes, tracking the growth trajectory of digital health patenting."
-        title="Digital Health Patent Filings Have Grown Substantially Since 2009, Driven by the HITECH Act and COVID-19 Pandemic"
+        title="Digital Health Patent Filings Have Grown Substantially Since 2009, Coinciding With the HITECH Act and COVID-19 Pandemic"
         caption="Annual count and share of utility patents classified under digital health CPC codes, 1976-2025. The two most prominent inflection points coincide with the 2009 HITECH Act, which mandated EHR adoption, and the 2020 COVID-19 pandemic, which was followed by rapid expansion of telemedicine and remote monitoring adoption. Grant year shown. Application dates are typically 2–3 years earlier."
         insight="The growth trajectory of digital health patents coincides with regulatory mandates (HITECH Act), public health emergencies (COVID-19), and advances in sensor technology, wireless connectivity, and cloud computing."
         loading={pyL}
@@ -348,7 +348,7 @@ export default function Chapter18() {
         subtitle="Digital health patents as a percentage of all utility patents, showing the growing allocation of inventive effort toward healthcare technology."
         title="Digital Health's Share of Total Patents Has Risen Steadily, Indicating a Genuine Reallocation of Inventive Effort"
         caption="Percentage of all utility patents classified under digital health CPC codes. The upward trend indicates that digital health patenting growth is not merely tracking overall patent expansion but represents a disproportionate concentration of inventive effort in healthcare technology."
-        insight="The growing share of digital health patents among all patents demonstrates a genuine reallocation of inventive effort toward healthcare technology, driven by regulatory incentives, demographic trends, and the digitization of clinical workflows."
+        insight="The growing share of digital health patents among all patents demonstrates a genuine reallocation of inventive effort toward healthcare technology, associated with regulatory incentives, demographic trends, and the digitization of clinical workflows."
         loading={pyL}
       >
         <PWLineChart
@@ -543,7 +543,7 @@ export default function Chapter18() {
         id="fig-digihealth-by-state"
         subtitle="US states ranked by total digital health patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California and Massachusetts Lead US Digital Health Patenting, Reflecting Medical Device and Health IT Industry Clusters"
-        caption="US states ranked by total digital health patents based on primary inventor location. California's lead reflects Silicon Valley's health technology ecosystem, while Massachusetts's strong second-place position is driven by its concentration of medical device firms, health IT companies, and academic medical centers."
+        caption="US states ranked by total digital health patents based on primary inventor location. California's lead reflects Silicon Valley's health technology ecosystem, while Massachusetts's strong second-place position reflects its concentration of medical device firms, health IT companies, and academic medical centers."
         insight="The geographic clustering of digital health patents in California and Massachusetts reflects distinct innovation ecosystems: Silicon Valley's technology-driven health startups and Boston's established medical device and health IT corridor."
         loading={geoL}
         height={900}
@@ -562,7 +562,7 @@ export default function Chapter18() {
           and Massachusetts -- the two leading states by a substantial margin. California&apos;s
           leadership reflects the Silicon Valley health technology corridor, where
           software-driven approaches to clinical decision support and telemedicine predominate.
-          Massachusetts ranks second, driven by its concentration of medical device firms,
+          Massachusetts ranks second, reflecting its concentration of medical device firms,
           health IT companies, and the academic medical centers of the Boston corridor.
           Minnesota, ranked third, benefits from the Minneapolis-St. Paul medical device
           cluster anchored by Medtronic, while New York rounds out the top four.
@@ -896,7 +896,7 @@ export default function Chapter18() {
         id="fig-digihealth-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed a digital health patent."
         title="Later Digital Health Entrants Patent at Substantially Higher Velocity: 2010s Cohort Averages 77.5 Patents per Year Versus 22.5 for 1970s Entrants"
-        caption="Mean patents per active year for top digital health organizations grouped by entry decade. The 3.4x increase from 1970s to 2010s cohorts reflects the acceleration of digital health patenting driven by the HITECH Act, smartphone proliferation, and COVID-19."
+        caption="Mean patents per active year for top digital health organizations grouped by entry decade. The 3.4x increase from 1970s to 2010s cohorts reflects the acceleration of digital health patenting coinciding with the HITECH Act, smartphone proliferation, and COVID-19."
         insight="The sharp velocity increase for 2010s entrants coincides with the convergence of consumer electronics and medical devices, where technology firms like Apple and Google brought aggressive patent strategies to the health domain."
         loading={taL}
       >

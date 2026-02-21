@@ -167,7 +167,7 @@ export default function InvGenderChapter() {
 
       <KeyFindings>
         <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), but remains well below parity with substantial variation across technology fields.</li>
-        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), reaching 23.4% in the most recent cohort, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
+        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), reaching 23.4% in the most recent period, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
         <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
 
@@ -554,7 +554,7 @@ export default function InvGenderChapter() {
 
       <ChartContainer
         id="fig-gender-by-filing-route"
-        title="Foreign-Origin Patents Show 16.5% Female Inventor Share versus 13.8% for Domestic in 2025"
+        title="Foreign-Origin Patents Show 16.5% Female Inventor Share versus 13.8% for Domestic in 2025 (through September)"
         subtitle="Female inventor share by filing route (domestic versus foreign-origin patents), 1976-2025"
         caption="The figure tracks the female inventor share separately for patents filed through domestic routes and those originating from foreign applicants. Foreign-origin patents have overtaken domestic patents in female inventor share since 2010, a reversal of the pattern observed in earlier decades."
         insight="The crossover in female inventor share around 2010 -- where foreign-origin patents surpassed domestic patents -- may reflect field-composition differences in the types of patents filed through foreign versus domestic routes, though it is also consistent with differing rates of change in female STEM participation across countries."
@@ -578,7 +578,7 @@ export default function InvGenderChapter() {
       <KeyInsight>
         <p>
           Female inventor representation on foreign-origin patents has surpassed that on domestic
-          patents since 2010. By 2025, foreign-origin patents show a 16.5% female
+          patents since 2010. By 2025 (through September), foreign-origin patents show a 16.5% female
           inventor share compared to 13.8% for domestic patents. This reversal from the early
           decades -- when domestic patents had higher female representation -- suggests that
           non-US innovation systems, particularly in fields like chemistry and pharmaceuticals,

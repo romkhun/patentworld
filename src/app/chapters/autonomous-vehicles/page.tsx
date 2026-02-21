@@ -258,7 +258,7 @@ export default function Chapter14() {
       <ChapterHeader
         number={26}
         title="Autonomous Vehicles & ADAS"
-        subtitle="The race toward self-driving transportation"
+        subtitle="Self-driving vehicle patenting trends and competitive dynamics"
       />
       <MeasurementSidebar slug="autonomous-vehicles" />
 
@@ -305,9 +305,9 @@ export default function Chapter14() {
       <ChartContainer
         id="fig-av-annual-count"
         subtitle="Annual count of utility patents classified under AV-related CPC codes, tracking the growth trajectory of autonomous vehicle patenting."
-        title="AV Patent Filings Increased Rapidly Through the 2010s, Driven by the Entry of Technology Companies Into the Transportation Sector"
+        title="AV Patent Filings Increased Rapidly Through the 2010s, Coinciding With the Entry of Technology Companies Into the Transportation Sector"
         caption="Annual count and share of utility patents classified under AV-related CPC codes (G05D1, B60W, G08G), 1976-2025. The most prominent pattern is the sharp acceleration beginning around 2012, coinciding with Google's self-driving project gaining visibility and traditional automakers responding with their own AV R&D programs. Grant year shown. Application dates are typically 2–3 years earlier."
-        insight="The exponential growth in AV patents mirrors the broader industry transformation, driven by advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
+        insight="The exponential growth in AV patents mirrors the broader industry transformation, coinciding with advances in AI, sensor miniaturization, and the entry of well-capitalized technology firms into the transportation sector."
         loading={pyL}
       >
         <PWLineChart
@@ -333,7 +333,7 @@ export default function Chapter14() {
 
       <ChartContainer
         id="fig-av-entrant-incumbent"
-        title="Autonomous Vehicle Patent Growth Is Driven by Both New Entrants and Expanding Incumbents"
+        title="Autonomous Vehicle Patent Growth Reflects Both New Entrants and Expanding Incumbents"
         subtitle="Annual patent counts from entrant and incumbent assignees in the autonomous vehicle domain."
         caption="Entrants are organizations filing their first AV patent in a given year; incumbents are those with prior filings."
         loading={eiL}
@@ -542,7 +542,7 @@ export default function Chapter14() {
       <KeyInsight>
         <p>
           The geographic distribution of AV patents reveals the intersection of two major
-          industrial clusters. The United States leads, driven by technology companies in
+          industrial clusters. The United States leads, anchored by technology companies in
           Silicon Valley and Detroit&apos;s automotive R&amp;D infrastructure. Japan&apos;s
           strong presence reflects Toyota, Honda, and Nissan&apos;s longstanding investments
           in driver-assistance technology. Germany&apos;s position is anchored by BMW,
@@ -572,7 +572,7 @@ export default function Chapter14() {
         <p>
           Within the United States, AV patenting is concentrated in California and Michigan,
           reflecting the two pillars of the autonomous vehicle industry. California&apos;s
-          leadership is driven by Silicon Valley technology companies -- Waymo, Tesla, Cruise,
+          leadership is anchored by Silicon Valley technology companies -- Waymo, Tesla, Cruise,
           and numerous startups -- while Michigan&apos;s prominence reflects the Detroit
           automotive ecosystem, including GM, Ford, and their extensive supplier networks.
           This dual concentration distinguishes AV from most other technology domains examined

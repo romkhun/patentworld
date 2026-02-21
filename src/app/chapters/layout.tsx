@@ -13,6 +13,9 @@ export default function ChaptersLayout({ children }: { children: React.ReactNode
           <article itemScope itemType="https://schema.org/ScholarlyArticle">
             {children}
           </article>
+          <p className="mt-12 border-t pt-4 text-xs text-muted-foreground">
+            Data coverage: January 1976 through September 2025. All 2025 figures reflect partial-year data.
+          </p>
         </div>
       </div>
     </div>

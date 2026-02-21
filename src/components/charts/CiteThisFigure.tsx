@@ -54,18 +54,21 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="mt-4 block text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
-        aria-expanded="false"
-      >
-        Cite this figure
-      </button>
+      <div className="mt-3 pt-3 border-t border-border/40">
+        <button
+          onClick={() => setIsOpen(true)}
+          className="block text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
+          aria-expanded="false"
+        >
+          Cite this figure
+        </button>
+      </div>
     );
   }
 
   return (
-    <div className="mt-4 rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200">
+    <div className="mt-3 pt-3 border-t border-border/40">
+    <div className="rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200">
       <div className="flex items-center justify-between mb-2">
         <div className="flex gap-1">
           <button
@@ -98,6 +101,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
       >
         {copied ? 'Copied' : 'Copy citation'}
       </button>
+    </div>
     </div>
   );
 }

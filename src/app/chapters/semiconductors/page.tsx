@@ -339,7 +339,7 @@ export default function Chapter21() {
         id="fig-semi-patents-share"
         subtitle="Semiconductor patents as a percentage of all utility patents, showing the evolving weight of semiconductor innovation within the broader patent system."
         title="Semiconductor's Share of Total Patents Reveals the Shifting Weight of Hardware Innovation in the Patent System"
-        caption="Percentage of all utility patents classified under semiconductor-related CPC codes. Changes in this share reflect the relative pace of semiconductor innovation compared to the broader patent system, including periods of expansion driven by new device types and periods of relative stability."
+        caption="Percentage of all utility patents classified under semiconductor-related CPC codes. Changes in this share reflect the relative pace of semiconductor innovation compared to the broader patent system, including periods of expansion associated with new device types and periods of relative stability."
         insight="The semiconductor share of total patents captures the evolving balance between hardware and software innovation in the patent system, with fluctuations reflecting both industry cycles and shifts in inventive focus."
         loading={pyL}
       >
@@ -546,7 +546,7 @@ export default function Chapter21() {
         <p>
           The geographic distribution of semiconductor patents reflects the concentration
           of advanced fabrication capacity in a small number of countries. The United States
-          maintains a strong position driven by firms such as IBM, Micron, and
+          maintains a strong position anchored by firms such as IBM, Micron, and
           Intel, as well as the research operations of foreign firms on US soil. Japan&apos;s
           substantial patent share reflects its historical strength in memory and materials,
           while South Korea and Taiwan&apos;s prominence corresponds directly to the
@@ -561,7 +561,7 @@ export default function Chapter21() {
         subtitle="US states ranked by total semiconductor-related patents based on primary inventor location, highlighting geographic clustering within the United States."
         title="California, New York, and Texas Lead US Semiconductor Patenting"
         caption="US states ranked by total semiconductor-related patents based on primary inventor location. The distribution reflects the location of major fabrication facilities (Oregon, Arizona, Texas) and design centers (California), as well as corporate headquarters and R&D laboratories."
-        insight="The state-level distribution of semiconductor patents reflects both fabrication site locations and design center clusters, with California's dominance driven by its concentration of fabless design firms and corporate R&D laboratories."
+        insight="The state-level distribution of semiconductor patents reflects both fabrication site locations and design center clusters, with California's dominance reflecting its concentration of fabless design firms and corporate R&D laboratories."
         loading={geoL}
         height={900}
       >
@@ -670,7 +670,7 @@ export default function Chapter21() {
           materials science, device physics, process chemistry, electrical engineering, and
           increasingly, software and systems architecture. The persistent gap
           suggests that semiconductor innovation is becoming more collaborative, likely
-          driven by the growing complexity of advanced process nodes and the integration
+          reflecting the growing complexity of advanced process nodes and the integration
           of multiple technology layers in modern chip designs.
         </p>
       </KeyInsight>
@@ -824,7 +824,7 @@ export default function Chapter21() {
         id="fig-semi-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in semiconductor patenting."
         title="Top-4 Concentration in Semiconductor Patents Rose From 11.3% in 1977 to 32.6% in 2023, a Sustained Consolidation Trend"
-        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total semiconductor patents. Unlike most ACT 6 domains where concentration declined, semiconductors show sustained consolidation, driven by Samsung, TSMC, and other East Asian firms scaling patent portfolios."
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total semiconductor patents. Unlike most ACT 6 domains where concentration declined, semiconductors show sustained consolidation, led by Samsung, TSMC, and other East Asian firms scaling patent portfolios."
         insight="The rising concentration in semiconductors is unique among ACT 6 domains and is consistent with the industry's increasing capital intensity: fabrication facilities now cost $10-20 billion, creating structural barriers that concentrate innovative activity among a diminishing number of firms capable of leading-edge manufacturing."
         loading={ootL || pyL}
       >

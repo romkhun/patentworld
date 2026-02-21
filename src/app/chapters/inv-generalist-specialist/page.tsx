@@ -358,7 +358,7 @@ export default function InvGeneralistSpecialistChapter() {
           interpretation that deeper domain focus is associated with greater reliance on scientific
           knowledge. However, the median for both groups is just 1, indicating that most patents
           cite very few non-patent references regardless of inventor type. The science linkage
-          gap between specialists and generalists is modest and driven by the right tail of the
+          gap between specialists and generalists is modest and attributable to the right tail of the
           distribution.
         </p>
       </KeyInsight>

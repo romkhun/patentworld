@@ -75,6 +75,41 @@ const METHODOLOGY_JSONLD = [
       { '@type': 'ListItem', position: 2, name: 'Methodology', item: `${BASE_URL}/methodology/` },
     ],
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'DataCatalog',
+    name: 'PatentWorld Data Catalog',
+    description:
+      'Analytical datasets derived from USPTO PatentsView bulk data, covering 9.36 million US patents (1976-2025).',
+    url: `${BASE_URL}/methodology/`,
+    provider: {
+      '@type': 'Organization',
+      name: 'USPTO PatentsView',
+      url: 'https://patentsview.org',
+    },
+    dataset: {
+      '@type': 'Dataset',
+      name: 'US Patent Data (1976-2025)',
+      description:
+        'Analysis of 9.36 million US patents from PatentsView, covering technology classifications, inventor demographics, geographic distribution, citation networks, and patent quality indicators.',
+      temporalCoverage: '1976/2025',
+      spatialCoverage: 'United States',
+      variableMeasured: [
+        'Patent grants per year',
+        'Technology classifications (CPC, WIPO)',
+        'Inventor demographics and collaboration',
+        'Geographic distribution',
+        'Citation networks and patent quality',
+        'Team composition',
+        'Organizational portfolios',
+      ],
+      distribution: {
+        '@type': 'DataDownload',
+        encodingFormat: 'application/json',
+        contentUrl: `${BASE_URL}/data/`,
+      },
+    },
+  },
 ];
 
 export default function MethodologyPage() {

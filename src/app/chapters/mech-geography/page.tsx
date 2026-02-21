@@ -72,8 +72,8 @@ export default function MechGeographyChapter() {
       <MeasurementSidebar slug="mech-geography" />
 
       <KeyFindings>
-        <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025 (through September), driven by the globalization of corporate R&D and increasing talent mobility.</li>
-        <li>US-China co-invention rates have grown substantially, surpassing 2% by 2025, though growth rates moderated in certain technology areas after 2018.</li>
+        <li>International co-invention increased from 1.0% of patents in 1976 to 10.0% in 2025 (through September), reflecting the globalization of corporate R&D and increasing talent mobility.</li>
+        <li>US-China co-invention rates have grown substantially, surpassing 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018.</li>
         <li>Innovation in AI, Biotech, and Clean Energy exhibits a consistent diffusion pattern: early concentration in a small number of pioneering cities followed by geographic spread to secondary hubs.</li>
       </KeyFindings>
 
@@ -105,8 +105,8 @@ export default function MechGeographyChapter() {
       <ChartContainer
         id="fig-mech-geo-intl-collaboration"
         subtitle="Annual count and percentage of patents listing inventors from two or more countries, tracking the growth of cross-border co-invention."
-        title="International Co-Invention Increased from 1.0% in 1976 to 10.0% of All Patents by 2025"
-        caption="The figure displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from 1.0% of all patents in 1976 to 10.0% by 2025, with the most rapid growth occurring during the 2010s."
+        title="International Co-Invention Increased from 1.0% in 1976 to 10.0% of All Patents by 2025 (through September)"
+        caption="The figure displays the annual count and percentage of patents listing inventors from two or more countries. International co-invention has increased from 1.0% of all patents in 1976 to 10.0% by 2025 (through September), with the most rapid growth occurring during the 2010s."
         loading={icL}
         insight="The growth of international co-invention is consistent with both the globalization of corporate R&D and the increasing mobility of scientific talent."
       >
@@ -132,7 +132,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          International collaboration has increased from 1.0% of patents in 1976 to 10.0% by 2025. This trend is consistent with the expansion of multinational R&D operations, global talent mobility, and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
+          International collaboration has increased from 1.0% of patents in 1976 to 10.0% by 2025 (through September). This trend is consistent with the expansion of multinational R&D operations, global talent mobility, and the increasing feasibility of remote scientific collaboration. The rate of growth accelerated in the 2000s as communication technology reduced the transaction costs of cross-border teamwork.
         </p>
       </KeyInsight>
 
@@ -141,16 +141,16 @@ export default function MechGeographyChapter() {
 
       <Narrative>
         <p>
-          International co-invention rates -- the share of US patents with inventors from multiple countries -- illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025, though growth rates moderated in certain technology areas after 2018, coinciding with changes in bilateral technology policy.
+          International co-invention rates -- the share of US patents with inventors from multiple countries -- illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018, coinciding with changes in bilateral technology policy.
         </p>
       </Narrative>
 
       <ChartContainer
         id="fig-mech-geo-co-invention-rates"
         subtitle="Share of US patents co-invented with each partner country (1976-2025), measured as the percentage with at least one US and one foreign inventor."
-        title="US-China Co-Invention Rates Have Grown Substantially, Surpassing 2% by 2025"
-        caption="Share of US patents co-invented with each partner country, 1976-2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025."
-        insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025, though growth rates have moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
+        title="US-China Co-Invention Rates Have Grown Substantially, Surpassing 2% by 2025 (through September)"
+        caption="Share of US patents co-invented with each partner country, 1976-2025. A co-invented patent includes at least one inventor in the US and at least one in the partner country. US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025 (through September)."
+        insight="US-China co-invention has grown substantially since China's WTO accession in 2001, reaching over 2% by 2025 (through September), though growth rates have moderated in some technology areas. US-India collaboration has also emerged as a growing pathway."
         loading={ciL}
       >
         <PWLineChart

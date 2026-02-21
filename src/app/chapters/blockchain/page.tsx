@@ -265,8 +265,12 @@ export default function Chapter16() {
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
         <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
         <li>IBM, Intel, and Alibaba-affiliated entities lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
-        <li>Patent grants peaked in 2022 and have since declined, temporally coinciding with a cryptocurrency market correction (association observed; causation not established).</li>
+        <li>Patent grants peaked in 2022 and have since declined -- a reversal unique among the advanced technology domains studied here.</li>
       </KeyFindings>
+
+      <DataNote>
+        <strong>On cryptocurrency market correlation:</strong> The post-2022 decline in blockchain patent grants coincided temporally with a major cryptocurrency market correction. However, this temporal association does not establish causation. Multiple confounding factors -- including the natural exhaustion of easily patentable blockchain concepts, increased examiner scrutiny of blockchain applications, and broader venture capital contraction in Web3 startups -- may independently explain the decline. The 2--3 year filing-to-grant lag further complicates any direct mapping between market prices and grant counts.
+      </DataNote>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
@@ -305,9 +309,9 @@ export default function Chapter16() {
       <ChartContainer
         id="fig-blockchain-annual-count"
         subtitle="Annual count of utility patents classified under blockchain-related CPC codes, tracking the growth and contraction of blockchain patenting."
-        title="Blockchain Patent Grants Increased Rapidly After 2016, Peaked in 2022, and Declined With the Crypto Market Correction"
+        title="Blockchain Patent Grants Increased Rapidly After 2016, Peaked in 2022, and Subsequently Declined"
         caption="Annual count and share of utility patents classified under blockchain-related CPC codes, illustrating the pronounced hype-cycle pattern. The acceleration beginning in 2016 coincides with increasing enterprise interest in distributed ledger technology and the ICO boom of 2017. Grant year shown. Application dates are typically 2–3 years earlier."
-        insight="The boom-and-bust pattern in blockchain patents closely mirrors the cryptocurrency market cycle, suggesting that patent filing behavior in this domain is unusually sensitive to market sentiment."
+        insight="The rise and subsequent decline in blockchain patents coincided with the broader cryptocurrency market cycle, though multiple factors -- including concept exhaustion and venture capital contraction -- may independently explain the trajectory."
         loading={pyL}
       >
         <PWLineChart
@@ -820,7 +824,8 @@ export default function Chapter16() {
           initial interest. Ethereum&apos;s launch in 2015 expanded the conceptual scope of
           blockchain beyond cryptocurrency to programmable smart contracts. The ICO boom of
           2017 and the NFT/DeFi peak of 2021 drove successive waves of patent filings. The
-          subsequent decline tracks the broader crypto market correction. This pattern raises
+          subsequent decline coincided with a broader crypto market downturn, though disentangling
+          market sentiment from concept exhaustion and tightening venture capital remains difficult. This pattern raises
           important questions about the relationship between patent filing incentives and
           genuine technological progress -- questions that extend beyond blockchain to other
           emerging technology domains examined elsewhere in this study.

@@ -457,7 +457,7 @@ export default function SystemPatentQualityChapter() {
       <ChartContainer
         id="fig-patent-quality-citation-lag"
         subtitle="Average and median time in years between a cited patent's grant date and the citing patent's grant date, by year."
-        title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025"
+        title="Citation Lag Grew From 2.9 Years in 1980 to 16.2 Years in 2025 (through September)"
         caption="Average and median time (in years) between a cited patent's grant date and the citing patent's grant date. The average citation lag has increased from 3 years in the early 1980s to 16 years in the most recent period."
         loading={ltL}
         insight="The lengthening citation lag is consistent with foundational knowledge having an increasingly long useful life, with modern patents reaching further back in time to reference prior art."

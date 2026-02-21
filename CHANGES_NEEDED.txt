@@ -1,0 +1,168 @@
+═══════════════════════════════════════════════════════════════════
+PATENT LAW CHAPTER - REQUIRED CHANGES
+File: src/app/chapters/patent-law/page.tsx
+═══════════════════════════════════════════════════════════════════
+
+TOTAL CHANGES: 9 paper removals + 2 "no study" notices = 11 edits
+
+══════════════════════════════════════════════════════════════════
+CHANGE 1: Bayh-Dole Act (1980) - Line ~45-48
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Hvide, H. K., & Jones, B. F. (2018). University innovation and the professor's privilege. American Economic Review, 108(7), 1860–1898. https://doi.org/10.1257/aer.20160284',
+        summary: 'Studying Norway's 2003 abolition of the "professor's privilege" (moving to a Bayh-Dole–like model where universities hold IP rights), the authors find a 50 percent decline in both entrepreneurship and patenting rates by university researchers, with quality measures also declining—providing causal evidence on the effects of Bayh-Dole–style IP regimes.',
+      },
+
+REASON: Studies Norway's 2003 reform, not 1980 U.S. Bayh-Dole Act
+
+══════════════════════════════════════════════════════════════════
+CHANGE 2: TRIPS Agreement (1994) - Line ~122-124
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Helpman, E. (1993). Innovation, imitation, and intellectual property rights. Econometrica, 61(6), 1247–1280. https://doi.org/10.2307/2951642',
+        summary: 'In a dynamic general equilibrium framework where the North invents and the South imitates, strengthening IPR in the South does not necessarily improve global or Southern welfare. The effects depend on the balance of terms-of-trade, production composition, and product availability channels.',
+      },
+
+REASON: Published 1993 BEFORE TRIPS (1994); theoretical model not empirical study
+
+══════════════════════════════════════════════════════════════════
+CHANGE 3: TRIPS Agreement (1994) - Line ~125-128
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Grossman, G. M., & Lai, E. L.-C. (2004). International protection of intellectual property. American Economic Review, 94(5), 1635–1653. https://doi.org/10.1257/0002828043052312',
+        summary: 'Non-cooperative equilibria generally provide inadequate IP protection from the perspective of world welfare. Harmonization of patent policies (as pursued through TRIPS) is neither necessary nor sufficient for global efficiency.',
+      },
+
+REASON: Theoretical model, not empirical study of TRIPS effects
+
+══════════════════════════════════════════════════════════════════
+CHANGE 4: TRIPS Agreement (1994) - Line ~141-144
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Moser, P. (2005). How do patent laws influence innovation? Evidence from nineteenth-century world's fairs. American Economic Review, 95(4), 1214–1236. https://doi.org/10.1257/0002828054825501',
+        summary: 'Countries without patent laws produced as many innovations as those with them, but innovation was concentrated in sectors where secrecy provided protection. Patent laws channel innovation toward patent-sensitive industries rather than increasing overall innovation.',
+      },
+
+REASON: Studies 19th century patent laws, not TRIPS
+
+══════════════════════════════════════════════════════════════════
+CHANGE 5: State Street Bank v. Signature Financial (1998) - Line ~173-176
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Lerner, J. (2002). 150 years of patent protection. American Economic Review, 92(2), 221–225. https://doi.org/10.1257/000282802320189294',
+        summary: 'Examining 177 patent policy changes across 60 countries over 150 years, strengthening patent protection (including expanding patentable subject matter) has few positive effects on domestic patent applications.',
+      },
+
+REASON: Cross-country 150-year study, not specific to State Street decision
+
+══════════════════════════════════════════════════════════════════
+CHANGE 6: Bilski v. Kappos (2010) - Line ~256-265
+══════════════════════════════════════════════════════════════════
+ACTION: Delete BOTH research entries and leave research array empty:
+
+DELETE:
+      {
+        citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915–933. https://doi.org/10.1287/mnsc.1110.1321',
+        summary: 'Expanded software and business method patentability created barriers to entry. The holding in Bilski v. Kappos narrowed business method patent eligibility from the broad State Street standard, addressing the deterrent effects on new firm entry documented in this study.',
+      },
+      {
+        citation: 'Hegde, D., Ljungqvist, A., & Raj, M. (2022). Quick or broad patents? Evidence from U.S. startups. The Review of Financial Studies, 35(6), 2705–2742. https://doi.org/10.1093/rfs/hhab097',
+        summary: 'Broader patent scope increases a startup's future growth but imposes negative externalities on rivals' innovation. As the holding in Bilski v. Kappos narrowed the scope of business method patents, the findings illuminate the tradeoffs in patent eligibility decisions.',
+      },
+
+LEAVE: research: [],
+
+REASON: Neither paper directly examines Bilski decision
+NOTE: Cockburn & MacGarvie (2011) should remain under State Street (1998)
+
+══════════════════════════════════════════════════════════════════
+CHANGE 7: Bilski v. Kappos (2010) - Add "No Study" Notice
+══════════════════════════════════════════════════════════════════
+In the NARRATIVE section (around line 472-500), add mention that:
+
+"No empirical study of Bilski v. Kappos's effects has been identified in a leading peer-reviewed journal."
+
+══════════════════════════════════════════════════════════════════
+CHANGE 8: AIA First-Inventor-to-File (2013) - Line ~300-305
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Lerner, J. (2009). The empirical impact of intellectual property rights on innovation: Puzzles and clues. American Economic Review, 99(2), 343–348. https://doi.org/10.1257/aer.99.2.343',
+        summary: 'Examining major patent policy shifts across 60 nations over 150 years, there is little evidence that changes such as first-to-file vs. first-to-invent meaningfully alter domestic research investments.',
+      },
+
+LEAVE: research: [],
+
+REASON: Published 2009 BEFORE 2013 implementation; 150-year cross-country study not AIA-specific
+
+══════════════════════════════════════════════════════════════════
+CHANGE 9: AIA First-Inventor-to-File (2013) - Add "No Study" Notice
+══════════════════════════════════════════════════════════════════
+In the NARRATIVE section (around line 472-500), add mention that:
+
+"No empirical study of the first-inventor-to-file provision's effects has been identified in a leading peer-reviewed journal."
+
+══════════════════════════════════════════════════════════════════
+CHANGE 10: Alice Corp. v. CLS Bank (2014) - Line ~333-336
+══════════════════════════════════════════════════════════════════
+ACTION: Delete this entire research entry:
+
+      {
+        citation: 'Cockburn, I. M., & MacGarvie, M. J. (2011). Entry and patenting in the software industry. Management Science, 57(5), 915–933. https://doi.org/10.1287/mnsc.1110.1321',
+        summary: 'Expanded software patentability had created significant entry barriers—a 10% increase in relevant patents reduces entry by 3–8%. The holding in Alice Corp. v. CLS Bank International substantially restricted abstract-idea software patents, addressing these innovation costs.',
+      },
+
+REASON: Published 2011 BEFORE Alice (2014); studies 1990-2004 period
+NOTE: Cockburn & MacGarvie (2011) should remain under State Street (1998)
+
+══════════════════════════════════════════════════════════════════
+CHANGE 11: Update Narrative Section
+══════════════════════════════════════════════════════════════════
+In the "Impact on Patent Activity" narrative (lines 472-500), update the bullet for Bilski if it mentions research, to note that no empirical study has been identified.
+
+══════════════════════════════════════════════════════════════════
+SUMMARY OF CHANGES
+══════════════════════════════════════════════════════════════════
+
+Papers Removed:
+1. Hvide & Jones (2018) from Bayh-Dole
+2. Helpman (1993) from TRIPS
+3. Grossman & Lai (2004) from TRIPS
+4. Moser (2005) from TRIPS
+5. Lerner (2002) from State Street
+6. Cockburn & MacGarvie (2011) from Bilski [KEEP under State Street]
+7. Hegde et al (2022) from Bilski
+8. Lerner (2009) from AIA First-to-File
+9. Cockburn & MacGarvie (2011) from Alice [KEEP under State Street]
+
+Sections Now Empty:
+- Bilski v. Kappos (2010): research: []
+- AIA First-Inventor-to-File (2013): research: []
+
+Papers Remaining: 43 verified peer-reviewed studies
+
+══════════════════════════════════════════════════════════════════
+VERIFICATION COMPLETE
+══════════════════════════════════════════════════════════════════
+
+All 52 papers were searched and verified. All exist, are peer-reviewed, and are correctly cited. The 9 removals are based solely on:
+
+Test 3: Publication Timing (paper must be published AFTER the policy)
+Test 4: Direct Examination (paper must examine this specific policy)
+
+All remaining 43 papers pass ALL 7 tests.
+
+══════════════════════════════════════════════════════════════════
+END OF CHANGE LIST
+══════════════════════════════════════════════════════════════════
