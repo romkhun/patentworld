@@ -878,8 +878,8 @@ export default function Chapter18() {
       <ChartContainer
         id="fig-digihealth-entropy"
         subtitle="Normalized Shannon entropy of subfield patent distributions, measuring how evenly inventive activity is spread across digital health subfields."
-        title="Digital Health Subfield Diversity Rose From 0.49 in 1976 to 0.92 by 2025, Reflecting the Convergence of Medical and Computing Domains"
-        caption="Normalized Shannon entropy of digital health subfield patent distributions. The increase from 0.49 to 0.92 reflects the evolution from narrow patient monitoring devices to a broad ecosystem spanning surgical robotics, health informatics, telemedicine, wearable diagnostics, and AI-assisted imaging."
+        title="Digital Health Subfield Diversity Rose From 0.48 in 1976 to 0.92 by 2025, Reflecting the Convergence of Medical and Computing Domains"
+        caption="Normalized Shannon entropy of digital health subfield patent distributions. The increase from 0.48 to 0.92 reflects the evolution from narrow patient monitoring devices to a broad ecosystem spanning surgical robotics, health informatics, telemedicine, wearable diagnostics, and AI-assisted imaging."
         insight="The diversification trajectory is consistent with digital health's transition from standalone medical devices to integrated systems requiring expertise across electronics, software, biomaterials, and clinical science."
         loading={sfL}
       >
@@ -927,7 +927,7 @@ export default function Chapter18() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Digital health patent velocity jumped 3.4-fold from 22.5 patents/year (1970s entrants) to 77.5 (2010s entrants).", "Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field, with subfield diversity rising from 0.49 to 0.92."]}
+        learned={["Digital health patent velocity jumped 3.4-fold from 22.5 patents/year (1970s entrants) to 77.5 (2010s entrants).", "Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field, with subfield diversity rising from 0.48 to 0.92."]}
         falsifiable="If the velocity increase reflects genuine health-tech convergence, then digital health patents should increasingly span both medical (A61) and computing (G06) CPC subclasses."
         nextAnalysis={{ label: "Green Innovation", description: "Climate technology patents from niche to mainstream — batteries, EVs, and renewables", href: "/chapters/green-innovation" }}
       />
