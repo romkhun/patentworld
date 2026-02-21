@@ -48,7 +48,7 @@ export function MeasurementSidebar({ slug }: MeasurementSidebarProps) {
             ))}
           </dl>
           <div className="mt-2 pt-2 border-t border-border/40">
-            <Link href="/about/#definitions" className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors">
+            <Link href="/methodology/#definitions" className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors">
               View all measurement definitions
             </Link>
           </div>

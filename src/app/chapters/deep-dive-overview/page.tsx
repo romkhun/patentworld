@@ -224,7 +224,7 @@ export default function DeepDiveOverview() {
           {Object.entries(DOMAIN_CHAPTERS).map(([key, info]) => (
             <Link
               key={key}
-              href={`/chapters/${info.slug}`}
+              href={`/chapters/${info.slug}/`}
               className="rounded-md border px-3 py-2 text-sm hover:bg-accent transition-colors flex flex-col gap-1"
             >
               <span>{info.title}</span>

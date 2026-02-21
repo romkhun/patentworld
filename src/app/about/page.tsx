@@ -272,8 +272,8 @@ export default function AboutPage() {
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Data attribution: PatentsView (
-            <a href="https://www.patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
-              www.patentsview.org
+            <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
+              patentsview.org
             </a>
             ), USPTO. PatentsView is a tool built to increase the usability and transparency of US
             patent data. The database is derived from the USPTO examination and granting
