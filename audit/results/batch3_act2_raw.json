@@ -1,0 +1,642 @@
+[
+  {
+    "chapter": "Ch8",
+    "claim": "Corporate share in 1976 ~94%",
+    "expected": "~94%",
+    "actual": "93.8%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Corporate share in 2024 ~99%",
+    "expected": "~99%",
+    "actual": "99.0%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Foreign surpassed US around 2007",
+    "expected": "~2007",
+    "actual": "2004",
+    "status": "FAIL",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Foreign share in 2024 = 54.5% (chart title)",
+    "expected": "54.5%",
+    "actual": "54.5%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Foreign averaging 53% in the 2020s",
+    "expected": "~53%",
+    "actual": "52.4%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Japan accounts for 1.4 million US patents",
+    "expected": "~1,400,000",
+    "actual": "1,444,235",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "South Korea 359K patents",
+    "expected": "~359,000",
+    "actual": "359,312",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "China 222K patents",
+    "expected": "~222,000",
+    "actual": "221,961",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "PCT route 22.2% in 2024",
+    "expected": "22.2%",
+    "actual": "22.2%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "CR4 peak 13.2% in 1985",
+    "expected": "13.2%",
+    "actual": "13.19%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "CR4 = 5.8% in 2024",
+    "expected": "5.8%",
+    "actual": "5.81%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "CR10 peaked at ~22.6%",
+    "expected": "22.6%",
+    "actual": "22.64% in 1976",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "CR10 = 11.9% in 2024",
+    "expected": "11.9%",
+    "actual": "11.9%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Sughrue Mion leads law firms",
+    "expected": "Sughrue Mion",
+    "actual": "Sughrue Mion, PLLC",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Sughrue Mion has 90,279 patents",
+    "expected": "90,279",
+    "actual": "90279",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Fish & Richardson 75,528 patents",
+    "expected": "75,528",
+    "actual": "75528",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Birch Stewart 71,132 patents",
+    "expected": "71,132",
+    "actual": "71132",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Individual inventors under 2% in 2020",
+    "expected": "<2%",
+    "actual": "0.51%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Individual inventors under 2% in 2021",
+    "expected": "<2%",
+    "actual": "0.5%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Individual inventors under 2% in 2022",
+    "expected": "<2%",
+    "actual": "0.49%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Individual inventors under 2% in 2023",
+    "expected": "<2%",
+    "actual": "0.47%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Individual inventors under 2% in 2024",
+    "expected": "<2%",
+    "actual": "0.46%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Government ~4% in late 1970s",
+    "expected": "~4%",
+    "actual": "3.7%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Over 60% domestic in late 1970s",
+    "expected": ">60%",
+    "actual": "62.9%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Domestic share ~69% in early period",
+    "expected": "~69%",
+    "actual": "66.17%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch8",
+    "claim": "Domestic share ~53% in 2024",
+    "expected": "~53%",
+    "actual": "53.13%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "IBM leads with 161,888 cumulative grants",
+    "expected": "161,888",
+    "actual": "161888",
+    "status": "FAIL",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Samsung trails by fewer than 4,000 patents",
+    "expected": "<4,000",
+    "actual": "3982",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "SUPERLATIVE: IBM has the most patents of ALL assignees",
+    "expected": "IBM",
+    "actual": "International Business Machines Corporation (161,888)",
+    "status": "FAIL",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Samsung peaked at 9,716 annual grants in 2024",
+    "expected": "9,716 in 2024",
+    "actual": "9,716 in 2024",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "IBM peaked at 9,257 in 2019",
+    "expected": "9,257 in 2019",
+    "actual": "9,257 in 2019",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Samsung surpassed IBM in annual grants in 2007",
+    "expected": "2007",
+    "actual": "2007",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Top 100 hold 32-39% of corporate patents",
+    "expected": "32-39%",
+    "actual": "31.8%-38.6%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Samsung leads design patents with 13,094",
+    "expected": "13,094",
+    "actual": "13094",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Nike has 9,189 design patents",
+    "expected": "9,189",
+    "actual": "9189",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "LG has 6,720 design patents",
+    "expected": "6,720",
+    "actual": "6720",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Only 9 of 50 survived all five decades",
+    "expected": "9",
+    "actual": "9",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "18% cumulative survival rate",
+    "expected": "18%",
+    "actual": "18.0%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Gini 0.161 in 1976-1989",
+    "expected": "0.161",
+    "actual": "0.1606 (1976-1989)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Gini -0.069 in 2010-2020",
+    "expected": "-0.069",
+    "actual": "-0.069 (2010-2020)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "Huawei leads continuation share at 80.9%",
+    "expected": "80.9%",
+    "actual": "80.92%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch9",
+    "claim": "SUPERLATIVE: Huawei has highest continuation share",
+    "expected": "Huawei",
+    "actual": "Huawei Technologies Co., Ltd. (80.92%)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Amazon blockbuster rate = 6.7%",
+    "expected": "6.7%",
+    "actual": "6.68%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Amazon has highest blockbuster rate of ALL firms",
+    "expected": "Amazon",
+    "actual": "Amazon (6.68%)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "18 of 50 firms exceed 50% dud rate",
+    "expected": "18",
+    "actual": "18",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Amazon dud rate = 18.3%",
+    "expected": "18.3%",
+    "actual": "18.28%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Microsoft avg citations = 30.7",
+    "expected": "30.7",
+    "actual": "30.66",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Microsoft leads in average citations of ALL firms in data",
+    "expected": "Microsoft Corporation",
+    "actual": "Microsoft Corporation (30.66)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "IBM 5.6x average-to-median ratio",
+    "expected": "5.6x",
+    "actual": "5.6x",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Canon self-citation rate = 47.6%",
+    "expected": "47.6%",
+    "actual": "47.6%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "TSMC self-citation rate = 38.4%",
+    "expected": "38.4%",
+    "actual": "38.41%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Micron self-citation rate = 25.3%",
+    "expected": "25.3%",
+    "actual": "25.28%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Canon has highest self-citation rate",
+    "expected": "Canon",
+    "actual": "Canon Kabushiki Kaisha (47.6%)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Huawei citation half-life = 6.3 years",
+    "expected": "6.3",
+    "actual": "6.32",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "US Air Force citation half-life = 14.3 years",
+    "expected": "14.3",
+    "actual": "14.34",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Huawei has shortest half-life",
+    "expected": "Huawei",
+    "actual": "Huawei (6.32 years)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: US Air Force has longest half-life",
+    "expected": "US Air Force",
+    "actual": "US Air Force (14.34 years)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Apple leads NPL at 35.9 avg citations",
+    "expected": "35.9",
+    "actual": "35.9",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Apple leads ALL firms in NPL citation intensity",
+    "expected": "Apple",
+    "actual": "Apple Inc. (35.9)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "Huawei foreign citation share = 78.3%",
+    "expected": "78.3%",
+    "actual": "78.33%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "IBM foreign citation share = 11.4%",
+    "expected": "11.4%",
+    "actual": "11.41%",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "SUPERLATIVE: Huawei has highest foreign citation share",
+    "expected": "Huawei",
+    "actual": "Huawei Technologies Co., Ltd. (78.33%)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch10",
+    "claim": "35 of 48 firms saw median citations fall to zero by 2019",
+    "expected": "35 of 48",
+    "actual": "52 of 99",
+    "status": "FAIL",
+    "note": "'35 of 48' is in chart title for firm quality fan chart"
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "248 companies cluster",
+    "expected": "248",
+    "actual": "50",
+    "status": "FAIL",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "8 industry clusters",
+    "expected": "8",
+    "actual": "8",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "Mitsubishi Electric peak Shannon entropy = 6.7",
+    "expected": "6.7",
+    "actual": "7.0545",
+    "status": "FAIL",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "Mitsubishi Electric 229 CPC subclasses",
+    "expected": "229",
+    "actual": "N/A",
+    "status": "FAIL",
+    "note": "Check if n_subclasses field exists"
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "IBM 88,600 G-section patents (late era)",
+    "expected": "~88,600",
+    "actual": "88,612",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "Samsung 79,400 H-section patents (late era)",
+    "expected": "~79,400",
+    "actual": "79,411",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "51 detected pivots",
+    "expected": "51",
+    "actual": "51",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "20 companies with pivots",
+    "expected": "20",
+    "actual": "20",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "US Air Force WIPO entropy = 3.14",
+    "expected": "3.14",
+    "actual": "3.138",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "Ericsson WIPO entropy = 1.40",
+    "expected": "1.40",
+    "actual": "1.404",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "SUPERLATIVE: US Air Force leads WIPO diversity",
+    "expected": "US Air Force",
+    "actual": "United States of America as represented by the Secretary of the Air Force (3.138)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch11",
+    "claim": "SUPERLATIVE: Ericsson has lowest WIPO diversity",
+    "expected": "Ericsson",
+    "actual": "Telefonaktiebolaget LM Ericsson (Publ) (1.404)",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch12",
+    "claim": "Company profiles data loads successfully",
+    "expected": "True",
+    "actual": "True",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch12",
+    "claim": "Company profiles contain data",
+    "expected": ">0 companies",
+    "actual": "100 companies",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch12",
+    "claim": "IBM profile total patents consistent with Ch9 data",
+    "expected": "~161,888",
+    "actual": "161,888",
+    "status": "PASS",
+    "note": "Profile may use slightly different aggregation"
+  },
+  {
+    "chapter": "Ch12",
+    "claim": "Strategy profiles data loads",
+    "expected": ">0",
+    "actual": "99",
+    "status": "PASS",
+    "note": ""
+  },
+  {
+    "chapter": "Ch12",
+    "claim": "Corporate speed data loads",
+    "expected": ">0 companies",
+    "actual": "99 companies",
+    "status": "PASS",
+    "note": ""
+  }
+]

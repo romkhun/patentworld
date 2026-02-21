@@ -1,0 +1,107 @@
+{
+  "Ch4: Multi-section 1976": {
+    "claimed": 21.0,
+    "actual": 20.7,
+    "match": "True"
+  },
+  "Ch4: Multi-section 2024": {
+    "claimed": 40.0,
+    "actual": 40.4,
+    "match": "True"
+  },
+  "Ch7: Gov patents 1980": {
+    "claimed": 1294,
+    "actual": 1294,
+    "match": true
+  },
+  "Ch7: Gov patents 2019": {
+    "claimed": 8359,
+    "actual": 8359,
+    "match": true
+  },
+  "Ch8: Japan US patents": {
+    "claimed": 1450000,
+    "actual": 1449384,
+    "match": false
+  },
+  "Ch9: IBM leads": {
+    "claimed": "International Business Machines Corporation",
+    "actual": "International Business Machines Corporation",
+    "match": true
+  },
+  "Ch9: IBM total ~161888": {
+    "claimed": 161888,
+    "actual": 161888,
+    "match": true
+  },
+  "Ch9: Samsung 2024 ~9716": {
+    "claimed": 9716,
+    "actual": 6,
+    "match": false
+  },
+  "Ch13: Most prolific inventor ~6709": {
+    "claimed": 6709,
+    "actual": 6709,
+    "match": true
+  },
+  "Ch16: Female share 1976 ~2.8%": {
+    "claimed": 2.8,
+    "actual": 2.3,
+    "match": false
+  },
+  "Ch16: Female share 2025 ~14.9%": {
+    "claimed": 14.9,
+    "actual": 12.5,
+    "match": false
+  },
+  "Ch17: Avg team 1976 ~1.7": {
+    "claimed": 1.7,
+    "actual": 1.7,
+    "match": true
+  },
+  "Ch17: Avg team 2025 ~3.2": {
+    "claimed": 3.2,
+    "actual": 3.2,
+    "match": true
+  },
+  "Ch18: CA share ~23.6%": {
+    "claimed": 23.6,
+    "actual": 23.6,
+    "match": true
+  },
+  "Ch18: CA patents ~992708": {
+    "claimed": 992708,
+    "actual": 992708,
+    "match": true
+  },
+  "Ch19: China 2000 ~299": {
+    "claimed": 299,
+    "actual": 176,
+    "match": false
+  },
+  "Ch19: China 2024 ~30695": {
+    "claimed": 30695,
+    "actual": 27974,
+    "match": false
+  },
+  "Ch25: AI 2012 ~5201": {
+    "claimed": 5201,
+    "actual": 5201,
+    "match": true
+  },
+  "Ch25: AI 2023 ~29624": {
+    "claimed": 29624,
+    "actual": 29624,
+    "match": true
+  },
+  "Quantum most concentrated?": {
+    "claimed": "Quantum",
+    "actual": "Quantum",
+    "match": true
+  },
+  "Biotech least concentrated?": {
+    "claimed": "Biotech",
+    "actual": "Biotech",
+    "match": true
+  }
+}
