@@ -303,7 +303,7 @@ export default function AboutPage() {
           <p className="mt-4 text-sm text-muted-foreground">
             For detailed metric definitions, the standard quality metrics suite, disambiguation
             reliability details, and data limitations, see the{' '}
-            <Link href="/methodology/#quality-metrics" className="underline underline-offset-2 hover:text-foreground transition-colors">
+            <Link href="/methodology/#definitions" className="underline underline-offset-2 hover:text-foreground transition-colors">
               Methodology page
             </Link>.
           </p>

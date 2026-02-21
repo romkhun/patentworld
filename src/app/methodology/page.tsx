@@ -6,7 +6,7 @@ const BASE_URL = 'https://patentworld.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Data Dictionary & Methodology',
-  description: 'PatentWorld methodology: patent universe definitions, temporal coverage (1976-2025), geography basis, CPC field classification, key metrics (originality, exploration, sleeping beauty, HHI, green patents), and data sources.',
+  description: 'PatentWorld methodology: patent universe definitions, temporal coverage (1976-2025), geography basis, CPC field classification, metric definitions (originality, generality, HHI, exploration composite, green patents, AI patents), data processing, disambiguation, and limitations.',
   openGraph: {
     type: 'website',
     title: 'Data Dictionary & Methodology | PatentWorld',
@@ -35,9 +35,8 @@ const TOC_ITEMS = [
   { id: 'temporal-coverage', label: 'Temporal Coverage' },
   { id: 'geography', label: 'Geography Basis' },
   { id: 'field-classification', label: 'Field Classification' },
-  { id: 'key-metrics', label: 'Key Metrics' },
-  { id: 'quality-metrics', label: 'Quality Metrics Suite' },
-  { id: 'definitions', label: 'Definitions' },
+  { id: 'data-processing', label: 'Data Processing' },
+  { id: 'definitions', label: 'Metric Definitions' },
   { id: 'disambiguation', label: 'Disambiguation' },
   { id: 'limitations', label: 'Limitations' },
   { id: 'data-source', label: 'Data Source' },
@@ -102,7 +101,7 @@ export default function MethodologyPage() {
 
       <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/90">
 
-        {/* 1. Patent Universe */}
+        {/* ── 1. Patent Universe ────────────────────────────────────────────── */}
         <section id="patent-universe">
           <h2 className="font-serif text-2xl font-bold pt-4">Patent Universe</h2>
           <p>
@@ -128,13 +127,14 @@ export default function MethodologyPage() {
           </div>
         </section>
 
-        {/* 2. Temporal Coverage */}
+        {/* ── 2. Temporal Coverage ──────────────────────────────────────────── */}
         <section id="temporal-coverage">
           <h2 className="font-serif text-2xl font-bold pt-4">Temporal Coverage</h2>
           <p>
             The dataset spans <strong>January 1976 through September 2025</strong>. The start date
             corresponds to the earliest systematically available digital patent records in the
-            PatentsView database. All time-series analyses use grant year unless otherwise noted.
+            PatentsView database. All time-series analyses use <strong>grant year</strong> unless
+            otherwise noted.
           </p>
           <p className="mt-3">
             <strong>2025 is a partial year.</strong> Data for 2025 covers only grants issued through
@@ -145,26 +145,31 @@ export default function MethodologyPage() {
           <p className="mt-3">
             Several analyses also present data by <strong>filing year</strong> (the date of the
             earliest US application in the patent family). Filing-year counts for recent years are
-            subject to right-truncation bias because many applications remain pending at any given
-            point. Chapters that use filing-year data note this limitation.
+            subject to right-truncation bias because many applications filed after 2022 remain pending
+            and have not yet been granted. Chapters that use filing-year data note this limitation.
           </p>
+          <div className="mt-4 rounded-lg border bg-muted/30 p-4 text-sm">
+            <p className="font-semibold">Grant year vs. filing year</p>
+            <ul className="mt-2 list-disc pl-5 space-y-1 text-muted-foreground">
+              <li><strong>Grant year:</strong> The year the USPTO issued the patent. Default time axis throughout PatentWorld.</li>
+              <li><strong>Filing year:</strong> The year the earliest US application was filed. Typically 2&ndash;3 years before grant. Subject to right-truncation for recent years.</li>
+              <li><strong>Implication:</strong> Trends by filing year lead grant-year trends by the average pendency period. Filing-year counts for 2023&ndash;2025 are incomplete.</li>
+            </ul>
+          </div>
         </section>
 
-        {/* 3. Geography Basis */}
+        {/* ── 3. Geography Basis ────────────────────────────────────────────── */}
         <section id="geography">
           <h2 className="font-serif text-2xl font-bold pt-4">Geography Basis</h2>
           <p>
-            Geographic analyses throughout PatentWorld use two distinct bases, depending on the
-            chapter and research question:
+            Geographic analyses use two distinct bases, depending on the chapter and research question:
           </p>
           <dl className="mt-4 space-y-4 text-sm">
             <div>
               <dt className="font-semibold">Inventor country</dt>
               <dd className="text-muted-foreground mt-1">
                 The country of residence of the patent&apos;s inventor(s), as recorded in PatentsView&apos;s
-                disambiguated inventor-location data. When a patent has multiple inventors in
-                different countries, fractional counting (each inventor&apos;s country receives equal
-                credit) is used unless otherwise noted. This basis captures <em>where inventive
+                disambiguated inventor-location data. This basis captures <em>where inventive
                 work occurs</em> and is used in the{' '}
                 <Link href="/chapters/geo-domestic/" className="underline underline-offset-2 hover:text-foreground transition-colors">domestic geography</Link>,{' '}
                 <Link href="/chapters/geo-international/" className="underline underline-offset-2 hover:text-foreground transition-colors">international geography</Link>, and{' '}
@@ -188,222 +193,303 @@ export default function MethodologyPage() {
             to a US corporation would be counted under Germany (inventor basis) or the United
             States (assignee basis). Chapters specify which basis is used.
           </p>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Counting Methods</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Fractional counting</dt>
+              <dd className="text-muted-foreground">When a patent has multiple inventors in different countries, each country receives equal fractional credit (1/<em>n</em> for <em>n</em> countries). Used for geographic analyses of inventor location.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Whole counting</dt>
+              <dd className="text-muted-foreground">Each country with at least one inventor on a patent receives full credit (count of 1). Used when measuring co-invention and international collaboration, where the focus is on participation rather than proportional attribution.</dd>
+            </div>
+          </dl>
         </section>
 
-        {/* 4. Field Classification */}
+        {/* ── 4. Field Classification ──────────────────────────────────────── */}
         <section id="field-classification">
           <h2 className="font-serif text-2xl font-bold pt-4">Field Classification</h2>
           <p>
-            PatentWorld uses two complementary approaches to classify patents by technology area:
+            PatentWorld uses several complementary approaches to classify patents by technology area:
           </p>
-          <dl className="mt-4 space-y-4 text-sm">
+
+          <h3 className="font-serif text-lg font-semibold mt-6">CPC Sections</h3>
+          <p>
+            The Cooperative Patent Classification (CPC) system is a hierarchical classification jointly
+            managed by the USPTO and the European Patent Office (EPO). PatentWorld uses CPC section
+            as the primary technology grouping throughout Acts 1&ndash;5. The CPC was formally
+            introduced in 2013; historical patents were retrospectively reclassified.
+          </p>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 font-semibold">Section</th>
+                  <th className="text-left py-2 px-3 font-semibold">Name</th>
+                  <th className="text-left py-2 px-3 font-semibold text-muted-foreground">Example Subclasses</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">A</td><td className="py-1.5 px-3">Human Necessities</td><td className="py-1.5 px-3">Agriculture, food, health, sports</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">B</td><td className="py-1.5 px-3">Performing Operations; Transporting</td><td className="py-1.5 px-3">Shaping, printing, vehicles, nano-tech</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">C</td><td className="py-1.5 px-3">Chemistry; Metallurgy</td><td className="py-1.5 px-3">Organic chemistry, materials, biotech</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">D</td><td className="py-1.5 px-3">Textiles; Paper</td><td className="py-1.5 px-3">Yarns, weaving, papermaking</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">E</td><td className="py-1.5 px-3">Fixed Constructions</td><td className="py-1.5 px-3">Buildings, earth drilling, mining</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">F</td><td className="py-1.5 px-3">Mechanical Engineering; Lighting; Heating; Weapons</td><td className="py-1.5 px-3">Engines, pumps, ventilation</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">G</td><td className="py-1.5 px-3">Physics</td><td className="py-1.5 px-3">Instruments, computing, optics, nuclear</td></tr>
+                <tr className="border-b border-border/50"><td className="py-1.5 px-3 font-medium text-foreground">H</td><td className="py-1.5 px-3">Electricity</td><td className="py-1.5 px-3">Semiconductors, circuits, communications</td></tr>
+                <tr><td className="py-1.5 px-3 font-medium text-foreground">Y</td><td className="py-1.5 px-3">Cross-Sectional Technologies</td><td className="py-1.5 px-3">Y02 (climate tech), Y04S (smart grids), Y10S/Y10T (legacy)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Section Y is a tagging section applied alongside primary A&ndash;H classifications. Y02 and
+            Y04S codes are used to identify green patents. Because Y codes are secondary tags, they
+            are excluded from multi-section convergence analyses to avoid double-counting.
+          </p>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">WIPO Technology Sectors</h3>
+          <p className="text-sm text-muted-foreground">
+            The World Intellectual Property Organization (WIPO) groups patents into 35 technology fields
+            across 5 sectors: Electrical Engineering, Instruments, Chemistry, Mechanical Engineering,
+            and Other Fields. PatentWorld uses WIPO sectors primarily in the{' '}
+            <Link href="/chapters/inv-gender/" className="underline underline-offset-2 hover:text-foreground transition-colors">gender</Link> and{' '}
+            <Link href="/chapters/inv-generalist-specialist/" className="underline underline-offset-2 hover:text-foreground transition-colors">generalist-specialist</Link> chapters.
+          </p>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">NMF Topic Model</h3>
+          <p>
+            The{' '}
+            <Link href="/chapters/system-language/" className="underline underline-offset-2 hover:text-foreground transition-colors">Language of Innovation</Link> chapter
+            applies Non-Negative Matrix Factorization (NMF) topic modeling to 8.45 million patent
+            abstracts to discover 25 data-driven technology themes. Unlike CPC, which relies on
+            examiner-assigned codes, the NMF topic model extracts thematic structure directly from
+            patent text using TF-IDF vectorization followed by matrix decomposition.
+          </p>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Act 6 Domain Definitions</h3>
+          <p>
+            Act 6 deep-dive chapters define domain-specific patent universes using curated sets
+            of CPC subclasses. The specific codes used are documented in each chapter&apos;s
+            measurement details panel. Two domains are defined here because they appear across
+            multiple chapters:
+          </p>
+          <dl className="mt-3 space-y-4 text-sm">
             <div>
-              <dt className="font-semibold">Cooperative Patent Classification (CPC) sections</dt>
+              <dt className="font-semibold">Green patents</dt>
               <dd className="text-muted-foreground mt-1">
-                The CPC system is a hierarchical classification jointly managed by the USPTO and the
-                European Patent Office (EPO). It organizes patents into eight top-level sections
-                (A through H and Y) and progressively finer subclasses. PatentWorld uses CPC section
-                as the primary technology grouping throughout Acts 1-5. Section-level classification
-                provides a consistent, stable taxonomy across the full 1976-2025 period, although
-                the CPC was formally introduced in 2013 and historical patents were retrospectively
-                reclassified.
+                Patents classified under CPC codes <strong>Y02</strong> (technologies for climate
+                change mitigation) or <strong>Y04S</strong> (smart grids). Sub-categories: Y02E
+                (energy generation), Y02T (transportation/EVs), Y02C (carbon capture), Y02B
+                (buildings), Y02P (industrial production), Y02W (waste management). See the{' '}
+                <Link href="/chapters/green-innovation/" className="underline underline-offset-2 hover:text-foreground transition-colors">green innovation</Link> chapter.
               </dd>
             </div>
             <div>
-              <dt className="font-semibold">Non-Negative Matrix Factorization (NMF) topic model</dt>
+              <dt className="font-semibold">AI patents</dt>
               <dd className="text-muted-foreground mt-1">
-                The{' '}
-                <Link href="/chapters/system-language/" className="underline underline-offset-2 hover:text-foreground transition-colors">Language of Innovation</Link> chapter
-                applies NMF topic modeling to 8.45 million patent abstracts to discover 25
-                data-driven technology themes. Unlike CPC, which relies on examiner-assigned codes,
-                the NMF topic model extracts thematic structure directly from patent text using
-                term frequency-inverse document frequency (TF-IDF) vectorization followed by
-                matrix decomposition. This approach reveals latent technology themes that may
-                cross-cut formal classification boundaries.
+                Patents classified under CPC subclass <strong>G06N</strong> (computing arrangements
+                based on specific computational models, including neural networks, genetic algorithms,
+                and knowledge-based systems) plus additional AI-related codes: G06F18 (pattern
+                recognition), G06V (image/video recognition), G10L15 (speech recognition), and
+                G06F40 (natural language processing). See the{' '}
+                <Link href="/chapters/ai-patents/" className="underline underline-offset-2 hover:text-foreground transition-colors">AI patents</Link> chapter.
               </dd>
             </div>
           </dl>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Act 6 deep-dive chapters define domain-specific patent universes using curated sets
-            of CPC subclasses relevant to each technology domain (e.g., AI, biotechnology,
-            semiconductors). The specific CPC codes used are documented in each chapter&apos;s
-            measurement details panel.
-          </p>
         </section>
 
-        {/* 5. Key Metrics */}
-        <section id="key-metrics">
-          <h2 className="font-serif text-2xl font-bold pt-4">Key Metrics</h2>
-
-          <h3 className="font-serif text-lg font-semibold mt-6">Originality Score</h3>
+        {/* ── 5. Data Processing ───────────────────────────────────────────── */}
+        <section id="data-processing">
+          <h2 className="font-serif text-2xl font-bold pt-4">Data Processing</h2>
           <p>
-            Originality measures the breadth of a patent&apos;s backward citations across CPC
-            sections. It is computed as 1 minus the Herfindahl-Hirschman Index (HHI) of the CPC
-            section distribution among a patent&apos;s backward citations:
-          </p>
-          <p className="mt-2 rounded-lg border bg-muted/30 p-3 font-mono text-sm">
-            Originality = 1 - &Sigma; s<sub>i</sub><sup>2</sup>
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            where s<sub>i</sub> is the share of backward citations in CPC section <em>i</em>. A patent
-            that cites prior art exclusively from one CPC section has originality 0; a patent that
-            draws equally from all sections approaches 1. This metric captures the degree to which
-            an invention synthesizes knowledge from diverse technological domains.
+            Raw data were obtained as tab-separated value (TSV) files from PatentsView&apos;s
+            bulk data downloads. These files were processed using DuckDB, an analytical SQL
+            database engine, and Polars (Python) to compute aggregated statistics for each
+            visualization. The analysis encompasses all USPTO-granted patents from January 1976
+            through September 2025.
           </p>
 
-          <h3 className="font-serif text-lg font-semibold mt-6">Exploration Composite</h3>
-          <p>
-            The exploration composite score measures the degree to which a patent represents
-            exploratory (as opposed to exploitative) innovation. It is the equally weighted average
-            of three normalized sub-scores:
-          </p>
-          <ul className="mt-2 list-disc pl-6 space-y-1 text-sm">
-            <li><strong>Technology newness:</strong> Whether the patent uses CPC subclasses that are new to the assignee&apos;s historical portfolio.</li>
-            <li><strong>Citation newness:</strong> Whether the patent cites prior art that is new to the assignee (not previously cited by the assignee&apos;s other patents).</li>
-            <li><strong>External sourcing:</strong> Whether the patent&apos;s backward citations come predominantly from patents held by other organizations rather than the assignee&apos;s own prior patents.</li>
+          <h3 className="font-serif text-lg font-semibold mt-6">Processing Pipeline</h3>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Joining patent records with inventor, assignee, location, and classification tables</li>
+            <li>Aggregating by year, technology category, geography, and organization</li>
+            <li>Computing derived metrics: citation counts, team sizes, concentration ratios, diversity indices</li>
+            <li>Filtering to <strong>primary classifications</strong> (CPC sequence = 0) to avoid double-counting patents that are assigned to multiple CPC codes</li>
+            <li>Exporting pre-computed JSON files for each visualization (no backend server; all data are static)</li>
           </ul>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Each sub-score is normalized to a 0-1 scale, and the composite is their arithmetic mean.
-            Patents scoring above <strong>0.6</strong> are classified as <em>exploratory</em>; those
-            below 0.6 are classified as <em>exploitative</em>. This threshold is used in the{' '}
-            <Link href="/chapters/mech-organizations/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational mechanics</Link> chapter
-            and throughout Act 6 deep dives.
-          </p>
 
-          <h3 className="font-serif text-lg font-semibold mt-6">Sleeping Beauty Detection</h3>
-          <p>
-            Sleeping beauty patents are patents that receive few or no citations for an extended
-            period after grant before experiencing a sudden surge of recognition. These delayed-recognition
-            patents are identified using a citation time-profile analysis: a patent qualifies as
-            a sleeping beauty if it accumulates citations at a rate significantly below its
-            eventual steady-state rate during its first several years, followed by an acceleration
-            that brings its cumulative citations well above the cohort average.
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Sleeping beauties are particularly relevant in the{' '}
-            <Link href="/chapters/system-patent-quality/" className="underline underline-offset-2 hover:text-foreground transition-colors">patent quality</Link> and{' '}
-            <Link href="/chapters/org-patent-quality/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational patent quality</Link> chapters,
-            where they illustrate how standard citation windows may miss patents whose
-            technological significance is recognized only after a considerable delay.
-          </p>
-
-          <h3 className="font-serif text-lg font-semibold mt-6">Herfindahl-Hirschman Index (HHI)</h3>
-          <p>
-            The Herfindahl-Hirschman Index measures concentration. It is computed as:
-          </p>
-          <p className="mt-2 rounded-lg border bg-muted/30 p-3 font-mono text-sm">
-            HHI = &Sigma; s<sub>i</sub><sup>2</sup> &times; 10,000
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            where s<sub>i</sub> is the market share (or category share) of entity <em>i</em>, expressed
-            as a decimal. The index ranges from near 0 (highly fragmented) to 10,000 (monopoly).
-            The US Department of Justice and Federal Trade Commission (2010 Horizontal Merger
-            Guidelines) classify markets as unconcentrated (&lt;1,500), moderately concentrated
-            (1,500-2,500), or highly concentrated (&gt;2,500). In PatentWorld, HHI is used to
-            measure assignee concentration within technology fields and geographic regions.
-          </p>
-
-          <h3 className="font-serif text-lg font-semibold mt-6">Green Patent Definition</h3>
-          <p>
-            Green patents are defined as patents classified under CPC codes <strong>Y02</strong> (technologies
-            for climate change mitigation) or <strong>Y04S</strong> (smart grids). The Y02 section
-            includes sub-categories for:
-          </p>
-          <ul className="mt-2 list-disc pl-6 space-y-1 text-sm">
-            <li><strong>Y02E:</strong> Reduction of greenhouse gas emissions related to energy generation, transmission, or distribution (solar, wind, hydro, nuclear, fuel cells)</li>
-            <li><strong>Y02T:</strong> Climate change mitigation technologies related to transportation (electric vehicles, hybrid vehicles, aerodynamics)</li>
-            <li><strong>Y02C:</strong> Capture, storage, sequestration, or disposal of greenhouse gases</li>
-            <li><strong>Y02B:</strong> Climate change mitigation technologies related to buildings (insulation, lighting, HVAC)</li>
-            <li><strong>Y02P:</strong> Climate change mitigation technologies in the production or processing of goods</li>
-            <li><strong>Y02W:</strong> Climate change mitigation technologies related to wastewater treatment or waste management</li>
-          </ul>
-          <p className="mt-2 text-sm text-muted-foreground">
-            This definition follows standard practice in the patent analytics literature. The{' '}
-            <Link href="/chapters/green-innovation/" className="underline underline-offset-2 hover:text-foreground transition-colors">green innovation</Link> chapter
-            provides detailed analysis of trends, geography, and organizational dynamics within
-            this patent universe.
-          </p>
+          <h3 className="font-serif text-lg font-semibold mt-6">Counting Conventions</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Primary classification (sequence = 0)</dt>
+              <dd className="text-muted-foreground">Each patent is assigned multiple CPC codes. The code with sequence = 0 is the examiner-designated primary classification. PatentWorld uses the primary classification for technology-field analyses to avoid counting a single patent multiple times across sections.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Filing route</dt>
+              <dd className="text-muted-foreground">Patents are classified by prosecution path: <em>domestic</em> (filed directly at the USPTO by US applicants), <em>PCT</em> (filed via the Patent Cooperation Treaty and entering the US national phase), or <em>direct foreign</em> (filed directly at the USPTO by foreign applicants without using the PCT). The{' '}
+                <Link href="/chapters/org-composition/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational composition</Link> chapter analyzes trends by filing route.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Gender inference</dt>
+              <dd className="text-muted-foreground">Inventor gender is inferred from first names using PatentsView&apos;s gender_code field (M/F). This name-based inference does not capture non-binary identities and may misclassify individuals whose names are ambiguous or culturally variable.</dd>
+            </div>
+          </dl>
         </section>
 
-        {/* 6. Standard Quality Metrics Suite */}
-        <section id="quality-metrics">
-          <h2 className="font-serif text-2xl font-bold pt-4">Standard Quality Metrics Suite</h2>
-          <p>
-            Chapters across multiple acts present a consistent set of seven patent quality metrics,
-            computed for different grouping variables (by technology field, by assignee, by inventor
-            category, by geography). These metrics enable cross-chapter comparisons:
-          </p>
-          <ul className="mt-3 list-disc pl-6 space-y-1">
-            <li><strong>Patent count:</strong> Number of granted patents in the group per year.</li>
-            <li><strong>Claims per patent:</strong> Number of independent and dependent claims, measuring the scope of legal protection sought.</li>
-            <li><strong>Patent scope:</strong> Number of distinct CPC subclasses assigned to each patent, measuring technological breadth.</li>
-            <li><strong>Forward citations:</strong> Number of subsequent patents citing a given patent, a widely used proxy for technological impact. Subject to truncation bias for recently granted patents.</li>
-            <li><strong>Backward citations:</strong> Number of prior patents cited by a given patent, reflecting the extent to which the invention builds on prior art.</li>
-            <li><strong>Self-citation rate:</strong> Fraction of backward citations directed to the citing entity&apos;s own prior patents, indicating internal knowledge reuse.</li>
-            <li><strong>Grant lag:</strong> Number of days between patent application filing and grant, measuring prosecution speed.</li>
-          </ul>
-        </section>
-
-        {/* 7. Measurement Definitions */}
+        {/* ── 6. Metric Definitions ────────────────────────────────────────── */}
         <section id="definitions">
-          <h2 className="font-serif text-2xl font-bold pt-4">Measurement Definitions</h2>
+          <h2 className="font-serif text-2xl font-bold pt-4">Metric Definitions</h2>
           <p>
             The following metrics are used throughout PatentWorld. Definitions are standardized
-            across chapters to enable cross-chapter comparisons.
+            across chapters to enable cross-chapter comparisons. Metrics are grouped by category.
           </p>
+
+          {/* ─── 6a. Citation Metrics ─── */}
+          <h3 className="font-serif text-lg font-semibold mt-6">Citation Metrics</h3>
           <dl className="mt-3 space-y-3 text-sm">
             <div>
               <dt className="font-semibold">Forward citations (5-year)</dt>
-              <dd className="text-muted-foreground">Number of subsequent patents citing a given patent within 5 years of grant. A widely used proxy for technological impact. Subject to truncation bias for patents granted after 2020.</dd>
+              <dd className="text-muted-foreground">Number of subsequent patents citing a given patent within 5 years of grant. The 5-year window is standard in the patent analytics literature as a balance between measurement completeness and recency. Subject to truncation bias for patents granted after 2020, which have not yet accumulated a full 5-year citation window.</dd>
             </div>
             <div>
               <dt className="font-semibold">Backward citations</dt>
-              <dd className="text-muted-foreground">Number of prior patents cited by a given patent. Reflects the extent to which the invention builds on existing prior art.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Originality</dt>
-              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s backward citations. Higher values indicate the patent draws from more diverse technology sources. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections).</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Generality</dt>
-              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s forward citations. Higher values indicate the patent is cited by a broader range of technology fields. Range: 0 (all citing patents in one section) to ~1 (cited across many sections).</dd>
+              <dd className="text-muted-foreground">Number of prior patents cited by a given patent. Reflects the extent to which the invention builds on existing prior art. Higher counts may indicate more incremental innovation or more thorough prosecution.</dd>
             </div>
             <div>
               <dt className="font-semibold">Self-citation rate</dt>
-              <dd className="text-muted-foreground">Fraction of backward citations directed to the same assignee&apos;s own prior patents. Higher values indicate greater internal knowledge reuse.</dd>
+              <dd className="text-muted-foreground">Fraction of a patent&apos;s backward citations directed to patents held by the same assignee. Higher values indicate greater internal knowledge reuse. In multi-assignee contexts, a citation is counted as a self-citation if any assignee on the citing patent matches any assignee on the cited patent.</dd>
             </div>
             <div>
-              <dt className="font-semibold">Claims per patent</dt>
-              <dd className="text-muted-foreground">Total number of independent and dependent claims in a patent. Measures the scope of legal protection sought.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Patent scope</dt>
-              <dd className="text-muted-foreground">Number of distinct CPC subclasses assigned to each patent. Measures technological breadth of the invention.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Grant lag</dt>
-              <dd className="text-muted-foreground">Number of days between patent application filing date and grant date. Measures prosecution speed and USPTO pendency.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Shannon entropy</dt>
-              <dd className="text-muted-foreground">-&Sigma; p<sub>i</sub> ln(p<sub>i</sub>) over category shares. Used to measure diversity of technology portfolios, geographic concentration, and topic distributions. Higher values indicate more even distribution.</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
-              <dd className="text-muted-foreground">&Sigma; s<sub>i</sub><sup>2</sup> where s<sub>i</sub> is the market (or category) share. Range: 0 (perfect competition) to 10,000 (monopoly). DOJ/FTC 2010 Horizontal Merger Guidelines classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500).</dd>
+              <dt className="font-semibold">Non-patent literature (NPL) citations</dt>
+              <dd className="text-muted-foreground">Citations to academic papers, technical standards, and other non-patent sources. Higher NPL citation rates indicate stronger ties to scientific research, and are particularly prevalent in biotechnology and pharmaceutical patents.</dd>
             </div>
             <div>
               <dt className="font-semibold">Cohort normalization</dt>
-              <dd className="text-muted-foreground">Dividing a patent&apos;s citation count by the mean of its grant-year &times; CPC section cohort. A value of 1.0 means average impact for that cohort; values above 1.0 indicate above-average impact.</dd>
+              <dd className="text-muted-foreground">A patent&apos;s citation count divided by the mean citation count of all patents in the same grant-year &times; CPC section cohort. A value of 1.0 indicates average impact for that cohort; values above 1.0 indicate above-average impact. Cohort normalization controls for both temporal and field-specific citation patterns.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Citation half-life</dt>
+              <dd className="text-muted-foreground">The time it takes for a patent (or a firm&apos;s patent portfolio) to accumulate half of its total forward citations. Shorter half-lives indicate more immediately impactful inventions; longer half-lives suggest foundational work whose influence emerges gradually.</dd>
+            </div>
+          </dl>
+
+          {/* ─── 6b. Quality & Scope Metrics ─── */}
+          <h3 className="font-serif text-lg font-semibold mt-6">Quality &amp; Scope</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Claims per patent</dt>
+              <dd className="text-muted-foreground">Total number of independent and dependent claims in a patent. Measures the scope of legal protection sought. Higher claim counts generally indicate broader or more detailed protection.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Patent scope</dt>
+              <dd className="text-muted-foreground">Number of distinct CPC subclasses assigned to each patent. Measures the technological breadth of the invention. A patent classified under many subclasses spans a wider range of technical applications.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Grant lag (pendency)</dt>
+              <dd className="text-muted-foreground">Number of days between patent application filing date and grant date. Measures prosecution speed at the USPTO. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Team size</dt>
+              <dd className="text-muted-foreground">Number of disambiguated inventors listed on a patent. Used to measure the collaborative intensity of inventive activity. Average team size has increased from approximately 1.8 inventors per patent in 1976 to 3.2 in 2024.</dd>
             </div>
             <div>
               <dt className="font-semibold">Blockbuster patent</dt>
-              <dd className="text-muted-foreground">A patent in the top 1% of 5-year forward citations within its grant-year &times; CPC section cohort. Under uniform quality, 1% of patents would be blockbusters; rates above 1% indicate disproportionate high-impact output.</dd>
+              <dd className="text-muted-foreground">A patent in the top 1% of 5-year forward citations within its grant-year &times; CPC section cohort. Under uniform quality, 1% of patents in any group would be blockbusters; rates above 1% indicate disproportionate high-impact output.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Sleeping beauty patent</dt>
+              <dd className="text-muted-foreground">A patent that receives few or no citations for an extended period after grant before experiencing a sudden surge of recognition. Identified using citation time-profile analysis: a patent qualifies if its early citation accumulation rate is significantly below its eventual steady-state rate, followed by an acceleration that brings cumulative citations well above the cohort average. Relevant in the{' '}
+                <Link href="/chapters/system-patent-quality/" className="underline underline-offset-2 hover:text-foreground transition-colors">patent quality</Link> and{' '}
+                <Link href="/chapters/org-patent-quality/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational patent quality</Link> chapters.</dd>
             </div>
           </dl>
+
+          {/* ─── 6c. Diversity & Concentration ─── */}
+          <h3 className="font-serif text-lg font-semibold mt-6">Diversity &amp; Concentration</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Originality</dt>
+              <dd className="text-muted-foreground">Measures the breadth of a patent&apos;s backward citations across CPC sections. Computed as 1 minus the Herfindahl-Hirschman Index of the CPC section distribution among backward citations:</dd>
+              <dd className="mt-2 rounded-lg border bg-muted/30 p-3 font-mono text-sm">
+                Originality = 1 &minus; &Sigma; s<sub>i</sub><sup>2</sup>
+              </dd>
+              <dd className="mt-2 text-muted-foreground">where s<sub>i</sub> is the share of backward citations in CPC section <em>i</em>. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections). Higher values indicate the patent synthesizes knowledge from more diverse technological domains.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Generality</dt>
+              <dd className="text-muted-foreground">Measures how broadly a patent is cited across CPC sections. Computed identically to originality but using <em>forward</em> citations instead of backward citations. Range: 0 (all citing patents in one section) to ~1 (cited across many sections). Higher values indicate wider downstream influence.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
+              <dd className="text-muted-foreground">A measure of concentration computed as:</dd>
+              <dd className="mt-2 rounded-lg border bg-muted/30 p-3 font-mono text-sm">
+                HHI = &Sigma; s<sub>i</sub><sup>2</sup> &times; 10,000
+              </dd>
+              <dd className="mt-2 text-muted-foreground">where s<sub>i</sub> is the market share (or category share) of entity <em>i</em>, expressed as a decimal. The index ranges from near 0 (highly fragmented) to 10,000 (monopoly). The US DOJ/FTC (2010 Horizontal Merger Guidelines) classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500). In PatentWorld, HHI is used to measure assignee concentration within technology fields and geographic regions.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Shannon entropy</dt>
+              <dd className="text-muted-foreground">H = &minus;&Sigma; p<sub>i</sub> ln(p<sub>i</sub>) over category shares. Measures diversity of technology portfolios, geographic distributions, and topic distributions. Higher values indicate more even distribution. Often reported as <em>normalized entropy</em> (H / ln N), which scales the result to a 0&ndash;1 range where 1 is perfectly even distribution across N categories.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Gini coefficient</dt>
+              <dd className="text-muted-foreground">A measure of statistical dispersion ranging from 0 (perfect equality) to 1 (maximum inequality). In PatentWorld, used to measure concentration of citations across patents (via Lorenz curves) and quality distribution within technology fields and organizations. Values above 0.8 indicate high concentration.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Concentration ratios (CR4, CR10)</dt>
+              <dd className="text-muted-foreground">CR4 is the combined patent share of the four largest organizations in a domain; CR10 is the share of the ten largest. Used in Act 6 deep-dive chapters to measure organizational concentration within technology domains. Higher values indicate a more concentrated competitive landscape.</dd>
+            </div>
+          </dl>
+
+          {/* ─── 6d. Innovation Strategy Metrics ─── */}
+          <h3 className="font-serif text-lg font-semibold mt-6">Innovation Strategy</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Exploration composite</dt>
+              <dd className="text-muted-foreground">Measures the degree to which a patent represents exploratory (as opposed to exploitative) innovation. Equally weighted average of three normalized sub-scores:</dd>
+              <dd>
+                <ul className="mt-2 list-disc pl-6 space-y-1 text-muted-foreground">
+                  <li><strong>Technology newness:</strong> Whether the patent uses CPC subclasses that are new to the assignee&apos;s historical portfolio.</li>
+                  <li><strong>Citation newness:</strong> Whether the patent cites prior art not previously cited by the assignee&apos;s other patents.</li>
+                  <li><strong>External sourcing:</strong> Whether the patent&apos;s backward citations come predominantly from patents held by other organizations rather than the assignee&apos;s own prior patents.</li>
+                </ul>
+              </dd>
+              <dd className="mt-2 text-muted-foreground">Each sub-score is normalized to a 0&ndash;1 scale. Patents scoring above <strong>0.6</strong> are classified as <em>exploratory</em>; those below 0.6 as <em>exploitative</em>. Used in the{' '}
+                <Link href="/chapters/mech-organizations/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational mechanics</Link> chapter and Act 6 deep dives.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Ambidexterity index</dt>
+              <dd className="text-muted-foreground">Measures an organization&apos;s balance between exploration and exploitation. Computed as 1 minus the absolute deviation of the exploration share from 50%. Values near 1.0 indicate a balanced firm that pursues both exploratory and exploitative innovation in roughly equal measure; values near 0 indicate a specialist firm focused predominantly on one strategy. Used in the{' '}
+                <Link href="/chapters/mech-organizations/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational mechanics</Link> chapter.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Inventor mobility (talent flow)</dt>
+              <dd className="text-muted-foreground">The movement of inventors between organizations, tracked by consecutive patent filings with different assignees. Net talent flow reveals which organizations are gaining versus losing inventive talent. A positive net flow indicates a firm is attracting more inventors than it is losing. Used in the{' '}
+                <Link href="/chapters/mech-inventors/" className="underline underline-offset-2 hover:text-foreground transition-colors">inventor mechanics</Link> chapter.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Generalist vs. specialist inventors</dt>
+              <dd className="text-muted-foreground">Inventors are classified based on the technological diversity of their patent portfolios. Generalists hold patents spanning multiple CPC sections; specialists concentrate in one or few sections. The{' '}
+                <Link href="/chapters/inv-generalist-specialist/" className="underline underline-offset-2 hover:text-foreground transition-colors">generalist-specialist</Link> chapter measures this using entropy-based diversity scores across each inventor&apos;s CPC section distribution.</dd>
+            </div>
+          </dl>
+
+          {/* ─── 6e. Standard Quality Metrics Suite ─── */}
+          <h3 className="font-serif text-lg font-semibold mt-6">Standard Quality Metrics Suite</h3>
+          <p className="text-sm text-muted-foreground">
+            Chapters across multiple acts present a consistent set of seven patent quality metrics,
+            computed for different grouping variables (by technology field, by assignee, by inventor
+            category, by geography). These are: <strong>patent count</strong>, <strong>claims per patent</strong>,{' '}
+            <strong>patent scope</strong>, <strong>forward citations</strong>, <strong>backward citations</strong>,{' '}
+            <strong>self-citation rate</strong>, and <strong>grant lag</strong>. Each is defined individually above.
+            When these seven metrics appear together, they enable direct cross-chapter comparisons
+            of patent quality across different analytical dimensions.
+          </p>
         </section>
 
-        {/* 8. Disambiguation Reliability */}
+        {/* ── 7. Disambiguation Reliability ──────────────────────────────── */}
         <section id="disambiguation">
           <h2 className="font-serif text-2xl font-bold pt-4">Disambiguation Reliability</h2>
           <p>
@@ -413,31 +499,36 @@ export default function MethodologyPage() {
             introduces potential errors:
           </p>
           <ul className="mt-3 list-disc pl-6 space-y-1">
-            <li><strong>Splitting errors:</strong> A single inventor may be assigned multiple disambiguated IDs, leading to undercounting of individual productivity.</li>
-            <li><strong>Lumping errors:</strong> Two distinct inventors may be assigned the same ID, leading to overcounting of individual productivity.</li>
+            <li><strong>Splitting errors:</strong> A single inventor is assigned multiple disambiguated IDs, leading to <em>undercounting</em> of individual productivity. Most likely for inventors who change institutions or name spellings.</li>
+            <li><strong>Lumping errors:</strong> Two distinct inventors are assigned the same ID, leading to <em>overcounting</em> of individual productivity. Most likely for inventors with common names.</li>
             <li><strong>Assignee disambiguation:</strong> Corporate name changes, mergers, and subsidiaries create particular challenges. A single entity may appear under multiple names, or distinct entities may be incorrectly merged.</li>
           </ul>
           <p className="mt-3 text-sm text-muted-foreground">
-            Chapters that rely heavily on disambiguated identities (inventor rankings, serial vs.
-            new inventors, inventor mobility, organizational mechanics) note this limitation in
-            their measurement details panel.
+            Chapters that rely heavily on disambiguated identities &mdash; including{' '}
+            <Link href="/chapters/inv-top-inventors/" className="underline underline-offset-2 hover:text-foreground transition-colors">top inventors</Link>,{' '}
+            <Link href="/chapters/inv-serial-new/" className="underline underline-offset-2 hover:text-foreground transition-colors">serial vs. new inventors</Link>,{' '}
+            <Link href="/chapters/mech-inventors/" className="underline underline-offset-2 hover:text-foreground transition-colors">inventor mechanics</Link>, and{' '}
+            <Link href="/chapters/mech-organizations/" className="underline underline-offset-2 hover:text-foreground transition-colors">organizational mechanics</Link> &mdash;
+            note this limitation in their measurement details panel.
           </p>
         </section>
 
-        {/* 9. Data Limitations */}
+        {/* ── 8. Data Limitations ────────────────────────────────────────── */}
         <section id="limitations">
           <h2 className="font-serif text-2xl font-bold pt-4">Data Limitations</h2>
-          <ul className="list-disc pl-6 space-y-1">
-            <li><strong>Granted patents only:</strong> The dataset includes only granted patents, not applications that were abandoned or rejected. This introduces survivorship bias.</li>
-            <li><strong>US patents only:</strong> The analysis covers patents granted by the USPTO. It does not include patents filed only at foreign patent offices (EPO, JPO, CNIPA, etc.).</li>
-            <li><strong>Inventor disambiguation:</strong> PatentsView uses algorithmic disambiguation to link inventor records across patents. Some errors in matching or splitting inventor identities may exist.</li>
-            <li><strong>Citation truncation:</strong> Recently granted patents have had less time to accumulate forward citations, creating a right-truncation bias in citation-based metrics.</li>
-            <li><strong>Classification changes:</strong> The CPC system was introduced in 2013, replacing the earlier USPC system. Historical patents were retrospectively reclassified, but some inconsistencies may remain.</li>
-            <li><strong>Gender inference:</strong> Inventor gender is inferred from first names and may not reflect actual gender identity. Non-binary identities are not captured.</li>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Granted patents only:</strong> The dataset includes only granted patents, not applications that were abandoned or rejected. This introduces survivorship bias &mdash; the analysis cannot measure inventive activity that does not result in a grant.</li>
+            <li><strong>US patents only:</strong> The analysis covers patents granted by the USPTO. It does not include patents filed only at foreign patent offices (EPO, JPO, CNIPA, KIPO, etc.). Firms that patent primarily abroad may appear less innovative than their true activity warrants.</li>
+            <li><strong>Citation truncation:</strong> Recently granted patents have had less time to accumulate forward citations, creating a right-truncation bias in citation-based metrics. Five-year forward citation counts are unreliable for patents granted after 2020. Cohort normalization mitigates but does not eliminate this bias.</li>
+            <li><strong>Inventor disambiguation:</strong> PatentsView uses algorithmic disambiguation to link inventor records across patents. Some errors in matching (lumping) or splitting inventor identities may exist. See <a href="#disambiguation" className="underline underline-offset-2 hover:text-foreground transition-colors">Disambiguation Reliability</a> above.</li>
+            <li><strong>Classification changes:</strong> The CPC system was introduced in 2013, replacing the earlier USPC system. Historical patents were retrospectively reclassified, but some inconsistencies may remain, particularly for patents from the 1970s&ndash;1980s.</li>
+            <li><strong>Gender inference:</strong> Inventor gender is inferred from first names and may not reflect actual gender identity. Non-binary identities are not captured. Accuracy varies by cultural context and name ambiguity.</li>
+            <li><strong>Partial year (2025):</strong> Data for 2025 covers grants through September only. Annual totals and rates for 2025 are not directly comparable to full-year figures without adjustment.</li>
+            <li><strong>Assignee coverage:</strong> Not all patents have assignee records in PatentsView. Unassigned patents are excluded from organizational analyses, which may undercount individual inventor and small-entity patenting.</li>
           </ul>
         </section>
 
-        {/* 10. Data Source */}
+        {/* ── 9. Data Source ─────────────────────────────────────────────── */}
         <section id="data-source">
           <h2 className="font-serif text-2xl font-bold pt-4">Data Source</h2>
           <p>
@@ -455,6 +546,8 @@ export default function MethodologyPage() {
             <li><strong>g_inventor_disambiguated:</strong> 24 million disambiguated inventor records</li>
             <li><strong>g_us_patent_citation:</strong> 151 million citation relationships</li>
             <li><strong>g_assignee_disambiguated:</strong> 8.7 million assignee records</li>
+            <li><strong>g_location_disambiguated:</strong> Geocoded inventor and assignee locations</li>
+            <li><strong>g_gov_interest:</strong> Government interest statements identifying federally funded research</li>
           </ul>
           <p className="mt-3 text-sm text-muted-foreground">
             Data attribution: PatentsView (
@@ -465,12 +558,11 @@ export default function MethodologyPage() {
             patent data. The database is derived from the USPTO examination and granting of patents.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            For additional details on processing methodology, see the{' '}
-            <Link href="/about/#methodology" className="underline underline-offset-2 hover:text-foreground transition-colors">
+            For information about the author, chapter structure, and frequently asked questions, see
+            the{' '}
+            <Link href="/about/" className="underline underline-offset-2 hover:text-foreground transition-colors">
               About page
             </Link>.
-            Disambiguation reliability and data limitations are documented{' '}
-            <a href="#disambiguation" className="underline underline-offset-2 hover:text-foreground transition-colors">above</a>.
           </p>
         </section>
       </div>
