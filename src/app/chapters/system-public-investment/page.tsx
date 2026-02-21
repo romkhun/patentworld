@@ -226,7 +226,7 @@ export default function SystemPublicInvestmentChapter() {
               domain={['auto', 'auto']}
             >
               <Label
-                value="Breadth (Shannon Entropy)"
+                value="Breadth (1 − HHI)"
                 position="insideBottom"
                 offset={-10}
                 style={{ fill: 'hsl(var(--muted-foreground))', fontSize: chartTheme.fontSize.axisLabel, fontWeight: chartTheme.fontWeight.axisLabel }}

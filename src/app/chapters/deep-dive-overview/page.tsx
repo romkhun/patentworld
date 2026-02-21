@@ -182,12 +182,12 @@ export default function DeepDiveOverview() {
             </dd>
           </div>
           <div>
-            <dt className="font-semibold">Shannon Entropy (Technology Diversity)</dt>
+            <dt className="font-semibold">Technology Diversity (1 − HHI)</dt>
             <dd className="text-muted-foreground mt-1">
-              Shannon entropy of the subfield distribution within a domain:
-              H = −Σ p<sub>i</sub> log₂(p<sub>i</sub>), where p<sub>i</sub> is the share of
-              patents in subfield i. Higher entropy indicates greater diversity across subfields.
-              A domain with patents evenly split across 8 subfields would have H ≈ 3.0.
+              Simpson diversity index of the CPC section distribution within a domain:
+              D = 1 − Σ p<sub>i</sub><sup>2</sup>, where p<sub>i</sub> is the share of
+              patents in section i. Higher values indicate greater diversity across technology sections.
+              A domain with patents evenly split across 8 sections would have D ≈ 0.875.
             </dd>
           </div>
           <div>

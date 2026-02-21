@@ -43,7 +43,7 @@ export function useCitationNormalization({ data, xKey, citationKeys, yLabel }: U
       }`}
       aria-pressed={isNormalized}
     >
-      Normalize by cohort age
+      Normalize by exposure years
     </button>
   );
 
