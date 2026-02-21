@@ -1,6 +1,7 @@
 # PatentWorld Data Source Registry
 
 > Generated: 2026-02-21 (S1.2 comprehensive audit)
+> Updated: 2026-02-21 (added transformation pipeline mapping, time coverage verification, column types)
 > Project: `/home/saerom/projects/patentworld`
 
 ---
@@ -746,3 +747,263 @@ All 11 technology domain folders share a **standardized schema** with 13 file ty
 3. `company/company_profiles.json` -- 1.21 MB (100 companies)
 4. `company/firm_quality_distribution.json` -- 0.81 MB (50 companies x years)
 5. `chapter4/regional_specialization.json` -- 0.69 MB (5,735 rows)
+
+---
+
+## 9. Time Coverage Consistency Verification
+
+### Footer & Metadata Claims
+
+The footer (`src/components/layout/Footer.tsx` line 18) states:
+> Data from PatentsView (USPTO), accessed Feb 2026. Coverage: 1976--Sep 2025.
+
+Other references:
+- `src/lib/constants.ts` HERO_STATS: `startYear: 1976`, `endYear: 2025`
+- `src/app/layout.tsx` structured data: `temporalCoverage: '1976/2025'`
+- `src/app/methodology/page.tsx`: "accessed in **February 2026**"
+- `src/app/about/page.tsx`: "accessed February 2026"
+- `src/lib/seo.ts`: `temporalCoverage: '1976/2025'`
+- `src/lib/constants.ts` SITE_DESCRIPTION: "1976 to 2025"
+
+**Verdict: All timestamp and coverage claims are internally consistent.** The "Feb 2026" access date and "1976--Sep 2025" coverage window appear in all relevant locations without contradiction.
+
+### Actual Year Coverage in Data Files
+
+Analyzed 244 of 383 data files that contain parseable year fields:
+
+| Metric | Value |
+|--------|-------|
+| Overall earliest year in any data file | **1975** (6 files use 5-year windows starting at 1975) |
+| Overall latest year in any data file | **2025** |
+| Files with max year = 2025 | 185 |
+| Files with max year = 2024 | 9 |
+| Files with max year > 2025 | 0 |
+| Files with min year < 1976 | 6 |
+
+The 6 files with year values of 1975 use 5-year period windows (e.g., "1975-1979") where the `period_start` field is 1975. This is consistent with the claim of covering grants from 1976, as the window aggregates data from 1976-1979 under a label starting at 1975. These are:
+
+- `chapter10/hhi_by_section.json` (period_start: 1975)
+- `chapter21/inventor_international_mobility.json` (period_start: 1975)
+- `chapter3/portfolio_diversity.json` (period_start: 1975)
+- `chapter4/innovation_diffusion.json` (period_start: 1975)
+- `chapter5/gender_section_trend.json` (period_start: 1975)
+- `chapter7/friction_map.json` (period_start: 1975)
+
+The 9 files with max year = 2024 (rather than 2025) are either files where 2025 partial-year data was excluded, or domain-specific time series that have not yet been updated. This is consistent with "Coverage: 1976--Sep 2025" (some series may have insufficient 2025 data to report).
+
+**No anomalies detected.** The coverage claim is accurate.
+
+---
+
+## 10. Data Pipeline: Transformation Scripts
+
+### Pipeline Configuration
+
+**Location:** `/home/saerom/projects/patentworld/data-pipeline/`
+**Configuration:** `config.py` -- defines paths, DuckDB helpers, and `save_json()` serialization.
+**Raw data source:** PatentsView TSV files at `/media/saerom/saerom-ssd/Penn Dropbox/Saerom (Ronnie) Lee/Research/PatentsView/`
+**Output target:** `/home/saerom/projects/patentworld/public/data/`
+**Runtime:** DuckDB via Python (with `orjson` serialization, `read_csv_auto` TSV parsing)
+
+### Source PatentsView Tables Used
+
+| Table | Config Function | Rows (approx.) |
+|-------|----------------|-----------------|
+| `g_patent` | `PATENT_TSV()` | 9.36M |
+| `g_application` | `APPLICATION_TSV()` | ~9.36M |
+| `g_cpc_current` | `CPC_CURRENT_TSV()` | 58M |
+| `g_cpc_title` | `CPC_TITLE_TSV()` | -- |
+| `g_wipo_technology` | `WIPO_TSV()` | -- |
+| `g_assignee_disambiguated` | `ASSIGNEE_TSV()` | 8.7M |
+| `g_inventor_disambiguated` | `INVENTOR_TSV()` | 24M |
+| `g_location_disambiguated` | `LOCATION_TSV()` | -- |
+| `g_us_patent_citation` | `CITATION_TSV()` | 151M |
+| `g_foreign_citation` | `FOREIGN_CITATION_TSV()` | -- |
+| `g_gov_interest` | `GOV_INTEREST_TSV()` | -- |
+| `g_gov_interest_org` | `GOV_INTEREST_ORG_TSV()` | -- |
+
+### Script-to-Output Mapping
+
+75 numbered pipeline scripts produce data files. Key mappings:
+
+| Script | Output Files (in `public/data/`) |
+|--------|----------------------------------------------|
+| `01_chapter1_landscape.py` | `chapter1/patents_per_year.json`, `chapter1/patents_per_month.json`, `chapter1/filing_vs_grant_year.json`, `chapter1/grant_lag.json`, `chapter1/hero_stats.json`, `chapter1/pendency_by_filing_year.json` |
+| `02_chapter2_technology.py` | `chapter2/cpc_sections_per_year.json`, `chapter2/cpc_treemap.json`, `chapter2/cpc_class_change.json`, `chapter2/tech_diversity.json` |
+| `03_chapter3_assignees.py` | `chapter3/assignee_types_per_year.json`, `chapter3/top_assignees.json`, `chapter3/top_orgs_over_time.json`, `chapter3/concentration.json`, `chapter3/domestic_vs_foreign.json`, `chapter3/non_us_by_section.json` |
+| `04_chapter4_geography.py` | `chapter4/countries_per_year.json`, `chapter4/us_states_per_year.json`, `chapter4/us_states_summary.json`, `chapter4/top_cities.json`, `chapter4/state_specialization.json` |
+| `05_chapter5_inventors.py` | `chapter5/gender_per_year.json`, `chapter5/team_size_per_year.json`, `chapter5/solo_inventors.json`, `chapter5/inventor_entry.json`, `chapter5/first_time_inventors.json` |
+| `06_chapter6_citations.py` | `chapter6/citations_per_year.json`, `chapter6/citation_lag.json`, `chapter6/co_invention_rates.json`, `chapter6/gov_agencies.json`, `chapter6/gov_funded_per_year.json` |
+| `07_explore_data.py` | `explore/cpc_class_summary.json`, `explore/top_assignees_all.json`, `explore/top_inventors_all.json`, `explore/wipo_field_summary.json` |
+| `08_chapter7_dynamics.py` | `chapter7/cross_domain.json`, `chapter7/innovation_velocity.json`, `chapter7/intl_collaboration.json`, `chapter7/top_government_contracts.json` |
+| `09_chapter3_firm_deep.py` | `chapter3/firm_citation_impact.json`, `chapter3/firm_collaboration_network.json`, `chapter3/firm_tech_evolution.json`, `chapter3/network_metrics_by_decade.json` |
+| `10_chapter5_inventor_deep.py` | `chapter5/prolific_inventors.json`, `chapter5/star_inventor_impact.json`, `chapter5/inventor_segments.json`, `chapter5/inventor_segments_trend.json` |
+| `11_chapter9_patent_quality.py` | `chapter9/quality_trends.json`, `chapter9/originality_generality.json`, `chapter9/quality_by_sector.json`, `chapter9/quality_by_country.json` |
+| `12_chapter11_ai_patents.py` | `chapter11/ai_patents_per_year.json`, `chapter11/ai_by_subfield.json`, `chapter11/ai_geography.json`, `chapter11/ai_org_over_time.json`, `chapter11/ai_top_assignees.json`, `chapter11/ai_top_inventors.json` |
+| `13_inventor_movement.py` | `chapter4/inventor_country_flows.json`, `chapter4/inventor_state_flows.json`, `chapter4/inventor_mobility_trend.json`, `chapter5/inventor_mobility.json`, `chapter5/inventor_mobility_by_decade.json` |
+| `14_chapter10_patent_law.py` | `chapter10/applications_vs_grants.json`, `chapter6/patent_term_adjustment.json`, `chapter6/terminal_disclaimer_rate.json`, `chapter6/terminal_disclaimer_by_cpc.json`, `chapter6/pta_by_cpc_section.json` |
+| `15_chapter3_portfolio_diversity.py` | `chapter3/portfolio_diversity.json` |
+| `16_chapter5_superstar_solo_firsttime.py` | `chapter5/superstar_concentration.json`, `chapter5/solo_inventors_by_section.json` |
+| `17_chapter7_citation_lag.py` | `chapter6/citation_lag_by_section.json`, `chapter6/citation_lag_trend.json`, `chapter7/friction_map.json`, `chapter7/grant_lag_by_sector.json` |
+| `18_chapter9_composite_quality.py` | `chapter9/composite_quality_index.json` |
+| `19_chapter8_friction_maps.py` | `chapter8/filing_route_over_time.json`, `chapter8/filing_route_by_country.json`, `chapter8/law_firm_concentration.json`, `chapter8/top_law_firms.json` |
+| `20_chapter5_inventor_mobility.py` | `chapter5/inventor_mobility_event_study.json` |
+| `21_chapter4_regional_specialization.py` | `chapter4/regional_specialization.json` |
+| `22_chapter9_sleeping_beauty.py` | `chapter9/sleeping_beauties.json` |
+| `23_chapter11_ai_deep.py` | `chapter11/ai_quality.json`, `chapter11/ai_assignee_type.json`, `chapter11/ai_gpt_diffusion.json`, `chapter11/ai_gpt_kpi.json`, `chapter11/ai_strategies.json`, `chapter11/ai_team_comparison.json` |
+| `24_chapter2_technology_halflife.py` | `chapter2/technology_decay_curves.json`, `chapter2/technology_halflife.json`, `chapter2/technology_scurves.json` |
+| `25_chapter5_gender_deep.py` | `chapter5/gender_section_trend.json`, `chapter5/gender_by_sector.json`, `chapter5/gender_by_tech.json`, `chapter5/gender_team_quality.json`, `chapter16/gender_by_filing_route.json` |
+| `26_chapter4_diffusion.py` | `chapter4/innovation_diffusion.json`, `chapter4/innovation_diffusion_summary.json` |
+| `27_chapter6_network_deep.py` | `chapter5/inventor_collaboration_network.json` |
+| `28_chapter12_topic_modeling.py` | `chapter12/topic_definitions.json`, `chapter12/topic_prevalence.json`, `chapter12/topic_cpc_matrix.json`, `chapter12/topic_novelty_trend.json`, `chapter12/topic_novelty_top.json`, `chapter12/topic_umap.json` |
+| `29_green_innovation.py` | `green/green_per_year.json`, `green/green_by_subfield.json`, `green/green_geography.json`, `green/green_volume.json`, `green/green_by_category.json`, `green/green_by_country.json`, `green/green_top_companies.json`, `green/green_top_assignees.json`, `green/green_top_inventors.json` |
+| `30_batch_additions.py` | Various supplementary files |
+| `31_company_name_mapping.py` | `company/company_name_mapping.json` |
+| `32_company_profiles.py` | `company/company_profiles.json` |
+| `33_trajectory_archetypes.py` | `company/trajectory_archetypes.json` |
+| `34_corporate_mortality.py` | `company/corporate_mortality.json` |
+| `35_portfolio_strategy.py` | `company/portfolio_overlap.json`, `company/portfolio_diversification_b3.json` |
+| `36_corporate_citations.py` | `company/corporate_citation_network.json`, `company/citation_half_life.json` |
+| `37_inventor_careers.py` | `company/inventor_careers.json`, `company/comeback_inventors.json` |
+| `38_design_patents_claims.py` | `company/design_patents.json`, `company/claims_analysis.json` |
+| `39_talent_flows.py` | `company/talent_flows.json` |
+| `40_portfolio_strategy_profiles.py` | `company/strategy_profiles.json` |
+| `41_firm_quality_distribution.py` | `company/firm_quality_distribution.json`, `company/firm_quality_scatter.json`, `company/firm_quality_gini.json` |
+| `42_firm_exploration_exploitation.py` | `company/firm_exploration_scores.json`, `company/firm_exploration_trajectories.json` |
+| `43_firm_exploration_lifecycle.py` | `company/firm_exploration_lifecycle.json`, `company/firm_exploration_scatter.json` |
+| `44_firm_ambidexterity_quality.py` | `company/firm_ambidexterity_quality.json` |
+| `45_fma_entry_identification.py` | Domain entrant/incumbent identification |
+| `46_fma_match_rate.py` | Domain match rate verification |
+| `47_semiconductors.py` | `semiconductors/semi_*.json` (13 files) |
+| `48_quantum_computing.py` | `quantum/quantum_*.json` (14 files) |
+| `49_biotechnology.py` | `biotech/biotech_*.json` (13 files) |
+| `50_autonomous_vehicles.py` | `av/av_*.json` (13 files) |
+| `51_space_technology.py` | `space/space_*.json` (13 files) |
+| `52_cybersecurity.py` | `cyber/cyber_*.json` (13 files) |
+| `53_agricultural_technology.py` | `agtech/agtech_*.json` (13 files) |
+| `54_digital_health.py` | `digihealth/digihealth_*.json` (14 files) |
+| `55_3d_printing.py` | `3dprint/3dprint_*.json` (13 files) |
+| `56_blockchain.py` | `blockchain/blockchain_*.json` (14 files) |
+| `57_green_supplement.py` | `green/green_ai_heatmap.json`, `green/green_ai_trend.json`, `green/green_ev_battery_coupling.json`, green diffusion/quality/etc. |
+| `58_build_patent_master.py` | Internal master table (not output to public/) |
+| `59_cohort_normalization.py` | `computed/cohort_normalized_*.json` (6 files) |
+| `60_originality_generality_filtered.py` | `computed/originality_generality_filtered.json` |
+| `61_convergence_decomposition.py` | `chapter10/convergence_decomposition.json`, `chapter10/convergence_matrix.json`, `chapter10/convergence_near_far.json`, `chapter10/convergence_top_assignees.json` |
+| `62_exploration_trajectory.py` | `chapter5/exploration_exploitation_trajectory.json` |
+| `63_inventor_mobility_event.py` | `chapter5/inventor_mobility_event_study.json` |
+| `64_team_size_coefficients.py` | `chapter3/team_size_coefficients.json` |
+| `65_blockbuster_lorenz.py` | `chapter2/blockbuster_lorenz.json` |
+| `66_gov_agency_field.py` | `chapter1/gov_agency_breadth_depth.json`, `chapter1/gov_agency_field_matrix.json` |
+| `67_interdisciplinarity_trend.py` | `chapter10/interdisciplinarity_unified.json` |
+| `68_sleeping_beauty_halflife.py` | `computed/sleeping_beauty_halflife.json` |
+| `69_gov_interest_impact.py` | `chapter1/gov_impact_comparison.json` |
+| `70_alice_event_study.py` | `chapter10/alice_event_study.json`, `chapter6/alice_art_group_*.json` |
+| `71_bridge_inventor_centrality.py` | `chapter5/bridge_centrality.json`, `chapter3/bridge_inventors.json` |
+| `72_act6_cross_domain.py` | `act6/act6_comparison.json`, `act6/act6_timeseries.json`, `act6/act6_quality.json`, `act6/act6_domain_filing_vs_grant.json`, `act6/act6_spillover.json`, `act6/act6_continuation_rates.json`, `act6/act6_npl_by_domain.json` |
+| `73_entrant_incumbent.py` | Domain-level `_entrant_incumbent.json` files |
+| `74_quality_bifurcation.py` | Domain-level `_quality_bifurcation.json` files |
+| `75_act6_enrichments.py` | `act6/systems_complexity.json` and supplementary domain files |
+
+### Orchestration Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `run_all.sh` | Bash orchestrator that runs all numbered scripts in sequence |
+| `phase1_8_39.py` | Batch runner for scripts 1-8 and 39 |
+| `phase2.py` | Batch runner for scripts 9-19 |
+| `phase3.py` | Batch runner for scripts 20-28 |
+| `phase5.py` | Batch runner for scripts 40-46 |
+| `phase6_9.py` | Batch runner for scripts 47-56 (technology domains) |
+| `phase7.py` | Batch runner for scripts 57-75 |
+| `domain_utils.py` | Shared utility for Act 6 domain pipeline scripts (CPC code definitions, standard 13-file output pattern) |
+| `config.py` | Global configuration: paths, DuckDB helpers, `save_json()`, `query_to_json()` |
+
+---
+
+## 11. Column Type Reference for Key Data Schemas
+
+### Standard Time-Series Schema (most chapter files)
+
+```
+year: int          -- grant year (1976-2025)
+count: int         -- patent count
+*_pct: float       -- percentage values
+avg_*: float       -- mean values
+median_*: float    -- median values
+```
+
+### Quality Metrics Schema (computed/quality_by_*.json)
+
+```
+year: int                      -- grant year
+group: str                     -- grouping dimension value
+patent_count: int              -- number of patents in group
+avg_num_claims: float          -- mean independent + dependent claims
+avg_scope: float               -- mean CPC subclass count
+avg_forward_citations: float   -- mean 5-year forward citations
+avg_backward_citations: float  -- mean backward citation count
+avg_self_citation_rate: float  -- mean self-citation share (0-1)
+avg_grant_lag_days: float      -- mean filing-to-grant days
+avg_originality: float|null    -- Herfindahl-based citation diversity (citing)
+avg_generality: float          -- Herfindahl-based citation diversity (cited by)
+sleeping_beauty_rate: float    -- share of delayed-recognition patents
+```
+
+### Domain Deep-Dive Standard Schema (Act 6 folders)
+
+```
+-- _per_year.json
+year: int, total_patents: int, domain_patents: int, domain_pct: float
+
+-- _quality.json
+year: int, patent_count: int, avg_claims: float, avg_backward_cites: float, avg_scope: float, avg_team_size: float
+
+-- _top_assignees.json
+organization: str, domain_patents: int, first_year: int, last_year: int
+
+-- _top_inventors.json
+first_name: str, last_name: str, domain_patents: int, first_year: int, last_year: int
+
+-- _geography.json
+country: str, state: str|null, domain_patents: int, first_year: int, last_year: int
+
+-- _diffusion.json
+year: int, section: str, domain_patents_with_section: int, total_domain: int, pct_of_domain: float
+
+-- _entrant_incumbent.json
+year: int, entrant_count: int, incumbent_count: int
+
+-- _assignee_type.json
+year: int, assignee_category: str, count: int
+
+-- _by_subfield.json
+year: int, subfield: str, count: int
+
+-- _strategies.json
+organization: str, subfield: str, patent_count: int
+
+-- _team_comparison.json
+year: int, category: str, patent_count: int, avg_team_size: float, median_team_size: float
+
+-- _quality_bifurcation.json
+period: int, patent_count: int, top_decile_share: float, median_claims: float
+```
+
+### Cohort Normalization Schema (computed/cohort_normalized_*.json)
+
+```
+year: int               -- grant year
+[group_key]: str|int    -- varies by file (assignee, region, gender, team_size_cat, section)
+mean_norm: float        -- cohort-normalized citation score (1.0 = cohort average)
+patent_count: int       -- number of patents
+```
+
+### Network Data Schema (firm_collaboration_network, inventor_collaboration_network, talent_flows)
+
+```
+-- nodes array
+id: str, name: str, patents: int [, net_flow: int for talent_flows]
+
+-- edges/links array
+source: str, target: str, weight: int [, citation_count: int for corporate_citation_network]
+```

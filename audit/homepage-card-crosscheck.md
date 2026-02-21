@@ -284,3 +284,53 @@ All four hero text claims are **verified correct** against the underlying data:
 | 50 Years | 50 | 50 unique years in data | CORRECT |
 | 34 Chapters | 34 | 34 chapter folders (excl. deep-dive-overview) | CORRECT |
 | 458 Visualizations | 458 | 458 ChartContainer instances counted | CORRECT |
+
+---
+
+## Re-Verification (2026-02-21, Section 1.6.4 Independent Audit)
+
+### Method
+
+An independent re-verification was performed by:
+1. Reading `src/lib/constants.ts` to extract all 34 chapter card descriptions.
+2. Extracting every numeric value from each card description using regex.
+3. Searching for each extracted number in the corresponding `src/app/chapters/[slug]/page.tsx` file.
+4. Verifying hero statistics by: counting CHAPTERS array entries (34), counting ChartContainer instances across all chapter pages (458), checking HERO_STATS constants in constants.ts.
+
+### Results
+
+**All 34 chapters re-verified.** Every numeric value in every card description was found in the corresponding chapter page text. The initial automated scan flagged a few numbers as "NOT_FOUND" due to trailing punctuation in regex matching (e.g., `2019.`, `2005.`, `2024.`, `2007.`), but manual inspection confirmed all values are present in the chapter pages.
+
+Specifically, the following values initially appeared missing due to trailing-period regex artifacts but were confirmed present:
+- Ch1 (system-patent-count): `393,000` appears as `'393K'` fallback and `392,618` in chart title; `2019` appears throughout
+- Ch2 (system-patent-quality): `2005` appears in multiple chart titles and KeyFindings
+- Ch4 (system-convergence): `2024` appears in chart titles and KeyFindings
+- Ch5 (system-language): `1976` appears in ChapterHeader subtitle and narrative text
+- Ch8 (org-composition): `2007` appears in KeyFindings and chart titles
+- Ch9 (org-patent-count): `2024` appears in chart data and page text
+- Ch28 (blockchain): `2024` appears in chart titles (line 852: "14.0% by 2024")
+- Ch29 (cybersecurity): `2003` appears in KeyFindings (line 268) and narrative text (line 393)
+
+### Hero Statistics Re-Verification
+
+| Stat | Source | Verified Value | Method | Status |
+|------|--------|---------------|--------|--------|
+| 9.36M Patents | `HERO_STATS.totalPatents = '9.36M'`, `CounterStat target={9.36}` | Consistent | Code inspection | CONFIRMED |
+| 50 Years | `HERO_STATS.yearsCovered = 50`, `startYear: 1976, endYear: 2025` | 2025 - 1976 + 1 = 50 | Code inspection | CONFIRMED |
+| 34 Chapters | `HERO_STATS.chapters = 34`, `CHAPTERS.length = 34` | 34 chapter folders in filesystem | Code + filesystem | CONFIRMED |
+| 458 Visualizations | `HERO_STATS.visualizations = 458` | `grep -c '<ChartContainer'` across all chapter pages = 458 | Grep count | CONFIRMED |
+
+### Timeline Event Count Re-Verification (Chapter 6)
+
+The card states "Twenty-one legislative and judicial events from 1980 to 2025." The `TIMELINE_EVENTS` array in `system-patent-law/page.tsx` contains exactly 21 entries (grep for `year: \d{4},$` yields 21 matches), spanning from 1980 (Bayh-Dole Act) to 2025 (Proposed PREVAIL Act & PERA).
+
+### Flags from Prior Audit: Status Unchanged
+
+All 3 flags from the prior audit remain valid and unresolved:
+1. **FLAG 1 (MEDIUM):** Section-level originality "0.45-0.55" claim not supported by `quality_by_cpc_section.json` data
+2. **FLAG 2 (LOW):** "1.45 million" (card) vs "1.4 million" (org-composition page) rounding inconsistency for Japan patents
+3. **FLAG 3 (LOW):** "32-39%" top-100 concentration floor slightly below actual 31.76% in most recent period
+
+### Independent Audit Conclusion
+
+The independent re-verification confirms the prior audit findings. All 34 chapter card descriptions contain numbers that match the corresponding chapter page text. The hero statistics are all independently verified as correct. The 3 previously flagged items remain the only discrepancies identified.
