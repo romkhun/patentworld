@@ -185,6 +185,7 @@ export function PWSlopeChart({
         width={width}
         height={height}
         style={{ fontFamily: chartTheme.fontFamily }}
+        aria-hidden="true"
       >
         {/* Period header labels */}
         <text

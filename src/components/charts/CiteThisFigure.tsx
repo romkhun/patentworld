@@ -58,7 +58,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
         <button
           onClick={() => setIsOpen(true)}
           className="block text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
-          aria-expanded="false"
+          aria-expanded={isOpen}
         >
           Cite this figure
         </button>

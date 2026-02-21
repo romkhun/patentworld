@@ -376,7 +376,7 @@ export function PWNetworkGraph({
       <svg
         width={dimensions.width}
         height={dimensions.height}
-        role="img"
+        aria-hidden="true"
         aria-label={ariaLabel ?? `Network graph with ${nodes.length} nodes and ${edges.length} connections`}
         onWheel={handleWheel}
         onMouseDown={handleBgMouseDown}

@@ -287,7 +287,7 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
   return (
     <div className="relative w-full h-full flex flex-col">
       <div className="flex-1 min-h-0 relative">
-        <svg ref={svgRef} viewBox="0 0 960 600" className="w-full h-full">
+        <svg ref={svgRef} viewBox="0 0 960 600" className="w-full h-full" aria-hidden="true">
           <defs>
             {/* Per-region arrowhead markers */}
             {Object.entries(REGION_COLORS).map(([region, color]) => (

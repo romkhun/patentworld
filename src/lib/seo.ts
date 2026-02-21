@@ -160,6 +160,16 @@ const CHAPTER_OG_IMAGE: Record<string, string> = {
   'mech-organizations': 'the-knowledge-network',
   'mech-inventors': 'collaboration-networks',
   'mech-geography': 'the-geography-of-innovation',
+  '3d-printing': 'the-technology-revolution',
+  'agricultural-technology': 'innovation-dynamics',
+  'autonomous-vehicles': 'the-technology-revolution',
+  'biotechnology': 'innovation-dynamics',
+  'blockchain': 'the-technology-revolution',
+  'cybersecurity': 'the-technology-revolution',
+  'digital-health': 'innovation-dynamics',
+  'quantum-computing': 'the-technology-revolution',
+  'semiconductors': 'the-technology-revolution',
+  'space-technology': 'the-technology-revolution',
 };
 
 function chapterOgImage(slug: string): string {

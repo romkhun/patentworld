@@ -129,7 +129,7 @@ export function PWChoroplethMap({
 
   return (
     <div className="relative w-full h-full flex flex-col">
-      <svg ref={svgRef} viewBox="0 0 960 600" className="w-full flex-1">
+      <svg ref={svgRef} viewBox="0 0 960 600" className="w-full flex-1" aria-hidden="true">
         {features.map((feature) => {
           const fips = String(feature.id).padStart(2, '0');
           const abbrev = FIPS_TO_ABBREV[fips];

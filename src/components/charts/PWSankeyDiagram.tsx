@@ -147,7 +147,7 @@ export function PWSankeyDiagram({
       <svg
         viewBox={`0 0 ${width} ${height}`}
         className="w-full h-full"
-        role="img"
+        aria-hidden="true"
         aria-label={ariaLabel ?? `Sankey diagram showing flows between ${inputNodes.map(n => n.name).join(', ')}`}
       >
         {/* Links */}
