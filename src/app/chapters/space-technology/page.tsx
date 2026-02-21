@@ -780,7 +780,7 @@ export default function Chapter22() {
         subtitle="Distribution of space patents by assignee type (corporate, university, government, individual) over time."
         title="Corporate Assignees Increasingly Dominate Space Patenting as the Industry Shifts Toward Commercial Activity"
         caption="Distribution of space patent assignees by type (corporate, university, government, individual) over time. The data reveal that the corporate share has intensified as commercial space companies have expanded their R&D activities, while government-affiliated patenting has grown in absolute terms but declined as a proportion."
-        insight="The shift from government-dominated to commercially driven space patenting reflects the broader transformation of the space industry, where private-sector investment now exceeds government funding for many categories of space technology development."
+        insight="The shift from government-dominated to commercially driven space patenting reflects the broader transformation of the space industry, where private-sector investment has grown substantially across many categories of space technology development."
         loading={atL}
         height={500}
       >
