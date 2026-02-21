@@ -52,7 +52,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-language',
     title: 'The Language of Innovation',
     subtitle: 'Semantic analysis of 8.45 million patent abstracts',
-    description: 'Computing and semiconductor topics grew from 12% to 33% of all patents since 1976. Patent novelty (median entropy) rose 6.6% from 1.97 to 2.10, with an upward trend since the late 1980s.',
+    description: 'Computing and semiconductor topics grew from 12% to 33% of all patents since 1976. Patent novelty (median entropy) rose 6.4% from 1.97 to 2.10, with an upward trend since the late 1980s.',
   },
   {
     number: 6,

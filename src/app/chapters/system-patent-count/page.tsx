@@ -100,7 +100,7 @@ export default function SystemPatentCountChapter() {
       <KeyFindings>
         <li>The US patent system granted 9.36 million patents (utility, design, plant, and reissue combined) between 1976 and 2025 — a more than five-fold increase in annual output over five decades.</li>
         <li>Utility patents account for over 90% of all grants, while design patents constitute the principal secondary category.</li>
-        <li>Grant lag — the time from filing to grant — peaked at 3.8 years (average) in 2010 (measured by grant year), creating uncertainty during a period of rapid technological change in computing and telecommunications. By filing year, pendency peaked at 3.8 years in 2006.</li>
+        <li>Grant lag — the time from filing to grant — peaked at 3.8 years (average) in 2010 (measured by grant year), creating uncertainty during a period of rapid technological change in computing and telecommunications. By filing year, median pendency peaked at 3.8 years in 2006.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
