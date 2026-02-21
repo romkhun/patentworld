@@ -127,16 +127,16 @@ export default function OrgPatentPortfolioChapter() {
       <MeasurementSidebar slug="org-patent-portfolio" />
 
       <KeyFindings>
-        <li>248 companies cluster into 8 industries by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple clusters. Companies are grouped into 8 industry clusters using hierarchical agglomerative clustering on their CPC-section patent share vectors, with Ward&apos;s minimum-variance linkage and cosine distance.</li>
+        <li>50 companies across six decades (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity, with technology conglomerates occupying positions at the intersection of multiple groups. Industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass.</li>
         <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses, indicating broad technology coverage.</li>
         <li>IBM (88,600 G-section patents) and Samsung (79,400 H-section patents) maintain the most diversified technology portfolios among the top ten patent holders.</li>
-        <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 5-year windows, with pivots flagged above the 90th percentile threshold) identifies 51 detected pivots across 20 companies, which can precede strategic shifts that later become publicly visible.</li>
+        <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 3-year windows, with pivots flagged above the 95th percentile per-company threshold) identifies 51 detected pivots across 20 companies, which can precede strategic shifts that later become publicly visible.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent portfolio analysis reveals that 248 companies cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple clusters. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, which can precede strategic shifts that later become publicly visible.
+          Patent portfolio analysis reveals that 50 companies (248 company-decade observations) cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple groups. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, which can precede strategic shifts that later become publicly visible.
         </p>
       </aside>
 
@@ -176,9 +176,9 @@ export default function OrgPatentPortfolioChapter() {
 
       <ChartContainer
         id="fig-patent-portfolio-competitive-proximity"
-        subtitle="UMAP projection of patent portfolio similarity among 248 companies, with proximity reflecting cosine similarity of CPC subclass distributions."
-        title="248 Companies Cluster into 8 Industries by Patent Portfolio Similarity"
-        caption="Each point represents a company; proximity reflects similarity in CPC subclass distributions, and color indicates industry cluster. Companies are grouped into 8 industry clusters using hierarchical agglomerative clustering on their CPC-section patent share vectors, with Ward's minimum-variance linkage and cosine distance. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
+        subtitle="UMAP projection of patent portfolio similarity among 50 companies (248 company-decade observations), with proximity reflecting cosine similarity of CPC subclass distributions."
+        title="50 Companies Cluster into 8 Industry Groups by Patent Portfolio Similarity"
+        caption="Each point represents a company-decade observation; proximity reflects similarity in CPC subclass distributions, and color indicates industry group. Industry labels are assigned using a rule-based heuristic on each company's dominant CPC section and top subclass. UMAP projection uses cosine metric with n_neighbors=10. Technology conglomerates occupy positions at the intersection of multiple groups, reflecting diversified portfolio strategies."
         insight="Companies cluster by industry, though the boundaries are increasingly blurred. Technology conglomerates occupy positions at the intersection of multiple clusters, reflecting diversified portfolio strategies."
         loading={poL}
       >
@@ -313,9 +313,9 @@ export default function OrgPatentPortfolioChapter() {
       {pivotCompanyData.length > 0 && (
         <ChartContainer
           id="fig-patent-portfolio-pivot-detection"
-          subtitle="Jensen-Shannon divergence between consecutive 5-year CPC distribution windows, with spikes indicating significant portfolio reorientation."
+          subtitle="Jensen-Shannon divergence between consecutive 3-year CPC distribution windows, with spikes indicating significant portfolio reorientation."
           title={`${activePivotCompany} JSD Scores Flag Portfolio Shifts Among 51 Detected Pivots Across 20 Companies`}
-          caption="Jensen-Shannon divergence between consecutive 5-year windows. Higher values indicate larger shifts in technology portfolio composition. Spikes in JSD correspond to periods when the company's innovation strategy underwent significant reorientation."
+          caption="Jensen-Shannon divergence between consecutive 3-year windows. Higher values indicate larger shifts in technology portfolio composition. Pivots are flagged when JSD exceeds the 95th percentile of each company's own distribution. Spikes correspond to periods when the company's innovation strategy underwent significant reorientation."
           insight="Elevated JSD scores identify periods when a company's innovation strategy underwent significant reorientation, often associated with acquisitions, market shifts, or deliberate R&D pivots."
           loading={pvL}
         >
@@ -426,7 +426,7 @@ export default function OrgPatentPortfolioChapter() {
 
       <InsightRecap
         learned={[
-          "248 companies cluster into 8 industries by patent portfolio similarity, revealing that technology strategy is structured by industry boundaries.",
+          "50 companies (248 company-decade observations) cluster into 8 industry groups by patent portfolio similarity, revealing that technology strategy is structured by industry boundaries.",
           "51 technology pivots were detected across 20 companies, which can precede strategic shifts that later become publicly visible.",
         ]}
         falsifiable="If patent portfolio pivots predict corporate strategy changes, then firms showing CPC composition shifts should subsequently announce corresponding business unit expansions or acquisitions."
@@ -438,7 +438,7 @@ export default function OrgPatentPortfolioChapter() {
       />
 
       <DataNote>
-        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP for 248 companies across 8 industry clusters. The 8 industry clusters were identified using hierarchical agglomerative clustering on CPC-section patent share vectors, with Ward&apos;s minimum-variance linkage and cosine distance. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 5-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 90th percentile threshold across all firm-windows, yielding 51 detected pivots across 20 companies. Source: PatentsView.
+        Competitive proximity uses cosine similarity of CPC subclass distributions projected to 2D via UMAP (cosine metric, n_neighbors=10, min_dist=0.3) for 50 companies across six decades (248 company-decade observations). The 8 industry labels are assigned using a rule-based heuristic on each company&apos;s dominant CPC section and top subclass (e.g., H01L → Semiconductor, B60 → Automotive), not statistical clustering. Portfolio diversification tracks Shannon entropy across CPC subclasses per period for the top 50 filers. Corporate technology portfolios use CPC section-level classification for the late period (2001-2025). Technology pivot detection uses Jensen-Shannon divergence between consecutive 3-year windows of CPC subclass distributions; a pivot is flagged when JSD exceeds the 95th percentile of that company&apos;s own JSD distribution, yielding 51 detected pivots across 20 companies. Source: PatentsView.
       </DataNote>
 
       <RelatedChapters currentChapter={11} />

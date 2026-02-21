@@ -113,13 +113,13 @@ export default function OrgCompositionChapter() {
       <KeyFindings>
         <li>Corporations hold the substantial majority of US patents, growing from 94% to 99% of annual grants between 1976 and 2024, while individual inventors constitute a progressively smaller fraction.</li>
         <li>Foreign assignees surpassed US-based assignees around 2007 and now account for 53% of patent grants in the 2020s, reflecting the globalization of R&amp;D.</li>
-        <li>Japan accounts for 1.4 million US patents since 1976, with South Korea (359K) and China (222K) rising rapidly as successive waves of international entry reshape the patent system.</li>
+        <li>Japan accounts for 1.45 million US patents since 1976, with South Korea (359K) and China (222K) rising rapidly as successive waves of international entry reshape the patent system.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Corporate assignees now account for 99% of US patent grants, up from 94% in 1976. Foreign assignees surpassed domestic filers around 2007, with Japan (1.4 million cumulative patents), South Korea, and China as the leading contributors. The US patent system has become the de facto global standard for protecting high-value inventions regardless of assignee nationality.
+          Corporate assignees now account for 99% of US patent grants, up from 94% in 1976. Foreign assignees surpassed domestic filers around 2007, with Japan (1.45 million cumulative patents), South Korea, and China as the leading contributors. The US patent system has become the de facto global standard for protecting high-value inventions regardless of assignee nationality.
         </p>
       </aside>
 
@@ -233,10 +233,10 @@ export default function OrgCompositionChapter() {
 
       <ChartContainer
         id="fig-org-composition-non-us-assignees"
-        title="Japan Accounts for 1.4 Million US Patents Since 1976, With South Korea (359K) and China (222K) Rising Rapidly"
+        title="Japan Accounts for 1.45 Million US Patents Since 1976, With South Korea (359K) and China (222K) Rising Rapidly"
         subtitle="Annual patent grants by primary assignee country/region, showing successive waves of international entry, 1976-2025"
         caption="Annual patent grants by primary assignee country/region, 1976-2025. Categories: United States, Japan, South Korea, China, Germany, Rest of Europe, Rest of World. The stacked area chart reveals sequential waves of international entry into the US patent system."
-        insight="Japan drove the first wave of non-US patenting in the 1980s-90s, particularly in automotive and electronics. South Korea emerged as a major presence in the 2000s, while China's share has grown rapidly since 2010, concentrated primarily in telecommunications and computing."
+        insight="Japan led the first wave of non-US patenting in the 1980s-90s, particularly in automotive and electronics. South Korea emerged as a major presence in the 2000s, while China's share has grown rapidly since 2010, concentrated primarily in telecommunications and computing."
         loading={nuL}
         height={500}
         wide
@@ -375,7 +375,7 @@ export default function OrgCompositionChapter() {
       <InsightRecap
         learned={[
           "Corporate assignees grew from 94% to 99% of US patent grants, with individual inventors consistently representing under 2% of total grants.",
-          "Foreign assignees surpassed US-based assignees around 2007, with Japan accounting for 1.4 million US patents since 1976.",
+          "Foreign assignees surpassed US-based assignees around 2007, with Japan accounting for 1.45 million US patents since 1976.",
         ]}
         falsifiable="If foreign assignee growth reflects genuine R&D globalization rather than strategic filing behavior, then the quality of foreign-origin patents (measured by cohort-normalized citations) should be comparable to domestic-origin patents."
         nextAnalysis={{

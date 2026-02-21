@@ -537,7 +537,7 @@ export default function OrgPatentQualityChapter() {
         <p>
           Apple&apos;s 35.9 average NPL citations per patent — nearly 7 times the median firm in this
           ranking — reflects a distinctive R&amp;D strategy that draws heavily on scientific literature.
-          The wide variation across firms, from 35.9 (Apple) to 0.57 (SK hynix), distinguishes
+          The wide variation across firms, from 35.9 (Apple) to 0.57 (SK Hynix), distinguishes
           science-intensive innovators from firms that rely primarily on prior patent art.
         </p>
       </KeyInsight>

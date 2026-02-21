@@ -466,7 +466,7 @@ export default function Chapter12() {
           subtitle="Annual ranking of the top 15 organizations by agricultural patent grants from 2000 to 2025, with darker cells indicating higher rank."
           title="Organizational Rankings Reveal Shifting Competitive Dynamics as Consolidation Reshapes the Agricultural Patent Landscape"
           caption="Annual ranking of the top 15 organizations by agricultural patent grants, 2000-2025. Darker cells indicate higher rank (more patents). The data reveal the effects of industry consolidation, with mergers and acquisitions reshaping rankings over time."
-          insight="The rank heatmap captures how mergers and strategic R&D investments have reshaped agricultural patent leadership, with Deere's sustained dominance contrasting with the turbulence caused by consolidation among seed and chemical companies."
+          insight="The rank heatmap captures how mergers and strategic R&D investments have reshaped agricultural patent leadership, with Deere's sustained dominance contrasting with the turbulence accompanying consolidation among seed and chemical companies."
           loading={ootL}
           height={600}
           flexHeight

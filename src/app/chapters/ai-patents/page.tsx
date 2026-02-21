@@ -859,7 +859,7 @@ export default function Chapter13() {
         id="fig-ai-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed an AI patent."
         title="2010s AI Entrants Patent at 134 Patents per Year, Nearly Double the 68 per Year of 1970s Entrants"
-        caption="Mean patents per active year for top AI organizations grouped by entry decade. The 2.0x velocity increase from 1970s to 2010s cohorts reflects the acceleration of AI patenting enabled by cloud infrastructure, pre-trained models, and large-scale data availability."
+        caption="Mean patents per active year for top AI organizations grouped by entry decade. The 2.0x velocity increase from 1970s to 2010s cohorts reflects the acceleration of AI patenting, coinciding with the rise of cloud infrastructure, pre-trained models, and large-scale data availability."
         insight="The velocity acceleration is concentrated in the 2000s and 2010s cohorts, coinciding with the deep learning revolution and the entry of technology firms that rapidly scaled AI patent portfolios from near-zero to thousands of annual filings."
         loading={taL}
       >

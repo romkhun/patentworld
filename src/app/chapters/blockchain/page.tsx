@@ -823,7 +823,7 @@ export default function Chapter16() {
           hype cycles manifest in the patent system. The Bitcoin whitepaper of 2009 sparked
           initial interest. Ethereum&apos;s launch in 2015 expanded the conceptual scope of
           blockchain beyond cryptocurrency to programmable smart contracts. The ICO boom of
-          2017 and the NFT/DeFi peak of 2021 drove successive waves of patent filings. The
+          2017 and the NFT/DeFi peak of 2021 coincided with successive waves of patent filings. The
           subsequent decline coincided with a broader crypto market downturn, though disentangling
           market sentiment from concept exhaustion and tightening venture capital remains difficult. This pattern raises
           important questions about the relationship between patent filing incentives and

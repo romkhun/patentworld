@@ -426,7 +426,7 @@ export default function SystemConvergenceChapter() {
       {/* ── Closing Transition ── */}
 
       <Narrative>
-        The first four chapters established how the patent system grew, which technology fields fueled that expansion, and how those fields increasingly converge across once-separate domains. The analysis now turns to the language of patents themselves. The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. <Link href="/chapters/system-language" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Language of Innovation</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of US patenting.
+        The first four chapters established how the patent system grew, which technology fields accompanied that expansion, and how those fields increasingly converge across once-separate domains. The analysis now turns to the language of patents themselves. The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. <Link href="/chapters/system-language" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Language of Innovation</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of US patenting.
       </Narrative>
 
       <InsightRecap
