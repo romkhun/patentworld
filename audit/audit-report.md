@@ -10,7 +10,7 @@
 
 | Track | Items Checked | Errors Found | Severity | Phase 2 Status |
 |-------|--------------|-------------|----------|----------------|
-| **Track A — Data Accuracy** | 40+ hardcoded claims verified against raw PatentsView data; 151 homepage card numbers checked | 3 cross-page consistency issues fixed | Minor | **All fixed** |
+| **Track A — Data Accuracy** | 40+ hardcoded claims verified against raw PatentsView data; 151 homepage card numbers checked | 6 data issues fixed (3 consistency + 3 spot-check) | Minor | **All fixed** |
 | **Track B — External Claims** | 15 sampled external claims (10 patent law, 5 technology milestones) | 0 errors found — 15/15 verified correct (100%) | — | **Complete** |
 | **Track C — Methodology** | 26 derived metrics, 6 methodology areas, network/pivot analysis | 3 medium, 8 minor, 1 critical (fabricated clustering) | Critical-Medium | **All fixed** |
 | **General** | SEO, structure, accessibility, performance, language | 12 structural + 16 language issues | Minor-Medium | **All fixed** |
@@ -86,6 +86,14 @@
 
 All 12 domains use identical metric definitions via shared `domain_utils.py`. Cohort boundaries (1970s, 1980s, ..., 2010s) are consistent across all chapters. All superlatives verified against all 12 domains simultaneously. See `audit/superlative-checks.md` for full details.
 
+### Spot-Check Fixes (§3.7)
+
+| Chapter | Claim (Before) | Correct Value | Source | Status |
+|---------|---------------|---------------|--------|--------|
+| Ch11 | Mitsubishi entropy 6.7 / 229 subclasses | 7.05 / 287 subclasses (2016 peak) | portfolio_diversification_b3.json | ✅ Fixed |
+| Ch28 | Bitcoin whitepaper 2009 | October 31, 2008 | bitcoin.org/bitcoin.pdf | ✅ Fixed |
+| Ch5 | UMAP DataNote: 15,000 (600/topic) | 5,000 (200/topic) | topic_umap.json (5,000 points) | ✅ Fixed |
+
 ### Homepage Hero Stats
 
 | Stat | Claimed | Verified | Status |
@@ -153,7 +161,7 @@ All 12 domains use identical metric definitions via shared `domain_utils.py`. Co
 | C-5 | Originality/Generality | HJT small-sample correction not applied | Added note in methodology page | ✅ Fixed |
 | C-6 | Entropy | Methodology page says `ln()` but main implementation uses `log2` | Updated methodology page to specify log₂ for topics, ln for portfolios | ✅ Fixed |
 | C-7 | Entropy | No normalization despite methodology page mentioning it | Clarified in updated entropy description that values depend on log base and categories | ✅ Fixed |
-| C-8 | NLP | UMAP sample size: code=15,000, DataNote says 5,000 | Fixed DataNote: 5,000 → 15,000 (600/topic) | ✅ Fixed |
+| C-8 | NLP | UMAP sample size: DataNote said 15,000 (600/topic) but actual data file has 5,000 (200/topic) | Corrected DataNote to 5,000 (200/topic), matching topic_umap.json and chart title/caption | ✅ Fixed |
 | C-9 | NLP | No topic coherence metrics reported | Added note about interpretability-based selection in DataNote | ✅ Fixed |
 | C-10 | Gender | MeasurementSidebar says "male_flag" but field is "gender_code" | Fixed in chapterMeasurementConfig.ts | ✅ Fixed |
 | C-11 | Gender | Ethnic/geographic inference bias not explicitly disclosed | Added note about higher error rates for non-Western names in inv-gender DataNote | ✅ Fixed |
