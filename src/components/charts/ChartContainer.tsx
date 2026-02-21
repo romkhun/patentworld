@@ -27,12 +27,14 @@ interface ChartContainerProps {
 export function ChartContainer({ title, subtitle, caption, insight, height = 600, loading, wide, ariaLabel, id, interactive, statusText, flexHeight, controls, badgeProps, children }: ChartContainerProps) {
   const { ref, inView } = useInView({ threshold: 0.05, rootMargin: '200px' });
   const headingId = id ? `${id}-heading` : undefined;
+  const captionId = id && caption ? `${id}-caption` : undefined;
 
   return (
     <figure
       ref={ref}
       id={id}
       aria-labelledby={headingId}
+      aria-describedby={captionId}
       className={`fade-in-section relative my-16 rounded-lg border bg-card p-4 sm:p-6 overflow-hidden max-w-[960px] mx-auto ${wide ? '-mx-4 lg:-mx-8 !max-w-none' : ''} ${inView ? 'is-visible' : ''}`}
     >
       {/* Colored top-border accent */}
@@ -46,6 +48,12 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">{subtitle}</p>
       )}
       {!subtitle && <div className="mb-3" />}
+      <noscript>
+        <p className="my-4 rounded border border-muted p-4 text-sm text-muted-foreground">
+          This visualization requires JavaScript.{' '}
+          {subtitle ?? caption ?? title}
+        </p>
+      </noscript>
       {(controls || badgeProps) && (
         <div className="mb-3 flex items-center justify-between gap-2">
           {badgeProps ? <DataBadge {...badgeProps} /> : <div />}
@@ -98,7 +106,7 @@ export function ChartContainer({ title, subtitle, caption, insight, height = 600
         <p className="sr-only" aria-live="polite">{statusText}</p>
       )}
       {caption && (
-        <figcaption className="mt-2 text-[13px] leading-relaxed text-muted-foreground/80">{caption}</figcaption>
+        <figcaption id={captionId} className="mt-2 text-[13px] leading-relaxed text-muted-foreground/80">{caption}</figcaption>
       )}
       {insight && (
         <div className="mt-2 border-l-2 border-primary/30 pl-4 text-sm leading-relaxed text-foreground/80">
