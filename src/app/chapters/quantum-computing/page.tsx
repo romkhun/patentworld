@@ -826,7 +826,7 @@ export default function Chapter20() {
         id="fig-quantum-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in quantum computing patenting."
         title="Top-4 Concentration in Quantum Computing Patents Declined From 76.9% in 2003 to 28.4% by 2025 (Through September)"
-        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025 (through September) indicates broadening participation, though concentration remains among the highest of the ACT 6 domains alongside agricultural technology (33%)."
+        caption="CR4 computed as the sum of the top 4 organizations' annual patent counts divided by total quantum patents. The extremely high early concentration reflects the field's origin in a handful of corporate and government research labs. The decline to 28% by 2025 (through September) indicates broadening participation, though concentration remains among the highest of the ACT 6 domains alongside agricultural technology (33%) and semiconductors (32%)."
         insight="Quantum computing's high residual concentration (28%) is consistent with the enormous capital requirements for quantum hardware research, which limit participation to well-funded organizations with access to cryogenic facilities and specialized fabrication capabilities."
         loading={ootL || pyL}
       >
@@ -894,7 +894,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <InsightRecap
-        learned={["Quantum computing remains among the most concentrated technology domains alongside agricultural technology, with top-four firms holding 28.4% in 2025 (through September), down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry."]}
+        learned={["Quantum computing remains among the most concentrated technology domains alongside agricultural technology and semiconductors, with top-four firms holding 28.4% in 2025 (through September), down from 76.9% in 2003.", "It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry."]}
         falsifiable="If high concentration reflects genuine technical barriers rather than strategic patent thickets, then new entrants should produce patents with lower scope and fewer claims than incumbents."
         nextAnalysis={{ label: "Semiconductors", description: "The silicon foundation of modern technology — the only domain with rising concentration", href: "/chapters/semiconductors/" }}
       />

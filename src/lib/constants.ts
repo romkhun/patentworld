@@ -246,14 +246,14 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'quantum-computing',
     title: 'Quantum Computing',
     subtitle: 'From theoretical foundations to practical hardware',
-    description: 'Quantum computing remains among the most concentrated advanced technology domains alongside agricultural technology, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry.',
+    description: 'Quantum computing remains among the most concentrated advanced technology domains alongside agricultural technology and semiconductors, with the top four firms holding 28.4% of patents in 2025 (through September), down from 76.9% in 2003. It is the only domain where early entrants (1990s cohort) patent faster than later entrants, a pattern consistent with high hardware IP barriers to entry.',
   },
   {
     number: 33,
     slug: 'semiconductors',
     title: 'Semiconductors',
     subtitle: 'The silicon foundation of modern technology',
-    description: 'Semiconductor patents uniquely exhibit rising concentration, with top-four-firm share increasing from 11.3% in 1977 to 32.6% in 2023 — the only advanced technology domain showing sustained consolidation. Entry velocity plateaued at 197 patents per year for both 1990s and 2010s cohorts.',
+    description: 'Semiconductor patents exhibit rising concentration since 2010, with top-four-firm share increasing from 18.3% in 2010 to 32.6% in 2023 — the primary advanced technology domain showing sustained recent consolidation. Entry velocity plateaued at 197 patents per year for both 1990s and 2010s cohorts.',
   },
   {
     number: 34,
