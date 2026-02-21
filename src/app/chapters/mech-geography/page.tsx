@@ -141,7 +141,7 @@ export default function MechGeographyChapter() {
 
       <Narrative>
         <p>
-          International co-invention rates -- the share of US patents with inventors from multiple countries -- illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018, coinciding with changes in bilateral technology policy.
+          International co-invention rates -- the share of US patents with inventors from multiple countries -- illuminate the evolving geography of collaborative innovation. US-China co-invention has grown substantially from near zero in the 1990s to over 2% by 2025 (through September), though growth rates moderated in certain technology areas after 2018, coinciding with new US export control regulations and entity list restrictions.
         </p>
       </Narrative>
 
@@ -192,7 +192,7 @@ export default function MechGeographyChapter() {
 
       <KeyInsight>
         <p>
-          The US-China co-invention data indicate substantial growth across most technology areas, though growth rates moderated in certain sectors after 2018, coinciding with new export control regulations and entity list restrictions. The broad-based nature of this collaboration suggests deeply integrated research ties that span multiple technology domains, even as bilateral technology policy changes have introduced new uncertainties into the relationship.
+          The US-China co-invention data indicate substantial growth across most technology areas, though growth rates moderated in certain sectors after 2018, coinciding with new export control regulations and entity list restrictions. The broad-based nature of this collaboration suggests deeply integrated research ties that span multiple technology domains, even as export control and entity list changes after 2018 have introduced new constraints on cross-border collaboration.
         </p>
       </KeyInsight>
 

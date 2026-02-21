@@ -178,7 +178,7 @@ export default function InvGenderChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% (through September 2025) over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering at the lowest levels. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
+          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% (through September 2025) over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering at the lowest levels. All-male teams receive the highest average citations (14.2), followed by mixed-gender teams (12.6) and all-female teams (9.5), though these raw differences likely reflect underlying variation in field composition, team size, and institutional context rather than a direct effect of gender composition.
         </p>
       </aside>
 

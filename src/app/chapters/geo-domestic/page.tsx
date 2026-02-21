@@ -254,8 +254,8 @@ export default function GeoDomesticChapter() {
       <KeyInsight>
         <p>
           Innovation activity is disproportionately concentrated in coastal states. California alone accounts for more
-          patents than the bottom 30 states and territories combined, indicating the predominant role of Silicon Valley
-          in US patenting activity.
+          patents than the bottom 30 states and territories combined, reflecting the concentration of semiconductor,
+          software, and biotechnology firms across the state&apos;s major metropolitan areas.
         </p>
       </KeyInsight>
 

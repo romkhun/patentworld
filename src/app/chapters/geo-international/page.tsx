@@ -150,7 +150,7 @@ export default function GeoInternationalChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, but China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 has transformed the competitive landscape. Countries with smaller portfolios occasionally achieve higher average claims, suggesting a quality-oriented approach, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect different patent drafting conventions, technology composition, or strategic filing approaches.
+          Successive waves of foreign filings from Japan, South Korea, and China have reshaped the composition of the US patent system. Japan dominates foreign filings with 1.45 million US patents, while China&apos;s growth from 299 filings in 2000 to 30,695 in 2024 represents a substantial shift in the international composition of US patent filings. Countries with smaller portfolios occasionally achieve higher average claim counts, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect different patent drafting conventions, technology field composition, or examination practices.
         </p>
       </aside>
 
@@ -335,7 +335,7 @@ export default function GeoInternationalChapter() {
         id="fig-geo-intl-claims-by-country"
         subtitle="Average claims per patent by primary assignee country for the most recent decade, comparing patent scope across origins."
         title="The United States Leads with 164,000 Patents Granted Cumulatively During the 2020s (by Assignee Country) and 18.4 Average Claims, While China's 19,200 Patents Average 14.7 Claims"
-        caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Higher claim counts generally indicate broader patent scope. The United States leads in both volume and average claims, whereas rapidly growing patent origins such as China exhibit lower average claims."
+        caption="The figure displays the average number of claims per patent by primary assignee country for the most recent decade. Average claim counts vary across countries, reflecting differences in patent drafting conventions, technology field composition, and examination practices. Claim count is a measure of patent scope, not a direct quality indicator."
         insight="Countries with smaller patent portfolios occasionally achieve higher average claim counts. The lower average claims from countries with rapidly growing patent volumes may reflect differences in patent drafting conventions, technology composition, or strategic filing approaches."
         loading={qcL}
         height={550}
@@ -350,7 +350,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The cross-country comparison reveals that patent volume and quality do not necessarily align. Countries with smaller portfolios occasionally achieve higher average claim counts, suggesting a quality-oriented filing strategy. The lower average claims from countries with rapidly growing patent volumes, including China, may reflect differences in patent drafting conventions, technology field composition, or strategic filing approaches, and parallel patterns observed in other countries during periods of rapid patent volume growth.
+          The cross-country comparison reveals that patent volume and average claim counts do not necessarily align. Countries with smaller portfolios occasionally achieve higher average claim counts, a pattern that may reflect technology field composition, patent drafting conventions, or examination practices. The lower average claims from countries with rapidly growing patent volumes, including China, parallel patterns observed in other countries during periods of rapid patent volume growth.
         </p>
       </KeyInsight>
 
@@ -465,7 +465,7 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          The trajectory of country-level filing reveals distinct phases in the internationalization of the US patent system. Japan&apos;s sustained dominance in foreign filings, South Korea&apos;s rapid ascent through the 1990s and 2000s, and China&apos;s explosive recent growth together illustrate how successive waves of industrialization and technology development translate into patent activity in the world&apos;s largest innovation market.
+          The trajectory of country-level filing reveals distinct phases in the internationalization of the US patent system. Japan&apos;s sustained dominance in foreign filings, South Korea&apos;s rapid ascent through the 1990s and 2000s, and China&apos;s rapid recent growth together illustrate how successive waves of industrialization and technology development translate into patent activity in the world&apos;s largest innovation market.
         </p>
       </KeyInsight>
 
