@@ -1,0 +1,231 @@
+{
+  "_metadata": {
+    "description": "Sitewide number registry per Constraint 35. Every headline number, its definition, denominator/basis, and all locations where it appears.",
+    "generated": "2026-02-21",
+    "audit_version": "v7"
+  },
+  "hero_stats": [
+    {
+      "value": "9.36M",
+      "definition": "Total US patent grants (utility, design, plant, reissue) 1976-Sep 2025",
+      "denominator": "All patent types",
+      "locations": [
+        "HERO_STATS.totalPatents (constants.ts:302)",
+        "HomeContent.tsx:92 (hero text)",
+        "HomeContent.tsx:98 (CounterStat)",
+        "SITE_DESCRIPTION (constants.ts:2)",
+        "seo.ts:255 (JSON-LD Dataset description)",
+        "system-patent-count chapter page (chapter body)",
+        "llms.txt"
+      ],
+      "consistent": true
+    },
+    {
+      "value": "50",
+      "definition": "Years of data coverage (1976-2025)",
+      "denominator": "Calendar years",
+      "locations": [
+        "HERO_STATS.yearsCovered (constants.ts:303)",
+        "HomeContent.tsx:99 (CounterStat)",
+        "HomeContent.tsx:126 (chart title: '50 Years of US Patent Grants')"
+      ],
+      "consistent": true
+    },
+    {
+      "value": "34",
+      "definition": "Total chapters",
+      "denominator": "Chapter count",
+      "locations": [
+        "HERO_STATS.chapters (constants.ts:306)",
+        "HomeContent.tsx:100 (CounterStat)",
+        "CHAPTERS array length (constants.ts:20-265)"
+      ],
+      "consistent": true
+    },
+    {
+      "value": "458",
+      "definition": "Interactive visualizations (excluding homepage chart)",
+      "denominator": "ChartContainer count in chapter pages",
+      "locations": [
+        "HERO_STATS.visualizations (constants.ts:307)",
+        "HomeContent.tsx:101 (CounterStat)"
+      ],
+      "consistent": true,
+      "note": "459 total ChartContainers exist (458 in chapters + 1 homepage). HERO_STATS correctly reports 458 chapter visualizations."
+    }
+  ],
+  "concordance_table": [
+    {
+      "statistic": "70,000 patents in 1976",
+      "locations": ["HomeContent.tsx:93 (hero)", "constants.ts:27 (Ch1 desc)", "seo.ts (JSON-LD hasPart)"],
+      "consistent": true
+    },
+    {
+      "statistic": "374,000 patents in 2024",
+      "locations": ["HomeContent.tsx:93 (hero)", "constants.ts:27 (Ch1 desc)", "seo.ts (JSON-LD hasPart)"],
+      "consistent": true
+    },
+    {
+      "statistic": "Five-fold increase",
+      "locations": ["HomeContent.tsx:93 (hero)", "constants.ts:27 (Ch1 desc)"],
+      "consistent": true
+    },
+    {
+      "statistic": "27% to 57% G+H share",
+      "locations": ["HomeContent.tsx:94 (hero)", "constants.ts:41 (Ch3 desc)"],
+      "consistent": true
+    },
+    {
+      "statistic": "IBM 161,888 patents",
+      "locations": ["constants.ts:84 (Ch9 desc)", "org-patent-count chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "Japan 1.45M US patents",
+      "locations": ["constants.ts:77 (Ch8 desc)", "constants.ts:156 (Ch19 desc)", "geo-international chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "NIH/HHS 55,587 patents",
+      "locations": ["constants.ts:69 (Ch7 desc)", "system-public-investment chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "Female 2.8% to 14.9%",
+      "locations": ["constants.ts:134 (Ch16 desc)", "inv-gender chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "Team size 1.7 to 3.2",
+      "locations": ["constants.ts:141 (Ch17 desc)", "inv-team-size chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "California 23.6% share",
+      "locations": ["constants.ts:149 (Ch18 desc)", "geo-domestic chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "AI 5.7-fold growth",
+      "locations": ["constants.ts:200 (Ch25 desc)", "ai-patents chapter page"],
+      "consistent": true
+    },
+    {
+      "statistic": "393,000 peak in 2019",
+      "locations": ["constants.ts:27 (Ch1 desc)", "system-patent-count chapter page"],
+      "consistent": true
+    }
+  ],
+  "chapter_headline_numbers": {
+    "system-patent-count": {
+      "numbers": ["70,000 (1976)", "374,000 (2024)", "393,000 (2019 peak)", "3.8 years (2010 pendency peak)"],
+      "denominator": "All patent types"
+    },
+    "system-patent-quality": {
+      "numbers": ["9.4 claims (baseline)", "18.9 claims (2005 peak)", "6.4 fwd citations (2019 peak)", "0.09→0.25 originality", "0.28→0.15 generality"],
+      "denominator": "All patent types"
+    },
+    "system-patent-fields": {
+      "numbers": ["27%→57% G+H share", "1,000%+ fastest digital growth", "32-39% top-100 corporate share"],
+      "denominator": "All grants"
+    },
+    "system-convergence": {
+      "numbers": ["21%→40% multi-section", "12.5%→37.5% G-H pair"],
+      "denominator": "All grants / cross-section patents"
+    },
+    "system-language": {
+      "numbers": ["8.45M abstracts", "12%→33% computing topics", "1.97→2.10 median entropy (6.6% rise)"],
+      "denominator": "All patents with abstracts"
+    },
+    "system-patent-law": {
+      "numbers": ["21 legislative/judicial events", "Alice 2014", "AIA 2011"],
+      "denominator": "N/A (legal events)"
+    },
+    "system-public-investment": {
+      "numbers": ["1,294 (1980)→8,359 (2019) govt patents", "55,587 HHS/NIH", "43,736 Defense", "33,994 Energy"],
+      "denominator": "Government-interest patents"
+    },
+    "org-composition": {
+      "numbers": ["94%→99% corporate", "~2007 foreign surpassed US", "1.45M Japan"],
+      "denominator": "All grants with assignees"
+    },
+    "org-patent-count": {
+      "numbers": ["161,888 IBM", "9,716 Samsung (2024)", "32-39% top-100 share"],
+      "denominator": "Corporate patents"
+    },
+    "org-patent-quality": {
+      "numbers": ["6.7% Amazon blockbuster", "30.7 Microsoft avg citations", "6.3-14.3 year half-lives"],
+      "denominator": "Top organizational filers"
+    },
+    "org-patent-portfolio": {
+      "numbers": ["50 companies", "248 observations", "8 industry groups", "7.1 peak Shannon entropy", "287 CPC subclasses", "51 pivots", "20 companies"],
+      "denominator": "Top 50 filers by decade"
+    },
+    "inv-top-inventors": {
+      "numbers": ["5% → 63.2% patents", "26%→60% annual share", "6,709 most prolific", "10-965 avg citations range"],
+      "denominator": "All disambiguated inventors"
+    },
+    "inv-generalist-specialist": {
+      "numbers": ["20%→48% specialists", "9.3 vs 8.2 citations", "0.212 vs 0.165 originality"],
+      "denominator": "Inventors with 2+ patents"
+    },
+    "inv-serial-new": {
+      "numbers": ["140,490 peak first-time (2019)", "37-51% 5-year survival", "1.4→2.1 productivity"],
+      "denominator": "All disambiguated inventors"
+    },
+    "inv-gender": {
+      "numbers": ["2.8%→14.9% female share", "14.2 vs 12.6 vs 9.5 citations", "14.6% chemistry female cumulative", "23.4% chemistry recent"],
+      "denominator": "Gender-inferred inventors (binary classification)"
+    },
+    "inv-team-size": {
+      "numbers": ["1.7→3.2 team size", "58%→23% solo", "16.7 vs 11.6 claims"],
+      "denominator": "All patents"
+    },
+    "geo-domestic": {
+      "numbers": ["23.6% California", "992,708 CA patents", "20.1% MI mechanical", "65.1% CA physics+electricity"],
+      "denominator": "All US-inventor patents"
+    },
+    "geo-international": {
+      "numbers": ["1.45M Japan", "299→30,695 China (2000→2024)", "164,000 US 2020s cumulative", "18.4 US avg claims"],
+      "denominator": "All grants by assignee country"
+    },
+    "mech-organizations": {
+      "numbers": ["11/20 exploration <5%", "2.3x blockbuster rate balanced vs specialist", "618 organizations in network"],
+      "denominator": "Top 20 filers / co-patenting network"
+    },
+    "mech-inventors": {
+      "numbers": ["632 prolific inventors", "1,236 co-invention ties", "143,524 movements", "1.3%→5.1% international mobility", "77.6% US involvement"],
+      "denominator": "Top 50 organizations"
+    },
+    "mech-geography": {
+      "numbers": ["1.0%→10.0% international co-invention", "77→2,749 US-China (2000→2024)"],
+      "denominator": "All patents"
+    },
+    "ai-patents": {
+      "numbers": ["5.7-fold growth", "5,201→29,624 (2012→2023)", "9.4% of all grants", "16,781 IBM", "7,775 Google", "6,195 Samsung"],
+      "denominator": "AI-classified patents"
+    },
+    "blockchain": {
+      "numbers": ["2022 peak", "26.3% top-4 (2018)", "14.0% top-4 (2024)"],
+      "denominator": "Blockchain-classified patents"
+    },
+    "biotechnology": {
+      "numbers": ["13.5%→4.6% top-4 concentration", "0.32→0.94 subfield diversity"],
+      "denominator": "Biotech-classified patents"
+    },
+    "green-innovation": {
+      "numbers": ["1.8-fold velocity", "68→122 patents/year", "7,363 battery", "5,818 EV", "3,453 renewable", "13,771 Samsung", "12,636 Toyota", "10,812 GE"],
+      "denominator": "Green-classified patents"
+    },
+    "quantum-computing": {
+      "numbers": ["28.4% top-4 (2025)", "76.9% top-4 (2003)"],
+      "denominator": "Quantum-classified patents"
+    },
+    "semiconductors": {
+      "numbers": ["18.3%→32.6% top-4 (2010→2023)", "197 patents/year plateau"],
+      "denominator": "Semiconductor-classified patents"
+    }
+  },
+  "conflicts_detected": 0,
+  "conflict_details": []
+}
