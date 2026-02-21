@@ -6,7 +6,7 @@
 
 PatentWorld is a data exploration platform presenting 50 years of United States patent activity through interactive visualizations. Created by Saerom (Ronnie) Lee, Assistant Professor of Management at The Wharton School, University of Pennsylvania.
 
-- Data source: USPTO PatentsView bulk data download, accessed January 2025
+- Data source: USPTO PatentsView bulk data download, accessed February 2026
 - Temporal coverage: January 1976 - September 2025
 - Patent types: utility, design, plant, and reissue
 - Total patents: 9.36 million
@@ -78,7 +78,7 @@ PatentWorld is a data exploration platform presenting 50 years of United States 
 
 ## Data
 
-- Source: USPTO PatentsView (patentsview.org), bulk data download accessed January 2025
+- Source: USPTO PatentsView (patentsview.org), bulk data download accessed February 2026
 - Coverage: 9.36 million granted US patents (utility, design, plant, reissue)
 - Time period: January 1976 - September 2025
 - Classifications: Cooperative Patent Classification (CPC), WIPO technology fields
