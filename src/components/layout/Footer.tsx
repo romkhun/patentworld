@@ -21,7 +21,6 @@ export function Footer() {
             <Link href="/methodology/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Methodology</Link>
             <Link href="/about/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
             <Link href="/explore/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
-            <Link href="/about/#faq" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">FAQ</Link>
           </div>
         </div>
         <p className="mt-2 text-xs text-muted-foreground">

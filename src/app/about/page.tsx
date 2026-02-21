@@ -7,7 +7,7 @@ const BASE_URL = 'https://patentworld.vercel.app';
 
 export const metadata: Metadata = {
   title: '9.36M US Patents Analyzed: Data & Methodology',
-  description: 'PatentWorld analyzes 9.36M US patents (1976\u20132025) from PatentsView. Learn about data sources, methodology, limitations, and FAQs.',
+  description: 'PatentWorld analyzes 9.36M US patents (1976\u20132025) from PatentsView. Learn about data sources, methodology, and limitations.',
   openGraph: {
     type: 'website',
     title: '9.36M US Patents Analyzed: Data & Methodology | PatentWorld',
@@ -31,55 +31,11 @@ export const metadata: Metadata = {
   },
 };
 
-const FAQ_ITEMS = [
-  {
-    question: 'How many US patents have been granted since 1976?',
-    answer: 'The USPTO granted 9.36 million patents (all types) between 1976 and 2025. Annual grants increased from approximately 70,000 in 1976 to a peak of 393,000 (all types) in 2019, a more than five-fold increase over five decades.',
-  },
-  {
-    question: 'Which company holds the most US patents?',
-    answer: 'IBM leads all organizations with 161,888 cumulative US patent grants, followed by Samsung (157,906) and Canon (88,742). The top 100 firms collectively hold 32-39% of all corporate patents.',
-  },
-  {
-    question: 'How long does it take to obtain a US patent?',
-    answer: 'The median time from application filing to patent grant (pendency) peaked at 3.6 years (median) (1,317 days) in 2010 before declining to 2.4 years (875 days) in 2023. Grant lag varies substantially by technology area, with software and biotechnology patents typically taking longer than mechanical inventions.',
-  },
-  {
-    question: 'What are the fastest-growing patent technology areas?',
-    answer: 'CPC sections G (Physics) and H (Electricity) have grown from 27% of all US patents in 1976 to 57.3% by 2024. Within these sections, artificial intelligence, semiconductor design, and wireless communications have exhibited the strongest growth rates since 2012.',
-  },
-  {
-    question: 'Is artificial intelligence patenting increasing?',
-    answer: 'AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. The acceleration coincided with breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
-  },
-  {
-    question: 'What is the gender gap in US patenting?',
-    answer: 'Women represent 14.9% of all US patent inventors as of 2025 (through September), up from 2.8% in 1976. The gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
-  },
-  {
-    question: 'Which countries file the most US patents?',
-    answer: 'The United States accounts for the largest share of US patent grants, followed by Japan, South Korea, China, and Germany. Foreign-origin patents now constitute over 50% of all US grants, reflecting the global nature of innovation. China has been the most rapidly growing source of US patents since 2010.',
-  },
-  {
-    question: 'How has patent quality changed over time?',
-    answer: 'Average 5-year forward citations peaked at 6.4 in 2019, up from 2.5 in 1976. Average claims per patent rose from 9.4 to 16.6 over the same period. Originality increased from 0.09 to 0.25, while generality declined from 0.28 to 0.15, indicating that patents draw on more diverse sources but are cited in more specialized contexts.',
-  },
-  {
-    question: 'What was the impact of the America Invents Act?',
-    answer: 'The America Invents Act (AIA) of 2011 was the most consequential US patent reform since the 1952 Patent Act. It shifted the US from a first-to-invent to a first-to-file system, created new post-grant review proceedings, and expanded prior art definitions. Inter partes review has since become a major mechanism for challenging patent validity.',
-  },
-  {
-    question: 'How many patents does the average inventor hold?',
-    answer: 'The top 5% of inventors (by cumulative output) account for 63.2% of all patents, with their annual share rising from 26% to 60% between 1976 and 2025. The most prolific inventor, Shunpei Yamazaki, holds 6,709 US patents. A small fraction of inventors (less than 1%) hold more than 50 patents, and these prolific inventors account for a disproportionate share of total patent output.',
-  },
-];
-
 const TOC_ITEMS = [
   { id: 'author', label: 'Author' },
   { id: 'chapters', label: 'Chapters' },
   { id: 'data', label: 'Data Source' },
   { id: 'methodology', label: 'Methodology' },
-  { id: 'faq', label: 'FAQ' },
   { id: 'citation', label: 'Citation' },
   { id: 'license', label: 'License' },
 ];
@@ -132,18 +88,6 @@ const ABOUT_JSONLD = [
       'CPC technology classifications',
       'Geographic location of inventors',
     ],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
   },
   {
     '@context': 'https://schema.org',
@@ -313,25 +257,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* 6. FAQ Accordion */}
-        <section id="faq">
-          <h2 className="font-serif text-2xl font-bold pt-4">Frequently Asked Questions</h2>
-          <div className="mt-4 divide-y divide-border">
-            {FAQ_ITEMS.map((item, i) => (
-              <details key={i} className="group py-4">
-                <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold leading-snug">
-                  <span className="pr-4">{item.question}</span>
-                  <span className="shrink-0 text-muted-foreground transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        {/* 7. Suggested Citation */}
+        {/* 6. Suggested Citation */}
         <section id="citation">
           <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">

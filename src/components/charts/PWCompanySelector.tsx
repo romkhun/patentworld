@@ -140,6 +140,7 @@ export function PWCompanySelector({
         type="button"
         onClick={() => setOpen(!open)}
         role="combobox"
+        aria-label="Select company"
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-controls={listboxId}

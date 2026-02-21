@@ -19,7 +19,6 @@ PatentWorld is a data exploration platform presenting 50 years of United States 
 - https://patentworld.vercel.app/methodology/ : Methodology, measurement definitions, derived metrics, data limitations
 - https://patentworld.vercel.app/about/ : About the project, author, suggested citation
 - https://patentworld.vercel.app/explore/ : Interactive search of patents by assignee, inventor, CPC class, and WIPO field
-- https://patentworld.vercel.app/faq/ : Frequently asked questions about US patent trends
 - https://patentworld.vercel.app/chapters/deep-dive-overview/ : Cross-domain comparison of 12 technology domains
 
 ## Chapters

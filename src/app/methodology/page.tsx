@@ -627,7 +627,7 @@ export default function MethodologyPage() {
             patent data. The database is derived from the USPTO examination and granting of patents.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            For information about the author, chapter structure, and frequently asked questions, see
+            For information about the author, chapter structure, and data sources, see
             the{' '}
             <Link href="/about/" className="underline underline-offset-2 hover:text-foreground transition-colors">
               About page

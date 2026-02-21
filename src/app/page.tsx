@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
-import { JsonLd } from '@/components/JsonLd';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -36,98 +35,6 @@ export const metadata: Metadata = {
   },
 };
 
-const FAQ_JSONLD = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How many US patents have been granted since 1976?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The USPTO granted 9.36 million patents (all types) from 1976 to 2025, growing from approximately 70,000 per year in 1976 to 374,000 per year in 2024, peaking at 393,000 (all types) in 2019.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Which technology sectors have the most US patents?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Electricity (CPC Section H) and Physics (Section G) constitute the largest share of modern patenting, consistent with the digital transformation. Together they account for 57% of recent grants, driven primarily by software, semiconductors, and telecommunications innovations.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Which company holds the most US patents?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'IBM leads with 161,888 cumulative US patent grants, followed by Samsung (157,906) and Canon (88,742). Samsung surpassed IBM in annual grants in 2007. The top 100 organizations hold 32-39% of all corporate patents.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is PatentsView?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'PatentsView is a patent data platform supported by the United States Patent and Trademark Office (USPTO) that provides disambiguated and linked patent data covering inventors, assignees, classifications, locations, and citations.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How has the geography of US patent innovation changed?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'California accounts for 23.6% of US patent output, with San Jose as the leading city. Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How long does it take to obtain a US patent?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Average grant lag is 3 years (1,100 days), with considerable variation by technology area. Grant pendency peaked at 3.8 years in 2010 before moderating. Electrical and software patents tend to exhibit longer pendency than mechanical inventions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What are the fastest-growing patent technology areas?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Computing, semiconductors, and AI have exhibited the most substantial growth. AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, coinciding with advances in deep learning.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is AI patenting growing?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'AI-related patent filings have grown substantially, particularly since 2012. IBM, Samsung, Google, and Microsoft are among the leading AI patent filers. AI-related claims are now present across virtually every technology domain.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the gender gap in patenting?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Women represent a growing but still small share of patent inventors. The share of women inventors has increased from 2.8% in 1976 to 14.9% in 2025 (through September), with higher representation in chemistry and biotech than electronics.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Which countries file the most US patents?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'After the United States, Japan, South Korea, Germany, and China are the leading countries of origin for US patent inventors. China\'s share has increased substantially since 2010.',
-      },
-    },
-  ],
-};
-
 export default function Page() {
-  return (
-    <>
-      <JsonLd data={[FAQ_JSONLD]} />
-      <HomeContent />
-    </>
-  );
+  return <HomeContent />;
 }
