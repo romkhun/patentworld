@@ -338,8 +338,8 @@ export default function Chapter19() {
       <ChartContainer
         id="fig-green-innovation-volume"
         subtitle="Annual count and share of utility patents with at least one Y02/Y04S CPC code, tracking the growth of climate technology patenting."
-        title={`Green Patent Volume Rose to ${peakYear ? formatCompact(peakYear.green_count) : '35,693'} by ${peakYear?.year ?? '2019'}, Reaching ${peakYear?.green_pct?.toFixed(1) ?? '9.6'}% of All Utility Patents`}
-        caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '35,693'} in ${peakYear?.year ?? '2019'}, representing ${peakYear?.green_pct?.toFixed(1) ?? '9.6'}% of all utility patents. Grant year shown. Application dates are typically 2–3 years earlier.`}
+        title={`Green Patent Volume Rose to ${peakYear ? formatCompact(peakYear.green_count) : '35,693'} by ${peakYear?.year ?? '2019'}, Reaching ${peakYear?.green_pct?.toFixed(1) ?? '10.0'}% of All Utility Patents`}
+        caption={`Annual count of utility patents with at least one Y02/Y04S CPC code, 1976–2025. The most prominent pattern is the sustained upward trajectory, with green patents peaking at ${peakYear ? formatCompact(peakYear.green_count) : '35,693'} in ${peakYear?.year ?? '2019'}, representing ${peakYear?.green_pct?.toFixed(1) ?? '10.0'}% of all utility patents. Grant year shown. Application dates are typically 2–3 years earlier.`}
         insight="Green patenting has evolved from a specialized activity to nearly one in ten US patents, reflecting substantial corporate and government investment in climate technology. The growth trajectory mirrors, and in certain periods exceeds, the broader expansion of the patent system."
         loading={volL}
       >

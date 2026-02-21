@@ -36,6 +36,10 @@ const TOC_ITEMS = [
   { id: 'geography', label: 'Geography Basis' },
   { id: 'field-classification', label: 'Field Classification' },
   { id: 'key-metrics', label: 'Key Metrics' },
+  { id: 'quality-metrics', label: 'Quality Metrics Suite' },
+  { id: 'definitions', label: 'Definitions' },
+  { id: 'disambiguation', label: 'Disambiguation' },
+  { id: 'limitations', label: 'Limitations' },
   { id: 'data-source', label: 'Data Source' },
 ];
 
@@ -321,7 +325,119 @@ export default function MethodologyPage() {
           </p>
         </section>
 
-        {/* 6. Data Source */}
+        {/* 6. Standard Quality Metrics Suite */}
+        <section id="quality-metrics">
+          <h2 className="font-serif text-2xl font-bold pt-4">Standard Quality Metrics Suite</h2>
+          <p>
+            Chapters across multiple acts present a consistent set of seven patent quality metrics,
+            computed for different grouping variables (by technology field, by assignee, by inventor
+            category, by geography). These metrics enable cross-chapter comparisons:
+          </p>
+          <ul className="mt-3 list-disc pl-6 space-y-1">
+            <li><strong>Patent count:</strong> Number of granted patents in the group per year.</li>
+            <li><strong>Claims per patent:</strong> Number of independent and dependent claims, measuring the scope of legal protection sought.</li>
+            <li><strong>Patent scope:</strong> Number of distinct CPC subclasses assigned to each patent, measuring technological breadth.</li>
+            <li><strong>Forward citations:</strong> Number of subsequent patents citing a given patent, a widely used proxy for technological impact. Subject to truncation bias for recently granted patents.</li>
+            <li><strong>Backward citations:</strong> Number of prior patents cited by a given patent, reflecting the extent to which the invention builds on prior art.</li>
+            <li><strong>Self-citation rate:</strong> Fraction of backward citations directed to the citing entity&apos;s own prior patents, indicating internal knowledge reuse.</li>
+            <li><strong>Grant lag:</strong> Number of days between patent application filing and grant, measuring prosecution speed.</li>
+          </ul>
+        </section>
+
+        {/* 7. Measurement Definitions */}
+        <section id="definitions">
+          <h2 className="font-serif text-2xl font-bold pt-4">Measurement Definitions</h2>
+          <p>
+            The following metrics are used throughout PatentWorld. Definitions are standardized
+            across chapters to enable cross-chapter comparisons.
+          </p>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Forward citations (5-year)</dt>
+              <dd className="text-muted-foreground">Number of subsequent patents citing a given patent within 5 years of grant. A widely used proxy for technological impact. Subject to truncation bias for patents granted after 2020.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Backward citations</dt>
+              <dd className="text-muted-foreground">Number of prior patents cited by a given patent. Reflects the extent to which the invention builds on existing prior art.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Originality</dt>
+              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s backward citations. Higher values indicate the patent draws from more diverse technology sources. Range: 0 (all citations from one section) to ~1 (citations spread evenly across sections).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Generality</dt>
+              <dd className="text-muted-foreground">1 minus the HHI of CPC sections among a patent&apos;s forward citations. Higher values indicate the patent is cited by a broader range of technology fields. Range: 0 (all citing patents in one section) to ~1 (cited across many sections).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Self-citation rate</dt>
+              <dd className="text-muted-foreground">Fraction of backward citations directed to the same assignee&apos;s own prior patents. Higher values indicate greater internal knowledge reuse.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Claims per patent</dt>
+              <dd className="text-muted-foreground">Total number of independent and dependent claims in a patent. Measures the scope of legal protection sought.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Patent scope</dt>
+              <dd className="text-muted-foreground">Number of distinct CPC subclasses assigned to each patent. Measures technological breadth of the invention.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Grant lag</dt>
+              <dd className="text-muted-foreground">Number of days between patent application filing date and grant date. Measures prosecution speed and USPTO pendency.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Shannon entropy</dt>
+              <dd className="text-muted-foreground">-&Sigma; p<sub>i</sub> ln(p<sub>i</sub>) over category shares. Used to measure diversity of technology portfolios, geographic concentration, and topic distributions. Higher values indicate more even distribution.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Herfindahl-Hirschman Index (HHI)</dt>
+              <dd className="text-muted-foreground">&Sigma; s<sub>i</sub><sup>2</sup> where s<sub>i</sub> is the market (or category) share. Range: 0 (perfect competition) to 10,000 (monopoly). DOJ/FTC 2010 Horizontal Merger Guidelines classify markets as unconcentrated (&lt;1,500), moderately concentrated (1,500&ndash;2,500), or highly concentrated (&gt;2,500).</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Cohort normalization</dt>
+              <dd className="text-muted-foreground">Dividing a patent&apos;s citation count by the mean of its grant-year &times; CPC section cohort. A value of 1.0 means average impact for that cohort; values above 1.0 indicate above-average impact.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Blockbuster patent</dt>
+              <dd className="text-muted-foreground">A patent in the top 1% of 5-year forward citations within its grant-year &times; CPC section cohort. Under uniform quality, 1% of patents would be blockbusters; rates above 1% indicate disproportionate high-impact output.</dd>
+            </div>
+          </dl>
+        </section>
+
+        {/* 8. Disambiguation Reliability */}
+        <section id="disambiguation">
+          <h2 className="font-serif text-2xl font-bold pt-4">Disambiguation Reliability</h2>
+          <p>
+            PatentsView uses machine learning algorithms to disambiguate inventor and assignee
+            identities across patent records. This disambiguation is essential for analyses of
+            inventor productivity, mobility, and organizational patenting patterns, but it
+            introduces potential errors:
+          </p>
+          <ul className="mt-3 list-disc pl-6 space-y-1">
+            <li><strong>Splitting errors:</strong> A single inventor may be assigned multiple disambiguated IDs, leading to undercounting of individual productivity.</li>
+            <li><strong>Lumping errors:</strong> Two distinct inventors may be assigned the same ID, leading to overcounting of individual productivity.</li>
+            <li><strong>Assignee disambiguation:</strong> Corporate name changes, mergers, and subsidiaries create particular challenges. A single entity may appear under multiple names, or distinct entities may be incorrectly merged.</li>
+          </ul>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Chapters that rely heavily on disambiguated identities (inventor rankings, serial vs.
+            new inventors, inventor mobility, organizational mechanics) note this limitation in
+            their measurement details panel.
+          </p>
+        </section>
+
+        {/* 9. Data Limitations */}
+        <section id="limitations">
+          <h2 className="font-serif text-2xl font-bold pt-4">Data Limitations</h2>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Granted patents only:</strong> The dataset includes only granted patents, not applications that were abandoned or rejected. This introduces survivorship bias.</li>
+            <li><strong>US patents only:</strong> The analysis covers patents granted by the USPTO. It does not include patents filed only at foreign patent offices (EPO, JPO, CNIPA, etc.).</li>
+            <li><strong>Inventor disambiguation:</strong> PatentsView uses algorithmic disambiguation to link inventor records across patents. Some errors in matching or splitting inventor identities may exist.</li>
+            <li><strong>Citation truncation:</strong> Recently granted patents have had less time to accumulate forward citations, creating a right-truncation bias in citation-based metrics.</li>
+            <li><strong>Classification changes:</strong> The CPC system was introduced in 2013, replacing the earlier USPC system. Historical patents were retrospectively reclassified, but some inconsistencies may remain.</li>
+            <li><strong>Gender inference:</strong> Inventor gender is inferred from first names and may not reflect actual gender identity. Non-binary identities are not captured.</li>
+          </ul>
+        </section>
+
+        {/* 10. Data Source */}
         <section id="data-source">
           <h2 className="font-serif text-2xl font-bold pt-4">Data Source</h2>
           <p>
@@ -349,11 +465,12 @@ export default function MethodologyPage() {
             patent data. The database is derived from the USPTO examination and granting of patents.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            For additional details on processing methodology, disambiguation reliability, and data
-            limitations, see the{' '}
+            For additional details on processing methodology, see the{' '}
             <Link href="/about/#methodology" className="underline underline-offset-2 hover:text-foreground transition-colors">
               About page
             </Link>.
+            Disambiguation reliability and data limitations are documented{' '}
+            <a href="#disambiguation" className="underline underline-offset-2 hover:text-foreground transition-colors">above</a>.
           </p>
         </section>
       </div>

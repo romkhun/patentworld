@@ -167,7 +167,7 @@ export default function InvGenderChapter() {
 
       <KeyFindings>
         <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), but remains well below parity with substantial variation across technology fields.</li>
-        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
+        <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), reaching 23.4% in the most recent cohort, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
         <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
 
