@@ -8,7 +8,7 @@ import {
   SankeyNode,
   SankeyLink,
 } from 'd3-sankey';
-import { TOOLTIP_STYLE } from '@/lib/colors';
+import { CHART_COLORS, TOOLTIP_STYLE } from '@/lib/colors';
 import { formatCompact } from '@/lib/formatters';
 
 interface SankeyNodeInput {
@@ -137,8 +137,8 @@ export function PWSankeyDiagram({
 
   const nodeColor = (index: number) => {
     const nf = netFlow[index] ?? 0;
-    if (nf > 0) return '#0072B2'; // net importer — blue
-    if (nf < 0) return '#D55E00'; // net exporter — red-orange
+    if (nf > 0) return CHART_COLORS[0]; // net importer — blue
+    if (nf < 0) return CHART_COLORS[5]; // net exporter — red-orange
     return 'hsl(var(--muted-foreground))';
   };
 

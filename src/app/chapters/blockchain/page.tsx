@@ -261,6 +261,10 @@ export default function Chapter16() {
       />
       <MeasurementSidebar slug="blockchain" />
 
+      <DataNote>
+        Blockchain patents before 2010 consist of fewer than 50 grants per year. Year-over-year metrics in this period may be volatile due to small sample sizes.
+      </DataNote>
+
       <KeyFindings>
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
         <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
@@ -275,13 +279,13 @@ export default function Chapter16() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2008 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that coincided with a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely due to the narrow scope of the domain: the data reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
+          Blockchain patenting offers a unique window into how the patent system responds to technology hype cycles. The Bitcoin whitepaper of 2008 planted the seed, but it was the broader blockchain narrative -- smart contracts after Ethereum&apos;s 2015 launch, the ICO boom of 2017, and the NFT/DeFi surge of 2021 -- that coincided with a rapid increase in patent filings. Despite its relatively small absolute volume compared to domains like <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> or <Link href="/chapters/semiconductors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link>, blockchain patenting is instructive precisely due to the narrow scope of the domain: the data reveal the acceleration, peak, and contraction of inventive activity in response to market sentiment. The notable presence of financial services firms among top assignees distinguishes blockchain from other technology domains and underscores its origins as a challenge to traditional financial intermediation.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> and the intersection of molecular biology with patent strategy, this chapter turns to blockchain, a domain whose patent trajectory is uniquely shaped by speculative market cycles and the cryptocurrency boom-bust pattern.
+          Having examined <Link href="/chapters/biotechnology/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> and the intersection of molecular biology with patent strategy, this chapter turns to blockchain, a domain whose patent trajectory is uniquely shaped by speculative market cycles and the cryptocurrency boom-bust pattern.
         </p>
         <p>
           Blockchain technology -- originally conceived as the infrastructure underlying Bitcoin --
@@ -498,7 +502,7 @@ export default function Chapter16() {
           The organizational ranking data reveal a level of volatility unusual among technology
           domains. Unlike AI patenting, where IBM held the top position for decades, blockchain
           leadership positions have shifted rapidly as different firms enter and exit the space
-          in response to market conditions. This instability is consistent with the interpretation
+          coinciding with shifts in market conditions. This instability is consistent with the interpretation
           that blockchain remains a nascent domain where durable competitive advantages in
           intellectual property have not yet been established.
         </p>
@@ -676,11 +680,11 @@ export default function Chapter16() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -833,13 +837,13 @@ export default function Chapter16() {
       </Narrative>
 
       <Narrative>
-        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+        Having documented the trajectory of blockchain patenting and its distinctive hype-cycle dynamics, the organizational strategies behind blockchain patenting are explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer

@@ -501,15 +501,15 @@ export default function InvTopInventorsChapter() {
                 <tbody>
                   <tr className="border-b border-border/50">
                     <td className="py-2 px-3">Unique Examiner Names</td>
-                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_examiner_names.toLocaleString()}</td>
+                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_examiner_names.toLocaleString('en-US')}</td>
                   </tr>
                   <tr className="border-b border-border/50">
                     <td className="py-2 px-3">Unique Inventor Names</td>
-                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_inventor_names.toLocaleString()}</td>
+                    <td className="text-right py-2 px-3 font-mono">{examinerOverlap[0].unique_inventor_names.toLocaleString('en-US')}</td>
                   </tr>
                   <tr className="border-b border-border/50 bg-muted/20">
                     <td className="py-2 px-3 font-semibold">Name Matches (Upper Bound)</td>
-                    <td className="text-right py-2 px-3 font-mono font-semibold">{examinerOverlap[0].name_matches.toLocaleString()}</td>
+                    <td className="text-right py-2 px-3 font-mono font-semibold">{examinerOverlap[0].name_matches.toLocaleString('en-US')}</td>
                   </tr>
                 </tbody>
               </table>
@@ -576,7 +576,7 @@ export default function InvTopInventorsChapter() {
           The concentration and impact patterns documented here characterize the most prolific
           inventors as a group; the next chapter,{' '}
           <Link
-            href="/chapters/inv-generalist-specialist"
+            href="/chapters/inv-generalist-specialist/"
             className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
           >
             Generalist versus Specialist Inventors

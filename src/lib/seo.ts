@@ -134,6 +134,39 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'blockchain': 'Blockchain patents cover distributed ledger and cryptocurrency technology. Grants peaked in 2022, the only advanced domain to reverse course.',
 };
 
+/** Map chapter slugs to available OG image filenames (without .png). */
+const CHAPTER_OG_IMAGE: Record<string, string> = {
+  'ai-patents': 'ai-patents',
+  'green-innovation': 'green-innovation',
+  'system-patent-quality': 'patent-quality',
+  'system-patent-law': 'patent-law',
+  'system-language': 'the-language-of-innovation',
+  'system-patent-count': 'the-innovation-landscape',
+  'system-patent-fields': 'the-technology-revolution',
+  'system-convergence': 'the-technology-revolution',
+  'system-public-investment': 'patent-law',
+  'org-composition': 'who-innovates',
+  'org-patent-count': 'who-innovates',
+  'org-patent-quality': 'patent-quality',
+  'org-patent-portfolio': 'innovation-dynamics',
+  'org-company-profiles': 'company-profiles',
+  'inv-top-inventors': 'the-inventors',
+  'inv-generalist-specialist': 'the-inventors',
+  'inv-serial-new': 'the-inventors',
+  'inv-gender': 'the-inventors',
+  'inv-team-size': 'collaboration-networks',
+  'geo-domestic': 'the-geography-of-innovation',
+  'geo-international': 'the-geography-of-innovation',
+  'mech-organizations': 'the-knowledge-network',
+  'mech-inventors': 'collaboration-networks',
+  'mech-geography': 'the-geography-of-innovation',
+};
+
+function chapterOgImage(slug: string): string {
+  const name = CHAPTER_OG_IMAGE[slug] ?? 'home';
+  return `${BASE_URL}/og/${name}.png`;
+}
+
 export function chapterMetadata(slug: string): Metadata {
   const ch = CHAPTERS.find((c) => c.slug === slug);
   if (!ch) return {};
@@ -141,6 +174,7 @@ export function chapterMetadata(slug: string): Metadata {
   const title = CHAPTER_SEO_TITLES[slug] ?? `${ch.title} — Chapter ${ch.number}`;
   const description = CHAPTER_SEO_DESCRIPTIONS[slug] ?? `${ch.subtitle}. ${ch.description} Interactive data visualizations of US patent trends from 1976 to 2025.`;
   const keywords = CHAPTER_KEYWORDS[slug] ?? [];
+  const ogImage = chapterOgImage(slug);
 
   return {
     title,
@@ -153,7 +187,7 @@ export function chapterMetadata(slug: string): Metadata {
       url: `${BASE_URL}/chapters/${ch.slug}/`,
       siteName: 'PatentWorld',
       images: [{
-        url: `${BASE_URL}/og/${ch.slug}.png`,
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: `${ch.title} — PatentWorld`,
@@ -163,7 +197,7 @@ export function chapterMetadata(slug: string): Metadata {
       card: 'summary_large_image',
       title: `${CHAPTER_SEO_TITLES[slug] ?? ch.title} | PatentWorld`,
       description,
-      images: [`${BASE_URL}/og/${ch.slug}.png`],
+      images: [ogImage],
     },
     alternates: {
       canonical: `${BASE_URL}/chapters/${ch.slug}/`,
@@ -198,7 +232,7 @@ export function chapterJsonLd(slug: string): object[] | null {
       datePublished: '2025-01-01',
       dateModified: '2026-02-14',
       mainEntityOfPage: `${BASE_URL}/chapters/${ch.slug}/`,
-      image: `${BASE_URL}/og/${ch.slug}.png`,
+      image: chapterOgImage(slug),
       keywords: CHAPTER_KEYWORDS[slug]?.join(', '),
       isPartOf: {
         '@type': 'WebSite',

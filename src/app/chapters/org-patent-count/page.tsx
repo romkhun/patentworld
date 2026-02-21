@@ -133,7 +133,7 @@ export default function OrgPatentCountChapter() {
 
       <Narrative>
         <p>
-          While the <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">previous chapter</Link> examined the system-level composition of patent assignees, the present chapter focuses on the individual organizations that drive these aggregate patterns. The cumulative rankings, annual trajectories, and sequential transitions in leadership reveal how corporate patent strategies have evolved over five decades.
+          While the <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">previous chapter</Link> examined the system-level composition of patent assignees, the present chapter focuses on the individual organizations that drive these aggregate patterns. The cumulative rankings, annual trajectories, and sequential transitions in leadership reveal how corporate patent strategies have evolved over five decades.
         </p>
         <p>
           The rankings are dominated by technology firms and Asian corporations. Organizations such as Samsung, Canon, and LG have risen substantially since the 1990s, challenging the traditional dominance of US-based firms such as {topOrgName} and General Electric. Asian firms now account for over half of the top 25 patent holders.
@@ -385,7 +385,7 @@ export default function OrgPatentCountChapter() {
                 <tr key={d.decade} className="border-b border-border/50">
                   <td className="py-1 px-2">{d.decade}</td>
                   <td className="text-right py-1 px-2 font-mono">{d.gini.toFixed(3)}</td>
-                  <td className="text-right py-1 px-2">{d.n_firms.toLocaleString()}</td>
+                  <td className="text-right py-1 px-2">{d.n_firms.toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -457,7 +457,7 @@ export default function OrgPatentCountChapter() {
 
       <Narrative>
         <p>
-          The organizational patent count reveals a system in which leadership is dynamic and contested. IBM&apos;s cumulative dominance is narrowing as Samsung closes the gap, while design patent rankings add a distinct dimension where consumer-facing firms such as Nike and LG emerge alongside electronics giants. The structural concentration of patenting among elite organizations has remained stable at 32-39%, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography or technology era. Only 9 of 50 top filers have maintained their position across all five decades, underscoring how difficult it is for any single organization to remain at the frontier of technological change. The <Link href="/chapters/org-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> examines the citation quality and innovation impact of these leading firms in greater detail.
+          The organizational patent count reveals a system in which leadership is dynamic and contested. IBM&apos;s cumulative dominance is narrowing as Samsung closes the gap, while design patent rankings add a distinct dimension where consumer-facing firms such as Nike and LG emerge alongside electronics giants. The structural concentration of patenting among elite organizations has remained stable at 32-39%, suggesting that scale-dependent barriers to large-volume patenting persist regardless of geography or technology era. Only 9 of 50 top filers have maintained their position across all five decades, underscoring how difficult it is for any single organization to remain at the frontier of technological change. The <Link href="/chapters/org-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> examines the citation quality and innovation impact of these leading firms in greater detail.
         </p>
       </Narrative>
 

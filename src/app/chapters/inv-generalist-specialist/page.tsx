@@ -79,7 +79,7 @@ export default function InvGeneralistSpecialistChapter() {
 
       <Narrative>
         <p>
-          The preceding chapter on <Link href="/chapters/inv-top-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Top Inventors</Link> examined
+          The preceding chapter on <Link href="/chapters/inv-top-inventors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Top Inventors</Link> examined
           superstar concentration and the most prolific individual inventors. This chapter narrows the focus
           to the breadth of technological engagement: are today&apos;s inventors becoming more specialized, or do
           generalists who span multiple technology domains remain competitive?
@@ -126,7 +126,7 @@ export default function InvGeneralistSpecialistChapter() {
             ]}
             stacked
             yLabel="Share (%)"
-            yFormatter={(v) => `${v}%`}
+            yFormatter={(v) => `${Number(v).toFixed(1)}%`}
             yDomain={[0, 100]}
           />
         ) : <div />}
@@ -366,7 +366,7 @@ export default function InvGeneralistSpecialistChapter() {
       <Narrative>
         <p>
           The specialization trends documented here describe the breadth of inventors&apos; technological
-          focus; the next chapter, <Link href="/chapters/inv-serial-new" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Serial Inventors versus New Entrants</Link>,
+          focus; the next chapter, <Link href="/chapters/inv-serial-new/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Serial Inventors versus New Entrants</Link>,
           examines career dynamics including inventor entry, survival, and attrition patterns over time.
         </p>
       </Narrative>

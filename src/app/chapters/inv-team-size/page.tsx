@@ -164,7 +164,7 @@ export default function InvTeamSizeChapter() {
         <p>
           The previous chapter,{' '}
           <Link
-            href="/chapters/inv-gender"
+            href="/chapters/inv-gender/"
             className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
           >
             Gender and Patenting
@@ -592,7 +592,7 @@ export default function InvTeamSizeChapter() {
           structure -- the analysis now shifts to <em>where</em> innovation happens. ACT 4:
           The Geography begins with{' '}
           <Link
-            href="/chapters/geo-domestic"
+            href="/chapters/geo-domestic/"
             className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors"
           >
             Domestic Geography

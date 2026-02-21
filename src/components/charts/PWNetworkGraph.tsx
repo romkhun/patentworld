@@ -498,7 +498,7 @@ export function PWNetworkGraph({
         >
           <div className="font-semibold">{tooltip.node.name}</div>
           <div className="text-muted-foreground text-xs mt-1">
-            {tooltip.node.patents.toLocaleString()} patents
+            {tooltip.node.patents.toLocaleString('en-US')} patents
           </div>
           <div className="text-muted-foreground text-xs">
             {connectionCount[tooltip.node.id] ?? 0} connections

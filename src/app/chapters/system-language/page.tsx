@@ -178,7 +178,7 @@ export default function Chapter3() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that US patenting has undergone a pronounced reorientation toward <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most notable is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/system-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
+          Beneath the formal CPC classification system examined in earlier chapters lies a complementary thematic structure recoverable only through the language of patent abstracts themselves. The application of unsupervised text analysis to five decades of filings reveals that US patenting has undergone a pronounced reorientation toward <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">digital and computational domains</Link> -- a shift visible not only in patent counts but in the vocabulary inventors use to describe their work. Perhaps most notable is the overall rise in thematic diversity at the individual patent level: inventions that blend language from traditionally separate fields have become markedly more common, suggesting that the boundaries between technology domains documented in <Link href="/chapters/system-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Quality</Link> and <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> are growing more permeable over time. The semantic geography of these patents, when projected into two dimensions, makes visible the clustering and overlap that aggregate statistics alone cannot convey.
         </p>
       </aside>
 
@@ -426,7 +426,7 @@ export default function Chapter3() {
         <p>
           Rising entropy suggests that the boundaries between technology domains are becoming
           more porous. The most novel patents, those scoring highest on entropy, tend to
-          be situated at the intersection of multiple topics, combining language from computing -- including the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> vocabulary that has become increasingly prevalent --
+          be situated at the intersection of multiple topics, combining language from computing -- including the <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> vocabulary that has become increasingly prevalent --
           biology, chemistry, and engineering in ways that were uncommon only a few decades ago.
         </p>
       </KeyInsight>
@@ -469,13 +469,13 @@ export default function Chapter3() {
       )}
 
       <Narrative>
-        Having uncovered the latent thematic structure of patent language, the analysis turns next to the <Link href="/chapters/system-patent-law" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">legal and policy framework</Link> governing the patent system.
+        Having uncovered the latent thematic structure of patent language, the analysis turns next to the <Link href="/chapters/system-patent-law/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">legal and policy framework</Link> governing the patent system.
         The topics and trends identified in this chapter provide essential context for understanding how legislative and judicial decisions have shaped the direction and character of US patenting activity.
       </Narrative>
 
       <KeyInsight>
         <p>
-          The semantic analysis in this chapter and the CPC-based convergence analysis in <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 4</Link> measure interdisciplinarity through complementary lenses. CPC classifications capture formal taxonomy overlap, while topic modeling recovers latent thematic structure from the language inventors use. Both approaches confirm the same directional trend: technology domains are converging. The topic-based analysis adds nuance by revealing <em>which</em> specific themes are driving convergence and how the vocabulary of innovation itself has shifted toward computational and cross-domain language.
+          The semantic analysis in this chapter and the CPC-based convergence analysis in <Link href="/chapters/system-convergence/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 4</Link> measure interdisciplinarity through complementary lenses. CPC classifications capture formal taxonomy overlap, while topic modeling recovers latent thematic structure from the language inventors use. Both approaches confirm the same directional trend: technology domains are converging. The topic-based analysis adds nuance by revealing <em>which</em> specific themes are driving convergence and how the vocabulary of innovation itself has shifted toward computational and cross-domain language.
         </p>
       </KeyInsight>
 
@@ -496,9 +496,11 @@ export default function Chapter3() {
         <p>
           This analysis uses <GlossaryTooltip term="TF-IDF">TF-IDF</GlossaryTooltip> vectorization (10,000 features,
           unigrams + bigrams) and <GlossaryTooltip term="NMF">NMF</GlossaryTooltip> with K=25 components on {formatCompact(totalPatents)} patent
-          abstracts from 1976–2025. The number of topics (K=25) was selected based on
-          interpretability of the resulting topic clusters rather than a formal model selection
-          criterion such as coherence or perplexity. The <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip> projection uses a
+          abstracts from 1976–2025. The number of topics (K=25) was selected to balance
+          interpretability and coherence of the resulting topic clusters; lower values (e.g., K=10)
+          merged distinct technology themes, while higher values (e.g., K=50) produced overly
+          granular topics that were difficult to interpret meaningfully. No formal model selection
+          criterion such as perplexity was used. The <GlossaryTooltip term="UMAP">UMAP</GlossaryTooltip> projection uses a
           stratified sample of 5,000 patents (200 per topic) with cosine distance. Novelty is measured as Shannon
           entropy of the NMF topic weight vector. Topic names are auto-generated from the top-weighted terms and may
           not perfectly capture all nuances of each topic cluster. Source: PatentsView / USPTO.

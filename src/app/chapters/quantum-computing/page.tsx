@@ -263,6 +263,10 @@ export default function Chapter20() {
       />
       <MeasurementSidebar slug="quantum-computing" />
 
+      <DataNote>
+        Quantum computing patents before 2005 consist of fewer than 50 grants per year. Metrics in this early period may be volatile.
+      </DataNote>
+
       <KeyFindings>
         <li>Quantum computing patents have grown rapidly from a very small base since the mid-2010s, coinciding with the transition from theoretical physics research to engineering-oriented hardware and software development.</li>
         <li>IBM, Google, D-Wave, and Microsoft dominate quantum computing patenting, investing heavily in superconducting qubits, trapped ions, and software toolchains.</li>
@@ -273,13 +277,13 @@ export default function Chapter20() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures the transition: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a small fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+          Quantum computing emerged from the intersection of quantum mechanics and computer science, with Richard Feynman&apos;s 1982 proposal for quantum simulation marking an intellectual starting point. For decades the field remained largely theoretical, but the 2010s brought a marked shift toward practical hardware implementations. The patent record captures the transition: early filings focused on physical realizations and quantum algorithms, while recent activity is dominated by physical realizations -- superconducting circuits, trapped-ion systems, and photonic architectures -- alongside a growing body of work on quantum error correction. Google&apos;s 2019 quantum supremacy demonstration accelerated both corporate investment and patenting activity. Today, a small number of major technology firms are competing to build fault-tolerant quantum computers, and their patent strategies reveal divergent bets on competing hardware approaches. Although quantum computing patents remain a small fraction of total patent activity, their rapid growth trajectory and cross-domain reach suggest a technology approaching broader industrial relevance, with implications explored further in the organizational analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/green-innovation" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link> and the patent system&apos;s response to climate technology across energy, transport, and industrial production, this chapter turns to quantum computing, a domain at the opposite end of the maturity spectrum — small in volume but growing rapidly as hardware implementations move from theory to engineering.
+          Having examined <Link href="/chapters/green-innovation/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">green innovation</Link> and the patent system&apos;s response to climate technology across energy, transport, and industrial production, this chapter turns to quantum computing, a domain at the opposite end of the maturity spectrum — small in volume but growing rapidly as hardware implementations move from theory to engineering.
         </p>
         <p>
           Quantum computing represents one of the most technically demanding frontiers in
@@ -737,11 +741,11 @@ export default function Chapter20() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -815,7 +819,7 @@ export default function Chapter20() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer
@@ -868,7 +872,7 @@ export default function Chapter20() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter.
+        Having documented the growth of quantum computing in the patent system, the trajectory of this field illustrates how foundational physics research can transition into an engineering discipline with broad industrial potential. The organizational strategies behind quantum patenting are explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>, while the relationship between quantum computing and semiconductor innovation is examined in the <Link href="/chapters/semiconductors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Semiconductors</Link> chapter.
       </Narrative>
 
       <ChartContainer

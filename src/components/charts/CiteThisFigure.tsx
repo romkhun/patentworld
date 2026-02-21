@@ -68,7 +68,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
 
   return (
     <div className="mt-3 pt-3 border-t border-border/40">
-    <div className="rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200">
+    <div className="rounded-md border border-border bg-muted/30 p-4 max-w-[700px] animate-in fade-in slide-in-from-top-1 duration-200" onKeyDown={(e) => { if (e.key === 'Escape') setIsOpen(false); }}>
       <div className="flex items-center justify-between mb-2">
         <div className="flex gap-1">
           <button
@@ -97,6 +97,7 @@ export function CiteThisFigure({ title, figureId }: CiteThisFigureProps) {
       </pre>
       <button
         onClick={handleCopy}
+        aria-live="polite"
         className="mt-2 text-xs px-3 py-1.5 rounded-md border border-border bg-background hover:bg-muted transition-colors"
       >
         {copied ? 'Copied' : 'Copy citation'}

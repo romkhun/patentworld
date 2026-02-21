@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import { GLOSSARY } from '@/lib/glossary';
 
 interface GlossaryTooltipProps {
@@ -8,17 +9,30 @@ interface GlossaryTooltipProps {
 }
 
 export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
+  const [visible, setVisible] = useState(false);
+
+  const show = useCallback(() => setVisible(true), []);
+  const hide = useCallback(() => {
+    setTimeout(() => setVisible(false), 200);
+  }, []);
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') setVisible(false);
+  }, []);
+
   const entry = GLOSSARY[term];
   if (!entry) return <>{children ?? term}</>;
 
   const tooltipId = `glossary-${term.replace(/\s+/g, '-').toLowerCase()}`;
 
   return (
-    <span className="group relative inline">
+    <span className="relative inline" onMouseEnter={show} onMouseLeave={hide}>
       <span
         role="term"
         tabIndex={0}
         aria-describedby={tooltipId}
+        onFocus={show}
+        onBlur={hide}
+        onKeyDown={handleKeyDown}
         className="cursor-help border-b border-dashed border-muted-foreground/50"
       >
         {children ?? entry.term}
@@ -26,7 +40,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
       <span
         id={tooltipId}
         role="tooltip"
-        className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-md border bg-card px-3 py-2 text-xs leading-relaxed text-foreground shadow-lg opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
+        className={`absolute bottom-full left-1/2 z-50 mb-2 w-64 -translate-x-1/2 rounded-md border bg-card px-3 py-2 text-xs leading-relaxed text-foreground shadow-lg transition-opacity ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       >
         <span className="block text-muted-foreground">{entry.definition}</span>
       </span>

@@ -274,7 +274,7 @@ export default function Chapter15() {
           how society harnesses molecular biology for commercial and therapeutic purposes. The
           Bayh-Dole Act of 1980 enabled a substantial expansion of university-originated patents, while
           the completion of the Human Genome Project in 2003 and the discovery of CRISPR-Cas9
-          gene editing in 2012 catalyzed successive waves of inventive activity. The institutional
+          gene editing in 2012 coincided with successive waves of inventive activity. The institutional
           landscape of biotech patenting differs markedly from domains such as artificial
           intelligence: research universities, agricultural biotech firms, enzyme companies, and
           life sciences tools makers play prominent roles, and the ethical and regulatory dimensions of gene editing technology
@@ -288,7 +288,7 @@ export default function Chapter15() {
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/autonomous-vehicles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link> and the convergence of AI, sensing, and control systems in transportation, this chapter turns to biotechnology, a domain defined by fundamentally different innovation dynamics rooted in molecular biology and regulatory constraints.
+          Having examined <Link href="/chapters/autonomous-vehicles/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">autonomous vehicles</Link> and the convergence of AI, sensing, and control systems in transportation, this chapter turns to biotechnology, a domain defined by fundamentally different innovation dynamics rooted in molecular biology and regulatory constraints.
         </p>
         <p>
           Biotechnology occupies a distinctive position within the patent system. Unlike most
@@ -495,7 +495,7 @@ export default function Chapter15() {
         <p>
           The ranking data illustrate how successive technological breakthroughs have reshaped
           organizational leadership in biotech patenting. The completion of the Human Genome Project
-          catalyzed a wave of genomic patenting that benefited firms positioned in sequencing and
+          was followed by a wave of genomic patenting that benefited firms positioned in sequencing and
           diagnostics. The CRISPR revolution after 2012 created new competitive dynamics, with
           specialized gene editing companies and academic institutions claiming significant patent
           positions. The COVID-19 pandemic further disrupted rankings as mRNA platform companies
@@ -687,11 +687,11 @@ export default function Chapter15() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -877,7 +877,7 @@ export default function Chapter15() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer

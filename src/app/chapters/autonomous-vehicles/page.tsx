@@ -262,6 +262,10 @@ export default function Chapter14() {
       />
       <MeasurementSidebar slug="autonomous-vehicles" />
 
+      <DataNote>
+        Autonomous vehicle patents before 2005 consist of small annual volumes. Early-period metrics should be interpreted with caution.
+      </DataNote>
+
       <KeyFindings>
         <li>Autonomous vehicle patent filings increased rapidly in the 2010s, coinciding with competition between established automakers and technology companies entering the transportation sector.</li>
         <li>Navigation and path planning constitutes the largest AV subfield, reflecting the central engineering challenge of route optimization and real-time autonomous decision-making.</li>
@@ -272,13 +276,13 @@ export default function Chapter14() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems -- exemplified by Waymo and Tesla respectively -- is evident in the patent data, as is the growing convergence of <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction -- patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
+          The pursuit of autonomous driving represents one of the most capital-intensive and technically demanding innovation races in modern history. What began with Google&apos;s self-driving project in 2009 has grown into a global competition involving automakers, technology companies, sensor manufacturers, and ride-hailing platforms, each building patent portfolios that reflect fundamentally different technical approaches. The debate between lidar-based and camera-based perception systems -- exemplified by Waymo and Tesla respectively -- is evident in the patent data, as is the growing convergence of <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, advanced sensor technology, and automotive engineering. The 2016 Tesla Autopilot crash and subsequent safety debates have not slowed patent activity but have shifted its composition, with an increasing share of filings addressing redundancy, fail-safe mechanisms, and human-machine interaction -- patterns consistent with the broader maturation of the field documented in the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and its role as a general-purpose technology across the patent system, this chapter turns to autonomous vehicles, a domain where AI-driven perception and decision-making systems constitute the core of inventive activity.
+          Having examined <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and its role as a general-purpose technology across the patent system, this chapter turns to autonomous vehicles, a domain where AI-driven perception and decision-making systems constitute the core of inventive activity.
         </p>
         <p>
           Autonomous vehicles and advanced driver-assistance systems (ADAS) represent a convergence
@@ -661,11 +665,11 @@ export default function Chapter14() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -800,7 +804,7 @@ export default function Chapter14() {
           multidisciplinary teams spanning mechanical engineering, electrical engineering,
           computer science, and safety engineering. The relative absence of university and
           individual inventors among AV patent holders -- more pronounced than in{' '}
-          <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patenting</Link>{' '}
+          <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patenting</Link>{' '}
           generally -- underscores the capital-intensive nature of this technology domain.
         </p>
       </KeyInsight>
@@ -808,7 +812,7 @@ export default function Chapter14() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer
@@ -866,9 +870,9 @@ export default function Chapter14() {
         technology, and automotive engineering has created one of the most dynamic and
         capital-intensive innovation races in the modern patent system. The organizational
         strategies behind AV patenting are explored further in{' '}
-        <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>,
+        <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>,
         while the AI foundations that underpin autonomous driving are examined in the{' '}
-        <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
+        <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link> chapter.
       </Narrative>
 
       <ChartContainer

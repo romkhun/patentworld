@@ -159,4 +159,59 @@ export const GLOSSARY: Record<string, GlossaryTerm> = {
     definition:
       'A classification of patents into 35 technology fields grouped into 5 sectors: Electrical engineering, Instruments, Chemistry, Mechanical engineering, and Other fields.',
   },
+  'blockbuster rate': {
+    term: 'blockbuster rate',
+    definition:
+      'The share of an entity\'s patents that fall in the top 1% of forward citations within their grant-year \u00d7 CPC section cohort. Rates above 1% indicate disproportionate high-impact output.',
+  },
+  'dud rate': {
+    term: 'dud rate',
+    definition:
+      'The share of an entity\'s patents that receive zero forward citations within five years of grant. Higher dud rates indicate a larger proportion of patents with no measurable downstream impact.',
+  },
+  'terminal disclaimer': {
+    term: 'terminal disclaimer',
+    definition:
+      'A legal mechanism in which a patent owner voluntarily shortens a patent\'s term to match a related earlier patent, typically to overcome an obviousness-type double patenting rejection. Terminal disclaimers tie the enforceability of the later patent to the earlier one.',
+  },
+  'prior art': {
+    term: 'prior art',
+    definition:
+      'Any evidence that an invention was already known before a patent application was filed. Includes earlier patents, published papers, products, and public demonstrations. Patent examiners cite prior art to assess novelty and non-obviousness.',
+  },
+  'claim count': {
+    term: 'claim count',
+    definition:
+      'The total number of independent and dependent claims in a patent. Measures the scope of legal protection sought. Higher claim counts generally indicate broader or more detailed protection.',
+  },
+  'continuation patent': {
+    term: 'continuation patent',
+    definition:
+      'A patent application filed by the same applicant that claims priority from an earlier (parent) application. Continuations allow applicants to pursue additional claims based on the same specification, often extending patent family protection over time.',
+  },
+  'inter partes review': {
+    term: 'inter partes review',
+    definition:
+      'A trial proceeding at the Patent Trial and Appeal Board (PTAB) to challenge the validity of an issued patent based on prior art. Introduced by the America Invents Act (2011), IPR has become a major mechanism for patent challenges.',
+  },
+  'patent portfolio': {
+    term: 'patent portfolio',
+    definition:
+      'The collection of all patents held by an entity (company, university, or individual). Portfolio analysis examines the technological breadth, citation impact, and strategic positioning of an organization\'s patent holdings.',
+  },
+  'CPC section': {
+    term: 'CPC section',
+    definition:
+      'The broadest level of the Cooperative Patent Classification hierarchy, denoted by a single letter (A through H, plus Y). There are 8 primary sections (e.g., G = Physics, H = Electricity) and the cross-sectional tagging section Y.',
+  },
+  'CPC class': {
+    term: 'CPC class',
+    definition:
+      'The second level of the CPC hierarchy, denoted by the section letter followed by two digits (e.g., G06 = Computing; Calculating). There are approximately 130 active CPC classes.',
+  },
+  'CPC subclass': {
+    term: 'CPC subclass',
+    definition:
+      'The third level of the CPC hierarchy, denoted by the class code followed by one or more letters (e.g., G06N = Computing arrangements based on specific computational models). There are approximately 670 active CPC subclasses.',
+  },
 };

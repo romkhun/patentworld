@@ -139,7 +139,7 @@ export function PWConvergenceMatrix({ data, eras }: PWConvergenceMatrixProps) {
             {CPC_SECTION_NAMES[tooltipEntry.section_row]} × {CPC_SECTION_NAMES[tooltipEntry.section_col]}
           </span>
           : {tooltipEntry.co_occurrence_pct.toFixed(2)}% of multi-section patents
-          ({tooltipEntry.patent_count.toLocaleString()} patents)
+          ({tooltipEntry.patent_count.toLocaleString('en-US')} patents)
         </div>
       )}
 

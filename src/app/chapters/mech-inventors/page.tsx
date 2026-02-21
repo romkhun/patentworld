@@ -296,7 +296,7 @@ export default function MechInventorsChapter() {
                 <tr key={i} className="border-b border-border/50">
                   <td className="py-2 px-3">{inv.first_name} {inv.last_name}</td>
                   <td className="text-right py-2 px-3 font-mono">{inv.num_orgs}</td>
-                  <td className="text-right py-2 px-3 font-mono">{inv.total_patents.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{inv.total_patents.toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -378,7 +378,7 @@ export default function MechInventorsChapter() {
                   {topImporters.map((node, i) => (
                     <tr key={i} className="border-b border-border/50">
                       <td className="py-2 px-2">{cleanOrgName(node.name)}</td>
-                      <td className="text-right py-2 px-2 font-mono text-emerald-600">+{node.net_flow.toLocaleString()}</td>
+                      <td className="text-right py-2 px-2 font-mono text-emerald-600">+{node.net_flow.toLocaleString('en-US')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -398,7 +398,7 @@ export default function MechInventorsChapter() {
                   {topExporters.map((node, i) => (
                     <tr key={i} className="border-b border-border/50">
                       <td className="py-2 px-2">{cleanOrgName(node.name)}</td>
-                      <td className="text-right py-2 px-2 font-mono text-red-500">{node.net_flow.toLocaleString()}</td>
+                      <td className="text-right py-2 px-2 font-mono text-red-500">{node.net_flow.toLocaleString('en-US')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -454,7 +454,7 @@ export default function MechInventorsChapter() {
 
       <Narrative>
         <p>
-          The state and city patent output documented in the <Link href="/chapters/geo-domestic" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> chapter capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
+          The state and city patent output documented in the <Link href="/chapters/geo-domestic/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> chapter capture where innovation occurs, but not how inventors move across these domestic regions over the course of their careers. Tracking individual inventors across their patent histories reveals patterns of{' '}
           <StatCallout value="geographic mobility" /> -- the manner in which innovators relocate between states, carrying tacit knowledge and professional networks with them.
         </p>
       </Narrative>
@@ -704,7 +704,7 @@ export default function MechInventorsChapter() {
       <Narrative>
         <p>
           The collaboration networks and mobility patterns documented in this chapter reveal the human infrastructure of innovation -- the teams, bridges, and talent flows through which knowledge circulates. The next chapter,{' '}
-          <Link href="/chapters/mech-geography" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
+          <Link href="/chapters/mech-geography/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Geographic Mechanics</Link>,
           examines the spatial dimensions of these dynamics: how innovation clusters form, how they evolve over time, and how geographic proximity shapes the direction of technological progress.
         </p>
       </Narrative>

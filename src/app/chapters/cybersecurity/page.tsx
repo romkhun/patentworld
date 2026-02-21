@@ -273,13 +273,13 @@ export default function Chapter17() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
+          Cybersecurity patenting traces the intensifying contest between digital defenders and threat actors, a dynamic that has intensified with each successive wave of connectivity -- from the early internet era through cloud computing to the current landscape of IoT and AI-driven attacks. The patent record reveals not merely growth in volume but a structural transformation: early cryptographic methods have been surpassed by network security, which now constitutes the largest subfield, alongside rapid growth in authentication and data protection, each responding to distinct threat vectors. The organizational landscape is shaped by the same concentration dynamics observed in <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link>, with a handful of resource-rich firms building expansive patent portfolios that serve both defensive and strategic purposes. Landmark events -- the Snowden disclosures of 2013, the WannaCry ransomware campaign of 2017, and the SolarWinds supply-chain compromise of 2020 -- appear as inflection points in the data, each triggering measurable surges in patenting activity that reflect the broader pattern of threat-driven innovation documented throughout the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link> chapter.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/blockchain" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to cybersecurity, a domain whose growth trajectory is shaped by escalating digital threats and regulatory mandates.
+          Having examined <Link href="/chapters/blockchain/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">blockchain</Link> and the relationship between speculative market cycles and patent filing behavior, this chapter turns to cybersecurity, a domain whose growth trajectory is shaped by escalating digital threats and regulatory mandates.
         </p>
         <p>
           As the digital economy has expanded, so too has the attack surface that threatens it.
@@ -513,7 +513,7 @@ export default function Chapter17() {
         subtitle="Countries ranked by total cybersecurity-related patents based on primary inventor location, showing geographic distribution of security innovation."
         title="The United States Dominates Cybersecurity Patenting, With Significant Contributions From Japan, China, India, and Israel"
         caption="Countries ranked by total cybersecurity-related patents based on primary inventor location. The United States maintains a substantial lead, while the presence of Israel reflects that nation's well-documented specialization in cybersecurity innovation."
-        insight="The geographic distribution of cybersecurity patents reflects the concentration of major technology firms and security research laboratories in the United States, while Israel's strong presence relative to its size underscores its recognized specialization in defensive and offensive cyber capabilities."
+        insight="The geographic distribution of cybersecurity patents reflects the concentration of major technology firms and security research laboratories in the United States, while Israel's strong presence relative to its size underscores its recognized specialization in defensive and adversarial cybersecurity capabilities."
         loading={geoL}
         height={900}
       >
@@ -636,11 +636,11 @@ export default function Chapter17() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -777,13 +777,13 @@ export default function Chapter17() {
       </KeyInsight>
 
       <Narrative>
-        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter.
+        Having documented the growth of cybersecurity in the patent system, the trajectory of security innovation illuminates broader patterns in how the technology sector responds to evolving threats. The organizational strategies behind cybersecurity patenting are explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>, while the convergence of security and artificial intelligence reflects dynamics examined in the <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">AI patents</Link> chapter.
       </Narrative>
 
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer

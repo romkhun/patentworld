@@ -270,13 +270,13 @@ export default function Chapter22() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Space technology patenting reflects one of the most consequential transformations in US industrial patenting: the shift from a government-dominated endeavor to a commercially driven ecosystem. For decades, space patents were the province of a small number of aerospace and defense contractors working under NASA and Department of Defense contracts. The founding of SpaceX in 2002 and the subsequent demonstration of reusable rocket technology catalyzed a broader commercial space movement that has reshaped the competitive landscape. Satellite design and space communications now constitute the largest subfields, shaped by ambitious constellation programs such as Starlink that aim to provide global broadband connectivity. Propulsion systems and attitude control represent core engineering challenges where patent activity remains concentrated among firms with deep systems integration expertise. The balance between government and commercial patenting has shifted decisively toward the private sector, a pattern with significant implications for the future trajectory of space industrialization.
+          Space technology patenting reflects one of the most consequential transformations in US industrial patenting: the shift from a government-dominated endeavor to a commercially driven ecosystem. For decades, space patents were the province of a small number of aerospace and defense contractors working under NASA and Department of Defense contracts. The founding of SpaceX in 2002 and the subsequent demonstration of reusable rocket technology coincided with a broader commercial space movement that has reshaped the competitive landscape. Satellite design and space communications now constitute the largest subfields, shaped by ambitious constellation programs such as Starlink that aim to provide global broadband connectivity. Propulsion systems and attitude control represent core engineering challenges where patent activity remains concentrated among firms with deep systems integration expertise. The balance between government and commercial patenting has shifted decisively toward the private sector, a pattern with significant implications for the future trajectory of space industrialization.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/semiconductors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and the concentrated landscape of advanced chip fabrication, this chapter turns to space technology, a domain whose transition from government-funded to commercially driven innovation parallels the broader structural shifts documented throughout ACT 6.
+          Having examined <Link href="/chapters/semiconductors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">semiconductors</Link> and the concentrated landscape of advanced chip fabrication, this chapter turns to space technology, a domain whose transition from government-funded to commercially driven innovation parallels the broader structural shifts documented throughout ACT 6.
         </p>
         <p>
           Space technology has undergone a fundamental transformation over the past two decades,
@@ -655,11 +655,11 @@ export default function Chapter22() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -814,7 +814,7 @@ export default function Chapter22() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer

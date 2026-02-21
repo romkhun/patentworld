@@ -332,8 +332,8 @@ export default function DeepDiveOverview() {
                 {topSpillovers.map((row) => (
                   <tr key={row.pair} className="border-b last:border-0 hover:bg-muted/30">
                     <td className="px-3 py-1.5">{row.pair}</td>
-                    <td className="px-3 py-1.5 text-right tabular-nums">{row.observed.toLocaleString()}</td>
-                    <td className="px-3 py-1.5 text-right tabular-nums">{row.expected.toLocaleString()}</td>
+                    <td className="px-3 py-1.5 text-right tabular-nums">{row.observed.toLocaleString('en-US')}</td>
+                    <td className="px-3 py-1.5 text-right tabular-nums">{row.expected.toLocaleString('en-US')}</td>
                     <td className="px-3 py-1.5 text-right tabular-nums font-medium">
                       {row.lift.toFixed(2)}×
                     </td>

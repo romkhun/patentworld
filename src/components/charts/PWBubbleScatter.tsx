@@ -121,7 +121,7 @@ export function PWBubbleScatter({
                 <div className="font-semibold text-sm mb-1">{d.company}</div>
                 <div className="text-xs text-muted-foreground">{xLabel}: {xFormatter(d.x)}</div>
                 <div className="text-xs text-muted-foreground">{yLabel}: {yFormatter(d.y)}</div>
-                <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString('en-US')}</div>
                 <div className="text-xs text-muted-foreground">
                   Section: {d.section} ({CPC_SECTION_NAMES[d.section] ?? d.section})
                 </div>

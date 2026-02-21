@@ -109,7 +109,7 @@ export default function SystemPatentQualityChapter() {
         <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005 before settling to 16.6 by 2024 (median: 18), with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
         <li>Average patent scope grew from 1.8 to a peak of 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent in 2020, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
-        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 system-wide (section-level averages reached 0.45-0.55 by the 2020s; see <Link href="/chapters/system-patent-fields">Patent Fields</Link> chapter) while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
+        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 system-wide (section-level averages reached 0.45-0.55 by the 2020s; see <Link href="/chapters/system-patent-fields/">Patent Fields</Link> chapter) while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
         <li>Sleeping beauty patents -- inventions that received fewer than 2 citations per year in their first 10 years, then experienced a burst of 10 or more citations within a 3-year window -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
       </KeyFindings>
 
@@ -251,7 +251,7 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          The broadening of patent scope implies that patents increasingly straddle traditional classification boundaries, creating challenges for examiners who must possess expertise across multiple technology domains and for firms that must monitor an expanding set of prior art. This trend is further documented in the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Convergence chapter</Link>.
+          The broadening of patent scope implies that patents increasingly straddle traditional classification boundaries, creating challenges for examiners who must possess expertise across multiple technology domains and for firms that must monitor an expanding set of prior art. This trend is further documented in the <Link href="/chapters/system-convergence/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Convergence chapter</Link>.
         </p>
       </KeyInsight>
 
@@ -809,7 +809,7 @@ export default function SystemPatentQualityChapter() {
       {/* ================================================================== */}
 
       <Narrative>
-        Having examined patent quality across eight complementary dimensions -- from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents -- the next chapter turns to the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.
+        Having examined patent quality across eight complementary dimensions -- from claim complexity and scope breadth through citation dynamics, self-citation patterns, originality, generality, and sleeping beauty patents -- the next chapter turns to the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">technological composition of patent activity</Link>. Where this chapter asked <em>how good</em> patents are, the next asks <em>what fields</em> they cover and how the distribution of inventive effort across technology domains has shifted over five decades.
       </Narrative>
 
       <InsightRecap
@@ -831,7 +831,10 @@ export default function SystemPatentQualityChapter() {
         Forward citations use a 5-year window and are limited to patents granted through 2020 for citation accumulation.
         Backward citation counts include all US patent citations per utility patent.
         Citation lag is measured as the time between the cited patent&apos;s grant date and the citing patent&apos;s grant date.
-        Originality and generality use the Herfindahl-based measures of Trajtenberg, Henderson, and Jaffe (1997).
+        Originality and generality use the Herfindahl-based measures of Trajtenberg, Henderson, and Jaffe (1997),
+        computed over CPC sections (8 categories). This coarser granularity compresses the range compared to the
+        ~36 NBER subcategories used in the original study. System-wide originality averages (~0.25) reflect the
+        inclusion of early decades; within individual CPC sections, originality reaches 0.45-0.55 by the 2020s.
         Self-citation rate is the fraction of backward citations directed to patents held by the same assignee.
         Sleeping beauty patents are identified as those with fewer than 2 citations per year in their first 10 years followed by a burst of 10+ citations in a 3-year window.
         All data computed from PatentsView following the framework of Jaffe and de Rassenfosse (2017).

@@ -42,7 +42,7 @@ function CounterStat({ target, label, suffix, decimals }: {
 }) {
   const { ref, inView } = useInView({ threshold: 0.2 });
   const count = useCountUp(decimals ? target * 100 : target, 1500, inView);
-  const display = decimals ? (count / 100).toFixed(decimals) : count.toLocaleString();
+  const display = decimals ? (count / 100).toFixed(decimals) : count.toLocaleString('en-US');
 
   return (
     <div className="text-center" ref={ref}>

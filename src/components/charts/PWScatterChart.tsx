@@ -100,7 +100,7 @@ export function PWScatterChart({
                 )}
                 {tooltipFields?.map(({ key, label }) => (
                   <div key={key} className="text-xs text-muted-foreground">
-                    {label}: {typeof d[key] === 'number' ? d[key].toLocaleString() : d[key]}
+                    {label}: {typeof d[key] === 'number' ? d[key].toLocaleString('en-US') : d[key]}
                   </div>
                 ))}
                 {!tooltipFields && (

@@ -274,13 +274,13 @@ export default function Chapter12() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a substantial structural change, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+          Agriculture is one of the oldest areas of innovation in the patent system, yet it remains one of the most dynamic. The trajectory of agricultural technology patents reveals a sector undergoing a fundamental transformation -- from the mechanization-era patents for soil working and planting equipment that dominated the twentieth century to the precision agriculture, biotechnology, and data-driven farming technologies that define the twenty-first. The adoption of genetically modified crops beginning in 1996 marked a substantial structural change, shifting the center of agricultural innovation from mechanical engineering to molecular biology and plant science. Today, the convergence of GPS, remote sensing, machine learning, and genomics is creating a new generation of agricultural patents that bridge traditional farming with digital technology. The organizational landscape is led by Pioneer Hi-Bred and Monsanto in seed and plant science, alongside Deere &amp; Company in agricultural equipment, with patent strategies explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/3d-printing" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing</Link> and the role of patent expirations in democratizing manufacturing technology, this chapter turns to agricultural technology, a domain where biological and digital innovations are reshaping food production through precision agriculture and biotechnology.
+          Having examined <Link href="/chapters/3d-printing/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">3D printing</Link> and the role of patent expirations in democratizing manufacturing technology, this chapter turns to agricultural technology, a domain where biological and digital innovations are reshaping food production through precision agriculture and biotechnology.
         </p>
         <p>
           Agriculture is one of the oldest areas of innovation in the United States patent
@@ -679,11 +679,11 @@ export default function Chapter12() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -829,7 +829,7 @@ export default function Chapter12() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer
@@ -869,7 +869,7 @@ export default function Chapter12() {
         id="fig-agtech-velocity"
         subtitle="Mean patents per active year for top organizations grouped by the decade in which they first filed an agricultural technology patent."
         title="Later Entrants to Agricultural Technology Patent at Higher Annual Velocity: 2000s Cohort Averages 32.9 Patents per Year Versus 7.4 for 1970s Entrants"
-        caption="Mean patents per active year for top organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 4.4x velocity increase from 1970s to 2000s entrants suggests the domain has become significantly more accessible to productive patenting."
+        caption="Mean patents per active year for top organizations grouped by entry decade. Only cohorts with three or more organizations are shown. The 4.4x velocity increase from 1970s to 2000s entrants suggests the domain has become substantially more accessible to productive patenting."
         insight="The rising velocity across cohorts is consistent with agricultural technology maturing as a patenting domain, with standardized CPC classifications and established prior art facilitating faster patent prosecution for later entrants."
         loading={taL}
       >
@@ -890,7 +890,7 @@ export default function Chapter12() {
           gravity is shifting toward biological and digital technologies. Climate change is
           driving renewed urgency in drought-resistant crop development, water-efficient
           irrigation, and sustainable farming practices. The convergence of precision
-          agriculture with <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and <Link href="/chapters/biotechnology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> suggests that
+          agriculture with <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">artificial intelligence</Link> and <Link href="/chapters/biotechnology/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">biotechnology</Link> suggests that
           future agricultural patents will increasingly bridge the farm, the laboratory, and the data center, reflecting a convergence of precision agriculture, biotechnology, and data science.
         </p>
       </Narrative>

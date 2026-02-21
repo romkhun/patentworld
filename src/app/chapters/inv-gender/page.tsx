@@ -166,7 +166,7 @@ export default function InvGenderChapter() {
       <MeasurementSidebar slug="inv-gender" />
 
       <KeyFindings>
-        <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), but remains well below parity with substantial variation across technology fields.</li>
+        <li>The female share of inventor instances has risen steadily from 2.8% in 1976 to 14.9% in 2025 (through September), representing approximately one in seven patent inventors, with substantial variation across technology fields.</li>
         <li>Chemistry leads cumulative female inventor representation at 14.6% (1976-2025), reaching 23.4% in the most recent period, while Mechanical Engineering is lowest at 5.4%, closely mirroring STEM educational pipeline composition.</li>
         <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
@@ -178,7 +178,7 @@ export default function InvGenderChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% (through September 2025) over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering lagging. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
+          Female inventor representation has increased 5.3-fold from 2.8% to 14.9% (through September 2025) over five decades, with Chemistry and Human Necessities leading and Mechanical Engineering at the lowest levels. All-male teams receive the highest average citations, followed by mixed-gender teams and all-female teams, suggesting team composition correlates with citation outcomes in ways that reflect both systemic and structural factors.
         </p>
       </aside>
 
@@ -225,7 +225,7 @@ export default function InvGenderChapter() {
         <p>
           Progress on gender diversity in patenting has been measurable but gradual. The female share
           increased from 2.8% in 1976 to 14.9% in 2025 (through September). Despite decades of initiatives to broaden
-          participation in STEM, the female share of inventors on US patents remains well below parity.
+          participation in STEM, the female share of inventors on US patents remains at approximately 15%. Multiple structural factors — including differences in STEM pipeline participation, industry composition, and institutional barriers — may contribute to these patterns.
           At the observed rate of change, achieving equal representation would require several additional decades.
         </p>
       </Narrative>
@@ -278,6 +278,14 @@ export default function InvGenderChapter() {
           composition of STEM degree programs.
         </p>
       </KeyInsight>
+
+      <DataNote>
+        Gender is inferred from inventor first names using PatentsView&apos;s gender_code field.
+        This method does not capture non-binary identities and has lower accuracy for names
+        common in East Asian, South Asian, and other non-Western naming traditions, where
+        given names are less reliably associated with binary gender categories. Results should
+        be interpreted with this limitation in mind, particularly for international comparisons.
+      </DataNote>
 
       <DescriptiveGapNote variant="gender" alwaysVisible={true} />
 
@@ -335,7 +343,7 @@ export default function InvGenderChapter() {
               {genderTeamQuality.map((row, i) => (
                 <tr key={i} className="border-b border-border/50">
                   <td className="py-2 px-3 font-medium">{row.team_gender}</td>
-                  <td className="text-right py-2 px-3 font-mono">{row.patent_count.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{row.patent_count.toLocaleString('en-US')}</td>
                   <td className="text-right py-2 px-3 font-mono">{row.avg_citations.toFixed(1)}</td>
                   <td className="text-right py-2 px-3 font-mono">{row.median_citations}</td>
                 </tr>
@@ -590,7 +598,7 @@ export default function InvGenderChapter() {
       <Narrative>
         <p>
           The gender composition of the inventor workforce reveals persistent disparities across technology
-          fields and meaningful differences in patent quality by team composition. The next chapter, <Link href="/chapters/inv-team-size" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Team Size and Collaboration</Link>, examines how team structures have evolved over time and how team size relates to patent quality and innovation outcomes.
+          fields and meaningful differences in patent quality by team composition. The next chapter, <Link href="/chapters/inv-team-size/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Team Size and Collaboration</Link>, examines how team structures have evolved over time and how team size relates to patent quality and innovation outcomes.
         </p>
       </Narrative>
 

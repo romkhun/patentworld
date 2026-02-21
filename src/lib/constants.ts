@@ -52,7 +52,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-law',
     title: 'Patent Law & Policy',
     subtitle: 'Legislation and jurisprudence shaping the patent system',
-    description: 'The Alice decision (2014) curtailed software patent eligibility, while the AIA (2011) was the most significant reform since 1952. Twenty-one legislative and judicial events from 1980 to 2025 show measurable effects on filing patterns within one to two years.',
+    description: 'The Alice decision (2014) curtailed software patent eligibility, while the AIA (2011) was the most significant reform since 1952. Twenty-one legislative and judicial events from 1980 to 2025 are associated with observable shifts in filing patterns within one to two years.',
   },
   {
     number: 7,

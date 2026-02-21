@@ -301,6 +301,17 @@ export const FILING_ROUTE_COLORS: Record<string, string> = {
   'Domestic': '#009E73',
 };
 
+// Geographic region colors for world flow maps
+export const REGION_COLORS: Record<string, string> = {
+  'Americas': '#0072B2',
+  'Europe': '#009E73',
+  'East Asia': '#E69F00',
+  'South Asia': '#332288',
+  'Oceania': '#CC79A7',
+  'Middle East': '#D55E00',
+  'Africa': '#44AA99',
+};
+
 /** Look up CPC section color with fallback to gray. */
 export function getCpcColor(section: string): string {
   const key = section.charAt(0).toUpperCase();

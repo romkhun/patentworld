@@ -330,7 +330,7 @@ export default function GeoDomesticChapter() {
             layout="vertical"
             stacked
             yLabel="Share (%)"
-            yFormatter={(v) => `${v}%`}
+            yFormatter={(v) => `${Number(v).toFixed(1)}%`}
             xDomain={[0, 100]}
           />
         </ChartContainer>
@@ -550,7 +550,7 @@ export default function GeoDomesticChapter() {
                   <td className="text-center py-2 px-3">{rs.state}</td>
                   <td className="text-center py-2 px-3">{rs.section}: {CPC_SECTION_NAMES[rs.section] ?? ''}</td>
                   <td className="text-right py-2 px-3 font-mono font-semibold">{rs.location_quotient.toFixed(2)}</td>
-                  <td className="text-right py-2 px-3 font-mono">{rs.metro_section_count.toLocaleString()}</td>
+                  <td className="text-right py-2 px-3 font-mono">{rs.metro_section_count.toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -750,7 +750,7 @@ export default function GeoDomesticChapter() {
 
       <Narrative>
         <p>
-          The state-level and city-level patterns documented here reveal pronounced geographic concentration and distinctive technology specialization across the United States. The next chapter, <Link href="/chapters/geo-international" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">International Geography</Link>, extends this analysis across national borders, examining how foreign filings and international inventor mobility have transformed the US patent system into a global institution.
+          The state-level and city-level patterns documented here reveal pronounced geographic concentration and distinctive technology specialization across the United States. The next chapter, <Link href="/chapters/geo-international/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">International Geography</Link>, extends this analysis across national borders, examining how foreign filings and international inventor mobility have transformed the US patent system into a global institution.
         </p>
       </Narrative>
 

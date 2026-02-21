@@ -5,6 +5,8 @@ import { geoNaturalEarth1, geoPath, geoInterpolate, GeoProjection } from 'd3-geo
 import { scaleQuantize, scaleLinear } from 'd3-scale';
 import * as topojson from 'topojson-client';
 import type { Topology, GeometryCollection } from 'topojson-specification';
+import { REGION_COLORS } from '@/lib/colors';
+import { formatCompact } from '@/lib/formatters';
 
 // ISO 3166-1 numeric -> alpha-2 mapping for major countries
 const NUM_TO_ALPHA2: Record<string, string> = {
@@ -71,16 +73,6 @@ const REGION_MAP: Record<string, string> = {
   AU: 'Oceania', NZ: 'Oceania',
   IL: 'Middle East', TR: 'Middle East', SA: 'Middle East', IR: 'Middle East',
   ZA: 'Africa', UG: 'Africa', CM: 'Africa',
-};
-
-const REGION_COLORS: Record<string, string> = {
-  'Americas': '#0072B2',
-  'Europe': '#009E73',
-  'East Asia': '#E69F00',
-  'South Asia': '#332288',
-  'Oceania': '#CC79A7',
-  'Middle East': '#D55E00',
-  'Africa': '#44AA99',
 };
 
 function getRegionColor(countryCode: string): string {
@@ -262,7 +254,7 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
     const total = countryTotals[abbrev];
     if (total == null) return;
     const name = COUNTRY_NAMES[abbrev] || abbrev;
-    const fmt = total >= 1000 ? `${(total / 1000).toFixed(1)}K` : total.toLocaleString();
+    const fmt = formatCompact(total);
     setTooltip({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top - 10,
@@ -277,7 +269,7 @@ export function PWWorldFlowMap({ data, maxFlows = 20 }: PWWorldFlowMapProps) {
     const rect = svg.getBoundingClientRect();
     const fromName = COUNTRY_NAMES[flow.from_country ?? ''] || flow.from_country;
     const toName = COUNTRY_NAMES[flow.to_country ?? ''] || flow.to_country;
-    const fmt = flow.flow_count >= 1000 ? `${(flow.flow_count / 1000).toFixed(1)}K` : flow.flow_count.toLocaleString();
+    const fmt = formatCompact(flow.flow_count);
     setTooltip({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top - 10,

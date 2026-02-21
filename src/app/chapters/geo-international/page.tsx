@@ -156,7 +156,7 @@ export default function GeoInternationalChapter() {
 
       <Narrative>
         <p>
-          The domestic concentration documented in <Link href="/chapters/geo-domestic" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> is paralleled by a transformation in the international origins of US patent filings. Successive waves of foreign filings from Japan, South Korea, and more recently China have reshaped the composition of the US patent system, while the relationship between patent volume and quality varies substantially across countries.
+          The domestic concentration documented in <Link href="/chapters/geo-domestic/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Domestic Geography</Link> is paralleled by a transformation in the international origins of US patent filings. Successive waves of foreign filings from Japan, South Korea, and more recently China have reshaped the composition of the US patent system, while the relationship between patent volume and quality varies substantially across countries.
         </p>
         <p>
           This chapter examines the international dimension of innovation geography through three lenses: how domestic and international patents may differ in quality indicators, how patent quality and quantity relate across countries, and how country-level filing trends reveal the evolving composition of foreign patent activity in the US system.
@@ -542,13 +542,13 @@ export default function GeoInternationalChapter() {
 
       <KeyInsight>
         <p>
-          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting its distinctive institutional circumstances, underscores how political and treaty-access factors shape international filing behavior.
+          PCT filing strategies vary substantially across countries and have evolved over time. China&apos;s rapid increase in PCT usage -- from negligible levels in the 1990s to over 35% by 2024 -- reflects both the growing sophistication of Chinese patent strategy and the increasing globalization of Chinese R&D activities. The contrast with Taiwan, which exhibits very low PCT usage reflecting differences in treaty access and international patent-system participation, underscores how political and institutional factors shape international filing behavior.
         </p>
       </KeyInsight>
 
       <Narrative>
         <p>
-          The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens -- from state-level domestic concentration to global filing patterns and cross-country quality comparisons -- the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
+          The international filing patterns and quality metrics documented in this chapter complete the geographic analysis of the US patent system. Having examined where innovation happens -- from state-level domestic concentration to global filing patterns and cross-country quality comparisons -- the narrative turns to <em>how</em> knowledge flows through the system. The next act, <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Mechanics</Link>, investigates the organizational, individual, and geographic channels through which knowledge circulates, beginning with <Link href="/chapters/mech-organizations/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Organizational Mechanics</Link> and the within-firm dynamics of exploration, exploitation, and inter-firm knowledge flows.
         </p>
       </Narrative>
 

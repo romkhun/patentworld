@@ -420,7 +420,7 @@ export default function OrgPatentPortfolioChapter() {
 
       <Narrative>
         <p>
-          Portfolio analysis reveals that firms pursue fundamentally different diversification strategies, and that portfolio shifts detected through Jensen-Shannon divergence often anticipate major business transformations. The next chapter, <Link href="/chapters/org-company-profiles" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Interactive Company Profiles</Link>, combines patent output, technology portfolios, citation impact, and innovation strategy into comprehensive firm-level dashboards.
+          Portfolio analysis reveals that firms pursue fundamentally different diversification strategies, and that portfolio shifts detected through Jensen-Shannon divergence often anticipate major business transformations. The next chapter, <Link href="/chapters/org-company-profiles/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Interactive Company Profiles</Link>, combines patent output, technology portfolios, citation impact, and innovation strategy into comprehensive firm-level dashboards.
         </p>
       </Narrative>
 

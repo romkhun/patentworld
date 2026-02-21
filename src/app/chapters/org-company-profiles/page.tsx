@@ -338,7 +338,7 @@ export default function OrgCompanyProfilesChapter() {
 
       <Narrative>
         <p>
-          The preceding chapters examined <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output</Link>, <Link href="/chapters/org-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quality metrics</Link>, and <Link href="/chapters/org-patent-portfolio" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">portfolio composition</Link> as separate analytical dimensions. This chapter integrates those perspectives into a single interactive dashboard for each company, providing a <StatCallout value="comprehensive innovation fingerprint" /> that reveals how patent volume, quality, strategic orientation, and prosecution speed interrelate within individual organizations.
+          The preceding chapters examined <Link href="/chapters/org-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output</Link>, <Link href="/chapters/org-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">quality metrics</Link>, and <Link href="/chapters/org-patent-portfolio/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">portfolio composition</Link> as separate analytical dimensions. This chapter integrates those perspectives into a single interactive dashboard for each company, providing a <StatCallout value="comprehensive innovation fingerprint" /> that reveals how patent volume, quality, strategic orientation, and prosecution speed interrelate within individual organizations.
         </p>
         <p>
           Each dashboard presents five views: annual patent output and summary statistics, technology portfolio evolution through CPC distributions, innovation quality through citation fan charts and blockbuster rates, multi-dimensional strategy profiles, and patent prosecution speed through grant lag trends. Together, these views enable direct comparison of how individual firms navigate the innovation landscape.
@@ -649,7 +649,7 @@ export default function OrgCompanyProfilesChapter() {
                   { key: 'dud_rate', name: 'Zero-Citation Rate (%)', color: CHART_COLORS[3], dashPattern: '8 4' },
                 ]}
                 yLabel="Share of Patents (%)"
-                yFormatter={(v: number) => `${v}%`}
+                yFormatter={(v: number) => `${v.toFixed(1)}%`}
               />
             ) : (
               <div />
@@ -892,7 +892,7 @@ export default function OrgCompanyProfilesChapter() {
           portfolio diversification, and quality dispersion -- ultimately reflect the aggregate
           contributions of the inventors who work within these firms. ACT 3 shifts from the
           institutional to the individual level, beginning with the{' '}
-          <Link href="/chapters/inv-top-inventors" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
+          <Link href="/chapters/inv-top-inventors/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
             superstar inventors
           </Link>{' '}
           whose outsized contributions shape the distributions observed in the preceding chapters.

@@ -261,8 +261,12 @@ export default function Chapter11() {
       />
       <MeasurementSidebar slug="3d-printing" />
 
+      <DataNote>
+        3D printing patents before 1995 consist of small annual volumes. Early-period metrics should be interpreted with caution.
+      </DataNote>
+
       <KeyFindings>
-        <li>3D printing patent filings have grown substantially since 2000, with notable acceleration after the expiration of key FDM patents in 2009.</li>
+        <li>3D printing patent filings have grown substantially since 2000, with notable acceleration after the expiration of key Fused Deposition Modeling (FDM) patents in 2009.</li>
         <li>The technology has bifurcated into distinct tracks: polymer additive manufacturing (B29C64) for prototyping and consumer applications, and metal additive manufacturing (B22F10) for production-grade aerospace and medical components.</li>
         <li>HP, General Electric, Stratasys, and Boeing lead the 3D printing patent landscape, though their strategies differ markedly across AM processes, equipment, and materials.</li>
         <li>The introduction of the B33Y CPC classification specifically for additive manufacturing reflects the field&apos;s maturation into a recognized technology domain with distinct inventive activity.</li>
@@ -271,7 +275,7 @@ export default function Chapter11() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing expansion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>.
+          Additive manufacturing has transitioned from a rapid prototyping curiosity to a production-grade manufacturing technology with applications spanning aerospace, medical devices, automotive, and consumer products. The patent record traces this evolution from the foundational stereolithography patents of the 1980s through the desktop 3D printing expansion triggered by FDM patent expirations, to the current era of metal AM and multi-material systems. The divergence between polymer and metal AM patent trajectories, combined with the entry of industrial conglomerates like GE and HP, signals a technology reaching inflection points in both capability and commercial viability. The organizational dynamics examined here connect to the broader manufacturing innovation patterns analyzed in <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>.
         </p>
       </aside>
 
@@ -293,7 +297,7 @@ export default function Chapter11() {
         <p>
           The additive manufacturing patent record reveals a technology undergoing a critical
           transition: from prototyping tool to production method. The expiration of foundational
-          FDM patents in 2009 catalyzed a wave of innovation in desktop systems, while
+          FDM patents in 2009 coincided with a wave of innovation in desktop systems, while
           concurrent advances in metal powder bed fusion and directed energy deposition have
           opened pathways to end-use part production in aerospace and medical applications.
         </p>
@@ -659,11 +663,11 @@ export default function Chapter11() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -804,14 +808,14 @@ export default function Chapter11() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer
         id="fig-3dprint-cr4"
         subtitle="Share of annual domain patents held by the four largest organizations, measuring organizational concentration in 3D printing patenting."
         title="Top-4 Concentration in 3D Printing Patents Peaked at 36% in 2005 Before Declining to 11% by 2024"
-        caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2005 peak reflects Micron Technology's dominance during its semiconductor-adjacent AM activity. Post-2009, the domain fragmented as FDM patent expirations enabled widespread entry."
+        caption="CR4 (four-firm concentration ratio) computed as the sum of the top 4 organizations' annual patent counts divided by total domain patents. The 2005 peak reflects Micron Technology's dominance during its semiconductor-adjacent AM activity. Post-2009, the domain fragmented as FDM patent expirations were followed by widespread entry."
         insight="The declining concentration ratio suggests that 3D printing patenting has become increasingly accessible, with the top 4 organizations accounting for a diminishing share of total activity despite their absolute patent counts increasing."
         loading={ootL || pyL}
       >
@@ -857,7 +861,7 @@ export default function Chapter11() {
       </ChartContainer>
 
       <Narrative>
-        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>, while organizational strategies are examined further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+        Having examined the patent landscape of additive manufacturing, the following chapters explore other technology domains where similar patterns of growth, organizational competition, and cross-domain diffusion are unfolding. The manufacturing innovation dynamics documented here connect to the broader analysis in <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>, while organizational strategies are examined further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
       </Narrative>
 
       <ChartContainer

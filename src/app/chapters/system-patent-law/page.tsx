@@ -200,7 +200,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2006,
     title: 'eBay v. MercExchange (547 U.S. 388)',
     category: 'Court',
-    description: 'The Court held that patent holders are not automatically entitled to injunctive relief, ending the presumption of permanent injunctions in patent cases. This holding significantly affected non-practicing entity litigation strategies.',
+    description: 'The Court held that patent holders are not automatically entitled to injunctive relief, ending the presumption of permanent injunctions in patent cases. This holding substantially affected non-practicing entity (NPE) litigation strategies.',
     research: [
       {
         citation: 'Mezzanotti, F. (2021). Roadblock to innovation: The role of patent litigation in corporate R&D. Management Science, 67(12), 7362\u20137390. https://doi.org/10.1287/mnsc.2020.3816',
@@ -318,7 +318,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     research: [
       {
         citation: 'Cohen, L., Gurun, U. G., & Kominers, S. D. (2019). Patent trolls: Evidence from targeted firms. Management Science, 65(12), 5461\u20135486. https://doi.org/10.1287/mnsc.2018.3147',
-        summary: 'Documents NPE forum shopping as a key element of strategic patent trolling, with the Eastern District of Texas as a favored venue. TC Heartland directly curtailed this behavior by restricting patent venue.',
+        summary: 'Documents NPE forum shopping as a key element of strategic assertion-entity litigation, with the Eastern District of Texas as a favored venue. TC Heartland directly curtailed this behavior by restricting patent venue.',
       },
       {
         citation: 'Mezzanotti, F. (2021). Roadblock to innovation: The role of patent litigation in corporate R&D. Management Science, 67(12), 7362\u20137390. https://doi.org/10.1287/mnsc.2020.3816',
@@ -461,13 +461,13 @@ export default function Chapter4() {
         <li>The <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip> (1980) transformed university patenting, enabling academic institutions to retain patent rights from federally funded research.</li>
         <li>The America Invents Act (2011) constituted the most significant patent reform since 1952, transitioning the United States from a first-to-invent to a first-inventor-to-file system.</li>
         <li>In <GlossaryTooltip term="Alice decision">Alice Corp. v. CLS Bank International</GlossaryTooltip> (2014), the Court held that abstract ideas implemented on generic computers are not patent-eligible under 35 U.S.C. &sect; 101, substantially curtailing patent eligibility for software and business method patents.</li>
-        <li>Legislative and judicial changes exhibit measurable effects on patent filing patterns, with impacts observable in the data within one to two years of major rulings.</li>
+        <li>Legislative and judicial changes are associated with observable shifts in patent filing patterns, with changes appearing in the data within one to two years of major rulings.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility coincided with the volume growth documented in <Link href="/chapters/system-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data are consistent with these legal shifts producing observable changes in patent filing patterns within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
+          A half-century of patent law reveals two broad regulatory phases: an era of expansion from the early 1980s through 2000 -- during which university patenting, strengthened enforcement, and broadened subject-matter eligibility coincided with the volume growth documented in <Link href="/chapters/system-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">the preceding chapters</Link> -- followed by an era of recalibration in which the Supreme Court narrowed eligibility doctrine and Congress introduced lower-cost administrative validity challenges at the PTAB. The data are consistent with these legal shifts producing observable changes in patent filing patterns within one to two years of enactment: the already-rising trend in applications around the 1998 State Street decision, pendency declines after AIA-era reforms, and a potential moderation in software-related patenting following the 2014 Alice eligibility restriction.
         </p>
       </aside>
 
@@ -793,7 +793,7 @@ export default function Chapter4() {
       </KeyInsight>
 
       <Narrative>
-        Having examined the legal and policy framework that governs the patent system, the analysis turns to the role of public investment in driving innovation. The <Link href="/chapters/system-public-investment" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates how government funding and public research expenditures have shaped patenting activity, and what the evolving relationship between federal investment and patent output reveals about the foundations of the innovation ecosystem.
+        Having examined the legal and policy framework that governs the patent system, the analysis turns to the role of public investment in driving innovation. The <Link href="/chapters/system-public-investment/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> investigates how government funding and public research expenditures have shaped patenting activity, and what the evolving relationship between federal investment and patent output reveals about the foundations of the innovation ecosystem.
       </Narrative>
 
       <InsightRecap

@@ -128,7 +128,7 @@ export default function OrgCompositionChapter() {
           The composition of patent assignees reveals fundamental shifts in who participates in the US patent system. Over five decades, three interrelated trends have reshaped the landscape: the progressive corporatization of patenting, the transition from domestic to foreign-majority filings, and the sequential entry of new national origins led by Japan, South Korea, and China. These structural changes reflect broader geopolitical shifts in research and development investment and the internationalization of technology-intensive industries.
         </p>
         <p>
-          This chapter examines the system-level composition of patent assignees, from the dominance of corporate entities to the geographic rebalancing of the patent system. The <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> turns to the individual firm rankings and output trajectories that underlie these aggregate patterns.
+          This chapter examines the system-level composition of patent assignees, from the dominance of corporate entities to the geographic rebalancing of the patent system. The <Link href="/chapters/org-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">following chapter</Link> turns to the individual firm rankings and output trajectories that underlie these aggregate patterns.
         </p>
       </Narrative>
 
@@ -356,7 +356,7 @@ export default function OrgCompositionChapter() {
 
       <KeyInsight>
         <p>
-          The patent prosecution market has become significantly less concentrated over five decades.
+          The patent prosecution market has become substantially less concentrated over five decades.
           The CR4 ratio fell from a peak of 13.2% in 1985 to 5.8% in 2024, and the CR10 from 22.6%
           to 11.9%. This fragmentation coincides with the growth of international filings and the
           emergence of new specialized firms serving Asian client portfolios. Sughrue Mion, which leads
@@ -368,7 +368,7 @@ export default function OrgCompositionChapter() {
 
       <Narrative>
         <p>
-          The assignee landscape has undergone a structural transformation over five decades. Corporate entities now dominate patenting, foreign assignees have surpassed domestic filers, and sequential waves of international entry have reshaped the geographic composition of the patent system. These system-level trends set the stage for examining the <Link href="/chapters/org-patent-count" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output rankings and trajectories</Link> that drive the aggregate patterns documented here.
+          The assignee landscape has undergone a structural transformation over five decades. Corporate entities now dominate patenting, foreign assignees have surpassed domestic filers, and sequential waves of international entry have reshaped the geographic composition of the patent system. These system-level trends set the stage for examining the <Link href="/chapters/org-patent-count/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizational patent output rankings and trajectories</Link> that drive the aggregate patterns documented here.
         </p>
       </Narrative>
 

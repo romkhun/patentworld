@@ -50,7 +50,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Is artificial intelligence patenting increasing?',
-    answer: 'AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. The acceleration began after breakthroughs in deep neural networks in 2012 and intensified further with the emergence of generative AI technologies after 2020.',
+    answer: 'AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all patent grants. The acceleration coincided with breakthroughs in deep neural networks around 2012 and intensified further with the emergence of generative AI technologies after 2020.',
   },
   {
     question: 'What is the gender gap in US patenting?',
@@ -81,6 +81,7 @@ const TOC_ITEMS = [
   { id: 'methodology', label: 'Methodology' },
   { id: 'faq', label: 'FAQ' },
   { id: 'citation', label: 'Citation' },
+  { id: 'license', label: 'License' },
 ];
 
 const ABOUT_JSONLD = [
@@ -286,7 +287,7 @@ export default function AboutPage() {
           <p>
             Raw data were obtained as tab-separated value (TSV) files from PatentsView&apos;s
             bulk data downloads. These files were processed using DuckDB, an analytical SQL
-            database engine, to compute aggregated statistics for each visualization.
+            database engine, and Polars (Python) to compute aggregated statistics for each visualization.
             The analysis encompasses all USPTO-granted patents from January 1976 through
             September 2025, including utility, design, plant, and reissue patents.
           </p>
@@ -305,6 +306,9 @@ export default function AboutPage() {
             reliability details, and data limitations, see the{' '}
             <Link href="/methodology/#definitions" className="underline underline-offset-2 hover:text-foreground transition-colors">
               Methodology page
+            </Link>. For known data limitations, see the{' '}
+            <Link href="/methodology/#limitations" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Limitations section
             </Link>.
           </p>
         </section>
@@ -334,6 +338,20 @@ export default function AboutPage() {
             Lee, Saerom (Ronnie). 2025. &ldquo;PatentWorld: 50 Years of US Patent Data.&rdquo;
             The Wharton School, University of Pennsylvania.
             Available at: https://patentworld.vercel.app/
+          </p>
+        </section>
+
+        {/* License */}
+        <section id="license">
+          <h2 className="font-serif text-2xl font-bold pt-4">License</h2>
+          <p>
+            The text, visualizations, and derived datasets on PatentWorld are licensed under{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Creative Commons Attribution 4.0 International (CC BY 4.0)
+            </a>
+            . You are free to share and adapt the material for any purpose, provided appropriate
+            credit is given. The underlying patent data are provided by the USPTO via PatentsView
+            and are in the public domain.
           </p>
         </section>
 

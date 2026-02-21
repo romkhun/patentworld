@@ -117,7 +117,7 @@ export default function SystemConvergenceChapter() {
 
       <Narrative>
         <p>
-          The <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">preceding chapter</Link> examined how patent activity distributes across <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> technology fields and how those fields have grown at different rates. Yet the boundaries between technology fields are not fixed. As digital technology has become pervasive, inventions increasingly span multiple CPC sections, and once-separate domains have become deeply intertwined.
+          The <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">preceding chapter</Link> examined how patent activity distributes across <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> technology fields and how those fields have grown at different rates. Yet the boundaries between technology fields are not fixed. As digital technology has become pervasive, inventions increasingly span multiple CPC sections, and once-separate domains have become deeply intertwined.
         </p>
         <p>
           This chapter examines cross-domain convergence from two complementary perspectives: the aggregate trend toward multi-section patents, which captures the overall rate of convergence, and the specific pairs of CPC sections that drive that convergence, which reveals where technology boundaries are most permeable. Together, these measures demonstrate that the patent system is no longer a collection of independent silos but an increasingly interconnected network of technological activity.
@@ -426,7 +426,7 @@ export default function SystemConvergenceChapter() {
       {/* ── Closing Transition ── */}
 
       <Narrative>
-        The first four chapters established how the patent system grew, which technology fields accompanied that expansion, and how those fields increasingly converge across once-separate domains. The analysis now turns to the language of patents themselves. The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. <Link href="/chapters/system-language" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Language of Innovation</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of US patenting.
+        The first four chapters established how the patent system grew, which technology fields accompanied that expansion, and how those fields increasingly converge across once-separate domains. The analysis now turns to the language of patents themselves. The shift from chemistry to digital technology is visible not only in formal classification codes but in the words inventors use to describe their work. <Link href="/chapters/system-language/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">The Language of Innovation</Link> applies unsupervised text analysis to five decades of patent abstracts to uncover the latent thematic structure of US patenting.
       </Narrative>
 
       <InsightRecap

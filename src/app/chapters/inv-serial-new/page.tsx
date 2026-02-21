@@ -400,7 +400,7 @@ export default function InvSerialNewChapter() {
         return (
         <div className="my-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="rounded-lg border bg-card p-4 text-center">
-            <div className="text-2xl font-bold">{totalCount.toLocaleString()}</div>
+            <div className="text-2xl font-bold">{totalCount.toLocaleString('en-US')}</div>
             <div className="text-xs text-muted-foreground mt-1">Total Comeback Inventors</div>
           </div>
           <div className="rounded-lg border bg-card p-4 text-center">
@@ -627,7 +627,7 @@ export default function InvSerialNewChapter() {
           The patterns documented here -- rising new-entrant inflow alongside declining newcomer prevalence,
           extreme concentration of output among serial inventors, bimodal career survival, and the persistence
           of comeback inventors -- reveal a patent system increasingly shaped by a professional, repeat-inventor
-          core. The next chapter, <Link href="/chapters/inv-gender" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Gender and Patenting</Link>,
+          core. The next chapter, <Link href="/chapters/inv-gender/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Gender and Patenting</Link>,
           examines how these career and productivity patterns differ across gender lines, including the
           gender innovation gap and the quality implications of team composition.
         </p>

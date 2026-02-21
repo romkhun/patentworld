@@ -503,7 +503,7 @@ export default function SystemPatentFieldsChapter() {
             color: CPC_SECTION_COLORS[section],
           }))}
           yLabel="HHI"
-          yFormatter={(v: number) => v.toLocaleString()}
+          yFormatter={(v: number) => v.toLocaleString('en-US')}
         />
       </ChartContainer>
 
@@ -899,9 +899,9 @@ export default function SystemPatentFieldsChapter() {
 
       <ChartContainer
         id="fig-patent-fields-originality-by-cpc"
-        title="Patent Originality Rose Steeply from Near-Zero in the 1970s to 0.45-0.55 Across All Sections by the 2020s"
-        subtitle="Average originality index by CPC section, 1976-2025, measuring the diversity of technology classes cited in backward references."
-        caption="Average originality index per patent by CPC section and year. Originality measures the Herfindahl-based diversity of CPC classes in a patent's backward citations. The near-universal rise from zero in the 1970s to 0.45-0.55 by the 2020s reflects increasingly cross-disciplinary inventive activity."
+        title="Section-Level Patent Originality Rose Steeply from Near-Zero in the 1970s to 0.45-0.55 per CPC Section by the 2020s"
+        subtitle="Average originality index by CPC section, 1976-2025, measuring the diversity of technology classes cited in backward references. Values shown are per-section averages; the system-wide average is lower (~0.25) because it includes the low-originality early decades."
+        caption="Average originality index per patent by CPC section and year. Originality measures the Herfindahl-based diversity of CPC classes in a patent's backward citations. The near-universal rise from zero in the 1970s to 0.45-0.55 (per CPC section) by the 2020s reflects increasingly cross-disciplinary inventive activity. Note: these are section-level averages; the system-wide originality average is approximately 0.25."
         insight="The broad increase in originality across all sections indicates that modern patents draw on prior art from a wider range of technology classes, consistent with increasing technological convergence and interdisciplinary research."
         loading={qcL}
       >
@@ -998,7 +998,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Distinguishing genuine cumulative innovation from strategic citation behavior poses a fundamental measurement challenge. If elevated self-citation rates in patent-dense fields such as semiconductors primarily reflect defensive portfolio construction -- citing one&apos;s own patents to build thickets that raise barriers to entry -- then self-citation ceases to be a reliable indicator of knowledge accumulation. Resolving this ambiguity requires firm-level analysis linking self-citation intensity to subsequent market entry patterns and competitive dynamics, a question explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
+          Distinguishing genuine cumulative innovation from strategic citation behavior poses a fundamental measurement challenge. If elevated self-citation rates in patent-dense fields such as semiconductors primarily reflect defensive portfolio construction -- citing one&apos;s own patents to build thickets that raise barriers to entry -- then self-citation ceases to be a reliable indicator of knowledge accumulation. Resolving this ambiguity requires firm-level analysis linking self-citation intensity to subsequent market entry patterns and competitive dynamics, a question explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 2</Link>.
         </p>
       </KeyInsight>
 
@@ -1116,7 +1116,7 @@ export default function SystemPatentFieldsChapter() {
             bars={[{ key: 'growth_pct', name: 'Growth (%)', color: CHART_COLORS[2] }]}
             layout="vertical"
             yLabel="Growth (%)"
-            yFormatter={(v) => `${v.toLocaleString()}%`}
+            yFormatter={(v) => `${Math.round(v).toLocaleString('en-US')}%`}
           />
         ) : <div />}
       </ChartContainer>
@@ -1132,7 +1132,7 @@ export default function SystemPatentFieldsChapter() {
           ═══════════════════════════════════════════════════════════════════════ */}
 
       <Narrative>
-        This chapter has provided a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition revealing the digital transformation, to class-level dynamics showing creative destruction across technology areas. Patent grant concentration by assignee remains below conventional thresholds, technology diversity has stabilized after contraction, and field-specific metrics reveal substantially different innovation dynamics across domains. Having mapped the field-level structure, the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">next chapter</Link> examines how technology fields increasingly converge, with patents spanning multiple CPC sections and the boundaries between domains becoming more permeable over time.
+        This chapter has provided a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition revealing the digital transformation, to class-level dynamics showing creative destruction across technology areas. Patent grant concentration by assignee remains below conventional thresholds, technology diversity has stabilized after contraction, and field-specific metrics reveal substantially different innovation dynamics across domains. Having mapped the field-level structure, the <Link href="/chapters/system-convergence/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">next chapter</Link> examines how technology fields increasingly converge, with patents spanning multiple CPC sections and the boundaries between domains becoming more permeable over time.
       </Narrative>
 
       <InsightRecap

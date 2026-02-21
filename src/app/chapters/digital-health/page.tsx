@@ -283,13 +283,13 @@ export default function Chapter18() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two significant developments: the 2009 HITECH Act, which mandated electronic health record adoption and catalyzed a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by medical device firms such as Philips, Medtronic, and Intuitive Surgical, alongside technology companies including IBM and Samsung -- yet the growing role of AI in clinical decision support is drawing even more technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents an active frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape surgical disciplines.
+          Digital health sits at the intersection of medicine and computing, encompassing technologies that range from bedside patient monitors to cloud-based clinical decision support systems. The trajectory of digital health patenting has been shaped by two significant developments: the 2009 HITECH Act, which mandated electronic health record adoption and coincided with a wave of health IT investment, and the COVID-19 pandemic, which compressed years of telemedicine adoption into months. The organizational landscape is dominated by medical device firms such as Philips, Medtronic, and Intuitive Surgical, alongside technology companies including IBM and Samsung -- yet the growing role of AI in clinical decision support is drawing even more technology firms into the domain, a convergence explored further in the chapter on <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Artificial Intelligence</Link>. Surgical robotics represents an active frontier, where Intuitive Surgical&apos;s da Vinci system has demonstrated how patent-protected platforms can reshape surgical disciplines.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/cybersecurity" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link> and the escalating arms race between digital threats and defensive innovation, this chapter turns to digital health, a domain where data security considerations increasingly intersect with patient monitoring and clinical decision support.
+          Having examined <Link href="/chapters/cybersecurity/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">cybersecurity</Link> and the escalating arms race between digital threats and defensive innovation, this chapter turns to digital health, a domain where data security considerations increasingly intersect with patient monitoring and clinical decision support.
         </p>
         <p>
           Digital health bridges the worlds of medicine and computing, encompassing a broad
@@ -371,7 +371,7 @@ export default function Chapter18() {
         subtitle="Patent counts by digital health subfield (patient monitoring, health informatics, surgical robotics, and related subfields) over time."
         title="Patient Monitoring Dominates Digital Health Patenting, While Surgical Robotics and Health Informatics Are the Fastest-Growing Subfields"
         caption="Patent counts by digital health subfield over time. Patient monitoring -- encompassing vital signs, diagnostic imaging, and physiological signals -- constitutes the largest category. Surgical robotics and health informatics have exhibited the most rapid growth in recent years."
-        insight="The shift toward health informatics and surgical robotics coincides with a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies have enabled more sophisticated clinical interventions."
+        insight="The shift toward health informatics and surgical robotics coincides with a broader transformation from passive data capture to active clinical decision-making, as AI and robotic technologies are associated with more sophisticated clinical interventions."
         loading={sfL}
         height={650}
       >
@@ -471,7 +471,7 @@ export default function Chapter18() {
           importance of software, connectivity, and data analytics in healthcare. The
           convergence of medical device expertise with digital technology capabilities is
           reshaping competitive dynamics in ways that parallel the broader transformation
-          documented in the chapter on the <Link href="/chapters/system-patent-fields" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>.
+          documented in the chapter on the <Link href="/chapters/system-patent-fields/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Patent Fields</Link>.
         </p>
       </KeyInsight>
 
@@ -635,11 +635,11 @@ export default function Chapter18() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -805,15 +805,15 @@ export default function Chapter18() {
           Having documented the growth of digital health in the patent system, the analysis
           reveals a domain undergoing rapid transformation. The convergence of patient
           monitoring hardware with AI-driven clinical decision support, the expansion of
-          telemedicine catalyzed by the COVID-19 pandemic, and the growth of surgical robotics
+          telemedicine accelerated during the COVID-19 pandemic, and the growth of surgical robotics
           collectively point toward a future in which the boundaries between medical devices
           and computing platforms become increasingly indistinct. The organizational strategies
           documented here are explored further in{' '}
-          <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
+          <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
             Assignee Composition
           </Link>, while the broader relationship between digital health and artificial
           intelligence is examined in the chapter on{' '}
-          <Link href="/chapters/ai-patents" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
+          <Link href="/chapters/ai-patents/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">
             Artificial Intelligence
           </Link>.
         </p>
@@ -822,7 +822,7 @@ export default function Chapter18() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer

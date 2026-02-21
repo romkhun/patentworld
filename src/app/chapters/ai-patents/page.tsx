@@ -277,6 +277,10 @@ export default function Chapter13() {
       />
       <MeasurementSidebar slug="ai-patents" />
 
+      <DataNote>
+        AI patent volumes before 2005 were relatively small, producing volatile annual metrics.
+      </DataNote>
+
       <KeyFindings>
         <li>AI patent filings have exhibited substantial growth since 2012, coinciding with advances in deep learning and the expansion of AI applications across industries.</li>
         <li>The composition of AI patents has shifted from computer vision, natural language processing, and classical pattern recognition approaches in the 1990s to machine learning, neural networks, and generative AI today.</li>
@@ -287,13 +291,13 @@ export default function Chapter13() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+          The trajectory of AI patenting reflects a broader transformation in the structure of US patenting, one in which a single methodological breakthrough -- the deep learning revolution of the early 2010s -- reshaped inventive activity across virtually every sector of the economy. What began as a niche area of computing has become a focal point of corporate R&amp;D strategy, with a handful of resource-rich firms building portfolios that increasingly bridge healthcare, manufacturing, and telecommunications. The widening gap in inventor team sizes between AI and non-AI patents, combined with the geographic concentration of activity in California, suggests that AI innovation is becoming both more collaborative and more spatially clustered than the patent system as a whole -- a pattern that carries significant implications for the distribution of technological capability examined further in the company-level analysis of <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
         </p>
       </aside>
 
       <Narrative>
         <p>
-          Having examined <Link href="/chapters/agricultural-technology" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link> and the transformation of food production through precision agriculture, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 6.
+          Having examined <Link href="/chapters/agricultural-technology/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">agricultural technology</Link> and the transformation of food production through precision agriculture, this chapter turns to artificial intelligence, the largest technology domain by patent volume in this study and one whose cross-domain reach extends into virtually every other field examined in ACT 6.
         </p>
         <p>
           Artificial intelligence has evolved from a specialized academic pursuit to one of
@@ -487,7 +491,7 @@ export default function Chapter13() {
           top position from 2000 to 2005, but Microsoft surpassed IBM in annual grants from
           2006 through 2011, before IBM reclaimed the lead in the mid-2010s. The 2010s exhibited rapid
           convergence as Google, Samsung, Microsoft, Amazon, and Apple scaled their AI
-          research operations in response to advances in deep learning. The emergence of
+          research operations coinciding with advances in deep learning. The emergence of
           non-traditional technology firms such as Capital One signals the expanding
           application of AI beyond core technology sectors, while the convergence of
           multiple firms at the top suggests intensifying competitive dynamics in AI
@@ -662,11 +666,11 @@ export default function Chapter13() {
                   <td className="py-2 px-2">
                     {org.subfields.slice(0, 3).map((sf, j) => (
                       <span key={j} className="inline-block mr-2 px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
-                        {sf.subfield}: {sf.patent_count.toLocaleString()}
+                        {sf.subfield}: {sf.patent_count.toLocaleString('en-US')}
                       </span>
                     ))}
                   </td>
-                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString()}</td>
+                  <td className="text-right py-2 px-2 font-mono font-semibold">{org.subfields.reduce((s, d) => s + d.patent_count, 0).toLocaleString('en-US')}</td>
                 </tr>
               ))}
             </tbody>
@@ -819,7 +823,7 @@ export default function Chapter13() {
       {/* ── Analytical Deep Dives ─────────────────────────────────────── */}
       <SectionDivider label="Analytical Deep Dives" />
       <p className="text-sm text-muted-foreground mt-4">
-        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
+        For metric definitions and cross-domain comparisons, see the <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">ACT 6 Overview</Link>.
       </p>
 
       <ChartContainer
@@ -872,7 +876,7 @@ export default function Chapter13() {
       </ChartContainer>
 
       <Narrative>
-        Having documented the growth of artificial intelligence in the patent system, the organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
+        Having documented the growth of artificial intelligence in the patent system, the organizational strategies behind AI patenting are explored further in <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Assignee Composition</Link>.
       </Narrative>
 
       <ChartContainer

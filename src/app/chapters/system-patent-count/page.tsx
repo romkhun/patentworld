@@ -163,7 +163,7 @@ export default function SystemPatentCountChapter() {
         <p>
           This expansion has not been monotonic. Broader economic cycles are reflected in patent output, with utility grants declining in 2005 and again in 2007, and patent office backlogs have introduced year-to-year
           volatility. Nevertheless, the long-term trajectory indicates that an increasing
-          number of individuals and <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
+          number of individuals and <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">organizations</Link> are seeking patent protection as
           intellectual property assumes greater strategic importance.
         </p>
       </Narrative>
@@ -344,7 +344,7 @@ export default function SystemPatentCountChapter() {
       {/* ── Chapter Closing ── */}
 
       <Narrative>
-        Having examined the overall scale of US patent activity and the examination timelines that shape it, the next chapter explores <Link href="/chapters/system-patent-quality" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and complexity</Link> — including claim complexity, citation patterns, and technological scope.
+        Having examined the overall scale of US patent activity and the examination timelines that shape it, the next chapter explores <Link href="/chapters/system-patent-quality/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">patent quality and complexity</Link> — including claim complexity, citation patterns, and technological scope.
       </Narrative>
 
       <InsightRecap

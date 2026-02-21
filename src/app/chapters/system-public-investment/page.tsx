@@ -261,7 +261,7 @@ export default function SystemPublicInvestmentChapter() {
                     <div className="font-semibold text-sm mb-1">{d.agency}</div>
                     <div className="text-xs text-muted-foreground">Breadth: {d.x.toFixed(2)}</div>
                     <div className="text-xs text-muted-foreground">Depth: {d.y.toFixed(2)}</div>
-                    <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString()}</div>
+                    <div className="text-xs text-muted-foreground">Patents: {d.size.toLocaleString('en-US')}</div>
                     <div className="text-xs text-muted-foreground">CPC sections: {d.n_sections}</div>
                   </div>
                 );
@@ -361,7 +361,7 @@ export default function SystemPublicInvestmentChapter() {
       />
 
       <Narrative>
-        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
+        This chapter concludes ACT 1: The System, which has examined the US patent landscape from overall volume and quality through technology fields, convergence, legal frameworks, and public investment. The next act shifts focus from the system level to the organizations that operate within it. <Link href="/chapters/org-composition/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">Chapter 8: Assignee Composition</Link> opens ACT 2: The Organizations by examining the corporate, foreign, and country-level composition of patent assignees.
       </Narrative>
 
       <DataNote>

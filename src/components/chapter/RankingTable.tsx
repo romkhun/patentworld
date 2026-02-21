@@ -39,7 +39,7 @@ export function RankingTable({ title, headers, rows, caption }: RankingTableProp
                     key={j}
                     className={`py-1.5 px-3 ${j === 0 ? 'text-left font-medium' : 'text-right font-mono'}`}
                   >
-                    {typeof cell === 'number' ? cell.toLocaleString() : cell}
+                    {typeof cell === 'number' ? cell.toLocaleString('en-US') : cell}
                   </td>
                 ))}
               </tr>

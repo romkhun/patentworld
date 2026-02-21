@@ -215,7 +215,7 @@ export default function MechGeographyChapter() {
                   <div key={p.period} className="flex-shrink-0 text-center px-3 py-2 rounded-lg bg-muted/50">
                     <div className="font-mono font-medium">{p.period}</div>
                     <div className="text-muted-foreground">{p.total_cities} cities</div>
-                    <div className="font-semibold">{p.total_patents.toLocaleString()} patents</div>
+                    <div className="font-semibold">{p.total_patents.toLocaleString('en-US')} patents</div>
                   </div>
                 ))}
               </div>
@@ -276,7 +276,7 @@ export default function MechGeographyChapter() {
         </p>
         <p>
           ACT 6 shifts from these system-wide perspectives to{' '}
-          <Link href="/chapters/deep-dive-overview" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
+          <Link href="/chapters/deep-dive-overview/" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">deep dives</Link>{' '}
           into specific technology domains -- from 3D printing and agricultural technology to AI,
           autonomous vehicles, biotechnology, and beyond. Each deep dive applies the analytical
           frameworks developed across the preceding five acts to a single field, revealing how

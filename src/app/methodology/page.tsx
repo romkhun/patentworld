@@ -39,6 +39,7 @@ const TOC_ITEMS = [
   { id: 'definitions', label: 'Metric Definitions' },
   { id: 'disambiguation', label: 'Disambiguation' },
   { id: 'limitations', label: 'Limitations' },
+  { id: 'terminology', label: 'Terminology' },
   { id: 'data-source', label: 'Data Source' },
 ];
 
@@ -561,6 +562,39 @@ export default function MethodologyPage() {
             <li><strong>Partial year (2025):</strong> Data for 2025 covers grants through September only. Annual totals and rates for 2025 are not directly comparable to full-year figures without adjustment.</li>
             <li><strong>Assignee coverage:</strong> Not all patents have assignee records in PatentsView. Unassigned patents are excluded from organizational analyses, which may undercount individual inventor and small-entity patenting.</li>
           </ul>
+        </section>
+
+        {/* ── 8b. Terminology Conventions ─────────────────────────────── */}
+        <section id="terminology">
+          <h2 className="font-serif text-2xl font-bold pt-4">Terminology Conventions</h2>
+          <p>
+            PatentWorld uses certain terms interchangeably in narrative text; this section
+            defines each term precisely to avoid ambiguity.
+          </p>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Entity Terms</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Assignee / organization / firm / company</dt>
+              <dd className="text-muted-foreground"><strong>Assignee</strong> is used in technical and data-processing contexts (the entity recorded in PatentsView&apos;s assignee table). <strong>Organization</strong> is the broadest term, encompassing corporations, universities, and government agencies. <strong>Firm</strong> and <strong>company</strong> are used when the discussion is restricted to corporate assignees.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Patent / grant / filing</dt>
+              <dd className="text-muted-foreground"><strong>Patent</strong> refers to a granted patent in most contexts. <strong>Grant</strong> emphasizes the issued status (vs. pending application). <strong>Filing</strong> refers to the application stage or, in country-of-origin analyses, to patents originating from a specific jurisdiction.</dd>
+            </div>
+          </dl>
+
+          <h3 className="font-serif text-lg font-semibold mt-6">Technology Taxonomy</h3>
+          <dl className="mt-3 space-y-3 text-sm">
+            <div>
+              <dt className="font-semibold">Domain / field / class / subclass</dt>
+              <dd className="text-muted-foreground"><strong>Domain</strong> refers to a broad technology area (e.g., &ldquo;AI,&rdquo; &ldquo;green innovation&rdquo;) typically defined by a curated set of CPC codes. <strong>Field</strong> is used for WIPO technology fields (35 categories). <strong>Section</strong> refers to CPC top-level sections (A&ndash;H, Y). <strong>Class</strong> and <strong>subclass</strong> refer to progressively finer levels of the CPC hierarchy (e.g., G06 is a class; G06N is a subclass). There are 8 CPC sections, approximately 130 classes, and approximately 670 subclasses in active use.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Patent share vs. market share</dt>
+              <dd className="text-muted-foreground"><strong>Patent share</strong> (preferred) refers to the fraction of patents held by an entity or group within a defined universe. PatentWorld avoids the term &ldquo;market share&rdquo; in the patent context because patents represent inventive output rather than product-market revenue.</dd>
+            </div>
+          </dl>
         </section>
 
         {/* ── 9. Data Source ─────────────────────────────────────────────── */}
