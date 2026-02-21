@@ -327,7 +327,7 @@ export default function SystemPatentCountChapter() {
         title="Related Filing Share Rose from 36% in 2002 to 96% by 2024 as Continuation Strategies Became Universal"
         subtitle="Share of annual grants with continuation, division, or CIP filings, 2002–2025"
         caption="The share is computed only from 2002 onward due to the data limitation noted above. The rapid ascent from 36% to above 95% in under a decade reflects both genuine strategic adoption and the phased availability of related-document data."
-        insight="The universality of related filings by the 2020s suggests that virtually all patents are now part of broader filing families, making the concept of a standalone patent increasingly anachronistic."
+        insight="Related filings are prevalent in observed data from 2002 onward, suggesting that analyzing patents in isolation may miss important context."
         loading={ccL}
       >
         <PWLineChart

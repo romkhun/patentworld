@@ -547,8 +547,8 @@ export default function MechInventorsChapter() {
       <Narrative>
         <p>
           The preceding sections document the volume and direction of inventor mobility, but do not
-          address its consequences for individual productivity. An event-study design isolates the
-          impact of firm moves by tracking each inventor&apos;s output from t-5 to t+5 years
+          address its consequences for individual productivity. An event-study design estimates changes in patenting around the
+          timing of firm moves by tracking each inventor&apos;s output from t-5 to t+5 years
           relative to the move event. By centering outcomes on the move year, this approach
           controls for secular trends and life-cycle effects, revealing how the disruption of
           changing organizational context affects citation impact. The panel includes inventors

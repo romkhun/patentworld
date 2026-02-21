@@ -15,9 +15,10 @@ export function Footer() {
             >
               PatentsView
             </a>
-            {' '}(USPTO).
+            {' '}(USPTO), accessed Jan 2025. Coverage: 1976&ndash;Sep 2025.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <Link href="/methodology/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Methodology</Link>
             <Link href="/about/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
             <Link href="/explore/" className="hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
           </div>

@@ -22,6 +22,12 @@ export function Header() {
             Explore
           </Link>
           <Link
+            href="/methodology/"
+            className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            Methodology
+          </Link>
+          <Link
             href="/about/"
             className="rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
           >

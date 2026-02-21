@@ -306,7 +306,7 @@ export default function Chapter13() {
 
       <KeyInsight>
         <p>
-          AI patent activity serves as a leading indicator of technological investment and
+          AI patent activity serves as a potential indicator of technological investment and
           capability building. The exponential growth in AI patenting since 2012 coincides
           with advances in deep learning, reflecting a fundamental shift in how firms
           approach innovation in computing, healthcare, transportation, and nearly every

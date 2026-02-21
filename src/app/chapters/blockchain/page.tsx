@@ -265,7 +265,7 @@ export default function Chapter16() {
         <li>Blockchain represents one of the smallest technology domains in the patent system, yet its rapid growth between 2016 and 2021 offers a compelling case study of how hype cycles manifest in patenting behavior.</li>
         <li>The field is dominated by only two subfields -- distributed ledger and cryptocurrency -- reflecting the narrow range of CPC codes that define the domain.</li>
         <li>IBM, Intel, and Alibaba-affiliated entities lead in blockchain patent volume, illustrating the mix of technology firms and financial services companies investing in the space.</li>
-        <li>Patent grants peaked in 2022 and have since declined, a pattern that corresponds with the broader cryptocurrency market correction.</li>
+        <li>Patent grants peaked in 2022 and have since declined, temporally coinciding with a cryptocurrency market correction (association observed; causation not established).</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">

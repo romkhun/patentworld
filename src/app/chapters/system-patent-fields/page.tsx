@@ -330,7 +330,7 @@ export default function SystemPatentFieldsChapter() {
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          This chapter provides a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition that reveals the digital transformation, to class-level dynamics showing which technology areas are growing or declining most rapidly. Market concentration remains low across all technology sectors even as digital fields dominate output. Technology diversity has contracted, S-curve analysis reveals fields at different lifecycle stages, and field-specific metrics such as citation half-lives and examination friction vary substantially across domains. Quality indicators including claim complexity and self-citation patterns round out the field-level picture.
+          This chapter provides a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition that reveals the digital transformation, to class-level dynamics showing which technology areas are growing or declining most rapidly. Patent grant concentration by assignee remains below conventional thresholds across all technology sectors even as digital fields dominate output. Technology diversity has contracted, S-curve analysis reveals fields at different lifecycle stages, and field-specific metrics such as citation half-lives and examination friction vary substantially across domains. Quality indicators including claim complexity and self-citation patterns round out the field-level picture.
         </p>
       </aside>
 
@@ -385,7 +385,7 @@ export default function SystemPatentFieldsChapter() {
 
       <Narrative>
         <p>
-          The composition of patent grants by technology class reflects the trajectory of technological change. Over five decades, the balance of inventive activity has shifted substantially from traditional industries such as chemistry and mechanical engineering toward <StatCallout value="electrical engineering and computing" />. This section surveys the landscape through ten complementary lenses: section-level share, class-level growth, market concentration, technology diversity, innovation velocity, examination friction, lifecycle maturity, field-specific metrics, citation lag, and citation half-lives.
+          The composition of patent grants by technology class reflects the trajectory of technological change. Over five decades, the balance of inventive activity has shifted substantially from traditional industries such as chemistry and mechanical engineering toward <StatCallout value="electrical engineering and computing" />. This section surveys the landscape through ten complementary lenses: section-level share, class-level growth, assignee concentration, technology diversity, innovation velocity, examination friction, lifecycle maturity, field-specific metrics, citation lag, and citation half-lives.
         </p>
       </Narrative>
 
@@ -482,7 +482,7 @@ export default function SystemPatentFieldsChapter() {
 
       <Narrative>
         <p>
-          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (HHI) measures market concentration by summing the squared market shares of all firms in a sector. On the standard DOJ/FTC scale, <StatCallout value="below 1,500" /> indicates an unconcentrated market, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated.
+          Given the increasing convergence of technology fields and the dominance of a few CPC sections, it is natural to ask whether certain technology areas are becoming dominated by a small number of large entities. The Herfindahl-Hirschman Index (HHI) measures concentration by summing the squared shares of all participants in a domain. On the standard DOJ/FTC scale (designed for product markets), <StatCallout value="below 1,500" /> indicates an unconcentrated domain, <StatCallout value="1,500-2,500" /> is moderately concentrated, and <StatCallout value="above 2,500" /> is highly concentrated. Note: HHI is used here as a descriptive index of assignee concentration within CPC sections, not as a product-market competition measure.
         </p>
       </Narrative>
 
@@ -549,7 +549,7 @@ export default function SystemPatentFieldsChapter() {
       <ChartContainer
         id="fig-patent-fields-velocity"
         subtitle="Year-over-year percentage change in patent grants by WIPO technology sector, revealing synchronized cyclical patterns."
-        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Dot-Com Bust (2004-2005) and Financial Crisis (2007)"
+        title="Patenting Growth Rates Are Highly Correlated Across Five Sectors, with Synchronized Declines Following the Early-2000s Slowdown (Grant-Year Decline 2004-2005, Reflecting Reduced Filings During the Recession) and Financial Crisis (2007)"
         caption="The figure presents the annual percentage change in patent grants by WIPO technology sector. All sectors exhibit synchronized responses to macroeconomic conditions, though electrical engineering has demonstrated consistently stronger growth momentum since the 1990s."
         loading={vlL}
         insight="The correlation of growth rates across sectors is consistent with macroeconomic conditions and patent policy exerting stronger influence on patenting rates than sector-specific technology cycles."
@@ -570,7 +570,7 @@ export default function SystemPatentFieldsChapter() {
 
       <KeyInsight>
         <p>
-          Innovation velocity is highly correlated across sectors, suggesting that macroeconomic conditions and patent policy are stronger determinants of patenting rates than sector-specific technology cycles. The synchronized declines during the early 2000s dot-com contraction and the 2008 financial crisis are particularly instructive.
+          Innovation velocity is highly correlated across sectors, suggesting that macroeconomic conditions and patent policy are stronger determinants of patenting rates than sector-specific technology cycles. The synchronized grant-year declines in 2004-2005 (reflecting reduced filings during the early-2000s recession) and the 2008 financial crisis are particularly instructive.
         </p>
       </KeyInsight>
 
@@ -826,7 +826,7 @@ export default function SystemPatentFieldsChapter() {
         id="fig-patent-fields-claims-by-section"
         subtitle="Median claim count by CPC technology section and decade, showing increases in patent drafting complexity across fields."
         title="Claim Counts Have Increased Across All Technology Areas, with Physics (G) Leading at a Median of 19 and Electricity (H) at 18 in the 2020s"
-        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas, with the difference in median claims between the highest and lowest CPC sections widening from approximately 1 claim in the 1970s to 4 claims by the 2020s (e.g., Physics at 19 versus Textiles at 15), reflecting diverging patent drafting complexity across fields."
+        caption="The figure displays the median claim count by CPC section and decade. Claim counts have increased across all technology areas. The gap between the highest-median section (Physics, 19 claims) and the lowest-median section (Textiles, 15 claims) widened from roughly 1 claim in the 1970s to 4 claims by the 2020s, reflecting diverging patent drafting complexity across fields."
         loading={claimL}
       >
         {claimsSectionPivot.data.length > 0 ? (
@@ -1132,7 +1132,7 @@ export default function SystemPatentFieldsChapter() {
           ═══════════════════════════════════════════════════════════════════════ */}
 
       <Narrative>
-        This chapter has provided a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition revealing the digital transformation, to class-level dynamics showing creative destruction across technology areas. Market concentration remains low, technology diversity has stabilized after contraction, and field-specific metrics reveal substantially different innovation dynamics across domains. Having mapped the field-level structure, the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">next chapter</Link> examines how technology fields increasingly converge, with patents spanning multiple CPC sections and the boundaries between domains becoming more permeable over time.
+        This chapter has provided a comprehensive examination of patent fields: from the balance between design and utility patents, through the CPC section-level composition revealing the digital transformation, to class-level dynamics showing creative destruction across technology areas. Patent grant concentration by assignee remains below conventional thresholds, technology diversity has stabilized after contraction, and field-specific metrics reveal substantially different innovation dynamics across domains. Having mapped the field-level structure, the <Link href="/chapters/system-convergence" className="underline decoration-muted-foreground/50 hover:decoration-foreground transition-colors">next chapter</Link> examines how technology fields increasingly converge, with patents spanning multiple CPC sections and the boundaries between domains becoming more permeable over time.
       </Narrative>
 
       <InsightRecap
@@ -1149,7 +1149,7 @@ export default function SystemPatentFieldsChapter() {
       />
 
       <DataNote>
-        Technology classifications use the primary CPC section (sequence 0) for each patent and WIPO technology fields mapped from IPC codes. Growth rates compare patent counts in 2000-2010 to 2015-2025 for CPC classes with at least 100 patents in each period. The diversity index is computed as 1 minus the Herfindahl-Hirschman Index of CPC section concentration. S-curve parameters are fitted using logistic regression on cumulative patent counts per CPC section (1976-2025). Market concentration (HHI) is computed within each CPC section by assignee market share in 5-year windows. Citation lag uses median lag in years between cited and citing patent grant dates. Technology half-life is computed as the time until 50% of cumulative forward citations are received. Self-citation rates are computed as the fraction of backward citations directed to patents held by the same assignee.
+        Technology classifications use the primary CPC section (sequence 0) for each patent and WIPO technology fields mapped from IPC codes. Growth rates compare patent counts in 2000-2010 to 2015-2025 for CPC classes with at least 100 patents in each period. The diversity index is computed as 1 minus the Herfindahl-Hirschman Index of CPC section concentration. S-curve parameters are fitted using logistic regression on cumulative patent counts per CPC section (1976-2025). Assignee concentration (HHI) is computed within each CPC section by assignee patent share in 5-year windows. Citation lag uses median lag in years between cited and citing patent grant dates. Technology half-life is computed as the time until 50% of cumulative forward citations are received. Self-citation rates are computed as the fraction of backward citations directed to patents held by the same assignee.
       </DataNote>
 
       <RelatedChapters currentChapter={3} />

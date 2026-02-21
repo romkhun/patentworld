@@ -109,7 +109,7 @@ export default function SystemPatentQualityChapter() {
         <li>Average claims per patent doubled from 9.4 in 1976 to a peak of 18.9 in 2005 before settling to 16.6 by 2024 (median: 18), with a notable median-mean inversion by the mid-2010s suggesting a compression of the upper tail of claim distributions.</li>
         <li>Average patent scope grew from 1.8 to a peak of 2.5 <GlossaryTooltip term="CPC">CPC</GlossaryTooltip> subclasses per patent in 2020, indicating growing technological interdisciplinarity and convergence of once-separate domains.</li>
         <li>Average <GlossaryTooltip term="forward citations">forward citations</GlossaryTooltip> per patent rose from 2.5 to a peak of 6.4 in 2019 within 5-year windows, yet the median oscillated between 2 and 3, revealing a highly skewed distribution where a small fraction of patents captures disproportionate impact.</li>
-        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
+        <li>Patent <GlossaryTooltip term="originality">originality</GlossaryTooltip> increased from 0.09 to 0.25 system-wide (section-level averages reached 0.45-0.55 by the 2020s; see <Link href="/chapters/system-patent-fields">Patent Fields</Link> chapter) while <GlossaryTooltip term="generality">generality</GlossaryTooltip> declined from 0.28 to 0.15, indicating that broader knowledge inputs have not translated into correspondingly broader downstream applicability.</li>
         <li>Sleeping beauty patents -- inventions that received fewer than 2 citations per year in their first 10 years, then experienced a burst of 10 or more citations within a 3-year window -- are overwhelmingly concentrated in Human Necessities (94% of identified cases), challenging assumptions about short citation windows for impact assessment.</li>
       </KeyFindings>
 
@@ -625,11 +625,14 @@ export default function SystemPatentQualityChapter() {
 
       <KeyInsight>
         <p>
-          Sleeping beauty patents are overwhelmingly concentrated in Human Necessities (Section A), which accounts for 94% of identified cases. In this domain, fundamental discoveries may require decades to find
-          practical applications. The existence of these dormant-then-resurgent patents
-          challenges the assumption that citation impact can be adequately assessed within a short
-          window following grant, and suggests that the patent system occasionally captures
-          inventions of enduring significance.
+          Sleeping beauty patents -- defined here as patents receiving fewer than 2 citations per year
+          during their first 10 years after grant, then experiencing a burst of 10 or more citations
+          within a subsequent 3-year window -- are overwhelmingly concentrated in Human Necessities
+          (Section A), which accounts for 94% of identified cases. In this domain, fundamental
+          discoveries may require decades to find practical applications. The existence of these
+          dormant-then-resurgent patents challenges the assumption that citation impact can be
+          adequately assessed within a short window following grant, and suggests that the patent
+          system occasionally captures inventions of enduring significance.
         </p>
       </KeyInsight>
 

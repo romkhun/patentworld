@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { CHAPTERS } from './constants';
+import { CHAPTERS, ACT_GROUPINGS } from './constants';
 
 const BASE_URL = 'https://patentworld.vercel.app';
 
@@ -107,7 +107,7 @@ const CHAPTER_SEO_DESCRIPTIONS: Record<string, string> = {
   'org-patent-portfolio': 'Portfolio diversity rose across leading firms. 248 companies cluster into 8 industries by portfolio similarity. JSD identifies strategic portfolio shifts.',
   'org-company-profiles': 'Interactive profiles combining annual output, technology composition, citation impact, innovation strategy, and portfolio analysis for individual companies.',
   // ACT 3
-  'inv-top-inventors': 'The top 5% of inventors grew from 26% to 60% of annual patent output. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 among top 100.',
+  'inv-top-inventors': 'The top 5% of inventors (by cumulative patent count) grew from 26% to 60% of annual patent output. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 among top 100.',
   'inv-generalist-specialist': 'Specialist inventors rose from 20% to 48% of the inventor workforce. Quality metrics differ systematically between generalists and specialists.',
   'inv-serial-new': 'First-time inventor entries peaked at 140,490 in 2019. Only 37-51% survive past five years. Productivity rises from 1.4 to 2.1 before plateauing.',
   'inv-gender': 'Female inventor share rose from 2.8% to 14.9%. Quality metrics reveal systematic gender differences across claims, citations, and scope.',
@@ -212,13 +212,18 @@ export function chapterJsonLd(slug: string): object[] | null {
         temporalCoverage: '1976/2025',
       },
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-        { '@type': 'ListItem', position: 2, name: ch.title, item: `${BASE_URL}/chapters/${ch.slug}/` },
-      ],
-    },
+    (() => {
+      const act = ACT_GROUPINGS.find((a) => a.chapters.includes(ch.number));
+      const actName = act ? `Act ${act.act}: ${act.title}` : undefined;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+          ...(actName ? [{ '@type': 'ListItem', position: 2, name: actName, item: `${BASE_URL}/#acts` }] : []),
+          { '@type': 'ListItem', position: actName ? 3 : 2, name: ch.title, item: `${BASE_URL}/chapters/${ch.slug}/` },
+        ],
+      };
+    })(),
   ];
 }

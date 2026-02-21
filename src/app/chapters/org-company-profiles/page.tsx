@@ -346,6 +346,19 @@ export default function OrgCompanyProfilesChapter() {
       </Narrative>
 
       {/* ════════════════════════════════════════════════════
+       *  SERVER-RENDERED INTRO (visible before data loads)
+       * ════════════════════════════════════════════════════ */}
+
+      <Narrative>
+        <p>
+          Select a company from the dropdown below to view its patent portfolio, citation impact,
+          technology composition, innovation strategy profile, and grant speed trends. Each profile
+          integrates data across five complementary dimensions to provide a comprehensive innovation
+          fingerprint for the selected organization.
+        </p>
+      </Narrative>
+
+      {/* ════════════════════════════════════════════════════
        *  SHARED COMPANY SELECTOR
        * ════════════════════════════════════════════════════ */}
 
@@ -360,13 +373,21 @@ export default function OrgCompanyProfilesChapter() {
               formatLabel={cleanOrgName}
             />
           ) : (
-            <span className="text-sm text-muted-foreground">Loading companies...</span>
+            <span className="text-sm text-muted-foreground">Loading companies&hellip; Please wait while patent data is retrieved.</span>
           )}
           {anyLoading && (
             <span className="text-xs text-muted-foreground animate-pulse">Loading data...</span>
           )}
         </div>
       </div>
+
+      {/* Empty-state when data loaded but no company selected */}
+      {!anyLoading && companyList.length > 0 && !activeCompany && (
+        <div className="my-12 flex items-center justify-center rounded-lg border border-dashed bg-muted/20 p-10 text-sm text-muted-foreground">
+          No company selected. Choose an organization from the dropdown above to explore its
+          patent output, technology portfolio, citation quality, strategy profile, and grant speed.
+        </div>
+      )}
 
       {/* ════════════════════════════════════════════════════
        *  SECTION 1: COMPANY PROFILES

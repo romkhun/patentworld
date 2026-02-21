@@ -130,13 +130,13 @@ export default function OrgPatentPortfolioChapter() {
         <li>248 companies cluster into 8 industries by patent portfolio similarity (HDBSCAN on pairwise cosine distances of CPC subclass distributions), with technology conglomerates occupying positions at the intersection of multiple clusters.</li>
         <li>Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses, indicating broad technology coverage.</li>
         <li>IBM (88,600 G-section patents) and Samsung (79,400 H-section patents) maintain the most diversified technology portfolios among the top ten patent holders.</li>
-        <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 5-year windows, with pivots flagged above the 90th percentile threshold) identifies 51 detected pivots across 20 companies, often years before strategic shifts become publicly visible.</li>
+        <li>Jensen-Shannon divergence analysis (comparing CPC distributions across consecutive 5-year windows, with pivots flagged above the 90th percentile threshold) identifies 51 detected pivots across 20 companies, sometimes preceding strategic shifts that later become publicly visible.</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Patent portfolio analysis reveals that 248 companies cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple clusters. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, often years before strategic shifts become publicly visible.
+          Patent portfolio analysis reveals that 248 companies cluster into 8 industry groups by CPC distribution similarity, though technology conglomerates straddle multiple clusters. Shannon entropy measurements show that most leading firms have steadily diversified, with Mitsubishi Electric reaching entropy of 6.7 across 229 CPC subclasses. Corporate technology portfolios confirm that the most persistent leaders maintain broad CPC coverage, while Jensen-Shannon divergence analysis detects 51 technology pivots across 20 companies, sometimes preceding strategic shifts that later become publicly visible.
         </p>
       </aside>
 
@@ -305,8 +305,8 @@ export default function OrgPatentPortfolioChapter() {
           Technology pivots occur when a company&apos;s patent portfolio shifts significantly
           between consecutive time windows. Using <GlossaryTooltip term="Jensen-Shannon divergence">Jensen-Shannon
           divergence</GlossaryTooltip> (JSD) to measure the distance between CPC distributions
-          across windows, it is possible to detect and characterize these pivots, often years before they
-          become visible in business strategy announcements.
+          across windows, it is possible to detect and characterize these pivots, sometimes preceding
+          business strategy announcements.
         </p>
       </Narrative>
 
@@ -369,7 +369,7 @@ export default function OrgPatentPortfolioChapter() {
           financial reports. The highest JSD scores correspond to well-documented strategic shifts,
           such as IBM&apos;s transition from hardware to services, or Nokia&apos;s pivot from mobile
           hardware to telecommunications infrastructure. These findings indicate that patent portfolio analysis
-          may serve as a leading indicator of corporate strategy.
+          may serve as a potential indicator of corporate strategy.
         </p>
       </KeyInsight>
 
@@ -427,7 +427,7 @@ export default function OrgPatentPortfolioChapter() {
       <InsightRecap
         learned={[
           "248 companies cluster into 8 industries by patent portfolio similarity, revealing that technology strategy is structured by industry boundaries.",
-          "51 technology pivots were detected across 20 companies, often years before strategic shifts become publicly visible.",
+          "51 technology pivots were detected across 20 companies, sometimes preceding strategic shifts that later become publicly visible.",
         ]}
         falsifiable="If patent portfolio pivots predict corporate strategy changes, then firms showing CPC composition shifts should subsequently announce corresponding business unit expansions or acquisitions."
         nextAnalysis={{

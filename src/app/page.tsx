@@ -68,7 +68,7 @@ const FAQ_JSONLD = {
       name: 'How many US patents have been granted since 1976?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The USPTO granted 9.36 million patents from 1976 to 2025, growing from 70,000 per year to 374,000 per year, peaking at 393,000 in 2019.',
+        text: 'The USPTO granted 9.36 million patents (all types) from 1976 to 2025, growing from 70,000 per year to 374,000 per year, peaking at 393,000 (all types) in 2019.',
       },
     },
     {
@@ -132,7 +132,7 @@ const FAQ_JSONLD = {
       name: 'What is the gender gap in patenting?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Women represent a growing but still small share of patent inventors. The share of women inventors has increased from 2.8% in 1976 to 14.9% in 2025, with higher representation in chemistry and biotech than electronics.',
+        text: 'Women represent a growing but still small share of patent inventors. The share of women inventors has increased from 2.8% in 1976 to 14.9% in 2025 (through September), with higher representation in chemistry and biotech than electronics.',
       },
     },
     {

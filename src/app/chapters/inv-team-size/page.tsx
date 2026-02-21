@@ -132,7 +132,7 @@ export default function InvTeamSizeChapter() {
         <li>
           Average patent team size increased from 1.7 inventors per patent in
           1976 to 3.2 by 2025 (through September), while the solo-inventor share declined from 58%
-          to 23%.
+          to 23% by 2025.
         </li>
         <li>
           The share of patents listing five or more inventors has grown more than eightfold,
@@ -223,7 +223,7 @@ export default function InvTeamSizeChapter() {
       <KeyInsight>
         <p>
           The transition from solo to team invention mirrors broader trends in science and
-          engineering. The solo-inventor share declined from 58% to 23%, while the
+          engineering. The solo-inventor share declined from 58% to 23% by 2025, while the
           share of patents listing five or more inventors has grown more than eightfold, from
           2.5% to 21%. This pattern suggests that contemporary technologies
           increasingly require diverse expertise that exceeds the capacity of any individual
@@ -235,7 +235,7 @@ export default function InvTeamSizeChapter() {
 
       <ChartContainer
         id="fig-solo-inventor-trend"
-        title="Solo Inventor Patents Declined from 58% to 23% of All Grants, 1976-2025"
+        title="Solo Inventor Patents Declined from 58% to 23% of All Grants by 2025"
         subtitle="Annual count of solo-inventor patents and their share of total patent grants, 1976-2025"
         caption="The figure tracks the annual number of solo-inventor patents alongside their declining share of total patent output. While the absolute number of solo patents has grown modestly, the share has fallen steadily as team-based patents grew far more rapidly."
         insight="Solo invention has not disappeared in absolute terms -- solo patent counts have roughly doubled -- but the collaborative mode has expanded far more rapidly, reducing the solo share from a majority to under a quarter of all grants."
@@ -604,7 +604,7 @@ export default function InvTeamSizeChapter() {
 
       <InsightRecap
         learned={[
-          "Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 23%.",
+          "Average patent team size increased from 1.7 to 3.2 inventors, while the solo-inventor share fell from 58% to 23% by 2025.",
           "Teams of 7+ average 16.7 claims per patent versus 11.6 for solo inventors, indicating that larger teams produce broader patent protection.",
         ]}
         falsifiable="If team size causally increases patent quality rather than reflecting project selection, then exogenous team expansions (for example, due to firm mergers) should produce citation gains."

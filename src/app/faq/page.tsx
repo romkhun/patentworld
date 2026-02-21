@@ -53,11 +53,11 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What is the gender gap in US patenting?',
-    answer: 'Female inventor representation has risen from 2.8% in 1976 to 14.9% in 2025, but a substantial gender gap persists. Average patent team size has nearly doubled from 1.7 to 3.2 inventors over this period. Quality metrics show nuanced differences: all-female inventor teams tend to file fewer claims (10.6 vs. 14.5 for all-male teams in 2024) but have received higher forward citations in some recent years.',
+    answer: 'Female inventor representation has risen from 2.8% in 1976 to 14.9% in 2025 (through September), but a substantial gender gap persists. Average patent team size has nearly doubled from 1.7 to 3.2 inventors over this period. Quality metrics show nuanced differences: all-female inventor teams tend to file fewer claims (10.6 vs. 14.5 for all-male teams in 2024) but have received higher forward citations in some recent years.',
   },
   {
     question: 'Which countries\' inventors file the most US patents?',
-    answer: 'The United States leads with 4.21 million inventor-attributed patents (1976-2025), followed by Japan (1.45 million), Germany (494,000), South Korea (365,000), and China (260,000). Foreign-origin patents surpassed US-origin patents in annual volume around 2007. International co-invention rose from 1.0% of all patents in 1976 to 10.0% in 2025, reflecting increasingly globalized R&D.',
+    answer: 'The United States leads with 4.21 million inventor-attributed patents (1976-2025), followed by Japan (1.45 million), Germany (494,000), South Korea (365,000), and China (260,000). Foreign-origin patents surpassed US-origin patents in annual volume around 2007. International co-invention rose from 1.0% of all patents in 1976 to 10.0% in 2025 (through September), reflecting increasingly globalized R&D.',
   },
   {
     question: 'How has patent quality changed over time?',

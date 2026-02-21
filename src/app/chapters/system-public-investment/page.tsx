@@ -77,13 +77,13 @@ export default function SystemPublicInvestmentChapter() {
       <KeyFindings>
         <li>Government-funded patents rose from 1,294 in 1980 to 8,359 in 2019, a trend associated with the 1980 Bayh-Dole Act.</li>
         <li>HHS/NIH leads with 55,587 patents, followed by Defense (43,736) and Energy (33,994).</li>
-        <li>Government-funded patents slightly outperform non-funded patents on cohort-normalized citation impact, as shown in the cohort-normalized comparison below, consistent with findings in the academic literature.</li>
+        <li>Government-funded patents slightly outperform non-funded patents on cohort-normalized citation impact, as shown in the cohort-normalized comparison below, consistent with findings in the academic literature (Azoulay et al., 2019, <em>JPE</em>; Mowery et al., 2001, <em>Research Policy</em>).</li>
       </KeyFindings>
 
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
-          Government-funded patenting expanded substantially after the 1980 <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip>, which permitted universities and small businesses to retain patent rights on federally funded inventions. Government-acknowledged patents grew from 1,294 in 1980 to a peak of 8,359 in 2019. Federal agencies — particularly HHS/NIH, the Department of Defense, and the Department of Energy — continue to fund research that generates thousands of patents each year, representing foundational technologies that enable subsequent waves of commercial innovation. Research in the academic literature suggests that government-funded patents tend to be associated with higher citation impact, supporting the role of public R&D investment in generating foundational knowledge.
+          Government-funded patenting expanded substantially after the 1980 <GlossaryTooltip term="Bayh-Dole Act">Bayh-Dole Act</GlossaryTooltip>, which permitted universities and small businesses to retain patent rights on federally funded inventions. Government-acknowledged patents grew from 1,294 in 1980 to a peak of 8,359 in 2019. Federal agencies — particularly HHS/NIH, the Department of Defense, and the Department of Energy — continue to fund research that generates thousands of patents each year, representing foundational technologies that enable subsequent waves of commercial innovation. Research in the academic literature suggests that government-funded patents tend to be associated with higher citation impact (Azoulay, Graff Zivin, Li, &amp; Sampat, 2019; Jaffe &amp; Lerner, 2001; Mowery, Nelson, Sampat, &amp; Ziedonis, 2001), supporting the role of public R&amp;D investment in generating foundational knowledge.
         </p>
       </aside>
 
@@ -95,11 +95,11 @@ export default function SystemPublicInvestmentChapter() {
 
       <ChartContainer
         id="fig-innovation-landscape-gov-funded"
-        subtitle="Annual count of utility patents acknowledging government funding interest, tracking the impact of the 1980 Bayh-Dole Act."
+        subtitle="Annual count of utility patents acknowledging government funding interest, tracking patenting trends following the 1980 Bayh-Dole Act."
         title="Government-Funded Patents Rose From 1,294 in 1980 to 8,359 in 2019 After the Bayh-Dole Act"
         caption="Number of utility patents acknowledging government funding interest, by year. A marked increase is evident after the 1980 Bayh-Dole Act, which permitted universities and small businesses to retain patent rights on federally funded inventions."
         loading={goL}
-        insight="Government-funded patents are often associated with higher citation impact in the academic literature, supporting the role of public R&D investment in generating foundational innovations. This interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter."
+        insight="Government-funded patents are often associated with higher citation impact in the academic literature (e.g., Azoulay et al., 2019; Jaffe & Lerner, 2001; Mowery et al., 2001), supporting the role of public R&D investment in generating foundational innovations. This interpretation is drawn from prior research rather than directly computed from the PatentsView data used in this chapter."
       >
         <PWLineChart
           data={gov ?? []}

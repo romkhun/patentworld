@@ -171,6 +171,10 @@ export default function InvGenderChapter() {
         <li>All-male teams produce the highest average citation impact across the full study period (14.2 cumulative citations), followed by mixed-gender teams (12.6) and all-female teams (9.5). Recent-year rankings are affected by citation truncation.</li>
       </KeyFindings>
 
+      <p className="mx-auto max-w-prose text-xs text-muted-foreground mt-2 mb-4 italic">
+        Note: Lifetime citation rankings (all-male 14.2, mixed 12.6, all-female 9.5) reflect patents with complete citation windows. Recent-year figures use truncated citation windows and may show different patterns.
+      </p>
+
       <aside className="my-8 rounded-lg border bg-muted/30 p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Executive Summary</h2>
         <p className="text-sm leading-relaxed">
@@ -198,9 +202,9 @@ export default function InvGenderChapter() {
 
       <ChartContainer
         id="fig-gender-female-share"
-        title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025"
+        title="Female Inventor Share Rose Steadily from 2.8% in 1976 to 14.9% in 2025 (through September)"
         subtitle="Percentage of inventor-patent instances attributed to female inventors, measured annually, 1976-2025"
-        caption="The figure tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025, an increase of 5.3-fold over the study period."
+        caption="The figure tracks the percentage of inventor-patent instances attributed to female inventors over time. The data demonstrate a consistent upward trend from 2.8% in 1976 to 14.9% in 2025 (through September), an increase of 5.3-fold over the study period."
         insight="The persistent gender gap in patenting is consistent with broader structural differences in STEM participation, including educational pipelines, workplace composition, and institutional factors."
         loading={gnL}
       >
@@ -220,7 +224,7 @@ export default function InvGenderChapter() {
       <Narrative>
         <p>
           Progress on gender diversity in patenting has been measurable but gradual. The female share
-          increased from 2.8% in 1976 to 14.9% in 2025. Despite decades of initiatives to broaden
+          increased from 2.8% in 1976 to 14.9% in 2025 (through September). Despite decades of initiatives to broaden
           participation in STEM, the female share of inventors on US patents remains well below parity.
           At the observed rate of change, achieving equal representation would require several additional decades.
         </p>
@@ -369,7 +373,7 @@ export default function InvGenderChapter() {
       {/* C.i — Forward Citations */}
       <ChartContainer
         id="fig-gender-fwd-citations"
-        title="Recent Cohorts Show Higher Raw Citation Counts for All-Female Teams (1.06 in 2024 versus 0.51 for All-Male), Though Truncation Limits Interpretation"
+        title="Recent Cohorts Show Higher Raw Citation Counts for All-Female Teams (1.06 in 2024 versus 0.51 for All-Male), Though Truncation Limits Interpretation (Recent Cohorts; Citation Window Incomplete)"
         subtitle="Average forward citations per patent by team gender composition, 1976-2025"
         caption="Average forward citations received per patent by team gender composition, 1976-2025. Recent years are truncated due to citation lag. Data: PatentsView. The directional reversal compared with cumulative averages (where all-male teams lead at 14.2) reflects citation truncation: 2024 patents have accumulated fewer than two years of citations, a window too short to reveal long-run impact differences."
         loading={qgL}
@@ -592,7 +596,7 @@ export default function InvGenderChapter() {
 
       <InsightRecap
         learned={[
-          "Female inventor share rose from 2.8% in 1976 to 14.9% in 2025, but the pace of growth has slowed in recent years.",
+          "Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September), but the pace of growth has slowed in recent years.",
           "All-male teams average 14.2 forward citations while all-female teams average 9.5; this gap is consistent with differences in field composition and institutional factors rather than individual capability.",
         ]}
         falsifiable="If the gender citation gap is driven by field composition, then within narrow CPC subclasses the gap should shrink substantially or disappear."

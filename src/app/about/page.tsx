@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'How many US patents have been granted since 1976?',
-    answer: 'The USPTO granted 9.36 million patents between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 in 2019, a more than five-fold increase over five decades.',
+    answer: 'The USPTO granted 9.36 million patents (all types) between 1976 and 2025. Annual grants increased from 70,000 in 1976 to a peak of 393,000 (all types) in 2019, a more than five-fold increase over five decades.',
   },
   {
     question: 'Which company holds the most US patents?',
@@ -54,7 +54,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'What is the gender gap in US patenting?',
-    answer: 'Women represent 14.9% of all US patent inventors as of 2025, up from 2.8% in 1976. The gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
+    answer: 'Women represent 14.9% of all US patent inventors as of 2025 (through September), up from 2.8% in 1976. The gap remains substantial across virtually all technology sectors, with the narrowest gaps in chemistry and biotechnology.',
   },
   {
     question: 'Which countries file the most US patents?',
@@ -88,13 +88,14 @@ const ABOUT_JSONLD = [
   {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: 'PatentWorld \u2014 US Patent Data (1976\u20132025)',
+    name: 'PatentWorld Analytical Dataset',
     description:
-      'Interactive analysis of 9.36 million US patents covering 50 years of US patent data, with data on inventors, assignees, technology classifications, citations, and geography.',
+      'Derived analytics from USPTO PatentsView covering U.S. patents 1976\u20132025. Interactive analysis of 9.36 million US patents with data on inventors, assignees, technology classifications, citations, and geography.',
     url: `${BASE_URL}/about/`,
     license: 'https://creativecommons.org/licenses/by/4.0/',
     temporalCoverage: '1976/2025',
     spatialCoverage: 'United States',
+    datePublished: '2025',
     creator: {
       '@type': 'Person',
       name: 'Saerom (Ronnie) Lee',
@@ -103,6 +104,11 @@ const ABOUT_JSONLD = [
         '@type': 'Organization',
         name: 'The Wharton School, University of Pennsylvania',
       },
+    },
+    sourceOrganization: {
+      '@type': 'Organization',
+      name: 'USPTO PatentsView',
+      url: 'https://patentsview.org',
     },
     distribution: {
       '@type': 'DataDownload',
@@ -261,6 +267,10 @@ export default function AboutPage() {
             <li>Government interest statements</li>
           </ul>
           <p className="mt-3 text-sm text-muted-foreground">
+            Data source: USPTO PatentsView bulk data download, accessed January 2025.
+            Temporal coverage: January 1976 &ndash; September 2025.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
             Data attribution: PatentsView (
             <a href="https://www.patentsview.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-chart-1">
               www.patentsview.org

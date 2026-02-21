@@ -65,6 +65,18 @@ export function MobileNav() {
                 Explore
               </Link>
               <Link
+                href="/methodology/"
+                onClick={() => setOpen(false)}
+                className={clsx(
+                  'block rounded-md px-3 py-2 text-sm transition-colors',
+                  pathname?.startsWith('/methodology')
+                    ? 'bg-accent text-foreground font-medium'
+                    : 'text-muted-foreground hover:bg-accent/50'
+                )}
+              >
+                Methodology
+              </Link>
+              <Link
                 href="/about/"
                 onClick={() => setOpen(false)}
                 className={clsx(

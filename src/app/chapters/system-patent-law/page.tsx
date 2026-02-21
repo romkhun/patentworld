@@ -360,7 +360,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 2025,
     title: 'Proposed PREVAIL Act & Patent Eligibility Restoration Act (PERA)',
     category: 'Legislation',
-    description: 'Congressional proposals to reform the PTAB system and patent eligibility under 35 U.S.C. \u00a7 101, reflecting the ongoing policy debate regarding the balance of innovation incentives.',
+    description: 'PREVAIL Act (S.1553) and Patent Eligibility Restoration Act (S.1546) were reintroduced in the 119th Congress. These proposals would reform the PTAB system and patent eligibility under 35 U.S.C. \u00a7 101, reflecting the ongoing policy debate regarding the balance of innovation incentives. As of 2025, both bills remain under committee consideration and have not been enacted.',
   },
 ];
 
@@ -567,7 +567,7 @@ export default function Chapter4() {
         subtitle="Annual patent applications (by filing date) and grants (by grant date) with the grant-to-application ratio, tracking USPTO throughput over time."
         title="Successfully Granted Applications Grew from 66,000 (Average, 1976-1979) to 349,000 (2019) While the Grant-to-Application Ratio Fell from Over 100% in the Mid-1970s to 66% by 1997, Reflecting Increasing Examination Lag"
         caption="The figure displays annual filings (by filing date) and grants (by grant date) for utility patents, with the grant-to-application ratio. Only patents that were eventually granted appear in this dataset. The growing gap between applications and grants since the mid-1990s reflects the increasing duration between filing and grant."
-        insight="Major legislative changes create observable inflection points in patent filing data, demonstrating the direct impact of policy on innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
+        insight="Major legislative changes coincide with observable inflection points in patent filing data, consistent with a relationship between policy and innovation incentives. The growing gap between applications and grants is consistent with increasing examination complexity and backlog."
         loading={pipL}
       >
         <PWLineChart

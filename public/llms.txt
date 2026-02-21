@@ -1,35 +1,91 @@
 # PatentWorld
 
-> An interactive data exploration of 9.36 million US patents spanning 50 years of global innovation (1976-2025).
+> Interactive exploration of 9.36 million US patents (1976-2025) from USPTO PatentsView
 
-PatentWorld visualizes every patent granted by the United States Patent and Trademark Office (USPTO) from 1976 to 2025. The data comes from PatentsView, a platform supported by the USPTO that disambiguates and links patent data.
+## Overview
+
+PatentWorld is a data exploration platform presenting 50 years of United States patent activity through interactive visualizations. Created by Saerom (Ronnie) Lee, Assistant Professor of Management at The Wharton School, University of Pennsylvania.
+
+- Data source: USPTO PatentsView bulk data download, accessed January 2025
+- Temporal coverage: January 1976 - September 2025
+- Patent types: utility, design, plant, and reissue
+- Total patents: 9.36 million
+- Chapters: 34
+- Visualizations: 459
+
+## Pages
+
+- https://patentworld.vercel.app/ : Homepage with site overview, hero statistics, and chapter navigation
+- https://patentworld.vercel.app/about/ : Data sources, methodology, measurement definitions, FAQ, and suggested citation
+- https://patentworld.vercel.app/explore/ : Interactive search of patents by assignee, inventor, CPC class, and WIPO field
+- https://patentworld.vercel.app/faq/ : Frequently asked questions about US patent trends
 
 ## Chapters
 
-- [The Innovation Landscape](/chapters/the-innovation-landscape/): 50 years of global invention in 9.36 million US patents. How the pace and nature of patenting has changed since 1976, annual patent grants, and long-term trends.
-- [The Technology Revolution](/chapters/the-technology-revolution/): The shifting frontiers of technology. CPC classification trends, WIPO sector analysis, emerging vs. declining technologies, and the rise of digital innovation.
-- [Who Innovates?](/chapters/who-innovates/): The organizations driving patent activity. Top patent holders over time, corporate vs. individual vs. government patenting, sector concentration, and organizational dynamics.
-- [The Inventors](/chapters/the-inventors/): The people behind the patents. Team sizes, gender trends in patenting, prolific inventors, and the demographics of innovation.
-- [The Geography of Innovation](/chapters/the-geography-of-innovation/): Where ideas are born. US state-level patent activity, international origin countries, geographic concentration, and innovation hubs from Silicon Valley to Shenzhen.
-- [Collaboration Networks](/chapters/collaboration-networks/): The web of co-invention and co-patenting. Network analysis of firm-to-firm collaboration, co-inventor networks, and international inventor migration flows.
-- [The Knowledge Network](/chapters/the-knowledge-network/): How ideas build on ideas. Patent citation networks, knowledge flows between technology sectors, government-funded invention, and the structure of technological knowledge.
-- [Innovation Dynamics](/chapters/innovation-dynamics/): The tempo and trajectory of invention. Grant lag trends, cross-domain convergence, international collaboration rates, corporate technology portfolios, and innovation velocity.
-- [Patent Quality](/chapters/patent-quality/): Measuring the value and impact of inventions. Forward citations, originality indices, generality scores, and other dimensions of patent quality over 50 years.
-- [Patent Law & Policy](/chapters/patent-law/): The rules that shape innovation. Major legislation (Bayh-Dole, Hatch-Waxman, AIA), Supreme Court decisions (eBay, KSR, Alice, Myriad), and policy changes affecting the US patent system from 1980 to present, with published academic research from top economics and management journals.
-- [Artificial Intelligence](/chapters/ai-patents/): The rise of AI in the patent system. How AI patenting evolved from early expert systems to deep learning and generative AI, top AI patent holders, and technology subfield trends.
+### Act 1: The System - How the patent landscape took shape
+
+- https://patentworld.vercel.app/chapters/system-patent-count/ : Annual patent volume and grant pendency; grants grew from 70K to 374K
+- https://patentworld.vercel.app/chapters/system-patent-quality/ : Claims, scope, citations, originality, and knowledge flow indicators
+- https://patentworld.vercel.app/chapters/system-patent-fields/ : Technology classes, field-level dynamics; CPC sections G and H rose from 27% to 57%
+- https://patentworld.vercel.app/chapters/system-convergence/ : Cross-domain technology convergence; multi-section patents rose from 21% to 40%
+- https://patentworld.vercel.app/chapters/system-language/ : Semantic analysis of 8.45 million patent abstracts via NLP topic modeling
+- https://patentworld.vercel.app/chapters/system-patent-law/ : 21 landmark legislative and judicial events from 1980 to 2025
+- https://patentworld.vercel.app/chapters/system-public-investment/ : Government funding and the Bayh-Dole Act; NIH leads with 55,587 patents
+
+### Act 2: The Organizations - Firms and institutions driving innovation
+
+- https://patentworld.vercel.app/chapters/org-composition/ : Corporate, foreign, and country-level composition of patent assignees
+- https://patentworld.vercel.app/chapters/org-patent-count/ : Patent output rankings; IBM leads with 161,888 cumulative grants
+- https://patentworld.vercel.app/chapters/org-patent-quality/ : Citation impact and blockbuster patents; Amazon leads at 6.7% blockbuster rate
+- https://patentworld.vercel.app/chapters/org-patent-portfolio/ : Portfolio diversification, competitive proximity, and strategic pivots
+- https://patentworld.vercel.app/chapters/org-company-profiles/ : Interactive profiles for individual companies with five analytical views
+
+### Act 3: The Inventors - Who invents and how they differ
+
+- https://patentworld.vercel.app/chapters/inv-top-inventors/ : Top 5% of inventors produce 60% of output; most prolific holds 6,709 patents
+- https://patentworld.vercel.app/chapters/inv-generalist-specialist/ : Specialist inventors rose from 20% to 48% of the workforce
+- https://patentworld.vercel.app/chapters/inv-serial-new/ : Career patterns and survival; only 37-51% survive past five years
+- https://patentworld.vercel.app/chapters/inv-gender/ : Female inventor share rose from 2.8% to 14.9% (1976-2025)
+- https://patentworld.vercel.app/chapters/inv-team-size/ : Average team size grew from 1.7 to 3.2 inventors
+
+### Act 4: The Geography - Where innovation happens
+
+- https://patentworld.vercel.app/chapters/geo-domestic/ : State and city-level concentration; California holds 23.6% of all US patents
+- https://patentworld.vercel.app/chapters/geo-international/ : Cross-border patterns; Japan leads foreign filings with 1.45M patents
+
+### Act 5: The Mechanics - How knowledge flows through organizations, inventors, and places
+
+- https://patentworld.vercel.app/chapters/mech-organizations/ : Exploration vs. exploitation and inter-firm citation flows
+- https://patentworld.vercel.app/chapters/mech-inventors/ : Co-invention networks and inventor mobility among top 50 firms
+- https://patentworld.vercel.app/chapters/mech-geography/ : International co-invention rose from 1.0% to 10.0% (1976-2025)
+
+### Act 6: Deep Dives - Established and emerging technology domains
+
+- https://patentworld.vercel.app/chapters/3d-printing/ : Additive manufacturing; top-four concentration fell from 36% to 11% by 2024
+- https://patentworld.vercel.app/chapters/agricultural-technology/ : Precision agriculture, plant breeding, and farm technology patents
+- https://patentworld.vercel.app/chapters/ai-patents/ : AI patents grew 5.7-fold from 2012 to 2023, reaching 9.4% of all grants
+- https://patentworld.vercel.app/chapters/autonomous-vehicles/ : Driving systems, navigation, and scene understanding patents
+- https://patentworld.vercel.app/chapters/biotechnology/ : Gene editing, CRISPR, enzyme engineering, and nucleic acid detection
+- https://patentworld.vercel.app/chapters/blockchain/ : Distributed ledger patents; grants peaked in 2022 then reversed
+- https://patentworld.vercel.app/chapters/cybersecurity/ : Cryptography, authentication, and network security patents
+- https://patentworld.vercel.app/chapters/digital-health/ : Patient monitoring, surgical robotics, and health informatics
+- https://patentworld.vercel.app/chapters/green-innovation/ : Climate technology; green patents rose to 9-10% of all utility patents
+- https://patentworld.vercel.app/chapters/quantum-computing/ : Quantum algorithms, hardware, and error correction patents
+- https://patentworld.vercel.app/chapters/semiconductors/ : IC design, packaging, manufacturing; rising concentration trend
+- https://patentworld.vercel.app/chapters/space-technology/ : Spacecraft, propulsion, and satellite communications patents
 
 ## Data
 
-- Source: PatentsView (patentsview.org), USPTO
-- Coverage: 9.36 million granted US utility patents
-- Time period: 1976-2025
+- Source: USPTO PatentsView (patentsview.org), bulk data download accessed January 2025
+- Coverage: 9.36 million granted US patents (utility, design, plant, reissue)
+- Time period: January 1976 - September 2025
 - Classifications: Cooperative Patent Classification (CPC), WIPO technology fields
 - Variables: Patent grants, technology classifications, inventor demographics, geographic distribution, citation networks, patent quality indicators, team sizes, organizational data, government interest
 
 ## Methodology
 
-Raw data downloaded as TSV files from PatentsView bulk data downloads, processed using DuckDB analytical SQL database. Key processing: joining patent records with inventor/assignee/location/classification data, aggregating by year/technology/geography/organization, computing derived metrics (citation counts, team sizes, concentration ratios, diversity indices).
+Raw data downloaded as TSV files from PatentsView bulk data downloads, processed using DuckDB analytical SQL database and Polars (Python). Key processing: joining patent records with inventor/assignee/location/classification data, aggregating by year/technology/geography/organization, computing derived metrics (citation counts, team sizes, concentration ratios, diversity indices).
 
 ## Technology
 
-Built with Next.js 14, Recharts, D3.js, Tailwind CSS. All data pre-computed and served as static JSON. Static site export with dark/light theme support.
+Built with Next.js 14, Recharts, Tailwind CSS. All data pre-computed and served as static JSON. Static site export with dark/light theme support.

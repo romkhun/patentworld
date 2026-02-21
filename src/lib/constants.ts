@@ -17,7 +17,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-count',
     title: 'Patent Count',
     subtitle: 'Annual patent volume and grant pendency',
-    description: 'Annual US patent grants increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 in 2019. Average grant pendency peaked at 3.8 years in 2010 before moderating.',
+    description: 'Annual US patent grants (all types) increased more than five-fold from 70,000 in 1976 to 374,000 in 2024, peaking at 393,000 (all types) in 2019. Average grant pendency peaked at 3.8 years in 2010 before moderating.',
   },
   {
     number: 2,
@@ -88,7 +88,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-portfolio',
     title: 'Patent Portfolio',
     subtitle: 'Diversification, competitive proximity, and portfolio transitions',
-    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, often years before strategic shifts become publicly visible.',
+    description: '248 companies cluster into 8 industries by patent portfolio similarity. Portfolio diversity rose across leading firms, with Mitsubishi Electric reaching a peak Shannon entropy of 6.7 across 229 CPC subclasses. 51 technology pivots detected across 20 companies, sometimes preceding strategic shifts that later become publicly visible.',
   },
   {
     number: 12,
@@ -103,7 +103,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-top-inventors',
     title: 'Top Inventors',
     subtitle: 'Superstar concentration, prolific inventors, and citation impact',
-    description: 'The top 5% of inventors (by annual output) account for 60% of annual patent grants, up from 26% in 1976. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
+    description: 'The top 5% of inventors (by cumulative patent count) account for 60% of annual patent grants, up from 26% in 1976. The most prolific inventor holds 6,709 patents. Citation impact ranges from 10 to 965 average citations among top 100.',
   },
   {
     number: 14,
@@ -124,7 +124,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'inv-gender',
     title: 'Gender and Patenting',
     subtitle: 'Gender composition and the gender innovation gap',
-    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025. All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025).',
+    description: 'Female inventor share rose from 2.8% in 1976 to 14.9% in 2025 (through September). All-male teams average 14.2 forward citations, mixed-gender teams 12.6, and all-female teams 9.5. Chemistry leads cumulative female representation at 14.6% (1976-2025).',
   },
   {
     number: 17,
@@ -146,7 +146,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'geo-international',
     title: 'International Geography',
     subtitle: 'Cross-border patterns and country-level quality metrics',
-    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with 164,000 patents and 18.4 average claims in the 2020s, while rapidly growing origins exhibit lower claims, suggesting a quality-quantity tradeoff.',
+    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with approximately 164,000 patents granted cumulatively during the 2020s (by assignee country) and 18.4 average claims, while rapidly growing origins exhibit lower claims, suggesting a quality-quantity tradeoff.',
   },
   // ── ACT 5: The Mechanics ──
   {
@@ -168,7 +168,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'mech-geography',
     title: 'Geographic Mechanics',
     subtitle: 'Cross-border collaboration and innovation diffusion',
-    description: 'International co-invention increased from 1.0% in 1976 to 10.0% in 2025. US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024.',
+    description: 'International co-invention increased from 1.0% in 1976 to 10.0% in 2025 (through September). US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024.',
   },
   // ── ACT 6: Deep Dives (existing, routes unchanged) ──
   {
@@ -225,7 +225,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'digital-health',
     title: 'Digital Health & Medical Devices',
     subtitle: 'Technology transforming healthcare delivery',
-    description: 'Digital health patent velocity jumped 3.4-fold from 22.5 patents per year (1970s entrants) to 77.5 (2010s entrants). Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field. Subfield diversity rose from 0.49 in 1976 to 0.92 by 2025.',
+    description: 'Digital health patent velocity jumped 3.4-fold from 22.5 patents per year (1970s entrants) to 77.5 (2010s entrants). Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field. Subfield diversity rose from 0.48 in 1976 to 0.92 by 2025.',
   },
   {
     number: 31,
@@ -297,5 +297,5 @@ export const HERO_STATS = {
   startYear: 1976,
   endYear: 2025,
   chapters: 34,
-  visualizations: 459,
+  visualizations: 458,
 };

@@ -204,8 +204,8 @@ export default function GeoDomesticChapter() {
       <MeasurementSidebar slug="geo-domestic" />
 
       <KeyFindings>
-        <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for 46% of all grants.</li>
-        <li>California alone accounts for 23.6% of all US patent grants, producing more patents (992,708) than the bottom 30 states and territories combined (314,664).</li>
+        <li>Patent activity is disproportionately concentrated geographically: the top five US states (California, Texas, New York, Massachusetts, and Michigan) account for 46% of all utility patent grants.</li>
+        <li>California alone accounts for 23.6% of all US utility patent grants, producing more patents (992,708) than the bottom 30 states and territories combined (314,664).</li>
         <li>States exhibit distinctive technology specialization profiles: Michigan devotes 20.1% of its patents to Mechanical Engineering compared to California&apos;s 65.1% concentration in Physics and Electricity.</li>
         <li>City-level data reveal even more pronounced geographic concentration, with San Jose (96,068), San Diego (70,186), and Austin (53,595) leading all US cities in total patent output.</li>
         <li>California&apos;s patent output has diverged sharply from other leading states, reaching 4.0x Texas by 2024, driven by the accelerating growth of the Silicon Valley ecosystem.</li>

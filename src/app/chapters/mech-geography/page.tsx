@@ -286,7 +286,7 @@ export default function MechGeographyChapter() {
 
       <InsightRecap
         learned={[
-          "International co-invention increased from 1.0% in 1976 to 10.0% in 2025, reflecting the globalization of R&D activity.",
+          "International co-invention increased from 1.0% in 1976 to 10.0% in 2025 (through September), reflecting the globalization of R&D activity.",
           "US-China co-invention grew from 77 patents in 2000 to 2,749 in 2024, making it one of the fastest-growing bilateral research corridors.",
         ]}
         falsifiable="If cross-border co-invention reflects genuine knowledge complementarities rather than cost arbitrage, then internationally co-invented patents should have higher citation impact than purely domestic patents in the same technology and year."

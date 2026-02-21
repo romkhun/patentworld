@@ -91,7 +91,7 @@ export default function HomePage() {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             An interactive exploration of {HERO_STATS.totalPatents} US patents granted by the USPTO from 1976 to 2025 (2025 data through September).
             Annual grants increased more than five-fold over this period, from 70,000 in 1976 to 374,000 in 2024,
-            as computing and electronics (CPC sections G and H) rose from 27% to 57% of all grants.
+            as computing and electronics (Cooperative Patent Classification sections G and H) rose from 27% to 57% of all grants.
           </p>
 
           <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-4">
