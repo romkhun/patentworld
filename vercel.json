@@ -1,4 +1,9 @@
 {
+  "git": {
+    "deploymentEnabled": {
+      "gh-pages": false
+    }
+  },
   "redirects": [
     { "source": "/chapters/patent-volume/", "destination": "/chapters/system-patent-count/", "permanent": true },
     { "source": "/chapters/patent-process/", "destination": "/chapters/system-public-investment/", "permanent": true },
