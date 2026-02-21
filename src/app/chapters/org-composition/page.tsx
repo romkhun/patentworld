@@ -150,7 +150,7 @@ export default function OrgCompositionChapter() {
         title="Corporate Assignees Grew From 94% to 99% of US Patent Grants Between 1976 and 2024"
         subtitle="Share of utility patents by assignee category (corporate, individual, government, university), measured as percentage of annual grants, 1976-2025"
         caption="Share of utility patents by assignee category (primary assignee), 1976-2025. Corporate entities have progressively expanded their share, while individual inventors and government entities have declined proportionally."
-        insight="The Bayh-Dole Act (1980) enabled university patenting, but the predominant trend is the rise of corporate R&amp;D as patent portfolios became strategic assets for cross-licensing and competitive signaling."
+        insight="The Bayh-Dole Act (1980) permitted university patenting, but the predominant trend is the rise of corporate R&amp;D as patent portfolios became strategic assets for cross-licensing and competitive signaling."
         loading={typL}
       >
         <PWAreaChart
@@ -177,7 +177,7 @@ export default function OrgCompositionChapter() {
 
       <KeyInsight>
         <p>
-          The Bayh-Dole Act of 1980 enabled universities and small businesses to patent
+          The Bayh-Dole Act of 1980 permitted universities and small businesses to patent
           federally funded inventions, contributing to increased institutional patenting. However,
           the predominant trend is the rise of corporate R&amp;D: as patent portfolios became strategic
           assets for cross-licensing, defensive protection, and competitive signaling, large

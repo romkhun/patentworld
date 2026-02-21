@@ -261,7 +261,7 @@ export default function Chapter15() {
       <MeasurementSidebar slug="biotechnology" />
 
       <KeyFindings>
-        <li>Biotechnology patenting has grown substantially since the 1980s, following the Bayh-Dole Act (1980) which enabled universities to patent federally funded inventions.</li>
+        <li>Biotechnology patenting has grown substantially since the 1980s, following the Bayh-Dole Act (1980), which permitted universities to patent federally funded inventions.</li>
         <li>The completion of the Human Genome Project in 2003 and the publication of CRISPR-Cas9 gene editing in 2012 represent inflection points that reshaped the composition of biotech patents, shifting activity toward genomic technologies and precision gene editing.</li>
         <li>Unlike AI patenting, which is dominated by technology firms, biotech patents are concentrated among research universities (University of California, Harvard, Stanford), agricultural biotech firms (Monsanto, Pioneer Hi-Bred, DuPont), and enzyme companies (Novozymes), reflecting the distinct institutional structure of life sciences innovation.</li>
         <li>The development and patenting of mRNA vaccine technology during the COVID-19 pandemic occurred at an accelerated pace relative to typical biotech development timelines.</li>
@@ -272,7 +272,7 @@ export default function Chapter15() {
         <p className="text-sm leading-relaxed">
           Biotechnology patenting in the United States reflects a half-century transformation in
           how society harnesses molecular biology for commercial and therapeutic purposes. The
-          Bayh-Dole Act of 1980 enabled a substantial expansion of university-originated patents, while
+          Bayh-Dole Act of 1980 coincided with a substantial expansion of university-originated patents, while
           the completion of the Human Genome Project in 2003 and the discovery of CRISPR-Cas9
           gene editing in 2012 coincided with successive waves of inventive activity. The institutional
           landscape of biotech patenting differs markedly from domains such as artificial

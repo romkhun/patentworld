@@ -157,7 +157,7 @@ export default function InvTopInventorsChapter() {
       <Narrative>
         <p>
           The skewed distribution of individual productivity raises a broader structural question:
-          is innovation output becoming more concentrated among a small elite, or more broadly
+          is patent output becoming more concentrated among a small elite, or more broadly
           distributed over time? Tracking the share of patents attributable to the top 1% and
           top 5% of inventors by cumulative patent count provides an answer.
         </p>
@@ -168,7 +168,7 @@ export default function InvTopInventorsChapter() {
         title="The Top 5% of Inventors (by Cumulative Output) Account for 63.2% of All Patents; Annual Share Rose from 26% to 60%"
         subtitle="Annual share of patents attributable to the top 1% and top 5% of inventors by cumulative patent count, 1976-2025"
         caption="The figure tracks the percentage of patents each year attributable to the top 1% and top 5% of inventors by cumulative patent count. The upward trend in both series indicates increasing concentration of patent output among a small cohort of repeat inventors."
-        insight="Rising concentration of patents among top inventors indicates that innovation output is increasingly concentrated among professional, repeat inventors rather than occasional contributors."
+        insight="Rising concentration of patents among top inventors indicates that patent output is increasingly concentrated among professional, repeat inventors rather than occasional contributors."
         loading={ssL}
       >
         {superstar && (

@@ -490,7 +490,7 @@ export default function GeoDomesticChapter() {
         subtitle="US cities ranked by total utility patents from primary inventors (1976-2025), revealing finer-grained concentration patterns."
         title="San Jose (96,068), San Diego (70,186), and Austin (53,595) Lead All US Cities in Total Patent Output"
         caption="The figure ranks US cities by total utility patents attributed to primary inventors from 1976 to 2025. City-level data reveal concentration patterns that are even more pronounced than state-level figures, with the top five cities accounting for a disproportionate share of national output."
-        insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national innovation output."
+        insight="City-level data reveal more pronounced geographic concentration than state-level figures, with a small number of technology hubs accounting for a disproportionate share of national patent output."
         loading={ciL}
         height={1400}
       >

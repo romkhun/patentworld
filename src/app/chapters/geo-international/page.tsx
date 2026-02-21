@@ -142,8 +142,8 @@ export default function GeoInternationalChapter() {
       <MeasurementSidebar slug="geo-international" />
 
       <KeyFindings>
-        <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global inventive activity.</li>
-        <li>The United States leads with approximately 164,000 patents granted cumulatively during the 2020s (by primary assignee country, summed across 2020-2024), averaging roughly 33,000 per year, with 18.4 average claims per patent, while countries with rapidly growing patent volumes, including China, tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions or technology field composition.</li>
+        <li>Japan leads foreign patent filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024, reflecting a fundamental shift in global patent filing activity as measured by USPTO grants.</li>
+        <li>The United States leads with approximately 164,000 patents granted cumulatively during the 2020s (by primary assignee country, summed across 2020-2024), averaging roughly 33,000 per year, with 18.4 average claims per patent, while countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern observed across several fast-growing origins that may reflect differences in patent drafting conventions or technology field composition.</li>
         <li>US-domestic patents and international patents differ systematically in quality indicators, reflecting differences in institutional contexts, research traditions, and strategic filing behavior.</li>
       </KeyFindings>
 
