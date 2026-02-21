@@ -588,7 +588,7 @@ export default function OrgPatentQualityChapter() {
         nextAnalysis={{
           label: "Patent Portfolio",
           description: "How firms diversify across technology domains and how portfolios evolve over time",
-          href: "/chapters/org-patent-portfolio",
+          href: "/chapters/org-patent-portfolio/",
         }}
       />
 

@@ -718,7 +718,7 @@ export default function MechInventorsChapter() {
         nextAnalysis={{
           label: "Geographic Mechanics",
           description: "Cross-border collaboration networks and the geography of knowledge diffusion",
-          href: "/chapters/mech-geography",
+          href: "/chapters/mech-geography/",
         }}
       />
 

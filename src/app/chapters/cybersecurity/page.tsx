@@ -890,7 +890,7 @@ export default function Chapter17() {
       <InsightRecap
         learned={["Cybersecurity top-four concentration declined from 32.4% in 1980 to 9.4% by 2025 (through September), consistent with broad-based entry across the security field.", "Network security surpassed cryptography as the dominant subfield around 2003, consistent with the shift from mathematical encryption to applied system protection."]}
         falsifiable="If broad-based entry reflects genuine innovation democratization, then new entrants' patents should achieve comparable citation rates to incumbents' patents within the same subfields."
-        nextAnalysis={{ label: "Digital Health", description: "How medical device and health IT patents are transforming healthcare delivery", href: "/chapters/digital-health" }}
+        nextAnalysis={{ label: "Digital Health", description: "How medical device and health IT patents are transforming healthcare delivery", href: "/chapters/digital-health/" }}
       />
 
       <DataNote>

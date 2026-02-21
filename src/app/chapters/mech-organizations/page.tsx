@@ -660,7 +660,7 @@ export default function MechOrganizationsChapter() {
         nextAnalysis={{
           label: "Inventor Mechanics",
           description: "Co-invention networks, bridge inventors, and the impact of inter-firm mobility on productivity",
-          href: "/chapters/mech-inventors",
+          href: "/chapters/mech-inventors/",
         }}
       />
 

@@ -381,7 +381,7 @@ export default function OrgCompositionChapter() {
         nextAnalysis={{
           label: "Organizational Patent Count",
           description: "Which organizations dominate patent output, and how has concentration evolved?",
-          href: "/chapters/org-patent-count",
+          href: "/chapters/org-patent-count/",
         }}
       />
 

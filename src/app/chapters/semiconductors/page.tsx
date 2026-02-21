@@ -899,7 +899,7 @@ export default function Chapter21() {
       <InsightRecap
         learned={["Semiconductor patents uniquely exhibit rising concentration, with top-four share increasing from 11.3% to 32.6% — the only domain showing sustained consolidation.", "Entry velocity plateaued at 197 patents/year for both 1990s and 2010s cohorts, suggesting that scale barriers have stabilized."]}
         falsifiable="If rising concentration reflects genuine scale economies in semiconductor R&D, then smaller firms' citation impact should be declining relative to the top four."
-        nextAnalysis={{ label: "Space Technology", description: "Patenting the final frontier — from government-dominated to commercial-driven innovation", href: "/chapters/space-technology" }}
+        nextAnalysis={{ label: "Space Technology", description: "Patenting the final frontier — from government-dominated to commercial-driven innovation", href: "/chapters/space-technology/" }}
       />
 
       <DataNote>

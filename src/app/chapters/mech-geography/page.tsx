@@ -293,7 +293,7 @@ export default function MechGeographyChapter() {
         nextAnalysis={{
           label: "3D Printing",
           description: "The first of twelve technology deep dives — how additive manufacturing moved from niche to mainstream",
-          href: "/chapters/3d-printing",
+          href: "/chapters/3d-printing/",
         }}
       />
 

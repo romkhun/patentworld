@@ -611,7 +611,7 @@ export default function InvTeamSizeChapter() {
         nextAnalysis={{
           label: "Domestic Geography",
           description: "Where in the United States does patenting concentrate, and how does location affect quality?",
-          href: "/chapters/geo-domestic",
+          href: "/chapters/geo-domestic/",
         }}
       />
 

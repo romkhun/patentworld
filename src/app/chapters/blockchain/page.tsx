@@ -916,7 +916,7 @@ export default function Chapter16() {
       <InsightRecap
         learned={["Blockchain patent grants peaked in 2022 and subsequently declined — the only advanced technology domain in the study to reverse course.", "Top-four concentration rose to 26.3% during the 2018 boom before declining to 14.0% by 2024, following a boom-bust cycle."]}
         falsifiable="If the blockchain patent decline reflects a genuine technology maturation rather than a speculative bubble bursting, then citation rates for recent blockchain patents should remain stable or increase."
-        nextAnalysis={{ label: "Cybersecurity", description: "Defending digital infrastructure through innovation — from cryptography to network security", href: "/chapters/cybersecurity" }}
+        nextAnalysis={{ label: "Cybersecurity", description: "Defending digital infrastructure through innovation — from cryptography to network security", href: "/chapters/cybersecurity/" }}
       />
 
       <DataNote>

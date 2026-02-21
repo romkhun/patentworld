@@ -871,7 +871,7 @@ export default function Chapter19() {
       <InsightRecap
         learned={["Green patents show a 1.8-fold velocity increase from 1970s entrants (68 patents per year) to 2000s entrants (122 patents per year), reflecting accelerating clean technology innovation.", "Battery and EV patents reached 7,363 and 5,818 grants respectively by 2024, surpassing renewable energy at 3,453."]}
         falsifiable="If green patent growth is driven by policy incentives (IRA, EU Green Deal) rather than technology push, then patent filings should show discontinuous increases following major policy announcements."
-        nextAnalysis={{ label: "Quantum Computing", description: "From theoretical foundations to practical hardware — among the most concentrated technology domains", href: "/chapters/quantum-computing" }}
+        nextAnalysis={{ label: "Quantum Computing", description: "From theoretical foundations to practical hardware — among the most concentrated technology domains", href: "/chapters/quantum-computing/" }}
       />
 
       <DataNote>

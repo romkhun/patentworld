@@ -805,7 +805,7 @@ export default function Chapter4() {
         nextAnalysis={{
           label: "Public Investment",
           description: "How government funding shapes the direction and quality of patented innovation",
-          href: "/chapters/system-public-investment",
+          href: "/chapters/system-public-investment/",
         }}
       />
 

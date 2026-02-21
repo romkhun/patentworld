@@ -488,7 +488,7 @@ export default function Chapter3() {
         nextAnalysis={{
           label: "Patent Law & Policy",
           description: "How legislation and Supreme Court decisions have shaped the patent landscape",
-          href: "/chapters/system-patent-law",
+          href: "/chapters/system-patent-law/",
         }}
       />
 

@@ -821,7 +821,7 @@ export default function SystemPatentQualityChapter() {
         nextAnalysis={{
           label: "Patent Fields",
           description: "Which technology domains drive the patent surge, and how has field-level concentration evolved?",
-          href: "/chapters/system-patent-fields",
+          href: "/chapters/system-patent-fields/",
         }}
       />
 

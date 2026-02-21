@@ -885,7 +885,7 @@ export default function Chapter11() {
       <InsightRecap
         learned={["Top-four-firm concentration in 3D printing patents declined from 36% in 2005 to 11% by 2024, following the expiration of key FDM patents in 2009.", "Later entrants (2010s cohort) patent at 11.2 patents per year compared to 8.3 for 1990s entrants, suggesting that open-source knowledge diffusion accelerated innovation."]}
         falsifiable="If the FDM patent expiration causally democratized the field, then concentration should have declined discontinuously around 2009 rather than gradually."
-        nextAnalysis={{ label: "Agricultural Technology", description: "How precision agriculture and biotechnology are transforming food production patents", href: "/chapters/agricultural-technology" }}
+        nextAnalysis={{ label: "Agricultural Technology", description: "How precision agriculture and biotechnology are transforming food production patents", href: "/chapters/agricultural-technology/" }}
       />
 
       <DataNote>

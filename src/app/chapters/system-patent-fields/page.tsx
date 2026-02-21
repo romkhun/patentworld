@@ -1144,7 +1144,7 @@ export default function SystemPatentFieldsChapter() {
         nextAnalysis={{
           label: "Convergence",
           description: "How technology domains that were once separate have become intertwined",
-          href: "/chapters/system-convergence",
+          href: "/chapters/system-convergence/",
         }}
       />
 

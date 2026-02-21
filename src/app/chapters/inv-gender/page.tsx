@@ -611,7 +611,7 @@ export default function InvGenderChapter() {
         nextAnalysis={{
           label: "Team Size and Collaboration",
           description: "The collaborative turn in patenting — how team size affects quality and scope",
-          href: "/chapters/inv-team-size",
+          href: "/chapters/inv-team-size/",
         }}
       />
 

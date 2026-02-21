@@ -900,7 +900,7 @@ export default function Chapter13() {
       <InsightRecap
         learned={["AI patent grants grew 5.7-fold from 5,201 in 2012 to 29,624 in 2023, reaching 9.4% of all US patent grants.", "IBM leads with 16,781 AI patents, followed by Google (7,775) and Samsung (6,195), but the field is rapidly deconcentrating."]}
         falsifiable="If AI patent growth reflects genuine innovation rather than classification expansion, then AI patents should show higher citation rates than non-AI patents in the same CPC sections."
-        nextAnalysis={{ label: "Autonomous Vehicles", description: "The race toward self-driving transportation and the patent landscape of ADAS technologies", href: "/chapters/autonomous-vehicles" }}
+        nextAnalysis={{ label: "Autonomous Vehicles", description: "The race toward self-driving transportation and the patent landscape of ADAS technologies", href: "/chapters/autonomous-vehicles/" }}
       />
 
       <DataNote>

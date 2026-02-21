@@ -762,7 +762,7 @@ export default function GeoDomesticChapter() {
         nextAnalysis={{
           label: "International Geography",
           description: "Cross-border patenting patterns and how national innovation systems compare",
-          href: "/chapters/geo-international",
+          href: "/chapters/geo-international/",
         }}
       />
 

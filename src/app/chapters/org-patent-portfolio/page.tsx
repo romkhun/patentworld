@@ -433,7 +433,7 @@ export default function OrgPatentPortfolioChapter() {
         nextAnalysis={{
           label: "Interactive Company Profiles",
           description: "Unified dashboards integrating output, quality, portfolio, strategy, and speed for each firm",
-          href: "/chapters/org-company-profiles",
+          href: "/chapters/org-company-profiles/",
         }}
       />
 

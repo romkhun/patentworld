@@ -916,7 +916,7 @@ export default function Chapter12() {
       <InsightRecap
         learned={["Agricultural technology patent velocity nearly quadrupled from 7.4 patents per year (1970s entrants) to 32.9 (2000s entrants), coinciding with the precision agriculture revolution.", "Top-four concentration declined from 46.7% in 2014 to 32.8% by 2025 (through September), consistent with broader entry into agricultural innovation."]}
         falsifiable="If precision agriculture drove the velocity increase, then patents in GPS/sensor subclasses should show faster growth than traditional agricultural chemistry patents."
-        nextAnalysis={{ label: "Artificial Intelligence", description: "AI patenting from expert systems to deep learning — the fastest-growing technology domain", href: "/chapters/ai-patents" }}
+        nextAnalysis={{ label: "Artificial Intelligence", description: "AI patenting from expert systems to deep learning — the fastest-growing technology domain", href: "/chapters/ai-patents/" }}
       />
 
       <DataNote>

@@ -438,7 +438,7 @@ export default function SystemConvergenceChapter() {
         nextAnalysis={{
           label: "The Language of Innovation",
           description: "Semantic analysis reveals the latent thematic structure beneath formal classification codes",
-          href: "/chapters/system-language",
+          href: "/chapters/system-language/",
         }}
       />
 

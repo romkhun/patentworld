@@ -380,7 +380,7 @@ export default function InvGeneralistSpecialistChapter() {
         nextAnalysis={{
           label: "Serial versus New Inventors",
           description: "Career patterns, inventor survival rates, and the productivity lifecycle of patent inventors",
-          href: "/chapters/inv-serial-new",
+          href: "/chapters/inv-serial-new/",
         }}
       />
 

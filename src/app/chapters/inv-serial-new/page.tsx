@@ -642,7 +642,7 @@ export default function InvSerialNewChapter() {
         nextAnalysis={{
           label: "Gender and Patenting",
           description: "The gender innovation gap — composition, trends, and quality differences",
-          href: "/chapters/inv-gender",
+          href: "/chapters/inv-gender/",
         }}
       />
 

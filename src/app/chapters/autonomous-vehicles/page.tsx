@@ -896,7 +896,7 @@ export default function Chapter14() {
       <InsightRecap
         learned={["Autonomous vehicle patent velocity rose from 15.9 patents/year (1990s entrants) to 28.6 (2010s entrants), a 1.8-fold increase.", "Subfield diversity reached near-maximum entropy of 0.97 by 2025 (through September), indicating that AV innovation now spans virtually all relevant technology domains."]}
         falsifiable="If subfield diversification reflects genuine technology maturation, then AV patents spanning more subfields should correlate with higher citation impact."
-        nextAnalysis={{ label: "Biotechnology", description: "From recombinant DNA to CRISPR — engineering life at the molecular level", href: "/chapters/biotechnology" }}
+        nextAnalysis={{ label: "Biotechnology", description: "From recombinant DNA to CRISPR — engineering life at the molecular level", href: "/chapters/biotechnology/" }}
       />
 
       <DataNote>

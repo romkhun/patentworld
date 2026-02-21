@@ -561,7 +561,7 @@ export default function GeoInternationalChapter() {
         nextAnalysis={{
           label: "Organizational Mechanics",
           description: "How firms balance exploration and exploitation, and how knowledge flows between organizations",
-          href: "/chapters/mech-organizations",
+          href: "/chapters/mech-organizations/",
         }}
       />
 

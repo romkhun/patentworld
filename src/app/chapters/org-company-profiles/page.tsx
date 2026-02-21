@@ -908,7 +908,7 @@ export default function OrgCompanyProfilesChapter() {
         nextAnalysis={{
           label: "Top Inventors",
           description: "Shifting from organizations to the individuals — superstar concentration and prolific inventor impact",
-          href: "/chapters/inv-top-inventors",
+          href: "/chapters/inv-top-inventors/",
         }}
       />
 

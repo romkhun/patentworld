@@ -596,7 +596,7 @@ export default function InvTopInventorsChapter() {
         nextAnalysis={{
           label: "Generalist versus Specialist",
           description: "How technology specialization patterns affect patent quality and citation impact",
-          href: "/chapters/inv-generalist-specialist",
+          href: "/chapters/inv-generalist-specialist/",
         }}
       />
 

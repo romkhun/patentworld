@@ -356,7 +356,7 @@ export default function SystemPublicInvestmentChapter() {
         nextAnalysis={{
           label: "Assignee Composition",
           description: "Who files patents — the corporate, foreign, and institutional landscape of assignees",
-          href: "/chapters/org-composition",
+          href: "/chapters/org-composition/",
         }}
       />
 

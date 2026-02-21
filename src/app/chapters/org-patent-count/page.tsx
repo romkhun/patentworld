@@ -469,7 +469,7 @@ export default function OrgPatentCountChapter() {
         nextAnalysis={{
           label: "Organizational Patent Quality",
           description: "Beyond quantity — how do top filers compare on citation impact and blockbuster rates?",
-          href: "/chapters/org-patent-quality",
+          href: "/chapters/org-patent-quality/",
         }}
       />
 

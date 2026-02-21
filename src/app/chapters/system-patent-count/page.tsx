@@ -356,7 +356,7 @@ export default function SystemPatentCountChapter() {
         nextAnalysis={{
           label: "Patent Quality",
           description: "Are more patents better patents? Claims, citations, and originality metrics over time",
-          href: "/chapters/system-patent-quality",
+          href: "/chapters/system-patent-quality/",
         }}
       />
 

@@ -929,7 +929,7 @@ export default function Chapter18() {
       <InsightRecap
         learned={["Digital health patent velocity jumped 3.4-fold from 22.5 patents/year (1970s entrants) to 77.5 (2010s entrants).", "Philips (2,909 patents), Medtronic (2,302), and Intuitive Surgical (1,994) lead the field, with subfield diversity rising from 0.48 to 0.92."]}
         falsifiable="If the velocity increase reflects genuine health-tech convergence, then digital health patents should increasingly span both medical (A61) and computing (G06) CPC subclasses."
-        nextAnalysis={{ label: "Green Innovation", description: "Climate technology patents from niche to mainstream — batteries, EVs, and renewables", href: "/chapters/green-innovation" }}
+        nextAnalysis={{ label: "Green Innovation", description: "Climate technology patents from niche to mainstream — batteries, EVs, and renewables", href: "/chapters/green-innovation/" }}
       />
 
       <DataNote>
