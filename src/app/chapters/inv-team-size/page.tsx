@@ -482,9 +482,9 @@ export default function InvTeamSizeChapter() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 h-full">
           {decadeGroups.map((group) => (
             <div key={group.decade} className="flex flex-col">
-              <h4 className="mb-1 text-center text-xs font-semibold text-muted-foreground">
+              <h3 className="mb-1 text-center text-xs font-semibold text-muted-foreground">
                 {group.decade}
-              </h4>
+              </h3>
               <div className="flex-1" style={{ minHeight: 140 }}>
                 <PWCoefficientPlot
                   data={group.coefficients}
