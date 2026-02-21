@@ -618,10 +618,66 @@ SUPERLATIVE VERIFICATION: 24/24 superlative claims verified correct
   Cross-domain CR4, velocity, concentration verified against all 12 domains
   See audit/superlative-checks.md for full methodology and results
 
+FONT STACK: Playfair Display + Plus Jakarta Sans + JetBrains Mono: VERIFIED
+ROUTING: All 46 pages produce static HTML (SSG): VERIFIED
+LEGACY COMPONENTS: 0 deprecated structures found
+
 Build: 46/46 pages compiled successfully
-Commits: 5 (efa45ee0, 565a7914, fc439e93, 79807a01, a940e78b + pending)
+Commits: 25+ across 3 sessions
 Branch: main
 Push: SUCCESS
-Deploy: gh-pages published + Vercel auto-deploy from main
+Deploy: Vercel auto-deploy from main
 ============================================
 ```
+
+---
+
+## Phase 2E — Final Fixes (Session 3, Continued)
+
+### Data Accuracy
+| Fix | File | Change |
+|-----|------|--------|
+| AV caption CPC codes | autonomous-vehicles/page.tsx:313 | "(G05D1, B60W, G08G)" → "(B60W60, G05D1, G06V20/56)" |
+| Blockchain DataNote CPC | blockchain/page.tsx:924 | "G06Q20/06" → "G06Q20/0655" |
+| Geo-intl "2020s" precision | geo-international/page.tsx:337 | "During the 2020s" → "During the 2020s (2020–2024)" |
+| Semiconductors CR4 trend | semiconductors/page.tsx, constants.ts | "rising from 11.3% in 1977" → "rising since 2010 from 18.3%"; "only domain" → "primary domain" |
+| Quantum concentration | quantum-computing/page.tsx, constants.ts | Added "and semiconductors (32%)" to comparison |
+| Growth multiple: org-patent-quality | org-patent-quality/page.tsx:407 | "nearly threefold" → "more than twofold" (actual 2.27×) |
+| Growth multiple: biotech | biotechnology/page.tsx, constants.ts | "tripled" → "nearly tripled" (actual 2.93×) |
+| Growth multiple: ag-tech | agricultural-technology/page.tsx, constants.ts | "nearly quadrupled" → "more than quadrupled" (actual 4.45×) |
+
+### Diversity Metric Corrections
+| Fix | File | Change |
+|-----|------|--------|
+| Government breadth axis label | system-public-investment/page.tsx:229 | "Shannon Entropy" → "1 − HHI" |
+| Deep-dive-overview entropy formula | deep-dive-overview/page.tsx | Shannon entropy log₂ → Simpson diversity 1−Σpᵢ² |
+| Citation normalization button | useCitationNormalization.tsx:46 | "Normalize by cohort age" → "Normalize by exposure years" |
+
+### Acronym & Terminology
+| Fix | File | Change |
+|-----|------|--------|
+| USPTO added to glossary | glossary.ts | New entry for United States Patent and Trademark Office |
+| NLP expanded | ai-patents/page.tsx:395 | "NLP" → "natural language processing" |
+| HHI expanded | ai-patents/page.tsx:742, system-patent-quality/page.tsx:515 | First-use expansion |
+| NIH expanded | biotechnology/page.tsx:547, system-public-investment/page.tsx:79 | First-use expansion |
+| CPC GlossaryTooltip | 11 chapter files | First CPC wrapped in GlossaryTooltip |
+| 325 date range hyphens | 34 chapter files | YYYY-YYYY → YYYY–YYYY (en-dash) |
+
+### Link & Navigation
+| Fix | File | Change |
+|-----|------|--------|
+| MeasurementSidebar anchor | MeasurementSidebar.tsx:51 | /about/#definitions → /methodology/#definitions |
+| InsightRecap trailing slashes | 34 chapter files | All href values given trailing slash |
+| Deep-dive-overview links | deep-dive-overview/page.tsx | 12 domain chapter hrefs given trailing slash |
+| FAQ citation link | faq/page.tsx:127 | Added target="_blank" rel="noopener noreferrer" |
+| PatentsView URL consistency | about/page.tsx, methodology/page.tsx | www.patentsview.org → patentsview.org |
+
+### GenAI & Data Dictionary
+| Fix | File | Change |
+|-----|------|--------|
+| data-dictionary.json | public/data-dictionary.json | Added missing chapter15 entry |
+
+### Checkpoint Files
+All 10 checkpoint files created per audit.md §1.0:
+- checkpoint-codebase.md, checkpoint-act1.md through checkpoint-act6.md
+- checkpoint-homepage.md, checkpoint-support-pages.md, checkpoint-global.md
