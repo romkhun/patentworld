@@ -1,10 +1,10 @@
 {
   "name": "PatentWorld Data Dictionary",
   "version": "2026-Q1",
-  "description": "Schema reference for all JSON data files served by PatentWorld. Data derived from USPTO PatentsView bulk download (February 2026).",
+  "description": "Schema reference for all JSON data files served by PatentWorld. Data derived from USPTO PatentsView bulk download (February 2026). Data directories are organized by analytical topic; individual chapter pages may draw from multiple directories.",
   "coverage": {
     "patents": "9.36 million",
-    "period": "1976-2025",
+    "period": "1976\u20132025 (through September)",
     "types": ["utility", "design", "plant", "reissue"]
   },
   "source_tables": {
@@ -18,56 +18,74 @@
     "g_gov_interest": "Government interest statements (patent_id, gi_statement)",
     "g_gov_interest_org": "Government interest organizations (patent_id, organization_id, name)"
   },
-  "data_directories": {
-    "chapter1": "Patent counts by year and type, grant lag trends",
-    "chapter2": "Quality metrics: claims, citations, scope, originality, generality",
-    "chapter3": "Top assignee rankings and concentration ratios",
-    "chapter4": "CPC section distribution, field dynamics, class-level changes",
-    "chapter5": "Technology convergence: cross-section patents, convergence pairs",
-    "chapter6": "Government-funded patent trends by agency",
-    "chapter7": "Domestic vs. foreign assignee composition by country",
-    "chapter8": "Inventor segments: top inventors, productivity distribution",
-    "chapter9": "Continuation and related filing statistics",
-    "chapter10": "Firm quality: citations, blockbuster rates, sleeping beauties",
-    "chapter11": "Corporate portfolio diversity, competitive proximity, JSD",
-    "chapter12": "NLP topic modeling: 25 topics from 8.45M patent abstracts",
-    "chapter13": "Patent law timeline: 21 legislative and judicial events",
-    "chapter14": "Generalist vs. specialist inventors, CPC breadth",
-    "chapter15": "Serial vs. new inventors, experience cohorts, productivity",
-    "chapter16": "Gender trends in patenting, quality by gender",
-    "chapter17": "Team size trends and quality metrics by team size",
-    "chapter18": "State and city-level patent geography",
-    "chapter19": "International inventor geography and quality by country",
-    "chapter20": "Organizational exploration-exploitation and citation flows",
-    "chapter21": "Co-invention networks and inventor mobility",
-    "chapter22": "International co-invention trends and bilateral flows",
-    "company": "Company-level profiles, firm quality, design patents, mortality",
-    "computed": "Pre-computed quality metrics (originality, generality, scope)",
-    "explore": "Interactive exploration data (assignee/inventor/CPC search)",
-    "act6": "Cross-domain comparison: volume, growth, quality, spillover",
-    "3dprint": "3D printing / additive manufacturing domain analysis",
-    "agtech": "Agricultural technology domain analysis",
-    "av": "Autonomous vehicles domain analysis",
-    "biotech": "Biotechnology domain analysis",
-    "blockchain": "Blockchain / distributed ledger domain analysis",
-    "cyber": "Cybersecurity domain analysis",
-    "digihealth": "Digital health domain analysis",
-    "green": "Green innovation / climate technology domain analysis",
-    "quantum": "Quantum computing domain analysis",
-    "semiconductors": "Semiconductor domain analysis",
-    "space": "Space technology domain analysis"
+  "chapter_data_mapping": {
+    "_note": "Maps each chapter URL slug to the data directory or directories it draws from. Chapters may use data from multiple directories.",
+    "act_1_the_system": {
+      "system-patent-count": { "primary": "chapter1", "description": "Patent counts by year and type, grant lag trends, pendency statistics" },
+      "system-patent-quality": { "primary": "chapter9", "also": ["chapter1", "chapter2", "chapter6"], "description": "Quality metrics: claims, citations, scope, originality, generality, sleeping beauties, self-citation" },
+      "system-patent-fields": { "primary": "chapter2", "also": ["chapter3", "chapter6", "chapter7", "chapter9", "chapter10"], "description": "CPC section distribution, field dynamics, class-level changes, technology S-curves, WIPO sector mapping" },
+      "system-convergence": { "primary": "chapter7", "description": "Technology convergence: cross-section patents, convergence pairs, friction maps" },
+      "system-language": { "primary": "chapter12", "description": "NLP topic modeling: 25 topics from 8.45M patent abstracts, entropy trends" },
+      "system-patent-law": { "primary": "chapter13", "description": "Patent law timeline: 21 legislative and judicial events, filing impact analysis" },
+      "system-public-investment": { "primary": "chapter6", "description": "Government-funded patent trends by agency, technology field heatmap" }
+    },
+    "act_2_the_organizations": {
+      "org-composition": { "primary": "chapter3", "description": "Corporate vs. individual, domestic vs. foreign assignee composition by country" },
+      "org-patent-count": { "primary": "chapter3", "also": ["chapter2", "chapter9"], "description": "Top assignee rankings, concentration ratios, design patents, blockbuster Lorenz curves" },
+      "org-patent-quality": { "primary": "company", "description": "Citation impact, blockbuster rates, citation half-lives across top filers" },
+      "org-patent-portfolio": { "primary": "company", "description": "Portfolio diversity, competitive proximity, JSD, technology pivots" },
+      "org-company-profiles": { "primary": "company", "description": "Individual company profiles, quality metrics, design patents, patent mortality" }
+    },
+    "act_3_the_inventors": {
+      "inv-top-inventors": { "primary": "chapter5", "description": "Top inventor rankings, productivity distribution, citation impact by prolificacy" },
+      "inv-generalist-specialist": { "primary": "chapter14", "description": "Generalist vs. specialist inventors, CPC breadth, quality comparison" },
+      "inv-serial-new": { "primary": "chapter5", "description": "First-time vs. serial inventors, experience cohorts, productivity trajectories" },
+      "inv-gender": { "primary": "chapter5", "description": "Gender trends in patenting, quality by gender, field composition" },
+      "inv-team-size": { "primary": "chapter5", "description": "Team size trends, solo vs. team quality, regression analysis" }
+    },
+    "act_4_the_geography": {
+      "geo-domestic": { "primary": "chapter4", "description": "State and city-level patent geography, technology specialization" },
+      "geo-international": { "primary": "chapter4", "description": "International inventor geography, quality by country, bilateral flows" }
+    },
+    "act_5_the_mechanics": {
+      "mech-organizations": { "primary": "company", "description": "Organizational exploration-exploitation, co-patenting networks, citation flows" },
+      "mech-inventors": { "primary": "chapter5", "also": ["chapter3", "chapter4", "chapter21"], "description": "Inventor collaboration networks, mobility event studies, international mobility" },
+      "mech-geography": { "primary": "chapter22", "description": "International co-invention trends and bilateral patent flows" }
+    },
+    "act_6_deep_dives": {
+      "3d-printing": { "primary": "3dprint", "description": "Additive manufacturing domain: concentration, entry velocity, subfield diversity" },
+      "agricultural-technology": { "primary": "agtech", "description": "Agricultural technology domain analysis" },
+      "ai-patents": { "primary": "chapter11", "description": "Artificial intelligence domain: volume, growth, organizational rankings, quality metrics" },
+      "autonomous-vehicles": { "primary": "av", "description": "Autonomous vehicles domain analysis" },
+      "biotechnology": { "primary": "biotech", "description": "Biotechnology domain analysis" },
+      "blockchain": { "primary": "blockchain", "description": "Blockchain / distributed ledger domain analysis" },
+      "cybersecurity": { "primary": "cyber", "description": "Cybersecurity domain analysis" },
+      "digital-health": { "primary": "digihealth", "description": "Digital health domain analysis" },
+      "green-innovation": { "primary": "green", "description": "Green innovation / climate technology domain analysis" },
+      "quantum-computing": { "primary": "quantum", "description": "Quantum computing domain analysis" },
+      "semiconductors": { "primary": "semiconductors", "description": "Semiconductor domain analysis" },
+      "space-technology": { "primary": "space", "description": "Space technology domain analysis" }
+    },
+    "cross_domain": {
+      "deep-dive-overview": { "primary": "act6", "description": "Cross-domain comparison metrics: volume, growth, concentration, quality, spillover" }
+    },
+    "shared_data": {
+      "computed": "Pre-computed quality metrics (originality, generality, scope) for all patents",
+      "explore": "Interactive exploration data powering the Explore page search functionality"
+    }
   },
   "derived_metrics": {
-    "originality": "1 - HHI of backward citation CPC sections. Range 0 to ~1.",
-    "generality": "1 - HHI of forward citation CPC sections. Range 0 to ~1.",
-    "blockbuster_rate": "Share of patents in top 1% of 5-year forward citations within grant-year × CPC section cohort.",
+    "originality": "1 \u2212 HHI of backward citation CPC sections. Range 0 to ~1.",
+    "generality": "1 \u2212 HHI of forward citation CPC sections. Range 0 to ~1.",
+    "blockbuster_rate": "Share of patents in top 1% of 5-year forward citations within grant-year \u00d7 CPC section cohort.",
     "dud_rate": "Share of patents with zero 5-year forward citations.",
-    "shannon_entropy": "H = -Σ pᵢ log(pᵢ). Log₂ for topic modeling, ln for portfolio diversity.",
-    "hhi": "Σ sᵢ² × 10,000. Concentration index (0 = fragmented, 10,000 = monopoly).",
+    "shannon_entropy": "H = \u2212\u03a3 p\u1d62 log(p\u1d62). Log\u2082 for topic modeling, ln for portfolio diversity.",
+    "hhi": "\u03a3 s\u1d62\u00b2 \u00d7 10,000. Concentration index (0 = fragmented, 10,000 = monopoly).",
     "cr4": "Combined patent share of top 4 organizations in a domain.",
     "exploration_score": "Share of patents in CPC classes new to the firm in the prior 5 years.",
     "grant_lag": "Days between application filing date and grant date.",
-    "cohort_normalization": "Patent citations divided by mean citations in same grant-year × CPC section."
+    "cohort_normalization": "Patent citations divided by mean citations in same grant-year \u00d7 CPC section.",
+    "modified_gini": "Directional concentration index derived from the Lorenz curve comparing blockbuster patent share to overall patent share. Positive values indicate large patent holders capture a disproportionate share of blockbuster patents; negative values indicate the reverse. Differs from the standard Gini coefficient (bounded [0, 1]) in that it measures relative concentration deviation and can take negative values."
   },
   "technology_domains": {
     "ai": "G06N, G06F18, G06V, G10L15, G06F40",
