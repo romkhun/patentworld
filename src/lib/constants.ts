@@ -38,7 +38,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-fields',
     title: 'Patent Fields',
     subtitle: 'Technology classes, field-level dynamics, and quality by technology area',
-    description: 'CPC sections G and H gained 30 percentage points of share over five decades, rising from 27% to 57% of all grants. The fastest digital technology classes grew by more than 1,000%. Patent grant concentration by assignee remains below conventional thresholds across CPC sections.',
+    description: 'CPC sections G and H gained 30 percentage points of share over five decades, rising from 27% to 57% of utility patent grants. The fastest digital technology classes grew by more than 1,000%. Patent grant concentration by assignee remains below conventional thresholds across CPC sections.',
   },
   {
     number: 4,
@@ -153,7 +153,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'geo-international',
     title: 'International Geography',
     subtitle: 'Cross-border patterns and country-level quality metrics',
-    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with approximately 164,000 patents granted cumulatively during the 2020s (by assignee country) and 18.4 average claims. Countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions, technology field composition, or strategic filing approaches.',
+    description: 'Japan leads foreign filings with 1.45 million US patents, while China grew from 299 filings in 2000 to 30,695 in 2024. The US leads with approximately 164,000 patents granted cumulatively during the 2020s (2020–2024, by assignee country) and 18.4 average claims. Countries with rapidly growing patent volumes tend to exhibit lower average claim counts, a pattern that may reflect differences in patent drafting conventions, technology field composition, or strategic filing approaches.',
   },
   // ── ACT 5: The Mechanics ──
   {

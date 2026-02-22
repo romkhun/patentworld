@@ -617,6 +617,15 @@ TypeScript: VERIFIED (npx tsc --noEmit passes)
 Lint: VERIFIED (0 errors, 3 pre-existing warnings)
 Commits: 7 prior + gap-fix commit pending
 Deploy: Auto-deploy on push
+Post-Deploy Deep-Link Verification (§6.16):
+  / → HTTP/2 200
+  /explore/ → HTTP/2 200
+  /methodology/ → HTTP/2 200
+  /about/ → HTTP/2 200
+  /chapters/system-patent-count/ → HTTP/2 200
+  /chapters/ai-patents/ → HTTP/2 200
+  /chapters/biotechnology/ → HTTP/2 200
+  All 7 deep-link paths verified: PASS
 
 CERTIFICATION: The PatentWorld v7 audit has verified data accuracy,
 addressed sensitivity concerns, fixed structural data issues, completed
