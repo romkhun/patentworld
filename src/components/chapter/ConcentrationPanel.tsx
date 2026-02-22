@@ -39,7 +39,7 @@ export function ConcentrationPanel({ outcome, entity, top1, top5, gini, top1Labe
         </div>
       </div>
       <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground/70">
-        Share figures indicate the percentage of total {outcome.toLowerCase()} held by the top 1% and top 5% of {entity.toLowerCase()} respectively. The Gini coefficient ranges from 0 (perfectly equal distribution) to 1 (maximum concentration).
+        Share figures indicate the concentration of {outcome.toLowerCase()} among the highest-ranking {entity.toLowerCase()}. The Gini coefficient ranges from 0 (perfectly equal distribution) to 1 (maximum concentration).
       </p>
     </aside>
   );

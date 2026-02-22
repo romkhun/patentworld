@@ -5,11 +5,11 @@ import type { DataBadgeProps } from '@/lib/types';
 export function DataBadge({ asOf, outcomeWindow, outcomeThrough, normalization, taxonomy }: DataBadgeProps) {
   const badges: { label: string; value: string }[] = [];
 
-  if (asOf) badges.push({ label: 'Data', value: asOf });
-  if (outcomeWindow) badges.push({ label: 'Window', value: outcomeWindow });
-  if (outcomeThrough) badges.push({ label: 'Through', value: String(outcomeThrough) });
-  if (normalization) badges.push({ label: 'Norm', value: normalization });
-  if (taxonomy) badges.push({ label: 'Tax', value: taxonomy });
+  if (asOf) badges.push({ label: 'Source', value: asOf });
+  if (outcomeWindow) badges.push({ label: 'Citation Window', value: outcomeWindow });
+  if (outcomeThrough) badges.push({ label: 'Citations Through', value: String(outcomeThrough) });
+  if (normalization) badges.push({ label: 'Normalization', value: normalization });
+  if (taxonomy) badges.push({ label: 'Classification', value: taxonomy });
 
   if (badges.length === 0) return null;
 

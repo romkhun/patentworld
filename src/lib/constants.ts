@@ -31,7 +31,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'system-patent-quality',
     title: 'Patent Quality',
     subtitle: 'Claims, scope, citations, originality, and knowledge flow indicators',
-    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 (section-level averages reached 0.45-0.55 by the 2020s) while generality fell from 0.28 to 0.15.',
+    description: 'Average claims per patent doubled from 9.4 to a peak of 18.9 in 2005. Forward citations rose to a peak of 6.4 in 2019. System-wide originality rose from 0.09 to 0.25 (section-level averages reached 0.45–0.55 by the 2020s) while generality fell from 0.28 to 0.15.',
   },
   {
     number: 3,
@@ -81,7 +81,7 @@ export const CHAPTERS: ChapterMeta[] = [
     slug: 'org-patent-count',
     title: 'Organizational Patent Count',
     subtitle: 'Patent output rankings and trajectories of leading organizations',
-    description: 'IBM leads with 161,888 cumulative grants. Samsung peaked at 9,716 annual grants in 2024. The top 100 organizations hold 32-39% of corporate patents.',
+    description: 'IBM leads with 161,888 cumulative grants. Samsung peaked at 9,716 annual grants in 2024. The top 100 organizations hold 32–39% of corporate patents.',
   },
   {
     number: 10,

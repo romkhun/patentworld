@@ -36,6 +36,7 @@ const TOC_ITEMS = [
   { id: 'chapters', label: 'Chapters' },
   { id: 'data', label: 'Data Source' },
   { id: 'methodology', label: 'Methodology' },
+  { id: 'faq', label: 'FAQ' },
   { id: 'citation', label: 'Citation' },
   { id: 'license', label: 'License' },
 ];
@@ -257,7 +258,56 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* 6. Suggested Citation */}
+        {/* 6. FAQ */}
+        <section id="faq">
+          <h2 className="font-serif text-2xl font-bold pt-4">Frequently Asked Questions</h2>
+          <div className="space-y-4 mt-2">
+            <div>
+              <h3 className="font-semibold">What types of patents does PatentWorld cover?</h3>
+              <p className="text-muted-foreground">
+                All USPTO-granted patents from 1976 through September 2025, including utility, design,
+                plant, and reissue patents &mdash; 9.36 million grants in total. Unless otherwise noted,
+                figures and statistics reflect all patent types.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold">How current is the data?</h3>
+              <p className="text-muted-foreground">
+                The underlying data were downloaded from PatentsView in February 2026 and cover grants
+                through September 2025. All references to 2025 data include a &ldquo;through September&rdquo;
+                qualifier to indicate partial-year coverage.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold">Can I download the data?</h3>
+              <p className="text-muted-foreground">
+                The derived JSON datasets powering each visualization are available in the{' '}
+                <code className="rounded bg-muted px-1 py-0.5 text-xs">public/data/</code> directory
+                of the project repository. The raw patent data are available directly from{' '}
+                <a href="https://patentsview.org" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">PatentsView</a>.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold">How are gender and inventor identities determined?</h3>
+              <p className="text-muted-foreground">
+                Gender is inferred from inventor first names using established name-based classification methods.
+                This approach is binary-limited and has lower accuracy for non-Western naming traditions. Inventor
+                identities rely on PatentsView&apos;s disambiguation algorithm. See the{' '}
+                <Link href="/methodology/#limitations" className="underline underline-offset-2 hover:text-foreground transition-colors">Methodology limitations</Link>{' '}
+                for details on these measurement constraints.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold">How should I cite PatentWorld?</h3>
+              <p className="text-muted-foreground">
+                See the <a href="#citation" className="underline underline-offset-2 hover:text-foreground transition-colors">Citation</a> section
+                below. Individual figures can be cited using the &ldquo;Cite this figure&rdquo; widget on each visualization.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Suggested Citation */}
         <section id="citation">
           <h2 className="font-serif text-2xl font-bold pt-4">Suggested Citation</h2>
           <p className="rounded-lg border bg-muted/30 p-4 font-mono text-sm">

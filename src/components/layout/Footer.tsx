@@ -20,6 +20,7 @@ export function Footer() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link href="/methodology/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Methodology</Link>
             <Link href="/about/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">About</Link>
+            <Link href="/about/#faq" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">FAQ</Link>
             <Link href="/explore/" className="inline-block py-1 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-sm">Explore</Link>
           </div>
         </div>
