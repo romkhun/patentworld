@@ -73,6 +73,29 @@
 
 ---
 
+## §8.1 — Finding Classification
+
+Severity × Category grid for all 29 findings.
+
+|              | DATA | NARRATIVE | METHODOLOGY | EXTERNAL | SENSITIVITY | INFRASTRUCTURE | LANGUAGE |
+|--------------|------|-----------|-------------|----------|-------------|----------------|----------|
+| **CRITICAL** | C1, C2 | — | — | — | — | — | — |
+| **HIGH**     | — | H4 | H6 | — | H1, H2, H3 | H7, H8 | H5 |
+| **MEDIUM**   | — | — | — | — | — | M1, M2, M3, M4, M5, M6, M12 | M7a, M7b, M7c, M7d, M8, M9, M10, M11, M13, M14 |
+| **LOW**      | — | — | — | — | — | L1, L2, L3 | — |
+| **Totals**   | 2 | 1 | 1 | 0 | 3 | 12 | 11 |
+
+**Category definitions:**
+- **DATA** — Factual accuracy of numbers, labels, or denominators (C1, C2)
+- **NARRATIVE** — Missing citations or unsupported causal claims in body text (H4)
+- **METHODOLOGY** — Undefined or inadequately described analytical methods (H6)
+- **EXTERNAL** — Verifiable external claims (none found in v7; 15/15 verified in v6)
+- **SENSITIVITY** — Loaded, geopolitical, or potentially biased framing (H1, H2, H3)
+- **INFRASTRUCTURE** — SEO, navigation, accessibility, build, manifest, component issues (H7, H8, M1–M6, M12, L1–L3)
+- **LANGUAGE** — Typography, interpretive phrasing, label consistency (H5, M7a–M7d, M8–M14 text fixes)
+
+---
+
 ## Section III — Prior Suggestions Compliance Matrix
 
 ### v6 Audit Findings
@@ -174,26 +197,327 @@ Counts verified via opening-tag grep across all chapter files:
 
 ## §8.3 — Per-Chapter Summary
 
-All 34 chapters have:
-- ✓ 1 KeyFindings component
-- ✓ 1 InsightRecap component
-- ✓ At least 1 DataNote
-- ✓ Unique figure IDs on all ChartContainers
-- ✓ Valid cross-chapter link targets
-- ✓ Em-dash typography corrected (M7d)
+All 34 chapters share: 1 KeyFindings, 1 InsightRecap, at least 1 DataNote, unique figure IDs, valid cross-chapter link targets, and em-dash typography corrected (M7d).
+
+### system-patent-count — Patent Count
+Findings: 1 (C: 0, H: 0, M: 1, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 6 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (C2 attributed to chapterMeasurementConfig.ts, site-wide)
+
+### system-patent-quality — Patent Quality
+Findings: 1 (C: 0, H: 0, M: 1, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 16 ChartContainers
+Cross-references: 3 outgoing
+Status: ALL FIXED (M9 hyphen range in constants.ts)
+
+### system-patent-fields — Patent Fields
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 21 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### system-convergence — Convergence
+Findings: 1 (C: 0, H: 0, M: 1, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 7 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (M7c en-dash range in constants.ts)
+
+### system-language — The Language of Innovation
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 4 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED
+
+### system-patent-law — Patent Law & Policy
+Findings: 1 (C: 0, H: 0, M: 1, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 8 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (M8 causal language)
+
+### system-public-investment — Public Investment
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 6 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED
+
+### org-composition — Assignee Composition
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 6 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### org-patent-count — Organizational Patent Count
+Findings: 3 (C: 0, H: 0, M: 3, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 6 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (M10 hyphen range, M13 interpretive language, M14 interpretive language)
+
+### org-patent-quality — Organizational Patent Quality
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 12 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### org-patent-portfolio — Patent Portfolio
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 5 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED
+
+### org-company-profiles — Interactive Company Profiles
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 12 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### inv-top-inventors — Top Inventors
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 13 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED
+
+### inv-generalist-specialist — Generalist vs. Specialist
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 10 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### inv-serial-new — Serial Inventors vs. New Entrants
+Findings: 1 (C: 0, H: 0, M: 1, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 14 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED (M7b en-dash range in constants.ts)
+
+### inv-gender — Gender and Patenting
+Findings: 1 (C: 0, H: 1, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 13 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED (H2 gender confounder disclosure added)
+
+### inv-team-size — Team Size and Collaboration
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 15 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### geo-domestic — Domestic Geography
+Findings: 1 (C: 0, H: 1, M: 0, L: 0)
+Narrative flow: ADEQUATE
+Figure ordering: LOGICAL
+Figure count: 15 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED (H4 literature citations added)
+
+### geo-international — International Geography
+Findings: 2 (C: 0, H: 1, M: 1, L: 0)
+Narrative flow: ADEQUATE
+Figure ordering: LOGICAL
+Figure count: 16 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (H1 neutral phrasing, M7a em-dash in constants.ts)
+
+### mech-organizations — Organizational Mechanics
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 10 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED
+
+### mech-inventors — Inventor Mechanics
+Findings: 1 (C: 0, H: 1, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 13 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED (H3 neutral language for US-China mobility)
+
+### mech-geography — Geographic Mechanics
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: ADEQUATE
+Figure ordering: LOGICAL
+Figure count: 4 ChartContainers
+Cross-references: 1 outgoing
+Status: ALL FIXED
+
+### 3d-printing — 3D Printing & Additive Manufacturing
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 3 outgoing
+Status: ALL FIXED
+
+### agricultural-technology — Agricultural Technology
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED
+
+### ai-patents — Artificial Intelligence
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 19 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED
+
+### autonomous-vehicles — Autonomous Vehicles & ADAS
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 6 outgoing
+Status: ALL FIXED
+
+### biotechnology — Biotechnology & Gene Editing
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 2 outgoing
+Status: ALL FIXED
+
+### blockchain — Blockchain & Decentralized Systems
+Findings: 1 (C: 0, H: 1, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 19 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED (H5 SEO title changed from "Hype Cycle")
+
+### cybersecurity — Cybersecurity
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED
+
+### digital-health — Digital Health & Medical Devices
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 19 ChartContainers
+Cross-references: 6 outgoing
+Status: ALL FIXED
+
+### green-innovation — Green Innovation
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 19 ChartContainers
+Cross-references: 5 outgoing
+Status: ALL FIXED
+
+### quantum-computing — Quantum Computing
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 19 ChartContainers
+Cross-references: 4 outgoing
+Status: ALL FIXED
+
+### semiconductors — Semiconductors
+Findings: 0 (C: 0, H: 0, M: 0, L: 0)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 5 outgoing
+Status: ALL FIXED
+
+### space-technology — Space Technology
+Findings: 1 (C: 0, H: 0, M: 0, L: 1)
+Narrative flow: STRONG
+Figure ordering: LOGICAL
+Figure count: 18 ChartContainers
+Cross-references: 2 outgoing
+Status: 1 DEFERRED (L2: no incoming cross-chapter links)
 
 ---
 
 ## §8.4 — Per-Act Summary
 
-| Act | Chapters | Thematic Consistency | Key Findings |
-|-----|----------|---------------------|--------------|
-| 1: The System | 7 | YES | C2 (measurement config), M8 (causal language) |
-| 2: The Organizations | 5 | YES | H6 (modified Gini undefined) |
-| 3: The Inventors | 5 | YES | H2 (gender confounder) |
-| 4: The Geography | 2 | YES | H1 (quality-quantity), H4 (self-reinforcing) |
-| 5: The Mechanics | 3 | YES | H3 (deep integration) |
-| 6: Deep Dives | 12 | YES | H5 (hype cycle) |
+### Act 1: The System
+Chapters: 7 (system-patent-count, system-patent-quality, system-patent-fields, system-convergence, system-language, system-patent-law, system-public-investment)
+Inter-chapter coherence: STRONG
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 4 (C2 measurement config, M7c en-dash range, M8 causal language, M9 hyphen range)
+
+### Act 2: The Organizations
+Chapters: 5 (org-composition, org-patent-count, org-patent-quality, org-patent-portfolio, org-company-profiles)
+Inter-chapter coherence: STRONG
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 3 (M10 hyphen range, M13 interpretive language, M14 interpretive language)
+
+### Act 3: The Inventors
+Chapters: 5 (inv-top-inventors, inv-generalist-specialist, inv-serial-new, inv-gender, inv-team-size)
+Inter-chapter coherence: STRONG
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 2 (H2 gender confounder, M7b en-dash range)
+
+### Act 4: The Geography
+Chapters: 2 (geo-domestic, geo-international)
+Inter-chapter coherence: ADEQUATE
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 3 (H1 quality-quantity framing, H4 self-reinforcing without citations, M7a em-dash in constants.ts)
+
+### Act 5: The Mechanics
+Chapters: 3 (mech-organizations, mech-inventors, mech-geography)
+Inter-chapter coherence: STRONG
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 1 (H3 US-China deep integration language)
+
+### Act 6: Deep Dives
+Chapters: 12 (3d-printing, agricultural-technology, ai-patents, autonomous-vehicles, biotechnology, blockchain, cybersecurity, digital-health, green-innovation, quantum-computing, semiconductors, space-technology)
+Inter-chapter coherence: STRONG
+Thematic consistency: YES
+Act transition quality: SMOOTH
+Total findings: 2 (H5 blockchain hype cycle SEO title, L2 space-technology no incoming links)
+
+**Note:** 14 additional site-wide findings (C1, H6, H7, H8, M1–M6, M7d, M11, M12, L1, L3) affect shared infrastructure or components rather than individual chapter content.
 
 ---
 
@@ -208,6 +532,20 @@ All 34 chapters have:
 
 ### Overall Assessment
 PatentWorld's data accuracy is excellent — every core numerical claim tested against raw PatentsView data matches within rounding tolerance. The v7 audit addressed language sensitivity, JSON-LD consistency, and typography issues that the v6 audit identified but did not fully resolve. The remaining deferred items are primarily infrastructure enhancements (manifest, data dictionary, Explore SSR) that do not affect data accuracy.
+
+### Recommendations
+
+Based on the 5 deferred items, the following actions are recommended in priority order:
+
+1. **Define the modified Gini coefficient on the Methodology page (H6).** The term "modified Gini" appears in organizational quality analysis but lacks a formal definition with formula. Add the mathematical specification (base Gini formula, modification for discrete patent counts, and interpretation guide) to the Methodology page so readers can reproduce the metric.
+
+2. **Add a server-rendered chapter directory to the Explore page (H8).** The Explore page currently relies entirely on client-side JavaScript to render its chapter listing. For SEO discoverability and GenAI indexing (Constraint 24), add a static HTML fallback that lists all 34 chapters with titles, act groupings, and links.
+
+3. **Create manifest.webmanifest with proper PWA icons (M1).** The site lacks a Web App Manifest, which prevents "Add to Home Screen" on mobile devices and triggers Lighthouse PWA warnings. Generate 192x192 and 512x512 PNG icons from the existing favicon and create a manifest.webmanifest referencing them.
+
+4. **Add an error boundary to ChartContainer (M6).** If a JSON data fetch fails or returns malformed data, ChartContainer currently renders nothing. Wrap the component in a React error boundary that displays a user-friendly fallback message ("Chart data unavailable") with a retry button.
+
+5. **Run a JS-enabled rendering pipeline when a headless browser is available.** The v7 audit could not verify tooltip correctness, chart overlap, or responsive layout because the environment lacks headless browser support. When a Puppeteer or Playwright environment is available, run visual regression tests on all 459 ChartContainers across three viewport widths (375px, 768px, 1440px).
 
 ---
 
