@@ -134,7 +134,7 @@
       "denominator": "All grants / cross-section patents"
     },
     "system-language": {
-      "numbers": ["8.45M abstracts", "12%→33% computing topics", "1.97→2.10 median entropy (6.6% rise)"],
+      "numbers": ["8.45M abstracts", "12%→33% computing topics", "1.97→2.10 median entropy (6.4% rise)"],
       "denominator": "All patents with abstracts"
     },
     "system-patent-law": {
