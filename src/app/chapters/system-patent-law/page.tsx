@@ -29,7 +29,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
     year: 1980,
     title: 'Bayh-Dole Act',
     category: 'Legislation',
-    description: 'Permitted universities and small businesses to patent federally funded inventions. Transformed university technology transfer and substantially increased academic patenting.',
+    description: 'Permitted universities and small businesses to patent federally funded inventions. Was followed by substantial growth in university technology transfer and academic patenting.',
     research: [
       {
         citation: 'Jensen, R., & Thursby, M. (2001). Proofs and prototypes for sale: The licensing of university inventions. American Economic Review, 91(1), 240\u2013259. https://doi.org/10.1257/aer.91.1.240',

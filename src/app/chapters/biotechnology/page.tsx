@@ -339,9 +339,9 @@ export default function Chapter15() {
       <KeyInsight>
         <p>
           Biotechnology patent filings have exhibited substantial growth since the early 1980s,
-          following the Bayh-Dole Act which enabled universities to patent inventions arising from federally
-          funded research. This legislative change was consequential for the life sciences,
-          creating a direct pathway from academic laboratories to commercial development. The
+          following the Bayh-Dole Act (1980), which permitted universities to patent inventions arising from federally
+          funded research. This legislative change coincided with substantial growth in life sciences patenting,
+          as academic laboratories increasingly pursued commercial development pathways. The
           completion of the Human Genome Project in 2003 accelerated genomic patenting, while the
           publication of CRISPR-Cas9 gene editing technology in 2012 opened a new
           frontier of precision genetic engineering.

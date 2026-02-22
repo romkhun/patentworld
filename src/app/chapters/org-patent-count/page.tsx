@@ -199,9 +199,9 @@ export default function OrgPatentCountChapter() {
         <p>
           Beyond utility patents, <GlossaryTooltip term="design patent">design patents</GlossaryTooltip> have
           become an increasingly important element of corporate intellectual property strategy.
-          The organizations that lead in design patent filings reveal how firms leverage ornamental
-          and aesthetic innovation as a competitive tool, particularly in consumer electronics,
-          consumer brands, and fashion industries where product appearance is a key differentiator.
+          The organizations that lead in design patent filings are concentrated in consumer electronics,
+          consumer brands, and fashion industries where product appearance is a key differentiator,
+          a pattern consistent with the strategic importance of ornamental innovation in these sectors.
         </p>
       </Narrative>
 
